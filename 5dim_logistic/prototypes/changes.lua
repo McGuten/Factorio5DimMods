@@ -1,1 +1,0 @@
-data.raw["roboport"]["roboport"].fast_replaceable_group = "roboport";

@@ -6,7 +6,7 @@
 
 - [Patreon](https://www.patreon.com/5Dim)
 - [Download from ModPortal](https://mods.factorio.com/mods/McGuten)
-- [Issues](https://github.com/McGuten/5DimsFactorioMods/issues)
+- [Issues](https://github.com/McGuten/Factorio5DimMods/issues)
 - [Discord comunity](https://discord.gg/CTEMFd9)
 
 ## Description

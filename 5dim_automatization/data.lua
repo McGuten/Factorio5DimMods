@@ -3,8 +3,8 @@ require("config")
 require("prototypes.changes")
 --Loaders
 if mods["5dim_transport"] then
---   require("prototypes.loader-4")
---   require("prototypes.loader-5")
+    require("prototypes.loader-4")
+    require("prototypes.loader-5")
 end
 --Inserters
 if not mods["bobinserters"] then

@@ -2,6 +2,7 @@
 Version: 1.0.2
 Date: ????
   Changes:
+    - Fixed speed for MK4 and MK5 loaders to adjust with MK4 and MK5 transport belt
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 2020-08-17

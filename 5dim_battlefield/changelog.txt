@@ -2,3 +2,4 @@
 Version: 1.0.2
 Date: ????
   Changes:
+    - In next versions 5dim_battlefield will stop having the content of enemies (biter and spiter), this will be moved to a new module (5dim_enemies), this should be totally transparent for you if you have both mods installed.

@@ -8,20 +8,22 @@ require("prototypes.tech")
 
 --Worms
 if settings.startup["5d-worm"].value then
-    --require("prototypes.experimental-worm")
+--require("prototypes.experimental-worm")
 end
 
 --Biters
-require("prototypes.bitter")
---require("prototypes.bitter-test")
-require("prototypes.physical")
-require("prototypes.laser")
+if mods["5dim_battlefield"] then
+    require("prototypes.bitter")
+    --require("prototypes.bitter-test")
+    require("prototypes.physical")
+    require("prototypes.laser")
 
-if settings.startup["5d-swimmer"].value then
-    require("prototypes.swimmer")
-end
-if settings.startup["5d-climber"].value then
-    require("prototypes.climber")
+    if settings.startup["5d-swimmer"].value then
+        require("prototypes.swimmer")
+    end
+    if settings.startup["5d-climber"].value then
+        require("prototypes.climber")
+    end
 end
 
 --Spiters

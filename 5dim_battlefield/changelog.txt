@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.3
-Date: ????
+Date: 2020-08-21
   Changes:
     - Correct info.json
     - Condicional bitter load for 5dim enemies (next module will be upload in next days

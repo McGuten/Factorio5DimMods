@@ -14,22 +14,24 @@ end
 --Biters
 require("prototypes.bitter")
 --require("prototypes.bitter-test")
-if settings.startup["5d-suicide"].value then
-    require("prototypes.explosive")
-end
+require("prototypes.physical")
 require("prototypes.laser")
+
 if settings.startup["5d-swimmer"].value then
     require("prototypes.swimmer")
 end
 if settings.startup["5d-climber"].value then
     require("prototypes.climber")
 end
-require("prototypes.physical")
 
 --Spiters
 require("prototypes.spitter")
 require("prototypes.rocket")
 require("prototypes.fire")
+
+if settings.startup["5d-suicide"].value then
+    require("prototypes.explosive")
+end
 
 --Experimental
 if settings.startup["5d-exp"].value then

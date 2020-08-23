@@ -11,7 +11,7 @@
 
 ## Description
 
-This mod is a **total conversion** and it has **21 modules** and we recommend use all in your game.
+This mod is a **total conversion** and it has **tons of modules** and we recommend use all in your game.
 
 ### Mod list
 #### Core module
@@ -24,11 +24,13 @@ This mod is a **total conversion** and it has **21 modules** and we recommend us
   - **Automatization**.
     - Add a lot of new inserters, side inserters, more faster inserter, loaders, new tiers of oil refineries and new tiers of assembling machine.
   - **Battlefield**.
-    - Add 2 new laser turret, 2 new gun turret, new electrical turret, new tier wall and gates and a lot of new biters, spitter and spawners, be carefull.
+    - Add 2 new laser turret, 2 new gun turret, new electrical turret, new tier wall and gates.
   - **Bot Recaller**.
     - Utility mod to help recall/collect bots within a network.
   - **Decoration**.
     - Add a lot of new items to decorate your base.
+  - **Enemies**.
+    - Add a lot of new biters, spitter and spawners, recommended for experimented players, be carefull.
   - **Energy**.
     - Add 2 tier of accumulators, boilers, steam engine, solar panel, pumps, new electric poles and a new big lamp.
   - **Equipment**.

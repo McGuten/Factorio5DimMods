@@ -194,7 +194,7 @@ data:extend(
     }
 )
 
-if battlefield == true then
+if mods["5dim_battlefield"] then
     data:extend(
         {
             {

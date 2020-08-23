@@ -1,5 +1,3 @@
-require("config")
-
 -- Technology
 require("prototypes.tech")
 

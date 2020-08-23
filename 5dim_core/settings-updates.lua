@@ -239,26 +239,6 @@ if mods["5dim_infiniteresearch"] then
     --order e for infinite research
     data:extend(
         {
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-trash",
-            --     order = "ea",
-            --     setting_type = "startup",
-            --     default_value = false,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Infinite Research] Infinite trash slots",
-            --     localised_description = "You want to active infinite trash slots? (Default: False)"
-            -- },
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-logistics",
-            --     order = "eb",
-            --     setting_type = "startup",
-            --     default_value = false,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Infinite Research] Infinite logistics slots",
-            --     localised_description = "You want to active infinite logistics slots? (Default: False)"
-            -- },
             {
                 type = "bool-setting",
                 name = "5d-storage",

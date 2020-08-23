@@ -1,8 +1,9 @@
-require("config")
 --Changes
 require("prototypes.changes")
+
 --Tech
 require("prototypes.tech")
+
 --Nuclear
 require("prototypes.centrifugue")
 require("prototypes.reactor")

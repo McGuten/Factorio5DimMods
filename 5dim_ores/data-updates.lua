@@ -1,4 +1,3 @@
-require("config")
 require("prototypes.tin-ore")
 require("prototypes.lead-ore")
 require("prototypes.zinc-ore")

@@ -1,5 +1,3 @@
-require("config")
-
 -- Roboport
 --require("prototypes.roboport-mk2")
 

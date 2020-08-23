@@ -1,5 +1,3 @@
-require("config")
-
 --Changes
 require("prototypes.changes")
 
@@ -13,7 +11,7 @@ require("prototypes.masher-2")
 
 --Furnace
 require("prototypes.coal-furnace-3")
-require("prototypes.electric-furnace-2")
+-- require("prototypes.electric-furnace-2")
 require("prototypes.gen-electric-furnace")
 
 --Furnace

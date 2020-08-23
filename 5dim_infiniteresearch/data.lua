@@ -1,5 +1,3 @@
-require("config")
-
 if mods["5dim_logistic"] and settings.startup["5d-storage"].value then
     --Robots cargo size
     require("prototypes.robots")

@@ -1,4 +1,3 @@
-require("config")
 --Changes
 require("prototypes.change")
 --Entity

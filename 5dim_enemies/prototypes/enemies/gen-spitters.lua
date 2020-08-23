@@ -1,6 +1,6 @@
 require("prototypes.enemies.settings")
 
-require("__5dim_core__.lib.generation-spitter")
+require("__5dim_core__.lib.enemies.generation-spitter")
 
 -- Spiter
 genSpitter {

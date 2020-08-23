@@ -153,14 +153,14 @@ data:extend(
             folded_animation = {
                 layers = {
                     gun_turret_extension {frame_count = 1, line_length = 1},
-                    gun_turret_extension_mask {frame_count = 1, line_length = 1, tint = color},
+                    dim_gun_turret_extension_mask {frame_count = 1, line_length = 1, tint = color},
                     gun_turret_extension_shadow {frame_count = 1, line_length = 1}
                 }
             },
             preparing_animation = {
                 layers = {
                     gun_turret_extension {},
-                    gun_turret_extension_mask {tint = color},
+                    dim_gun_turret_extension_mask {tint = color},
                     gun_turret_extension_shadow {}
                 }
             },
@@ -169,7 +169,7 @@ data:extend(
             folding_animation = {
                 layers = {
                     gun_turret_extension {run_mode = "backward"},
-                    gun_turret_extension_mask {run_mode = "backward", tint = color},
+                    dim_gun_turret_extension_mask {run_mode = "backward", tint = color},
                     gun_turret_extension_shadow {run_mode = "backward"}
                 }
             },
@@ -226,28 +226,28 @@ data:extend(
                 layers = {
                     laser_turret_extension {frame_count = 1, line_length = 1},
                     laser_turret_extension_shadow {frame_count = 1, line_length = 1},
-                    laser_turret_extension_mask {frame_count = 1, line_length = 1, tint = color}
+                    dim_laser_turret_extension_mask {frame_count = 1, line_length = 1, tint = color}
                 }
             },
             preparing_animation = {
                 layers = {
                     laser_turret_extension {},
                     laser_turret_extension_shadow {},
-                    laser_turret_extension_mask {tint = color}
+                    dim_laser_turret_extension_mask {tint = color}
                 }
             },
             prepared_animation = {
                 layers = {
                     laser_turret_shooting(),
                     laser_turret_shooting_shadow(),
-                    laser_turret_shooting_mask {tint = color}
+                    dim_laser_turret_shooting_mask {tint = color}
                 }
             },
             folding_animation = {
                 layers = {
                     laser_turret_extension {run_mode = "backward"},
                     laser_turret_extension_shadow {run_mode = "backward"},
-                    laser_turret_extension_mask {run_mode = "backward", tint = color}
+                    dim_laser_turret_extension_mask {run_mode = "backward", tint = color}
                 }
             },
             base_picture = laser_turret_base {tint = color},

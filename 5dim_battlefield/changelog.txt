@@ -2,6 +2,8 @@
 Version: 1.0.4
 Date: ????
   Changes:
+    - Compatibility with 5Dim -  Enemies
+    - Fix compatibility with mods that add turrets (e.g. tiberium mod) ty to 
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.3
 Date: 2020-08-21

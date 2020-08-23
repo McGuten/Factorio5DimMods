@@ -137,7 +137,7 @@ function laser_turret_extension_shadow(inputs)
     }
 end
 
-function laser_turret_extension_mask(inputs)
+function dim_laser_turret_extension_mask(inputs)
     return {
         filename = "__base__/graphics/entity/laser-turret/laser-turret-raising-mask.png",
         flags = {"mask"},
@@ -215,7 +215,7 @@ function laser_turret_shooting_glow()
     }
 end
 
-function laser_turret_shooting_mask(inputs)
+function dim_laser_turret_shooting_mask(inputs)
     return {
         filename = "__base__/graphics/entity/laser-turret/laser-turret-shooting-mask.png",
         flags = {"mask"},
@@ -349,7 +349,7 @@ function gun_turret_extension(inputs)
     }
 end
 
-function gun_turret_extension_mask(inputs)
+function dim_gun_turret_extension_mask(inputs)
     return {
         filename = "__base__/graphics/entity/gun-turret/gun-turret-raising-mask.png",
         flags = {"mask"},

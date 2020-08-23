@@ -90,28 +90,28 @@ data:extend(
                 layers = {
                     laser_turret_extension {frame_count = 1, line_length = 1},
                     laser_turret_extension_shadow {frame_count = 1, line_length = 1},
-                    laser_turret_extension_mask {frame_count = 1, line_length = 1, tint = color}
+                    dim_laser_turret_extension_mask {frame_count = 1, line_length = 1, tint = color}
                 }
             },
             preparing_animation = {
                 layers = {
                     laser_turret_extension {},
                     laser_turret_extension_shadow {},
-                    laser_turret_extension_mask {tint = color}
+                    dim_laser_turret_extension_mask {tint = color}
                 }
             },
             prepared_animation = {
                 layers = {
                     laser_turret_shooting(),
                     laser_turret_shooting_shadow(),
-                    laser_turret_shooting_mask {tint = color}
+                    dim_laser_turret_shooting_mask {tint = color}
                 }
             },
             folding_animation = {
                 layers = {
                     laser_turret_extension {run_mode = "backward"},
                     laser_turret_extension_shadow {run_mode = "backward"},
-                    laser_turret_extension_mask {run_mode = "backward", tint = color}
+                    dim_laser_turret_extension_mask {run_mode = "backward", tint = color}
                 }
             },
             base_picture = laser_turret_base {tint = color},

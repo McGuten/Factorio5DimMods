@@ -12,7 +12,7 @@ if settings.startup["5d-worm"].value then
 end
 
 --Biters
-if mods["5dim_battlefield"] then
+if not mods["5dim_enemies"] then
     require("prototypes.bitter")
     --require("prototypes.bitter-test")
     require("prototypes.physical")
@@ -27,14 +27,15 @@ if mods["5dim_battlefield"] then
 end
 
 --Spiters
-require("prototypes.spitter")
-require("prototypes.rocket")
-require("prototypes.fire")
+if not mods["5dim_enemies"] then
+    require("prototypes.spitter")
+    require("prototypes.rocket")
+    require("prototypes.fire")
 
-if settings.startup["5d-suicide"].value then
-    require("prototypes.explosive")
+    if settings.startup["5d-suicide"].value then
+        require("prototypes.explosive")
+    end
 end
-
 --Experimental
 if settings.startup["5d-exp"].value then
     require("prototypes.exp")

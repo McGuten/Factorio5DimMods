@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Enemies for 5dim's mod -> Add 2 new laser turret, 2 new gun turret, new electrical turret, new tier wall and gates and a lot of new biters, spitter and spawners, be carefull",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "dependencies": ["5dim_core >= 1.0.2"]
 }

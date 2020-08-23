@@ -134,49 +134,55 @@ data:extend(
             minimum_value = 1,
             maximum_value = 100000,
             localised_name = "[5Dim's mods] Player health (Default 250)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-healing",
-            order = "db",
-            setting_type = "startup",
-            default_value = 0.15,
-            minimum_value = 0.1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-spawner-hp",
-            order = "dc",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.01,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies spawners health (Multiplier)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-hp",
-            order = "dd",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.01,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies health (Multiplier)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-healing",
-            order = "de",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.001,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies healing per tick (Multiplier)"
         }
     }
 )
+if mods["rampant"] then
+    data:extend(
+        {
+            {
+                type = "double-setting",
+                name = "5d-healing",
+                order = "db",
+                setting_type = "startup",
+                default_value = 0.15,
+                minimum_value = 0.1,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
+            },
+            {
+                type = "double-setting",
+                name = "5d-bicho-spawner-hp",
+                order = "dc",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.01,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies spawners health (Multiplier)"
+            },
+            {
+                type = "double-setting",
+                name = "5d-bicho-hp",
+                order = "dd",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.01,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies health (Multiplier)"
+            },
+            {
+                type = "double-setting",
+                name = "5d-bicho-healing",
+                order = "de",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.001,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies healing per tick (Multiplier)"
+            }
+        }
+    )
+end
 if mods["5dim_battlefield"] then
     --order d for battelfield
     data:extend(

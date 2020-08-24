@@ -42,8 +42,8 @@ data:extend(
                     percent = 80
                 }
             },
-            collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
-            selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
+            collision_box = {{-2.2, -2.2}, {2.2, 2.2}},
+            selection_box = {{-2.5, -2.5}, {2.5, 2.5}},
             module_specification = {
                 module_slots = 4,
                 module_info_icon_shift = {0, 0.8}
@@ -67,48 +67,16 @@ data:extend(
                 apparent_volume = 1.5
             },
             animation = {
-                filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-base_3.png",
+                --filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-base_3.png",
+                filename = "__5dim_resources__/graphics/entities/industrial-furnace/industrial-furnace.png",
                 priority = "high",
-                width = 129,
-                height = 100,
+                width = 224,
+                height = 224,
                 frame_count = 1,
-                shift = {0.421875, 0}
+                shift = {0, 0}
             },
             working_visualisations = {
-                {
-                    animation = {
-                        filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-heater_3.png",
-                        priority = "high",
-                        width = 25,
-                        height = 15,
-                        frame_count = 12,
-                        animation_speed = 0.5,
-                        shift = {0.015625, 0.890625}
-                    },
-                    light = {intensity = 0.4, size = 6, shift = {0.0, 1.0}}
-                },
-                {
-                    animation = {
-                        filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-propeller-1.png",
-                        priority = "high",
-                        width = 19,
-                        height = 13,
-                        frame_count = 4,
-                        animation_speed = 0.5,
-                        shift = {-0.671875, -0.640625}
-                    }
-                },
-                {
-                    animation = {
-                        filename = "__base__/graphics/entity/electric-furnace/electric-furnace-propeller-2.png",
-                        priority = "high",
-                        width = 12,
-                        height = 9,
-                        frame_count = 4,
-                        animation_speed = 0.5,
-                        shift = {0.0625, -1.234375}
-                    }
-                }
+                util.empty_sprite()
             },
             fast_replaceable_group = "electric-furnace"
         }

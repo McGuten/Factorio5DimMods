@@ -183,7 +183,8 @@ if mods["rampant"] then
         }
     )
 end
-if mods["5dim_battlefield"] then
+
+if mods["5dim_battlefield"] or mods["5dim_enemies"] then
     --order d for battelfield
     data:extend(
         {
@@ -194,7 +195,7 @@ if mods["5dim_battlefield"] then
                 setting_type = "startup",
                 default_value = true,
                 per_user = false,
-                localised_name = "[5Dim's Battlefield] Suicide bitters",
+                localised_name = "[5Dim's Enemies] Suicide bitters",
                 localised_description = "You want to active suicide bitters? (Default: True)"
             },
             {
@@ -204,7 +205,7 @@ if mods["5dim_battlefield"] then
                 setting_type = "startup",
                 default_value = true,
                 per_user = false,
-                localised_name = "[5Dim's Battlefield] Experimental enemies",
+                localised_name = "[5Dim's Enemies] Experimental enemies",
                 localised_description = "You want to active experimental enemies? (Default: True)"
             },
             {
@@ -214,7 +215,7 @@ if mods["5dim_battlefield"] then
                 setting_type = "startup",
                 default_value = true,
                 per_user = false,
-                localised_name = "[5Dim's Battlefield] Swimmer bitters",
+                localised_name = "[5Dim's Enemies] Swimmer bitters",
                 localised_description = "You want to active experimental enemies? (Default: True)"
             },
             {
@@ -224,7 +225,7 @@ if mods["5dim_battlefield"] then
                 setting_type = "startup",
                 default_value = true,
                 per_user = false,
-                localised_name = "[5Dim's Battlefield] Climber bitters",
+                localised_name = "[5Dim's Enemies] Climber bitters",
                 localised_description = "You want to active experimental enemies? (Default: True)"
             },
             {
@@ -234,7 +235,7 @@ if mods["5dim_battlefield"] then
                 setting_type = "startup",
                 default_value = true,
                 per_user = false,
-                localised_name = "[5Dim's Battlefield] Behemoth and Experimental worm",
+                localised_name = "[5Dim's Enemies] Behemoth and Experimental worm",
                 localised_description = "You want to active behemoth and experimental worms? (Default: True)"
             }
         }

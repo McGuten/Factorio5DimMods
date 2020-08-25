@@ -259,7 +259,7 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-07", 1},
         {"steel-plate", 5},
-        {"processing-unit", 5},
+        {"low-density-structure", 2},
         {"stone-brick", 5},
         {"speed-module-3", 1}
     },
@@ -297,7 +297,7 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-08", 1},
         {"steel-plate", 5},
-        {"processing-unit", 5},
+        {"low-density-structure", 2},
         {"stone-brick", 5},
         {"productivity-module-3", 1}
     },
@@ -335,7 +335,7 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-09", 1},
         {"steel-plate", 5},
-        {"processing-unit", 5},
+        {"low-density-structure", 5},
         {"stone-brick", 5},
         {"productivity-module-3", 1}
     },

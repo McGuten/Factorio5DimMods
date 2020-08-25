@@ -16,13 +16,13 @@ genMasher {
     order = "a",
     ingredients = {
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"electronic-circuit", 5},
+        {"iron-gear-wheel", 10}
     },
     pollution = emisions,
     tech = {
         number = 1,
-        count = 200,
+        count = 100,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -49,10 +49,10 @@ genMasher {
     new = true,
     order = "b",
     ingredients = {
-        {"electric-furnace", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"5d-masher-01", 1},
+        {"iron-plate", 10},
+        {"electronic-circuit", 5},
+        {"iron-gear-wheel", 10}
     },
     pollution = emisions,
     tech = {
@@ -83,10 +83,10 @@ genMasher {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-electric-furnace-02", 1},
-        {"steel-plate", 10},
+        {"5d-masher-02", 1},
+        {"iron-plate", 10},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"iron-gear-wheel", 10}
     },
     pollution = emisions,
     tech = {
@@ -100,7 +100,8 @@ genMasher {
         },
         prerequisites = {
             "5d-masher-2",
-            "production-science-pack"
+            "production-science-pack",
+            "advanced-material-processing-4"
         }
     }
 }
@@ -120,10 +121,10 @@ genMasher {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-electric-furnace-03", 1},
+        {"5d-masher-03", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"iron-gear-wheel", 10}
     },
     pollution = emisions,
     tech = {
@@ -155,10 +156,11 @@ genMasher {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-electric-furnace-04", 1},
+        {"5d-masher-04", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"iron-gear-wheel", 10},
+        {"speed-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -191,10 +193,11 @@ genMasher {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-electric-furnace-05", 1},
+        {"5d-masher-05", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"iron-gear-wheel", 10},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -226,10 +229,11 @@ genMasher {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-electric-furnace-06", 1},
+        {"5d-masher-06", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"processing-unit", 5},
+        {"iron-gear-wheel", 10},
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -262,10 +266,11 @@ genMasher {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-electric-furnace-07", 1},
+        {"5d-masher-07", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"processing-unit", 5},
+        {"iron-gear-wheel", 10},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -280,7 +285,8 @@ genMasher {
         },
         prerequisites = {
             "5d-masher-7",
-            "utility-science-pack"
+            "utility-science-pack",
+            "advanced-material-processing-9"
         }
     }
 }
@@ -299,10 +305,11 @@ genMasher {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-electric-furnace-08", 1},
+        {"5d-masher-08", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"low-density-structure", 2},
+        {"iron-gear-wheel", 10},
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -336,10 +343,11 @@ genMasher {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-electric-furnace-09", 1},
+        {"5d-masher-09", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"low-density-structure", 2},
+        {"iron-gear-wheel", 10},
+        {"productivity-module-3", 1}
     },
     pollution = emisions,
     tech = {

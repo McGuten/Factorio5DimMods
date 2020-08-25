@@ -40,19 +40,19 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "masher",
+            name = "furnace-coal",
             group = "mining",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "furnace-coal",
+            name = "furnace-electric",
             group = "mining",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "furnace-electric",
+            name = "masher",
             group = "mining",
             order = "f"
         },

@@ -3,6 +3,7 @@ require("__5dim_core__.lib.resources.generation-electric-furnace")
 crafting = 2
 modules = 2
 energy = 180
+emisions = 1
 
 -- Electric furnace 01
 genElectricFurnaces {
@@ -18,12 +19,14 @@ genElectricFurnaces {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = nil
 }
 
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 02
 genElectricFurnaces {
@@ -36,10 +39,12 @@ genElectricFurnaces {
     order = "b",
     ingredients = {
         {"electric-furnace", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"speed-module", 1}
     },
+    pollution = emisions,
     tech = {
         number = 3,
         count = 200,
@@ -56,6 +61,7 @@ genElectricFurnaces {
 
 crafting = crafting + 0.5
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 03
 genElectricFurnaces {
@@ -68,10 +74,12 @@ genElectricFurnaces {
     order = "c",
     ingredients = {
         {"5d-electric-furnace-02", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"productivity-module-2", 1}
     },
+    pollution = emisions,
     tech = {
         number = 4,
         count = 300,
@@ -91,6 +99,7 @@ genElectricFurnaces {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 04
 genElectricFurnaces {
@@ -103,10 +112,12 @@ genElectricFurnaces {
     order = "d",
     ingredients = {
         {"5d-electric-furnace-03", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"speed-module-2", 1}
     },
+    pollution = emisions,
     tech = {
         number = 5,
         count = 400,
@@ -124,6 +135,7 @@ genElectricFurnaces {
 
 crafting = crafting + 0.5
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 05
 genElectricFurnaces {
@@ -136,10 +148,12 @@ genElectricFurnaces {
     order = "e",
     ingredients = {
         {"5d-electric-furnace-04", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"productivity-module-2", 1}
     },
+    pollution = emisions,
     tech = {
         number = 6,
         count = 500,
@@ -158,6 +172,7 @@ genElectricFurnaces {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 06
 genElectricFurnaces {
@@ -170,10 +185,12 @@ genElectricFurnaces {
     order = "f",
     ingredients = {
         {"5d-electric-furnace-05", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"speed-module-3", 1}
     },
+    pollution = emisions,
     tech = {
         number = 7,
         count = 600,
@@ -191,6 +208,7 @@ genElectricFurnaces {
 
 crafting = crafting + 0.5
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 07
 genElectricFurnaces {
@@ -203,10 +221,12 @@ genElectricFurnaces {
     order = "g",
     ingredients = {
         {"5d-electric-furnace-06", 1},
-        {"steel-plate", 10},
+        {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"stone-brick", 5},
+        {"productivity-module-3", 1}
     },
+    pollution = emisions,
     tech = {
         number = 8,
         count = 700,
@@ -225,6 +245,7 @@ genElectricFurnaces {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 08
 genElectricFurnaces {
@@ -237,10 +258,12 @@ genElectricFurnaces {
     order = "h",
     ingredients = {
         {"5d-electric-furnace-07", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"steel-plate", 5},
+        {"processing-unit", 5},
+        {"stone-brick", 5},
+        {"speed-module-3", 1}
     },
+    pollution = emisions,
     tech = {
         number = 9,
         count = 800,
@@ -260,6 +283,7 @@ genElectricFurnaces {
 
 crafting = crafting + 0.5
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 09
 genElectricFurnaces {
@@ -272,10 +296,12 @@ genElectricFurnaces {
     order = "i",
     ingredients = {
         {"5d-electric-furnace-08", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"steel-plate", 5},
+        {"processing-unit", 5},
+        {"stone-brick", 5},
+        {"productivity-module-3", 1}
     },
+    pollution = emisions,
     tech = {
         number = 10,
         count = 900,
@@ -295,6 +321,7 @@ genElectricFurnaces {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 90
+emisions = emisions + 0.75
 
 -- Electric furnace 10
 genElectricFurnaces {
@@ -307,10 +334,12 @@ genElectricFurnaces {
     order = "j",
     ingredients = {
         {"5d-electric-furnace-09", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
+        {"steel-plate", 5},
+        {"processing-unit", 5},
+        {"stone-brick", 5},
+        {"productivity-module-3", 1}
     },
+    pollution = emisions,
     tech = {
         number = 11,
         count = 1000,

@@ -32,6 +32,7 @@ function genElectricFurnaces(inputs)
     entityElectricFurnace.energy_usage = inputs.energyUsage .. "kW"
     entityElectricFurnace.animation.layers[1].hr_version.filename =
         "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
+    entityElectricFurnace.energy_source.emissions_per_minute = inputs.pollution
 
     data:extend({entityElectricFurnace, recipeElectricFurnace, itemElectricFurnace})
 

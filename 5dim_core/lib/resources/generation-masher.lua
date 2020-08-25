@@ -32,6 +32,7 @@ function genMasher(inputs)
     entityMasher.animation.layers[1].hr_version.width = 160
     entityMasher.animation.layers[1].hr_version.height = 160
     entityMasher.crafting_categories = {"mashering"}
+    entityMasher.energy_source.emissions_per_minute = inputs.pollution
 
     data:extend({entityMasher, recipeMasher, itemMasher})
 

@@ -3,6 +3,7 @@ require("__5dim_core__.lib.resources.generation-masher")
 crafting = 2
 modules = 2
 energy = 360
+emisions = 1
 
 -- Electric furnace 01
 genMasher {
@@ -18,6 +19,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 1,
         count = 200,
@@ -35,6 +37,7 @@ genMasher {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 02
 genMasher {
@@ -51,6 +54,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 2,
         count = 200,
@@ -67,6 +71,7 @@ genMasher {
 
 crafting = crafting + 0.5
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 03
 genMasher {
@@ -83,6 +88,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 3,
         count = 300,
@@ -102,6 +108,7 @@ genMasher {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 04
 genMasher {
@@ -118,6 +125,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 4,
         count = 400,
@@ -135,6 +143,7 @@ genMasher {
 
 crafting = crafting + 0.5
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 05
 genMasher {
@@ -151,6 +160,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 5,
         count = 500,
@@ -169,6 +179,7 @@ genMasher {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 06
 genMasher {
@@ -185,6 +196,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 6,
         count = 600,
@@ -202,6 +214,7 @@ genMasher {
 
 crafting = crafting + 0.5
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 07
 genMasher {
@@ -218,6 +231,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 7,
         count = 700,
@@ -236,6 +250,7 @@ genMasher {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 08
 genMasher {
@@ -252,6 +267,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 8,
         count = 800,
@@ -271,6 +287,7 @@ genMasher {
 
 crafting = crafting + 0.5
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 09
 genMasher {
@@ -287,6 +304,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 9,
         count = 900,
@@ -306,6 +324,7 @@ genMasher {
 crafting = crafting + 0.5
 modules = modules + 1
 energy = energy + 180
+emisions = emisions + 0.75
 
 -- Electric furnace 10
 genMasher {
@@ -322,6 +341,7 @@ genMasher {
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
+    pollution = emisions,
     tech = {
         number = 10,
         count = 1000,

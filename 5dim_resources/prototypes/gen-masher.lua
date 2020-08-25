@@ -1,47 +1,25 @@
-require("__5dim_core__.lib.resources.generation-electric-furnace")
+require("__5dim_core__.lib.resources.generation-masher")
 
 crafting = 2
 modules = 2
-energy = 180
+energy = 360
 
 -- Electric furnace 01
-genElectricFurnaces {
+genMasher {
     number = "01",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules,
     energyUsage = energy,
-    new = false,
+    new = true,
     order = "a",
     ingredients = {
         {"steel-plate", 10},
         {"advanced-circuit", 5},
         {"stone-brick", 10}
     },
-    tech = nil
-}
-
-crafting = crafting + 0.5
-modules = modules + 1
-energy = energy + 90
-
--- Electric furnace 02
-genElectricFurnaces {
-    number = "02",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        {"electric-furnace", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 5},
-        {"stone-brick", 10}
-    },
     tech = {
-        number = 3,
+        number = 1,
         count = 200,
         packs = {
             {"automation-science-pack", 1},
@@ -55,12 +33,45 @@ genElectricFurnaces {
 }
 
 crafting = crafting + 0.5
-energy = energy + 90
+modules = modules + 1
+energy = energy + 180
+
+-- Electric furnace 02
+genMasher {
+    number = "02",
+    subgroup = "masher",
+    craftingSpeed = crafting,
+    moduleSlots = modules,
+    energyUsage = energy,
+    new = true,
+    order = "b",
+    ingredients = {
+        {"electric-furnace", 1},
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"stone-brick", 10}
+    },
+    tech = {
+        number = 2,
+        count = 200,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1}
+        },
+        prerequisites = {
+            "5d-masher-1"
+        }
+    }
+}
+
+crafting = crafting + 0.5
+energy = energy + 180
 
 -- Electric furnace 03
-genElectricFurnaces {
+genMasher {
     number = "03",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules + 1,
     energyUsage = energy,
@@ -73,7 +84,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 4,
+        number = 3,
         count = 300,
         packs = {
             {"automation-science-pack", 1},
@@ -82,7 +93,7 @@ genElectricFurnaces {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-3",
+            "5d-masher-2",
             "production-science-pack"
         }
     }
@@ -90,12 +101,12 @@ genElectricFurnaces {
 
 crafting = crafting + 0.5
 modules = modules + 1
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 04
-genElectricFurnaces {
+genMasher {
     number = "04",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules,
     energyUsage = energy,
@@ -108,7 +119,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 5,
+        number = 4,
         count = 400,
         packs = {
             {"automation-science-pack", 1},
@@ -117,18 +128,18 @@ genElectricFurnaces {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-4"
+            "5d-masher-3"
         }
     }
 }
 
 crafting = crafting + 0.5
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 05
-genElectricFurnaces {
+genMasher {
     number = "05",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules + 1,
     energyUsage = energy,
@@ -141,7 +152,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 6,
+        number = 5,
         count = 500,
         packs = {
             {"automation-science-pack", 1},
@@ -150,19 +161,19 @@ genElectricFurnaces {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-5"
+            "5d-masher-4"
         }
     }
 }
 
 crafting = crafting + 0.5
 modules = modules + 1
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 06
-genElectricFurnaces {
+genMasher {
     number = "06",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules,
     energyUsage = energy,
@@ -175,7 +186,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 7,
+        number = 6,
         count = 600,
         packs = {
             {"automation-science-pack", 1},
@@ -184,18 +195,18 @@ genElectricFurnaces {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-6"
+            "5d-masher-5"
         }
     }
 }
 
 crafting = crafting + 0.5
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 07
-genElectricFurnaces {
+genMasher {
     number = "07",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules + 1,
     energyUsage = energy,
@@ -208,7 +219,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 8,
+        number = 7,
         count = 700,
         packs = {
             {"automation-science-pack", 1},
@@ -217,19 +228,19 @@ genElectricFurnaces {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-7"
+            "5d-masher-6"
         }
     }
 }
 
 crafting = crafting + 0.5
 modules = modules + 1
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 08
-genElectricFurnaces {
+genMasher {
     number = "08",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules,
     energyUsage = energy,
@@ -242,7 +253,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 9,
+        number = 8,
         count = 800,
         packs = {
             {"automation-science-pack", 1},
@@ -252,19 +263,19 @@ genElectricFurnaces {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-8",
+            "5d-masher-7",
             "utility-science-pack"
         }
     }
 }
 
 crafting = crafting + 0.5
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 09
-genElectricFurnaces {
+genMasher {
     number = "09",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules + 1,
     energyUsage = energy,
@@ -277,7 +288,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 10,
+        number = 9,
         count = 900,
         packs = {
             {"automation-science-pack", 1},
@@ -287,19 +298,19 @@ genElectricFurnaces {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-9"
+            "5d-masher-8"
         }
     }
 }
 
 crafting = crafting + 0.5
 modules = modules + 1
-energy = energy + 90
+energy = energy + 180
 
 -- Electric furnace 10
-genElectricFurnaces {
+genMasher {
     number = "10",
-    subgroup = "furnace-electric",
+    subgroup = "masher",
     craftingSpeed = crafting,
     moduleSlots = modules + 1,
     energyUsage = energy,
@@ -312,7 +323,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     tech = {
-        number = 11,
+        number = 10,
         count = 1000,
         packs = {
             {"automation-science-pack", 1},
@@ -322,7 +333,7 @@ genElectricFurnaces {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "advanced-material-processing-10"
+            "5d-masher-9"
         }
     }
 }

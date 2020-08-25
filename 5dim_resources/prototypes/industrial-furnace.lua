@@ -4,7 +4,7 @@ data:extend(
         {
             type = "item",
             name = "5d-industrial-furnace",
-            icon = "__5dim_resources__/graphics/icon/ifurnace.png",
+            icon = "__5dim_resources__/graphics/icon/industrial-furnace/industrial-furnace-icon.png",
             icon_size = 32,
             subgroup = "furnace-industrial",
             order = "a",
@@ -28,7 +28,7 @@ data:extend(
         {
             type = "furnace",
             name = "5d-industrial-furnace",
-            icon = "__5dim_resources__/graphics/icon/ifurnace.png",
+            icon = "__5dim_resources__/graphics/icon/industrial-furnace/industrial-furnace-icon.png",
             flags = {"placeable-neutral", "placeable-player", "player-creation"},
             minable = {mining_time = 1, result = "5d-industrial-furnace"},
             icon_size = 32,
@@ -67,7 +67,6 @@ data:extend(
                 apparent_volume = 1.5
             },
             animation = {
-                --filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-base_3.png",
                 filename = "__5dim_resources__/graphics/entities/industrial-furnace/industrial-furnace.png",
                 priority = "high",
                 width = 224,

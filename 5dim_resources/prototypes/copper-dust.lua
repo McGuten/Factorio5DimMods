@@ -7,7 +7,7 @@ data:extend(
             icon_size = 32,
             subgroup = "plates-dust",
             order = "b",
-            icon = "__5dim_resources__/graphics/icon/icon_5d_copper_dust.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-copper-dust.png",
             stack_size = 200
         },
         --Recipe

@@ -4,7 +4,7 @@ data:extend(
         {
             type = "item",
             name = "5d-furnace",
-            icon = "__5dim_resources__/graphics/icon/icon_5d_steel-furnace_3_.png",
+            icon = "__5dim_resources__/graphics/icon/steel-furnace-2/5d-steel-furnace-2-icon.png",
             icon_size = 32,
             subgroup = "furnace-coal",
             order = "c",
@@ -28,7 +28,7 @@ data:extend(
         {
             type = "furnace",
             name = "5d-furnace",
-            icon = "__5dim_resources__/graphics/icon/icon_5d_steel-furnace_3_.png",
+            icon = "__5dim_resources__/graphics/icon/steel-furnace-2/5d-steel-furnace-2-icon.png",
             flags = {"placeable-neutral", "placeable-player", "player-creation"},
             minable = {mining_time = 1, result = "5d-furnace"},
             icon_size = 32,
@@ -68,7 +68,7 @@ data:extend(
             animation = {
                 layers = {
                     {
-                        filename = "__base__/graphics/entity/steel-furnace/steel-furnace.png",
+                        filename = "__5dim_resources__/graphics/entities/steel-furnace-2/5d-steel-furnace-2.png",
                         priority = "high",
                         width = 85,
                         height = 87,

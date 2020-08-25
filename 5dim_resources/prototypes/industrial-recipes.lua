@@ -9,7 +9,9 @@ data:extend(
             order = "aa",
             category = "industrial-furnace",
             energy_required = 65,
-            ingredients = {{"5d-iron-dust", 85}},
+            ingredients = {
+                {"5d-iron-dust", 85}
+            },
             result = "iron-plate",
             result_count = 100
         },
@@ -22,7 +24,9 @@ data:extend(
             order = "aa",
             category = "industrial-furnace",
             energy_required = 65,
-            ingredients = {{"iron-ore", 85}},
+            ingredients = {
+                {"iron-ore", 85}
+            },
             result = "iron-plate",
             result_count = 100
         },
@@ -35,7 +39,9 @@ data:extend(
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
-            ingredients = {{"copper-ore", 85}},
+            ingredients = {
+                {"copper-ore", 85}
+            },
             result = "copper-plate",
             result_count = 100
         },
@@ -48,7 +54,9 @@ data:extend(
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
-            ingredients = {{"5d-copper-dust", 85}},
+            ingredients = {
+                {"5d-copper-dust", 85}
+            },
             result = "copper-plate",
             result_count = 100
         },
@@ -61,7 +69,9 @@ data:extend(
             order = "zz",
             category = "industrial-furnace",
             energy_required = 90,
-            ingredients = {{"iron-plate", 80}},
+            ingredients = {
+                {"iron-plate", 80}
+            },
             result = "steel-plate",
             result_count = 20
         }

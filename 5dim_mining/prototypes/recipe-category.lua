@@ -1,6 +1,8 @@
-data:extend({
-	{
-		type = "recipe-category",
-		name = "water"
-	},
-})
+data:extend(
+    {
+        {
+            type = "recipe-category",
+            name = "water"
+        }
+    }
+)

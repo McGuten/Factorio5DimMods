@@ -31,6 +31,8 @@ function genMasher(inputs)
         "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
     entityMasher.animation.layers[1].hr_version.width = 160
     entityMasher.animation.layers[1].hr_version.height = 160
+    entityMasher.animation.layers[1].hr_version.shift = {0, -0.421875}
+    entityMasher.animation.layers[1].hr_version.scale = 1
     entityMasher.crafting_categories = {"mashering"}
     entityMasher.energy_source.emissions_per_minute = inputs.pollution
 

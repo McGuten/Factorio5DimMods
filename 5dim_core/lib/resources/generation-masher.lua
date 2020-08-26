@@ -17,7 +17,7 @@ function genMasher(inputs)
     recipeMasher.result = itemMasher.name
     recipeMasher.icon = itemMasher.icon
     recipeMasher.icon_size = 64
-    recipeMasher.enabled = true
+    recipeMasher.enabled = false
     recipeMasher.ingredients = inputs.ingredients
 
     --Entity

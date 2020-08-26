@@ -303,7 +303,7 @@ data.raw.item["programmable-speaker"].order = "d"
 --Mining
 
 data.raw.item["electric-mining-drill"].subgroup = "mining-speed"
-data.raw.item["electric-mining-drill"].order = "b"
+data.raw.item["electric-mining-drill"].order = "a"
 data.raw.item["burner-mining-drill"].subgroup = "mining-range"
 data.raw.item["burner-mining-drill"].order = "a"
 data.raw["repair-tool"]["repair-pack"].subgroup = "repair"

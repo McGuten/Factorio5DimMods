@@ -81,27 +81,29 @@ if settings.startup["5d-long-mine"] then
 end
 
 -- Harded game
--- Enemies spawner health
-if settings.startup["5d-bicho-spawner-hp"] then
-    for _, item in pairs(data.raw["unit-spawner"]) do
-        item.max_health = item.max_health * settings.startup["5d-bicho-spawner-hp"].value
+if not mods["Rampant"] then
+    -- Enemies spawner health
+    if settings.startup["5d-bicho-spawner-hp"] then
+        for _, item in pairs(data.raw["unit-spawner"]) do
+            item.max_health = item.max_health * settings.startup["5d-bicho-spawner-hp"].value
+        end
     end
-end
 
--- Enemies health
-if settings.startup["5d-bicho-hp"] then
-    for _, item in pairs(data.raw.unit) do
-        item.max_health = item.max_health * settings.startup["5d-bicho-hp"].value
+    -- Enemies health
+    if settings.startup["5d-bicho-hp"] then
+        for _, item in pairs(data.raw.unit) do
+            item.max_health = item.max_health * settings.startup["5d-bicho-hp"].value
+        end
     end
-end
 
--- Enemies healing per tick
-if settings.startup["5d-bicho-healing"] then
-    for _, item in pairs(data.raw.unit) do
-        if item.healing_per_tick then
-            item.healing_per_tick = item.healing_per_tick * settings.startup["5d-bicho-healing"].value
-        else
-            item.healing_per_tick = 0.01 * settings.startup["5d-bicho-healing"].value
+    -- Enemies healing per tick
+    if settings.startup["5d-bicho-healing"] then
+        for _, item in pairs(data.raw.unit) do
+            if item.healing_per_tick then
+                item.healing_per_tick = item.healing_per_tick * settings.startup["5d-bicho-healing"].value
+            else
+                item.healing_per_tick = 0.01 * settings.startup["5d-bicho-healing"].value
+            end
         end
     end
 end

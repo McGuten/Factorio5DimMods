@@ -134,22 +134,22 @@ data:extend(
             minimum_value = 1,
             maximum_value = 100000,
             localised_name = "[5Dim's mods] Player health (Default 250)"
+        },
+        {
+            type = "double-setting",
+            name = "5d-healing",
+            order = "db",
+            setting_type = "startup",
+            default_value = 0.15,
+            minimum_value = 0.1,
+            maximum_value = 1000,
+            localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
         }
     }
 )
-if mods["rampant"] then
+if not mods["Rampant"] then
     data:extend(
         {
-            {
-                type = "double-setting",
-                name = "5d-healing",
-                order = "db",
-                setting_type = "startup",
-                default_value = 0.15,
-                minimum_value = 0.1,
-                maximum_value = 1000,
-                localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
-            },
             {
                 type = "double-setting",
                 name = "5d-bicho-spawner-hp",

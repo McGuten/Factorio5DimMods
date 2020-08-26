@@ -144,39 +144,46 @@ data:extend(
             minimum_value = 0.1,
             maximum_value = 1000,
             localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-spawner-hp",
-            order = "dc",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.01,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies spawners health (Multiplier)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-hp",
-            order = "dd",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.01,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies health (Multiplier)"
-        },
-        {
-            type = "double-setting",
-            name = "5d-bicho-healing",
-            order = "de",
-            setting_type = "startup",
-            default_value = 1,
-            minimum_value = 0.001,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Enemies healing per tick (Multiplier)"
         }
     }
 )
+if not mods["Rampant"] then
+    data:extend(
+        {
+            {
+                type = "double-setting",
+                name = "5d-bicho-spawner-hp",
+                order = "dc",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.01,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies spawners health (Multiplier)"
+            },
+            {
+                type = "double-setting",
+                name = "5d-bicho-hp",
+                order = "dd",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.01,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies health (Multiplier)"
+            },
+            {
+                type = "double-setting",
+                name = "5d-bicho-healing",
+                order = "de",
+                setting_type = "startup",
+                default_value = 1,
+                minimum_value = 0.001,
+                maximum_value = 1000,
+                localised_name = "[5Dim's mods] Enemies healing per tick (Multiplier)"
+            }
+        }
+    )
+end
+
 if mods["5dim_battlefield"] or mods["5dim_enemies"] then
     --order d for battelfield
     data:extend(
@@ -239,6 +246,26 @@ if mods["5dim_infiniteresearch"] then
     --order e for infinite research
     data:extend(
         {
+            -- {
+            --     type = "bool-setting",
+            --     name = "5d-trash",
+            --     order = "ea",
+            --     setting_type = "startup",
+            --     default_value = false,
+            --     per_user = false,
+            --     localised_name = "[5Dim's Infinite Research] Infinite trash slots",
+            --     localised_description = "You want to active infinite trash slots? (Default: False)"
+            -- },
+            -- {
+            --     type = "bool-setting",
+            --     name = "5d-logistics",
+            --     order = "eb",
+            --     setting_type = "startup",
+            --     default_value = false,
+            --     per_user = false,
+            --     localised_name = "[5Dim's Infinite Research] Infinite logistics slots",
+            --     localised_description = "You want to active infinite logistics slots? (Default: False)"
+            -- },
             {
                 type = "bool-setting",
                 name = "5d-storage",

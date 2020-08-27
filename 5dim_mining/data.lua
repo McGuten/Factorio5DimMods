@@ -3,9 +3,11 @@ require("prototypes.changes")
 require("prototypes.recipe-category")
 
 --Pumpjack
-require("prototypes.pump-2")
-require("prototypes.pump-3")
-require("prototypes.water-pumpjack")
+require("prototypes.gen-pumpjack")
+require("prototypes.gen-water-pumpjack")
+-- require("prototypes.pump-2")
+-- require("prototypes.pump-3")
+-- require("prototypes.water-pumpjack")
 
 --Mining
 require("prototypes.gen-electric-mining-drill")
@@ -17,4 +19,4 @@ require("prototypes.gen-electric-mining-drill")
 -- require("prototypes.mining-speed-3")
 
 --Technology
-require("prototypes.tech")
+--require("prototypes.tech")

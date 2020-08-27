@@ -1,4 +1,4 @@
-table.insert(data.raw.technology["advanced-oil-processing"].effects, {type = "unlock-recipe", recipe = "5d-pumpjack-2"})
+--table.insert(data.raw.technology["advanced-oil-processing"].effects, {type = "unlock-recipe", recipe = "5d-pumpjack-2"})
 
 data:extend(
     {
@@ -84,51 +84,51 @@ data:extend(
         --     },
         --     order = "c-a"
         -- },
-        {
-            type = "technology",
-            name = "advanced-oil-processing-2",
-            icon = "__base__/graphics/technology/oil-processing.png",
-            icon_size = 128,
-            prerequisites = {"advanced-oil-processing"},
-            effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-pumpjack-3"
-                }
-            },
-            unit = {
-                count = 75,
-                ingredients = {
-                    {"automation-science-pack", 1},
-                    {"logistic-science-pack", 1},
-                    {"chemical-science-pack", 1},
-                    {"production-science-pack", 1}
-                },
-                time = 30
-            },
-            order = "d-b"
-        },
-        {
-            type = "technology",
-            name = "water-pumpjack",
-            icon = "__5dim_mining__/graphics/icon/pumpjack_.png",
-            icon_size = 32,
-            effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-water-pumpjack"
-                }
-            },
-            prerequisites = {"steel-processing"},
-            unit = {
-                count = 15,
-                ingredients = {
-                    {"automation-science-pack", 1},
-                    {"logistic-science-pack", 1}
-                },
-                time = 15
-            },
-            order = "d-b"
-        }
+        -- {
+        --     type = "technology",
+        --     name = "advanced-oil-processing-2",
+        --     icon = "__base__/graphics/technology/oil-processing.png",
+        --     icon_size = 128,
+        --     prerequisites = {"advanced-oil-processing"},
+        --     effects = {
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-pumpjack-3"
+        --         }
+        --     },
+        --     unit = {
+        --         count = 75,
+        --         ingredients = {
+        --             {"automation-science-pack", 1},
+        --             {"logistic-science-pack", 1},
+        --             {"chemical-science-pack", 1},
+        --             {"production-science-pack", 1}
+        --         },
+        --         time = 30
+        --     },
+        --     order = "d-b"
+        -- },
+        -- {
+        --     type = "technology",
+        --     name = "water-pumpjack",
+        --     icon = "__5dim_mining__/graphics/icon/pumpjack_.png",
+        --     icon_size = 32,
+        --     effects = {
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-water-pumpjack"
+        --         }
+        --     },
+        --     prerequisites = {"steel-processing"},
+        --     unit = {
+        --         count = 15,
+        --         ingredients = {
+        --             {"automation-science-pack", 1},
+        --             {"logistic-science-pack", 1}
+        --         },
+        --         time = 15
+        --     },
+        --     order = "d-b"
+        -- }
     }
 )

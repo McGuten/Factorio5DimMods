@@ -1,6 +1,6 @@
-require("__5dim_core__.lib.mining.generation-offshore-pump")
+require("__5dim_core__.lib.energy.generation-offshore-pump")
 
-speed = 1
+speed = 20
 modules = 2
 energy = 90
 emisions = 10
@@ -15,16 +15,15 @@ genOffshorePumps {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"electronic-circuit", 2},
+        {"pipe", 1},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
     tech = nil
 }
 
-speed = speed + 0.5
+speed = speed + 5
 modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
@@ -39,10 +38,10 @@ genOffshorePumps {
     new = true,
     order = "b",
     ingredients = {
-        {"electric-mining-drill", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"speed-module", 1}
+        {"offshore-pump", 1},
+        {"electronic-circuit", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
     tech = {
@@ -59,7 +58,7 @@ genOffshorePumps {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
@@ -73,10 +72,10 @@ genOffshorePumps {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-electric-mining-drill-02", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"productivity-module", 1}
+        {"5d-offshore-pump-02", 1},
+        {"electronic-circuit", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
     tech = {
@@ -87,12 +86,12 @@ genOffshorePumps {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-1"
+            "5d-offshore-pump-1"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
@@ -107,10 +106,10 @@ genOffshorePumps {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-electric-mining-drill-03", 1},
+        {"5d-offshore-pump-03", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-2", 1}
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
     tech = {
@@ -122,13 +121,13 @@ genOffshorePumps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-1",
+            "5d-offshore-pump-1",
             "chemical-science-pack"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
@@ -142,10 +141,10 @@ genOffshorePumps {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-electric-mining-drill-04", 1},
+        {"5d-offshore-pump-04", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module-2", 1}
+        {"pipe", 3},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
     tech = {
@@ -157,12 +156,12 @@ genOffshorePumps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-3"
+            "5d-offshore-pump-3"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
@@ -177,10 +176,10 @@ genOffshorePumps {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-electric-mining-drill-05", 1},
+        {"5d-offshore-pump-05", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-3", 1}
+        {"pipe", 3},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
     tech = {
@@ -193,13 +192,13 @@ genOffshorePumps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-4",
+            "5d-offshore-pump-4",
             "production-science-pack"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
@@ -213,10 +212,10 @@ genOffshorePumps {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-electric-mining-drill-06", 1},
+        {"5d-offshore-pump-06", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module-3", 1}
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -229,12 +228,12 @@ genOffshorePumps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-5"
+            "5d-offshore-pump-5"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
@@ -249,10 +248,10 @@ genOffshorePumps {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-electric-mining-drill-07", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
-        {"speed-module-3", 1}
+        {"5d-offshore-pump-07", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -266,13 +265,13 @@ genOffshorePumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-6",
+            "5d-offshore-pump-6",
             "utility-science-pack"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
@@ -286,10 +285,10 @@ genOffshorePumps {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-electric-mining-drill-08", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
-        {"productivity-module-3", 1}
+        {"5d-offshore-pump-08", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -303,12 +302,12 @@ genOffshorePumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-7"
+            "5d-offshore-pump-7"
         }
     }
 }
 
-speed = speed + 0.5
+speed = speed + 5
 modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
@@ -323,11 +322,10 @@ genOffshorePumps {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-electric-mining-drill-09", 1},
+        {"5d-offshore-pump-09", 1},
         {"steel-plate", 5},
-        {"low-density-structure", 5},
-        {"processing-unit", 2},
-        {"productivity-module-3", 1}
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -341,7 +339,7 @@ genOffshorePumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-pumpjack-8"
+            "5d-offshore-pump-8"
         }
     }
 }

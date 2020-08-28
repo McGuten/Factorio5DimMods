@@ -15,9 +15,10 @@ genWaterPumpjacks {
     new = true,
     order = "a",
     ingredients = {
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
         {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -202,7 +203,7 @@ genWaterPumpjacks {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-mining-5",
+            "5d-water-pumpjack-5",
             "production-science-pack"
         }
     }

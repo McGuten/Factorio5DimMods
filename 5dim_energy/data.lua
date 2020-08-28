@@ -5,16 +5,19 @@ require("prototypes.changes")
 require("prototypes.lamp")
 
 --small pump
-require("prototypes.small-pump-2")
-require("prototypes.small-pump-3")
+require("prototypes.gen-pump")
+-- require("prototypes.small-pump-2")
+-- require("prototypes.small-pump-3")
 
 --offshore pump
-require("prototypes.offshore-pump-2")
-require("prototypes.offshore-pump-3")
+require("prototypes.gen-offshore-pump")
+-- require("prototypes.offshore-pump-2")
+-- require("prototypes.offshore-pump-3")
 
 --Accumulator
-require("prototypes.accumulator-2")
-require("prototypes.accumulator-3")
+require("prototypes.gen-accumulator")
+-- require("prototypes.accumulator-2")
+-- require("prototypes.accumulator-3")
 
 --Boilers
 require("prototypes.boilers-2")
@@ -26,8 +29,9 @@ require("prototypes.pole-5")
 require("prototypes.pole-6")
 
 --Solar
-require("prototypes.solar-2")
-require("prototypes.solar-3")
+require("prototypes.gen-solar-panel")
+-- require("prototypes.solar-2")
+-- require("prototypes.solar-3")
 
 --Steam Engine
 require("prototypes.steam-engine-2")

@@ -58,15 +58,33 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "energy-pole",
+            name = "energy-medium",
             group = "energy",
             order = "i"
         },
         {
             type = "item-subgroup",
-            name = "energy-lamp",
+            name = "energy-big",
             group = "energy",
             order = "j"
+        },
+        {
+            type = "item-subgroup",
+            name = "energy-substation",
+            group = "energy",
+            order = "k"
+        },
+        {
+            type = "item-subgroup",
+            name = "energy-pole",
+            group = "energy",
+            order = "l"
+        },
+        {
+            type = "item-subgroup",
+            name = "energy-lamp",
+            group = "energy",
+            order = "m"
         }
     }
 )

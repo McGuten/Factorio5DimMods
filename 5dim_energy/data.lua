@@ -20,13 +20,17 @@ require("prototypes.gen-accumulator")
 -- require("prototypes.accumulator-3")
 
 --Boilers
-require("prototypes.boilers-2")
-require("prototypes.boilers-3")
+require("prototypes.gen-boiler")
+-- require("prototypes.boilers-2")
+-- require("prototypes.boilers-3")
 
 --Pole
-require("prototypes.pole-4")
-require("prototypes.pole-5")
-require("prototypes.pole-6")
+require("prototypes.gen-medium-pole")
+require("prototypes.gen-big-pole")
+require("prototypes.gen-substation")
+-- require("prototypes.pole-4")
+-- require("prototypes.pole-5")
+-- require("prototypes.pole-6")
 
 --Solar
 require("prototypes.gen-solar-panel")
@@ -34,8 +38,9 @@ require("prototypes.gen-solar-panel")
 -- require("prototypes.solar-3")
 
 --Steam Engine
-require("prototypes.steam-engine-2")
-require("prototypes.steam-engine-3")
+require("prototypes.gen-steam-engine")
+-- require("prototypes.steam-engine-2")
+-- require("prototypes.steam-engine-3")
 
 --Tech
 require("prototypes.tech")

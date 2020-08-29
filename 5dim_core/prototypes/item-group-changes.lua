@@ -155,9 +155,9 @@ data.raw.ammo["atomic-bomb"].order = "d"
 
 --Energy
 
-data.raw.item["big-electric-pole"].subgroup = "energy-pole"
+data.raw.item["big-electric-pole"].subgroup = "energy-big"
 data.raw.item["big-electric-pole"].order = "d"
-data.raw.item["medium-electric-pole"].subgroup = "energy-pole"
+data.raw.item["medium-electric-pole"].subgroup = "energy-medium"
 data.raw.item["medium-electric-pole"].order = "b"
 data.raw.item["small-electric-pole"].subgroup = "energy-pole"
 data.raw.item["small-electric-pole"].order = "a"
@@ -175,7 +175,7 @@ data.raw.item["offshore-pump"].subgroup = "energy-offshore-pump"
 data.raw.item["offshore-pump"].order = "a"
 data.raw.item["pump"].subgroup = "energy-small-pump"
 data.raw.item["pump"].order = "a"
-data.raw.item["substation"].subgroup = "energy-pole"
+data.raw.item["substation"].subgroup = "energy-substation"
 data.raw.item["substation"].order = "f"
 
 --Intermediate

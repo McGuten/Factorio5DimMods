@@ -10,19 +10,19 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "nuclear-reactor",
+            name = "nuclear-centri",
             group = "nuclear",
             order = "a"
         },
         {
             type = "item-subgroup",
-            name = "nuclear-turbine",
+            name = "nuclear-reactor",
             group = "nuclear",
             order = "b"
         },
         {
             type = "item-subgroup",
-            name = "nuclear-centri",
+            name = "nuclear-turbine",
             group = "nuclear",
             order = "c"
         },

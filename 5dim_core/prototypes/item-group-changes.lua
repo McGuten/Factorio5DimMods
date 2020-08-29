@@ -1,5 +1,4 @@
 --Armor
-
 data.raw.armor["light-armor"].subgroup = "armor-armor"
 data.raw.armor["light-armor"].order = "a"
 data.raw.armor["heavy-armor"].subgroup = "armor-armor"
@@ -40,7 +39,6 @@ data.raw.capsule["discharge-defense-remote"].subgroup = "armor-defense"
 data.raw.capsule["discharge-defense-remote"].order = "bb"
 
 -- Automatization
-
 data.raw.item["inserter"].subgroup = "inserters-speed1"
 data.raw.item["inserter"].order = "a"
 data.raw.item["long-handed-inserter"].subgroup = "inserters-speed1"
@@ -63,7 +61,6 @@ data.raw.item["assembling-machine-3"].subgroup = "assembling-machine"
 data.raw.item["assembling-machine-3"].order = "c"
 
 --Defense
-
 data.raw.item["laser-turret"].subgroup = "defense-laser"
 data.raw.item["laser-turret"].order = "b"
 data.raw.item["gun-turret"].subgroup = "defense-gun"
@@ -84,7 +81,6 @@ data.raw.item["radar"].subgroup = "defense-radar"
 data.raw.item["radar"].order = "a"
 
 --Decoration
-
 data.raw.item["stone-brick"].subgroup = "decoration-floor"
 data.raw.item["stone-brick"].order = "a-a"
 data.raw.item["landfill"].subgroup = "decoration-floor"
@@ -101,7 +97,6 @@ data.raw.capsule["cliff-explosives"].subgroup = "decoration-floor"
 data.raw.capsule["cliff-explosives"].order = "a-aa"
 
 --Equipment
-
 data.raw.gun["flamethrower"].subgroup = "equipment-flame"
 data.raw.gun["flamethrower"].order = "a"
 data.raw.item["land-mine"].subgroup = "equipment-capsule"
@@ -154,7 +149,6 @@ data.raw.ammo["atomic-bomb"].subgroup = "equipment-rocket"
 data.raw.ammo["atomic-bomb"].order = "d"
 
 --Energy
-
 data.raw.item["big-electric-pole"].subgroup = "energy-big"
 data.raw.item["big-electric-pole"].order = "d"
 data.raw.item["medium-electric-pole"].subgroup = "energy-medium"
@@ -179,7 +173,6 @@ data.raw.item["substation"].subgroup = "energy-substation"
 data.raw.item["substation"].order = "f"
 
 --Intermediate
-
 data.raw.item["iron-stick"].subgroup = "intermediate-misc"
 data.raw.item["iron-stick"].order = "a"
 data.raw.item["engine-unit"].subgroup = "intermediate-misc"
@@ -221,7 +214,6 @@ data.raw.item["rocket-silo"].subgroup = "intermediate-silo"
 data.raw.item["rocket-silo"].order = "a"
 
 --Liquids
-
 data.raw.item["chemical-plant"].subgroup = "liquid-plant"
 data.raw.item["chemical-plant"].order = "a"
 data.raw.item["oil-refinery"].subgroup = "liquid-refinery"
@@ -258,7 +250,6 @@ for _, fluid in pairs(data.raw.fluid) do
 end
 
 --Logistic
-
 data.raw.item["logistic-robot"].subgroup = "logistic-robot"
 data.raw.item["logistic-robot"].order = "a"
 data.raw.item["construction-robot"].subgroup = "logistic-robot-c"
@@ -301,7 +292,6 @@ data.raw.item["programmable-speaker"].subgroup = "logistic-comb"
 data.raw.item["programmable-speaker"].order = "d"
 
 --Mining
-
 data.raw.item["electric-mining-drill"].subgroup = "mining-speed"
 data.raw.item["electric-mining-drill"].order = "a"
 data.raw.item["burner-mining-drill"].subgroup = "mining-range"
@@ -312,7 +302,6 @@ data.raw.item["lab"].subgroup = "lab"
 data.raw.item["lab"].order = "a"
 
 --Module
-
 data.raw.module["speed-module"].subgroup = "speed"
 data.raw.module["speed-module"].order = "a"
 data.raw.module["speed-module-2"].subgroup = "speed"
@@ -333,7 +322,6 @@ data.raw.module["effectivity-module-3"].subgroup = "effectivity"
 data.raw.module["effectivity-module-3"].order = "c"
 
 --Resources
-
 data.raw.item["stone-furnace"].subgroup = "furnace-coal"
 data.raw.item["stone-furnace"].order = "a"
 data.raw.item["steel-furnace"].subgroup = "furnace-coal"
@@ -342,7 +330,6 @@ data.raw.item["electric-furnace"].subgroup = "furnace-electric"
 data.raw.item["electric-furnace"].order = "a"
 
 --Plates
-
 data.raw.item["iron-plate"].subgroup = "plates-plates"
 data.raw.item["iron-plate"].order = "aa"
 data.raw.item["copper-plate"].subgroup = "plates-plates"
@@ -380,7 +367,6 @@ data.raw.capsule["raw-fish"].subgroup = "plates-ore"
 data.raw.capsule["raw-fish"].order = "e"
 
 --Trains
-
 data.raw.item["train-stop"].subgroup = "trains-misc"
 data.raw.item["train-stop"].order = "a"
 data.raw.item["rail-signal"].subgroup = "trains-misc"
@@ -399,7 +385,6 @@ data.raw["item-with-entity-data"]["artillery-wagon"].subgroup = "trains-artiller
 data.raw["item-with-entity-data"]["artillery-wagon"].order = "a"
 
 --Nuclear
-
 data.raw.item["steam-turbine"].subgroup = "nuclear-turbine"
 data.raw.item["steam-turbine"].order = "a"
 data.raw.item["heat-exchanger"].subgroup = "nuclear-heat"
@@ -424,7 +409,6 @@ data.raw.recipe["kovarex-enrichment-process"].subgroup = "nuclear-recipe"
 data.raw.recipe["kovarex-enrichment-process"].order = "d"
 
 --Transport
-
 data.raw.item["loader"].subgroup = "transport-loader"
 data.raw.item["loader"].order = "a"
 data.raw.item["fast-loader"].subgroup = "transport-loader"
@@ -461,7 +445,6 @@ data.raw.item["steel-chest"].subgroup = "store-solid"
 data.raw.item["steel-chest"].order = "c"
 
 --Vehicles
-
 data.raw["item-with-entity-data"]["tank"].subgroup = "vehicles-tank"
 data.raw["item-with-entity-data"]["tank"].order = "a"
 data.raw["item-with-entity-data"]["car"].subgroup = "vehicles-car"

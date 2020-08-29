@@ -456,133 +456,133 @@ else
     )
 end
 
-if not mods["LoaderRedux"] then
---   data:extend(
---     {
---       {
---         type = "technology",
---         name = "loader",
---         icon = "__5dim_automatization__/graphics/icon/loader_.png",
---         icon_size = 32,
---         effects = {
---           {
---             type = "unlock-recipe",
---             recipe = "loader"
---           }
---         },
---         prerequisites = {"logistics"},
---         unit = {
---           count = 150,
---           ingredients = {
---             {"automation-science-pack", 1},
---             {"logistic-science-pack", 1}
---           },
---           time = 30
---         },
---         order = "a-f-c"
---       },
---       {
---         type = "technology",
---         name = "loader-2",
---         icon = "__5dim_automatization__/graphics/icon/fast-loader_.png",
---         icon_size = 32,
---         effects = {
---           {
---             type = "unlock-recipe",
---             recipe = "fast-loader"
---           }
---         },
---         prerequisites = {"logistics-2"},
---         unit = {
---           count = 250,
---           ingredients = {
---             {"automation-science-pack", 1},
---             {"logistic-science-pack", 1},
---             {"chemical-science-pack", 1}
---           },
---           time = 30
---         },
---         order = "a-f-c"
---       },
---       {
---         type = "technology",
---         name = "loader-3",
---         icon = "__5dim_automatization__/graphics/icon/express-loader_.png",
---         icon_size = 32,
---         effects = {
---           {
---             type = "unlock-recipe",
---             recipe = "express-loader"
---           }
---         },
---         prerequisites = {"logistics-3"},
---         unit = {
---           count = 350,
---           ingredients = {
---             {"automation-science-pack", 1},
---             {"logistic-science-pack", 1},
---             {"chemical-science-pack", 1},
---             {"production-science-pack", 1}
---           },
---           time = 30
---         },
---         order = "a-f-c"
---       }
---     }
---   )
+if mods["LoaderRedux"] then
+    data:extend(
+        {
+            {
+                type = "technology",
+                name = "loader",
+                icon = "__5dim_automatization__/graphics/icon/loader_.png",
+                icon_size = 32,
+                effects = {
+                    {
+                        type = "unlock-recipe",
+                        recipe = "loader"
+                    }
+                },
+                prerequisites = {"logistics"},
+                unit = {
+                    count = 150,
+                    ingredients = {
+                        {"automation-science-pack", 1},
+                        {"logistic-science-pack", 1}
+                    },
+                    time = 30
+                },
+                order = "a-f-c"
+            },
+            {
+                type = "technology",
+                name = "loader-2",
+                icon = "__5dim_automatization__/graphics/icon/fast-loader_.png",
+                icon_size = 32,
+                effects = {
+                    {
+                        type = "unlock-recipe",
+                        recipe = "fast-loader"
+                    }
+                },
+                prerequisites = {"logistics-2"},
+                unit = {
+                    count = 250,
+                    ingredients = {
+                        {"automation-science-pack", 1},
+                        {"logistic-science-pack", 1},
+                        {"chemical-science-pack", 1}
+                    },
+                    time = 30
+                },
+                order = "a-f-c"
+            },
+            {
+                type = "technology",
+                name = "loader-3",
+                icon = "__5dim_automatization__/graphics/icon/express-loader_.png",
+                icon_size = 32,
+                effects = {
+                    {
+                        type = "unlock-recipe",
+                        recipe = "express-loader"
+                    }
+                },
+                prerequisites = {"logistics-3"},
+                unit = {
+                    count = 350,
+                    ingredients = {
+                        {"automation-science-pack", 1},
+                        {"logistic-science-pack", 1},
+                        {"chemical-science-pack", 1},
+                        {"production-science-pack", 1}
+                    },
+                    time = 30
+                },
+                order = "a-f-c"
+            }
+        }
+    )
 end
 
 if mods["5dim_transport"] then
---   data:extend(
---     {
---       {
---         type = "technology",
---         name = "loader-4",
---         icon = "__5dim_automatization__/graphics/icon/loader-4_.png",
---         icon_size = 32,
---         effects = {
---           {
---             type = "unlock-recipe",
---             recipe = "5d-loader-4"
---           }
---         },
---         prerequisites = {"logistics-4"},
---         unit = {
---           count = 350,
---           ingredients = {
---             {"automation-science-pack", 1},
---             {"logistic-science-pack", 1},
---             {"chemical-science-pack", 1},
---             {"production-science-pack", 1}
---           },
---           time = 30
---         },
---         order = "a-f-c"
---       },
---       {
---         type = "technology",
---         name = "loader-5",
---         icon = "__5dim_automatization__/graphics/icon/loader-5_.png",
---         icon_size = 32,
---         effects = {
---           {
---             type = "unlock-recipe",
---             recipe = "5d-loader-5"
---           }
---         },
---         prerequisites = {"logistics-5"},
---         unit = {
---           count = 350,
---           ingredients = {
---             {"automation-science-pack", 1},
---             {"logistic-science-pack", 1},
---             {"chemical-science-pack", 1},
---             {"production-science-pack", 1}
---           },
---           time = 30
---         },
---         order = "a-f-c"
---       }
---     }
---   )
+    data:extend(
+        {
+            {
+                type = "technology",
+                name = "loader-4",
+                icon = "__5dim_automatization__/graphics/icon/loader-4_.png",
+                icon_size = 32,
+                effects = {
+                    {
+                        type = "unlock-recipe",
+                        recipe = "5d-loader-4"
+                    }
+                },
+                prerequisites = {"logistics-4"},
+                unit = {
+                    count = 350,
+                    ingredients = {
+                        {"automation-science-pack", 1},
+                        {"logistic-science-pack", 1},
+                        {"chemical-science-pack", 1},
+                        {"production-science-pack", 1}
+                    },
+                    time = 30
+                },
+                order = "a-f-c"
+            },
+            {
+                type = "technology",
+                name = "loader-5",
+                icon = "__5dim_automatization__/graphics/icon/loader-5_.png",
+                icon_size = 32,
+                effects = {
+                    {
+                        type = "unlock-recipe",
+                        recipe = "5d-loader-5"
+                    }
+                },
+                prerequisites = {"logistics-5"},
+                unit = {
+                    count = 350,
+                    ingredients = {
+                        {"automation-science-pack", 1},
+                        {"logistic-science-pack", 1},
+                        {"chemical-science-pack", 1},
+                        {"production-science-pack", 1}
+                    },
+                    time = 30
+                },
+                order = "a-f-c"
+            }
+        }
+    )
 end

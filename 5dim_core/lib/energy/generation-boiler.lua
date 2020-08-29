@@ -21,7 +21,7 @@ function genBoilers(inputs)
     recipeBoiler.result = itemBoiler.name
     recipeBoiler.icon_size = 64
     if inputs.new then
-        recipeBoiler.enabled = true
+        recipeBoiler.enabled = false
     end
     recipeBoiler.ingredients = inputs.ingredients
 

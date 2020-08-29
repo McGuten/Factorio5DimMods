@@ -21,7 +21,7 @@ function genNuclearReactors(inputs)
     recipeNuclearReactor.result = itemNuclearReactor.name
     recipeNuclearReactor.icon_size = 64
     if inputs.new then
-        recipeNuclearReactor.enabled = true
+        recipeNuclearReactor.enabled = false
     end
 
     --Entity

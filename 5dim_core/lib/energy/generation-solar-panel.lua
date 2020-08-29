@@ -21,7 +21,7 @@ function genSolarPanels(inputs)
     recipeSolarPanel.result = itemSolarPanel.name
     recipeSolarPanel.icon_size = 64
     if inputs.new then
-        recipeSolarPanel.enabled = true
+        recipeSolarPanel.enabled = false
     end
     recipeSolarPanel.ingredients = inputs.ingredients
 

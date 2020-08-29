@@ -21,7 +21,7 @@ function genMediumPoles(inputs)
     recipeMediumPole.result = itemMediumPole.name
     recipeMediumPole.icon_size = 64
     if inputs.new then
-        recipeMediumPole.enabled = true
+        recipeMediumPole.enabled = false
     end
     recipeMediumPole.ingredients = inputs.ingredients
 

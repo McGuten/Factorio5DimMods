@@ -21,7 +21,7 @@ function genHeatPipes(inputs)
     recipeHeatPipe.result = itemHeatPipe.name
     recipeHeatPipe.icon_size = 64
     if inputs.new then
-        recipeHeatPipe.enabled = true
+        recipeHeatPipe.enabled = false
     end
 
     --Entity

@@ -21,7 +21,7 @@ function genHeatExchangers(inputs)
     recipeHeatExchanger.result = itemHeatExchanger.name
     recipeHeatExchanger.icon_size = 64
     if inputs.new then
-        recipeHeatExchanger.enabled = true
+        recipeHeatExchanger.enabled = false
     end
 
     --Entity

@@ -21,7 +21,7 @@ function genSteamEngines(inputs)
     recipeSteamEngine.result = itemSteamEngine.name
     recipeSteamEngine.icon_size = 64
     if inputs.new then
-        recipeSteamEngine.enabled = true
+        recipeSteamEngine.enabled = false
     end
     if recipeSteamEngine.normal == nil then
         recipeSteamEngine.result = itemSteamEngine.name

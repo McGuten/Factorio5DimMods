@@ -21,7 +21,7 @@ function genCentrifuges(inputs)
     recipeCentrifuge.result = itemCentrifuge.name
     recipeCentrifuge.icon_size = 64
     if inputs.new then
-        recipeCentrifuge.enabled = true
+        recipeCentrifuge.enabled = false
     end
 
     --Entity

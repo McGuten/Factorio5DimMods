@@ -21,7 +21,7 @@ function genAccumulators(inputs)
     recipeAccumulator.result = itemAccumulator.name
     recipeAccumulator.icon_size = 64
     if inputs.new then
-        recipeAccumulator.enabled = true
+        recipeAccumulator.enabled = false
     end
     recipeAccumulator.ingredients = inputs.ingredients
 

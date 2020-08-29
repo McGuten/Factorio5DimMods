@@ -21,7 +21,7 @@ function genBigPoles(inputs)
     recipeBigPole.result = itemBigPole.name
     recipeBigPole.icon_size = 64
     if inputs.new then
-        recipeBigPole.enabled = true
+        recipeBigPole.enabled = false
     end
     recipeBigPole.ingredients = inputs.ingredients
 

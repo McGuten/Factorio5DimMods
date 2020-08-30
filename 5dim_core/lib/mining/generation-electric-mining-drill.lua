@@ -1,9 +1,9 @@
 function genMiningDrills(inputs)
     -- Copy electric furnace
-    itemMiningDrill = table.deepcopy(data.raw.item["electric-mining-drill"])
-    recipeMiningDrill = table.deepcopy(data.raw.recipe["electric-mining-drill"])
-    entityMiningDrill = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
-    technologyMiningDrill = table.deepcopy(data.raw.technology["advanced-material-processing"])
+    local itemMiningDrill = table.deepcopy(data.raw.item["electric-mining-drill"])
+    local recipeMiningDrill = table.deepcopy(data.raw.recipe["electric-mining-drill"])
+    local entityMiningDrill = table.deepcopy(data.raw["mining-drill"]["electric-mining-drill"])
+    local technologyMiningDrill = table.deepcopy(data.raw.technology["advanced-material-processing"])
 
     --Item
     if inputs.new then

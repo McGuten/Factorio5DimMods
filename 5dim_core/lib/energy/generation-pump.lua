@@ -1,9 +1,9 @@
 function genPumps(inputs)
     -- Copy electric furnace
-    itemPump = table.deepcopy(data.raw.item["pump"])
-    recipePump = table.deepcopy(data.raw.recipe["pump"])
-    entityPump = table.deepcopy(data.raw["pump"]["pump"])
-    technologyPump = table.deepcopy(data.raw.technology["oil-processing"])
+    local itemPump = table.deepcopy(data.raw.item["pump"])
+    local recipePump = table.deepcopy(data.raw.recipe["pump"])
+    local entityPump = table.deepcopy(data.raw["pump"]["pump"])
+    local technologyPump = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then

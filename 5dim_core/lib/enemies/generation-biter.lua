@@ -2,11 +2,11 @@ local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 function genBiter(inputs)
     -- Copy entities
-    spawner = table.deepcopy(data.raw["unit-spawner"]["biter-spawner"])
-    small = table.deepcopy(data.raw["unit"]["small-biter"])
-    medium = table.deepcopy(data.raw["unit"]["medium-biter"])
-    big = table.deepcopy(data.raw["unit"]["big-biter"])
-    behemoth = table.deepcopy(data.raw["unit"]["behemoth-biter"])
+    local spawner = table.deepcopy(data.raw["unit-spawner"]["biter-spawner"])
+    local small = table.deepcopy(data.raw["unit"]["small-biter"])
+    local medium = table.deepcopy(data.raw["unit"]["medium-biter"])
+    local big = table.deepcopy(data.raw["unit"]["big-biter"])
+    local behemoth = table.deepcopy(data.raw["unit"]["behemoth-biter"])
 
     -- Biter small
     if inputs.new then

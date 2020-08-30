@@ -1,9 +1,9 @@
 function genMediumPoles(inputs)
     -- Copy electric furnace
-    itemMediumPole = table.deepcopy(data.raw.item["medium-electric-pole"])
-    recipeMediumPole = table.deepcopy(data.raw.recipe["medium-electric-pole"])
-    entityMediumPole = table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
-    technologyMediumPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemMediumPole = table.deepcopy(data.raw.item["medium-electric-pole"])
+    local recipeMediumPole = table.deepcopy(data.raw.recipe["medium-electric-pole"])
+    local entityMediumPole = table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
+    local technologyMediumPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then

@@ -1,9 +1,9 @@
 function genSolarPanels(inputs)
     -- Copy electric furnace
-    itemSolarPanel = table.deepcopy(data.raw.item["solar-panel"])
-    recipeSolarPanel = table.deepcopy(data.raw.recipe["solar-panel"])
-    entitySolarPanel = table.deepcopy(data.raw["solar-panel"]["solar-panel"])
-    technologySolarPanel = table.deepcopy(data.raw.technology["solar-energy"])
+    local itemSolarPanel = table.deepcopy(data.raw.item["solar-panel"])
+    local recipeSolarPanel = table.deepcopy(data.raw.recipe["solar-panel"])
+    local entitySolarPanel = table.deepcopy(data.raw["solar-panel"]["solar-panel"])
+    local technologySolarPanel = table.deepcopy(data.raw.technology["solar-energy"])
 
     --Item
     if inputs.new then

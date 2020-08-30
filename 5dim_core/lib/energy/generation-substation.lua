@@ -1,9 +1,9 @@
 function genBigPoles(inputs)
     -- Copy electric furnace
-    itemBigPole = table.deepcopy(data.raw.item["substation"])
-    recipeBigPole = table.deepcopy(data.raw.recipe["substation"])
-    entityBigPole = table.deepcopy(data.raw["electric-pole"]["substation"])
-    technologyBigPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemBigPole = table.deepcopy(data.raw.item["substation"])
+    local recipeBigPole = table.deepcopy(data.raw.recipe["substation"])
+    local entityBigPole = table.deepcopy(data.raw["electric-pole"]["substation"])
+    local technologyBigPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then

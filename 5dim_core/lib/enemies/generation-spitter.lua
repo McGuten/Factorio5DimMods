@@ -4,11 +4,11 @@ local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 function genSpitter(inputs)
     -- Copy entities
-    spawner = table.deepcopy(data.raw["unit-spawner"]["spitter-spawner"])
-    small = table.deepcopy(data.raw["unit"]["small-spitter"])
-    medium = table.deepcopy(data.raw["unit"]["medium-spitter"])
-    big = table.deepcopy(data.raw["unit"]["big-spitter"])
-    behemoth = table.deepcopy(data.raw["unit"]["behemoth-spitter"])
+    local spawner = table.deepcopy(data.raw["unit-spawner"]["spitter-spawner"])
+    local small = table.deepcopy(data.raw["unit"]["small-spitter"])
+    local medium = table.deepcopy(data.raw["unit"]["medium-spitter"])
+    local big = table.deepcopy(data.raw["unit"]["big-spitter"])
+    local behemoth = table.deepcopy(data.raw["unit"]["behemoth-spitter"])
 
     -- Biter small
     if inputs.new then

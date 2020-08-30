@@ -1,9 +1,9 @@
 function genSteamEngines(inputs)
     -- Copy electric furnace
-    itemSteamEngine = table.deepcopy(data.raw.item["steam-engine"])
-    recipeSteamEngine = table.deepcopy(data.raw.recipe["steam-engine"])
-    entitySteamEngine = table.deepcopy(data.raw["generator"]["steam-engine"])
-    technologySteamEngine = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemSteamEngine = table.deepcopy(data.raw.item["steam-engine"])
+    local recipeSteamEngine = table.deepcopy(data.raw.recipe["steam-engine"])
+    local entitySteamEngine = table.deepcopy(data.raw["generator"]["steam-engine"])
+    local technologySteamEngine = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then

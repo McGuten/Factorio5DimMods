@@ -1,9 +1,9 @@
 function genAccumulators(inputs)
     -- Copy electric furnace
-    itemAccumulator = table.deepcopy(data.raw.item["accumulator"])
-    recipeAccumulator = table.deepcopy(data.raw.recipe["accumulator"])
-    entityAccumulator = table.deepcopy(data.raw["accumulator"]["accumulator"])
-    technologyAccumulator = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemAccumulator = table.deepcopy(data.raw.item["accumulator"])
+    local recipeAccumulator = table.deepcopy(data.raw.recipe["accumulator"])
+    local entityAccumulator = table.deepcopy(data.raw["accumulator"]["accumulator"])
+    local technologyAccumulator = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then

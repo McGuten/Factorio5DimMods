@@ -1,9 +1,9 @@
 function genWaterPumpjacks(inputs)
     -- Copy electric furnace
-    itemWaterPumpjack = table.deepcopy(data.raw.item["pumpjack"])
-    recipeWaterPumpjack = table.deepcopy(data.raw.recipe["pumpjack"])
-    entityWaterPumpjack = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    technologyWaterPumpjack = table.deepcopy(data.raw.technology["oil-processing"])
+    local itemWaterPumpjack = table.deepcopy(data.raw.item["pumpjack"])
+    local recipeWaterPumpjack = table.deepcopy(data.raw.recipe["pumpjack"])
+    local entityWaterPumpjack = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
+    local technologyWaterPumpjack = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then

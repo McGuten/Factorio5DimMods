@@ -1,9 +1,9 @@
 function genOffshorePumps(inputs)
     -- Copy electric furnace
-    itemOffshorePump = table.deepcopy(data.raw.item["offshore-pump"])
-    recipeOffshorePump = table.deepcopy(data.raw.recipe["offshore-pump"])
-    entityOffshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    technologyOffshorePump = table.deepcopy(data.raw.technology["oil-processing"])
+    local itemOffshorePump = table.deepcopy(data.raw.item["offshore-pump"])
+    local recipeOffshorePump = table.deepcopy(data.raw.recipe["offshore-pump"])
+    local entityOffshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
+    local technologyOffshorePump = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then

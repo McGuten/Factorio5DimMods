@@ -8,15 +8,17 @@ require("prototypes.gen-roboport")
 -- require("prototypes.roboport-mk4")
 
 --Logistic robot
+require("prototypes.gen-logistic-robot")
+-- require("prototypes.robot-logic")
+-- require("prototypes.robot-logic-2")
+-- require("prototypes.robot-logic-3")
+
+--Construction robot
+require("prototypes.gen-construction-robot")
 -- require("prototypes.robot-cons")
 -- require("prototypes.robot-cons-2")
 -- require("prototypes.robot-cons-3")
 -- require("prototypes.robot-cons-p")
-
---Construction robot
--- require("prototypes.robot-logic")
--- require("prototypes.robot-logic-2")
--- require("prototypes.robot-logic-3")
 
 --Chest
 -- require("prototypes.passive")

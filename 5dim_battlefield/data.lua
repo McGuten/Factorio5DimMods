@@ -36,8 +36,10 @@ if not mods["5dim_enemies"] then
     end
 end
 --Experimental
-if settings.startup["5d-exp"].value then
-    require("prototypes.exp")
+if not mods["5dim_enemies"] then
+    if settings.startup["5d-exp"].value then
+        require("prototypes.exp")
+    end
 end
 
 --FlameThrower turret

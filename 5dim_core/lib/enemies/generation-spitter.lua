@@ -132,7 +132,7 @@ function genSpitter(inputs)
 
     --Optional properties
     if inputs.name == "swimmer" then
-        behemoth.collision_mask = {"object-layer"}
+        behemoth.collision_mask = {"item-layer", "object-layer"}
     end
     if inputs.name == "climber" then
         behemoth.collision_mask = {"item-layer", "water-tile"}

@@ -10,57 +10,87 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "defense-burner",
+            name = "defense-gun-turret-small",
             group = "defense",
             order = "a"
         },
         {
             type = "item-subgroup",
-            name = "defense-gun",
+            name = "defense-gun-turret",
             group = "defense",
             order = "b"
         },
         {
             type = "item-subgroup",
-            name = "defense-laser",
+            name = "defense-gun-turret-big",
             group = "defense",
             order = "c"
         },
         {
             type = "item-subgroup",
-            name = "defense-tesla",
+            name = "defense-gun-turret-sniper",
             group = "defense",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "defense-artillery",
+            name = "defense-laser-turret-small",
             group = "defense",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "defense-flame",
+            name = "defense-laser-turret",
             group = "defense",
             order = "f"
         },
         {
             type = "item-subgroup",
-            name = "defense-wall",
+            name = "defense-laser-turret-big",
             group = "defense",
             order = "g"
         },
         {
             type = "item-subgroup",
-            name = "defense-gate",
+            name = "defense-laser-turret-sniper",
             group = "defense",
             order = "h"
         },
         {
             type = "item-subgroup",
-            name = "defense-radar",
+            name = "defense-tesla",
             group = "defense",
             order = "i"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-artillery",
+            group = "defense",
+            order = "j"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-flame",
+            group = "defense",
+            order = "k"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-wall",
+            group = "defense",
+            order = "l"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-gate",
+            group = "defense",
+            order = "m"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-radar",
+            group = "defense",
+            order = "n"
         }
     }
 )

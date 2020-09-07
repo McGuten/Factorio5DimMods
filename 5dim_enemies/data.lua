@@ -1,7 +1,7 @@
 -- Biter
-require("prototypes.enemies.gen-biters")
-require("prototypes.enemies.experimental-biter")
+require("prototypes.biter.gen-biters")
+require("prototypes.biter.experimental-biter")
 
 -- Spitter
-require("prototypes.enemies.gen-spitter")
-require("prototypes.enemies.experimental-spitter")
+require("prototypes.spitter.gen-spitter")
+require("prototypes.spitter.experimental-spitter")

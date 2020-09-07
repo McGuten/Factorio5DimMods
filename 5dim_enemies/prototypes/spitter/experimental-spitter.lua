@@ -1,4 +1,5 @@
-require("prototypes.enemies.settings")
+require("prototypes.settings")
+
 local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 -- Copy entities
@@ -29,7 +30,7 @@ experimentalSpitter.attack_parameters =
         cooldown = 100,
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.behemoth,
+        scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
@@ -53,7 +54,7 @@ experimentalSpitterLaser.attack_parameters =
         cooldown = 100,
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.behemoth,
+        scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
@@ -77,7 +78,7 @@ experimentalSpitterPhysical.attack_parameters =
         cooldown = 100,
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.behemoth,
+        scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
@@ -102,7 +103,7 @@ experimentalSpitterSwimmer.attack_parameters =
         cooldown = 100,
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.behemoth,
+        scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
@@ -127,7 +128,7 @@ experimentalSpitterClimber.attack_parameters =
         cooldown = 100,
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.behemoth,
+        scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8

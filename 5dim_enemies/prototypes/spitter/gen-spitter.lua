@@ -1,4 +1,4 @@
-require("prototypes.enemies.settings")
+require("prototypes.settings")
 
 require("__5dim_core__.lib.enemies.generation-spitter")
 

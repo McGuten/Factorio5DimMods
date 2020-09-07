@@ -21,9 +21,9 @@ require("prototypes.solar-mk2")
 
 -- Personal laser defense
 if mods["5dim_battlefield"] then
-    require("prototypes.laser-1")
-    require("prototypes.laser-2")
-    require("prototypes.laser-3")
+    -- require("prototypes.laser-1")
+    -- require("prototypes.laser-2")
+    -- require("prototypes.laser-3")
 end
 
 -- Tech

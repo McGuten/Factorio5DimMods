@@ -194,81 +194,81 @@ data:extend(
     }
 )
 
-if mods["5dim_battlefield"] then
-    data:extend(
-        {
-            {
-                type = "technology",
-                name = "personal-laser-defense-equipment",
-                icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
-                icon_size = 128,
-                prerequisites = {"power-armor", "laser-turrets"},
-                effects = {
-                    {
-                        type = "unlock-recipe",
-                        recipe = "5d-personal-yellow-laser-defense-equipment"
-                    }
-                },
-                unit = {
-                    count = 100,
-                    ingredients = {
-                        {"automation-science-pack", 1},
-                        {"logistic-science-pack", 1},
-                        {"chemical-science-pack", 1},
-                        {"military-science-pack", 1}
-                    },
-                    time = 30
-                },
-                order = "g-m"
-            },
-            {
-                type = "technology",
-                name = "personal-laser-defense-equipment-2",
-                icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
-                icon_size = 128,
-                prerequisites = {"personal-laser-defense-equipment"},
-                effects = {
-                    {
-                        type = "unlock-recipe",
-                        recipe = "personal-laser-defense-equipment"
-                    }
-                },
-                unit = {
-                    count = 100,
-                    ingredients = {
-                        {"automation-science-pack", 1},
-                        {"logistic-science-pack", 1},
-                        {"chemical-science-pack", 1},
-                        {"military-science-pack", 1}
-                    },
-                    time = 30
-                },
-                order = "g-m"
-            },
-            {
-                type = "technology",
-                name = "personal-laser-defense-equipment-3",
-                icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
-                icon_size = 128,
-                prerequisites = {"personal-laser-defense-equipment-2"},
-                effects = {
-                    {
-                        type = "unlock-recipe",
-                        recipe = "5d-personal-blue-laser-defense-equipment"
-                    }
-                },
-                unit = {
-                    count = 100,
-                    ingredients = {
-                        {"automation-science-pack", 1},
-                        {"logistic-science-pack", 1},
-                        {"chemical-science-pack", 1},
-                        {"military-science-pack", 1}
-                    },
-                    time = 30
-                },
-                order = "g-m"
-            }
-        }
-    )
-end
+-- if mods["5dim_battlefield"] then
+--     data:extend(
+--         {
+--             {
+--                 type = "technology",
+--                 name = "personal-laser-defense-equipment",
+--                 icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
+--                 icon_size = 128,
+--                 prerequisites = {"power-armor", "laser-turrets"},
+--                 effects = {
+--                     {
+--                         type = "unlock-recipe",
+--                         recipe = "5d-personal-yellow-laser-defense-equipment"
+--                     }
+--                 },
+--                 unit = {
+--                     count = 100,
+--                     ingredients = {
+--                         {"automation-science-pack", 1},
+--                         {"logistic-science-pack", 1},
+--                         {"chemical-science-pack", 1},
+--                         {"military-science-pack", 1}
+--                     },
+--                     time = 30
+--                 },
+--                 order = "g-m"
+--             },
+--             {
+--                 type = "technology",
+--                 name = "personal-laser-defense-equipment-2",
+--                 icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
+--                 icon_size = 128,
+--                 prerequisites = {"personal-laser-defense-equipment"},
+--                 effects = {
+--                     {
+--                         type = "unlock-recipe",
+--                         recipe = "personal-laser-defense-equipment"
+--                     }
+--                 },
+--                 unit = {
+--                     count = 100,
+--                     ingredients = {
+--                         {"automation-science-pack", 1},
+--                         {"logistic-science-pack", 1},
+--                         {"chemical-science-pack", 1},
+--                         {"military-science-pack", 1}
+--                     },
+--                     time = 30
+--                 },
+--                 order = "g-m"
+--             },
+--             {
+--                 type = "technology",
+--                 name = "personal-laser-defense-equipment-3",
+--                 icon = "__base__/graphics/technology/personal-laser-defense-equipment.png",
+--                 icon_size = 128,
+--                 prerequisites = {"personal-laser-defense-equipment-2"},
+--                 effects = {
+--                     {
+--                         type = "unlock-recipe",
+--                         recipe = "5d-personal-blue-laser-defense-equipment"
+--                     }
+--                 },
+--                 unit = {
+--                     count = 100,
+--                     ingredients = {
+--                         {"automation-science-pack", 1},
+--                         {"logistic-science-pack", 1},
+--                         {"chemical-science-pack", 1},
+--                         {"military-science-pack", 1}
+--                     },
+--                     time = 30
+--                 },
+--                 order = "g-m"
+--             }
+--         }
+--     )
+-- end

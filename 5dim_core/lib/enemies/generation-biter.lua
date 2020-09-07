@@ -126,7 +126,7 @@ function genBiter(inputs)
 
     --Optional properties
     if inputs.name == "swimmer" then
-        spawner.collision_mask = {"object-layer"}
+        spawner.collision_mask = {"item-layer", "object-layer"}
     end
     if inputs.name == "climber" then
         spawner.collision_mask = {"item-layer", "water-tile"}

@@ -1,4 +1,5 @@
-require("prototypes.enemies.settings")
+require("prototypes.settings")
+
 local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 --Copy entities

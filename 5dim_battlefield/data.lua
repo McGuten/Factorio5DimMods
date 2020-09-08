@@ -22,6 +22,10 @@ require("prototypes.gen-flamethrower-turret")
 -- Radar
 require("prototypes.gen-radar")
 
+-- Wall
+require("prototypes.gen-wall")
+require("prototypes.gen-gate")
+
 
 -- require("prototypes.wall")
 -- require("prototypes.gate")

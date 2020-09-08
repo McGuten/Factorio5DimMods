@@ -1,0 +1,273 @@
+require("__5dim_core__.lib.battlefield.generation-gate")
+
+local revelado = 350
+
+-- Stone wall 01
+genGates {
+    number = "01",
+    subgroup = "defense-gate",
+    order = "a",
+    new = false,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = nil
+}
+
+revelado = revelado + 35
+
+-- Stone wall 02
+genGates {
+    number = "02",
+    subgroup = "defense-gate",
+    order = "b",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 2,
+        count = 500,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators",
+            "logistic-science-pack"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 03
+genGates {
+    number = "03",
+    subgroup = "defense-gate",
+    order = "c",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 3,
+        count = 750,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-2",
+            "chemical-science-pack"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 04
+genGates {
+    number = "04",
+    subgroup = "defense-gate",
+    order = "d",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 4,
+        count = 1000,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-3"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 05
+genGates {
+    number = "05",
+    subgroup = "defense-gate",
+    order = "e",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 5,
+        count = 1250,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-4",
+            "production-science-pack"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 06
+genGates {
+    number = "06",
+    subgroup = "defense-gate",
+    order = "f",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 6,
+        count = 1500,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-5"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 07
+genGates {
+    number = "07",
+    subgroup = "defense-gate",
+    order = "g",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 7,
+        count = 1750,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-6",
+            "utility-science-pack"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 08
+genGates {
+    number = "08",
+    subgroup = "defense-gate",
+    order = "h",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 8,
+        count = 2000,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-7"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 09
+genGates {
+    number = "09",
+    subgroup = "defense-gate",
+    order = "i",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 9,
+        count = 2250,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-8"
+        }
+    }
+}
+
+revelado = revelado + 35
+
+-- Stone wall 10
+genGates {
+    number = "10",
+    subgroup = "defense-gate",
+    order = "j",
+    new = true,
+    health = revelado,
+    ingredients = {
+        {"iron-plate", 2},
+        {"battery", 5}
+    },
+    tech = {
+        number = 10,
+        count = 2500,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators-9"
+        }
+    }
+}

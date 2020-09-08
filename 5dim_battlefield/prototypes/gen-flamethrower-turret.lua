@@ -1,21 +1,21 @@
-require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
+require("__5dim_core__.lib.battlefield.flamethrower-turret.generation-flamethrower-turret")
 
-local rango = 32
-local ammo = 5
-local shootingSpeed = 10
-local damageModif = 3
-local color = {r = 0.2, g = 0.2, b = 1, a = 1}
-local hp = 600
+local rango = 30
+local minRango = 6
+local fluid_consumption = 0.2
+local damageModif = 19
+local color = {r = 0, g = 1, b = 1, a = 1}
+local hp = 1400
 
--- Big gun turret 01
-genGunTurrets {
-    number = "big-01",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 01
+genFlamethrowerTurrets {
+    number = "01",
+    subgroup = "defense-flame",
     order = "a",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    new = false,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -26,18 +26,18 @@ genGunTurrets {
     tech = nil
 }
 
-rango = rango + 2
-hp = hp + 60
+rango = rango + 3
+hp = hp + 140
 
--- Big gun turret 02
-genGunTurrets {
-    number = "big-02",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 02
+genFlamethrowerTurrets {
+    number = "02",
+    subgroup = "defense-flame",
     order = "b",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -60,17 +60,18 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
+minRango = minRango + 1
 
--- Big gun turret 03
-genGunTurrets {
-    number = "big-03",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 03
+genFlamethrowerTurrets {
+    number = "03",
+    subgroup = "defense-flame",
     order = "c",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -94,17 +95,17 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
 
--- Big gun turret 04
-genGunTurrets {
-    number = "big-04",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 04
+genFlamethrowerTurrets {
+    number = "04",
+    subgroup = "defense-flame",
     order = "d",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -128,17 +129,18 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
+minRango = minRango + 1
 
--- Big gun turret 05
-genGunTurrets {
-    number = "big-05",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 05
+genFlamethrowerTurrets {
+    number = "05",
+    subgroup = "defense-flame",
     order = "e",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -162,17 +164,17 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
 
--- Big gun turret 06
-genGunTurrets {
-    number = "big-06",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 06
+genFlamethrowerTurrets {
+    number = "06",
+    subgroup = "defense-flame",
     order = "f",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -196,17 +198,18 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
+minRango = minRango + 1
 
--- Big gun turret 07
-genGunTurrets {
-    number = "big-07",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 07
+genFlamethrowerTurrets {
+    number = "07",
+    subgroup = "defense-flame",
     order = "g",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -232,17 +235,17 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
 
--- Big gun turret 08
-genGunTurrets {
-    number = "big-08",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 08
+genFlamethrowerTurrets {
+    number = "08",
+    subgroup = "defense-flame",
     order = "h",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -267,17 +270,18 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
+minRango = minRango + 1
 
--- Big gun turret 09
-genGunTurrets {
-    number = "big-09",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 09
+genFlamethrowerTurrets {
+    number = "09",
+    subgroup = "defense-flame",
     order = "i",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,
@@ -302,17 +306,17 @@ genGunTurrets {
 }
 
 rango = rango + 2
-hp = hp + 60
+hp = hp + 140
 
--- Big gun turret 10
-genGunTurrets {
-    number = "big-10",
-    subgroup = "defense-gun-turret-big",
+-- Tesla turret 10
+genFlamethrowerTurrets {
+    number = "10",
+    subgroup = "defense-flame",
     order = "j",
     new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
+    attackSpeed = fluid_consumption,
     range = rango,
+    minRange = minRango,
     cooldown = damageModif,
     health = hp,
     tint = color,

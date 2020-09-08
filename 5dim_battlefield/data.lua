@@ -16,6 +16,13 @@ require("prototypes.gen-laser-turret-sniper")
 -- Tesla turret
 require("prototypes.gen-tesla-turret")
 
+-- Flamethrower turret
+require("prototypes.gen-flamethrower-turret")
+
+-- Radar
+require("prototypes.gen-radar")
+
+
 -- require("prototypes.wall")
 -- require("prototypes.gate")
 -- require("prototypes.ammo-category")

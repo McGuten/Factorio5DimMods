@@ -50,6 +50,7 @@ function genLaserTurrets(inputs)
         run_mode = "backward",
         tint = inputs.tint
     }
+    entityLaserTurretSmall.max_health = inputs.health or 1000
 
     -- Base
     -- entityLaserTurretSmall.picture.layers[1].hr_version.filename =

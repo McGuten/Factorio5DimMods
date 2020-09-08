@@ -61,6 +61,7 @@ function genGunTurrets(inputs)
     entityGunTurretSmall.prepared_animation.layers[2].tint = inputs.tint
     entityGunTurretSmall.prepared_animation.layers[2].hr_version.apply_runtime_tint = false
     entityGunTurretSmall.prepared_animation.layers[2].hr_version.tint = inputs.tint
+    entityGunTurretSmall.max_health = inputs.health or 480
 
     -- Base
     -- entityGunTurretSmall.picture.layers[1].hr_version.filename =

@@ -4,6 +4,7 @@ local rango = 50
 local shootingSpeed = 25
 local damageModif = 19
 local color = {r = 0, g = 1, b = 1, a = 1}
+local hp = 1400
 
 -- Sniper laser turret 01
 genLaserTurrets {
@@ -14,6 +15,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -23,6 +25,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 02
 genLaserTurrets {
@@ -33,6 +36,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -53,6 +57,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 03
 genLaserTurrets {
@@ -63,6 +68,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -84,6 +90,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 04
 genLaserTurrets {
@@ -94,6 +101,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -115,6 +123,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 05
 genLaserTurrets {
@@ -125,6 +134,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -146,6 +156,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 06
 genLaserTurrets {
@@ -156,6 +167,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -177,6 +189,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 07
 genLaserTurrets {
@@ -187,6 +200,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -210,6 +224,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 08
 genLaserTurrets {
@@ -220,6 +235,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -242,6 +258,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 09
 genLaserTurrets {
@@ -252,6 +269,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -274,6 +292,7 @@ genLaserTurrets {
 }
 
 rango = rango + 2
+hp = hp + 140
 
 -- Sniper laser turret 10
 genLaserTurrets {
@@ -284,6 +303,7 @@ genLaserTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},

@@ -1,11 +1,12 @@
-require("__5dim_core__.lib.battlefield.generation-artillery")
+require("__5dim_core__.lib.battlefield.tesla-turret.generation-tesla-turret")
 
 local rango = 50
 local shootingSpeed = 25
 local damageModif = 19
 local color = {r = 0.9, g = 0.1, b = 0.9, a = 1}
+local hp = 1500
 
--- Laser turret 01
+-- Tesla turret 01
 genTeslaTurrets {
     number = "01",
     subgroup = "defense-tesla",
@@ -14,6 +15,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -23,8 +25,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 02
+-- Tesla turret 02
 genTeslaTurrets {
     number = "02",
     subgroup = "defense-tesla",
@@ -33,6 +36,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -53,8 +57,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 03
+-- Tesla turret 03
 genTeslaTurrets {
     number = "03",
     subgroup = "defense-tesla",
@@ -63,6 +68,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -84,8 +90,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 04
+-- Tesla turret 04
 genTeslaTurrets {
     number = "04",
     subgroup = "defense-tesla",
@@ -94,6 +101,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -115,8 +123,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 05
+-- Tesla turret 05
 genTeslaTurrets {
     number = "05",
     subgroup = "defense-tesla",
@@ -125,6 +134,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -146,8 +156,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 06
+-- Tesla turret 06
 genTeslaTurrets {
     number = "06",
     subgroup = "defense-tesla",
@@ -156,6 +167,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -177,8 +189,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 07
+-- Tesla turret 07
 genTeslaTurrets {
     number = "07",
     subgroup = "defense-tesla",
@@ -187,6 +200,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -210,8 +224,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 08
+-- Tesla turret 08
 genTeslaTurrets {
     number = "08",
     subgroup = "defense-tesla",
@@ -220,6 +235,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -242,8 +258,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 09
+-- Tesla turret 09
 genTeslaTurrets {
     number = "09",
     subgroup = "defense-tesla",
@@ -252,6 +269,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -274,8 +292,9 @@ genTeslaTurrets {
 }
 
 rango = rango + 2
+hp = hp + 150
 
--- Laser turret 10
+-- Tesla turret 10
 genTeslaTurrets {
     number = "10",
     subgroup = "defense-tesla",
@@ -284,6 +303,7 @@ genTeslaTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},

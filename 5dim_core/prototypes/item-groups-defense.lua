@@ -64,33 +64,33 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "defense-artillery",
+            name = "defense-flame",
             group = "defense",
             order = "j"
         },
         {
             type = "item-subgroup",
-            name = "defense-flame",
+            name = "defense-wall",
             group = "defense",
             order = "k"
         },
         {
             type = "item-subgroup",
-            name = "defense-wall",
+            name = "defense-gate",
             group = "defense",
             order = "l"
         },
         {
             type = "item-subgroup",
-            name = "defense-gate",
+            name = "defense-radar",
             group = "defense",
             order = "m"
         },
         {
             type = "item-subgroup",
-            name = "defense-radar",
+            name = "defense-artillery",
             group = "defense",
             order = "n"
-        }
+        },
     }
 )

@@ -5,6 +5,7 @@ local ammo = 10
 local shootingSpeed = 6
 local damageModif = 1
 local color = {r = 1, g = 0.1, b = 0.1, a = 1}
+local hp = 480
 
 -- Gun turret 01
 genGunTurrets {
@@ -16,6 +17,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -25,6 +27,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 02
 genGunTurrets {
@@ -36,6 +39,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -56,6 +60,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 03
 genGunTurrets {
@@ -67,6 +72,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -88,6 +94,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 04
 genGunTurrets {
@@ -99,6 +106,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -120,6 +128,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 05
 genGunTurrets {
@@ -131,6 +140,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -152,6 +162,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 06
 genGunTurrets {
@@ -163,6 +174,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -184,6 +196,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 07
 genGunTurrets {
@@ -195,6 +208,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -218,6 +232,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 08
 genGunTurrets {
@@ -229,6 +244,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -251,6 +267,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 09
 genGunTurrets {
@@ -262,6 +279,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},
@@ -284,6 +302,7 @@ genGunTurrets {
 }
 
 rango = rango + 2
+hp = hp + 48
 
 -- Gun turret 10
 genGunTurrets {
@@ -295,6 +314,7 @@ genGunTurrets {
     attackSpeed = shootingSpeed,
     range = rango,
     cooldown = damageModif,
+    health = hp,
     tint = color,
     ingredients = {
         {"iron-plate", 2},

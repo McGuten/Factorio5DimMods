@@ -51,12 +51,13 @@ function genTeslaTurrets(inputs)
     entityTeslaTurret.attack_parameters.damage_modifier = inputs.cooldown
     entityTeslaTurret.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
     entityTeslaTurret.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+    entityTeslaTurret.max_health = inputs.health or 1500
 
-        -- Base
-        -- entityTeslaTurret.picture.layers[1].hr_version.filename =
-        --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
+    -- Base
+    -- entityTeslaTurret.picture.layers[1].hr_version.filename =
+    --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
 
-        data:extend({entityTeslaTurret, recipeTeslaTurret, itemTeslaTurret})
+    data:extend({entityTeslaTurret, recipeTeslaTurret, itemTeslaTurret})
 
     -- Technology
     if inputs.tech then

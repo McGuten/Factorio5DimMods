@@ -3,7 +3,7 @@ function genSteamTurbines(inputs)
     local itemSteamTurbine = table.deepcopy(data.raw.item["steam-turbine"])
     local recipeSteamTurbine = table.deepcopy(data.raw.recipe["steam-turbine"])
     local entitySteamTurbine = table.deepcopy(data.raw["generator"]["steam-turbine"])
-    local technologySteamTurbine = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologySteamTurbine = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
@@ -59,7 +59,8 @@ function genSteamTurbines(inputs)
     -- Technology
     if inputs.tech then
         technologySteamTurbine.name = "5d-steam-turbine-" .. inputs.tech.number
-        --technologySteamTurbine.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologySteamTurbine.icon = itemSteamTurbine.icon
+        technologySteamTurbine.icon_size = 64
         technologySteamTurbine.unit.count = inputs.tech.count
         technologySteamTurbine.unit.ingredients = inputs.tech.packs
         technologySteamTurbine.prerequisites = inputs.tech.prerequisites

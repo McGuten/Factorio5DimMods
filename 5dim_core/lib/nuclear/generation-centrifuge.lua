@@ -3,7 +3,7 @@ function genCentrifuges(inputs)
     local itemCentrifuge = table.deepcopy(data.raw.item["centrifuge"])
     local recipeCentrifuge = table.deepcopy(data.raw.recipe["centrifuge"])
     local entityCentrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
-    local technologyCentrifuge = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyCentrifuge = table.deepcopy(data.raw.technology["uranium-processing"])
 
     --Item
     if inputs.new then
@@ -23,6 +23,7 @@ function genCentrifuges(inputs)
     if inputs.new then
         recipeCentrifuge.enabled = false
     end
+    recipeCentrifuge.ingredients = inputs.ingredients
 
     --Entity
     entityCentrifuge.name = itemCentrifuge.name

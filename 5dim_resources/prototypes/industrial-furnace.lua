@@ -17,7 +17,7 @@ data:extend(
             name = "5d-industrial-furnace",
             enabled = "false",
             ingredients = {
-                {"electric-furnace", 2},
+                {"5d-electric-furnace-10", 1},
                 {"steel-plate", 10},
                 {"advanced-circuit", 10}
             },
@@ -50,14 +50,14 @@ data:extend(
             },
             allowed_effects = {"consumption", "speed", "productivity", "pollution"},
             crafting_categories = {"industrial-furnace"},
-            crafting_speed = 1,
-            energy_usage = "3000kW",
+            crafting_speed = 7,
+            energy_usage = "7500kW",
             source_inventory_size = 1,
             result_inventory_size = 1,
             energy_source = {
                 type = "electric",
                 usage_priority = "secondary-input",
-                emissions = 0.005
+                emissions = 15
             },
             working_sound = {
                 sound = {
@@ -77,7 +77,6 @@ data:extend(
             working_visualisations = {
                 util.empty_sprite()
             },
-            fast_replaceable_group = "electric-furnace"
         }
     }
 )

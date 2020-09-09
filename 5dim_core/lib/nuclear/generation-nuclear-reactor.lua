@@ -3,7 +3,7 @@ function genNuclearReactors(inputs)
     local itemNuclearReactor = table.deepcopy(data.raw.item["nuclear-reactor"])
     local recipeNuclearReactor = table.deepcopy(data.raw.recipe["nuclear-reactor"])
     local entityNuclearReactor = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
-    local technologyNuclearReactor = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyNuclearReactor = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
@@ -23,6 +23,7 @@ function genNuclearReactors(inputs)
     if inputs.new then
         recipeNuclearReactor.enabled = false
     end
+    recipeNuclearReactor.ingredients = inputs.ingredients
 
     --Entity
     entityNuclearReactor.name = itemNuclearReactor.name
@@ -42,7 +43,8 @@ function genNuclearReactors(inputs)
     -- Technology
     if inputs.tech then
         technologyNuclearReactor.name = "5d-nuclear-reactor-" .. inputs.tech.number
-        --technologyNuclearReactor.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyNuclearReactor.icon = itemNuclearReactor.icon
+        technologyNuclearReactor.icon_size = 64
         technologyNuclearReactor.unit.count = inputs.tech.count
         technologyNuclearReactor.unit.ingredients = inputs.tech.packs
         technologyNuclearReactor.prerequisites = inputs.tech.prerequisites

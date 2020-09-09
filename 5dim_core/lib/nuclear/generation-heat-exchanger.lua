@@ -3,7 +3,7 @@ function genHeatExchangers(inputs)
     local itemHeatExchanger = table.deepcopy(data.raw.item["heat-exchanger"])
     local recipeHeatExchanger = table.deepcopy(data.raw.recipe["heat-exchanger"])
     local entityHeatExchanger = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
-    local technologyHeatExchanger = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyHeatExchanger = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
@@ -23,6 +23,7 @@ function genHeatExchangers(inputs)
     if inputs.new then
         recipeHeatExchanger.enabled = false
     end
+    recipeHeatExchanger.ingredients = inputs.ingredients
 
     --Entity
     entityHeatExchanger.name = itemHeatExchanger.name
@@ -42,7 +43,8 @@ function genHeatExchangers(inputs)
     -- Technology
     if inputs.tech then
         technologyHeatExchanger.name = "5d-heat-exchanger-" .. inputs.tech.number
-        --technologyHeatExchanger.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyHeatExchanger.icon = itemHeatExchanger.icon
+        technologyHeatExchanger.icon_size = 64
         technologyHeatExchanger.unit.count = inputs.tech.count
         technologyHeatExchanger.unit.ingredients = inputs.tech.packs
         technologyHeatExchanger.prerequisites = inputs.tech.prerequisites

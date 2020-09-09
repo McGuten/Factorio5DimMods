@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.nuclear.generation-steam-turbine")
 
-speed = 1
-modules = 2
-energy = 1
-emisions = 30
+local speed = 1
+local modules = 2
+local energy = 1
+local emisions = 30
 
 -- Electric furnace 01
 genSteamTurbines {
@@ -15,8 +15,9 @@ genSteamTurbines {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"iron-gear-wheel", 50},
+        {"copper-plate", 50},
+        {"pipe", 20}
     },
     pollution = emisions,
     tech = nil
@@ -37,10 +38,11 @@ genSteamTurbines {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"steam-turbine", 1},
+        {"iron-gear-wheel", 50},
+        {"copper-plate", 50},
+        {"electronic-circuit", 50},
+        {"pipe", 20}
     },
     pollution = emisions,
     tech = {
@@ -51,8 +53,7 @@ genSteamTurbines {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
+            "nuclear-power",
         }
     }
 }
@@ -71,10 +72,11 @@ genSteamTurbines {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"5d-steam-turbine-02", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"electronic-circuit", 50},
+        {"pipe", 20}
     },
     pollution = emisions,
     tech = {
@@ -86,8 +88,10 @@ genSteamTurbines {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-nuclear-reactor-1",
+            "5d-steam-turbine-1",
+            "5d-heat-pipe-1",
+            "5d-heat-exchanger-1"
         }
     }
 }
@@ -107,10 +111,11 @@ genSteamTurbines {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"5d-steam-turbine-03", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 30},
+        {"pipe", 20}
     },
     pollution = emisions,
     tech = {
@@ -123,7 +128,10 @@ genSteamTurbines {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-nuclear-reactor-2",
+            "5d-steam-turbine-2",
+            "5d-heat-pipe-2",
+            "5d-heat-exchanger-2"
         }
     }
 }
@@ -142,10 +150,12 @@ genSteamTurbines {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"5d-steam-turbine-04", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
+        {"speed-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -157,8 +167,10 @@ genSteamTurbines {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
-            "production-science-pack"
+            "5d-nuclear-reactor-3",
+            "5d-steam-turbine-3",
+            "5d-heat-pipe-3",
+            "5d-heat-exchanger-3"
         }
     }
 }
@@ -178,10 +190,12 @@ genSteamTurbines {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"5d-steam-turbine-05", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -194,7 +208,10 @@ genSteamTurbines {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-nuclear-reactor-4",
+            "5d-steam-turbine-4",
+            "5d-heat-pipe-4",
+            "5d-heat-exchanger-4"
         }
     }
 }
@@ -213,10 +230,12 @@ genSteamTurbines {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"5d-steam-turbine-06", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -230,8 +249,10 @@ genSteamTurbines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
-            "utility-science-pack"
+            "5d-nuclear-reactor-5",
+            "5d-steam-turbine-5",
+            "5d-heat-pipe-5",
+            "5d-heat-exchanger-5"
         }
     }
 }
@@ -251,10 +272,12 @@ genSteamTurbines {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-steam-turbine-07", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -268,7 +291,10 @@ genSteamTurbines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-nuclear-reactor-6",
+            "5d-steam-turbine-6",
+            "5d-heat-pipe-6",
+            "5d-heat-exchanger-6"
         }
     }
 }
@@ -287,10 +313,12 @@ genSteamTurbines {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"5d-steam-turbine-08", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +332,10 @@ genSteamTurbines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-nuclear-reactor-7",
+            "5d-steam-turbine-7",
+            "5d-heat-pipe-7",
+            "5d-heat-exchanger-7"
         }
     }
 }
@@ -324,10 +355,11 @@ genSteamTurbines {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
+        {"5d-steam-turbine-09", 1},
+        {"steel-plate", 15},
+        {"copper-plate", 50},
+        {"advanced-circuit", 20},
+        {"pipe", 20},
         {"productivity-module-3", 1}
     },
     pollution = emisions,
@@ -342,7 +374,10 @@ genSteamTurbines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-nuclear-reactor-8",
+            "5d-steam-turbine-8",
+            "5d-heat-pipe-8",
+            "5d-heat-exchanger-8"
         }
     }
 }

@@ -8,7 +8,7 @@ data:extend(
             subgroup = "plates-dust",
             order = "a",
             icon = "__5dim_resources__/graphics/icon/resources/5d-iron-dust.png",
-            stack_size = 200
+            stack_size = 100
         },
         --Recipe
         {

@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.nuclear.generation-centrifuge")
 
-speed = 1
-modules = 2
-energy = 350
-emisions = 4
+local speed = 1
+local modules = 2
+local energy = 350
+local emisions = 4
 
 -- Electric furnace 01
 genCentrifuges {
@@ -15,8 +15,10 @@ genCentrifuges {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"concrete", 100},
+        {"steel-plate", 50},
+        {"advanced-circuit", 100},
+        {"iron-gear-wheel", 100}
     },
     pollution = emisions,
     tech = nil
@@ -37,10 +39,11 @@ genCentrifuges {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"centrifuge", 1},
+        {"concrete", 100},
+        {"steel-plate", 50},
+        {"advanced-circuit", 100},
+        {"iron-gear-wheel", 100}
     },
     pollution = emisions,
     tech = {
@@ -48,11 +51,11 @@ genCentrifuges {
         count = 500,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
+            "uranium-processing"
         }
     }
 }
@@ -71,10 +74,11 @@ genCentrifuges {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"5d-centrifuge-02", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"advanced-circuit", 100},
+        {"iron-gear-wheel", 100}
     },
     pollution = emisions,
     tech = {
@@ -86,8 +90,7 @@ genCentrifuges {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-centrifuge-1"
         }
     }
 }
@@ -107,10 +110,11 @@ genCentrifuges {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"5d-centrifuge-03", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"advanced-circuit", 100},
+        {"iron-gear-wheel", 100}
     },
     pollution = emisions,
     tech = {
@@ -123,7 +127,8 @@ genCentrifuges {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-centrifuge-2",
+            "production-science-pack"
         }
     }
 }
@@ -142,10 +147,12 @@ genCentrifuges {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"5d-centrifuge-04", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"speed-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -154,10 +161,11 @@ genCentrifuges {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
+            "5d-centrifuge-3",
             "production-science-pack"
         }
     }
@@ -178,10 +186,13 @@ genCentrifuges {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"5d-centrifuge-05", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"productivity-module", 1}
+
     },
     pollution = emisions,
     tech = {
@@ -194,7 +205,7 @@ genCentrifuges {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-centrifuge-4"
         }
     }
 }
@@ -213,10 +224,12 @@ genCentrifuges {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"5d-centrifuge-06", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -230,7 +243,7 @@ genCentrifuges {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
+            "5d-centrifuge-5",
             "utility-science-pack"
         }
     }
@@ -251,10 +264,12 @@ genCentrifuges {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-centrifuge-07", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -268,7 +283,7 @@ genCentrifuges {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-centrifuge-6"
         }
     }
 }
@@ -287,10 +302,12 @@ genCentrifuges {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"5d-centrifuge-08", 1},
+        {"refined-concrete", 100},
+        {"low-density-structure", 5},
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +321,7 @@ genCentrifuges {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-centrifuge-7"
         }
     }
 }
@@ -324,11 +341,12 @@ genCentrifuges {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
+        {"5d-centrifuge-09", 1},
+        {"refined-concrete", 100},
         {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"processing-unit", 15},
+        {"steel-plate", 50},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -342,7 +360,7 @@ genCentrifuges {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-centrifuge-8"
         }
     }
 }

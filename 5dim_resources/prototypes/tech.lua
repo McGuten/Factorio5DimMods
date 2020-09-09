@@ -16,7 +16,10 @@ data:extend(
                     recipe = "5d-industrial-furnace"
                 }
             },
-            prerequisites = {"advanced-material-processing-11"},
+            prerequisites = {
+                "advanced-material-processing-11",
+                "utility-science-pack"
+            },
             unit = {
                 count = 1500,
                 ingredients = {

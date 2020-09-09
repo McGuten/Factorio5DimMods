@@ -3,7 +3,7 @@ function genHeatPipes(inputs)
     local itemHeatPipe = table.deepcopy(data.raw.item["heat-pipe"])
     local recipeHeatPipe = table.deepcopy(data.raw.recipe["heat-pipe"])
     local entityHeatPipe = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
-    local technologyHeatPipe = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyHeatPipe = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
@@ -23,6 +23,7 @@ function genHeatPipes(inputs)
     if inputs.new then
         recipeHeatPipe.enabled = false
     end
+    recipeHeatPipe.ingredients = inputs.ingredients
 
     --Entity
     entityHeatPipe.name = itemHeatPipe.name
@@ -41,7 +42,8 @@ function genHeatPipes(inputs)
     -- Technology
     if inputs.tech then
         technologyHeatPipe.name = "5d-heat-pipe-" .. inputs.tech.number
-        --technologyHeatPipe.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyHeatPipe.icon = itemHeatPipe.icon
+        technologyHeatPipe.icon_size = 64
         technologyHeatPipe.unit.count = inputs.tech.count
         technologyHeatPipe.unit.ingredients = inputs.tech.packs
         technologyHeatPipe.prerequisites = inputs.tech.prerequisites

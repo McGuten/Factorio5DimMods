@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.resources.generation-electric-furnace")
 
-crafting = 2
-modules = 2
-energy = 180
-emisions = 1
+local crafting = 2
+local modules = 2
+local energy = 180
+local emisions = 1
 
 -- Electric furnace 01
 genElectricFurnaces {
@@ -16,7 +16,7 @@ genElectricFurnaces {
     order = "a",
     ingredients = {
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"stone-brick", 10}
     },
     pollution = emisions,
@@ -40,9 +40,8 @@ genElectricFurnaces {
     ingredients = {
         {"electric-furnace", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"speed-module", 1}
+        {"advanced-circuit", 3},
+        {"stone-brick", 5}
     },
     pollution = emisions,
     tech = {
@@ -75,9 +74,8 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-02", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"productivity-module-2", 1}
+        {"advanced-circuit", 3},
+        {"concrete", 5}
     },
     pollution = emisions,
     tech = {
@@ -113,9 +111,8 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-03", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"speed-module-2", 1}
+        {"advanced-circuit", 3},
+        {"concrete", 5}
     },
     pollution = emisions,
     tech = {
@@ -149,9 +146,9 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-04", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"productivity-module-2", 1}
+        {"advanced-circuit", 3},
+        {"concrete", 5},
+        {"speed-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -186,9 +183,9 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-05", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"speed-module-3", 1}
+        {"advanced-circuit", 3},
+        {"refined-concrete", 5},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -222,9 +219,9 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-06", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"stone-brick", 5},
-        {"productivity-module-3", 1}
+        {"advanced-circuit", 3},
+        {"refined-concrete", 5},
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -259,9 +256,9 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-07", 1},
         {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"stone-brick", 5},
-        {"speed-module-3", 1}
+        {"low-density-structure", 1},
+        {"refined-concrete", 5},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -297,9 +294,9 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-08", 1},
         {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"stone-brick", 5},
-        {"productivity-module-3", 1}
+        {"low-density-structure", 1},
+        {"refined-concrete", 5},
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -335,8 +332,8 @@ genElectricFurnaces {
     ingredients = {
         {"5d-electric-furnace-09", 1},
         {"steel-plate", 5},
-        {"low-density-structure", 5},
-        {"stone-brick", 5},
+        {"low-density-structure", 3},
+        {"refined-concrete", 5},
         {"productivity-module-3", 1}
     },
     pollution = emisions,

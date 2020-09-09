@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.nuclear.generation-heat-exchanger")
 
-speed = 2
-modules = 2
-energy = 10
-emisions = 1000
+local speed = 2
+local modules = 2
+local energy = 10
+local emisions = 1000
 
 -- Electric furnace 01
 genHeatExchangers {
@@ -15,8 +15,9 @@ genHeatExchangers {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"steel-plate", 10},
+        {"copper-plate", 100},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = nil
@@ -37,10 +38,10 @@ genHeatExchangers {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"heat-exchanger", 1},
+        {"steel-plate", 10},
+        {"copper-plate", 100},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -48,11 +49,14 @@ genHeatExchangers {
         count = 500,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
+            "nuclear-power",
+            "utility-science-pack"
         }
     }
 }
@@ -71,10 +75,10 @@ genHeatExchangers {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
+        {"5d-heat-exchanger-02", 1},
         {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"copper-plate", 100},
+        {"pipe", 20}
     },
     pollution = emisions,
     tech = {
@@ -83,11 +87,15 @@ genHeatExchangers {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-nuclear-reactor-1",
+            "5d-steam-turbine-1",
+            "5d-heat-pipe-1",
+            "5d-heat-exchanger-1"
         }
     }
 }
@@ -107,10 +115,11 @@ genHeatExchangers {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
+        {"5d-heat-exchanger-03", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"copper-plate", 100},
+        {"pipe", 10},
+        {"low-density-structure", 1}
     },
     pollution = emisions,
     tech = {
@@ -120,10 +129,14 @@ genHeatExchangers {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-nuclear-reactor-2",
+            "5d-steam-turbine-2",
+            "5d-heat-pipe-2",
+            "5d-heat-exchanger-2"
         }
     }
 }
@@ -142,10 +155,12 @@ genHeatExchangers {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
+        {"5d-heat-exchanger-04", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"copper-plate", 100},
+        {"pipe", 10},
+        {"low-density-structure", 1},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -154,11 +169,15 @@ genHeatExchangers {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
-            "production-science-pack"
+            "5d-nuclear-reactor-3",
+            "5d-steam-turbine-3",
+            "5d-heat-pipe-3",
+            "5d-heat-exchanger-3"
         }
     }
 }
@@ -178,10 +197,12 @@ genHeatExchangers {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
+        {"5d-heat-exchanger-05", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"copper-plate", 100},
+        {"pipe", 10},
+        {"low-density-structure", 1},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -191,10 +212,14 @@ genHeatExchangers {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-nuclear-reactor-4",
+            "5d-steam-turbine-4",
+            "5d-heat-pipe-4",
+            "5d-heat-exchanger-4"
         }
     }
 }
@@ -213,10 +238,12 @@ genHeatExchangers {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
+        {"5d-heat-exchanger-06", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"copper-plate", 100},
+        {"pipe", 10},
+        {"low-density-structure", 1},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -230,8 +257,10 @@ genHeatExchangers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
-            "utility-science-pack"
+            "5d-nuclear-reactor-5",
+            "5d-steam-turbine-5",
+            "5d-heat-pipe-5",
+            "5d-heat-exchanger-5"
         }
     }
 }
@@ -251,10 +280,12 @@ genHeatExchangers {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
+        {"5d-heat-exchanger-07", 1},
+        {"steel-plate", 10},
+        {"copper-plate", 100},
+        {"pipe", 10},
         {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -268,7 +299,10 @@ genHeatExchangers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-nuclear-reactor-6",
+            "5d-steam-turbine-6",
+            "5d-heat-pipe-6",
+            "5d-heat-exchanger-6"
         }
     }
 }
@@ -287,10 +321,12 @@ genHeatExchangers {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
+        {"5d-heat-exchanger-08", 1},
+        {"steel-plate", 10},
+        {"copper-plate", 100},
+        {"pipe", 10},
         {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +340,10 @@ genHeatExchangers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-nuclear-reactor-7",
+            "5d-steam-turbine-7",
+            "5d-heat-pipe-7",
+            "5d-heat-exchanger-7"
         }
     }
 }
@@ -324,11 +363,12 @@ genHeatExchangers {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"5d-heat-exchanger-09", 1},
+        {"steel-plate", 10},
+        {"copper-plate", 100},
+        {"pipe", 10},
+        {"low-density-structure", 1},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -342,7 +382,10 @@ genHeatExchangers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-nuclear-reactor-8",
+            "5d-steam-turbine-8",
+            "5d-heat-pipe-8",
+            "5d-heat-exchanger-8"
         }
     }
 }

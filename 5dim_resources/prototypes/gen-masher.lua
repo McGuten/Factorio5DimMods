@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.resources.generation-masher")
 
-crafting = 2
-modules = 2
-energy = 360
-emisions = 1
+local crafting = 2
+local modules = 2
+local energy = 360
+local emisions = 1
 
 -- Electric furnace 01
 genMasher {
@@ -16,7 +16,7 @@ genMasher {
     order = "a",
     ingredients = {
         {"steel-plate", 10},
-        {"electronic-circuit", 5},
+        {"electronic-circuit", 7},
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
@@ -64,7 +64,8 @@ genMasher {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-1"
+            "5d-masher-1",
+            "advanced-material-processing-3"
         }
     }
 }
@@ -85,7 +86,7 @@ genMasher {
     ingredients = {
         {"5d-masher-02", 1},
         {"iron-plate", 10},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
@@ -123,7 +124,7 @@ genMasher {
     ingredients = {
         {"5d-masher-03", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
@@ -137,7 +138,8 @@ genMasher {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-3"
+            "5d-masher-3",
+            "advanced-material-processing-5"
         }
     }
 }
@@ -158,7 +160,7 @@ genMasher {
     ingredients = {
         {"5d-masher-04", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"iron-gear-wheel", 10},
         {"speed-module", 1}
     },
@@ -173,7 +175,8 @@ genMasher {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-4"
+            "5d-masher-4",
+            "advanced-material-processing-6"
         }
     }
 }
@@ -195,7 +198,7 @@ genMasher {
     ingredients = {
         {"5d-masher-05", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"iron-gear-wheel", 10},
         {"productivity-module", 1}
     },
@@ -210,7 +213,8 @@ genMasher {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-5"
+            "5d-masher-5",
+            "advanced-material-processing-7"
         }
     }
 }
@@ -246,7 +250,8 @@ genMasher {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-6"
+            "5d-masher-6",
+            "advanced-material-processing-8"
         }
     }
 }
@@ -323,7 +328,8 @@ genMasher {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-8"
+            "5d-masher-8",
+            "advanced-material-processing-10"
         }
     }
 }
@@ -361,7 +367,8 @@ genMasher {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-masher-9"
+            "5d-masher-9",
+            "advanced-material-processing-11"
         }
     }
 }

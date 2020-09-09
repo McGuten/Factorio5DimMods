@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.mining.generation-electric-mining-drill")
 
-speed = 0.5
-modules = 2
-energy = 90
-emisions = 10
+local speed = 0.5
+local modules = 2
+local energy = 90
+local emisions = 10
 
 -- Electric furnace 01
 genMiningDrills {
@@ -39,9 +39,9 @@ genMiningDrills {
     order = "b",
     ingredients = {
         {"electric-mining-drill", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"speed-module", 1}
+        {"electronic-circuit", 3},
+        {"iron-gear-wheel", 5},
+        {"iron-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -73,9 +73,9 @@ genMiningDrills {
     order = "c",
     ingredients = {
         {"5d-electric-mining-drill-02", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"productivity-module", 1}
+        {"electronic-circuit", 3},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -107,9 +107,9 @@ genMiningDrills {
     order = "d",
     ingredients = {
         {"5d-electric-mining-drill-03", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-2", 1}
+        {"electronic-circuit", 3},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -143,8 +143,8 @@ genMiningDrills {
     ingredients = {
         {"5d-electric-mining-drill-04", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module-2", 1}
+        {"advanced-circuit", 3},
+        {"speed-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -178,8 +178,8 @@ genMiningDrills {
     ingredients = {
         {"5d-electric-mining-drill-05", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-3", 1}
+        {"advanced-circuit", 3},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -214,8 +214,8 @@ genMiningDrills {
     ingredients = {
         {"5d-electric-mining-drill-06", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module-3", 1}
+        {"advanced-circuit", 3},
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -249,9 +249,9 @@ genMiningDrills {
     order = "h",
     ingredients = {
         {"5d-electric-mining-drill-07", 1},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"low-density-structure", 2},
-        {"speed-module-3", 1}
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -286,9 +286,9 @@ genMiningDrills {
     order = "i",
     ingredients = {
         {"5d-electric-mining-drill-08", 1},
-        {"advanced-circuit", 5},
+        {"advanced-circuit", 3},
         {"low-density-structure", 2},
-        {"productivity-module-3", 1}
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {

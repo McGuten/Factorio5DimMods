@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.mining.generation-pumpjack")
 
-speed = 1
-modules = 2
-energy = 90
-emisions = 10
+local speed = 1
+local modules = 2
+local energy = 90
+local emisions = 10
 
 -- Electric furnace 01
 genPumpjacks {
@@ -39,10 +39,11 @@ genPumpjacks {
     new = true,
     order = "b",
     ingredients = {
-        {"electric-mining-drill", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"speed-module", 1}
+        {"pumpjack", 1},
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -73,10 +74,11 @@ genPumpjacks {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-electric-mining-drill-02", 1},
-        {"iron-gear-wheel", 3},
-        {"iron-plate", 10},
-        {"productivity-module", 1}
+        {"5d-pumpjack-02", 1},
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -107,10 +109,11 @@ genPumpjacks {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-electric-mining-drill-03", 1},
+        {"5d-pumpjack-03", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-2", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -142,10 +145,11 @@ genPumpjacks {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-electric-mining-drill-04", 1},
+        {"5d-pumpjack-04", 1},
         {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module-2", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -177,10 +181,10 @@ genPumpjacks {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-electric-mining-drill-05", 1},
+        {"5d-pumpjack-05", 1},
         {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"speed-module-3", 1}
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -213,10 +217,10 @@ genPumpjacks {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-electric-mining-drill-06", 1},
+        {"5d-pumpjack-06", 1},
         {"steel-plate", 5},
         {"advanced-circuit", 5},
-        {"productivity-module-3", 1}
+        {"speed-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -249,10 +253,10 @@ genPumpjacks {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-electric-mining-drill-07", 1},
+        {"5d-pumpjack-07", 1},
         {"advanced-circuit", 5},
         {"low-density-structure", 2},
-        {"speed-module-3", 1}
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -286,10 +290,10 @@ genPumpjacks {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-electric-mining-drill-08", 1},
+        {"5d-pumpjack-08", 1},
         {"advanced-circuit", 5},
         {"low-density-structure", 2},
-        {"productivity-module-3", 1}
+        {"speed-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -323,7 +327,7 @@ genPumpjacks {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-electric-mining-drill-09", 1},
+        {"5d-pumpjack-09", 1},
         {"steel-plate", 5},
         {"low-density-structure", 5},
         {"processing-unit", 2},

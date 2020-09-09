@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.mining.generation-water-pumpjack")
 
-speed = 20
-modules = 2
-energy = 90
-emisions = 10
+local speed = 20
+local modules = 2
+local energy = 90
+local emisions = 10
 
 -- Electric furnace 01
 genWaterPumpjacks {
@@ -51,9 +51,10 @@ genWaterPumpjacks {
     order = "b",
     ingredients = {
         {"5d-water-pumpjack-01", 1},
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
         {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -84,9 +85,10 @@ genWaterPumpjacks {
     order = "c",
     ingredients = {
         {"5d-water-pumpjack-02", 1},
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
         {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -119,8 +121,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-03", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -153,9 +156,10 @@ genWaterPumpjacks {
     order = "e",
     ingredients = {
         {"5d-water-pumpjack-04", 1},
-        {"steel-plate", 2},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"steel-plate", 5},
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -189,8 +193,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-05", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -225,8 +230,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-06", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -261,8 +267,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-07", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -298,8 +305,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-08", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -335,8 +343,9 @@ genWaterPumpjacks {
     ingredients = {
         {"5d-water-pumpjack-09", 1},
         {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"iron-gear-wheel", 10},
+        {"electronic-circuit", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {

@@ -96,7 +96,8 @@ function genMiningDrills(inputs)
     -- Technology
     if inputs.tech then
         technologyMiningDrill.name = "5d-mining-" .. inputs.tech.number
-        technologyMiningDrill.icon = "__base__/graphics/technology/mining-productivity.png"
+        technologyMiningDrill.icon = itemMiningDrill.icon
+        technologyMiningDrill.icon_size = 64
         technologyMiningDrill.unit.count = inputs.tech.count
         technologyMiningDrill.unit.ingredients = inputs.tech.packs
         technologyMiningDrill.prerequisites = inputs.tech.prerequisites

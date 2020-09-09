@@ -51,7 +51,7 @@ function genLaserTurrets(inputs)
         tint = inputs.tint
     }
     entityLaserTurret.max_health = inputs.health or 1000
-    entityAccumulator.fast_replaceable_group = "laser-turret"
+    entityLaserTurret.fast_replaceable_group = "laser-turret"
 
     -- Base
     -- entityLaserTurret.picture.layers[1].hr_version.filename =

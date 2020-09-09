@@ -126,13 +126,15 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-2",
             "5d-steam-turbine-2",
             "5d-heat-pipe-2",
-            "5d-heat-exchanger-2"
+            "5d-heat-exchanger-2",
+            "space-science-pack"
         }
     }
 }
@@ -166,7 +168,8 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-3",
@@ -207,7 +210,8 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-4",
@@ -247,7 +251,8 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-5",
@@ -288,7 +293,8 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-6",
@@ -328,7 +334,8 @@ genHeatPipes {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-7",

@@ -50,7 +50,10 @@ genSteamTurbines {
         count = 500,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "nuclear-power",
@@ -85,7 +88,9 @@ genSteamTurbines {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-1",
@@ -125,13 +130,16 @@ genSteamTurbines {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-2",
             "5d-steam-turbine-2",
             "5d-heat-pipe-2",
-            "5d-heat-exchanger-2"
+            "5d-heat-exchanger-2",
+            "space-science-pack"
         }
     }
 }
@@ -164,7 +172,10 @@ genSteamTurbines {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-3",
@@ -205,7 +216,9 @@ genSteamTurbines {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-4",
@@ -246,7 +259,8 @@ genSteamTurbines {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-5",

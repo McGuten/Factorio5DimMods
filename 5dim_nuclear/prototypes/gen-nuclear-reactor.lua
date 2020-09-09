@@ -136,13 +136,15 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-2",
             "5d-steam-turbine-2",
             "5d-heat-pipe-2",
-            "5d-heat-exchanger-2"
+            "5d-heat-exchanger-2",
+            "space-science-pack"
         }
     }
 }
@@ -178,7 +180,8 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-3",
@@ -221,7 +224,8 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-4",
@@ -263,7 +267,8 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-5",
@@ -306,7 +311,8 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-6",
@@ -348,7 +354,8 @@ genNuclearReactors {
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
             {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-nuclear-reactor-7",
@@ -380,7 +387,8 @@ genNuclearReactors {
         {"processing-unit", 100},
         {"copper-plate", 400},
         {"low-density-structure", 50},
-        {"productivity-module-3", 5}
+        {"productivity-module-3", 5},
+            {"space-science-pack", 1}
     },
     pollution = emisions,
     tech = {

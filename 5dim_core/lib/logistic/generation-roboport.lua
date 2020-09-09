@@ -3,7 +3,7 @@ function genRoboports(inputs)
     local itemRoboport = table.deepcopy(data.raw.item["roboport"])
     local recipeRoboport = table.deepcopy(data.raw.recipe["roboport"])
     local entityRoboport = table.deepcopy(data.raw["roboport"]["roboport"])
-    local technologyRoboport = table.deepcopy(data.raw.technology["advanced-material-processing"])
+    local technologyRoboport = table.deepcopy(data.raw.technology["logistic-robotics"])
 
     --Item
     if inputs.new then
@@ -40,8 +40,9 @@ function genRoboports(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyRoboport.name = "5d-mining-" .. inputs.tech.number
-        -- technologyRoboport.icon = "__base__/graphics/technology/mining-productivity.png"
+        technologyRoboport.name = "5d-roboport-" .. inputs.tech.number
+        technologyRoboport.icon = itemRoboport.icon
+        technologyRoboport.icon_size = 64
         technologyRoboport.unit.count = inputs.tech.count
         technologyRoboport.unit.ingredients = inputs.tech.packs
         technologyRoboport.prerequisites = inputs.tech.prerequisites

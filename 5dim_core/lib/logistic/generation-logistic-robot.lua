@@ -3,7 +3,7 @@ function genLogisticRobots(inputs)
     local itemLogisticRobot = table.deepcopy(data.raw.item["logistic-robot"])
     local recipeLogisticRobot = table.deepcopy(data.raw.recipe["logistic-robot"])
     local entityLogisticRobot = table.deepcopy(data.raw["logistic-robot"]["logistic-robot"])
-    local technologyLogisticRobot = table.deepcopy(data.raw.technology["advanced-material-processing"])
+    local technologyLogisticRobot = table.deepcopy(data.raw.technology["logistic-robotics"])
 
     --Item
     if inputs.new then
@@ -33,8 +33,9 @@ function genLogisticRobots(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyLogisticRobot.name = "5d-mining-" .. inputs.tech.number
-        -- technologyLogisticRobot.icon = "__base__/graphics/technology/mining-productivity.png"
+        technologyLogisticRobot.name = "5d-logistic-robot-" .. inputs.tech.number
+        technologyLogisticRobot.icon = itemLogisticRobot.icon
+        technologyLogisticRobot.icon_size = 64
         technologyLogisticRobot.unit.count = inputs.tech.count
         technologyLogisticRobot.unit.ingredients = inputs.tech.packs
         technologyLogisticRobot.prerequisites = inputs.tech.prerequisites

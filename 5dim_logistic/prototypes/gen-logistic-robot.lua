@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.logistic.generation-logistic-robot")
 
-speed = 0.05
-modules = 5
-energy = 1.5
-emisions = 100
+local speed = 0.05
+local modules = 5
+local energy = 1.5
+local emisions = 100
 
 -- Electric furnace 01
 genLogisticRobots {
@@ -15,10 +15,8 @@ genLogisticRobots {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"flying-robot-frame", 1},
+        {"advanced-circuit", 2}
     },
     pollution = emisions,
     tech = nil
@@ -38,21 +36,22 @@ genLogisticRobots {
     new = true,
     order = "b",
     ingredients = {
-        {"5d-water-pumpjack-01", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"logistic-robot", 1},
+        {"electric-engine-unit", 5},
+        {"advanced-circuit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 2,
-        count = 150,
+        number = 1,
+        count = 500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-1"
+            "logistic-robotics",
+            "construction-robotics"
         }
     }
 }
@@ -71,21 +70,23 @@ genLogisticRobots {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-water-pumpjack-02", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"5d-logistic-robot-02", 1},
+        {"electric-engine-unit", 5},
+        {"advanced-circuit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 3,
-        count = 300,
+        number = 2,
+        count = 750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-2"
+            "5d-construction-robot-1",
+            "5d-logistic-robot-1",
+            "5d-roboport-1"
         }
     }
 }
@@ -104,22 +105,24 @@ genLogisticRobots {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-water-pumpjack-03", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"5d-logistic-robot-03", 1},
+        {"electric-engine-unit", 5},
+        {"advanced-circuit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 4,
-        count = 450,
+        number = 3,
+        count = 1000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-3",
+            "5d-construction-robot-2",
+            "5d-logistic-robot-2",
+            "5d-roboport-2",
             "chemical-science-pack"
         }
     }
@@ -139,22 +142,24 @@ genLogisticRobots {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-water-pumpjack-04", 1},
-        {"steel-plate", 2},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"5d-logistic-robot-04", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 5,
-        count = 500,
+        number = 4,
+        count = 1250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-4"
+            "5d-construction-robot-3",
+            "5d-logistic-robot-3",
+            "5d-roboport-3"
         }
     }
 }
@@ -173,15 +178,15 @@ genLogisticRobots {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-water-pumpjack-05", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"5d-logistic-robot-05", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 6,
-        count = 600,
+        number = 5,
+        count = 1500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -189,7 +194,9 @@ genLogisticRobots {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-5",
+            "5d-construction-robot-4",
+            "5d-logistic-robot-4",
+            "5d-roboport-4",
             "production-science-pack"
         }
     }
@@ -209,15 +216,15 @@ genLogisticRobots {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-water-pumpjack-06", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"5d-logistic-robot-06", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 7,
-        count = 700,
+        number = 6,
+        count = 1750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -225,7 +232,9 @@ genLogisticRobots {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-6"
+            "5d-construction-robot-5",
+            "5d-logistic-robot-5",
+            "5d-roboport-5"
         }
     }
 }
@@ -244,15 +253,15 @@ genLogisticRobots {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-water-pumpjack-07", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"5d-logistic-robot-07", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 8,
-        count = 800,
+        number = 7,
+        count = 2000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -261,7 +270,9 @@ genLogisticRobots {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-7",
+            "5d-construction-robot-6",
+            "5d-logistic-robot-6",
+            "5d-roboport-6",
             "utility-science-pack"
         }
     }
@@ -281,15 +292,15 @@ genLogisticRobots {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-water-pumpjack-08", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"5d-logistic-robot-08", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 9,
-        count = 900,
+        number = 8,
+        count = 2250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -298,7 +309,9 @@ genLogisticRobots {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-8"
+            "5d-construction-robot-7",
+            "5d-logistic-robot-7",
+            "5d-roboport-7"
         }
     }
 }
@@ -317,15 +330,15 @@ genLogisticRobots {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-water-pumpjack-09", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"5d-logistic-robot-09", 1},
+        {"electric-engine-unit", 5},
+        {"processing-unit", 5},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
-        number = 10,
-        count = 1000,
+        number = 9,
+        count = 2500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -334,7 +347,9 @@ genLogisticRobots {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-water-pumpjack-9"
+            "5d-construction-robot-8",
+            "5d-logistic-robot-8",
+            "5d-roboport-8"
         }
     }
 }

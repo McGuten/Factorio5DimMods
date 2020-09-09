@@ -1,9 +1,9 @@
 function genElectricFurnaces(inputs)
     -- Copy electric furnace
-    itemElectricFurnace = table.deepcopy(data.raw.item["electric-furnace"])
-    recipeElectricFurnace = table.deepcopy(data.raw.recipe["electric-furnace"])
-    entityElectricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-    technologyElectricFurnace = table.deepcopy(data.raw.technology["advanced-material-processing-2"])
+    local itemElectricFurnace = table.deepcopy(data.raw.item["electric-furnace"])
+    local recipeElectricFurnace = table.deepcopy(data.raw.recipe["electric-furnace"])
+    local entityElectricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+    local technologyElectricFurnace = table.deepcopy(data.raw.technology["advanced-material-processing-2"])
 
     --Item
     if inputs.new then

@@ -34,6 +34,7 @@ function genRadars(inputs)
     entityRadar.max_distance_of_sector_revealed = inputs.scan
     entityRadar.max_distance_of_nearby_sector_revealed = inputs.reveal
     entityRadar.energy_usage = inputs.energy .. "kW"
+    entityRadar.fast_replaceable_group = "radar"
 
     -- Base
     -- entityRadar.picture.layers[1].hr_version.filename =

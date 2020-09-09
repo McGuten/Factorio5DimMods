@@ -32,6 +32,7 @@ function genAccumulators(inputs)
     entityAccumulator.energy_source.buffer_capacity = inputs.craftingSpeed .. "MJ"
     entityAccumulator.energy_source.input_flow_limit = inputs.energyUsage .. "kW"
     entityAccumulator.energy_source.output_flow_limit = inputs.energyUsage .. "kW"
+    entityAccumulator.fast_replaceable_group = "accumulator"
 
     -- Base
     -- entityAccumulator.picture.layers[1].hr_version.filename =

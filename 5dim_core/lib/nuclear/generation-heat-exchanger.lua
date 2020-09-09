@@ -1,9 +1,9 @@
 function genHeatExchangers(inputs)
     -- Copy electric furnace
-    itemHeatExchanger = table.deepcopy(data.raw.item["heat-exchanger"])
-    recipeHeatExchanger = table.deepcopy(data.raw.recipe["heat-exchanger"])
-    entityHeatExchanger = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
-    technologyHeatExchanger = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemHeatExchanger = table.deepcopy(data.raw.item["heat-exchanger"])
+    local recipeHeatExchanger = table.deepcopy(data.raw.recipe["heat-exchanger"])
+    local entityHeatExchanger = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
+    local technologyHeatExchanger = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
@@ -31,6 +31,7 @@ function genHeatExchangers(inputs)
     entityHeatExchanger.energy_consumption = inputs.energyUsage .. "MW"
     entityHeatExchanger.energy_source.max_temperature = inputs.pollution
     entityHeatExchanger.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
+    entityHeatExchanger.fast_replaceable_group = "heat-exchanger"
 
     -- Base
     -- entityHeatExchanger.picture.layers[1].hr_version.filename =

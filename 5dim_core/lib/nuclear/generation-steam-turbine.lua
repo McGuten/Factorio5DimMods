@@ -1,9 +1,9 @@
 function genSteamTurbines(inputs)
     -- Copy electric furnace
-    itemSteamTurbine = table.deepcopy(data.raw.item["steam-turbine"])
-    recipeSteamTurbine = table.deepcopy(data.raw.recipe["steam-turbine"])
-    entitySteamTurbine = table.deepcopy(data.raw["generator"]["steam-turbine"])
-    technologySteamTurbine = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemSteamTurbine = table.deepcopy(data.raw.item["steam-turbine"])
+    local recipeSteamTurbine = table.deepcopy(data.raw.recipe["steam-turbine"])
+    local entitySteamTurbine = table.deepcopy(data.raw["generator"]["steam-turbine"])
+    local technologySteamTurbine = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
@@ -48,6 +48,7 @@ function genSteamTurbines(inputs)
     entitySteamTurbine.minable.result = itemSteamTurbine.name
     entitySteamTurbine.effectivity = inputs.craftingSpeed
     entitySteamTurbine.fluid_usage_per_tick = inputs.energyUsage
+    entitySteamTurbine.fast_replaceable_group = "steam-turbine"
 
     -- Base
     -- entitySteamTurbine.picture.layers[1].hr_version.filename =

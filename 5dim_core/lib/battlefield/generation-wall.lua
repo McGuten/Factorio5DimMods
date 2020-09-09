@@ -32,6 +32,7 @@ function genStoneWalls(inputs)
     -- entityStoneWall.icon = itemStoneWall.icon
     entityStoneWall.minable.result = itemStoneWall.name
     entityStoneWall.max_health = inputs.health
+    entityStoneWall.fast_replaceable_group = "stone-wall"
 
     -- Base
     -- entityStoneWall.picture.layers[1].hr_version.filename =

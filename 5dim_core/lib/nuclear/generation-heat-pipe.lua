@@ -1,9 +1,9 @@
 function genHeatPipes(inputs)
     -- Copy electric furnace
-    itemHeatPipe = table.deepcopy(data.raw.item["heat-pipe"])
-    recipeHeatPipe = table.deepcopy(data.raw.recipe["heat-pipe"])
-    entityHeatPipe = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
-    technologyHeatPipe = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemHeatPipe = table.deepcopy(data.raw.item["heat-pipe"])
+    local recipeHeatPipe = table.deepcopy(data.raw.recipe["heat-pipe"])
+    local entityHeatPipe = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
+    local technologyHeatPipe = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
@@ -30,6 +30,7 @@ function genHeatPipes(inputs)
     entityHeatPipe.minable.result = itemHeatPipe.name
     entityHeatPipe.heat_buffer.max_temperature = inputs.craftingSpeed
     entityHeatPipe.heat_buffer.max_transfer = inputs.energyUsage .. "GW"
+    entityHeatPipe.fast_replaceable_group = "heat-pipe"
 
     -- Base
     -- entityHeatPipe.picture.layers[1].hr_version.filename =

@@ -32,6 +32,7 @@ function genBoilers(inputs)
     entityBoiler.energy_consumption = inputs.craftingSpeed .. "MW"
     entityBoiler.energy_source.effectivity = inputs.energyUsage
     entityBoiler.energy_source.emissions_per_minute = inputs.pollution
+    entityBoiler.fast_replaceable_group = "boiler"
 
     -- Base
     -- entityBoiler.picture.layers[1].hr_version.filename =

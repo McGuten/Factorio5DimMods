@@ -34,6 +34,7 @@ function genRoboports(inputs)
     entityRoboport.construction_radius = inputs.construction
     entityRoboport.robot_slots_count = inputs.botSlots
     entityRoboport.recharge_minimum = inputs.recharge .. "MJ"
+    entityRoboport.fast_replaceable_group = "roboport"
 
     data:extend({entityRoboport, recipeRoboport, itemRoboport})
 

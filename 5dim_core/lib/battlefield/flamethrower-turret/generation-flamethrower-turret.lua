@@ -38,6 +38,7 @@ function genFlamethrowerTurrets(inputs)
     entityFlamethrowerTurret.attack_parameters.min_range = inputs.minRange
     entityFlamethrowerTurret.prepare_range = inputs.range + 5
     entityFlamethrowerTurret.max_health = inputs.health or 1400
+    entityFlamethrowerTurret.fast_replaceable_group = "flamethrower-turret"
     -- entityFlamethrowerTurret.base_picture.north.layers[2].tint = inputs.tint
     -- entityFlamethrowerTurret.base_picture.north.layers[2].apply_runtime_tint = false
     -- entityFlamethrowerTurret.base_picture.east.layers[2].tint = inputs.tint

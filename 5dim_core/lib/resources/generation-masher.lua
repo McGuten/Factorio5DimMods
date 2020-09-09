@@ -1,9 +1,9 @@
 function genMasher(inputs)
     -- Copy electric furnace
-    itemMasher = table.deepcopy(data.raw.item["electric-furnace"])
-    recipeMasher = table.deepcopy(data.raw.recipe["electric-furnace"])
-    entityMasher = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-    technologyMasher = table.deepcopy(data.raw.technology["advanced-material-processing"])
+    local itemMasher = table.deepcopy(data.raw.item["electric-furnace"])
+    local recipeMasher = table.deepcopy(data.raw.recipe["electric-furnace"])
+    local entityMasher = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+    local technologyMasher = table.deepcopy(data.raw.technology["advanced-material-processing"])
 
     --Item
     itemMasher.name = "5d-masher-" .. inputs.number
@@ -35,13 +35,15 @@ function genMasher(inputs)
     entityMasher.animation.layers[1].hr_version.scale = 1
     entityMasher.crafting_categories = {"mashering"}
     entityMasher.energy_source.emissions_per_minute = inputs.pollution
+    entityMasher.fast_replaceable_group = "5d-masher"
 
     data:extend({entityMasher, recipeMasher, itemMasher})
 
     if inputs.tech then
         -- Technology
         technologyMasher.name = "5d-masher-" .. inputs.tech.number
-        technologyMasher.icon = "__5dim_resources__/graphics/technology/masher-tech.png"
+        technologyMasher.icon = itemMasher.icon
+        technologyMasher.icon_size = 64
         technologyMasher.unit.count = inputs.tech.count
         technologyMasher.unit.ingredients = inputs.tech.packs
         technologyMasher.prerequisites = inputs.tech.prerequisites

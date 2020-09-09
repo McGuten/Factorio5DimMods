@@ -1,9 +1,9 @@
 function genNuclearReactors(inputs)
     -- Copy electric furnace
-    itemNuclearReactor = table.deepcopy(data.raw.item["nuclear-reactor"])
-    recipeNuclearReactor = table.deepcopy(data.raw.recipe["nuclear-reactor"])
-    entityNuclearReactor = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
-    technologyNuclearReactor = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemNuclearReactor = table.deepcopy(data.raw.item["nuclear-reactor"])
+    local recipeNuclearReactor = table.deepcopy(data.raw.recipe["nuclear-reactor"])
+    local entityNuclearReactor = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
+    local technologyNuclearReactor = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
@@ -31,7 +31,7 @@ function genNuclearReactors(inputs)
     entityNuclearReactor.energy_source.effectivity = inputs.craftingSpeed
     entityNuclearReactor.consumption = inputs.energyUsage .. "MW"
     entityNuclearReactor.neighbour_bonus = inputs.pollution
-    -- entityNuclearReactor.module_specification.module_slots = inputs.moduleSlots
+    entityNuclearReactor.fast_replaceable_group = "nuclear-reactor"
 
     -- Base
     -- entityNuclearReactor.picture.layers[1].hr_version.filename =

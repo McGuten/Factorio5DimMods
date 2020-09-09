@@ -1,56 +1,57 @@
-function genBigPoles(inputs)
+function genSubstations(inputs)
     -- Copy electric furnace
-    local itemBigPole = table.deepcopy(data.raw.item["substation"])
-    local recipeBigPole = table.deepcopy(data.raw.recipe["substation"])
-    local entityBigPole = table.deepcopy(data.raw["electric-pole"]["substation"])
-    local technologyBigPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemSubstation = table.deepcopy(data.raw.item["substation"])
+    local recipeSubstation = table.deepcopy(data.raw.recipe["substation"])
+    local entitySubstation = table.deepcopy(data.raw["electric-pole"]["substation"])
+    local technologySubstation = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
-        itemBigPole.name = "5d-substation-" .. inputs.number
+        itemSubstation.name = "5d-substation-" .. inputs.number
     end
-    -- itemBigPole.icon =
+    -- itemSubstation.icon =
     --     "__5dim_energy__/graphics/icon/substation/substation-icon-" .. inputs.number .. ".png"
-    itemBigPole.subgroup = inputs.subgroup
-    itemBigPole.order = inputs.order
-    itemBigPole.place_result = itemBigPole.name
+    itemSubstation.subgroup = inputs.subgroup
+    itemSubstation.order = inputs.order
+    itemSubstation.place_result = itemSubstation.name
 
     --Recipe
-    recipeBigPole.name = itemBigPole.name
-    -- recipeBigPole.icon = itemBigPole.icon
-    recipeBigPole.result = itemBigPole.name
-    recipeBigPole.icon_size = 64
+    recipeSubstation.name = itemSubstation.name
+    -- recipeSubstation.icon = itemSubstation.icon
+    recipeSubstation.result = itemSubstation.name
+    recipeSubstation.icon_size = 64
     if inputs.new then
-        recipeBigPole.enabled = false
+        recipeSubstation.enabled = false
     end
-    recipeBigPole.ingredients = inputs.ingredients
+    recipeSubstation.ingredients = inputs.ingredients
 
     --Entity
-    entityBigPole.name = itemBigPole.name
-    -- entityBigPole.icon = itemBigPole.icon
-    entityBigPole.minable.result = itemBigPole.name
-    entityBigPole.maximum_wire_distance = inputs.craftingSpeed
-    entityBigPole.supply_area_distance = inputs.energyUsage
+    entitySubstation.name = itemSubstation.name
+    -- entitySubstation.icon = itemSubstation.icon
+    entitySubstation.minable.result = itemSubstation.name
+    entitySubstation.maximum_wire_distance = inputs.craftingSpeed
+    entitySubstation.supply_area_distance = inputs.energyUsage
+    entitySubstation.fast_replaceable_group = "substation"
 
     -- Base
-    -- entityBigPole.picture.layers[1].hr_version.filename =
+    -- entitySubstation.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/substation/substation-" .. inputs.number .. ".png"
 
-    data:extend({entityBigPole, recipeBigPole, itemBigPole})
+    data:extend({entitySubstation, recipeSubstation, itemSubstation})
 
     -- Technology
     if inputs.tech then
-        technologyBigPole.name = "5d-substation-" .. inputs.tech.number
-        --technologyBigPole.icon = "__base__/graphics/technology/oil-refinery.png"
-        technologyBigPole.unit.count = inputs.tech.count
-        technologyBigPole.unit.ingredients = inputs.tech.packs
-        technologyBigPole.prerequisites = inputs.tech.prerequisites
-        technologyBigPole.effects = {
+        technologySubstation.name = "5d-substation-" .. inputs.tech.number
+        --technologySubstation.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologySubstation.unit.count = inputs.tech.count
+        technologySubstation.unit.ingredients = inputs.tech.packs
+        technologySubstation.prerequisites = inputs.tech.prerequisites
+        technologySubstation.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemBigPole.name
+                recipe = itemSubstation.name
             }
         }
-        data:extend({technologyBigPole})
+        data:extend({technologySubstation})
     end
 end

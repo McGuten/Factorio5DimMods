@@ -31,6 +31,7 @@ function genPumps(inputs)
     entityPump.minable.result = itemPump.name
     entityPump.pumping_speed = inputs.craftingSpeed
     entityPump.energy_usage = inputs.energyUsage .. "kW"
+    entityPump.fast_replaceable_group = "pump"
 
     -- North
     -- entityPump.animations.north.hr_version.filename =

@@ -28,6 +28,7 @@ function genWaterPumpjacks(inputs)
     entityWaterPumpjack.icon = itemWaterPumpjack.icon
     entityWaterPumpjack.minable.result = itemWaterPumpjack.name
     entityWaterPumpjack.pumping_speed = inputs.craftingSpeed
+    entityWaterPumpjack.fast_replaceable_group = "water-pumpjack"
 
     entityWaterPumpjack.picture.north = {
         priority = "high",

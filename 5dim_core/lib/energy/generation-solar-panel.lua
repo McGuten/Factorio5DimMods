@@ -30,6 +30,7 @@ function genSolarPanels(inputs)
     entitySolarPanel.icon = itemSolarPanel.icon
     entitySolarPanel.minable.result = itemSolarPanel.name
     entitySolarPanel.production = inputs.craftingSpeed .. "kW"
+    entitySolarPanel.fast_replaceable_group = "solar-panel"
 
     -- North
     entitySolarPanel.picture.layers[1].hr_version.filename =

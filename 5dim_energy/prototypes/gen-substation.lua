@@ -6,7 +6,7 @@ energy = 9
 emisions = 30
 
 -- Electric furnace 01
-genBigPoles {
+genSubstations {
     number = "01",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -28,7 +28,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 02
-genBigPoles {
+genSubstations {
     number = "02",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -62,7 +62,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 03
-genBigPoles {
+genSubstations {
     number = "03",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -98,7 +98,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 04
-genBigPoles {
+genSubstations {
     number = "04",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -133,7 +133,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 05
-genBigPoles {
+genSubstations {
     number = "05",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -169,7 +169,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 06
-genBigPoles {
+genSubstations {
     number = "06",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -204,7 +204,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 07
-genBigPoles {
+genSubstations {
     number = "07",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -242,7 +242,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 08
-genBigPoles {
+genSubstations {
     number = "08",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -278,7 +278,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 09
-genBigPoles {
+genSubstations {
     number = "09",
     subgroup = "energy-substation",
     craftingSpeed = speed,
@@ -315,7 +315,7 @@ energy = energy + 2
 emisions = emisions + 15
 
 -- Electric furnace 10
-genBigPoles {
+genSubstations {
     number = "10",
     subgroup = "energy-substation",
     craftingSpeed = speed,

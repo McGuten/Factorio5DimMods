@@ -30,6 +30,7 @@ function genOffshorePumps(inputs)
     entityOffshorePump.icon = itemOffshorePump.icon
     entityOffshorePump.minable.result = itemOffshorePump.name
     entityOffshorePump.pumping_speed = inputs.craftingSpeed
+    entityOffshorePump.fast_replaceable_group = "offshore-pump"
 
     -- North
     entityOffshorePump.graphics_set.animation.north.layers[1].hr_version.filename =

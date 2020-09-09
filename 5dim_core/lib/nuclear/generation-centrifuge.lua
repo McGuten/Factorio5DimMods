@@ -1,9 +1,9 @@
 function genCentrifuges(inputs)
     -- Copy electric furnace
-    itemCentrifuge = table.deepcopy(data.raw.item["centrifuge"])
-    recipeCentrifuge = table.deepcopy(data.raw.recipe["centrifuge"])
-    entityCentrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
-    technologyCentrifuge = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local itemCentrifuge = table.deepcopy(data.raw.item["centrifuge"])
+    local recipeCentrifuge = table.deepcopy(data.raw.recipe["centrifuge"])
+    local entityCentrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
+    local technologyCentrifuge = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
 
     --Item
     if inputs.new then
@@ -32,6 +32,7 @@ function genCentrifuges(inputs)
     entityCentrifuge.energy_usage = inputs.energyUsage .. "kW"
     entityCentrifuge.energy_source.emissions_per_minute = inputs.pollution
     entityCentrifuge.module_specification.module_slots = inputs.moduleSlots
+    entityCentrifuge.fast_replaceable_group = "centrifuge"
 
     -- Base
     -- entityCentrifuge.picture.layers[1].hr_version.filename =

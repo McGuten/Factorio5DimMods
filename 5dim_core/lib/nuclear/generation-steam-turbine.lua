@@ -9,8 +9,8 @@ function genSteamTurbines(inputs)
     if inputs.new then
         itemSteamTurbine.name = "5d-steam-turbine-" .. inputs.number
     end
-    -- itemSteamTurbine.icon =
-    --     "__5dim_energy__/graphics/icon/steam-turbine/steam-turbine-icon-" .. inputs.number .. ".png"
+    itemSteamTurbine.icon =
+        "__5dim_nuclear__/graphics/icon/steam-turbine/steam-turbine-icon-" .. inputs.number .. ".png"
     itemSteamTurbine.subgroup = inputs.subgroup
     itemSteamTurbine.order = inputs.order
     itemSteamTurbine.place_result = itemSteamTurbine.name
@@ -51,8 +51,10 @@ function genSteamTurbines(inputs)
     entitySteamTurbine.fast_replaceable_group = "steam-turbine"
 
     -- Base
-    -- entitySteamTurbine.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/steam-turbine/steam-turbine-" .. inputs.number .. ".png"
+    entitySteamTurbine.horizontal_animation.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-H/steam-turbine-H-" .. inputs.number .. ".png"
+    entitySteamTurbine.vertical_animation.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-V/steam-turbine-V-" .. inputs.number .. ".png"
 
     data:extend({entitySteamTurbine, recipeSteamTurbine, itemSteamTurbine})
 

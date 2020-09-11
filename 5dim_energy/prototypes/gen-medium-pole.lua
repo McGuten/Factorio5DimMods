@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-medium-pole")
 
-speed = 9
-modules = 2
-energy = 3.5
-emisions = 30
+local speed = 9
+local modules = 2
+local energy = 3.5
+local emisions = 30
 
 -- Electric furnace 01
 genMediumPoles {
@@ -15,8 +15,9 @@ genMediumPoles {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = nil
@@ -37,10 +38,10 @@ genMediumPoles {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"medium-electric-pole", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -51,8 +52,7 @@ genMediumPoles {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
+            "electric-energy-distribution-1"
         }
     }
 }
@@ -71,10 +71,10 @@ genMediumPoles {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"5d-medium-electric-pole-02", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -86,7 +86,9 @@ genMediumPoles {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
+            "5d-substation-1",
+            "5d-medium-electric-pole-1",
+            "5d-big-electric-pole-1",
             "chemical-science-pack"
         }
     }
@@ -107,10 +109,10 @@ genMediumPoles {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"5d-medium-electric-pole-03", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -123,7 +125,9 @@ genMediumPoles {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-substation-2",
+            "5d-medium-electric-pole-2",
+            "5d-big-electric-pole-2"
         }
     }
 }
@@ -142,10 +146,10 @@ genMediumPoles {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"5d-medium-electric-pole-04", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -157,7 +161,9 @@ genMediumPoles {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
+            "5d-substation-3",
+            "5d-medium-electric-pole-3",
+            "5d-big-electric-pole-3",
             "production-science-pack"
         }
     }
@@ -178,10 +184,10 @@ genMediumPoles {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"5d-medium-electric-pole-05", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -194,7 +200,9 @@ genMediumPoles {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-substation-4",
+            "5d-medium-electric-pole-4",
+            "5d-big-electric-pole-4"
         }
     }
 }
@@ -213,10 +221,10 @@ genMediumPoles {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"5d-medium-electric-pole-06", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"copper-plate", 2}
     },
     pollution = emisions,
     tech = {
@@ -230,7 +238,9 @@ genMediumPoles {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
+            "5d-substation-5",
+            "5d-medium-electric-pole-5",
+            "5d-big-electric-pole-5",
             "utility-science-pack"
         }
     }
@@ -251,10 +261,12 @@ genMediumPoles {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-medium-electric-pole-07", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"low-density-structure", 1}
+        
     },
     pollution = emisions,
     tech = {
@@ -268,7 +280,9 @@ genMediumPoles {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-substation-6",
+            "5d-medium-electric-pole-6",
+            "5d-big-electric-pole-6"
         }
     }
 }
@@ -287,10 +301,11 @@ genMediumPoles {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"5d-medium-electric-pole-08", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"low-density-structure", 1}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +319,9 @@ genMediumPoles {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-substation-7",
+            "5d-medium-electric-pole-7",
+            "5d-big-electric-pole-7"
         }
     }
 }
@@ -324,11 +341,11 @@ genMediumPoles {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"5d-medium-electric-pole-09", 1},
+        {"iron-stick", 4},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"low-density-structure", 1}
     },
     pollution = emisions,
     tech = {
@@ -342,7 +359,9 @@ genMediumPoles {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-substation-8",
+            "5d-medium-electric-pole-8",
+            "5d-big-electric-pole-8"
         }
     }
 }

@@ -9,8 +9,8 @@ function genPumps(inputs)
     if inputs.new then
         itemPump.name = "5d-pump-" .. inputs.number
     end
-    -- itemPump.icon =
-    --     "__5dim_energy__/graphics/icon/pump/pump-icon-" .. inputs.number .. ".png"
+    itemPump.icon =
+        "__5dim_energy__/graphics/icon/pump/pump-icon-" .. inputs.number .. ".png"
     itemPump.subgroup = inputs.subgroup
     itemPump.order = inputs.order
     itemPump.place_result = itemPump.name
@@ -34,20 +34,20 @@ function genPumps(inputs)
     entityPump.fast_replaceable_group = "pump"
 
     -- North
-    -- entityPump.animations.north.hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/offshore-pump/north/offshore-pump-north-" .. inputs.number .. ".png"
+    entityPump.animations.north.hr_version.filename =
+        "__5dim_energy__/graphics/entities/pump/pump-north/pump-north-" .. inputs.number .. ".png"
 
     -- -- East
-    -- entityPump.animations.east.hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/offshore-pump/east/offshore-pump-east-" .. inputs.number .. ".png"
+    entityPump.animations.east.hr_version.filename =
+        "__5dim_energy__/graphics/entities/pump/pump-east/pump-east-" .. inputs.number .. ".png"
 
     -- -- South
-    -- entityPump.animations.south.hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/offshore-pump/south/offshore-pump-south-" .. inputs.number .. ".png"
+    entityPump.animations.south.hr_version.filename =
+        "__5dim_energy__/graphics/entities/pump/pump-south/pump-south-" .. inputs.number .. ".png"
 
     -- -- West
-    -- entityPump.animations.west.hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/offshore-pump/west/offshore-pump-west-" .. inputs.number .. ".png"
+    entityPump.animations.west.hr_version.filename =
+        "__5dim_energy__/graphics/entities/pump/pump-west/pump-west-" .. inputs.number .. ".png"
 
     data:extend({entityPump, recipePump, itemPump})
 

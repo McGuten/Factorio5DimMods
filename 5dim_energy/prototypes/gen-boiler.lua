@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-boiler")
 
-speed = 1.8
-modules = 2
-energy = 1
-emisions = 30
+local speed = 1.8
+local modules = 2
+local energy = 1
+local emisions = 30
 
 -- Electric furnace 01
 genBoilers {

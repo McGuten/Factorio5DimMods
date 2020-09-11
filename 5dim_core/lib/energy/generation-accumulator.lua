@@ -9,8 +9,8 @@ function genAccumulators(inputs)
     if inputs.new then
         itemAccumulator.name = "5d-accumulator-" .. inputs.number
     end
-    -- itemAccumulator.icon =
-    --     "__5dim_energy__/graphics/icon/accumulator/accumulator-icon-" .. inputs.number .. ".png"
+    itemAccumulator.icon =
+        "__5dim_energy__/graphics/icon/accumulator/accumulator-icon-" .. inputs.number .. ".png"
     itemAccumulator.subgroup = inputs.subgroup
     itemAccumulator.order = inputs.order
     itemAccumulator.place_result = itemAccumulator.name
@@ -35,8 +35,14 @@ function genAccumulators(inputs)
     entityAccumulator.fast_replaceable_group = "accumulator"
 
     -- Base
-    -- entityAccumulator.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
+    entityAccumulator.picture.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
+    -- Charge animation
+    entityAccumulator.charge_animation.layers[1].layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
+    -- Discharge animation
+    entityAccumulator.discharge_animation.layers[1].layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
 
     data:extend({entityAccumulator, recipeAccumulator, itemAccumulator})
 

@@ -3,14 +3,14 @@ function genMediumPoles(inputs)
     local itemMediumPole = table.deepcopy(data.raw.item["medium-electric-pole"])
     local recipeMediumPole = table.deepcopy(data.raw.recipe["medium-electric-pole"])
     local entityMediumPole = table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
-    local technologyMediumPole = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyMediumPole = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
 
     --Item
     if inputs.new then
         itemMediumPole.name = "5d-medium-electric-pole-" .. inputs.number
     end
-    -- itemMediumPole.icon =
-    --     "__5dim_energy__/graphics/icon/medium-electric-pole/medium-electric-pole-icon-" .. inputs.number .. ".png"
+    itemMediumPole.icon =
+        "__5dim_energy__/graphics/icon/medium-electric-pole/medium-electric-pole-icon-" .. inputs.number .. ".png"
     itemMediumPole.subgroup = inputs.subgroup
     itemMediumPole.order = inputs.order
     itemMediumPole.place_result = itemMediumPole.name
@@ -33,15 +33,16 @@ function genMediumPoles(inputs)
     entityMediumPole.supply_area_distance = inputs.energyUsage
 
     -- Base
-    -- entityMediumPole.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/medium-electric-pole/medium-electric-pole-" .. inputs.number .. ".png"
+    entityMediumPole.pictures.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/medium-electric-pole/medium-electric-pole-" .. inputs.number .. ".png"
 
     data:extend({entityMediumPole, recipeMediumPole, itemMediumPole})
 
     -- Technology
     if inputs.tech then
         technologyMediumPole.name = "5d-medium-electric-pole-" .. inputs.tech.number
-        --technologyMediumPole.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyMediumPole.icon = itemMediumPole.icon
+        technologyMediumPole.icon_size = 64
         technologyMediumPole.unit.count = inputs.tech.count
         technologyMediumPole.unit.ingredients = inputs.tech.packs
         technologyMediumPole.prerequisites = inputs.tech.prerequisites

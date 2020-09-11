@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-steam-engine")
 
-speed = 1
-modules = 2
-energy = 0.5
-emisions = 30
+local speed = 1
+local modules = 2
+local energy = 0.5
+local emisions = 30
 
 -- Electric furnace 01
 genSteamEngines {
@@ -15,8 +15,9 @@ genSteamEngines {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"iron-gear-wheel", 8},
+        {"pipe", 5},
+        {"iron-plate", 10}
     },
     pollution = emisions,
     tech = nil
@@ -37,7 +38,7 @@ genSteamEngines {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
+        {"steam-engine", 1},
         {"steel-plate", 7},
         {"electronic-circuit", 5},
         {"copper-plate", 3}
@@ -71,7 +72,7 @@ genSteamEngines {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
+        {"5d-steam-engine-02", 1},
         {"iron-gear-wheel", 3},
         {"steel-plate", 10},
         {"productivity-module", 1}
@@ -107,7 +108,7 @@ genSteamEngines {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
+        {"5d-steam-engine-03", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 2},
         {"effectivity-module-2", 1}
@@ -142,7 +143,7 @@ genSteamEngines {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
+        {"5d-steam-engine-04", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 2},
         {"productivity-module-2", 1}
@@ -178,7 +179,7 @@ genSteamEngines {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
+        {"5d-steam-engine-05", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 3},
         {"effectivity-module-3", 1}
@@ -213,7 +214,7 @@ genSteamEngines {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
+        {"5d-steam-engine-06", 1},
         {"steel-plate", 10},
         {"advanced-circuit", 3},
         {"productivity-module-3", 1}
@@ -251,7 +252,7 @@ genSteamEngines {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
+        {"5d-steam-engine-07", 1},
         {"advanced-circuit", 2},
         {"low-density-structure", 1},
         {"effectivity-module-3", 1}
@@ -287,7 +288,7 @@ genSteamEngines {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
+        {"5d-steam-engine-08", 1},
         {"advanced-circuit", 2},
         {"low-density-structure", 1},
         {"productivity-module-3", 1}
@@ -324,7 +325,7 @@ genSteamEngines {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
+        {"5d-steam-engine-09", 1},
         {"steel-plate", 30},
         {"low-density-structure", 5},
         {"processing-unit", 1},

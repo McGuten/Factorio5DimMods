@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-substation")
 
-speed = 18
-modules = 2
-energy = 9
-emisions = 30
+local speed = 18
+local modules = 2
+local energy = 9
+local emisions = 30
 
 -- Electric furnace 01
 genSubstations {
@@ -15,8 +15,9 @@ genSubstations {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = nil
@@ -37,22 +38,21 @@ genSubstations {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"substation", 1},
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
         number = 1,
-        count = 500,
+        count = 200,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
+            "electric-energy-distribution-2"
         }
     }
 }
@@ -71,10 +71,10 @@ genSubstations {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
+        {"5d-substation-02", 1},
         {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -86,8 +86,9 @@ genSubstations {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-substation-1",
+            "5d-medium-electric-pole-1",
+            "5d-big-electric-pole-1"
         }
     }
 }
@@ -107,10 +108,10 @@ genSubstations {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
+        {"5d-substation-03", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -123,7 +124,9 @@ genSubstations {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-substation-2",
+            "5d-medium-electric-pole-2",
+            "5d-big-electric-pole-2"
         }
     }
 }
@@ -142,10 +145,10 @@ genSubstations {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
+        {"5d-substation-04", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -157,7 +160,9 @@ genSubstations {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
+            "5d-substation-3",
+            "5d-medium-electric-pole-3",
+            "5d-big-electric-pole-3",
             "production-science-pack"
         }
     }
@@ -178,10 +183,10 @@ genSubstations {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
+        {"5d-substation-05", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -194,7 +199,9 @@ genSubstations {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-substation-4",
+            "5d-medium-electric-pole-4",
+            "5d-big-electric-pole-4"
         }
     }
 }
@@ -213,10 +220,10 @@ genSubstations {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
+        {"5d-substation-06", 1},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -230,7 +237,9 @@ genSubstations {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
+            "5d-substation-5",
+            "5d-medium-electric-pole-5",
+            "5d-big-electric-pole-5",
             "utility-science-pack"
         }
     }
@@ -251,10 +260,10 @@ genSubstations {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-substation-07", 1},
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -268,7 +277,9 @@ genSubstations {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-substation-6",
+            "5d-medium-electric-pole-6",
+            "5d-big-electric-pole-6"
         }
     }
 }
@@ -287,10 +298,10 @@ genSubstations {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"5d-substation-08", 1},
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +315,9 @@ genSubstations {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-substation-7",
+            "5d-medium-electric-pole-7",
+            "5d-big-electric-pole-7"
         }
     }
 }
@@ -324,11 +337,10 @@ genSubstations {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"5d-substation-09", 1},
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -342,7 +354,9 @@ genSubstations {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-substation-8",
+            "5d-medium-electric-pole-8",
+            "5d-big-electric-pole-8"
         }
     }
 }

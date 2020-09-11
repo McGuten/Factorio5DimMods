@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-offshore-pump")
 
-speed = 20
-modules = 2
-energy = 90
-emisions = 10
+local speed = 20
+local modules = 2
+local energy = 90
+local emisions = 10
 
 -- Electric furnace 01
 genOffshorePumps {

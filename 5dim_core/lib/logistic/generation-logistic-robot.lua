@@ -9,7 +9,7 @@ function genLogisticRobots(inputs)
     if inputs.new then
         itemLogisticRobot.name = "5d-logistic-robot-" .. inputs.number
     end
-    -- itemLogisticRobot.icon = "__5dim_mining__/graphics/icon/logistic-robot/logistic-robot-icon-" .. inputs.number .. ".png"
+    itemLogisticRobot.icon = "__5dim_logistic__/graphics/icon/logistic-robot/logistic-robot-icon-" .. inputs.number .. ".png"
     itemLogisticRobot.subgroup = inputs.subgroup
     itemLogisticRobot.order = inputs.order
     itemLogisticRobot.place_result = itemLogisticRobot.name
@@ -28,6 +28,19 @@ function genLogisticRobots(inputs)
     entityLogisticRobot.minable.result = itemLogisticRobot.name
     entityLogisticRobot.speed = inputs.craftingSpeed
     entityLogisticRobot.max_energy = inputs.energyUsage .. "MJ"
+
+    -- Idle
+    entityLogisticRobot.idle.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
+    -- Idle
+    entityLogisticRobot.idle_with_cargo.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
+    -- Idle
+    entityLogisticRobot.in_motion.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
+    -- Idle
+    entityLogisticRobot.in_motion_with_cargo.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
 
     data:extend({entityLogisticRobot, recipeLogisticRobot, itemLogisticRobot})
 

@@ -9,8 +9,8 @@ function genBoilers(inputs)
     if inputs.new then
         itemBoiler.name = "5d-boiler-" .. inputs.number
     end
-    -- itemBoiler.icon =
-    --     "__5dim_energy__/graphics/icon/Boiler/Boiler-icon-" .. inputs.number .. ".png"
+    itemBoiler.icon =
+        "__5dim_energy__/graphics/icon/boiler/boiler-icon-" .. inputs.number .. ".png"
     itemBoiler.subgroup = inputs.subgroup
     itemBoiler.order = inputs.order
     itemBoiler.place_result = itemBoiler.name
@@ -34,9 +34,18 @@ function genBoilers(inputs)
     entityBoiler.energy_source.emissions_per_minute = inputs.pollution
     entityBoiler.fast_replaceable_group = "boiler"
 
-    -- Base
-    -- entityBoiler.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/Boiler/Boiler-" .. inputs.number .. ".png"
+    -- North
+    entityBoiler.structure.north.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/boiler/boiler-N-idle/boiler-N-idle-" .. inputs.number .. ".png"
+    -- East
+    entityBoiler.structure.east.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/boiler/boiler-E-idle/boiler-E-idle-" .. inputs.number .. ".png"
+    -- South
+    entityBoiler.structure.south.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/boiler/boiler-S-idle/boiler-S-idle-" .. inputs.number .. ".png"
+    -- West
+    entityBoiler.structure.west.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/boiler/boiler-W-idle/boiler-W-idle-" .. inputs.number .. ".png"
 
     data:extend({entityBoiler, recipeBoiler, itemBoiler})
 

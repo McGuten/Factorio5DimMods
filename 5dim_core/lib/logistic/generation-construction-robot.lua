@@ -9,7 +9,7 @@ function genConstructionRobots(inputs)
     if inputs.new then
         itemConstructionRobot.name = "5d-construction-robot-" .. inputs.number
     end
-    -- itemConstructionRobot.icon = "__5dim_mining__/graphics/icon/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
+    itemConstructionRobot.icon = "__5dim_logistic__/graphics/icon/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
     itemConstructionRobot.subgroup = inputs.subgroup
     itemConstructionRobot.order = inputs.order
     itemConstructionRobot.place_result = itemConstructionRobot.name
@@ -28,6 +28,16 @@ function genConstructionRobots(inputs)
     entityConstructionRobot.minable.result = itemConstructionRobot.name
     entityConstructionRobot.speed = inputs.craftingSpeed
     entityConstructionRobot.max_energy = inputs.energyUsage .. "MJ"
+
+    -- Idle
+    entityConstructionRobot.idle.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
+    -- Idle
+    entityConstructionRobot.in_motion.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
+    -- Working
+    entityConstructionRobot.working.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/construction-robot/construction-robot-working/construction-robot-working-" .. inputs.number .. ".png"
 
     data:extend({entityConstructionRobot, recipeConstructionRobot, itemConstructionRobot})
 

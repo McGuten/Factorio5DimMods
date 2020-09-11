@@ -3,14 +3,14 @@ function genSubstations(inputs)
     local itemSubstation = table.deepcopy(data.raw.item["substation"])
     local recipeSubstation = table.deepcopy(data.raw.recipe["substation"])
     local entitySubstation = table.deepcopy(data.raw["electric-pole"]["substation"])
-    local technologySubstation = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologySubstation = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
 
     --Item
     if inputs.new then
         itemSubstation.name = "5d-substation-" .. inputs.number
     end
-    -- itemSubstation.icon =
-    --     "__5dim_energy__/graphics/icon/substation/substation-icon-" .. inputs.number .. ".png"
+    itemSubstation.icon =
+        "__5dim_energy__/graphics/icon/substation/substation-icon-" .. inputs.number .. ".png"
     itemSubstation.subgroup = inputs.subgroup
     itemSubstation.order = inputs.order
     itemSubstation.place_result = itemSubstation.name
@@ -34,15 +34,16 @@ function genSubstations(inputs)
     entitySubstation.fast_replaceable_group = "substation"
 
     -- Base
-    -- entitySubstation.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/substation/substation-" .. inputs.number .. ".png"
+    entitySubstation.pictures.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/substation/substation-" .. inputs.number .. ".png"
 
     data:extend({entitySubstation, recipeSubstation, itemSubstation})
 
     -- Technology
     if inputs.tech then
         technologySubstation.name = "5d-substation-" .. inputs.tech.number
-        --technologySubstation.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologySubstation.icon = itemSubstation.icon
+        technologySubstation.icon_size = 64
         technologySubstation.unit.count = inputs.tech.count
         technologySubstation.unit.ingredients = inputs.tech.packs
         technologySubstation.prerequisites = inputs.tech.prerequisites

@@ -9,8 +9,8 @@ function genHeatExchangers(inputs)
     if inputs.new then
         itemHeatExchanger.name = "5d-heat-exchanger-" .. inputs.number
     end
-    -- itemHeatExchanger.icon =
-    --     "__5dim_energy__/graphics/icon/heat-exchanger/heat-exchanger-icon-" .. inputs.number .. ".png"
+    itemHeatExchanger.icon =
+        "__5dim_nuclear__/graphics/icon/heat-exchanger/heatex-icon-" .. inputs.number .. ".png"
     itemHeatExchanger.subgroup = inputs.subgroup
     itemHeatExchanger.order = inputs.order
     itemHeatExchanger.place_result = itemHeatExchanger.name
@@ -34,9 +34,18 @@ function genHeatExchangers(inputs)
     entityHeatExchanger.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
     entityHeatExchanger.fast_replaceable_group = "heat-exchanger"
 
-    -- Base
-    -- entityHeatExchanger.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/heat-exchanger/heat-exchanger-" .. inputs.number .. ".png"
+    -- North
+    entityHeatExchanger.structure.north.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-N-idle/heatex-N-idle-" .. inputs.number .. ".png"
+    -- East
+    entityHeatExchanger.structure.east.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-E-idle/heatex-E-idle-" .. inputs.number .. ".png"
+    -- South
+    entityHeatExchanger.structure.south.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-S-idle/heatex-S-idle-" .. inputs.number .. ".png"
+    -- West
+    entityHeatExchanger.structure.west.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-W-idle/heatex-W-idle-" .. inputs.number .. ".png"
 
     data:extend({entityHeatExchanger, recipeHeatExchanger, itemHeatExchanger})
 

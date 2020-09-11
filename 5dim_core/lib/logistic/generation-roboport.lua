@@ -9,7 +9,7 @@ function genRoboports(inputs)
     if inputs.new then
         itemRoboport.name = "5d-roboport-" .. inputs.number
     end
-    -- itemRoboport.icon = "__5dim_mining__/graphics/icon/roboport/roboport-icon-" .. inputs.number .. ".png"
+    itemRoboport.icon = "__5dim_logistic__/graphics/icon/roboport/roboport-icon-" .. inputs.number .. ".png"
     itemRoboport.subgroup = inputs.subgroup
     itemRoboport.order = inputs.order
     itemRoboport.place_result = itemRoboport.name
@@ -35,6 +35,13 @@ function genRoboports(inputs)
     entityRoboport.robot_slots_count = inputs.botSlots
     entityRoboport.recharge_minimum = inputs.recharge .. "MJ"
     entityRoboport.fast_replaceable_group = "roboport"
+
+    -- Base
+    entityRoboport.base.layers[1].hr_version.filename =
+        "__5dim_logistic__/graphics/entities/roboport/roboport-base/roboport-base-" .. inputs.number .. ".png"
+    -- Base patch
+    entityRoboport.base_patch.hr_version.filename =
+        "__5dim_logistic__/graphics/entities/roboport/roboport-base-patch/roboport-base-patch-" .. inputs.number .. ".png"
 
     data:extend({entityRoboport, recipeRoboport, itemRoboport})
 

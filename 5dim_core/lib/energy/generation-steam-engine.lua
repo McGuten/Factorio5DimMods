@@ -9,8 +9,8 @@ function genSteamEngines(inputs)
     if inputs.new then
         itemSteamEngine.name = "5d-steam-engine-" .. inputs.number
     end
-    -- itemSteamEngine.icon =
-    --     "__5dim_energy__/graphics/icon/steam-engine/steam-engine-icon-" .. inputs.number .. ".png"
+    itemSteamEngine.icon =
+        "__5dim_energy__/graphics/icon/steam-engine/steam-engine-icon-" .. inputs.number .. ".png"
     itemSteamEngine.subgroup = inputs.subgroup
     itemSteamEngine.order = inputs.order
     itemSteamEngine.place_result = itemSteamEngine.name
@@ -49,9 +49,12 @@ function genSteamEngines(inputs)
     entitySteamEngine.effectivity = inputs.craftingSpeed
     entitySteamEngine.fluid_usage_per_tick = inputs.energyUsage
 
-    -- Base
-    -- entitySteamEngine.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/SteamEngine/SteamEngine-" .. inputs.number .. ".png"
+    -- Horizontal
+    entitySteamEngine.horizontal_animation.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/steam-engine/steam-engine-H/steam-engine-H-" .. inputs.number .. ".png"
+    -- Vertical
+    entitySteamEngine.vertical_animation.layers[1].hr_version.filename =
+        "__5dim_energy__/graphics/entities/steam-engine/steam-engine-V/steam-engine-V-" .. inputs.number .. ".png"
 
     data:extend({entitySteamEngine, recipeSteamEngine, itemSteamEngine})
 

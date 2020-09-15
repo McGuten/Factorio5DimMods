@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-pump")
 
-speed = 200
-modules = 2
-energy = 29
-emisions = 10
+local speed = 200
+local modules = 2
+local energy = 29
+local emisions = 10
 
 -- Electric furnace 01
 genPumps {
@@ -38,10 +38,10 @@ genPumps {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"pump", 1},
+        {"engine-unit", 1},
+        {"steel-plate", 5},
+        {"pipe", 2}
     },
     pollution = emisions,
     tech = {
@@ -72,10 +72,11 @@ genPumps {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
+        {"5d-pump-02", 1},
+        {"engine-unit", 1},
+        {"steel-plate", 2},
         {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -108,10 +109,11 @@ genPumps {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"5d-pump-03", 1},
+        {"engine-unit", 1},
+        {"steel-plate", 5},
+        {"electronic-circuit", 2},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -143,10 +145,11 @@ genPumps {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"5d-pump-04", 1},
+        {"engine-unit", 1},
+        {"steel-plate", 5},
+        {"electronic-circuit", 2},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -179,10 +182,11 @@ genPumps {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"5d-pump-05", 1},
+        {"electric-engine-unit", 1},
+        {"steel-plate", 5},
+        {"electronic-circuit", 2},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -214,10 +218,11 @@ genPumps {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"5d-pump-06", 1},
+        {"electric-engine-unit", 1},
+        {"steel-plate", 5},
+        {"electronic-circuit", 2},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -252,10 +257,11 @@ genPumps {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-pump-07", 1},
+        {"electric-engine-unit", 1},
+        {"steel-plate", 5},
+        {"electronic-circuit", 2},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -288,10 +294,11 @@ genPumps {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
+        {"5d-pump-08", 1},
+        {"electric-engine-unit", 1},
+        {"steel-plate", 5},
         {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {
@@ -325,11 +332,12 @@ genPumps {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"5d-pump-09", 1},
+        {"electric-engine-unit", 1},
+        {"steel-plate", 5},
+        {"advanced-circuit", 2},
+        {"low-density-structure", 1},
+        {"pipe", 1}
     },
     pollution = emisions,
     tech = {

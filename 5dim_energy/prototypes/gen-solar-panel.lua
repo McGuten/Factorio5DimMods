@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-solar-panel")
 
-speed = 60
-modules = 2
-energy = 90
-emisions = 10
+local speed = 60
+local modules = 2
+local energy = 90
+local emisions = 10
 
 -- Electric furnace 01
 genSolarPanels {
@@ -39,9 +39,9 @@ genSolarPanels {
     order = "b",
     ingredients = {
         {"solar-panel", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"steel-plate", 5},
+        {"electronic-circuit", 15},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -52,8 +52,7 @@ genSolarPanels {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy",
-            "logistic-science-pack"
+            "solar-energy"
         }
     }
 }
@@ -73,9 +72,9 @@ genSolarPanels {
     order = "c",
     ingredients = {
         {"5d-solar-panel-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"steel-plate", 5},
+        {"electronic-circuit", 15},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -109,9 +108,9 @@ genSolarPanels {
     order = "d",
     ingredients = {
         {"5d-solar-panel-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"steel-plate", 5},
+        {"advanced-circuit", 15},
+        {"copper-plate", 5}
     },
     pollution = emisions,
     tech = {
@@ -144,9 +143,10 @@ genSolarPanels {
     order = "e",
     ingredients = {
         {"5d-solar-panel-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"steel-plate", 5},
+        {"advanced-circuit", 15},
+        {"copper-plate", 5},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -180,9 +180,10 @@ genSolarPanels {
     order = "f",
     ingredients = {
         {"5d-solar-panel-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"steel-plate", 5},
+        {"advanced-circuit", 15},
+        {"copper-plate", 5},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -215,9 +216,10 @@ genSolarPanels {
     order = "g",
     ingredients = {
         {"5d-solar-panel-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"steel-plate", 5},
+        {"advanced-circuit", 15},
+        {"copper-plate", 5},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -253,9 +255,10 @@ genSolarPanels {
     order = "h",
     ingredients = {
         {"5d-solar-panel-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"steel-plate", 5},
+        {"processing-unit", 2},
+        {"low-density-structure", 2},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -289,8 +292,9 @@ genSolarPanels {
     order = "i",
     ingredients = {
         {"5d-solar-panel-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
+        {"steel-plate", 10},
+        {"processing-unit", 5},
+        {"low-density-structure", 2},
         {"productivity-module-3", 1}
     },
     pollution = emisions,
@@ -326,10 +330,10 @@ genSolarPanels {
     order = "j",
     ingredients = {
         {"5d-solar-panel-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"steel-plate", 15},
+        {"processing-unit", 8},
+        {"low-density-structure", 2},
+        {"productivity-module-3", 2}
     },
     pollution = emisions,
     tech = {

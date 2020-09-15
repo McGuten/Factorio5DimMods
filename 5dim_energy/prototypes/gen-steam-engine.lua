@@ -39,9 +39,10 @@ genSteamEngines {
     order = "b",
     ingredients = {
         {"steam-engine", 1},
-        {"steel-plate", 7},
+        {"iron-gear-wheel", 8},
         {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"pipe", 5},
+        {"iron-plate", 10}
     },
     pollution = emisions,
     tech = {
@@ -52,7 +53,7 @@ genSteamEngines {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
+            "fluid-handling",
             "logistic-science-pack"
         }
     }
@@ -73,9 +74,10 @@ genSteamEngines {
     order = "c",
     ingredients = {
         {"5d-steam-engine-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"iron-gear-wheel", 8},
+        {"electronic-circuit", 5},
+        {"pipe", 5},
+        {"steel-plate", 10}
     },
     pollution = emisions,
     tech = {
@@ -83,12 +85,12 @@ genSteamEngines {
         count = 750,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-offshore-pump-1",
+            "5d-boiler-1",
+            "5d-steam-engine-1"
         }
     }
 }
@@ -109,9 +111,10 @@ genSteamEngines {
     order = "d",
     ingredients = {
         {"5d-steam-engine-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"iron-gear-wheel", 8},
+        {"electronic-circuit", 5},
+        {"pipe", 5},
+        {"steel-plate", 10}
     },
     pollution = emisions,
     tech = {
@@ -120,11 +123,13 @@ genSteamEngines {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-offshore-pump-2",
+            "5d-boiler-2",
+            "5d-steam-engine-2",
+            "chemical-science-pack"
         }
     }
 }
@@ -144,9 +149,11 @@ genSteamEngines {
     order = "e",
     ingredients = {
         {"5d-steam-engine-04", 1},
-        {"steel-plate", 10},
+        {"iron-gear-wheel", 8},
         {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"pipe", 5},
+        {"steel-plate", 10},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -158,8 +165,9 @@ genSteamEngines {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
-            "production-science-pack"
+            "5d-offshore-pump-3",
+            "5d-boiler-3",
+            "5d-steam-engine-3"
         }
     }
 }
@@ -180,9 +188,11 @@ genSteamEngines {
     order = "f",
     ingredients = {
         {"5d-steam-engine-05", 1},
+        {"iron-gear-wheel", 8},
+        {"advanced-circuit", 4},
+        {"pipe", 5},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -195,7 +205,10 @@ genSteamEngines {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-offshore-pump-4",
+            "5d-boiler-4",
+            "5d-steam-engine-4",
+            "production-science-pack"
         }
     }
 }
@@ -215,9 +228,11 @@ genSteamEngines {
     order = "g",
     ingredients = {
         {"5d-steam-engine-06", 1},
+        {"iron-gear-wheel", 8},
+        {"advanced-circuit", 5},
+        {"pipe", 5},
         {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -227,12 +242,12 @@ genSteamEngines {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
-            "utility-science-pack"
+            "5d-offshore-pump-5",
+            "5d-boiler-5",
+            "5d-steam-engine-5"
         }
     }
 }
@@ -253,9 +268,11 @@ genSteamEngines {
     order = "h",
     ingredients = {
         {"5d-steam-engine-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"iron-gear-wheel", 8},
+        {"processing-unit", 5},
+        {"pipe", 5},
+        {"low-density-structure", 10},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -269,7 +286,10 @@ genSteamEngines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-offshore-pump-6",
+            "5d-boiler-6",
+            "5d-steam-engine-6",
+            "utility-science-pack"
         }
     }
 }
@@ -289,9 +309,11 @@ genSteamEngines {
     order = "i",
     ingredients = {
         {"5d-steam-engine-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"iron-gear-wheel", 8},
+        {"processing-unit", 5},
+        {"pipe", 5},
+        {"low-density-structure", 10},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -305,7 +327,9 @@ genSteamEngines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-offshore-pump-7",
+            "5d-boiler-7",
+            "5d-steam-engine-7"
         }
     }
 }
@@ -326,10 +350,11 @@ genSteamEngines {
     order = "j",
     ingredients = {
         {"5d-steam-engine-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"iron-gear-wheel", 8},
+        {"processing-unit", 5},
+        {"pipe", 5},
+        {"low-density-structure", 10},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -343,7 +368,9 @@ genSteamEngines {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-offshore-pump-8",
+            "5d-boiler-8",
+            "5d-steam-engine-8"
         }
     }
 }

@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.energy.generation-accumulator")
 
-speed = 5
-modules = 2
-energy = 300
-emisions = 10
+local speed = 5
+local modules = 2
+local energy = 300
+local emisions = 10
 
 -- Electric furnace 01
 genAccumulators {
@@ -38,9 +38,9 @@ genAccumulators {
     order = "b",
     ingredients = {
         {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"electronic-circuit", 2},
+        {"iron-plate", 2},
+        {"battery", 5}
     },
     pollution = emisions,
     tech = {
@@ -51,8 +51,7 @@ genAccumulators {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
-            "logistic-science-pack"
+            "electric-energy-accumulators"
         }
     }
 }
@@ -72,9 +71,9 @@ genAccumulators {
     order = "c",
     ingredients = {
         {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"electronic-circuit", 7},
+        {"iron-plate", 4},
+        {"battery", 10}
     },
     pollution = emisions,
     tech = {
@@ -108,9 +107,9 @@ genAccumulators {
     order = "d",
     ingredients = {
         {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"advanced-circuit", 7},
+        {"steel-plate", 7},
+        {"battery", 15}
     },
     pollution = emisions,
     tech = {
@@ -143,9 +142,10 @@ genAccumulators {
     order = "e",
     ingredients = {
         {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
         {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"steel-plate", 2},
+        {"battery", 15},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -179,9 +179,10 @@ genAccumulators {
     order = "f",
     ingredients = {
         {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"advanced-circuit", 2},
+        {"steel-plate", 2},
+        {"battery", 15},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -214,9 +215,10 @@ genAccumulators {
     order = "g",
     ingredients = {
         {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"advanced-circuit", 2},
+        {"steel-plate", 2},
+        {"battery", 15},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -252,9 +254,10 @@ genAccumulators {
     order = "h",
     ingredients = {
         {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"processing-unit", 2},
+        {"steel-plate", 2},
+        {"battery", 15},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -288,9 +291,10 @@ genAccumulators {
     order = "i",
     ingredients = {
         {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
+        {"processing-unit", 2},
         {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"battery", 15},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -325,10 +329,10 @@ genAccumulators {
     order = "j",
     ingredients = {
         {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
-        {"productivity-module-3", 1}
+        {"processing-unit", 2},
+        {"low-density-structure", 1},
+        {"battery", 15},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {

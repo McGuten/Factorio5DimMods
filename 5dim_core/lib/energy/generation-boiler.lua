@@ -3,7 +3,7 @@ function genBoilers(inputs)
     local itemBoiler = table.deepcopy(data.raw.item["boiler"])
     local recipeBoiler = table.deepcopy(data.raw.recipe["boiler"])
     local entityBoiler = table.deepcopy(data.raw["boiler"]["boiler"])
-    local technologyBoiler = table.deepcopy(data.raw.technology["electric-energy-accumulators"])
+    local technologyBoiler = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then
@@ -51,8 +51,9 @@ function genBoilers(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyBoiler.name = "boiler-" .. inputs.tech.number
-        --technologyBoiler.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyBoiler.name = "5d-boiler-" .. inputs.tech.number
+        technologyBoiler.icon = itemBoiler.icon
+        technologyBoiler.icon_size = 64
         technologyBoiler.unit.count = inputs.tech.count
         technologyBoiler.unit.ingredients = inputs.tech.packs
         technologyBoiler.prerequisites = inputs.tech.prerequisites

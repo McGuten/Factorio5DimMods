@@ -15,8 +15,8 @@ genBoilers {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"stone-furnace", 1},
+        {"pipe", 4}
     },
     pollution = emisions,
     tech = nil
@@ -37,10 +37,9 @@ genBoilers {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"steel-plate", 7},
-        {"electronic-circuit", 5},
-        {"copper-plate", 3}
+        {"boiler", 1},
+        {"stone", 5},
+        {"pipe", 4}
     },
     pollution = emisions,
     tech = {
@@ -51,7 +50,7 @@ genBoilers {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "automation-2",
+            "fluid-handling",
             "logistic-science-pack"
         }
     }
@@ -71,10 +70,9 @@ genBoilers {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"iron-gear-wheel", 3},
-        {"steel-plate", 10},
-        {"productivity-module", 1}
+        {"5d-boiler-02", 1},
+        {"stone-brick", 5},
+        {"pipe", 10}
     },
     pollution = emisions,
     tech = {
@@ -82,12 +80,12 @@ genBoilers {
         count = 750,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "boiler-1",
-            "chemical-science-pack"
+            "5d-offshore-pump-1",
+            "5d-boiler-1",
+            "5d-steam-engine-1"
         }
     }
 }
@@ -107,10 +105,9 @@ genBoilers {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"effectivity-module-2", 1}
+        {"5d-boiler-03", 1},
+        {"stone-brick", 5},
+        {"pipe", 4}
     },
     pollution = emisions,
     tech = {
@@ -119,11 +116,13 @@ genBoilers {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-2"
+            "5d-offshore-pump-2",
+            "5d-boiler-2",
+            "5d-steam-engine-2",
+            "chemical-science-pack"
         }
     }
 }
@@ -142,10 +141,10 @@ genBoilers {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 2},
-        {"productivity-module-2", 1}
+        {"5d-boiler-04", 1},
+        {"stone-brick", 5},
+        {"pipe", 4},
+        {"effectivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -157,8 +156,9 @@ genBoilers {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "boiler-3",
-            "production-science-pack"
+            "5d-offshore-pump-3",
+            "5d-boiler-3",
+            "5d-steam-engine-3"
         }
     }
 }
@@ -178,10 +178,11 @@ genBoilers {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"effectivity-module-3", 1}
+        {"5d-boiler-05", 1},
+        {"steel-plate", 2},
+        {"concrete", 5},
+        {"pipe", 4},
+        {"productivity-module", 1}
     },
     pollution = emisions,
     tech = {
@@ -194,7 +195,10 @@ genBoilers {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-4"
+            "5d-offshore-pump-4",
+            "5d-boiler-4",
+            "5d-steam-engine-4",
+            "production-science-pack"
         }
     }
 }
@@ -213,10 +217,11 @@ genBoilers {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"productivity-module-3", 1}
+        {"5d-boiler-06", 1},
+        {"steel-plate", 2},
+        {"concrete", 5},
+        {"pipe", 4},
+        {"effectivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -226,12 +231,12 @@ genBoilers {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "boiler-5",
-            "utility-science-pack"
+            "5d-offshore-pump-5",
+            "5d-boiler-5",
+            "5d-steam-engine-5"
         }
     }
 }
@@ -251,10 +256,11 @@ genBoilers {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"effectivity-module-3", 1}
+        {"5d-boiler-07", 1},
+        {"steel-plate", 2},
+        {"concrete", 5},
+        {"pipe", 4},
+        {"productivity-module-2", 1}
     },
     pollution = emisions,
     tech = {
@@ -268,7 +274,10 @@ genBoilers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-6"
+            "5d-offshore-pump-6",
+            "5d-boiler-6",
+            "5d-steam-engine-6",
+            "utility-science-pack"
         }
     }
 }
@@ -287,10 +296,11 @@ genBoilers {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"productivity-module-3", 1}
+        {"5d-boiler-08", 1},
+        {"low-density-structure", 2},
+        {"refined-concrete", 5},
+        {"pipe", 4},
+        {"effectivity-module-3", 1}
     },
     pollution = emisions,
     tech = {
@@ -304,7 +314,9 @@ genBoilers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-7"
+            "5d-offshore-pump-7",
+            "5d-boiler-7",
+            "5d-steam-engine-7"
         }
     }
 }
@@ -324,10 +336,10 @@ genBoilers {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"steel-plate", 30},
-        {"low-density-structure", 5},
-        {"processing-unit", 1},
+        {"5d-boiler-09", 1},
+        {"low-density-structure", 2},
+        {"refined-concrete", 5},
+        {"pipe", 4},
         {"productivity-module-3", 1}
     },
     pollution = emisions,
@@ -342,7 +354,9 @@ genBoilers {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "boiler-8"
+            "5d-offshore-pump-8",
+            "5d-boiler-8",
+            "5d-steam-engine-8"
         }
     }
 }

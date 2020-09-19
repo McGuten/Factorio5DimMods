@@ -10,8 +10,9 @@ genGates {
     new = false,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"stone-wall", 1},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2}
     },
     tech = nil
 }
@@ -26,8 +27,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-02", 1},
+        {"gate", 1},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2}
     },
     tech = {
         number = 2,
@@ -37,7 +40,8 @@ genGates {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
+            "gates",
+            "stone-walls-2",
             "logistic-science-pack"
         }
     }
@@ -53,8 +57,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-03", 1},
+        {"5d-gate-02", 1},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2}
     },
     tech = {
         number = 3,
@@ -62,11 +68,12 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+            "gates-2",
+            "stone-walls-3",
+            "military-science-pack"
         }
     }
 }
@@ -81,8 +88,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-04", 1},
+        {"5d-gate-03", 1},
+        {"steel-plate", 2},
+        {"electronic-circuit", 2}
     },
     tech = {
         number = 4,
@@ -90,11 +99,11 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "gates-3",
+            "stone-walls-4"
         }
     }
 }
@@ -109,8 +118,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-05", 1},
+        {"5d-gate-04", 1},
+        {"steel-plate", 2},
+        {"advanced-circuit", 2}
     },
     tech = {
         number = 5,
@@ -118,11 +129,11 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
+            "gates-4",
+            "stone-walls-5"
         }
     }
 }
@@ -137,8 +148,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-06", 1},
+        {"5d-gate-05", 1},
+        {"steel-plate", 2},
+        {"advanced-circuit", 2}
     },
     tech = {
         number = 6,
@@ -146,11 +159,13 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "gates-5",
+            "stone-walls-6",
+            "chemical-science-pack"
         }
     }
 }
@@ -165,8 +180,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-07", 1},
+        {"5d-gate-06", 1},
+        {"steel-plate", 2},
+        {"advanced-circuit", 2}
     },
     tech = {
         number = 7,
@@ -174,13 +191,12 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
+            "gates-6",
+            "stone-walls-7"
         }
     }
 }
@@ -195,8 +211,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-08", 1},
+        {"5d-gate-07", 1},
+        {"low-density-structure", 2},
+        {"advanced-circuit", 2}
     },
     tech = {
         number = 8,
@@ -204,12 +222,14 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "gates-7",
+            "stone-walls-8",
+            "utility-science-pack"
         }
     }
 }
@@ -224,8 +244,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-09", 1},
+        {"5d-gate-08", 1},
+        {"low-density-structure", 2},
+        {"advanced-circuit", 2}
     },
     tech = {
         number = 9,
@@ -233,12 +255,13 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "gates-8",
+            "stone-walls-9"
         }
     }
 }
@@ -253,8 +276,10 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-10", 1},
+        {"5d-gate-09", 1},
+        {"low-density-structure", 2},
+        {"processing-unit", 2}
     },
     tech = {
         number = 10,
@@ -262,12 +287,13 @@ genGates {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "gates-9",
+            "stone-walls-10"
         }
     }
 }

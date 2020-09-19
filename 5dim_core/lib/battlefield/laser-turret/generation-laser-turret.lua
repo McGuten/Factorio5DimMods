@@ -61,7 +61,7 @@ function genLaserTurrets(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyLaserTurret.name = "electric-energy-LaserTurret-" .. inputs.tech.number
+        technologyLaserTurret.name = "5d-laser-turret-" .. inputs.tech.number
         --technologyLaserTurret.icon = "__base__/graphics/technology/oil-refinery.png"
         technologyLaserTurret.unit.count = inputs.tech.count
         technologyLaserTurret.unit.ingredients = inputs.tech.packs

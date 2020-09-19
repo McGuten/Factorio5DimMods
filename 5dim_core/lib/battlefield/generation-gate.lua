@@ -3,7 +3,7 @@ function genGates(inputs)
     local itemGate = table.deepcopy(data.raw.item["gate"])
     local recipeGate = table.deepcopy(data.raw.recipe["gate"])
     local entityGate = table.deepcopy(data.raw["gate"]["gate"])
-    local technologyGate = table.deepcopy(data.raw.technology["turrets"])
+    local technologyGate = table.deepcopy(data.raw.technology["gates"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
@@ -42,7 +42,7 @@ function genGates(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyGate.name = "Gates-" .. inputs.tech.number
+        technologyGate.name = "gates-" .. inputs.tech.number
         --technologyGate.icon = "__base__/graphics/technology/oil-refinery.png"
         technologyGate.unit.count = inputs.tech.count
         technologyGate.unit.ingredients = inputs.tech.packs

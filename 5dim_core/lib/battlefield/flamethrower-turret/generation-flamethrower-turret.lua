@@ -56,8 +56,9 @@ function genFlamethrowerTurrets(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyFlamethrowerTurret.name = "electric-energy-FlamethrowerTurrets-" .. inputs.tech.number
-        --technologyFlamethrowerTurret.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyFlamethrowerTurret.name = "5d-flamethrower-turrets-" .. inputs.tech.number
+        technologyFlamethrowerTurret.icon = itemFlamethrowerTurret.icon
+        technologyFlamethrowerTurret.icon_size = 64
         technologyFlamethrowerTurret.unit.count = inputs.tech.count
         technologyFlamethrowerTurret.unit.ingredients = inputs.tech.packs
         technologyFlamethrowerTurret.prerequisites = inputs.tech.prerequisites

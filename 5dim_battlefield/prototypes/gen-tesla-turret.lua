@@ -18,10 +18,25 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"steel-plate", 60},
+        {"electronic-circuit", 50},
+        {"battery", 50}
     },
-    tech = nil
+    tech = {
+        number = 1,
+        count = 10000,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "electric-energy-accumulators",
+            "logistic-science-pack"
+        }
+    }
 }
 
 rango = rango + 2
@@ -39,15 +54,20 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-01", 1},
+        {"steel-plate", 60},
+        {"electronic-circuit", 50},
+        {"battery", 50}
     },
     tech = {
         number = 2,
-        count = 500,
+        count = 20000,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators",
@@ -71,16 +91,20 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-02", 1},
+        {"steel-plate", 60},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 3,
-        count = 750,
+        count = 3000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators-2",
@@ -104,17 +128,20 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-03", 1},
+        {"steel-plate", 60},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 4,
-        count = 1000,
+        count = 4000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators-3"
@@ -137,16 +164,20 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-04", 1},
+        {"steel-plate", 60},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 5,
-        count = 1250,
+        count = 5000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators-4",
@@ -170,17 +201,20 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-05", 1},
+        {"low-density-structure", 30},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 6,
-        count = 1500,
+        count = 6000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators-5"
@@ -203,17 +237,19 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-06", 1},
+        {"low-density-structure", 30},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 7,
-        count = 1750,
+        count = 7000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
@@ -238,17 +274,19 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-07", 1},
+        {"low-density-structure", 30},
+        {"advanced-circuit", 35},
+        {"battery", 50}
     },
     tech = {
         number = 8,
-        count = 2000,
+        count = 8000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
@@ -272,17 +310,19 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-08", 1},
+        {"low-density-structure", 30},
+        {"processing-unit", 20},
+        {"battery", 50}
     },
     tech = {
         number = 9,
-        count = 2250,
+        count = 9000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
@@ -306,17 +346,19 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-tesla-turret-09", 1},
+        {"low-density-structure", 30},
+        {"processing-unit", 20},
+        {"battery", 50}
     },
     tech = {
         number = 10,
-        count = 2500,
+        count = 10000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {

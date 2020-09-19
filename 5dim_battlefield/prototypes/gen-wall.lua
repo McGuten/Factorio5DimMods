@@ -10,13 +10,12 @@ genStoneWalls {
     new = false,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"stone-brick", 5}
     },
     tech = nil
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 02
 genStoneWalls {
@@ -26,8 +25,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"stone-wall", 1},
+        {"stone-brick", 5},
+        {"iron-plate", 5}
     },
     tech = {
         number = 2,
@@ -37,13 +37,13 @@ genStoneWalls {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
+            "stone-walls",
             "logistic-science-pack"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 03
 genStoneWalls {
@@ -53,8 +53,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-02", 1},
+        {"stone-brick", 5},
+        {"iron-plate", 5}
     },
     tech = {
         number = 3,
@@ -62,16 +63,16 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+            "stone-walls-2",
+            "military-science-pack"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 04
 genStoneWalls {
@@ -81,8 +82,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-03", 1},
+        {"concrete", 5},
+        {"iron-plate", 5}
     },
     tech = {
         number = 4,
@@ -90,16 +92,15 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "stone-walls-3"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 05
 genStoneWalls {
@@ -109,8 +110,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-04", 1},
+        {"concrete", 5},
+        {"iron-plate", 5}
     },
     tech = {
         number = 5,
@@ -118,16 +120,15 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
+            "stone-walls-4"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 06
 genStoneWalls {
@@ -137,8 +138,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-05", 1},
+        {"concrete", 5},
+        {"steel-plate", 5}
     },
     tech = {
         number = 6,
@@ -146,16 +148,17 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "stone-walls-5",
+            "chemical-science-pack"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 07
 genStoneWalls {
@@ -165,8 +168,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-06", 1},
+        {"concrete", 5},
+        {"steel-plate", 5}
     },
     tech = {
         number = 7,
@@ -174,18 +178,16 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
+            "stone-walls-6"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 08
 genStoneWalls {
@@ -195,8 +197,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-07", 1},
+        {"refined-concrete", 5},
+        {"steel-plate", 5}
     },
     tech = {
         number = 8,
@@ -204,17 +207,18 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "stone-walls-7",
+            "utility-science-pack"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 09
 genStoneWalls {
@@ -224,8 +228,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-08", 1},
+        {"refined-concrete", 5},
+        {"steel-plate", 5}
     },
     tech = {
         number = 9,
@@ -233,17 +238,17 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "stone-walls-8"
         }
     }
 }
 
-revelado = revelado + 35
+revelado = revelado + 70
 
 -- Stone wall 10
 genStoneWalls {
@@ -253,8 +258,9 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-stone-wall-09", 1},
+        {"refined-concrete", 5},
+        {"low-density-structure", 2}
     },
     tech = {
         number = 10,
@@ -262,12 +268,12 @@ genStoneWalls {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "stone-walls-9"
         }
     }
 }

@@ -4,7 +4,7 @@ local escaner = 14
 local revelado = 3
 local energia = 300
 
--- Laser turret 01
+-- Radar 01
 genRadars {
     number = "01",
     subgroup = "defense-radar",
@@ -14,8 +14,9 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"electronic-circuit", 5},
+        {"iron-gear-wheel", 5},
+        {"iron-plate", 10}
     },
     tech = nil
 }
@@ -24,7 +25,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 02
+-- Radar 02
 genRadars {
     number = "02",
     subgroup = "defense-radar",
@@ -34,19 +35,20 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"electronic-circuit", 5},
+        {"iron-gear-wheel", 5},
+        {"iron-plate", 10},
+        {"radar", 1}
     },
     tech = {
-        number = 2,
-        count = 500,
+        number = 1,
+        count = 150,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
-            "logistic-science-pack"
+            "electronics"
         }
     }
 }
@@ -55,7 +57,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 03
+-- Radar 03
 genRadars {
     number = "03",
     subgroup = "defense-radar",
@@ -65,20 +67,22 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"electronic-circuit", 7},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-02", 1}
     },
     tech = {
-        number = 3,
-        count = 750,
+        number = 2,
+        count = 300,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+            "5d-radars-1",
+            "military-science-pack"
         }
     }
 }
@@ -87,7 +91,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 04
+-- Radar 04
 genRadars {
     number = "04",
     subgroup = "defense-radar",
@@ -97,20 +101,21 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"electronic-circuit", 7},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-02", 1}
     },
     tech = {
-        number = 4,
-        count = 1000,
+        number = 3,
+        count = 450,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "5d-radars-2"
         }
     }
 }
@@ -119,7 +124,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 05
+-- Radar 05
 genRadars {
     number = "05",
     subgroup = "defense-radar",
@@ -129,20 +134,23 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"advanced-circuit", 7},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-03", 1}
     },
     tech = {
-        number = 5,
+        number = 4,
         count = 1250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
+            "5d-radars-3",
+            "chemical-science-pack"
         }
     }
 }
@@ -151,7 +159,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 06
+-- Radar 06
 genRadars {
     number = "06",
     subgroup = "defense-radar",
@@ -161,20 +169,22 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"advanced-circuit", 7},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-04", 1}
     },
     tech = {
-        number = 6,
-        count = 1500,
+        number = 5,
+        count = 600,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "5d-radars-4"
         }
     }
 }
@@ -183,7 +193,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 07
+-- Radar 07
 genRadars {
     number = "07",
     subgroup = "defense-radar",
@@ -193,22 +203,22 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"advanced-circuit", 7},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-05", 1}
     },
     tech = {
-        number = 7,
-        count = 1750,
+        number = 6,
+        count = 750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
+            "5d-radars-5"
         }
     }
 }
@@ -217,7 +227,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 08
+-- Radar 08
 genRadars {
     number = "08",
     subgroup = "defense-radar",
@@ -227,21 +237,24 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"processing-unit", 3},
+        {"iron-gear-wheel", 5},
+        {"steel-plate", 5},
+        {"5d-radar-06", 1}
     },
     tech = {
-        number = 8,
-        count = 2000,
+        number = 7,
+        count = 900,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "5d-radars-6",
+            "utility-science-pack"
         }
     }
 }
@@ -250,7 +263,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 09
+-- Radar 09
 genRadars {
     number = "09",
     subgroup = "defense-radar",
@@ -260,21 +273,23 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"processing-unit", 3},
+        {"low-density-structure", 2},
+        {"steel-plate", 5},
+        {"5d-radar-07", 1}
     },
     tech = {
-        number = 9,
+        number = 8,
         count = 2250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "5d-radars-7"
         }
     }
 }
@@ -283,7 +298,7 @@ escaner = escaner + 2
 revelado = revelado + 2
 energia = energia + 150
 
--- Laser turret 10
+-- Radar 10
 genRadars {
     number = "10",
     subgroup = "defense-radar",
@@ -293,21 +308,23 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"processing-unit", 3},
+        {"low-density-structure", 2},
+        {"steel-plate", 5},
+        {"5d-radar-08", 1}
     },
     tech = {
-        number = 10,
-        count = 2500,
+        number = 9,
+        count = 1050,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "5d-radars-8"
         }
     }
 }

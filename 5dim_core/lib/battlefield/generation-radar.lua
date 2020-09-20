@@ -44,8 +44,9 @@ function genRadars(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyRadar.name = "radars-" .. inputs.tech.number
-        --technologyRadar.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyRadar.name = "5d-radars-" .. inputs.tech.number
+        technologyRadar.icon = itemRadar.icon
+        technologyRadar.icon_size = 64
         technologyRadar.unit.count = inputs.tech.count
         technologyRadar.unit.ingredients = inputs.tech.packs
         technologyRadar.prerequisites = inputs.tech.prerequisites

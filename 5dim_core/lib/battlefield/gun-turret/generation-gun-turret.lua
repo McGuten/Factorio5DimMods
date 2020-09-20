@@ -78,8 +78,8 @@ function genGunTurrets(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyGunTurret.name = "electric-energy-GunTurrets-" .. inputs.tech.number
-        --technologyGunTurret.icon = "__base__/graphics/technology/oil-refinery.png"
+        technologyGunTurret.name = inputs.tech.number
+        -- technologyGunTurret.icon = itemGunTurret.icon
         technologyGunTurret.unit.count = inputs.tech.count
         technologyGunTurret.unit.ingredients = inputs.tech.packs
         technologyGunTurret.prerequisites = inputs.tech.prerequisites

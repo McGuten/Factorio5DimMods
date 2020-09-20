@@ -24,7 +24,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 1,
-        count = 10000,
+        count = 500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -33,8 +33,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
-            "logistic-science-pack"
+            "5d-laser-turrets-small-10",
+            "laser-turrets-10",
+            "5d-laser-turrets-big-10",
+            "5d-laser-turrets-sniper-10"
         }
     }
 }
@@ -61,7 +63,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 2,
-        count = 20000,
+        count = 1000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -70,8 +72,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
-            "logistic-science-pack"
+            "5d-tesla-turrets-1"
         }
     }
 }
@@ -98,7 +99,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 3,
-        count = 3000,
+        count = 1500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -107,8 +108,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+            "5d-tesla-turrets-2"
         }
     }
 }
@@ -135,7 +135,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 4,
-        count = 4000,
+        count = 2000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -144,7 +144,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "5d-tesla-turrets-3"
         }
     }
 }
@@ -171,7 +171,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 5,
-        count = 5000,
+        count = 2500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -180,8 +180,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
+            "5d-tesla-turrets-4"
         }
     }
 }
@@ -208,7 +207,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 6,
-        count = 6000,
+        count = 3000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -217,7 +216,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "5d-tesla-turrets-5"
         }
     }
 }
@@ -244,17 +243,18 @@ genTeslaTurrets {
     },
     tech = {
         number = 7,
-        count = 7000,
+        count = 3500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
+            "5d-tesla-turrets-6",
+            "space-science-pack"
         }
     }
 }
@@ -275,13 +275,13 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-07", 1},
-        {"low-density-structure", 30},
+        {"low-density-structure", 15},
         {"advanced-circuit", 35},
         {"battery", 50}
     },
     tech = {
         number = 8,
-        count = 8000,
+        count = 4000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -290,7 +290,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "5d-tesla-turrets-7"
         }
     }
 }
@@ -311,13 +311,13 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-08", 1},
-        {"low-density-structure", 30},
-        {"processing-unit", 20},
+        {"low-density-structure", 15},
+        {"processing-unit", 10},
         {"battery", 50}
     },
     tech = {
         number = 9,
-        count = 9000,
+        count = 4500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -326,7 +326,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "5d-tesla-turrets-8"
         }
     }
 }
@@ -347,13 +347,13 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-09", 1},
-        {"low-density-structure", 30},
-        {"processing-unit", 20},
+        {"low-density-structure", 15},
+        {"processing-unit", 10},
         {"battery", 50}
     },
     tech = {
         number = 10,
-        count = 10000,
+        count = 5000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -362,7 +362,7 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "5d-tesla-turrets-9"
         }
     }
 }

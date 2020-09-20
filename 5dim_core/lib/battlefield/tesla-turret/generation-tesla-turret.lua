@@ -62,7 +62,7 @@ function genTeslaTurrets(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyTeslaTurret.name = "tesla-turrets-" .. inputs.tech.number
+        technologyTeslaTurret.name = "5d-tesla-turrets-" .. inputs.tech.number
         --technologyTeslaTurret.icon = "__base__/graphics/technology/oil-refinery.png"
         technologyTeslaTurret.unit.count = inputs.tech.count
         technologyTeslaTurret.unit.ingredients = inputs.tech.packs

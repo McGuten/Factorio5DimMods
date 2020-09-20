@@ -20,10 +20,21 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
-    tech = nil
+    tech = {
+        number = "5d-turrets-big-1",
+        count = 50,
+        packs = {
+            {"automation-science-pack", 1}
+        },
+        prerequisites = {
+            "turrets"
+        }
+    }
 }
 
 rango = rango + 2
@@ -42,19 +53,20 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 2,
-        count = 500,
+        number = "5d-turrets-big-2",
+        count = 150,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"automation-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
-            "logistic-science-pack"
+            "5d-turrets-big-1"
         }
     }
 }
@@ -75,20 +87,20 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 3,
-        count = 750,
+        number = "5d-turrets-big-3",
+        count = 250,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"automation-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+            "5d-turrets-big-2"
         }
     }
 }
@@ -109,20 +121,22 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 4,
-        count = 1000,
+        number = "5d-turrets-big-4",
+        count = 350,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "5d-turrets-big-3",
+            "logistic-science-pack"
         }
     }
 }
@@ -143,20 +157,21 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 5,
-        count = 1250,
+        number = "5d-turrets-big-5",
+        count = 450,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
+            "5d-turrets-big-4"
         }
     }
 }
@@ -177,20 +192,23 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 6,
-        count = 1500,
+        number = "5d-turrets-big-6",
+        count = 550,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "5d-turrets-big-5",
+            "military-science-pack"
         }
     }
 }
@@ -211,22 +229,22 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 7,
-        count = 1750,
+        number = "5d-turrets-big-7",
+        count = 650,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
+            "5d-turrets-big-6"
         }
     }
 }
@@ -247,21 +265,22 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 8,
-        count = 2000,
+        number = "5d-turrets-big-8",
+        count = 750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "5d-turrets-big-7"
         }
     }
 }
@@ -282,21 +301,24 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 9,
-        count = 2250,
+        number = "5d-turrets-big-9",
+        count = 850,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "5d-turrets-big-8",
+            "chemical-science-pack"
         }
     }
 }
@@ -317,21 +339,23 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-gun-turret-big-01", 1},
+        {"iron-gear-wheel", 15},
+        {"electronic-circuit", 8},
+        {"copper-plate", 10},
+        {"iron-plate", 30}
     },
     tech = {
-        number = 10,
-        count = 2500,
+        number = "5d-turrets-big-10",
+        count = 950,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "5d-turrets-big-9"
         }
     }
 }

@@ -5,7 +5,7 @@ function genLaserTurrets(inputs)
     local itemLaserTurret = table.deepcopy(data.raw.item["laser-turret"])
     local recipeLaserTurret = table.deepcopy(data.raw.recipe["laser-turret"])
     local entityLaserTurret = table.deepcopy(data.raw["electric-turret"]["laser-turret"])
-    local technologyLaserTurret = table.deepcopy(data.raw.technology["turrets"])
+    local technologyLaserTurret = table.deepcopy(data.raw.technology["laser-turrets"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
@@ -61,7 +61,7 @@ function genLaserTurrets(inputs)
 
     -- Technology
     if inputs.tech then
-        technologyLaserTurret.name = "5d-laser-turret-" .. inputs.tech.number
+        technologyLaserTurret.name = inputs.tech.number
         --technologyLaserTurret.icon = "__base__/graphics/technology/oil-refinery.png"
         technologyLaserTurret.unit.count = inputs.tech.count
         technologyLaserTurret.unit.ingredients = inputs.tech.packs

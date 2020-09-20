@@ -18,10 +18,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
-    tech = nil
+    tech = {
+        number = "5d-laser-turrets-big-1",
+        count = 500,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1}
+        },
+        prerequisites = {
+            "laser-turrets",
+            "logistic-science-pack"
+        }
+    }
 }
 
 rango = rango + 2
@@ -39,18 +51,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-01", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 2,
+        number = "5d-laser-turrets-big-2",
         count = 500,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators",
+            "5d-laser-turrets-big-1",
             "logistic-science-pack"
         }
     }
@@ -71,19 +87,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-02", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 3,
+        number = "5d-laser-turrets-big-3",
         count = 750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-2",
+            "5d-laser-turrets-big-2",
             "chemical-science-pack"
         }
     }
@@ -104,20 +123,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-03", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 4,
+        number = "5d-laser-turrets-big-4",
         count = 1000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "5d-laser-turrets-big-3"
         }
     }
 }
@@ -137,19 +158,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-04", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 5,
+        number = "5d-laser-turrets-big-5",
         count = 1250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-4",
+            "5d-laser-turrets-big-4",
             "production-science-pack"
         }
     }
@@ -170,20 +194,22 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-05", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 6,
+        number = "5d-laser-turrets-big-6",
         count = 1500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"military-science-pack", 1},
+            {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-5"
+            "5d-laser-turrets-big-5"
         }
     }
 }
@@ -203,21 +229,23 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-06", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 7,
+        number = "5d-laser-turrets-big-7",
         count = 1750,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-6",
+            "5d-laser-turrets-big-6",
             "utility-science-pack"
         }
     }
@@ -238,21 +266,23 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-07", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 8,
+        number = "5d-laser-turrets-big-8",
         count = 2000,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-7"
+            "5d-laser-turrets-big-7"
         }
     }
 }
@@ -272,21 +302,23 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-08", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 9,
+        number = "5d-laser-turrets-big-9",
         count = 2250,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-8"
+            "5d-laser-turrets-big-8"
         }
     }
 }
@@ -306,21 +338,23 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {"5d-laser-turret-big-09", 1},
+        {"steel-plate", 30},
+        {"electronic-circuit", 30},
+        {"battery", 15}
     },
     tech = {
-        number = 10,
+        number = "5d-laser-turrets-big-10",
         count = 2500,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
+            {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-9"
+            "5d-laser-turrets-big-9"
         }
     }
 }

@@ -1,59 +1,59 @@
 function genCentrifuges(inputs)
     -- Copy electric furnace
-    local itemCentrifuge = table.deepcopy(data.raw.item["centrifuge"])
-    local recipeCentrifuge = table.deepcopy(data.raw.recipe["centrifuge"])
-    local entityCentrifuge = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
-    local technologyCentrifuge = table.deepcopy(data.raw.technology["uranium-processing"])
+    local item = table.deepcopy(data.raw.item["centrifuge"])
+    local recipe = table.deepcopy(data.raw.recipe["centrifuge"])
+    local entity = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
+    local tech = table.deepcopy(data.raw.technology["uranium-processing"])
 
     --Item
     if inputs.new then
-        itemCentrifuge.name = "5d-centrifuge-" .. inputs.number
+        item.name = "5d-centrifuge-" .. inputs.number
     end
-    -- itemCentrifuge.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/centrifuge/centrifuge-icon-" .. inputs.number .. ".png"
-    itemCentrifuge.subgroup = inputs.subgroup
-    itemCentrifuge.order = inputs.order
-    itemCentrifuge.place_result = itemCentrifuge.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeCentrifuge.name = itemCentrifuge.name
-    -- recipeCentrifuge.icon = itemCentrifuge.icon
-    recipeCentrifuge.result = itemCentrifuge.name
-    recipeCentrifuge.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeCentrifuge.enabled = false
+        recipe.enabled = false
     end
-    recipeCentrifuge.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityCentrifuge.name = itemCentrifuge.name
-    -- entityCentrifuge.icon = itemCentrifuge.icon
-    entityCentrifuge.minable.result = itemCentrifuge.name
-    entityCentrifuge.crafting_speed = inputs.craftingSpeed
-    entityCentrifuge.energy_usage = inputs.energyUsage .. "kW"
-    entityCentrifuge.energy_source.emissions_per_minute = inputs.pollution
-    entityCentrifuge.module_specification.module_slots = inputs.moduleSlots
-    entityCentrifuge.fast_replaceable_group = "centrifuge"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.crafting_speed = inputs.craftingSpeed
+    entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_source.emissions_per_minute = inputs.pollution
+    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.fast_replaceable_group = "centrifuge"
 
     -- Base
-    -- entityCentrifuge.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/centrifuge/centrifuge-" .. inputs.number .. ".png"
 
-    data:extend({entityCentrifuge, recipeCentrifuge, itemCentrifuge})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyCentrifuge.name = "5d-centrifuge-" .. inputs.tech.number
-        --technologyCentrifuge.icon = "__base__/graphics/technology/oil-refinery.png"
-        technologyCentrifuge.unit.count = inputs.tech.count
-        technologyCentrifuge.unit.ingredients = inputs.tech.packs
-        technologyCentrifuge.prerequisites = inputs.tech.prerequisites
-        technologyCentrifuge.effects = {
+        tech.name = "5d-centrifuge-" .. inputs.tech.number
+        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemCentrifuge.name
+                recipe = item.name
             }
         }
-        data:extend({technologyCentrifuge})
+        data:extend({tech})
     end
 end

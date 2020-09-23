@@ -1,59 +1,59 @@
 function genNuclearReactors(inputs)
     -- Copy electric furnace
-    local itemNuclearReactor = table.deepcopy(data.raw.item["nuclear-reactor"])
-    local recipeNuclearReactor = table.deepcopy(data.raw.recipe["nuclear-reactor"])
-    local entityNuclearReactor = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
-    local technologyNuclearReactor = table.deepcopy(data.raw.technology["nuclear-power"])
+    local item = table.deepcopy(data.raw.item["nuclear-reactor"])
+    local recipe = table.deepcopy(data.raw.recipe["nuclear-reactor"])
+    local entity = table.deepcopy(data.raw["reactor"]["nuclear-reactor"])
+    local tech = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
-        itemNuclearReactor.name = "5d-nuclear-reactor-" .. inputs.number
+        item.name = "5d-nuclear-reactor-" .. inputs.number
     end
-    -- itemNuclearReactor.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/nuclear-reactor/nuclear-reactor-icon-" .. inputs.number .. ".png"
-    itemNuclearReactor.subgroup = inputs.subgroup
-    itemNuclearReactor.order = inputs.order
-    itemNuclearReactor.place_result = itemNuclearReactor.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeNuclearReactor.name = itemNuclearReactor.name
-    -- recipeNuclearReactor.icon = itemNuclearReactor.icon
-    recipeNuclearReactor.result = itemNuclearReactor.name
-    recipeNuclearReactor.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeNuclearReactor.enabled = false
+        recipe.enabled = false
     end
-    recipeNuclearReactor.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityNuclearReactor.name = itemNuclearReactor.name
-    -- entityNuclearReactor.icon = itemNuclearReactor.icon
-    entityNuclearReactor.minable.result = itemNuclearReactor.name
-    entityNuclearReactor.energy_source.effectivity = inputs.craftingSpeed
-    entityNuclearReactor.consumption = inputs.energyUsage .. "MW"
-    entityNuclearReactor.neighbour_bonus = inputs.pollution
-    entityNuclearReactor.fast_replaceable_group = "nuclear-reactor"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.energy_source.effectivity = inputs.craftingSpeed
+    entity.consumption = inputs.energyUsage .. "MW"
+    entity.neighbour_bonus = inputs.pollution
+    entity.fast_replaceable_group = "nuclear-reactor"
 
     -- Base
-    -- entityNuclearReactor.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/nuclear-reactor/nuclear-reactor-" .. inputs.number .. ".png"
 
-    data:extend({entityNuclearReactor, recipeNuclearReactor, itemNuclearReactor})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyNuclearReactor.name = "5d-nuclear-reactor-" .. inputs.tech.number
-        technologyNuclearReactor.icon = itemNuclearReactor.icon
-        technologyNuclearReactor.icon_size = 64
-        technologyNuclearReactor.unit.count = inputs.tech.count
-        technologyNuclearReactor.unit.ingredients = inputs.tech.packs
-        technologyNuclearReactor.prerequisites = inputs.tech.prerequisites
-        technologyNuclearReactor.effects = {
+        tech.name = "5d-nuclear-reactor-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemNuclearReactor.name
+                recipe = item.name
             }
         }
-        data:extend({technologyNuclearReactor})
+        data:extend({tech})
     end
 end

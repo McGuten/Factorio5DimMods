@@ -1,57 +1,57 @@
 function genStoneWalls(inputs)
     -- Copy electric furnace
-    local itemStoneWall = table.deepcopy(data.raw.item["stone-wall"])
-    local recipeStoneWall = table.deepcopy(data.raw.recipe["stone-wall"])
-    local entityStoneWall = table.deepcopy(data.raw["wall"]["stone-wall"])
-    local technologyStoneWall = table.deepcopy(data.raw.technology["stone-walls"])
+    local item = table.deepcopy(data.raw.item["stone-wall"])
+    local recipe = table.deepcopy(data.raw.recipe["stone-wall"])
+    local entity = table.deepcopy(data.raw["wall"]["stone-wall"])
+    local tech = table.deepcopy(data.raw.technology["stone-walls"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
     --Item
     if inputs.new then
-        itemStoneWall.name = "5d-stone-wall-" .. inputs.number
+        item.name = "5d-stone-wall-" .. inputs.number
     end
-    -- itemStoneWall.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/stone-wall/stone-wall-icon-" .. inputs.number .. ".png"
-    itemStoneWall.subgroup = inputs.subgroup
-    itemStoneWall.order = inputs.order
-    itemStoneWall.place_result = itemStoneWall.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeStoneWall.name = itemStoneWall.name
-    -- recipeStoneWall.icon = itemStoneWall.icon
-    recipeStoneWall.result = itemStoneWall.name
-    recipeStoneWall.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeStoneWall.enabled = true
+        recipe.enabled = true
     end
-    recipeStoneWall.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityStoneWall.name = itemStoneWall.name
-    -- entityStoneWall.icon = itemStoneWall.icon
-    entityStoneWall.minable.result = itemStoneWall.name
-    entityStoneWall.max_health = inputs.health
-    entityStoneWall.fast_replaceable_group = "stone-wall"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.max_health = inputs.health
+    entity.fast_replaceable_group = "stone-wall"
 
     -- Base
-    -- entityStoneWall.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
 
-    data:extend({entityStoneWall, recipeStoneWall, itemStoneWall})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyStoneWall.name = "stone-walls-" .. inputs.tech.number
-        technologyStoneWall.unit.count = inputs.tech.count
-        technologyStoneWall.unit.ingredients = inputs.tech.packs
-        technologyStoneWall.prerequisites = inputs.tech.prerequisites
-        technologyStoneWall.effects = {
+        tech.name = "stone-walls-" .. inputs.tech.number
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemStoneWall.name
+                recipe = item.name
             }
         }
-        data:extend({technologyStoneWall})
+        data:extend({tech})
     end
 end

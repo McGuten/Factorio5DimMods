@@ -1,58 +1,58 @@
 function genMasher(inputs)
     -- Copy electric furnace
-    local itemMasher = table.deepcopy(data.raw.item["electric-furnace"])
-    local recipeMasher = table.deepcopy(data.raw.recipe["electric-furnace"])
-    local entityMasher = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-    local technologyMasher = table.deepcopy(data.raw.technology["advanced-material-processing"])
+    local item = table.deepcopy(data.raw.item["electric-furnace"])
+    local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+    local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+    local tech = table.deepcopy(data.raw.technology["advanced-material-processing"])
 
     --Item
-    itemMasher.name = "5d-masher-" .. inputs.number
-    itemMasher.icon = "__5dim_resources__/graphics/icon/masher/masher-icon-" .. inputs.number .. ".png"
-    itemMasher.subgroup = inputs.subgroup
-    itemMasher.order = inputs.order
-    itemMasher.place_result = itemMasher.name
+    item.name = "5d-masher-" .. inputs.number
+    item.icon = "__5dim_resources__/graphics/icon/masher/masher-icon-" .. inputs.number .. ".png"
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeMasher.name = itemMasher.name
-    recipeMasher.result = itemMasher.name
-    recipeMasher.icon = itemMasher.icon
-    recipeMasher.icon_size = 64
-    recipeMasher.enabled = false
-    recipeMasher.ingredients = inputs.ingredients
+    recipe.name = item.name
+    recipe.result = item.name
+    recipe.icon = item.icon
+    recipe.icon_size = 64
+    recipe.enabled = false
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityMasher.name = itemMasher.name
-    entityMasher.icon = itemMasher.icon
-    entityMasher.minable.result = itemMasher.name
-    entityMasher.crafting_speed = inputs.craftingSpeed
-    entityMasher.module_specification.module_slots = inputs.moduleSlots
-    entityMasher.energy_usage = inputs.energyUsage .. "kW"
-    entityMasher.animation.layers[1].hr_version.filename =
+    entity.name = item.name
+    entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.crafting_speed = inputs.craftingSpeed
+    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.animation.layers[1].hr_version.filename =
         "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
-    entityMasher.animation.layers[1].hr_version.width = 160
-    entityMasher.animation.layers[1].hr_version.height = 160
-    entityMasher.animation.layers[1].hr_version.shift = {0, -0.421875}
-    entityMasher.animation.layers[1].hr_version.scale = 1
-    entityMasher.crafting_categories = {"mashering"}
-    entityMasher.energy_source.emissions_per_minute = inputs.pollution
-    entityMasher.fast_replaceable_group = "5d-masher"
+    entity.animation.layers[1].hr_version.width = 160
+    entity.animation.layers[1].hr_version.height = 160
+    entity.animation.layers[1].hr_version.shift = {0, -0.421875}
+    entity.animation.layers[1].hr_version.scale = 1
+    entity.crafting_categories = {"mashering"}
+    entity.energy_source.emissions_per_minute = inputs.pollution
+    entity.fast_replaceable_group = "5d-masher"
 
-    data:extend({entityMasher, recipeMasher, itemMasher})
+    data:extend({entity, recipe, item})
 
     if inputs.tech then
         -- Technology
-        technologyMasher.name = "5d-masher-" .. inputs.tech.number
-        technologyMasher.icon = itemMasher.icon
-        technologyMasher.icon_size = 64
-        technologyMasher.unit.count = inputs.tech.count
-        technologyMasher.unit.ingredients = inputs.tech.packs
-        technologyMasher.prerequisites = inputs.tech.prerequisites
-        technologyMasher.effects = {
+        tech.name = "5d-masher-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemMasher.name
+                recipe = item.name
             }
         }
-        data:extend({technologyMasher})
+        data:extend({tech})
     end
 end

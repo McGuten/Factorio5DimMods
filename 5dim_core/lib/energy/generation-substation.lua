@@ -1,58 +1,58 @@
 function genSubstations(inputs)
     -- Copy electric furnace
-    local itemSubstation = table.deepcopy(data.raw.item["substation"])
-    local recipeSubstation = table.deepcopy(data.raw.recipe["substation"])
-    local entitySubstation = table.deepcopy(data.raw["electric-pole"]["substation"])
-    local technologySubstation = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
+    local item = table.deepcopy(data.raw.item["substation"])
+    local recipe = table.deepcopy(data.raw.recipe["substation"])
+    local entity = table.deepcopy(data.raw["electric-pole"]["substation"])
+    local tech = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
 
     --Item
     if inputs.new then
-        itemSubstation.name = "5d-substation-" .. inputs.number
+        item.name = "5d-substation-" .. inputs.number
     end
-    itemSubstation.icon =
+    item.icon =
         "__5dim_energy__/graphics/icon/substation/substation-icon-" .. inputs.number .. ".png"
-    itemSubstation.subgroup = inputs.subgroup
-    itemSubstation.order = inputs.order
-    itemSubstation.place_result = itemSubstation.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeSubstation.name = itemSubstation.name
-    -- recipeSubstation.icon = itemSubstation.icon
-    recipeSubstation.result = itemSubstation.name
-    recipeSubstation.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeSubstation.enabled = false
+        recipe.enabled = false
     end
-    recipeSubstation.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entitySubstation.name = itemSubstation.name
-    -- entitySubstation.icon = itemSubstation.icon
-    entitySubstation.minable.result = itemSubstation.name
-    entitySubstation.maximum_wire_distance = inputs.craftingSpeed
-    entitySubstation.supply_area_distance = inputs.energyUsage
-    entitySubstation.fast_replaceable_group = "substation"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.maximum_wire_distance = inputs.craftingSpeed
+    entity.supply_area_distance = inputs.energyUsage
+    entity.fast_replaceable_group = "substation"
 
     -- Base
-    entitySubstation.pictures.layers[1].hr_version.filename =
+    entity.pictures.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/substation/substation-" .. inputs.number .. ".png"
 
-    data:extend({entitySubstation, recipeSubstation, itemSubstation})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologySubstation.name = "5d-substation-" .. inputs.tech.number
-        technologySubstation.icon = itemSubstation.icon
-        technologySubstation.icon_size = 64
-        technologySubstation.unit.count = inputs.tech.count
-        technologySubstation.unit.ingredients = inputs.tech.packs
-        technologySubstation.prerequisites = inputs.tech.prerequisites
-        technologySubstation.effects = {
+        tech.name = "5d-substation-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemSubstation.name
+                recipe = item.name
             }
         }
-        data:extend({technologySubstation})
+        data:extend({tech})
     end
 end

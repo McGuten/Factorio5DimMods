@@ -1,53 +1,53 @@
 function genElectricFurnaces(inputs)
     -- Copy electric furnace
-    local itemElectricFurnace = table.deepcopy(data.raw.item["electric-furnace"])
-    local recipeElectricFurnace = table.deepcopy(data.raw.recipe["electric-furnace"])
-    local entityElectricFurnace = table.deepcopy(data.raw["furnace"]["electric-furnace"])
-    local technologyElectricFurnace = table.deepcopy(data.raw.technology["advanced-material-processing-2"])
+    local item = table.deepcopy(data.raw.item["electric-furnace"])
+    local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+    local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+    local tech = table.deepcopy(data.raw.technology["advanced-material-processing-2"])
 
     --Item
     if inputs.new then
-        itemElectricFurnace.name = "5d-electric-furnace-" .. inputs.number
+        item.name = "5d-electric-furnace-" .. inputs.number
     end
-    itemElectricFurnace.icon =
+    item.icon =
         "__5dim_resources__/graphics/icon/electric-furnace/electric-furnace-icon-" .. inputs.number .. ".png"
-    itemElectricFurnace.subgroup = inputs.subgroup
-    itemElectricFurnace.order = inputs.order
-    itemElectricFurnace.place_result = itemElectricFurnace.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeElectricFurnace.name = itemElectricFurnace.name
-    recipeElectricFurnace.result = itemElectricFurnace.name
-    recipeElectricFurnace.icon = itemElectricFurnace.icon
-    recipeElectricFurnace.icon_size = 64
-    recipeElectricFurnace.enabled = false
-    recipeElectricFurnace.ingredients = inputs.ingredients
+    recipe.name = item.name
+    recipe.result = item.name
+    recipe.icon = item.icon
+    recipe.icon_size = 64
+    recipe.enabled = false
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityElectricFurnace.name = itemElectricFurnace.name
-    entityElectricFurnace.icon = itemElectricFurnace.icon
-    entityElectricFurnace.minable.result = itemElectricFurnace.name
-    entityElectricFurnace.crafting_speed = inputs.craftingSpeed
-    entityElectricFurnace.module_specification.module_slots = inputs.moduleSlots
-    entityElectricFurnace.energy_usage = inputs.energyUsage .. "kW"
-    entityElectricFurnace.animation.layers[1].hr_version.filename =
+    entity.name = item.name
+    entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.crafting_speed = inputs.craftingSpeed
+    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.animation.layers[1].hr_version.filename =
         "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
-    entityElectricFurnace.energy_source.emissions_per_minute = inputs.pollution
+    entity.energy_source.emissions_per_minute = inputs.pollution
 
-    data:extend({entityElectricFurnace, recipeElectricFurnace, itemElectricFurnace})
+    data:extend({entity, recipe, item})
 
     if inputs.tech then
         -- Technology
-        technologyElectricFurnace.name = "advanced-material-processing-" .. inputs.tech.number
-        technologyElectricFurnace.unit.count = inputs.tech.count
-        technologyElectricFurnace.unit.ingredients = inputs.tech.packs
-        technologyElectricFurnace.prerequisites = inputs.tech.prerequisites
-        technologyElectricFurnace.effects = {
+        tech.name = "advanced-material-processing-" .. inputs.tech.number
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemElectricFurnace.name
+                recipe = item.name
             }
         }
-        data:extend({technologyElectricFurnace})
+        data:extend({tech})
     end
 end

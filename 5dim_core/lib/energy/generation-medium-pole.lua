@@ -1,57 +1,57 @@
 function genMediumPoles(inputs)
     -- Copy electric furnace
-    local itemMediumPole = table.deepcopy(data.raw.item["medium-electric-pole"])
-    local recipeMediumPole = table.deepcopy(data.raw.recipe["medium-electric-pole"])
-    local entityMediumPole = table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
-    local technologyMediumPole = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
+    local item = table.deepcopy(data.raw.item["medium-electric-pole"])
+    local recipe = table.deepcopy(data.raw.recipe["medium-electric-pole"])
+    local entity = table.deepcopy(data.raw["electric-pole"]["medium-electric-pole"])
+    local tech = table.deepcopy(data.raw.technology["electric-energy-distribution-1"])
 
     --Item
     if inputs.new then
-        itemMediumPole.name = "5d-medium-electric-pole-" .. inputs.number
+        item.name = "5d-medium-electric-pole-" .. inputs.number
     end
-    itemMediumPole.icon =
+    item.icon =
         "__5dim_energy__/graphics/icon/medium-electric-pole/medium-electric-pole-icon-" .. inputs.number .. ".png"
-    itemMediumPole.subgroup = inputs.subgroup
-    itemMediumPole.order = inputs.order
-    itemMediumPole.place_result = itemMediumPole.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeMediumPole.name = itemMediumPole.name
-    -- recipeMediumPole.icon = itemMediumPole.icon
-    recipeMediumPole.result = itemMediumPole.name
-    recipeMediumPole.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeMediumPole.enabled = false
+        recipe.enabled = false
     end
-    recipeMediumPole.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityMediumPole.name = itemMediumPole.name
-    -- entityMediumPole.icon = itemMediumPole.icon
-    entityMediumPole.minable.result = itemMediumPole.name
-    entityMediumPole.maximum_wire_distance = inputs.craftingSpeed
-    entityMediumPole.supply_area_distance = inputs.energyUsage
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.maximum_wire_distance = inputs.craftingSpeed
+    entity.supply_area_distance = inputs.energyUsage
 
     -- Base
-    entityMediumPole.pictures.layers[1].hr_version.filename =
+    entity.pictures.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/medium-electric-pole/medium-electric-pole-" .. inputs.number .. ".png"
 
-    data:extend({entityMediumPole, recipeMediumPole, itemMediumPole})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyMediumPole.name = "5d-medium-electric-pole-" .. inputs.tech.number
-        technologyMediumPole.icon = itemMediumPole.icon
-        technologyMediumPole.icon_size = 64
-        technologyMediumPole.unit.count = inputs.tech.count
-        technologyMediumPole.unit.ingredients = inputs.tech.packs
-        technologyMediumPole.prerequisites = inputs.tech.prerequisites
-        technologyMediumPole.effects = {
+        tech.name = "5d-medium-electric-pole-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemMediumPole.name
+                recipe = item.name
             }
         }
-        data:extend({technologyMediumPole})
+        data:extend({tech})
     end
 end

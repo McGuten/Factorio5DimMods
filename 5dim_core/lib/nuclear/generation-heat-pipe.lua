@@ -1,58 +1,58 @@
 function genHeatPipes(inputs)
     -- Copy electric furnace
-    local itemHeatPipe = table.deepcopy(data.raw.item["heat-pipe"])
-    local recipeHeatPipe = table.deepcopy(data.raw.recipe["heat-pipe"])
-    local entityHeatPipe = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
-    local technologyHeatPipe = table.deepcopy(data.raw.technology["nuclear-power"])
+    local item = table.deepcopy(data.raw.item["heat-pipe"])
+    local recipe = table.deepcopy(data.raw.recipe["heat-pipe"])
+    local entity = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
+    local tech = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
-        itemHeatPipe.name = "5d-heat-pipe-" .. inputs.number
+        item.name = "5d-heat-pipe-" .. inputs.number
     end
-    -- itemHeatPipe.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/heat-pipe/heat-pipe-icon-" .. inputs.number .. ".png"
-    itemHeatPipe.subgroup = inputs.subgroup
-    itemHeatPipe.order = inputs.order
-    itemHeatPipe.place_result = itemHeatPipe.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeHeatPipe.name = itemHeatPipe.name
-    -- recipeHeatPipe.icon = itemHeatPipe.icon
-    recipeHeatPipe.result = itemHeatPipe.name
-    recipeHeatPipe.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeHeatPipe.enabled = false
+        recipe.enabled = false
     end
-    recipeHeatPipe.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityHeatPipe.name = itemHeatPipe.name
-    -- entityHeatPipe.icon = itemHeatPipe.icon
-    entityHeatPipe.minable.result = itemHeatPipe.name
-    entityHeatPipe.heat_buffer.max_temperature = inputs.craftingSpeed
-    entityHeatPipe.heat_buffer.max_transfer = inputs.energyUsage .. "GW"
-    entityHeatPipe.fast_replaceable_group = "heat-pipe"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.heat_buffer.max_temperature = inputs.craftingSpeed
+    entity.heat_buffer.max_transfer = inputs.energyUsage .. "GW"
+    entity.fast_replaceable_group = "heat-pipe"
 
     -- Base
-    -- entityHeatPipe.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/heat-pipe/heat-pipe-" .. inputs.number .. ".png"
 
-    data:extend({entityHeatPipe, recipeHeatPipe, itemHeatPipe})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyHeatPipe.name = "5d-heat-pipe-" .. inputs.tech.number
-        technologyHeatPipe.icon = itemHeatPipe.icon
-        technologyHeatPipe.icon_size = 64
-        technologyHeatPipe.unit.count = inputs.tech.count
-        technologyHeatPipe.unit.ingredients = inputs.tech.packs
-        technologyHeatPipe.prerequisites = inputs.tech.prerequisites
-        technologyHeatPipe.effects = {
+        tech.name = "5d-heat-pipe-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemHeatPipe.name
+                recipe = item.name
             }
         }
-        data:extend({technologyHeatPipe})
+        data:extend({tech})
     end
 end

@@ -1,64 +1,64 @@
 function genRoboports(inputs)
     -- Copy electric furnace
-    local itemRoboport = table.deepcopy(data.raw.item["roboport"])
-    local recipeRoboport = table.deepcopy(data.raw.recipe["roboport"])
-    local entityRoboport = table.deepcopy(data.raw["roboport"]["roboport"])
-    local technologyRoboport = table.deepcopy(data.raw.technology["logistic-robotics"])
+    local item = table.deepcopy(data.raw.item["roboport"])
+    local recipe = table.deepcopy(data.raw.recipe["roboport"])
+    local entity = table.deepcopy(data.raw["roboport"]["roboport"])
+    local tech = table.deepcopy(data.raw.technology["logistic-robotics"])
 
     --Item
     if inputs.new then
-        itemRoboport.name = "5d-roboport-" .. inputs.number
+        item.name = "5d-roboport-" .. inputs.number
     end
-    itemRoboport.icon = "__5dim_logistic__/graphics/icon/roboport/roboport-icon-" .. inputs.number .. ".png"
-    itemRoboport.subgroup = inputs.subgroup
-    itemRoboport.order = inputs.order
-    itemRoboport.place_result = itemRoboport.name
+    item.icon = "__5dim_logistic__/graphics/icon/roboport/roboport-icon-" .. inputs.number .. ".png"
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeRoboport.name = itemRoboport.name
-    recipeRoboport.icon = itemRoboport.icon
-    recipeRoboport.result = itemRoboport.name
-    recipeRoboport.icon_size = 64
-    recipeRoboport.ingredients = inputs.ingredients
-    recipeRoboport.enabled = true
+    recipe.name = item.name
+    recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
+    recipe.ingredients = inputs.ingredients
+    recipe.enabled = true
 
     --Entity
-    entityRoboport.name = itemRoboport.name
-    -- entityRoboport.icon = itemRoboport.icon
-    entityRoboport.minable.result = itemRoboport.name
-    entityRoboport.charging_energy = inputs.craftingSpeed .. "kW"
-    entityRoboport.energy_usage = inputs.energyUsage .. "kW"
-    entityRoboport.energy_source.buffer_capacity = inputs.pollution .. "MJ"
-    entityRoboport.energy_source.input_flow_limit = inputs.moduleSlots .. "MW"
-    entityRoboport.logistics_radius = inputs.logistics
-    entityRoboport.construction_radius = inputs.construction
-    entityRoboport.robot_slots_count = inputs.botSlots
-    entityRoboport.recharge_minimum = inputs.recharge .. "MJ"
-    entityRoboport.fast_replaceable_group = "roboport"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.charging_energy = inputs.craftingSpeed .. "kW"
+    entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_source.buffer_capacity = inputs.pollution .. "MJ"
+    entity.energy_source.input_flow_limit = inputs.moduleSlots .. "MW"
+    entity.logistics_radius = inputs.logistics
+    entity.construction_radius = inputs.construction
+    entity.robot_slots_count = inputs.botSlots
+    entity.recharge_minimum = inputs.recharge .. "MJ"
+    entity.fast_replaceable_group = "roboport"
 
     -- Base
-    entityRoboport.base.layers[1].hr_version.filename =
+    entity.base.layers[1].hr_version.filename =
         "__5dim_logistic__/graphics/entities/roboport/roboport-base/roboport-base-" .. inputs.number .. ".png"
     -- Base patch
-    entityRoboport.base_patch.hr_version.filename =
+    entity.base_patch.hr_version.filename =
         "__5dim_logistic__/graphics/entities/roboport/roboport-base-patch/roboport-base-patch-" .. inputs.number .. ".png"
 
-    data:extend({entityRoboport, recipeRoboport, itemRoboport})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyRoboport.name = "5d-roboport-" .. inputs.tech.number
-        technologyRoboport.icon = itemRoboport.icon
-        technologyRoboport.icon_size = 64
-        technologyRoboport.unit.count = inputs.tech.count
-        technologyRoboport.unit.ingredients = inputs.tech.packs
-        technologyRoboport.prerequisites = inputs.tech.prerequisites
-        technologyRoboport.effects = {
+        tech.name = "5d-roboport-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemRoboport.name
+                recipe = item.name
             }
         }
-        data:extend({technologyRoboport})
+        data:extend({tech})
     end
 end

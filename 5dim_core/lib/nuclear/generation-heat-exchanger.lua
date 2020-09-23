@@ -1,68 +1,68 @@
 function genHeatExchangers(inputs)
     -- Copy electric furnace
-    local itemHeatExchanger = table.deepcopy(data.raw.item["heat-exchanger"])
-    local recipeHeatExchanger = table.deepcopy(data.raw.recipe["heat-exchanger"])
-    local entityHeatExchanger = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
-    local technologyHeatExchanger = table.deepcopy(data.raw.technology["nuclear-power"])
+    local item = table.deepcopy(data.raw.item["heat-exchanger"])
+    local recipe = table.deepcopy(data.raw.recipe["heat-exchanger"])
+    local entity = table.deepcopy(data.raw["boiler"]["heat-exchanger"])
+    local tech = table.deepcopy(data.raw.technology["nuclear-power"])
 
     --Item
     if inputs.new then
-        itemHeatExchanger.name = "5d-heat-exchanger-" .. inputs.number
+        item.name = "5d-heat-exchanger-" .. inputs.number
     end
-    itemHeatExchanger.icon =
+    item.icon =
         "__5dim_nuclear__/graphics/icon/heat-exchanger/heatex-icon-" .. inputs.number .. ".png"
-    itemHeatExchanger.subgroup = inputs.subgroup
-    itemHeatExchanger.order = inputs.order
-    itemHeatExchanger.place_result = itemHeatExchanger.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeHeatExchanger.name = itemHeatExchanger.name
-    -- recipeHeatExchanger.icon = itemHeatExchanger.icon
-    recipeHeatExchanger.result = itemHeatExchanger.name
-    recipeHeatExchanger.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeHeatExchanger.enabled = false
+        recipe.enabled = false
     end
-    recipeHeatExchanger.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityHeatExchanger.name = itemHeatExchanger.name
-    -- entityHeatExchanger.icon = itemHeatExchanger.icon
-    entityHeatExchanger.minable.result = itemHeatExchanger.name
-    entityHeatExchanger.energy_consumption = inputs.energyUsage .. "MW"
-    entityHeatExchanger.energy_source.max_temperature = inputs.pollution
-    entityHeatExchanger.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
-    entityHeatExchanger.fast_replaceable_group = "heat-exchanger"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.energy_consumption = inputs.energyUsage .. "MW"
+    entity.energy_source.max_temperature = inputs.pollution
+    entity.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
+    entity.fast_replaceable_group = "heat-exchanger"
 
     -- North
-    entityHeatExchanger.structure.north.layers[1].hr_version.filename =
+    entity.structure.north.layers[1].hr_version.filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-N-idle/heatex-N-idle-" .. inputs.number .. ".png"
     -- East
-    entityHeatExchanger.structure.east.layers[1].hr_version.filename =
+    entity.structure.east.layers[1].hr_version.filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-E-idle/heatex-E-idle-" .. inputs.number .. ".png"
     -- South
-    entityHeatExchanger.structure.south.layers[1].hr_version.filename =
+    entity.structure.south.layers[1].hr_version.filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-S-idle/heatex-S-idle-" .. inputs.number .. ".png"
     -- West
-    entityHeatExchanger.structure.west.layers[1].hr_version.filename =
+    entity.structure.west.layers[1].hr_version.filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-W-idle/heatex-W-idle-" .. inputs.number .. ".png"
 
-    data:extend({entityHeatExchanger, recipeHeatExchanger, itemHeatExchanger})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyHeatExchanger.name = "5d-heat-exchanger-" .. inputs.tech.number
-        technologyHeatExchanger.icon = itemHeatExchanger.icon
-        technologyHeatExchanger.icon_size = 64
-        technologyHeatExchanger.unit.count = inputs.tech.count
-        technologyHeatExchanger.unit.ingredients = inputs.tech.packs
-        technologyHeatExchanger.prerequisites = inputs.tech.prerequisites
-        technologyHeatExchanger.effects = {
+        tech.name = "5d-heat-exchanger-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemHeatExchanger.name
+                recipe = item.name
             }
         }
-        data:extend({technologyHeatExchanger})
+        data:extend({tech})
     end
 end

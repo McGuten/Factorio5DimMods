@@ -1,69 +1,69 @@
 function genOffshorePumps(inputs)
     -- Copy electric furnace
-    local itemOffshorePump = table.deepcopy(data.raw.item["offshore-pump"])
-    local recipeOffshorePump = table.deepcopy(data.raw.recipe["offshore-pump"])
-    local entityOffshorePump = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    local technologyOffshorePump = table.deepcopy(data.raw.technology["oil-processing"])
+    local item = table.deepcopy(data.raw.item["offshore-pump"])
+    local recipe = table.deepcopy(data.raw.recipe["offshore-pump"])
+    local entity = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
+    local tech = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then
-        itemOffshorePump.name = "5d-offshore-pump-" .. inputs.number
+        item.name = "5d-offshore-pump-" .. inputs.number
     end
-    itemOffshorePump.icon =
+    item.icon =
         "__5dim_energy__/graphics/icon/offshore-pump/offshore-pump-icon-" .. inputs.number .. ".png"
-    itemOffshorePump.subgroup = inputs.subgroup
-    itemOffshorePump.order = inputs.order
-    itemOffshorePump.place_result = itemOffshorePump.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeOffshorePump.name = itemOffshorePump.name
-    recipeOffshorePump.icon = itemOffshorePump.icon
-    recipeOffshorePump.result = itemOffshorePump.name
-    recipeOffshorePump.icon_size = 64
+    recipe.name = item.name
+    recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeOffshorePump.enabled = false
+        recipe.enabled = false
     end
-    recipeOffshorePump.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityOffshorePump.name = itemOffshorePump.name
-    entityOffshorePump.icon = itemOffshorePump.icon
-    entityOffshorePump.minable.result = itemOffshorePump.name
-    entityOffshorePump.pumping_speed = inputs.craftingSpeed
-    entityOffshorePump.fast_replaceable_group = "offshore-pump"
+    entity.name = item.name
+    entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.pumping_speed = inputs.craftingSpeed
+    entity.fast_replaceable_group = "offshore-pump"
 
     -- North
-    entityOffshorePump.graphics_set.animation.north.layers[1].hr_version.filename =
+    entity.graphics_set.animation.north.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/offshore-pump/north/offshore-pump-north-" .. inputs.number .. ".png"
 
     -- East
-    entityOffshorePump.graphics_set.animation.east.layers[1].hr_version.filename =
+    entity.graphics_set.animation.east.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/offshore-pump/east/offshore-pump-east-" .. inputs.number .. ".png"
 
     -- South
-    entityOffshorePump.graphics_set.animation.south.layers[1].hr_version.filename =
+    entity.graphics_set.animation.south.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/offshore-pump/south/offshore-pump-south-" .. inputs.number .. ".png"
 
     -- West
-    entityOffshorePump.graphics_set.animation.west.layers[1].hr_version.filename =
+    entity.graphics_set.animation.west.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/offshore-pump/west/offshore-pump-west-" .. inputs.number .. ".png"
 
-    data:extend({entityOffshorePump, recipeOffshorePump, itemOffshorePump})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyOffshorePump.name = "5d-offshore-pump-" .. inputs.tech.number
-        technologyOffshorePump.icon = itemOffshorePump.icon
-        technologyOffshorePump.icon_size = 64
-        technologyOffshorePump.unit.count = inputs.tech.count
-        technologyOffshorePump.unit.ingredients = inputs.tech.packs
-        technologyOffshorePump.prerequisites = inputs.tech.prerequisites
-        technologyOffshorePump.effects = {
+        tech.name = "5d-offshore-pump-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemOffshorePump.name
+                recipe = item.name
             }
         }
-        data:extend({technologyOffshorePump})
+        data:extend({tech})
     end
 end

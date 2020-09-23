@@ -2,72 +2,72 @@ require("tint-laser-turret")
 
 function genFlamethrowerTurrets(inputs)
     -- Copy electric furnace
-    local itemFlamethrowerTurret = table.deepcopy(data.raw.item["flamethrower-turret"])
-    local recipeFlamethrowerTurret = table.deepcopy(data.raw.recipe["flamethrower-turret"])
-    local entityFlamethrowerTurret = table.deepcopy(data.raw["fluid-turret"]["flamethrower-turret"])
-    local technologyFlamethrowerTurret = table.deepcopy(data.raw.technology["turrets"])
+    local item = table.deepcopy(data.raw.item["flamethrower-turret"])
+    local recipe = table.deepcopy(data.raw.recipe["flamethrower-turret"])
+    local entity = table.deepcopy(data.raw["fluid-turret"]["flamethrower-turret"])
+    local tech = table.deepcopy(data.raw.technology["turrets"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
     --Item
     if inputs.new then
-        itemFlamethrowerTurret.name = "5d-flamethrower-turret-" .. inputs.number
+        item.name = "5d-flamethrower-turret-" .. inputs.number
     end
-    -- itemFlamethrowerTurret.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
-    itemFlamethrowerTurret.subgroup = inputs.subgroup
-    itemFlamethrowerTurret.order = inputs.order
-    itemFlamethrowerTurret.place_result = itemFlamethrowerTurret.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeFlamethrowerTurret.name = itemFlamethrowerTurret.name
-    -- recipeFlamethrowerTurret.icon = itemFlamethrowerTurret.icon
-    recipeFlamethrowerTurret.result = itemFlamethrowerTurret.name
-    recipeFlamethrowerTurret.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeFlamethrowerTurret.enabled = true
+        recipe.enabled = true
     end
-    recipeFlamethrowerTurret.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityFlamethrowerTurret.name = itemFlamethrowerTurret.name
-    -- entityFlamethrowerTurret.icon = itemFlamethrowerTurret.icon
-    entityFlamethrowerTurret.minable.result = itemFlamethrowerTurret.name
-    entityFlamethrowerTurret.attack_parameters.cooldown = inputs.attackSpeed
-    entityFlamethrowerTurret.attack_parameters.range = inputs.range
-    entityFlamethrowerTurret.attack_parameters.min_range = inputs.minRange
-    entityFlamethrowerTurret.prepare_range = inputs.range + 5
-    entityFlamethrowerTurret.max_health = inputs.health or 1400
-    entityFlamethrowerTurret.fast_replaceable_group = "flamethrower-turret"
-    -- entityFlamethrowerTurret.base_picture.north.layers[2].tint = inputs.tint
-    -- entityFlamethrowerTurret.base_picture.north.layers[2].apply_runtime_tint = false
-    -- entityFlamethrowerTurret.base_picture.east.layers[2].tint = inputs.tint
-    -- entityFlamethrowerTurret.base_picture.east.layers[2].apply_runtime_tint = false
-    -- entityFlamethrowerTurret.base_picture.south.layers[2].tint = inputs.tint
-    -- entityFlamethrowerTurret.base_picture.south.layers[2].apply_runtime_tint = false
-    -- entityFlamethrowerTurret.base_picture.west.layers[2].tint = inputs.tint
-    -- entityFlamethrowerTurret.base_picture.west.layers[2].apply_runtime_tint = false
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.attack_parameters.cooldown = inputs.attackSpeed
+    entity.attack_parameters.range = inputs.range
+    entity.attack_parameters.min_range = inputs.minRange
+    entity.prepare_range = inputs.range + 5
+    entity.max_health = inputs.health or 1400
+    entity.fast_replaceable_group = "flamethrower-turret"
+    -- entity.base_picture.north.layers[2].tint = inputs.tint
+    -- entity.base_picture.north.layers[2].apply_runtime_tint = false
+    -- entity.base_picture.east.layers[2].tint = inputs.tint
+    -- entity.base_picture.east.layers[2].apply_runtime_tint = false
+    -- entity.base_picture.south.layers[2].tint = inputs.tint
+    -- entity.base_picture.south.layers[2].apply_runtime_tint = false
+    -- entity.base_picture.west.layers[2].tint = inputs.tint
+    -- entity.base_picture.west.layers[2].apply_runtime_tint = false
 
     -- Base
-    -- entityFlamethrowerTurret.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/flamethrower-turret/flamethrower-turret-" .. inputs.number .. ".png"
 
-    data:extend({entityFlamethrowerTurret, recipeFlamethrowerTurret, itemFlamethrowerTurret})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyFlamethrowerTurret.name = "5d-flamethrower-turrets-" .. inputs.tech.number
-        technologyFlamethrowerTurret.icon = itemFlamethrowerTurret.icon
-        technologyFlamethrowerTurret.icon_size = 64
-        technologyFlamethrowerTurret.unit.count = inputs.tech.count
-        technologyFlamethrowerTurret.unit.ingredients = inputs.tech.packs
-        technologyFlamethrowerTurret.prerequisites = inputs.tech.prerequisites
-        technologyFlamethrowerTurret.effects = {
+        tech.name = "5d-flamethrower-turrets-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemFlamethrowerTurret.name
+                recipe = item.name
             }
         }
-        data:extend({technologyFlamethrowerTurret})
+        data:extend({tech})
     end
 end

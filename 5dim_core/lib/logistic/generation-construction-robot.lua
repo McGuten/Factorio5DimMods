@@ -1,60 +1,60 @@
 function genConstructionRobots(inputs)
     -- Copy electric furnace
-    local itemConstructionRobot = table.deepcopy(data.raw.item["construction-robot"])
-    local recipeConstructionRobot = table.deepcopy(data.raw.recipe["construction-robot"])
-    local entityConstructionRobot = table.deepcopy(data.raw["construction-robot"]["construction-robot"])
-    local technologyConstructionRobot = table.deepcopy(data.raw.technology["construction-robotics"])
+    local item = table.deepcopy(data.raw.item["construction-robot"])
+    local recipe = table.deepcopy(data.raw.recipe["construction-robot"])
+    local entity = table.deepcopy(data.raw["construction-robot"]["construction-robot"])
+    local tech = table.deepcopy(data.raw.technology["construction-robotics"])
 
     --Item
     if inputs.new then
-        itemConstructionRobot.name = "5d-construction-robot-" .. inputs.number
+        item.name = "5d-construction-robot-" .. inputs.number
     end
-    itemConstructionRobot.icon = "__5dim_logistic__/graphics/icon/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
-    itemConstructionRobot.subgroup = inputs.subgroup
-    itemConstructionRobot.order = inputs.order
-    itemConstructionRobot.place_result = itemConstructionRobot.name
+    item.icon = "__5dim_logistic__/graphics/icon/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeConstructionRobot.name = itemConstructionRobot.name
-    recipeConstructionRobot.icon = itemConstructionRobot.icon
-    recipeConstructionRobot.result = itemConstructionRobot.name
-    recipeConstructionRobot.icon_size = 64
-    recipeConstructionRobot.ingredients = inputs.ingredients
-    recipeConstructionRobot.enabled = true
+    recipe.name = item.name
+    recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
+    recipe.ingredients = inputs.ingredients
+    recipe.enabled = true
 
     --Entity
-    entityConstructionRobot.name = itemConstructionRobot.name
-    -- entityConstructionRobot.icon = itemConstructionRobot.icon
-    entityConstructionRobot.minable.result = itemConstructionRobot.name
-    entityConstructionRobot.speed = inputs.craftingSpeed
-    entityConstructionRobot.max_energy = inputs.energyUsage .. "MJ"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.speed = inputs.craftingSpeed
+    entity.max_energy = inputs.energyUsage .. "MJ"
 
     -- Idle
-    entityConstructionRobot.idle.hr_version.filename =
+    entity.idle.hr_version.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
     -- Idle
-    entityConstructionRobot.in_motion.hr_version.filename =
+    entity.in_motion.hr_version.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
     -- Working
-    entityConstructionRobot.working.hr_version.filename =
+    entity.working.hr_version.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot-working/construction-robot-working-" .. inputs.number .. ".png"
 
-    data:extend({entityConstructionRobot, recipeConstructionRobot, itemConstructionRobot})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyConstructionRobot.name = "5d-construction-robot-" .. inputs.tech.number
-        technologyConstructionRobot.icon = itemConstructionRobot.icon
-        technologyConstructionRobot.icon_size = 64
-        technologyConstructionRobot.unit.count = inputs.tech.count
-        technologyConstructionRobot.unit.ingredients = inputs.tech.packs
-        technologyConstructionRobot.prerequisites = inputs.tech.prerequisites
-        technologyConstructionRobot.effects = {
+        tech.name = "5d-construction-robot-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemConstructionRobot.name
+                recipe = item.name
             }
         }
-        data:extend({technologyConstructionRobot})
+        data:extend({tech})
     end
 end

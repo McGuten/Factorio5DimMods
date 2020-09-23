@@ -1,56 +1,56 @@
 function genSolarPanels(inputs)
     -- Copy electric furnace
-    local itemSolarPanel = table.deepcopy(data.raw.item["solar-panel"])
-    local recipeSolarPanel = table.deepcopy(data.raw.recipe["solar-panel"])
-    local entitySolarPanel = table.deepcopy(data.raw["solar-panel"]["solar-panel"])
-    local technologySolarPanel = table.deepcopy(data.raw.technology["solar-energy"])
+    local item = table.deepcopy(data.raw.item["solar-panel"])
+    local recipe = table.deepcopy(data.raw.recipe["solar-panel"])
+    local entity = table.deepcopy(data.raw["solar-panel"]["solar-panel"])
+    local tech = table.deepcopy(data.raw.technology["solar-energy"])
 
     --Item
     if inputs.new then
-        itemSolarPanel.name = "5d-solar-panel-" .. inputs.number
+        item.name = "5d-solar-panel-" .. inputs.number
     end
-    itemSolarPanel.icon =
+    item.icon =
         "__5dim_energy__/graphics/icon/solar-panel/solar-panel-icon-" .. inputs.number .. ".png"
-    itemSolarPanel.subgroup = inputs.subgroup
-    itemSolarPanel.order = inputs.order
-    itemSolarPanel.place_result = itemSolarPanel.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeSolarPanel.name = itemSolarPanel.name
-    recipeSolarPanel.icon = itemSolarPanel.icon
-    recipeSolarPanel.result = itemSolarPanel.name
-    recipeSolarPanel.icon_size = 64
+    recipe.name = item.name
+    recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeSolarPanel.enabled = false
+        recipe.enabled = false
     end
-    recipeSolarPanel.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entitySolarPanel.name = itemSolarPanel.name
-    entitySolarPanel.icon = itemSolarPanel.icon
-    entitySolarPanel.minable.result = itemSolarPanel.name
-    entitySolarPanel.production = inputs.craftingSpeed .. "kW"
-    entitySolarPanel.fast_replaceable_group = "solar-panel"
+    entity.name = item.name
+    entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.production = inputs.craftingSpeed .. "kW"
+    entity.fast_replaceable_group = "solar-panel"
 
     -- North
-    entitySolarPanel.picture.layers[1].hr_version.filename =
+    entity.picture.layers[1].hr_version.filename =
         "__5dim_energy__/graphics/entities/solar-panel/solar-panel-" .. inputs.number .. ".png"
 
-    data:extend({entitySolarPanel, recipeSolarPanel, itemSolarPanel})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologySolarPanel.name = "solar-energy-" .. inputs.tech.number
-        --technologySolarPanel.icon = "__base__/graphics/technology/oil-refinery.png"
-        technologySolarPanel.unit.count = inputs.tech.count
-        technologySolarPanel.unit.ingredients = inputs.tech.packs
-        technologySolarPanel.prerequisites = inputs.tech.prerequisites
-        technologySolarPanel.effects = {
+        tech.name = "solar-energy-" .. inputs.tech.number
+        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemSolarPanel.name
+                recipe = item.name
             }
         }
-        data:extend({technologySolarPanel})
+        data:extend({tech})
     end
 end

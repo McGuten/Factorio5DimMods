@@ -1,58 +1,58 @@
 function genGates(inputs)
     -- Copy electric furnace
-    local itemGate = table.deepcopy(data.raw.item["gate"])
-    local recipeGate = table.deepcopy(data.raw.recipe["gate"])
-    local entityGate = table.deepcopy(data.raw["gate"]["gate"])
-    local technologyGate = table.deepcopy(data.raw.technology["gates"])
+    local item = table.deepcopy(data.raw.item["gate"])
+    local recipe = table.deepcopy(data.raw.recipe["gate"])
+    local entity = table.deepcopy(data.raw["gate"]["gate"])
+    local tech = table.deepcopy(data.raw.technology["gates"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
     --Item
     if inputs.new then
-        itemGate.name = "5d-gate-" .. inputs.number
+        item.name = "5d-gate-" .. inputs.number
     end
-    -- itemGate.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/gate/gate-icon-" .. inputs.number .. ".png"
-    itemGate.subgroup = inputs.subgroup
-    itemGate.order = inputs.order
-    itemGate.place_result = itemGate.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeGate.name = itemGate.name
-    -- recipeGate.icon = itemGate.icon
-    recipeGate.result = itemGate.name
-    recipeGate.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeGate.enabled = true
+        recipe.enabled = true
     end
-    recipeGate.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityGate.name = itemGate.name
-    -- entityGate.icon = itemGate.icon
-    entityGate.minable.result = itemGate.name
-    entityGate.max_health = inputs.health
-    entityGate.fast_replaceable_group = "gate"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.max_health = inputs.health
+    entity.fast_replaceable_group = "gate"
 
     -- Base
-    -- entityGate.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
 
-    data:extend({entityGate, recipeGate, itemGate})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyGate.name = "gates-" .. inputs.tech.number
-        --technologyGate.icon = "__base__/graphics/technology/oil-refinery.png"
-        technologyGate.unit.count = inputs.tech.count
-        technologyGate.unit.ingredients = inputs.tech.packs
-        technologyGate.prerequisites = inputs.tech.prerequisites
-        technologyGate.effects = {
+        tech.name = "gates-" .. inputs.tech.number
+        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemGate.name
+                recipe = item.name
             }
         }
-        data:extend({technologyGate})
+        data:extend({tech})
     end
 end

@@ -1,61 +1,61 @@
 function genRadars(inputs)
     -- Copy electric furnace
-    local itemRadar = table.deepcopy(data.raw.item["radar"])
-    local recipeRadar = table.deepcopy(data.raw.recipe["radar"])
-    local entityRadar = table.deepcopy(data.raw["radar"]["radar"])
-    local technologyRadar = table.deepcopy(data.raw.technology["turrets"])
+    local item = table.deepcopy(data.raw.item["radar"])
+    local recipe = table.deepcopy(data.raw.recipe["radar"])
+    local entity = table.deepcopy(data.raw["radar"]["radar"])
+    local tech = table.deepcopy(data.raw.technology["turrets"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
     --Item
     if inputs.new then
-        itemRadar.name = "5d-radar-" .. inputs.number
+        item.name = "5d-radar-" .. inputs.number
     end
-    -- itemRadar.icon =
+    -- item.icon =
     --     "__5dim_energy__/graphics/icon/radar/radar-icon-" .. inputs.number .. ".png"
-    itemRadar.subgroup = inputs.subgroup
-    itemRadar.order = inputs.order
-    itemRadar.place_result = itemRadar.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeRadar.name = itemRadar.name
-    -- recipeRadar.icon = itemRadar.icon
-    recipeRadar.result = itemRadar.name
-    recipeRadar.icon_size = 64
+    recipe.name = item.name
+    -- recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
     if inputs.new then
-        recipeRadar.enabled = true
+        recipe.enabled = true
     end
-    recipeRadar.ingredients = inputs.ingredients
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityRadar.name = itemRadar.name
-    -- entityRadar.icon = itemRadar.icon
-    entityRadar.minable.result = itemRadar.name
-    entityRadar.max_distance_of_sector_revealed = inputs.scan
-    entityRadar.max_distance_of_nearby_sector_revealed = inputs.reveal
-    entityRadar.energy_usage = inputs.energy .. "kW"
-    entityRadar.fast_replaceable_group = "radar"
+    entity.name = item.name
+    -- entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.max_distance_of_sector_revealed = inputs.scan
+    entity.max_distance_of_nearby_sector_revealed = inputs.reveal
+    entity.energy_usage = inputs.energy .. "kW"
+    entity.fast_replaceable_group = "radar"
 
     -- Base
-    -- entityRadar.picture.layers[1].hr_version.filename =
+    -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
 
-    data:extend({entityRadar, recipeRadar, itemRadar})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyRadar.name = "5d-radars-" .. inputs.tech.number
-        technologyRadar.icon = itemRadar.icon
-        technologyRadar.icon_size = 64
-        technologyRadar.unit.count = inputs.tech.count
-        technologyRadar.unit.ingredients = inputs.tech.packs
-        technologyRadar.prerequisites = inputs.tech.prerequisites
-        technologyRadar.effects = {
+        tech.name = "5d-radars-" .. inputs.tech.number
+        tech.icon = item.icon
+        tech.icon_size = 64
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemRadar.name
+                recipe = item.name
             }
         }
-        data:extend({technologyRadar})
+        data:extend({tech})
     end
 end

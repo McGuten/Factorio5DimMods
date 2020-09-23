@@ -1,36 +1,36 @@
 function genWaterPumpjacks(inputs)
     -- Copy electric furnace
-    local itemWaterPumpjack = table.deepcopy(data.raw.item["pumpjack"])
-    local recipeWaterPumpjack = table.deepcopy(data.raw.recipe["pumpjack"])
-    local entityWaterPumpjack = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    local technologyWaterPumpjack = table.deepcopy(data.raw.technology["oil-processing"])
+    local item = table.deepcopy(data.raw.item["pumpjack"])
+    local recipe = table.deepcopy(data.raw.recipe["pumpjack"])
+    local entity = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
+    local tech = table.deepcopy(data.raw.technology["oil-processing"])
 
     --Item
     if inputs.new then
-        itemWaterPumpjack.name = "5d-water-pumpjack-" .. inputs.number
+        item.name = "5d-water-pumpjack-" .. inputs.number
     end
-    itemWaterPumpjack.icon =
+    item.icon =
         "__5dim_mining__/graphics/icon/water-pumpjack/water-pumpjack-icon-" .. inputs.number .. ".png"
-    itemWaterPumpjack.subgroup = inputs.subgroup
-    itemWaterPumpjack.order = inputs.order
-    itemWaterPumpjack.place_result = itemWaterPumpjack.name
+    item.subgroup = inputs.subgroup
+    item.order = inputs.order
+    item.place_result = item.name
 
     --Recipe
-    recipeWaterPumpjack.name = itemWaterPumpjack.name
-    recipeWaterPumpjack.icon = itemWaterPumpjack.icon
-    recipeWaterPumpjack.result = itemWaterPumpjack.name
-    recipeWaterPumpjack.icon_size = 64
-    recipeWaterPumpjack.enabled = false
-    recipeWaterPumpjack.ingredients = inputs.ingredients
+    recipe.name = item.name
+    recipe.icon = item.icon
+    recipe.result = item.name
+    recipe.icon_size = 64
+    recipe.enabled = false
+    recipe.ingredients = inputs.ingredients
 
     --Entity
-    entityWaterPumpjack.name = itemWaterPumpjack.name
-    entityWaterPumpjack.icon = itemWaterPumpjack.icon
-    entityWaterPumpjack.minable.result = itemWaterPumpjack.name
-    entityWaterPumpjack.pumping_speed = inputs.craftingSpeed
-    entityWaterPumpjack.fast_replaceable_group = "water-pumpjack"
+    entity.name = item.name
+    entity.icon = item.icon
+    entity.minable.result = item.name
+    entity.pumping_speed = inputs.craftingSpeed
+    entity.fast_replaceable_group = "water-pumpjack"
 
-    entityWaterPumpjack.picture.north = {
+    entity.picture.north = {
         priority = "high",
         filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
         line_length = 8,
@@ -52,7 +52,7 @@ function genWaterPumpjacks(inputs)
             shift = util.by_pixel(-4, -24)
         }
     }
-    entityWaterPumpjack.picture.east = {
+    entity.picture.east = {
         priority = "high",
         filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
         line_length = 8,
@@ -74,7 +74,7 @@ function genWaterPumpjacks(inputs)
             shift = util.by_pixel(-4, -24)
         }
     }
-    entityWaterPumpjack.picture.south = {
+    entity.picture.south = {
         priority = "high",
         filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
         line_length = 8,
@@ -96,7 +96,7 @@ function genWaterPumpjacks(inputs)
             shift = util.by_pixel(-4, -24)
         }
     }
-    entityWaterPumpjack.picture.west = {
+    entity.picture.west = {
         priority = "high",
         filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
         line_length = 8,
@@ -118,36 +118,36 @@ function genWaterPumpjacks(inputs)
             shift = util.by_pixel(-4, -24)
         }
     }
-    entityWaterPumpjack.collision_mask = {"ground-tile"}
-    entityWaterPumpjack.adjacent_tile_collision_mask = nil
-    entityWaterPumpjack.adjacent_tile_collision_test = {"ground-tile"}
-    entityWaterPumpjack.graphics_set = nil
-    entityWaterPumpjack.water_reflection = nil
-    entityWaterPumpjack.animation = nil
-    entityWaterPumpjack.placeable_position_visualization = nil
-    entityWaterPumpjack.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
-    entityWaterPumpjack.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
-    entityWaterPumpjack.collision_mask = {"water-tile", "object-layer", "player-layer", "item-layer"}
-    entityWaterPumpjack.adjacent_tile_collision_test = {"ground-tile"}
-    entityWaterPumpjack.adjacent_tile_collision_mask = nil
-    entityWaterPumpjack.fluid_box.pipe_connections[1].position = {0, 2}
+    entity.collision_mask = {"ground-tile"}
+    entity.adjacent_tile_collision_mask = nil
+    entity.adjacent_tile_collision_test = {"ground-tile"}
+    entity.graphics_set = nil
+    entity.water_reflection = nil
+    entity.animation = nil
+    entity.placeable_position_visualization = nil
+    entity.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
+    entity.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
+    entity.collision_mask = {"water-tile", "object-layer", "player-layer", "item-layer"}
+    entity.adjacent_tile_collision_test = {"ground-tile"}
+    entity.adjacent_tile_collision_mask = nil
+    entity.fluid_box.pipe_connections[1].position = {0, 2}
     circuit_wire_connection_points = circuit_connector_definitions["pumpjack"].points
     circuit_connector_sprites = circuit_connector_definitions["pumpjack"].sprites
-    data:extend({entityWaterPumpjack, recipeWaterPumpjack, itemWaterPumpjack})
+    data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        technologyWaterPumpjack.name = "5d-water-pumpjack-" .. inputs.tech.number
-        technologyWaterPumpjack.icon = "__5dim_mining__/graphics/technology/water-pumpjack-tech.png"
-        technologyWaterPumpjack.unit.count = inputs.tech.count
-        technologyWaterPumpjack.unit.ingredients = inputs.tech.packs
-        technologyWaterPumpjack.prerequisites = inputs.tech.prerequisites
-        technologyWaterPumpjack.effects = {
+        tech.name = "5d-water-pumpjack-" .. inputs.tech.number
+        tech.icon = "__5dim_mining__/graphics/technology/water-pumpjack-tech.png"
+        tech.unit.count = inputs.tech.count
+        tech.unit.ingredients = inputs.tech.packs
+        tech.prerequisites = inputs.tech.prerequisites
+        tech.effects = {
             {
                 type = "unlock-recipe",
-                recipe = itemWaterPumpjack.name
+                recipe = item.name
             }
         }
-        data:extend({technologyWaterPumpjack})
+        data:extend({tech})
     end
 end

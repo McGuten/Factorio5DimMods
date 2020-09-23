@@ -71,4 +71,35 @@ function genFlamethrowerTurrets(inputs)
         }
         data:extend({tech})
     end
+
+    -- Changes to add turrets to vanilla tech for damage
+
+    table.insert(
+        data.raw.technology["refined-flammables-1"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-2"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-3"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.3}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-4"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.3}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-5"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.4}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-6"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+    table.insert(
+        data.raw.technology["refined-flammables-7"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
 end

@@ -8,7 +8,7 @@ data:extend(
             effects = {
                 {
                     type = "inserter-stack-size-bonus",
-                    modifier = 1 -- result of 3
+                    modifier = 1
                 }
             },
             prerequisites = {"inserter-capacity-bonus-7"},

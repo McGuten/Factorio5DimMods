@@ -1,7 +1,3 @@
---data.raw.item["gun-turret"].icon = "__5dim_battlefield__/graphics/icon/icon-normal-gun-turret.png"
---data.raw.item["laser-turret"].icon = "__5dim_battlefield__/graphics/icon/icon-normal-laser-turret.png"
--- local sounds = require("__base__.prototypes.entity.demo-sounds")
-
 -- table.insert(
 --     data.raw.technology["physical-projectile-damage-1"].effects,
 --     {type = "turret-attack", turret_id = "5d-gun-turret-small", modifier = 0.1}

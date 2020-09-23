@@ -1,8 +1,3 @@
-table.insert(
-    data.raw.technology["advanced-material-processing-2"].effects,
-    {type = "unlock-recipe", recipe = "5d-furnace"}
-)
-
 data:extend(
     {
         {

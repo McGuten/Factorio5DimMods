@@ -2,18 +2,18 @@ data:extend(
     {
         {
             type = "technology",
-            name = "character-logistic-slots-7",
-            icon = "__base__/graphics/technology/character-logistic-slots.png",
+            name = "research-productivity",
+            icon = "__base__/graphics/technology/research-speed.png",
             icon_size = 128,
             effects = {
                 {
-                    type = "character-logistic-slots",
-                    modifier = 6
+                    type = "laboratory-productivity",
+                    modifier = 0.1
                 }
             },
-            prerequisites = {"character-logistic-slots-6"},
+            prerequisites = {"research-speed-6"},
             unit = {
-                count_formula = "500*(L-4)",
+                count_formula = "1000*(L-5)",
                 ingredients = {
                     {"automation-science-pack", 1},
                     {"logistic-science-pack", 1},
@@ -25,7 +25,7 @@ data:extend(
                 time = 30
             },
             max_level = "infinite",
-            order = "c-k-e-f"
+            order = "c-m-d"
         }
     }
 )

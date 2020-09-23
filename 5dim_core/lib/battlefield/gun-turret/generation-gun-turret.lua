@@ -92,4 +92,38 @@ function genGunTurrets(inputs)
         }
         data:extend({tech})
     end
+    table.insert(
+        data.raw.technology["physical-projectile-damage-1"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.1}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-2"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.1}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-3"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-4"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-5"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-6"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.4}
+    )
+
+    table.insert(
+        data.raw.technology["physical-projectile-damage-7"].effects,
+        {type = "turret-attack", turret_id = item.name, modifier = 0.7}
+    )
 end

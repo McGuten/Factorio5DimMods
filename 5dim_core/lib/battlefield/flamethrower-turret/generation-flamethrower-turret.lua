@@ -31,6 +31,7 @@ function genFlamethrowerTurrets(inputs)
 
     --Entity
     entity.name = item.name
+    entity.next_upgrade = inputs.nextUpdate or nil
     -- entity.icon = item.icon
     entity.minable.result = item.name
     entity.attack_parameters.cooldown = inputs.attackSpeed

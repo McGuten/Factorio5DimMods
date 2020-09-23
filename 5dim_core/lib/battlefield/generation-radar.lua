@@ -29,6 +29,7 @@ function genRadars(inputs)
 
     --Entity
     entity.name = item.name
+    entity.next_upgrade = inputs.nextUpdate or nil
     -- entity.icon = item.icon
     entity.minable.result = item.name
     entity.max_distance_of_sector_revealed = inputs.scan

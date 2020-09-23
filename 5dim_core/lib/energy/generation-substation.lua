@@ -27,6 +27,7 @@ function genSubstations(inputs)
 
     --Entity
     entity.name = item.name
+    entity.next_upgrade = inputs.nextUpdate or nil
     -- entity.icon = item.icon
     entity.minable.result = item.name
     entity.maximum_wire_distance = inputs.craftingSpeed

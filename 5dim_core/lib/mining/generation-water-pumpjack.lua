@@ -25,6 +25,7 @@ function genWaterPumpjacks(inputs)
 
     --Entity
     entity.name = item.name
+    entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.pumping_speed = inputs.craftingSpeed

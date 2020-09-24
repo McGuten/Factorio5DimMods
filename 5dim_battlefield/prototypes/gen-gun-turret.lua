@@ -24,6 +24,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-02",
     tech = nil
 }
 
@@ -48,6 +49,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-03",
     tech = {
         number = "turrets-2",
         count = 50,
@@ -81,6 +83,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-04",
     tech = {
         number = "turrets-3",
         count = 100,
@@ -114,6 +117,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-05",
     tech = {
         number = "turrets-4",
         count = 150,
@@ -149,6 +153,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-06",
     tech = {
         number = "turrets-5",
         count = 200,
@@ -183,6 +188,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-07",
     tech = {
         number = "turrets-6",
         count = 250,
@@ -219,6 +225,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-08",
     tech = {
         number = "turrets-7",
         count = 300,
@@ -255,6 +262,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-09",
     tech = {
         number = "turrets-8",
         count = 350,
@@ -290,6 +298,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 20}
     },
+    nextUpdate = "5d-gun-turret-10",
     tech = {
         number = "turrets-9",
         count = 400,

@@ -20,6 +20,7 @@ genSolarPanels {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genSolarPanels {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-03",
     tech = {
         number = 2,
         count = 500,
@@ -77,6 +79,7 @@ genSolarPanels {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-04",
     tech = {
         number = 3,
         count = 750,
@@ -113,6 +116,7 @@ genSolarPanels {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-05",
     tech = {
         number = 4,
         count = 1000,
@@ -149,6 +153,7 @@ genSolarPanels {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-06",
     tech = {
         number = 5,
         count = 1250,
@@ -186,6 +191,7 @@ genSolarPanels {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-07",
     tech = {
         number = 6,
         count = 1500,
@@ -222,6 +228,7 @@ genSolarPanels {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-08",
     tech = {
         number = 7,
         count = 1750,
@@ -261,6 +268,7 @@ genSolarPanels {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-09",
     tech = {
         number = 8,
         count = 2000,
@@ -298,6 +306,7 @@ genSolarPanels {
         {"productivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-solar-panel-10",
     tech = {
         number = 9,
         count = 2250,

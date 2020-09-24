@@ -19,6 +19,7 @@ genAccumulators {
         {"battery", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-02",
     tech = nil
 }
 
@@ -43,6 +44,7 @@ genAccumulators {
         {"battery", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-03",
     tech = {
         number = 2,
         count = 500,
@@ -76,6 +78,7 @@ genAccumulators {
         {"battery", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-04",
     tech = {
         number = 3,
         count = 750,
@@ -112,6 +115,7 @@ genAccumulators {
         {"battery", 15}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-05",
     tech = {
         number = 4,
         count = 1000,
@@ -148,6 +152,7 @@ genAccumulators {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-06",
     tech = {
         number = 5,
         count = 1250,
@@ -185,6 +190,7 @@ genAccumulators {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-07",
     tech = {
         number = 6,
         count = 1500,
@@ -221,6 +227,7 @@ genAccumulators {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-08",
     tech = {
         number = 7,
         count = 1750,
@@ -260,6 +267,7 @@ genAccumulators {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-09",
     tech = {
         number = 8,
         count = 2000,
@@ -297,6 +305,7 @@ genAccumulators {
         {"effectivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-accumulator-10",
     tech = {
         number = 9,
         count = 2250,

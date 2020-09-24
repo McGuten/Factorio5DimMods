@@ -25,6 +25,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-02",
     tech = {
         number = "5d-turrets-big-1",
         count = 50,
@@ -59,6 +60,7 @@ genGunTurrets {
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-03",
     tech = {
         number = "5d-turrets-big-2",
         count = 150,
@@ -87,12 +89,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-02", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-04",
     tech = {
         number = "5d-turrets-big-3",
         count = 250,
@@ -121,12 +124,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-03", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-05",
     tech = {
         number = "5d-turrets-big-4",
         count = 350,
@@ -157,12 +161,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-04", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-06",
     tech = {
         number = "5d-turrets-big-5",
         count = 450,
@@ -192,12 +197,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-05", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-07",
     tech = {
         number = "5d-turrets-big-6",
         count = 550,
@@ -229,12 +235,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-06", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-08",
     tech = {
         number = "5d-turrets-big-7",
         count = 650,
@@ -265,12 +272,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-07", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-09",
     tech = {
         number = "5d-turrets-big-8",
         count = 750,
@@ -301,12 +309,13 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-08", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
+    nextUpdate = "5d-gun-turret-big-10",
     tech = {
         number = "5d-turrets-big-9",
         count = 850,
@@ -339,7 +348,7 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-big-01", 1},
+        {"5d-gun-turret-big-09", 1},
         {"iron-gear-wheel", 15},
         {"electronic-circuit", 8},
         {"copper-plate", 10},

@@ -20,6 +20,7 @@ genElectricFurnaces {
         {"stone-brick", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genElectricFurnaces {
         {"stone-brick", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-03",
     tech = {
         number = 3,
         count = 200,
@@ -78,6 +80,7 @@ genElectricFurnaces {
         {"concrete", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-04",
     tech = {
         number = 4,
         count = 300,
@@ -115,6 +118,7 @@ genElectricFurnaces {
         {"concrete", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-05",
     tech = {
         number = 5,
         count = 400,
@@ -151,6 +155,7 @@ genElectricFurnaces {
         {"speed-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-06",
     tech = {
         number = 6,
         count = 500,
@@ -188,6 +193,7 @@ genElectricFurnaces {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-07",
     tech = {
         number = 7,
         count = 600,
@@ -224,6 +230,7 @@ genElectricFurnaces {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-08",
     tech = {
         number = 8,
         count = 700,
@@ -261,6 +268,7 @@ genElectricFurnaces {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-09",
     tech = {
         number = 9,
         count = 800,
@@ -299,6 +307,7 @@ genElectricFurnaces {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-furnace-10",
     tech = {
         number = 10,
         count = 900,

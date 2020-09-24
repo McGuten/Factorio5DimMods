@@ -20,6 +20,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-03",
     tech = {
         number = 1,
         count = 150,
@@ -78,6 +80,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-04",
     tech = {
         number = 2,
         count = 300,
@@ -114,6 +117,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-05",
     tech = {
         number = 3,
         count = 450,
@@ -151,6 +155,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-06",
     tech = {
         number = 4,
         count = 500,
@@ -188,6 +193,7 @@ genOffshorePumps {
         {"iron-gear-wheel", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-07",
     tech = {
         number = 5,
         count = 600,
@@ -226,6 +232,7 @@ genOffshorePumps {
         {"advanced-circuit", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-08",
     tech = {
         number = 6,
         count = 700,
@@ -264,6 +271,7 @@ genOffshorePumps {
         {"advanced-circuit", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-09",
     tech = {
         number = 7,
         count = 800,
@@ -304,6 +312,7 @@ genOffshorePumps {
         {"low-density-structure", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-offshore-pump-10",
     tech = {
         number = 8,
         count = 900,

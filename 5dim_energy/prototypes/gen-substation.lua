@@ -20,6 +20,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-03",
     tech = {
         number = 1,
         count = 200,
@@ -77,6 +79,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-04",
     tech = {
         number = 2,
         count = 750,
@@ -114,6 +117,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-05",
     tech = {
         number = 3,
         count = 1000,
@@ -151,6 +155,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-06",
     tech = {
         number = 4,
         count = 1250,
@@ -189,6 +194,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-07",
     tech = {
         number = 5,
         count = 1500,
@@ -226,6 +232,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-08",
     tech = {
         number = 6,
         count = 1750,
@@ -266,6 +273,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-09",
     tech = {
         number = 7,
         count = 2000,
@@ -304,6 +312,7 @@ genSubstations {
         {"copper-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-substation-10",
     tech = {
         number = 8,
         count = 2250,

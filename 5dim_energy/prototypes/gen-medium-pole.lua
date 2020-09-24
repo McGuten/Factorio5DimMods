@@ -20,6 +20,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-03",
     tech = {
         number = 1,
         count = 500,
@@ -77,6 +79,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-04",
     tech = {
         number = 2,
         count = 750,
@@ -115,6 +118,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-05",
     tech = {
         number = 3,
         count = 1000,
@@ -152,6 +156,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-06",
     tech = {
         number = 4,
         count = 1250,
@@ -190,6 +195,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-07",
     tech = {
         number = 5,
         count = 1500,
@@ -227,6 +233,7 @@ genMediumPoles {
         {"copper-plate", 2}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-08",
     tech = {
         number = 6,
         count = 1750,
@@ -308,6 +315,7 @@ genMediumPoles {
         {"low-density-structure", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-medium-electric-pole-09",
     tech = {
         number = 8,
         count = 2250,

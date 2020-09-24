@@ -20,6 +20,7 @@ genSteamEngines {
         {"iron-plate", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-02",
     tech = nil
 }
 
@@ -45,6 +46,7 @@ genSteamEngines {
         {"iron-plate", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-03",
     tech = {
         number = 1,
         count = 500,
@@ -80,6 +82,7 @@ genSteamEngines {
         {"steel-plate", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-04",
     tech = {
         number = 2,
         count = 750,
@@ -117,6 +120,7 @@ genSteamEngines {
         {"steel-plate", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-05",
     tech = {
         number = 3,
         count = 1000,
@@ -156,6 +160,7 @@ genSteamEngines {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-06",
     tech = {
         number = 4,
         count = 1250,
@@ -195,6 +200,7 @@ genSteamEngines {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-07",
     tech = {
         number = 5,
         count = 1500,
@@ -235,6 +241,7 @@ genSteamEngines {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-08",
     tech = {
         number = 6,
         count = 1750,
@@ -275,6 +282,7 @@ genSteamEngines {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-09",
     tech = {
         number = 7,
         count = 2000,
@@ -316,6 +324,7 @@ genSteamEngines {
         {"effectivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-engine-10",
     tech = {
         number = 8,
         count = 2250,

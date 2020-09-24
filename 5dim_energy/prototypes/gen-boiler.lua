@@ -19,6 +19,7 @@ genBoilers {
         {"pipe", 4}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-02",
     tech = nil
 }
 
@@ -42,6 +43,7 @@ genBoilers {
         {"pipe", 4}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-03",
     tech = {
         number = 1,
         count = 500,
@@ -75,6 +77,7 @@ genBoilers {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-04",
     tech = {
         number = 2,
         count = 750,
@@ -110,6 +113,7 @@ genBoilers {
         {"pipe", 4}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-05",
     tech = {
         number = 3,
         count = 1000,
@@ -147,6 +151,7 @@ genBoilers {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-06",
     tech = {
         number = 4,
         count = 1250,
@@ -185,6 +190,7 @@ genBoilers {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-07",
     tech = {
         number = 5,
         count = 1500,
@@ -224,6 +230,7 @@ genBoilers {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-08",
     tech = {
         number = 6,
         count = 1750,
@@ -263,6 +270,7 @@ genBoilers {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-09",
     tech = {
         number = 7,
         count = 2000,
@@ -303,6 +311,7 @@ genBoilers {
         {"effectivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-boiler-10",
     tech = {
         number = 8,
         count = 2250,

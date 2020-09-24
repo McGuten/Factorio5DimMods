@@ -22,6 +22,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-02",
     tech = {
         number = "5d-laser-turrets-big-1",
         count = 500,
@@ -56,6 +57,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-03",
     tech = {
         number = "5d-laser-turrets-big-2",
         count = 500,
@@ -92,6 +94,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-04",
     tech = {
         number = "5d-laser-turrets-big-3",
         count = 750,
@@ -128,6 +131,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-05",
     tech = {
         number = "5d-laser-turrets-big-4",
         count = 1000,
@@ -163,6 +167,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-06",
     tech = {
         number = "5d-laser-turrets-big-5",
         count = 1250,
@@ -199,6 +204,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-07",
     tech = {
         number = "5d-laser-turrets-big-6",
         count = 1500,
@@ -234,6 +240,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-08",
     tech = {
         number = "5d-laser-turrets-big-7",
         count = 1750,
@@ -271,6 +278,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-09",
     tech = {
         number = "5d-laser-turrets-big-8",
         count = 2000,
@@ -307,6 +315,7 @@ genLaserTurrets {
         {"electronic-circuit", 30},
         {"battery", 15}
     },
+    nextUpdate = "5d-laser-turret-big-10",
     tech = {
         number = "5d-laser-turrets-big-9",
         count = 2250,

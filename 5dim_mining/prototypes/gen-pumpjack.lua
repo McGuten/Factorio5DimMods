@@ -21,6 +21,7 @@ genPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-02",
     tech = nil
 }
 
@@ -46,6 +47,7 @@ genPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-03",
     tech = {
         number = 1,
         count = 150,
@@ -81,6 +83,7 @@ genPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-04",
     tech = {
         number = 2,
         count = 300,
@@ -116,6 +119,7 @@ genPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-05",
     tech = {
         number = 3,
         count = 450,
@@ -152,6 +156,7 @@ genPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-06",
     tech = {
         number = 4,
         count = 500,
@@ -187,6 +192,7 @@ genPumpjacks {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-07",
     tech = {
         number = 5,
         count = 600,
@@ -223,6 +229,7 @@ genPumpjacks {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-08",
     tech = {
         number = 6,
         count = 700,
@@ -259,6 +266,7 @@ genPumpjacks {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-09",
     tech = {
         number = 7,
         count = 800,
@@ -296,6 +304,7 @@ genPumpjacks {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-pumpjack-10",
     tech = {
         number = 8,
         count = 900,

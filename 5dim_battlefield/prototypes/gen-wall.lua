@@ -12,6 +12,7 @@ genStoneWalls {
     ingredients = {
         {"stone-brick", 5}
     },
+    nextUpdate = "5d-stone-wall-02",
     tech = nil
 }
 
@@ -29,6 +30,7 @@ genStoneWalls {
         {"stone-brick", 5},
         {"iron-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-03",
     tech = {
         number = 2,
         count = 500,
@@ -57,6 +59,7 @@ genStoneWalls {
         {"stone-brick", 5},
         {"iron-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-04",
     tech = {
         number = 3,
         count = 750,
@@ -86,6 +89,7 @@ genStoneWalls {
         {"concrete", 5},
         {"iron-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-05",
     tech = {
         number = 4,
         count = 1000,
@@ -114,6 +118,7 @@ genStoneWalls {
         {"concrete", 5},
         {"iron-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-06",
     tech = {
         number = 5,
         count = 1250,
@@ -142,6 +147,7 @@ genStoneWalls {
         {"concrete", 5},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-07",
     tech = {
         number = 6,
         count = 1500,
@@ -172,6 +178,7 @@ genStoneWalls {
         {"concrete", 5},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-08",
     tech = {
         number = 7,
         count = 1750,
@@ -201,6 +208,7 @@ genStoneWalls {
         {"refined-concrete", 5},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-09",
     tech = {
         number = 8,
         count = 2000,
@@ -232,6 +240,7 @@ genStoneWalls {
         {"refined-concrete", 5},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-stone-wall-10",
     tech = {
         number = 9,
         count = 2250,

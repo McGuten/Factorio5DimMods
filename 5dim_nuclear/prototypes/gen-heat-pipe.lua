@@ -19,6 +19,7 @@ genHeatPipes {
         {"copper-plate", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-02",
     tech = nil
 }
 
@@ -42,6 +43,7 @@ genHeatPipes {
         {"copper-plate", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-03",
     tech = {
         number = 1,
         count = 500,
@@ -78,6 +80,7 @@ genHeatPipes {
         {"low-density-structure", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-04",
     tech = {
         number = 2,
         count = 750,
@@ -118,6 +121,7 @@ genHeatPipes {
         {"low-density-structure", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-05",
     tech = {
         number = 3,
         count = 1000,
@@ -160,6 +164,7 @@ genHeatPipes {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-06",
     tech = {
         number = 4,
         count = 1250,
@@ -202,6 +207,7 @@ genHeatPipes {
         {"effectivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-07",
     tech = {
         number = 5,
         count = 1500,
@@ -243,6 +249,7 @@ genHeatPipes {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-08",
     tech = {
         number = 6,
         count = 1750,
@@ -285,6 +292,7 @@ genHeatPipes {
         {"effectivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-09",
     tech = {
         number = 7,
         count = 2000,
@@ -326,6 +334,7 @@ genHeatPipes {
         {"effectivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-heat-pipe-10",
     tech = {
         number = 8,
         count = 2250,

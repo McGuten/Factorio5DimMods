@@ -29,6 +29,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-02",
     tech = nil
 }
 
@@ -61,6 +62,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-03",
     tech = {
         number = 1,
         count = 500,
@@ -104,6 +106,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-04",
     tech = {
         number = 2,
         count = 750,
@@ -148,6 +151,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-05",
     tech = {
         number = 3,
         count = 1000,
@@ -194,6 +198,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-06",
     tech = {
         number = 4,
         count = 1250,
@@ -239,6 +244,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-07",
     tech = {
         number = 5,
         count = 1500,
@@ -286,6 +292,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-08",
     tech = {
         number = 6,
         count = 1750,
@@ -332,6 +339,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-09",
     tech = {
         number = 7,
         count = 2000,
@@ -380,6 +388,7 @@ genRoboports {
     construction = constructions,
     botSlots = botSlot,
     recharge = recharges,
+    nextUpdate = "5d-roboport-10",
     tech = {
         number = 8,
         count = 2250,

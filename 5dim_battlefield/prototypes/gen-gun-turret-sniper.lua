@@ -24,6 +24,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-02",
     tech = {
         number = "5d-turrets-sniper-1",
         count = 500,
@@ -60,6 +61,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-03",
     tech = {
         number = "5d-turrets-sniper-2",
         count = 1000,
@@ -96,6 +98,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-04",
     tech = {
         number = "5d-turrets-sniper-3",
         count = 1500,
@@ -131,6 +134,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-05",
     tech = {
         number = "5d-turrets-sniper-4",
         count = 2000,
@@ -166,6 +170,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-06",
     tech = {
         number = "5d-turrets-sniper-5",
         count = 2500,
@@ -201,6 +206,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-07",
     tech = {
         number = "5d-turrets-sniper-6",
         count = 1500,
@@ -236,6 +242,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-08",
     tech = {
         number = "5d-turrets-sniper-7",
         count = 3000,
@@ -271,6 +278,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-09",
     tech = {
         number = "5d-turrets-sniper-8",
         count = 3500,
@@ -306,6 +314,7 @@ genGunTurrets {
         {"electronic-circuit", 10},
         {"steel-plate", 5}
     },
+    nextUpdate = "5d-gun-turret-sniper-10",
     tech = {
         number = "5d-turrets-sniper-9",
         count = 4000,

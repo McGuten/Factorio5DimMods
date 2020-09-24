@@ -22,6 +22,7 @@ genTeslaTurrets {
         {"electronic-circuit", 50},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 1,
         count = 500,
@@ -61,6 +62,7 @@ genTeslaTurrets {
         {"electronic-circuit", 50},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 2,
         count = 1000,
@@ -97,6 +99,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 3,
         count = 1500,
@@ -133,6 +136,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 4,
         count = 2000,
@@ -169,6 +173,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 5,
         count = 2500,
@@ -205,6 +210,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 6,
         count = 3000,
@@ -241,6 +247,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 7,
         count = 3500,
@@ -279,6 +286,7 @@ genTeslaTurrets {
         {"advanced-circuit", 35},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 8,
         count = 4000,
@@ -315,6 +323,7 @@ genTeslaTurrets {
         {"processing-unit", 10},
         {"battery", 50}
     },
+    nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 9,
         count = 4500,

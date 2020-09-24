@@ -22,6 +22,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-02",
     tech = nil
 }
 
@@ -45,6 +46,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-03",
     tech = {
         number = "laser-turrets-2",
         count = 500,
@@ -80,6 +82,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-04",
     tech = {
         number = "laser-turrets-3",
         count = 750,
@@ -115,6 +118,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-05",
     tech = {
         number = "laser-turrets-4",
         count = 1000,
@@ -150,6 +154,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-06",
     tech = {
         number = "laser-turrets-5",
         count = 1250,
@@ -185,6 +190,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-07",
     tech = {
         number = "laser-turrets-6",
         count = 1500,
@@ -220,6 +226,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-08",
     tech = {
         number = "laser-turrets-7",
         count = 1750,
@@ -257,6 +264,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-09",
     tech = {
         number = "laser-turrets-8",
         count = 2000,
@@ -293,6 +301,7 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    nextUpdate = "5d-laser-turret-10",
     tech = {
         number = "laser-turrets-9",
         count = 2250,

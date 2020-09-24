@@ -20,6 +20,7 @@ genSteamTurbines {
         {"pipe", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-02",
     tech = nil
 }
 
@@ -45,6 +46,7 @@ genSteamTurbines {
         {"pipe", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-03",
     tech = {
         number = 1,
         count = 500,
@@ -82,6 +84,7 @@ genSteamTurbines {
         {"pipe", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-04",
     tech = {
         number = 2,
         count = 750,
@@ -123,6 +126,7 @@ genSteamTurbines {
         {"pipe", 20}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-05",
     tech = {
         number = 3,
         count = 1000,
@@ -166,6 +170,7 @@ genSteamTurbines {
         {"speed-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-06",
     tech = {
         number = 4,
         count = 1250,
@@ -209,6 +214,7 @@ genSteamTurbines {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-07",
     tech = {
         number = 5,
         count = 1500,
@@ -251,6 +257,7 @@ genSteamTurbines {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-08",
     tech = {
         number = 6,
         count = 1750,
@@ -294,6 +301,7 @@ genSteamTurbines {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-09",
     tech = {
         number = 7,
         count = 2000,
@@ -335,6 +343,7 @@ genSteamTurbines {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-steam-turbine-10",
     tech = {
         number = 8,
         count = 2250,

@@ -20,6 +20,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genPumps {
         {"pipe", 2}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 2,
         count = 500,
@@ -79,6 +81,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 3,
         count = 750,
@@ -116,6 +119,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 4,
         count = 1000,
@@ -152,6 +156,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 5,
         count = 1250,
@@ -189,6 +194,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 6,
         count = 1500,
@@ -225,6 +231,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 7,
         count = 1750,
@@ -264,6 +271,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 8,
         count = 2000,
@@ -301,6 +309,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 9,
         count = 2250,
@@ -340,6 +349,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
+    nextUpdate = "",
     tech = {
         number = 10,
         count = 2500,

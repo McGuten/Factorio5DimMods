@@ -21,6 +21,7 @@ genCentrifuges {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-02",
     tech = nil
 }
 
@@ -46,6 +47,7 @@ genCentrifuges {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-03",
     tech = {
         number = 1,
         count = 500,
@@ -81,6 +83,7 @@ genCentrifuges {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-04",
     tech = {
         number = 2,
         count = 750,
@@ -117,6 +120,7 @@ genCentrifuges {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-05",
     tech = {
         number = 3,
         count = 1000,
@@ -155,6 +159,7 @@ genCentrifuges {
         {"speed-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-06",
     tech = {
         number = 4,
         count = 1250,
@@ -195,6 +200,7 @@ genCentrifuges {
 
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-07",
     tech = {
         number = 5,
         count = 1500,
@@ -232,6 +238,7 @@ genCentrifuges {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-08",
     tech = {
         number = 6,
         count = 1750,
@@ -272,6 +279,7 @@ genCentrifuges {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-09",
     tech = {
         number = 7,
         count = 2000,
@@ -310,6 +318,7 @@ genCentrifuges {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-centrifuge-10",
     tech = {
         number = 8,
         count = 2250,

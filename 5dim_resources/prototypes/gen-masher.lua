@@ -20,6 +20,7 @@ genMasher {
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-02",
     tech = {
         number = 1,
         count = 100,
@@ -55,6 +56,7 @@ genMasher {
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-03",
     tech = {
         number = 2,
         count = 200,
@@ -90,6 +92,7 @@ genMasher {
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-04",
     tech = {
         number = 3,
         count = 300,
@@ -128,6 +131,7 @@ genMasher {
         {"iron-gear-wheel", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-05",
     tech = {
         number = 4,
         count = 400,
@@ -165,6 +169,7 @@ genMasher {
         {"speed-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-06",
     tech = {
         number = 5,
         count = 500,
@@ -203,6 +208,7 @@ genMasher {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-07",
     tech = {
         number = 6,
         count = 600,
@@ -240,6 +246,7 @@ genMasher {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-08",
     tech = {
         number = 7,
         count = 700,
@@ -278,6 +285,7 @@ genMasher {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-09",
     tech = {
         number = 8,
         count = 800,
@@ -317,6 +325,7 @@ genMasher {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-10",
     tech = {
         number = 9,
         count = 900,
@@ -356,6 +365,7 @@ genMasher {
         {"productivity-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-masher-11",
     tech = {
         number = 10,
         count = 1000,

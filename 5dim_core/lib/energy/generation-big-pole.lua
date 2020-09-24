@@ -28,6 +28,7 @@ function genBigPoles(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
+    entity.fast_replaceable_group = "big-electric-pole"
     -- entity.icon = item.icon
     entity.minable.result = item.name
     entity.maximum_wire_distance = inputs.craftingSpeed

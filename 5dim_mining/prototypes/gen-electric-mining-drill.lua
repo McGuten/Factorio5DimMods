@@ -20,6 +20,7 @@ genMiningDrills {
         {"iron-plate", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genMiningDrills {
         {"iron-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-03",
     tech = {
         number = 1,
         count = 150,
@@ -78,6 +80,7 @@ genMiningDrills {
         {"steel-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-04",
     tech = {
         number = 2,
         count = 300,
@@ -112,6 +115,7 @@ genMiningDrills {
         {"steel-plate", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-05",
     tech = {
         number = 3,
         count = 450,
@@ -147,6 +151,7 @@ genMiningDrills {
         {"speed-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-06",
     tech = {
         number = 4,
         count = 500,
@@ -182,6 +187,7 @@ genMiningDrills {
         {"productivity-module", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-07",
     tech = {
         number = 5,
         count = 600,
@@ -218,6 +224,7 @@ genMiningDrills {
         {"speed-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-08",
     tech = {
         number = 6,
         count = 700,
@@ -254,6 +261,7 @@ genMiningDrills {
         {"productivity-module-2", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-09",
     tech = {
         number = 7,
         count = 800,
@@ -291,6 +299,7 @@ genMiningDrills {
         {"speed-module-3", 1}
     },
     pollution = emisions,
+    nextUpdate = "5d-electric-mining-drill-10",
     tech = {
         number = 8,
         count = 900,

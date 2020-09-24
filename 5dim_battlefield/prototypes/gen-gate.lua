@@ -14,6 +14,7 @@ genGates {
         {"steel-plate", 2},
         {"electronic-circuit", 2}
     },
+    nextUpdate = "5d-gate-02",
     tech = nil
 }
 
@@ -32,6 +33,7 @@ genGates {
         {"steel-plate", 2},
         {"electronic-circuit", 2}
     },
+    nextUpdate = "5d-gate-03",
     tech = {
         number = 2,
         count = 500,
@@ -62,6 +64,7 @@ genGates {
         {"steel-plate", 2},
         {"electronic-circuit", 2}
     },
+    nextUpdate = "5d-gate-04",
     tech = {
         number = 3,
         count = 750,
@@ -93,6 +96,7 @@ genGates {
         {"steel-plate", 2},
         {"electronic-circuit", 2}
     },
+    nextUpdate = "5d-gate-05",
     tech = {
         number = 4,
         count = 1000,
@@ -123,6 +127,7 @@ genGates {
         {"steel-plate", 2},
         {"advanced-circuit", 2}
     },
+    nextUpdate = "5d-gate-06",
     tech = {
         number = 5,
         count = 1250,
@@ -153,6 +158,7 @@ genGates {
         {"steel-plate", 2},
         {"advanced-circuit", 2}
     },
+    nextUpdate = "5d-gate-07",
     tech = {
         number = 6,
         count = 1500,
@@ -185,6 +191,7 @@ genGates {
         {"steel-plate", 2},
         {"advanced-circuit", 2}
     },
+    nextUpdate = "5d-gate-08",
     tech = {
         number = 7,
         count = 1750,
@@ -216,6 +223,7 @@ genGates {
         {"low-density-structure", 2},
         {"advanced-circuit", 2}
     },
+    nextUpdate = "5d-gate-09",
     tech = {
         number = 8,
         count = 2000,
@@ -249,6 +257,7 @@ genGates {
         {"low-density-structure", 2},
         {"advanced-circuit", 2}
     },
+    nextUpdate = "5d-gate-10",
     tech = {
         number = 9,
         count = 2250,

@@ -22,6 +22,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-1",
         count = 500,
@@ -56,6 +57,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-2",
         count = 500,
@@ -92,6 +94,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-3",
         count = 750,
@@ -128,6 +131,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-4",
         count = 1000,
@@ -163,6 +167,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-5",
         count = 1250,
@@ -199,6 +204,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-6",
         count = 1500,
@@ -234,6 +240,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-7",
         count = 1750,
@@ -271,6 +278,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-8",
         count = 2000,
@@ -307,6 +315,7 @@ genLaserTurrets {
         {"electronic-circuit", 10},
         {"battery", 7}
     },
+    nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-9",
         count = 2250,

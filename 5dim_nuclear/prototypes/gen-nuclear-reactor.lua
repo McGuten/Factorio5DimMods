@@ -21,6 +21,7 @@ genNuclearReactors {
         {"copper-plate", 500}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-02",
     tech = nil
 }
 
@@ -47,6 +48,7 @@ genNuclearReactors {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-03",
     tech = {
         number = 1,
         count = 500,
@@ -86,6 +88,7 @@ genNuclearReactors {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-04",
     tech = {
         number = 2,
         count = 750,
@@ -128,6 +131,7 @@ genNuclearReactors {
         {"iron-gear-wheel", 100}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-05",
     tech = {
         number = 3,
         count = 1000,
@@ -172,6 +176,7 @@ genNuclearReactors {
         {"speed-module", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-06",
     tech = {
         number = 4,
         count = 1250,
@@ -216,6 +221,7 @@ genNuclearReactors {
         {"productivity-module", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-07",
     tech = {
         number = 5,
         count = 1500,
@@ -259,6 +265,7 @@ genNuclearReactors {
         {"speed-module-2", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-08",
     tech = {
         number = 6,
         count = 1750,
@@ -303,6 +310,7 @@ genNuclearReactors {
         {"productivity-module-2", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-09",
     tech = {
         number = 7,
         count = 2000,
@@ -346,6 +354,7 @@ genNuclearReactors {
         {"speed-module-3", 5}
     },
     pollution = emisions,
+    nextUpdate = "5d-nuclear-reactor-10",
     tech = {
         number = 8,
         count = 2250,

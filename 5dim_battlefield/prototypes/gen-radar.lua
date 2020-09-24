@@ -18,6 +18,7 @@ genRadars {
         {"iron-gear-wheel", 5},
         {"iron-plate", 10}
     },
+    nextUpdate = "5d-radar-02",
     tech = nil
 }
 
@@ -40,6 +41,7 @@ genRadars {
         {"iron-plate", 10},
         {"radar", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 1,
         count = 150,
@@ -72,6 +74,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-02", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 2,
         count = 300,
@@ -106,6 +109,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-02", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 3,
         count = 450,
@@ -139,6 +143,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-03", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 4,
         count = 1250,
@@ -174,6 +179,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-04", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 5,
         count = 600,
@@ -208,6 +214,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-05", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 6,
         count = 750,
@@ -242,6 +249,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-06", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 7,
         count = 900,
@@ -278,6 +286,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-07", 1}
     },
+    nextUpdate = "5d-radar-02",
     tech = {
         number = 8,
         count = 2250,

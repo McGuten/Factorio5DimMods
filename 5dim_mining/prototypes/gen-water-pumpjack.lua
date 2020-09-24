@@ -21,6 +21,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-02",
     tech = {
         number = 1,
         count = 100,
@@ -57,6 +58,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-03",
     tech = {
         number = 2,
         count = 150,
@@ -91,6 +93,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-04",
     tech = {
         number = 3,
         count = 300,
@@ -126,6 +129,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-05",
     tech = {
         number = 4,
         count = 450,
@@ -162,6 +166,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-06",
     tech = {
         number = 5,
         count = 500,
@@ -198,6 +203,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-07",
     tech = {
         number = 6,
         count = 600,
@@ -235,6 +241,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-08",
     tech = {
         number = 7,
         count = 700,
@@ -272,6 +279,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-09",
     tech = {
         number = 8,
         count = 800,
@@ -310,6 +318,7 @@ genWaterPumpjacks {
         {"pipe", 10}
     },
     pollution = emisions,
+    nextUpdate = "5d-water-pumpjack-10",
     tech = {
         number = 9,
         count = 900,

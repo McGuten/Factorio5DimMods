@@ -13,15 +13,15 @@ function genTeslaTurrets(inputs)
     if inputs.new then
         item.name = "5d-tesla-turret-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/tesla-turret/tesla-turret-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-icon.png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -32,7 +32,7 @@ function genTeslaTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.folded_animation.layers[3] =
         tesla_turret_extension_mask {
@@ -64,7 +64,8 @@ function genTeslaTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-tesla-turrets-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.icon = item.icon
+        tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

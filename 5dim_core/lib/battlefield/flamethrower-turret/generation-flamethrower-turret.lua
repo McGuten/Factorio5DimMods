@@ -13,15 +13,15 @@ function genFlamethrowerTurrets(inputs)
     if inputs.new then
         item.name = "5d-flamethrower-turret-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_battlefield__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -32,7 +32,7 @@ function genFlamethrowerTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.attack_parameters.cooldown = inputs.attackSpeed
     entity.attack_parameters.range = inputs.range

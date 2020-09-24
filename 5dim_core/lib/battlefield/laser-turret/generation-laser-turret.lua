@@ -13,8 +13,17 @@ function genLaserTurrets(inputs)
     if inputs.new then
         item.name = "5d-laser-turret-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/laser-turret/laser-turret-icon-" .. inputs.number .. ".png"
+
+    if string.find(inputs.number, "small") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/laser-turret/laser-turret-small.png"
+    elseif string.find(inputs.number, "big") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/laser-turret/laser-turret-big.png"
+    elseif string.find(inputs.number, "sniper") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/laser-turret/laser-turret-sniper.png"
+    else
+        item.icon = "__5dim_battlefield__/graphics/icon/laser-turret/laser-turret-normal.png"
+    end
+
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -63,7 +72,8 @@ function genLaserTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.icon = item.icon
+        tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

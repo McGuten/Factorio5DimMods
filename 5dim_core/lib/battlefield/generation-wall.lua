@@ -11,15 +11,15 @@ function genStoneWalls(inputs)
     if inputs.new then
         item.name = "5d-stone-wall-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/stone-wall/stone-wall-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_battlefield__/graphics/icon/stone-wall/stone-wall-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -30,7 +30,7 @@ function genStoneWalls(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.max_health = inputs.health
     entity.fast_replaceable_group = "stone-wall"

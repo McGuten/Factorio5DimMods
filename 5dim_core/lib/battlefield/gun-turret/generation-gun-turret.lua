@@ -13,8 +13,17 @@ function genGunTurrets(inputs)
     if inputs.new then
         item.name = "5d-gun-turret-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/gun-turret/gun-turret-icon-" .. inputs.number .. ".png"
+
+    if string.find(inputs.number, "small") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-small.png"
+    elseif string.find(inputs.number, "big") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-big.png"
+    elseif string.find(inputs.number, "sniper") ~= nil then
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-sniper.png"
+    else
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-normal.png"
+    end
+
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -65,10 +74,6 @@ function genGunTurrets(inputs)
     entity.max_health = inputs.health or 480
     entity.fast_replaceable_group = "gun-turret"
 
-    -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/gun-turret/gun-turret-" .. inputs.number .. ".png"
-
     data:extend(
         {
             entity,
@@ -80,7 +85,8 @@ function genGunTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        -- tech.icon = item.icon
+        tech.icon = item.icon
+        tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

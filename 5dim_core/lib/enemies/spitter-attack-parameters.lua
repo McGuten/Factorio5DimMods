@@ -8,7 +8,7 @@ data:extend(
             animation_speed = 1,
             animations = {
                 {
-                    filename = "__5dim_battlefield__/graphics/icon/flame-thrower-bicho.png",
+                    filename = "__5dim_enemies__/graphics/entities/flame-thrower-bicho.png",
                     priority = "extra-high",
                     width = 64,
                     height = 64,

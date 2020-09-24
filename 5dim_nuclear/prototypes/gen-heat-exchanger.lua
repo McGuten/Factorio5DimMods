@@ -387,7 +387,6 @@ genHeatExchangers {
         {"effectivity-module-3", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-heat-exchanger-11",
     tech = {
         number = 9,
         count = 2500,

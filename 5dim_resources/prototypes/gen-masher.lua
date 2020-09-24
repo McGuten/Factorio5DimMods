@@ -365,7 +365,6 @@ genMasher {
         {"productivity-module-3", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-masher-11",
     tech = {
         number = 10,
         count = 1000,

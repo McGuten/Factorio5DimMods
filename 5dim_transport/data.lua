@@ -29,9 +29,6 @@ require("prototypes.pipe-ground-3-50")
 require("prototypes.splitter-4")
 require("prototypes.splitter-5")
 
---Tank Ground
-require("prototypes.tank-ground")
-
 --Tansport Belt
 require("prototypes.transport-belt-4")
 require("prototypes.transport-belt-5")

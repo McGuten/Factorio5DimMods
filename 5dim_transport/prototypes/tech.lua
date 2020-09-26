@@ -118,26 +118,6 @@ data:extend(
                 time = 30
             },
             order = "a-f-c"
-        },
-        {
-            type = "technology",
-            name = "fluid-handling-2",
-            icon = "__base__/graphics/technology/fluid-handling.png",
-            icon_size = 128,
-            prerequisites = {"oil-processing"},
-            effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-storage-tank"
-                }
-            },
-            prerequisites = {"fluid-handling"},
-            unit = {
-                count = 100,
-                ingredients = {{"automation-science-pack", 1}, {"logistic-science-pack", 1}},
-                time = 30
-            },
-            order = "d-a-a"
         }
     }
 )

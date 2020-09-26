@@ -46,27 +46,33 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "liquid-store-multi",
+            group = "liquid",
+            order = "g"
+        },
+        {
+            type = "item-subgroup",
             name = "liquid-water",
-            group = "liquid",
-            order = "ga"
-        },
-        {
-            type = "item-subgroup",
-            name = "liquid-pump",
-            group = "liquid",
-            order = "gb"
-        },
-        {
-            type = "item-subgroup",
-            name = "liquid-refinery",
             group = "liquid",
             order = "h"
         },
         {
             type = "item-subgroup",
-            name = "liquid-plant",
+            name = "liquid-pump",
             group = "liquid",
             order = "i"
+        },
+        {
+            type = "item-subgroup",
+            name = "liquid-refinery",
+            group = "liquid",
+            order = "j"
+        },
+        {
+            type = "item-subgroup",
+            name = "liquid-plant",
+            group = "liquid",
+            order = "k"
         }
     }
 )

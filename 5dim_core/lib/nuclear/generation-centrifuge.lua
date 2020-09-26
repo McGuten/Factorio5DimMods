@@ -9,8 +9,8 @@ function genCentrifuges(inputs)
     if inputs.new then
         item.name = "5d-centrifuge-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/centrifuge/centrifuge-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_nuclear__/graphics/icon/centrifuge/centrifuge-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -37,8 +37,8 @@ function genCentrifuges(inputs)
     entity.fast_replaceable_group = "centrifuge"
 
     -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/centrifuge/centrifuge-" .. inputs.number .. ".png"
+    entity.idle_animation.layers[1].hr_version.filename =
+        "__5dim_nuclear__/graphics/entities/centrifuge/centrifuge-C-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})
 

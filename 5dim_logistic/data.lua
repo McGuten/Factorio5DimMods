@@ -1,11 +1,14 @@
---Changes
+-- Changes
 require("prototypes.changes")
 
---Roboport
+-- Roboport
 require("prototypes.gen-roboport")
 
---Logistic robot
+-- Logistic robot
 require("prototypes.gen-logistic-robot")
 
---Construction robot
+-- Construction robot
 require("prototypes.gen-construction-robot")
+
+-- Beacon
+require("prototypes.gen-beacon")

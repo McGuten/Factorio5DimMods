@@ -11,8 +11,8 @@ function genRadars(inputs)
     if inputs.new then
         item.name = "5d-radar-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_battlefield__/graphics/icon/radar/radar-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_battlefield__/graphics/icon/radar/radar-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -38,8 +38,8 @@ function genRadars(inputs)
     entity.fast_replaceable_group = "radar"
 
     -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
+    entity.pictures.layers[1].hr_version.filename =
+        "__5dim_battlefield__/graphics/entities/radar/radar-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})
 

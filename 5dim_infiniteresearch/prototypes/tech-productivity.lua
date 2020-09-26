@@ -13,7 +13,7 @@ data:extend(
             },
             prerequisites = {"research-speed-6"},
             unit = {
-                count_formula = "1000*(L-5)",
+                count_formula = "1000*(L)",
                 ingredients = {
                     {"automation-science-pack", 1},
                     {"logistic-science-pack", 1},

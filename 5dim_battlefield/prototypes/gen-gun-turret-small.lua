@@ -6,6 +6,7 @@ local shootingSpeed = 4
 local damageModif = 0.6
 local color = {r = 1, g = 1, b = 0.1, a = 1}
 local hp = 400
+local techCount = 100
 
 -- Small gun turret 01
 genGunTurrets {
@@ -61,7 +62,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-03",
     tech = {
         number = "5d-turrets-small-2",
-        count = 100,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1}
         },
@@ -95,7 +96,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-04",
     tech = {
         number = "5d-turrets-small-3",
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1}
         },
@@ -129,7 +130,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-05",
     tech = {
         number = "5d-turrets-small-4",
-        count = 150,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -165,7 +166,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-06",
     tech = {
         number = "5d-turrets-small-5",
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -201,7 +202,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-07",
     tech = {
         number = "5d-turrets-small-6",
-        count = 200,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -238,7 +239,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-08",
     tech = {
         number = "5d-turrets-small-7",
-        count = 250,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -274,7 +275,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-09",
     tech = {
         number = "5d-turrets-small-8",
-        count = 300,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -310,7 +311,7 @@ genGunTurrets {
     nextUpdate = "5d-gun-turret-small-10",
     tech = {
         number = "5d-turrets-small-9",
-        count = 350,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -347,7 +348,7 @@ genGunTurrets {
     },
     tech = {
         number = "5d-turrets-small-10",
-        count = 400,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

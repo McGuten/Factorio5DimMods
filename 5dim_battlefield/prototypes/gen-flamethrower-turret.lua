@@ -6,6 +6,7 @@ local fluid_consumption = 0.2
 local damageModif = 19
 local color = {r = 0, g = 1, b = 1, a = 1}
 local hp = 1400
+local techCount = 150
 
 -- Tesla turret 01
 genFlamethrowerTurrets {
@@ -54,7 +55,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-03",
     tech = {
         number = 1,
-        count = 150,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -92,7 +93,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-04",
     tech = {
         number = 2,
-        count = 300,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -129,7 +130,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-05",
     tech = {
         number = 3,
-        count = 450,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -170,7 +171,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-06",
     tech = {
         number = 4,
-        count = 600,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -209,7 +210,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-07",
     tech = {
         number = 5,
-        count = 750,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -249,7 +250,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-08",
     tech = {
         number = 6,
-        count = 900,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -290,7 +291,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-09",
     tech = {
         number = 7,
-        count = 1050,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -330,7 +331,7 @@ genFlamethrowerTurrets {
     nextUpdate = "5d-flamethrower-turret-10",
     tech = {
         number = 8,
-        count = 1200,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -368,7 +369,7 @@ genFlamethrowerTurrets {
     },
     tech = {
         number = 9,
-        count = 1350,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

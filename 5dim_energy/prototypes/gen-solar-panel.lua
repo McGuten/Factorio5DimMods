@@ -4,6 +4,7 @@ local speed = 60
 local modules = 2
 local energy = 90
 local emisions = 10
+local techCount = 450
 
 -- Electric furnace 01
 genSolarPanels {
@@ -48,7 +49,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-03",
     tech = {
         number = 2,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -82,7 +83,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-04",
     tech = {
         number = 3,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -119,7 +120,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-05",
     tech = {
         number = 4,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -156,7 +157,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-06",
     tech = {
         number = 5,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -194,7 +195,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-07",
     tech = {
         number = 6,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -231,7 +232,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-08",
     tech = {
         number = 7,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -271,7 +272,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-09",
     tech = {
         number = 8,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -309,7 +310,7 @@ genSolarPanels {
     nextUpdate = "5d-solar-panel-10",
     tech = {
         number = 9,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -347,7 +348,7 @@ genSolarPanels {
     pollution = emisions,
     tech = {
         number = 10,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

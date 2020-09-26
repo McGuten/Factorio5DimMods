@@ -5,6 +5,7 @@ local shootingSpeed = 25
 local damageModif = 1.2
 local color = {r = 1, g = 1, b = 0.1, a = 1}
 local hp = 800
+local techCount = 150
 
 -- Small laser turret 01
 genLaserTurrets {
@@ -25,7 +26,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-1",
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -60,7 +61,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-2",
-        count = 500,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -97,7 +98,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-3",
-        count = 750,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -134,7 +135,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-4",
-        count = 1000,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -170,7 +171,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-5",
-        count = 1250,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -207,7 +208,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-6",
-        count = 1500,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -243,7 +244,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-7",
-        count = 1750,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -281,7 +282,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-8",
-        count = 2000,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -318,7 +319,7 @@ genLaserTurrets {
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
         number = "5d-laser-turrets-small-9",
-        count = 2250,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -354,7 +355,7 @@ genLaserTurrets {
     },
     tech = {
         number = "5d-laser-turrets-small-10",
-        count = 2500,
+        count = techCount * 10,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

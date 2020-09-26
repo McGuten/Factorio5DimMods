@@ -4,6 +4,7 @@ local speed = 200
 local modules = 2
 local energy = 29
 local emisions = 10
+local techCount = 100
 
 -- Electric furnace 01
 genPumps {
@@ -48,7 +49,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 2,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -84,7 +85,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 3,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -122,7 +123,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 4,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -159,7 +160,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 5,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -197,7 +198,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 6,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -234,7 +235,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 7,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -274,7 +275,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 8,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -312,7 +313,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 9,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -352,7 +353,7 @@ genPumps {
     nextUpdate = "",
     tech = {
         number = 10,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

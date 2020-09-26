@@ -62,3 +62,6 @@ require("prototypes.oil-refinery-3")
 
 --Tech
 require("prototypes.tech")
+
+-- Lab
+require("prototypes.gen-lab")

@@ -4,6 +4,7 @@ local speed = 18
 local modules = 2
 local energy = 9
 local emisions = 30
+local techCount = 250
 
 -- Electric furnace 01
 genSubstations {
@@ -48,7 +49,7 @@ genSubstations {
     nextUpdate = "5d-substation-03",
     tech = {
         number = 1,
-        count = 200,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -82,7 +83,7 @@ genSubstations {
     nextUpdate = "5d-substation-04",
     tech = {
         number = 2,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -90,8 +91,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-1",
-            "5d-medium-electric-pole-1",
-            "5d-big-electric-pole-1"
+            "5d-medium-electric-pole-2",
+            "5d-big-electric-pole-2"
         }
     }
 }
@@ -120,7 +121,7 @@ genSubstations {
     nextUpdate = "5d-substation-05",
     tech = {
         number = 3,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -129,8 +130,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-2",
-            "5d-medium-electric-pole-2",
-            "5d-big-electric-pole-2"
+            "5d-medium-electric-pole-3",
+            "5d-big-electric-pole-3"
         }
     }
 }
@@ -158,7 +159,7 @@ genSubstations {
     nextUpdate = "5d-substation-06",
     tech = {
         number = 4,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -166,8 +167,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-3",
-            "5d-medium-electric-pole-3",
-            "5d-big-electric-pole-3",
+            "5d-medium-electric-pole-4",
+            "5d-big-electric-pole-4",
             "production-science-pack"
         }
     }
@@ -197,7 +198,7 @@ genSubstations {
     nextUpdate = "5d-substation-07",
     tech = {
         number = 5,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -206,8 +207,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-4",
-            "5d-medium-electric-pole-4",
-            "5d-big-electric-pole-4"
+            "5d-medium-electric-pole-5",
+            "5d-big-electric-pole-5"
         }
     }
 }
@@ -235,7 +236,7 @@ genSubstations {
     nextUpdate = "5d-substation-08",
     tech = {
         number = 6,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -245,8 +246,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-5",
-            "5d-medium-electric-pole-5",
-            "5d-big-electric-pole-5",
+            "5d-medium-electric-pole-6",
+            "5d-big-electric-pole-6",
             "utility-science-pack"
         }
     }
@@ -276,7 +277,7 @@ genSubstations {
     nextUpdate = "5d-substation-09",
     tech = {
         number = 7,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -286,8 +287,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-6",
-            "5d-medium-electric-pole-6",
-            "5d-big-electric-pole-6"
+            "5d-medium-electric-pole-7",
+            "5d-big-electric-pole-7"
         }
     }
 }
@@ -315,7 +316,7 @@ genSubstations {
     nextUpdate = "5d-substation-10",
     tech = {
         number = 8,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -325,8 +326,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-7",
-            "5d-medium-electric-pole-7",
-            "5d-big-electric-pole-7"
+            "5d-medium-electric-pole-8",
+            "5d-big-electric-pole-8"
         }
     }
 }
@@ -354,7 +355,7 @@ genSubstations {
     pollution = emisions,
     tech = {
         number = 9,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -364,8 +365,8 @@ genSubstations {
         },
         prerequisites = {
             "5d-substation-8",
-            "5d-medium-electric-pole-8",
-            "5d-big-electric-pole-8"
+            "5d-medium-electric-pole-9",
+            "5d-big-electric-pole-9"
         }
     }
 }

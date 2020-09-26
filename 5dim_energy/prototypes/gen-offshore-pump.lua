@@ -4,6 +4,7 @@ local speed = 20
 local modules = 2
 local energy = 90
 local emisions = 10
+local techCount = 100
 
 -- Electric furnace 01
 genOffshorePumps {
@@ -48,7 +49,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-03",
     tech = {
         number = 1,
-        count = 150,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -83,7 +84,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-04",
     tech = {
         number = 2,
-        count = 300,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -120,7 +121,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-05",
     tech = {
         number = 3,
-        count = 450,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -158,7 +159,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-06",
     tech = {
         number = 4,
-        count = 500,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -196,7 +197,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-07",
     tech = {
         number = 5,
-        count = 600,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -235,7 +236,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-08",
     tech = {
         number = 6,
-        count = 700,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -274,7 +275,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-09",
     tech = {
         number = 7,
-        count = 800,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -315,7 +316,7 @@ genOffshorePumps {
     nextUpdate = "5d-offshore-pump-10",
     tech = {
         number = 8,
-        count = 900,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -355,7 +356,7 @@ genOffshorePumps {
     pollution = emisions,
     tech = {
         number = 9,
-        count = 1000,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

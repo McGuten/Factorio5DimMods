@@ -3,6 +3,7 @@ require("__5dim_core__.lib.battlefield.generation-radar")
 local escaner = 14
 local revelado = 3
 local energia = 300
+local techCount = 150
 
 -- Radar 01
 genRadars {
@@ -44,7 +45,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 1,
-        count = 150,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -77,7 +78,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 2,
-        count = 300,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -112,7 +113,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 3,
-        count = 450,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -146,7 +147,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 4,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -182,7 +183,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 5,
-        count = 600,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -217,7 +218,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 6,
-        count = 750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -252,7 +253,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 7,
-        count = 900,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -289,7 +290,7 @@ genRadars {
     nextUpdate = "5d-radar-02",
     tech = {
         number = 8,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -324,7 +325,7 @@ genRadars {
     },
     tech = {
         number = 9,
-        count = 1050,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

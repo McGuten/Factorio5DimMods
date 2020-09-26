@@ -4,6 +4,7 @@ local crafting = 2
 local modules = 2
 local energy = 180
 local emisions = 1
+local techCount = 250
 
 -- Electric furnace 01
 genElectricFurnaces {
@@ -48,7 +49,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-03",
     tech = {
         number = 3,
-        count = 200,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -83,7 +84,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-04",
     tech = {
         number = 4,
-        count = 300,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -121,7 +122,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-05",
     tech = {
         number = 5,
-        count = 400,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -158,7 +159,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-06",
     tech = {
         number = 6,
-        count = 500,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -196,7 +197,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-07",
     tech = {
         number = 7,
-        count = 600,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -233,7 +234,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-08",
     tech = {
         number = 8,
-        count = 700,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -271,7 +272,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-09",
     tech = {
         number = 9,
-        count = 800,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -310,7 +311,7 @@ genElectricFurnaces {
     nextUpdate = "5d-electric-furnace-10",
     tech = {
         number = 10,
-        count = 900,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -348,7 +349,7 @@ genElectricFurnaces {
     pollution = emisions,
     tech = {
         number = 11,
-        count = 1000,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

@@ -4,6 +4,7 @@ local speed = 5
 local modules = 2
 local energy = 300
 local emisions = 10
+local techCount = 450
 
 -- Electric furnace 01
 genAccumulators {
@@ -47,7 +48,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-03",
     tech = {
         number = 2,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -81,7 +82,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-04",
     tech = {
         number = 3,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -118,7 +119,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-05",
     tech = {
         number = 4,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -155,7 +156,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-06",
     tech = {
         number = 5,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -193,7 +194,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-07",
     tech = {
         number = 6,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -230,7 +231,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-08",
     tech = {
         number = 7,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -270,7 +271,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-09",
     tech = {
         number = 8,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -308,7 +309,7 @@ genAccumulators {
     nextUpdate = "5d-accumulator-10",
     tech = {
         number = 9,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -346,7 +347,7 @@ genAccumulators {
     pollution = emisions,
     tech = {
         number = 10,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

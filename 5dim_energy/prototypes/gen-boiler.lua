@@ -4,6 +4,7 @@ local speed = 1.8
 local modules = 2
 local energy = 1
 local emisions = 30
+local techCount = 500
 
 -- Electric furnace 01
 genBoilers {
@@ -46,7 +47,7 @@ genBoilers {
     nextUpdate = "5d-boiler-03",
     tech = {
         number = 1,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -80,7 +81,7 @@ genBoilers {
     nextUpdate = "5d-boiler-04",
     tech = {
         number = 2,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -116,7 +117,7 @@ genBoilers {
     nextUpdate = "5d-boiler-05",
     tech = {
         number = 3,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -154,7 +155,7 @@ genBoilers {
     nextUpdate = "5d-boiler-06",
     tech = {
         number = 4,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -193,7 +194,7 @@ genBoilers {
     nextUpdate = "5d-boiler-07",
     tech = {
         number = 5,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -233,7 +234,7 @@ genBoilers {
     nextUpdate = "5d-boiler-08",
     tech = {
         number = 6,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -273,7 +274,7 @@ genBoilers {
     nextUpdate = "5d-boiler-09",
     tech = {
         number = 7,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -314,7 +315,7 @@ genBoilers {
     nextUpdate = "5d-boiler-10",
     tech = {
         number = 8,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -354,7 +355,7 @@ genBoilers {
     pollution = emisions,
     tech = {
         number = 9,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

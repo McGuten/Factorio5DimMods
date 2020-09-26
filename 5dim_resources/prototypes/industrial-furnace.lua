@@ -43,6 +43,9 @@ entity.animation = {
     shift = {0, 0}
 }
 entity.energy_source.emissions_per_minute = 35
+entity.collision_box = {{-2.2, -2.2}, {2.2, 2.2}}
+entity.selection_box = {{-2.5, -2.5}, {2.5, 2.5}}
+entity.crafting_categories = {"industrial-furnace"}
 
 -- Technology
 tech.name = "advanced-material-processing-12"

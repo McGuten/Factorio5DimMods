@@ -5,6 +5,7 @@ local shootingSpeed = 25
 local damageModif = 19
 local color = {r = 0.9, g = 0.1, b = 0.9, a = 1}
 local hp = 1500
+local techCount = 500
 
 -- Tesla turret 01
 genTeslaTurrets {
@@ -25,7 +26,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 1,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -65,7 +66,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 2,
-        count = 1000,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -102,7 +103,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 3,
-        count = 1500,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -139,7 +140,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 4,
-        count = 2000,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -176,7 +177,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 5,
-        count = 2500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -213,7 +214,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 6,
-        count = 3000,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -250,7 +251,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 7,
-        count = 3500,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -289,7 +290,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 8,
-        count = 4000,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -326,7 +327,7 @@ genTeslaTurrets {
     nextUpdate = "5d-tesla-turret-02",
     tech = {
         number = 9,
-        count = 4500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -362,7 +363,7 @@ genTeslaTurrets {
     },
     tech = {
         number = 10,
-        count = 5000,
+        count = techCount * 10,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

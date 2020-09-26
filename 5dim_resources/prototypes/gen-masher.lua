@@ -4,6 +4,7 @@ local crafting = 2
 local modules = 2
 local energy = 360
 local emisions = 1
+local techCount = 250
 
 -- Electric furnace 01
 genMasher {
@@ -23,7 +24,7 @@ genMasher {
     nextUpdate = "5d-masher-02",
     tech = {
         number = 1,
-        count = 100,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -59,7 +60,7 @@ genMasher {
     nextUpdate = "5d-masher-03",
     tech = {
         number = 2,
-        count = 200,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -95,7 +96,7 @@ genMasher {
     nextUpdate = "5d-masher-04",
     tech = {
         number = 3,
-        count = 300,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -134,7 +135,7 @@ genMasher {
     nextUpdate = "5d-masher-05",
     tech = {
         number = 4,
-        count = 400,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -172,7 +173,7 @@ genMasher {
     nextUpdate = "5d-masher-06",
     tech = {
         number = 5,
-        count = 500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -211,7 +212,7 @@ genMasher {
     nextUpdate = "5d-masher-07",
     tech = {
         number = 6,
-        count = 600,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -249,7 +250,7 @@ genMasher {
     nextUpdate = "5d-masher-08",
     tech = {
         number = 7,
-        count = 700,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -288,7 +289,7 @@ genMasher {
     nextUpdate = "5d-masher-09",
     tech = {
         number = 8,
-        count = 800,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -328,7 +329,7 @@ genMasher {
     nextUpdate = "5d-masher-10",
     tech = {
         number = 9,
-        count = 900,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -367,7 +368,7 @@ genMasher {
     pollution = emisions,
     tech = {
         number = 10,
-        count = 1000,
+        count = techCount * 10,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

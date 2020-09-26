@@ -8,6 +8,7 @@ local logistic = 25
 local constructions = 55
 local botSlot = 7
 local recharges = 40
+local techCount = 500
 
 -- Electric furnace 01
 genRoboports {
@@ -65,7 +66,7 @@ genRoboports {
     nextUpdate = "5d-roboport-03",
     tech = {
         number = 1,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -109,7 +110,7 @@ genRoboports {
     nextUpdate = "5d-roboport-04",
     tech = {
         number = 2,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
@@ -154,7 +155,7 @@ genRoboports {
     nextUpdate = "5d-roboport-05",
     tech = {
         number = 3,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -201,7 +202,7 @@ genRoboports {
     nextUpdate = "5d-roboport-06",
     tech = {
         number = 4,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -247,7 +248,7 @@ genRoboports {
     nextUpdate = "5d-roboport-07",
     tech = {
         number = 5,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -295,7 +296,7 @@ genRoboports {
     nextUpdate = "5d-roboport-08",
     tech = {
         number = 6,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -342,7 +343,7 @@ genRoboports {
     nextUpdate = "5d-roboport-09",
     tech = {
         number = 7,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -391,7 +392,7 @@ genRoboports {
     nextUpdate = "5d-roboport-10",
     tech = {
         number = 8,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -438,7 +439,7 @@ genRoboports {
     recharge = recharges,
     tech = {
         number = 9,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

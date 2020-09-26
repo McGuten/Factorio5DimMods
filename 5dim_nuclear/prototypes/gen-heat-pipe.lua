@@ -4,6 +4,7 @@ local speed = 1000
 local modules = 2
 local energy = 1
 local emisions = 30
+local techCount = 500
 
 -- Electric furnace 01
 genHeatPipes {
@@ -46,7 +47,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-03",
     tech = {
         number = 1,
-        count = 500,
+        count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -83,7 +84,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-04",
     tech = {
         number = 2,
-        count = 750,
+        count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -124,7 +125,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-05",
     tech = {
         number = 3,
-        count = 1000,
+        count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -167,7 +168,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-06",
     tech = {
         number = 4,
-        count = 1250,
+        count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -210,7 +211,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-07",
     tech = {
         number = 5,
-        count = 1500,
+        count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -252,7 +253,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-08",
     tech = {
         number = 6,
-        count = 1750,
+        count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -295,7 +296,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-09",
     tech = {
         number = 7,
-        count = 2000,
+        count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -337,7 +338,7 @@ genHeatPipes {
     nextUpdate = "5d-heat-pipe-10",
     tech = {
         number = 8,
-        count = 2250,
+        count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
@@ -379,7 +380,7 @@ genHeatPipes {
     pollution = emisions,
     tech = {
         number = 9,
-        count = 2500,
+        count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},

@@ -53,15 +53,21 @@ require("prototypes.assembling-machine-4")
 require("prototypes.assembling-machine-5")
 
 --Chemical plant
-require("prototypes.chemical-plant-2")
-require("prototypes.chemical-plant-3")
+-- require("prototypes.chemical-plant-2")
+-- require("prototypes.chemical-plant-3")
 
 --Oil refinery
-require("prototypes.oil-refinery-2")
-require("prototypes.oil-refinery-3")
+-- require("prototypes.oil-refinery-2")
+-- require("prototypes.oil-refinery-3")
 
 --Tech
 require("prototypes.tech")
 
 -- Lab
 require("prototypes.gen-lab")
+
+-- Chemical plant
+require("prototypes.gen-chemical-plant")
+
+-- Oil refinery
+require("prototypes.gen-oil-refinery")

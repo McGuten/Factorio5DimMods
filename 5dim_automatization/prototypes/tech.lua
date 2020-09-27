@@ -48,64 +48,64 @@ data:extend(
                 time = 80
             },
             order = "c-a"
-        },
-        {
-            type = "technology",
-            name = "oil-processing-2",
-            icon = "__base__/graphics/technology/oil-gathering.png",
-            icon_size = 128,
-            prerequisites = {"oil-processing"},
-            effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-oil-refinery-2"
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-chemical-plant-2"
-                }
-            },
-            unit = {
-                count = 100,
-                ingredients = {
-                    {"automation-science-pack", 1},
-                    {"logistic-science-pack", 1},
-                    {"chemical-science-pack", 1},
-                    {"production-science-pack", 1}
-                },
-                time = 30
-            },
-            order = "d-a"
-        },
-        {
-            type = "technology",
-            name = "oil-processing-3",
-            icon = "__base__/graphics/technology/oil-gathering.png",
-            icon_size = 128,
-            prerequisites = {"oil-processing-2"},
-            effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-oil-refinery-3"
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = "5d-chemical-plant-3"
-                }
-            },
-            unit = {
-                count = 150,
-                ingredients = {
-                    {"automation-science-pack", 1},
-                    {"logistic-science-pack", 1},
-                    {"chemical-science-pack", 1},
-                    {"production-science-pack", 1},
-                    {"utility-science-pack", 1}
-                },
-                time = 30
-            },
-            order = "d-a"
         }
+        -- {
+        --     type = "technology",
+        --     name = "oil-processing-2",
+        --     icon = "__base__/graphics/technology/oil-gathering.png",
+        --     icon_size = 128,
+        --     prerequisites = {"oil-processing"},
+        --     effects = {
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-oil-refinery-2"
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-chemical-plant-2"
+        --         }
+        --     },
+        --     unit = {
+        --         count = 100,
+        --         ingredients = {
+        --             {"automation-science-pack", 1},
+        --             {"logistic-science-pack", 1},
+        --             {"chemical-science-pack", 1},
+        --             {"production-science-pack", 1}
+        --         },
+        --         time = 30
+        --     },
+        --     order = "d-a"
+        -- },
+        -- {
+        --     type = "technology",
+        --     name = "oil-processing-3",
+        --     icon = "__base__/graphics/technology/oil-gathering.png",
+        --     icon_size = 128,
+        --     prerequisites = {"oil-processing-2"},
+        --     effects = {
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-oil-refinery-3"
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = "5d-chemical-plant-3"
+        --         }
+        --     },
+        --     unit = {
+        --         count = 150,
+        --         ingredients = {
+        --             {"automation-science-pack", 1},
+        --             {"logistic-science-pack", 1},
+        --             {"chemical-science-pack", 1},
+        --             {"production-science-pack", 1},
+        --             {"utility-science-pack", 1}
+        --         },
+        --         time = 30
+        --     },
+        --     order = "d-a"
+        -- }
     }
 )
 

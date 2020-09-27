@@ -23,3 +23,6 @@ require("prototypes.gen-solar-panel")
 
 --Steam Engine
 require("prototypes.gen-steam-engine")
+
+--Lamp
+require("prototypes.gen-lamp")

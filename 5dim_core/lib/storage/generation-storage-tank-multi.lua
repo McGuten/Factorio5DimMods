@@ -1,5 +1,3 @@
-require("pipe-conection-multi-tank")
-
 function genStorageTankMultis(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["storage-tank"])

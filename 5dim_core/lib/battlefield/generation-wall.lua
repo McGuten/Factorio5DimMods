@@ -23,7 +23,7 @@ function genStoneWalls(inputs)
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
-        recipe.enabled = true
+        recipe.enabled = false
     end
     recipe.ingredients = inputs.ingredients
 

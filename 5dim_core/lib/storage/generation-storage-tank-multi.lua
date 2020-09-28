@@ -19,7 +19,7 @@ function genStorageTankMultis(inputs)
     recipe.result = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    recipe.enabled = true
+    recipe.enabled = false
     recipe.ingredients = inputs.ingredients
 
     --Entity

@@ -20,7 +20,7 @@ function genChemicalPlants(inputs)
     recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
-    recipe.enabled = true
+    recipe.enabled = false
     recipe.ingredients = inputs.ingredients
 
     --Entity

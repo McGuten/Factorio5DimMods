@@ -20,7 +20,7 @@ function genConstructionRobots(inputs)
     recipe.result = item.name
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
-    recipe.enabled = true
+    recipe.enabled = false
 
     --Entity
     entity.name = item.name

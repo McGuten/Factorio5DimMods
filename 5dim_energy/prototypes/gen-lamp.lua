@@ -13,9 +13,9 @@ genLamps {
     new = false,
     order = "a",
     ingredients = {
-        {"engine-unit", 1},
-        {"steel-plate", 1},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-02",
     tech = nil
@@ -34,9 +34,9 @@ genLamps {
     order = "b",
     ingredients = {
         {"small-lamp", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"pipe", 2}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-03",
     tech = {
@@ -66,10 +66,9 @@ genLamps {
     order = "c",
     ingredients = {
         {"5d-lamp-02", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 2},
-        {"iron-gear-wheel", 3},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-04",
     tech = {
@@ -100,10 +99,9 @@ genLamps {
     order = "d",
     ingredients = {
         {"5d-lamp-03", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-05",
     tech = {
@@ -134,10 +132,9 @@ genLamps {
     order = "e",
     ingredients = {
         {"5d-lamp-04", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-06",
     tech = {
@@ -168,10 +165,9 @@ genLamps {
     order = "f",
     ingredients = {
         {"5d-lamp-05", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-07",
     tech = {
@@ -202,10 +198,9 @@ genLamps {
     order = "g",
     ingredients = {
         {"5d-lamp-06", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-08",
     tech = {
@@ -238,10 +233,9 @@ genLamps {
     order = "h",
     ingredients = {
         {"5d-lamp-07", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-09",
     tech = {
@@ -273,10 +267,9 @@ genLamps {
     order = "i",
     ingredients = {
         {"5d-lamp-08", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 2},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     nextUpdate = "5d-lamp-10",
     tech = {
@@ -308,11 +301,9 @@ genLamps {
     order = "j",
     ingredients = {
         {"5d-lamp-09", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"pipe", 1}
+        {"electronic-circuit", 1},
+        {"copper-cable", 3},
+        {"iron-plate", 1}
     },
     tech = {
         number = 10,

@@ -21,7 +21,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-02",
     tech = nil
 }
 
@@ -46,7 +46,7 @@ genPumps {
         {"pipe", 2}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-03",
     tech = {
         number = 2,
         count = techCount * 1,
@@ -82,7 +82,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-04",
     tech = {
         number = 3,
         count = techCount * 2,
@@ -120,7 +120,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-05",
     tech = {
         number = 4,
         count = techCount * 3,
@@ -157,7 +157,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-06",
     tech = {
         number = 5,
         count = techCount * 4,
@@ -195,7 +195,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-07",
     tech = {
         number = 6,
         count = techCount * 5,
@@ -232,7 +232,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-08",
     tech = {
         number = 7,
         count = techCount * 6,
@@ -272,7 +272,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-09",
     tech = {
         number = 8,
         count = techCount * 7,
@@ -310,7 +310,7 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
+    nextUpdate = "5d-pump-10",
     tech = {
         number = 9,
         count = techCount * 8,
@@ -350,7 +350,6 @@ genPumps {
         {"pipe", 1}
     },
     pollution = emisions,
-    nextUpdate = "",
     tech = {
         number = 10,
         count = techCount * 9,

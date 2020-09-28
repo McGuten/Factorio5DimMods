@@ -16,10 +16,11 @@ genChemicalPlants {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"electronic-circuit", 5},
-        {"pipe", 5}
+        {"steel-plate", 15},
+        {"iron-gear-wheel", 10},
+        {"stone-brick", 10},
+        {"electronic-circuit", 10},
+        {"pipe", 10}
     },
     pollution = emisions,
     nextUpdate = "5d-oil-refinery-02",
@@ -42,9 +43,10 @@ genChemicalPlants {
     order = "b",
     ingredients = {
         {"oil-refinery", 1},
-        {"steel-plate", 5},
+        {"steel-plate", 15},
         {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
+        {"concrete", 10},
+        {"electronic-circuit", 10},
         {"pipe", 10}
     },
     pollution = emisions,
@@ -78,9 +80,10 @@ genChemicalPlants {
     order = "c",
     ingredients = {
         {"5d-oil-refinery-02", 1},
-        {"steel-plate", 5},
+        {"steel-plate", 15},
         {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
+        {"concrete", 10},
+        {"electronic-circuit", 10},
         {"pipe", 10}
     },
     pollution = emisions,
@@ -114,9 +117,10 @@ genChemicalPlants {
     order = "d",
     ingredients = {
         {"5d-oil-refinery-03", 1},
-        {"steel-plate", 5},
+        {"steel-plate", 15},
         {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
+        {"concrete", 10},
+        {"advanced-circuit", 10},
         {"pipe", 10}
     },
     pollution = emisions,
@@ -151,10 +155,12 @@ genChemicalPlants {
     order = "e",
     ingredients = {
         {"5d-oil-refinery-04", 1},
-        {"steel-plate", 5},
+        {"steel-plate", 15},
         {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"refined-concrete", 10},
+        {"advanced-circuit", 10},
+        {"pipe", 10},
+        {"speed-module", 1}
     },
     pollution = emisions,
     nextUpdate = "5d-oil-refinery-06",
@@ -188,8 +194,11 @@ genChemicalPlants {
     order = "f",
     ingredients = {
         {"5d-oil-refinery-05", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
+        {"steel-plate", 15},
+        {"iron-gear-wheel", 10},
+        {"refined-concrete", 10},
+        {"advanced-circuit", 10},
+        {"pipe", 10},
         {"productivity-module", 1}
     },
     pollution = emisions,
@@ -225,8 +234,11 @@ genChemicalPlants {
     order = "g",
     ingredients = {
         {"5d-oil-refinery-06", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
+        {"steel-plate", 15},
+        {"low-density-structure", 3},
+        {"concrete", 10},
+        {"advanced-circuit", 10},
+        {"pipe", 10},
         {"speed-module-2", 1}
     },
     pollution = emisions,
@@ -262,8 +274,11 @@ genChemicalPlants {
     order = "h",
     ingredients = {
         {"5d-oil-refinery-07", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
+        {"steel-plate", 15},
+        {"low-density-structure", 3},
+        {"concrete", 10},
+        {"advanced-circuit", 10},
+        {"pipe", 10},
         {"productivity-module-2", 1}
     },
     pollution = emisions,
@@ -300,8 +315,11 @@ genChemicalPlants {
     order = "i",
     ingredients = {
         {"5d-oil-refinery-08", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
+        {"steel-plate", 15},
+        {"low-density-structure", 3},
+        {"concrete", 10},
+        {"processing-unit", 2},
+        {"pipe", 10},
         {"speed-module-3", 1}
     },
     pollution = emisions,
@@ -338,9 +356,11 @@ genChemicalPlants {
     order = "j",
     ingredients = {
         {"5d-oil-refinery-09", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 5},
+        {"steel-plate", 15},
+        {"low-density-structure", 3},
+        {"concrete", 10},
         {"processing-unit", 2},
+        {"pipe", 10},
         {"productivity-module-3", 1}
     },
     pollution = emisions,

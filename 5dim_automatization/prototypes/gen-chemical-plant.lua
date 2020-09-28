@@ -43,9 +43,9 @@ genChemicalPlants {
     ingredients = {
         {"chemical-plant", 1},
         {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
+        {"iron-gear-wheel", 5},
         {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"pipe", 5}
     },
     pollution = emisions,
     nextUpdate = "5d-chemical-plant-03",
@@ -79,9 +79,9 @@ genChemicalPlants {
     ingredients = {
         {"5d-chemical-plant-02", 1},
         {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
+        {"iron-gear-wheel", 5},
         {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"pipe", 5}
     },
     pollution = emisions,
     nextUpdate = "5d-chemical-plant-04",
@@ -115,9 +115,9 @@ genChemicalPlants {
     ingredients = {
         {"5d-chemical-plant-03", 1},
         {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"iron-gear-wheel", 5},
+        {"advanced-circuit", 5},
+        {"pipe", 5}
     },
     pollution = emisions,
     nextUpdate = "5d-chemical-plant-05",
@@ -152,9 +152,10 @@ genChemicalPlants {
     ingredients = {
         {"5d-chemical-plant-04", 1},
         {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"iron-gear-wheel", 5},
+        {"advanced-circuit", 5},
+        {"pipe", 5},
+        {"speed-module", 1}
     },
     pollution = emisions,
     nextUpdate = "5d-chemical-plant-06",
@@ -226,7 +227,9 @@ genChemicalPlants {
     ingredients = {
         {"5d-chemical-plant-06", 1},
         {"steel-plate", 5},
+        {"low-density-structure", 2},
         {"advanced-circuit", 5},
+        {"pipe", 5},
         {"speed-module-2", 1}
     },
     pollution = emisions,
@@ -262,8 +265,10 @@ genChemicalPlants {
     order = "h",
     ingredients = {
         {"5d-chemical-plant-07", 1},
-        {"advanced-circuit", 5},
+        {"steel-plate", 5},
         {"low-density-structure", 2},
+        {"advanced-circuit", 5},
+        {"pipe", 5},
         {"productivity-module-2", 1}
     },
     pollution = emisions,
@@ -300,8 +305,10 @@ genChemicalPlants {
     order = "i",
     ingredients = {
         {"5d-chemical-plant-08", 1},
-        {"advanced-circuit", 5},
+        {"steel-plate", 5},
         {"low-density-structure", 2},
+        {"processing-unit", 3},
+        {"pipe", 5},
         {"speed-module-3", 1}
     },
     pollution = emisions,
@@ -339,8 +346,9 @@ genChemicalPlants {
     ingredients = {
         {"5d-chemical-plant-09", 1},
         {"steel-plate", 5},
-        {"low-density-structure", 5},
-        {"processing-unit", 2},
+        {"low-density-structure", 2},
+        {"processing-unit", 3},
+        {"pipe", 5},
         {"productivity-module-3", 1}
     },
     pollution = emisions,

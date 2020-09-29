@@ -17,7 +17,7 @@ function genPumps(inputs)
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -28,7 +28,7 @@ function genPumps(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.pumping_speed = inputs.craftingSpeed
     entity.energy_usage = inputs.energyUsage .. "kW"

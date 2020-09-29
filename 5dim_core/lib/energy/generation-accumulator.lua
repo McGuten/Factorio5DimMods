@@ -17,7 +17,7 @@ function genAccumulators(inputs)
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -28,7 +28,7 @@ function genAccumulators(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.energy_source.buffer_capacity = inputs.craftingSpeed .. "MJ"
     entity.energy_source.input_flow_limit = inputs.energyUsage .. "kW"

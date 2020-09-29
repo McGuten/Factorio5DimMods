@@ -17,7 +17,7 @@ function genSubstations(inputs)
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -28,7 +28,7 @@ function genSubstations(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.maximum_wire_distance = inputs.craftingSpeed
     entity.supply_area_distance = inputs.energyUsage

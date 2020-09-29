@@ -13,10 +13,10 @@ if mods["5dim_battlefield"] then
     -- data.raw["car"]["5d-artillery"].equipment_grid = "5d-car-equipment-grid"
 end
 if mods["5dim_trains"] then
-    data.raw["locomotive"]["5d-locomotive-hs"].equipment_grid = "5d-locomotive-equipment-grid"
-    data.raw["locomotive"]["5d-locomotive-reinforced"].equipment_grid = "5d-locomotive-equipment-grid"
-    data.raw["cargo-wagon"]["5d-cargo-wagon-2"].equipment_grid = "5d-cargo-wagon-equipment-grid"
-    data.raw["cargo-wagon"]["5d-cargo-wagon-3"].equipment_grid = "5d-cargo-wagon-equipment-grid"
-    data.raw["fluid-wagon"]["5d-fluid-wagon-2"].equipment_grid = "5d-fluid-wagon-equipment-grid"
-    data.raw["fluid-wagon"]["5d-fluid-wagon-3"].equipment_grid = "5d-fluid-wagon-equipment-grid"
+    -- data.raw["locomotive"]["5d-locomotive-hs"].equipment_grid = "5d-locomotive-equipment-grid"
+    -- data.raw["locomotive"]["5d-locomotive-reinforced"].equipment_grid = "5d-locomotive-equipment-grid"
+    -- data.raw["cargo-wagon"]["5d-cargo-wagon-2"].equipment_grid = "5d-cargo-wagon-equipment-grid"
+    -- data.raw["cargo-wagon"]["5d-cargo-wagon-3"].equipment_grid = "5d-cargo-wagon-equipment-grid"
+    -- data.raw["fluid-wagon"]["5d-fluid-wagon-2"].equipment_grid = "5d-fluid-wagon-equipment-grid"
+    -- data.raw["fluid-wagon"]["5d-fluid-wagon-3"].equipment_grid = "5d-fluid-wagon-equipment-grid"
 end

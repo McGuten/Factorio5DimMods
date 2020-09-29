@@ -25,7 +25,7 @@ function genConstructionRobots(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.supply_area_distance = inputs.area or 3
     entity.distribution_effectivity = inputs.efficiency or 0.5

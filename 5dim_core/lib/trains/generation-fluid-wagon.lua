@@ -1,16 +1,16 @@
-function genHeatPipes(inputs)
+function genFluidWagons(inputs)
     -- Copy electric furnace
-    local item = table.deepcopy(data.raw.item["heat-pipe"])
-    local recipe = table.deepcopy(data.raw.recipe["heat-pipe"])
-    local entity = table.deepcopy(data.raw["heat-pipe"]["heat-pipe"])
-    local tech = table.deepcopy(data.raw.technology["nuclear-power"])
+    local item = table.deepcopy(data.raw["item-with-entity-data"]["fluid-wagon"])
+    local recipe = table.deepcopy(data.raw.recipe["fluid-wagon"])
+    local entity = table.deepcopy(data.raw["fluid-wagon"]["fluid-wagon"])
+    local tech = table.deepcopy(data.raw.technology["railway"])
 
     --Item
     if inputs.new then
-        item.name = "5d-heat-pipe-" .. inputs.number
+        item.name = "5d-fluid-wagon-" .. inputs.number
     end
     -- item.icon =
-    --     "__5dim_energy__/graphics/icon/heat-pipe/heat-pipe-icon-" .. inputs.number .. ".png"
+    --     "__5dim_energy__/graphics/icon/fluid-wagon/fluid-wagon-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -27,22 +27,18 @@ function genHeatPipes(inputs)
 
     --Entity
     entity.name = item.name
-    entity.next_upgrade = inputs.nextUpdate or nil
+    -- entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.heat_buffer.max_temperature = inputs.craftingSpeed
-    entity.heat_buffer.max_transfer = inputs.energyUsage .. "GW"
-    entity.fast_replaceable_group = "heat-pipe"
-
-    -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/heat-pipe/heat-pipe-" .. inputs.number .. ".png"
+    entity.max_speed = inputs.maxSpeed or 1.5
+    entity.capacity = inputs.cargo or 25000
+    entity.fast_replaceable_group = "fluid-wagon"
 
     data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        tech.name = "5d-heat-pipe-" .. inputs.tech.number
+        tech.name = "fluid-wagon-" .. inputs.tech.number
         tech.icon = item.icon
         tech.icon_size = 64
         tech.unit.count = inputs.tech.count

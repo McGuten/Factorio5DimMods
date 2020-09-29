@@ -17,7 +17,7 @@ function genSteamEngines(inputs)
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -45,7 +45,7 @@ function genSteamEngines(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.effectivity = inputs.craftingSpeed
     entity.fluid_usage_per_tick = inputs.energyUsage

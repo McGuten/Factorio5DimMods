@@ -30,7 +30,7 @@ function genLaserTurrets(inputs)
 
     --Recipe
     recipe.name = item.name
-    -- recipe.icon = item.icon
+    recipe.icon = item.icon
     recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
@@ -41,7 +41,7 @@ function genLaserTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- entity.icon = item.icon
+    entity.icon = item.icon
     entity.minable.result = item.name
     entity.attack_parameters.cooldown = inputs.attackSpeed
     entity.attack_parameters.range = inputs.range

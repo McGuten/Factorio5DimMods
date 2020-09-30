@@ -8,7 +8,7 @@ genStorageTankMultis {
     number = "01",
     subgroup = "liquid-store-multi",
     capacity = tankCapacity * 1,
-    new = true,
+    new = false,
     order = "a",
     ingredients = {
         {"iron-plate", 20},

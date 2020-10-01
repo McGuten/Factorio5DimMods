@@ -48,9 +48,10 @@ if not mods["bobinserters"] then
 else
     require("prototypes.inserter-speed3-range1")
 end
+
 --Assembling Machine
-require("prototypes.assembling-machine-4")
-require("prototypes.assembling-machine-5")
+-- require("prototypes.assembling-machine-4")
+-- require("prototypes.assembling-machine-5")
 
 --Chemical plant
 -- require("prototypes.chemical-plant-2")
@@ -71,3 +72,6 @@ require("prototypes.gen-chemical-plant")
 
 -- Oil refinery
 require("prototypes.gen-oil-refinery")
+
+--Assembling Machine
+require("prototypes.gen-assembling-machine")

@@ -200,7 +200,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -269,7 +269,19 @@ genTransportBelts {
             {"express-loader", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 4,
+        count = techCount * 2,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-3"
+        }
+    }
 }
 
 -- Transport belts 05
@@ -279,7 +291,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -348,7 +360,21 @@ genTransportBelts {
             {"5d-loader-04", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 5,
+        count = techCount * 3,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-4",
+            "utility-science-pack"
+        }
+    }
 }
 
 -- Transport belts 06
@@ -358,7 +384,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -427,7 +453,20 @@ genTransportBelts {
             {"5d-loader-05", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 6,
+        count = techCount * 4,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-5"
+        }
+    }
 }
 
 -- Transport belts 07
@@ -437,7 +476,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -506,7 +545,20 @@ genTransportBelts {
             {"5d-loader-06", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 7,
+        count = techCount * 5,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-6"
+        }
+    }
 }
 
 -- Transport belts 08
@@ -516,7 +568,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -585,7 +637,20 @@ genTransportBelts {
             {"5d-loader-07", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 8,
+        count = techCount * 6,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-7"
+        }
+    }
 }
 
 -- Transport belts 09
@@ -595,7 +660,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -664,7 +729,20 @@ genTransportBelts {
             {"5d-loader-08", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 9,
+        count = techCount * 7,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-8"
+        }
+    }
 }
 
 -- Transport belts 10
@@ -674,7 +752,7 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics"
+        tech = "logistics-3"
     },
     name = {
         preName = ""
@@ -736,5 +814,18 @@ genTransportBelts {
             {"5d-loader-09", 1}
         }
     },
-    tech = nil
+    tech = {
+        number = 10,
+        count = techCount * 8,
+        packs = {
+            {"automation-science-pack", 1},
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
+        },
+        prerequisites = {
+            "logistics-9"
+        }
+    }
 }

@@ -312,8 +312,8 @@ function genTransportBelts(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "logistics-" .. inputs.tech.number
-        tech.icon = itemLoader.icon
-        tech.icon_size = 32
+        -- tech.icon = itemTransportBelt.icon
+        -- tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites
@@ -337,22 +337,12 @@ function genTransportBelts(inputs)
             {
                 type = "unlock-recipe",
                 recipe = itemUndergroundBelt50.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = entityLoader.name
             }
         }
         data:extend({tech})
     end
-    loaderTech.name = "loader"
-    -- .. inputs.tech.number
-    loaderTech.icon = itemLoader.icon
-    loaderTech.icon_size = 32
-    -- loaderTech.unit.count = inputs.tech.count
-    -- loaderTech.unit.ingredients = inputs.tech.packs
-    -- loaderTech.prerequisites = inputs.tech.prerequisites
-    loaderTech.effects = {
-        {
-            type = "unlock-recipe",
-            recipe = itemLoader.name
-        }
-    }
-    data:extend({loaderTech})
 end

@@ -7,7 +7,7 @@ local efficiencyArea = 0.5
 local techCount = 400
 
 -- Beacon 01
-genConstructionRobots {
+genBeacons {
     number = "01",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -29,7 +29,7 @@ modules = modules + 1
 energy = energy + 240
 
 -- Beacon 02
-genConstructionRobots {
+genBeacons {
     number = "02",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -62,7 +62,7 @@ modules = modules + 1
 energy = energy + 240
 
 -- Beacon 03
-genConstructionRobots {
+genBeacons {
     number = "03",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -94,7 +94,7 @@ modules = modules + 1
 energy = energy + 240
 
 -- Beacon 04
-genConstructionRobots {
+genBeacons {
     number = "04",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -129,7 +129,7 @@ areaEffect = areaEffect + 1
 energy = energy + 240
 
 -- Beacon 05
-genConstructionRobots {
+genBeacons {
     number = "05",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -162,7 +162,7 @@ energy = energy + 240
 modules = modules + 1
 
 -- Beacon 06
-genConstructionRobots {
+genBeacons {
     number = "06",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -198,7 +198,7 @@ energy = energy + 240
 areaEffect = areaEffect + 1
 
 -- Beacon 07
-genConstructionRobots {
+genBeacons {
     number = "07",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -232,7 +232,7 @@ modules = modules + 1
 energy = energy + 240
 
 -- Beacon 08
-genConstructionRobots {
+genBeacons {
     number = "08",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -269,7 +269,7 @@ energy = energy + 240
 areaEffect = areaEffect + 1
 
 -- Beacon 09
-genConstructionRobots {
+genBeacons {
     number = "09",
     subgroup = "logistic-beacon",
     area = areaEffect,
@@ -304,7 +304,7 @@ modules = modules + 1
 energy = energy + 240
 
 -- Beacon 10
-genConstructionRobots {
+genBeacons {
     number = "10",
     subgroup = "logistic-beacon",
     area = areaEffect,

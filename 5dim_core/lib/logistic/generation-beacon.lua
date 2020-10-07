@@ -1,4 +1,4 @@
-function genConstructionRobots(inputs)
+function genBeacons(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["beacon"])
     local recipe = table.deepcopy(data.raw.recipe["beacon"])

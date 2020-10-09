@@ -73,6 +73,30 @@ data:extend(
             name = "liquid-plant",
             group = "liquid",
             order = "k"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-pipe",
+            group = "liquid",
+            order = "l"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-pipe-ground",
+            group = "liquid",
+            order = "m"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-pipe-ground-30",
+            group = "liquid",
+            order = "n"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-pipe-ground-50",
+            group = "liquid",
+            order = "o"
         }
     }
 )

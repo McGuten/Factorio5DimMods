@@ -33,7 +33,12 @@ experimentalSpitter.attack_parameters =
         scale = spitter.scale.experimental,
         tint1 = spitter.colors.primary.spiter,
         tint2 = spitter.colors.secondary.secondColor,
-        roarvolume = 0.8
+        roarvolume = 0.8,
+        animation = spitterattackanimation(
+            spitter.scale.experimental,
+            spitter.colors.primary.spiter,
+            spitter.colors.secondary.secondColor
+        )
     }
 )
 
@@ -55,7 +60,7 @@ experimentalSpitterLaser.attack_parameters =
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
         scale = spitter.scale.experimental,
-        tint1 = spitter.colors.primary.spiter,
+        tint1 = biter.colors.primary.laser,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
     }
@@ -79,7 +84,7 @@ experimentalSpitterPhysical.attack_parameters =
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
         scale = spitter.scale.experimental,
-        tint1 = spitter.colors.primary.spiter,
+        tint1 = biter.colors.primary.physical,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
     }
@@ -91,7 +96,7 @@ experimentalSpitterSwimmer.alternative_attacking_frame_sequence = nil
 experimentalSpitterSwimmer.max_health = spitter.health.experimental
 experimentalSpitterSwimmer.resistances = spitter.resistances.basic.experimental
 experimentalSpitterSwimmer.run_animation =
-    spitterrunanimation(spitter.scale.experimental, biter.colors.primary.physical, spitter.colors.secondary.secondColor)
+    spitterrunanimation(spitter.scale.experimental, biter.colors.primary.swimmer, spitter.colors.secondary.secondColor)
 experimentalSpitterSwimmer.water_reflection = spitter_water_reflection(spitter.scale.experimental)
 experimentalSpitterSwimmer.collision_mask = {"object-layer"}
 experimentalSpitterSwimmer.attack_parameters =
@@ -104,7 +109,7 @@ experimentalSpitterSwimmer.attack_parameters =
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
         scale = spitter.scale.experimental,
-        tint1 = spitter.colors.primary.spiter,
+        tint1 = biter.colors.primary.swimmer,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
     }
@@ -129,7 +134,7 @@ experimentalSpitterClimber.attack_parameters =
         cooldown_deviation = 0.15,
         damage_modifier = spitter.damage.experimental,
         scale = spitter.scale.experimental,
-        tint1 = spitter.colors.primary.spiter,
+        tint1 = biter.colors.primary.climber,
         tint2 = spitter.colors.secondary.secondColor,
         roarvolume = 0.8
     }
@@ -216,7 +221,7 @@ experimentalSpitterRocket.alternative_attacking_frame_sequence = nil
 experimentalSpitterRocket.max_health = spitter.health.experimental
 experimentalSpitterRocket.resistances = spitter.resistances.basic.experimental
 experimentalSpitterRocket.run_animation =
-    spitterrunanimation(spitter.scale.experimental, spitter.colors.primary.rocket, spitter.colors.secondary.secondColor)
+    spitterrunanimation(spitter.scale.experimental, spitter.colors.primary.explosive, spitter.colors.secondary.secondColor)
 experimentalSpitterRocket.water_reflection = spitter_water_reflection(spitter.scale.experimental)
 experimentalSpitterRocket.attack_parameters = {
     type = "projectile",
@@ -242,7 +247,7 @@ experimentalSpitterRocket.attack_parameters = {
     },
     animation = biterattackanimation(
         spitter.scale.experimental,
-        spitter.colors.primary.rocket,
+        spitter.colors.primary.explosive,
         spitter.colors.secondary.secondColor
     )
 }

@@ -6,9 +6,7 @@ function genStorageTankMultis(inputs)
     local tech = table.deepcopy(data.raw.technology["fluid-handling"])
 
     --Item
-    if inputs.new then
-        item.name = "5d-storage-tank-multi-" .. inputs.number
-    end
+    item.name = "5d-storage-tank-multi-" .. inputs.number
     item.icon = "__5dim_storage__/graphics/icon/storage-tank-multi/storage-tank-multi-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order

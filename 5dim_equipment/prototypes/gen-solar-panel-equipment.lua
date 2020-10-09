@@ -18,7 +18,7 @@ genSolarPanels {
     tech = nil
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 02
 genSolarPanels {
@@ -46,7 +46,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 03
 genSolarPanels {
@@ -74,7 +74,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 04
 genSolarPanels {
@@ -105,7 +105,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 05
 genSolarPanels {
@@ -136,7 +136,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 06
 genSolarPanels {
@@ -168,7 +168,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 07
 genSolarPanels {
@@ -200,7 +200,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 08
 genSolarPanels {
@@ -232,7 +232,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 09
 genSolarPanels {
@@ -264,7 +264,7 @@ genSolarPanels {
     }
 }
 
-powerProduction = powerProduction + 15
+powerProduction = powerProduction * 1.25
 
 -- Beacon 10
 genSolarPanels {

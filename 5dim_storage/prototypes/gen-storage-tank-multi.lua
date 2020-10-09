@@ -16,7 +16,7 @@ genStorageTankMultis {
     },
     nextUpdate = "5d-storage-tank-multi-02",
     tech = {
-        number = 2,
+        number = 1,
         count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},

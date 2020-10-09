@@ -12,13 +12,7 @@ data:extend(
             type = "item-subgroup",
             name = "transport-belt",
             group = "transport",
-            order = "aa"
-        },
-        {
-            type = "item-subgroup",
-            name = "transport-loader",
-            group = "transport",
-            order = "ab"
+            order = "a"
         },
         {
             type = "item-subgroup",
@@ -46,39 +40,9 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "transport-tank",
+            name = "transport-loader",
             group = "transport",
             order = "f"
         },
-        {
-            type = "item-subgroup",
-            name = "transport-pipe",
-            group = "transport",
-            order = "g"
-        },
-        {
-            type = "item-subgroup",
-            name = "transport-pipe-ground",
-            group = "transport",
-            order = "h"
-        },
-        {
-            type = "item-subgroup",
-            name = "transport-pipe-ground-30",
-            group = "transport",
-            order = "i"
-        },
-        {
-            type = "item-subgroup",
-            name = "transport-pipe-ground-50",
-            group = "transport",
-            order = "j"
-        },
-        {
-            type = "item-subgroup",
-            name = "fluid-tank",
-            group = "transport",
-            order = "k"
-        }
     }
 )

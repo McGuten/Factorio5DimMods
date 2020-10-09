@@ -1,13 +1,15 @@
-require("__5dim_core__.lib.equipment.generation-fusion-reactor-equipment")
+require("__5dim_core__.lib.equipment.generation-exoskeleton-equipment")
 
-local powerProduction = 750
+local consumption = 200
+local speed = 0.3
 local techCount = 400
 
 -- Beacon 01
-genFusionReactors {
+genExoskeletons {
     number = "01",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = false,
     order = "a",
     ingredients = {
@@ -17,17 +19,19 @@ genFusionReactors {
     tech = nil
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 02
-genFusionReactors {
+genExoskeletons {
     number = "02",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "b",
     ingredients = {
-        {"fusion-reactor-equipment", 1},
+        {"exoskeleton-equipment", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -39,22 +43,24 @@ genFusionReactors {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment"
+            "exoskeleton-equipment"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 03
-genFusionReactors {
+genExoskeletons {
     number = "03",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "c",
     ingredients = {
-        {"5d-fusion-reactor-equipment-02", 1},
+        {"5d-exoskeleton-equipment-02", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -66,22 +72,24 @@ genFusionReactors {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-2"
+            "exoskeleton-equipment-2"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 04
-genFusionReactors {
+genExoskeletons {
     number = "04",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "d",
     ingredients = {
-        {"5d-fusion-reactor-equipment-03", 1},
+        {"5d-exoskeleton-equipment-03", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -96,22 +104,24 @@ genFusionReactors {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-3"
+            "exoskeleton-equipment-3"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 05
-genFusionReactors {
+genExoskeletons {
     number = "05",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "e",
     ingredients = {
-        {"5d-fusion-reactor-equipment-04", 1},
+        {"5d-exoskeleton-equipment-04", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -126,22 +136,24 @@ genFusionReactors {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-4"
+            "exoskeleton-equipment-4"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 06
-genFusionReactors {
+genExoskeletons {
     number = "06",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "f",
     ingredients = {
-        {"5d-fusion-reactor-equipment-05", 1},
+        {"5d-exoskeleton-equipment-05", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -157,22 +169,24 @@ genFusionReactors {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-5"
+            "exoskeleton-equipment-5"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 07
-genFusionReactors {
+genExoskeletons {
     number = "07",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "g",
     ingredients = {
-        {"5d-fusion-reactor-equipment-06", 1},
+        {"5d-exoskeleton-equipment-06", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -188,22 +202,24 @@ genFusionReactors {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-6"
+            "exoskeleton-equipment-6"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 08
-genFusionReactors {
+genExoskeletons {
     number = "08",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "h",
     ingredients = {
-        {"5d-fusion-reactor-equipment-07", 1},
+        {"5d-exoskeleton-equipment-07", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -219,22 +235,24 @@ genFusionReactors {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-7"
+            "exoskeleton-equipment-7"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 09
-genFusionReactors {
+genExoskeletons {
     number = "09",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "i",
     ingredients = {
-        {"5d-fusion-reactor-equipment-08", 1},
+        {"5d-exoskeleton-equipment-08", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -250,22 +268,24 @@ genFusionReactors {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-8"
+            "exoskeleton-equipment-8"
         }
     }
 }
 
-powerProduction = powerProduction * 1.75
+consumption = consumption + 100
+speed = speed + 0.1
 
 -- Beacon 10
-genFusionReactors {
+genExoskeletons {
     number = "10",
-    subgroup = "armor-reactor",
-    power = powerProduction,
+    subgroup = "armor-exoesqueleto",
+    energyConsumption = consumption,
+    movementSpeed = speed,
     new = true,
     order = "j",
     ingredients = {
-        {"5d-fusion-reactor-equipment-09", 1},
+        {"5d-exoskeleton-equipment-09", 1},
         {"processing-unit", 200},
         {"low-density-structure", 50}
     },
@@ -281,7 +301,7 @@ genFusionReactors {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "fusion-reactor-equipment-9"
+            "exoskeleton-equipment-9"
         }
     }
 }

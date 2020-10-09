@@ -41,7 +41,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.4
+                    roarvolume = 0.4,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "medium" then
@@ -56,7 +57,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.5
+                    roarvolume = 0.5,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "big" then
@@ -71,7 +73,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.6
+                    roarvolume = 0.6,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "behemoth" then
@@ -86,7 +89,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.8
+                    roarvolume = 0.8,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         end
@@ -223,7 +227,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "medium" then
             return {
@@ -249,7 +253,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "big" then
             return {
@@ -275,7 +279,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "behemoth" then
             return {
@@ -301,7 +305,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         end
     elseif type == "rocket" then
@@ -329,7 +333,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "medium" then
             return {
@@ -355,7 +359,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "big" then
             return {
@@ -381,7 +385,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "behemoth" then
             return {
@@ -407,7 +411,7 @@ function selectAttackParams(size, type, data)
                         }
                     }
                 },
-                animation = biterattackanimation(data.scale, data.tint, data.tint2)
+                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         end
     else
@@ -423,7 +427,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.4
+                    roarvolume = 0.4,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "medium" then
@@ -438,7 +443,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.5
+                    roarvolume = 0.5,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "big" then
@@ -453,7 +459,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.6
+                    roarvolume = 0.6,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         elseif size == "behemoth" then
@@ -468,7 +475,8 @@ function selectAttackParams(size, type, data)
                     scale = data.scale,
                     tint1 = data.tint,
                     tint2 = data.tint2,
-                    roarvolume = 0.8
+                    roarvolume = 0.8,
+                    animation = spitterattackanimation(data.scale, data.tint, data.tint2)
                 }
             )
         end

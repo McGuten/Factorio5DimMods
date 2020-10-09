@@ -2,7 +2,7 @@ require("__5dim_core__.lib.battlefield.tesla-turret.generation-tesla-turret")
 
 local rango = 50
 local shootingSpeed = 25
-local damageModif = 19
+local damageModif = 23
 local color = {r = 0.9, g = 0.1, b = 0.9, a = 1}
 local hp = 1500
 local techCount = 500

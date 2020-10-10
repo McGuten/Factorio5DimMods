@@ -44,5 +44,35 @@ data:extend(
             group = "transport",
             order = "f"
         },
+        {
+            type = "item-subgroup",
+            name = "transport-inserter",
+            group = "transport",
+            order = "g"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-filter-inserter",
+            group = "transport",
+            order = "h"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-stack-inserter",
+            group = "transport",
+            order = "i"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-stack-filter-inserter",
+            group = "transport",
+            order = "j"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-misc",
+            group = "transport",
+            order = "k"
+        }
     }
 )

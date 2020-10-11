@@ -97,25 +97,21 @@ function selectAttackParams(size, type, data)
     elseif type == "fire" then
         if size == "small" then
             return {
-                type = "projectile",
-                ammo_category = "flame-thrower-ammo",
-                cooldown = 1,
+                type = "stream",
+                cooldown = 4,
                 range = data.range,
-                projectile_creation_distance = 1.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 1,
+                min_range = 6,
+                turn_range = 1.0 / 3.0,
+                fire_penalty = 15,
+                gun_barrel_length = 0.4,
                 ammo_type = {
-                    category = "biological",
+                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
-                            type = "flame-thrower",
-                            explosion = "flame-thrower-bicho",
-                            direction_deviation = 0.07,
-                            speed_deviation = 0.1,
-                            starting_frame_deviation = 0.07,
-                            projectile_starting_speed = 0.2,
-                            starting_distance = 0.6
+                            type = "stream",
+                            stream = "flamethrower-fire-stream",
+                            source_offset = {0.15, -0.5}
                         }
                     }
                 },
@@ -123,25 +119,21 @@ function selectAttackParams(size, type, data)
             }
         elseif size == "medium" then
             return {
-                type = "projectile",
-                ammo_category = "flame-thrower-ammo",
-                cooldown = 1,
+                type = "stream",
+                cooldown = 4,
                 range = data.range,
-                projectile_creation_distance = 1.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 1,
+                min_range = 6,
+                turn_range = 1.0 / 3.0,
+                fire_penalty = 15,
+                gun_barrel_length = 0.4,
                 ammo_type = {
-                    category = "biological",
+                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
-                            type = "flame-thrower",
-                            explosion = "flame-thrower-bicho",
-                            direction_deviation = 0.07,
-                            speed_deviation = 0.1,
-                            starting_frame_deviation = 0.07,
-                            projectile_starting_speed = 0.2,
-                            starting_distance = 1
+                            type = "stream",
+                            stream = "flamethrower-fire-stream",
+                            source_offset = {0.15, -0.5}
                         }
                     }
                 },
@@ -149,56 +141,46 @@ function selectAttackParams(size, type, data)
             }
         elseif size == "big" then
             return {
-                type = "projectile",
-                ammo_category = "flame-thrower-ammo",
-                cooldown = 1,
+                type = "stream",
+                cooldown = 4,
                 range = data.range,
-                projectile_creation_distance = 1.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 1,
+                min_range = 6,
+                turn_range = 1.0 / 3.0,
+                fire_penalty = 15,
+                gun_barrel_length = 0.4,
                 ammo_type = {
-                    category = "biological",
+                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
-                            type = "flame-thrower",
-                            explosion = "flame-thrower-bicho",
-                            direction_deviation = 0.07,
-                            speed_deviation = 0.1,
-                            starting_frame_deviation = 0.07,
-                            projectile_starting_speed = 0.2,
-                            starting_distance = 2
+                            type = "stream",
+                            stream = "flamethrower-fire-stream",
+                            source_offset = {0.15, -0.5}
                         }
                     }
                 },
-                --sound = make_spitter_roars(data.roarvolume),
                 animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         elseif size == "behemoth" then
             return {
-                type = "projectile",
-                ammo_category = "flame-thrower-ammo",
-                cooldown = 1,
+                type = "stream",
+                cooldown = 4,
                 range = data.range,
-                projectile_creation_distance = 1.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 1,
+                min_range = 6,
+                turn_range = 1.0 / 3.0,
+                fire_penalty = 15,
+                gun_barrel_length = 0.4,
                 ammo_type = {
-                    category = "biological",
+                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
-                            type = "flame-thrower",
-                            explosion = "flame-thrower-bicho",
-                            direction_deviation = 0.07,
-                            speed_deviation = 0.1,
-                            starting_frame_deviation = 0.07,
-                            projectile_starting_speed = 0.2,
-                            starting_distance = 3
+                            type = "stream",
+                            stream = "flamethrower-fire-stream",
+                            source_offset = {0.15, -0.5}
                         }
                     }
                 },
-                --sound = make_spitter_roars(data.roarvolume),
                 animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         end

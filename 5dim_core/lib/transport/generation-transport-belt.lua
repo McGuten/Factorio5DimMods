@@ -33,9 +33,14 @@ function genTransportBelts(inputs)
     if recipeTransportBelt.normal == nil then
         recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
         recipeTransportBelt.result = itemTransportBelt.name
-        recipeTransportBelt.enabled = true
+        if inputs.new then
+            recipeTransportBelt.enabled = false
+        end
     else
-        recipeTransportBelt.enabled = true
+        if inputs.new then
+            recipeTransportBelt.enabled = false
+        end
+        recipeTransportBelt.enabled = false
         if inputs.new then
             recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
             recipeTransportBelt.result = itemTransportBelt.name
@@ -82,9 +87,9 @@ function genTransportBelts(inputs)
     if recipeUndergroundBelt.normal == nil then
         recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
         recipeUndergroundBelt.result = itemUndergroundBelt.name
-        recipeUndergroundBelt.enabled = true
+        recipeUndergroundBelt.enabled = false
     else
-        recipeUndergroundBelt.enabled = true
+        recipeUndergroundBelt.enabled = false
         if inputs.new then
             recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
             recipeUndergroundBelt.result = itemUndergroundBelt.name
@@ -127,13 +132,13 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt30.icon = itemUndergroundBelt30.icon
     recipeUndergroundBelt30.result = itemUndergroundBelt30.name
     recipeUndergroundBelt30.icon_size = 64
-    recipeUndergroundBelt30.enabled = true
+    recipeUndergroundBelt30.enabled = false
     if recipeUndergroundBelt30.normal == nil then
         recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
         recipeUndergroundBelt30.result = itemUndergroundBelt30.name
-        recipeUndergroundBelt30.enabled = true
+        recipeUndergroundBelt30.enabled = false
     else
-        recipeUndergroundBelt30.enabled = true
+        recipeUndergroundBelt30.enabled = false
         if inputs.new then
             recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
             recipeUndergroundBelt30.result = itemUndergroundBelt30.name
@@ -180,9 +185,9 @@ function genTransportBelts(inputs)
     if recipeUndergroundBelt50.normal == nil then
         recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
         recipeUndergroundBelt50.result = itemUndergroundBelt50.name
-        recipeUndergroundBelt50.enabled = true
+        recipeUndergroundBelt50.enabled = false
     else
-        recipeUndergroundBelt50.enabled = true
+        recipeUndergroundBelt50.enabled = false
         if inputs.new then
             recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
             recipeUndergroundBelt50.result = itemUndergroundBelt50.name
@@ -231,9 +236,9 @@ function genTransportBelts(inputs)
     if recipeSplitter.normal == nil then
         recipeSplitter.ingredients = inputs.ingredients.splitter
         recipeSplitter.result = itemSplitter.name
-        recipeSplitter.enabled = true
+        recipeSplitter.enabled = false
     else
-        recipeSplitter.enabled = true
+        recipeSplitter.enabled = false
         if inputs.new then
             recipeSplitter.ingredients = inputs.ingredients.splitter
             recipeSplitter.result = itemSplitter.name
@@ -282,9 +287,9 @@ function genTransportBelts(inputs)
     if recipeLoader.normal == nil then
         recipeLoader.ingredients = inputs.ingredients.loader
         recipeLoader.result = itemLoader.name
-        recipeLoader.enabled = true
+        recipeLoader.enabled = false
     else
-        recipeLoader.enabled = true
+        recipeLoader.enabled = false
         if inputs.new then
             recipeLoader.ingredients = inputs.ingredients.loader
             recipeLoader.result = itemLoader.name

@@ -9,7 +9,7 @@ function genInserters(inputs)
     if inputs.new then
         item.name = "5d-inserter-" .. inputs.number
     end
-    -- item.icon = "__5dim_automatization__/graphics/icon/inserter/inserter-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_transport__/graphics/icon/inserter/inserter/inserter-icon-" .. inputs.number .. ".png"
     item.subgroup = "transport-inserter"
     item.order = inputs.order
     item.place_result = item.name
@@ -38,9 +38,21 @@ function genInserters(inputs)
     entity.energy_source.drain = inputs.energyDrain .. "kW"
     entity.fast_replaceable_group = "inserter"
 
-    -- Base
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_automatization__/graphics/entities/inserter/inserter-" .. inputs.number .. ".png"
+    -- Platform
+    entity.platform_picture.sheet.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-platform-" .. inputs.number .. ".png"
+
+    -- Base hand
+    entity.hand_base_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-base.png"
+
+    -- Hand open
+    entity.hand_open_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-open.png"
+
+    -- Hand close
+    entity.hand_closed_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-closed.png"
 
     data:extend({entity, recipe, item})
 
@@ -53,7 +65,7 @@ function genInserters(inputs)
     if inputs.number ~= "01" then
         item.name = "5d-filter-inserter-" .. inputs.number
     end
-    -- item.icon = "__5dim_automatization__/graphics/icon/filter-inserter/filter-inserter-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_transport__/graphics/icon/inserter/filter-inserter/filter-inserter-icon-" .. inputs.number .. ".png"
     item.subgroup = "transport-filter-inserter"
     item.order = inputs.order
     item.place_result = item.name
@@ -82,9 +94,21 @@ function genInserters(inputs)
     entity.energy_source.drain = inputs.energyDrain .. "kW"
     entity.fast_replaceable_group = "filter-inserter"
 
-    -- Base
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_automatization__/graphics/entities/filter-inserter/filter-inserter-" .. inputs.number .. ".png"
+    -- Platform
+    entity.platform_picture.sheet.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-platform-" .. inputs.number .. ".png"
+
+    -- Base hand
+    entity.hand_base_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-base.png"
+
+    -- Hand open
+    entity.hand_open_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/filter-inserter-hand-open.png"
+
+    -- Hand close
+    entity.hand_closed_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/filter-inserter-hand-closed.png"
 
     data:extend({entity, recipe, item})
 
@@ -99,7 +123,7 @@ function genInserters(inputs)
         item.name = "5d-stack-inserter-" .. inputs.number
     end
     local stackInserter = item.name
-    -- item.icon = "__5dim_automatization__/graphics/icon/stack-inserter/stack-inserter-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_transport__/graphics/icon/inserter/stack-inserter/stack-inserter-icon-" .. inputs.number .. ".png"
     item.subgroup = "transport-stack-inserter"
     item.order = inputs.order
     item.place_result = item.name
@@ -128,9 +152,25 @@ function genInserters(inputs)
     entity.energy_source.drain = inputs.energyDrain .. "kW"
     entity.fast_replaceable_group = "stack-inserter"
 
-    -- Base
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_automatization__/graphics/entities/stack-inserter/stack-inserter-" .. inputs.number .. ".png"
+    -- Platform
+    entity.platform_picture.sheet.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-platform-" .. inputs.number .. ".png"
+
+    -- Base hand
+    entity.hand_base_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/stack-inserter-hand-base.png"
+
+    -- Hand open
+    entity.hand_open_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-open.png"
+    entity.hand_open_picture.hr_version.width = 72
+    entity.hand_open_picture.hr_version.height = 164
+
+    -- Hand close
+    entity.hand_closed_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-hand-closed.png"
+    entity.hand_closed_picture.hr_version.width = 72
+    entity.hand_closed_picture.hr_version.height = 164
 
     data:extend({entity, recipe, item})
 
@@ -144,7 +184,7 @@ function genInserters(inputs)
         item.name = "5d-stack-filter-inserter-" .. inputs.number
     end
     local stackFilterInserter = item.name
-    -- item.icon = "__5dim_automatization__/graphics/icon/stack-filter-inserter/stack-filter-inserter-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_transport__/graphics/icon/inserter/stack-filter-inserter/stack-filter-inserter-icon-" .. inputs.number .. ".png"
     item.subgroup = "transport-stack-filter-inserter"
     item.order = inputs.order
     item.place_result = item.name
@@ -173,9 +213,25 @@ function genInserters(inputs)
     entity.energy_source.drain = inputs.energyDrain .. "kW"
     entity.fast_replaceable_group = "stack-filter-inserter"
 
-    -- Base
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_automatization__/graphics/entities/stack-filter-inserter/stack-filter-inserter-" .. inputs.number .. ".png"
+    -- Platform
+    entity.platform_picture.sheet.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/inserter-platform-" .. inputs.number .. ".png"
+
+    -- Base hand
+    entity.hand_base_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/stack-inserter-hand-base.png"
+
+    -- Hand open
+    entity.hand_open_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/filter-inserter-hand-open.png"
+    entity.hand_open_picture.hr_version.width = 72
+    entity.hand_open_picture.hr_version.height = 164
+
+    -- Hand close
+    entity.hand_closed_picture.hr_version.filename =
+        "__5dim_transport__/graphics/entities/inserter/filter-inserter-hand-closed.png"
+    entity.hand_closed_picture.hr_version.width = 72
+    entity.hand_closed_picture.hr_version.height = 164
 
     data:extend({entity, recipe, item})
 

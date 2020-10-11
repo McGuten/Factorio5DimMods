@@ -291,21 +291,23 @@ function genTransportBelts(inputs)
     if inputs.number ~= "01" then
         entitySplitter.belt_animation_set.animation_set.hr_version.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
+
+        entitySplitter.structure.north.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-north/splitter-north-" .. inputs.number .. ".png"
+        entitySplitter.structure.east.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-east/splitter-east-" .. inputs.number .. ".png"
+        entitySplitter.structure.south.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-south/splitter-south-" .. inputs.number .. ".png"
+        entitySplitter.structure.west.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-west/splitter-west-" .. inputs.number .. ".png"
+
+        entitySplitter.structure_patch.east.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-east-top_patch/splitter-east-top_patch-" ..
+            inputs.number .. ".png"
+        entitySplitter.structure_patch.west.hr_version.filename =
+            "__5dim_transport__/graphics/entities/splitter/splitter-west-top_patch/splitter-west-top_patch-" ..
+            inputs.number .. ".png"
     end
-
-    entitySplitter.structure.north.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-north/splitter-north-" .. inputs.number .. ".png"
-    entitySplitter.structure.east.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-east/splitter-east-" .. inputs.number .. ".png"
-    entitySplitter.structure.south.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-south/splitter-south-" .. inputs.number .. ".png"
-    entitySplitter.structure.west.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-west/splitter-west-" .. inputs.number .. ".png"
-
-    entitySplitter.structure_patch.east.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-east-top_patch/splitter-east-top_patch-" .. inputs.number .. ".png"
-    entitySplitter.structure_patch.west.hr_version.filename =
-        "__5dim_transport__/graphics/entities/splitter/splitter-west-top_patch/splitter-west-top_patch-" .. inputs.number .. ".png"
 
     data:extend({entitySplitter, recipeSplitter, itemSplitter})
 

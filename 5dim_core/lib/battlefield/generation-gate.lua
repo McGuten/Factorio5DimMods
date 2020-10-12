@@ -33,7 +33,7 @@ function genGates(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.max_health = inputs.health
-    entity.fast_replaceable_group = "gate"
+    entity.fast_replaceable_group = "wall"
 
     -- Base
     -- entity.picture.layers[1].hr_version.filename =

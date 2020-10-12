@@ -47,7 +47,7 @@ genFluidWagons {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling",
+            "fluid-wagon",
             "logistic-science-pack"
         }
     }

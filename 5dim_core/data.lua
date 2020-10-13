@@ -1,5 +1,3 @@
---Item
-require("prototypes.timecraftchanges")
 --Item group
 require("prototypes.item-groups-automatization")
 require("prototypes.item-groups-energy")

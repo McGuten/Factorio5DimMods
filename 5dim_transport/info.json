@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Transport for 5dim's mod -> Add 2 new tiers of transport belts and pipes, x30 and x50 belts and pipes to ground and a lot of new chest",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "dependencies": ["5dim_core >= 1.0.0", "bobinserters >= 1.0.0"]
 }

@@ -52,7 +52,8 @@ genStorageTankMultis {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-2"
+            "fluid-handling-2",
+            "5d-storage-tank-multi-1"
         }
     }
 }
@@ -82,7 +83,8 @@ genStorageTankMultis {
         },
         prerequisites = {
             "fluid-handling-3",
-            "production-science-pack"
+            "production-science-pack",
+            "5d-storage-tank-multi-2"
         }
     }
 }
@@ -111,7 +113,8 @@ genStorageTankMultis {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-4"
+            "fluid-handling-4",
+            "5d-storage-tank-multi-3"
         }
     }
 }
@@ -141,7 +144,8 @@ genStorageTankMultis {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-5"
+            "fluid-handling-5",
+            "5d-storage-tank-multi-4"
         }
     }
 }
@@ -171,7 +175,8 @@ genStorageTankMultis {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-6"
+            "fluid-handling-6",
+            "5d-storage-tank-multi-5"
         }
     }
 }
@@ -201,7 +206,8 @@ genStorageTankMultis {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-7"
+            "fluid-handling-7",
+            "5d-storage-tank-multi-6"
         }
     }
 }
@@ -233,7 +239,8 @@ genStorageTankMultis {
         },
         prerequisites = {
             "fluid-handling-8",
-            "utility-science-pack"
+            "utility-science-pack",
+            "5d-storage-tank-multi-7"
         }
     }
 }
@@ -264,7 +271,8 @@ genStorageTankMultis {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-9"
+            "fluid-handling-9",
+            "5d-storage-tank-multi-8"
         }
     }
 }
@@ -294,7 +302,8 @@ genStorageTankMultis {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling-10"
+            "fluid-handling-10",
+            "5d-storage-tank-multi-9"
         }
     }
 }

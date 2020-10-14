@@ -1,6 +1,9 @@
 -- Order sort
 require("prototypes.item-group-changes")
 
+--compatibility
+require("prototypes.compatible-mods")
+
 --Stack changes
 if settings.startup["5d-change-stack"] then
     for _, item in pairs(data.raw.item) do

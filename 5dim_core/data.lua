@@ -19,6 +19,3 @@ require("prototypes.item-groups-liquids")
 
 --Tech
 require("prototypes.tech")
-
---compatibility
-require("prototypes.compatible-mods")

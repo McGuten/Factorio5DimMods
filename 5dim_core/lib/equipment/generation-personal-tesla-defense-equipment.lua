@@ -9,7 +9,7 @@ function genPersonalLaserDefenses(inputs)
     if inputs.new then
         item.name = "5d-personal-tesla-defense-equipment-" .. inputs.number
     end
-    -- item.icon = "__5dim_logistic__/graphics/icon/personal-tesla-defense-equipment/personal-tesla-defense-equipment-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_equipment__/graphics/icon/personal-tesla-defense/personal-tesla-defense-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.placed_as_equipment_result = item.name
@@ -31,6 +31,8 @@ function genPersonalLaserDefenses(inputs)
     equipment.attack_parameters.ammo_type.energy_consumption = inputs.energyConsumption .. "kJ"
     equipment.energy_source.buffer_capacity = inputs.energyConsumption * 4 .. "kJ"
     equipment.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+    equipment.sprite.filename =
+        "__5dim_equipment__/graphics/equipment/personal-tesla-defense/personal-tesla-defense-equipment-" .. inputs.number .. ".png"
 
     data:extend({equipment, recipe, item})
 

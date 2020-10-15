@@ -1,8 +1,8 @@
 function genBatterys(inputs)
-        local item = ""
-        local equipment = ""
-        local recipe = ""
-        local tech = ""
+    local item = ""
+    local equipment = ""
+    local recipe = ""
+    local tech = ""
     -- Copy electric furnace
     if inputs.number == "01" then
         item = table.deepcopy(data.raw.item["battery-equipment"])
@@ -20,7 +20,7 @@ function genBatterys(inputs)
     if inputs.new then
         item.name = "5d-battery-equipment-" .. inputs.number
     end
-    -- item.icon = "__5dim_logistic__/graphics/icon/battery-equipment/battery-equipment-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.placed_as_equipment_result = item.name
@@ -36,6 +36,8 @@ function genBatterys(inputs)
     -- Equipment
     equipment.name = item.name
     equipment.energy_source.buffer_capacity = inputs.capacity .. "MJ"
+    equipment.sprite.filename =
+        "__5dim_equipment__/graphics/equipment/battery/battery-equipment-" .. inputs.number .. ".png"
 
     data:extend({equipment, recipe, item})
 

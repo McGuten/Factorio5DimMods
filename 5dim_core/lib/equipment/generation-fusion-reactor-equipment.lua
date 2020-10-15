@@ -9,7 +9,7 @@ function genFusionReactors(inputs)
     if inputs.new then
         item.name = "5d-fusion-reactor-equipment-" .. inputs.number
     end
-    -- item.icon = "__5dim_logistic__/graphics/icon/fusion-reactor-equipment/fusion-reactor-equipment-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_equipment__/graphics/icon/fusion-reactor/fusion-reactor-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.placed_as_equipment_result = item.name
@@ -25,6 +25,8 @@ function genFusionReactors(inputs)
     -- Equipment
     equipment.name = item.name
     equipment.power = inputs.power .. "kW"
+    equipment.sprite.filename =
+        "__5dim_equipment__/graphics/equipment/fusion-reactor/fusion-reactor-equipment-" .. inputs.number .. ".png"
 
     data:extend({equipment, recipe, item})
 

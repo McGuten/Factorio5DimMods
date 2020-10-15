@@ -27,7 +27,7 @@ function genPowerArmors(inputs)
     if inputs.new then
         item.name = "5d-power-armor-" .. inputs.number
     end
-    -- item.icon = "__5dim_logistic__/graphics/icon/power-armor/power-armor-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_equipment__/graphics/icon/power-armor/power-armor-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.equipment_grid = grid.name

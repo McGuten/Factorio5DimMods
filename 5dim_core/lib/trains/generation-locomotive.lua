@@ -9,8 +9,8 @@ function genLocomotives(inputs)
     if inputs.new then
         item.name = "5d-locomotive-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/locomotive/locomotive-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_trains__/graphics/icon/locomotive/locomotive-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name

@@ -9,8 +9,8 @@ function genFluidWagons(inputs)
     if inputs.new then
         item.name = "5d-fluid-wagon-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/fluid-wagon/fluid-wagon-icon-" .. inputs.number .. ".png"
+    item.icon =
+        "__5dim_trains__/graphics/icon/fluid-wagon/fluid-wagon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name

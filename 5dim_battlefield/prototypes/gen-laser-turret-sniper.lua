@@ -5,7 +5,7 @@ local shootingSpeed = 25
 local damageModif = 19
 local color = {r = 0, g = 1, b = 1, a = 1}
 local hp = 1400
-local techCount = 500
+local techCount = 400
 
 -- Sniper laser turret 01
 genLaserTurrets {
@@ -57,9 +57,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-01", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-03",
     tech = {
@@ -94,9 +94,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-02", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-04",
     tech = {
@@ -132,9 +132,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-03", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-05",
     tech = {
@@ -169,9 +169,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-04", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-06",
     tech = {
@@ -207,9 +207,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-05", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-07",
     tech = {
@@ -244,9 +244,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-06", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-08",
     tech = {
@@ -282,9 +282,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-07", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-09",
     tech = {
@@ -319,9 +319,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-08", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     nextUpdate = "5d-laser-turret-sniper-10",
     tech = {
@@ -356,9 +356,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-sniper-09", 1},
-        {"steel-plate", 40},
-        {"electronic-circuit", 40},
-        {"battery", 25}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 7}
     },
     tech = {
         number = "5d-laser-turrets-sniper-10",

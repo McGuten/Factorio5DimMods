@@ -21,7 +21,7 @@ genLaserTurrets {
     ingredients = {
         {"steel-plate", 10},
         {"electronic-circuit", 10},
-        {"battery", 7}
+        {"battery", 6}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -56,9 +56,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-01", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -93,9 +93,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-02", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -130,9 +130,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-03", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -166,9 +166,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-04", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -203,9 +203,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-05", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -239,9 +239,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-06", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -277,9 +277,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-07", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -314,9 +314,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-08", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
@@ -351,9 +351,9 @@ genLaserTurrets {
     tint = color,
     ingredients = {
         {"5d-laser-turret-small-09", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 7}
+        {"steel-plate", 2},
+        {"electronic-circuit", 2},
+        {"battery", 2}
     },
     tech = {
         number = "5d-laser-turrets-small-10",

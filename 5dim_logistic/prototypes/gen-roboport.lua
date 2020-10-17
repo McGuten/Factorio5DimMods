@@ -20,10 +20,9 @@ genRoboports {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -54,9 +53,9 @@ genRoboports {
     order = "b",
     ingredients = {
         {"roboport", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -98,9 +97,9 @@ genRoboports {
     order = "c",
     ingredients = {
         {"5d-roboport-02", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -143,9 +142,9 @@ genRoboports {
     order = "d",
     ingredients = {
         {"5d-roboport-03", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -190,9 +189,9 @@ genRoboports {
     order = "e",
     ingredients = {
         {"5d-roboport-04", 1},
-        {"steel-plate", 2},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -236,9 +235,9 @@ genRoboports {
     order = "f",
     ingredients = {
         {"5d-roboport-05", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -284,9 +283,9 @@ genRoboports {
     order = "g",
     ingredients = {
         {"5d-roboport-06", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -331,9 +330,9 @@ genRoboports {
     order = "h",
     ingredients = {
         {"5d-roboport-07", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -380,9 +379,9 @@ genRoboports {
     order = "i",
     ingredients = {
         {"5d-roboport-08", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,
@@ -428,9 +427,9 @@ genRoboports {
     order = "j",
     ingredients = {
         {"5d-roboport-09", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        {"steel-plate", 45},
+        {"iron-gear-wheel", 45},
+        {"advanced-circuit", 45}
     },
     pollution = emisions,
     logistics = logistic,

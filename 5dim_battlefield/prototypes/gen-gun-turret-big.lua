@@ -6,7 +6,7 @@ local shootingSpeed = 10
 local damageModif = 3
 local color = {r = 0.2, g = 0.2, b = 1, a = 1}
 local hp = 600
-local techCount = 150
+local techCount = 200
 
 -- Big gun turret 01
 genGunTurrets {
@@ -22,7 +22,7 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
+        {"electronic-circuit", 4},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
@@ -56,10 +56,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-01", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-03",
     tech = {
@@ -91,10 +91,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-02", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-04",
     tech = {
@@ -126,10 +126,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-03", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-05",
     tech = {
@@ -163,10 +163,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-04", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-06",
     tech = {
@@ -199,10 +199,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-05", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-07",
     tech = {
@@ -237,10 +237,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-06", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-08",
     tech = {
@@ -274,10 +274,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-07", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-09",
     tech = {
@@ -311,10 +311,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-08", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     nextUpdate = "5d-gun-turret-big-10",
     tech = {
@@ -350,10 +350,10 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"5d-gun-turret-big-09", 1},
-        {"iron-gear-wheel", 15},
-        {"electronic-circuit", 8},
-        {"copper-plate", 10},
-        {"iron-plate", 30}
+        {"iron-gear-wheel", 6},
+        {"electronic-circuit", 2},
+        {"copper-plate", 4},
+        {"iron-plate", 10}
     },
     tech = {
         number = "5d-turrets-big-10",

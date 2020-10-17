@@ -86,8 +86,8 @@ genTransportBelts {
     order = "b",
     ingredients = {
         transportBelt = {
-            {"iron-plate", 1},
-            {"iron-gear-wheel", 1}
+            {"iron-gear-wheel", 5},
+            {"transport-belt", 1}
         },
         groundBelt = {
             {"iron-gear-wheel", 40},

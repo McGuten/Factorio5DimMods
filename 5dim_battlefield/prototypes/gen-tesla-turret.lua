@@ -19,9 +19,9 @@ genTeslaTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"steel-plate", 60},
+        {"steel-plate", 50},
         {"electronic-circuit", 50},
-        {"battery", 50}
+        {"battery", 40}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -59,9 +59,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-01", 1},
-        {"steel-plate", 60},
-        {"electronic-circuit", 50},
-        {"battery", 50}
+        {"steel-plate", 10},
+        {"electronic-circuit", 10},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -96,9 +96,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-02", 1},
-        {"steel-plate", 60},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -133,9 +133,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-03", 1},
-        {"steel-plate", 60},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -170,9 +170,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-04", 1},
-        {"steel-plate", 60},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"steel-plate", 10},
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -208,8 +208,8 @@ genTeslaTurrets {
     ingredients = {
         {"5d-tesla-turret-05", 1},
         {"low-density-structure", 30},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -245,8 +245,8 @@ genTeslaTurrets {
     ingredients = {
         {"5d-tesla-turret-06", 1},
         {"low-density-structure", 30},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -283,9 +283,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-07", 1},
-        {"low-density-structure", 15},
-        {"advanced-circuit", 35},
-        {"battery", 50}
+        {"low-density-structure", 5},
+        {"advanced-circuit", 5},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -320,9 +320,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-08", 1},
-        {"low-density-structure", 15},
-        {"processing-unit", 10},
-        {"battery", 50}
+        {"low-density-structure", 5},
+        {"processing-unit", 3},
+        {"battery", 10}
     },
     nextUpdate = "5d-tesla-turret-02",
     tech = {
@@ -357,9 +357,9 @@ genTeslaTurrets {
     tint = color,
     ingredients = {
         {"5d-tesla-turret-09", 1},
-        {"low-density-structure", 15},
-        {"processing-unit", 10},
-        {"battery", 50}
+        {"low-density-structure", 5},
+        {"processing-unit", 3},
+        {"battery", 10}
     },
     tech = {
         number = 10,

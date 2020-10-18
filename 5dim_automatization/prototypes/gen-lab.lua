@@ -3,7 +3,7 @@ require("__5dim_core__.lib.automatization.generation-lab")
 local speed = 1
 local modules = 2
 local energy = 60
-local techCount = 500
+local techCount = 200
 
 -- Labs 01
 genLabs {

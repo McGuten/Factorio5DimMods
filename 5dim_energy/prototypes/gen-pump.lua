@@ -92,7 +92,7 @@ genPumps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-2",
+            "5d-pump-2",
             "chemical-science-pack"
         }
     }
@@ -131,7 +131,7 @@ genPumps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-3"
+            "5d-pump-3"
         }
     }
 }
@@ -167,7 +167,7 @@ genPumps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-4",
+            "5d-pump-4",
             "production-science-pack"
         }
     }
@@ -206,7 +206,7 @@ genPumps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-5"
+            "5d-pump-5"
         }
     }
 }
@@ -244,7 +244,7 @@ genPumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-6",
+            "5d-pump-6",
             "utility-science-pack"
         }
     }
@@ -284,7 +284,7 @@ genPumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-7"
+            "5d-pump-7"
         }
     }
 }
@@ -322,7 +322,7 @@ genPumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-8"
+            "5d-pump-8"
         }
     }
 }
@@ -361,7 +361,7 @@ genPumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-9"
+            "5d-pump-9"
         }
     }
 }

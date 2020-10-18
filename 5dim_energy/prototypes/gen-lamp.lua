@@ -47,7 +47,7 @@ genLamps {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "fluid-handling",
+            "optics",
             "logistic-science-pack"
         }
     }
@@ -80,7 +80,7 @@ genLamps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-2",
+            "optics-2",
             "chemical-science-pack"
         }
     }
@@ -114,7 +114,7 @@ genLamps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-3"
+            "optics-3"
         }
     }
 }
@@ -146,7 +146,7 @@ genLamps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-4",
+            "optics-4",
             "production-science-pack"
         }
     }
@@ -180,7 +180,7 @@ genLamps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-5"
+            "optics-5"
         }
     }
 }
@@ -214,7 +214,7 @@ genLamps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-6",
+            "optics-6",
             "utility-science-pack"
         }
     }
@@ -249,7 +249,7 @@ genLamps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-7"
+            "optics-7"
         }
     }
 }
@@ -283,7 +283,7 @@ genLamps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-8"
+            "optics-8"
         }
     }
 }
@@ -316,7 +316,7 @@ genLamps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-9"
+            "optics-9"
         }
     }
 }

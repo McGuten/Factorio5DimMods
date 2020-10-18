@@ -76,7 +76,7 @@ genCargoWagons {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-2",
+            "5d-cargo-wagon-2",
             "chemical-science-pack"
         }
     }
@@ -109,7 +109,7 @@ genCargoWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-3"
+            "5d-cargo-wagon-3"
         }
     }
 }
@@ -140,7 +140,7 @@ genCargoWagons {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-4",
+            "5d-cargo-wagon-4",
             "production-science-pack"
         }
     }
@@ -173,7 +173,7 @@ genCargoWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-5"
+            "5d-cargo-wagon-5"
         }
     }
 }
@@ -206,7 +206,7 @@ genCargoWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-6",
+            "5d-cargo-wagon-6",
             "utility-science-pack"
         }
     }
@@ -240,7 +240,7 @@ genCargoWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-7"
+            "5d-cargo-wagon-7"
         }
     }
 }
@@ -273,7 +273,7 @@ genCargoWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-8"
+            "5d-cargo-wagon-8"
         }
     }
 }
@@ -306,7 +306,7 @@ genCargoWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-9"
+            "5d-cargo-wagon-9"
         }
     }
 }

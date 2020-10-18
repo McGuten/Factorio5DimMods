@@ -90,8 +90,8 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-small-02", 1},
         {"iron-gear-wheel", 3},
-        {"electronic-circuit", 7},
-        {"steel-plate", 12}
+        {"copper-plate", 3},
+        {"iron-plate", 5}
     },
     nextUpdate = "5d-gun-turret-small-04",
     tech = {

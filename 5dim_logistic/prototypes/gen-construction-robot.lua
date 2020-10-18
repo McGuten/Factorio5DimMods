@@ -38,9 +38,9 @@ genConstructionRobots {
     order = "b",
     ingredients = {
         {"construction-robot", 1},
-        {"electric-engine-unit", 5},
-        {"electronic-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -72,9 +72,9 @@ genConstructionRobots {
     order = "c",
     ingredients = {
         {"5d-construction-robot-02", 1},
-        {"electric-engine-unit", 5},
-        {"electronic-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -107,9 +107,9 @@ genConstructionRobots {
     order = "d",
     ingredients = {
         {"5d-construction-robot-03", 1},
-        {"electric-engine-unit", 5},
-        {"electronic-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -144,9 +144,9 @@ genConstructionRobots {
     order = "e",
     ingredients = {
         {"5d-construction-robot-04", 1},
-        {"electric-engine-unit", 5},
-        {"advanced-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -180,9 +180,9 @@ genConstructionRobots {
     order = "f",
     ingredients = {
         {"5d-construction-robot-05", 1},
-        {"electric-engine-unit", 5},
-        {"advanced-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -218,9 +218,9 @@ genConstructionRobots {
     order = "g",
     ingredients = {
         {"5d-construction-robot-06", 1},
-        {"electric-engine-unit", 5},
-        {"advanced-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -255,9 +255,9 @@ genConstructionRobots {
     order = "h",
     ingredients = {
         {"5d-construction-robot-07", 1},
-        {"electric-engine-unit", 5},
-        {"advanced-circuit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -294,9 +294,9 @@ genConstructionRobots {
     order = "i",
     ingredients = {
         {"5d-construction-robot-08", 1},
-        {"electric-engine-unit", 5},
-        {"processing-unit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {
@@ -332,9 +332,9 @@ genConstructionRobots {
     order = "j",
     ingredients = {
         {"5d-construction-robot-09", 1},
-        {"electric-engine-unit", 5},
-        {"processing-unit", 5},
-        {"battery", 5},
+        {"electric-engine-unit", 1},
+        {"electronic-circuit", 1},
+        {"battery", 1},
     },
     pollution = emisions,
     tech = {

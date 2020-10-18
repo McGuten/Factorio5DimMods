@@ -22,7 +22,6 @@ genGunTurrets {
     tint = color,
     ingredients = {
         {"iron-gear-wheel", 15},
-        {"electronic-circuit", 4},
         {"copper-plate", 10},
         {"iron-plate", 30}
     },
@@ -57,7 +56,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-01", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -92,7 +90,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-02", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -127,7 +124,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-03", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -164,7 +160,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-04", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -200,7 +195,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-05", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -238,7 +232,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-06", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -275,7 +268,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-07", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -312,7 +304,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-08", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },
@@ -351,7 +342,6 @@ genGunTurrets {
     ingredients = {
         {"5d-gun-turret-big-09", 1},
         {"iron-gear-wheel", 6},
-        {"electronic-circuit", 2},
         {"copper-plate", 4},
         {"iron-plate", 10}
     },

@@ -78,7 +78,7 @@ genLocomotives {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-2",
+            "5d-locomotive-2",
             "chemical-science-pack"
         }
     }
@@ -112,7 +112,7 @@ genLocomotives {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-3"
+            "5d-locomotive-3"
         }
     }
 }
@@ -145,7 +145,7 @@ genLocomotives {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-4",
+            "5d-locomotive-4",
             "production-science-pack"
         }
     }
@@ -179,7 +179,7 @@ genLocomotives {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-5"
+            "5d-locomotive-5"
         }
     }
 }
@@ -213,7 +213,7 @@ genLocomotives {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-6",
+            "5d-locomotive-6",
             "utility-science-pack"
         }
     }
@@ -248,7 +248,7 @@ genLocomotives {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-7"
+            "5d-locomotive-7"
         }
     }
 }
@@ -282,7 +282,7 @@ genLocomotives {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-8"
+            "5d-locomotive-8"
         }
     }
 }
@@ -316,7 +316,7 @@ genLocomotives {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-9"
+            "5d-locomotive-9"
         }
     }
 }

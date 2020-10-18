@@ -80,7 +80,7 @@ genFluidWagons {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-2",
+            "fluid-wagon-2",
             "chemical-science-pack"
         }
     }
@@ -114,7 +114,7 @@ genFluidWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-3"
+            "fluid-wagon-3"
         }
     }
 }
@@ -146,7 +146,7 @@ genFluidWagons {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-4",
+            "fluid-wagon-4",
             "production-science-pack"
         }
     }
@@ -180,7 +180,7 @@ genFluidWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-5"
+            "fluid-wagon-5"
         }
     }
 }
@@ -214,7 +214,7 @@ genFluidWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-6",
+            "fluid-wagon-6",
             "utility-science-pack"
         }
     }
@@ -249,7 +249,7 @@ genFluidWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-7"
+            "fluid-wagon-7"
         }
     }
 }
@@ -283,7 +283,7 @@ genFluidWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-8"
+            "fluid-wagon-8"
         }
     }
 }
@@ -317,7 +317,7 @@ genFluidWagons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "solar-energy-9"
+            "fluid-wagon-9"
         }
     }
 }

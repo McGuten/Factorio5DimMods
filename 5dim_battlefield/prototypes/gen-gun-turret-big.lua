@@ -6,7 +6,7 @@ local shootingSpeed = 10
 local damageModif = 3
 local color = {r = 0.2, g = 0.2, b = 1, a = 1}
 local hp = 600
-local techCount = 200
+local techCount = 150
 
 -- Big gun turret 01
 genGunTurrets {

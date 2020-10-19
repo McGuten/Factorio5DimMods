@@ -5,7 +5,7 @@ local shootingSpeed = 25
 local damageModif = 23
 local color = {r = 0.9, g = 0.1, b = 0.9, a = 1}
 local hp = 1500
-local techCount = 500
+local techCount = 300
 
 -- Tesla turret 01
 genTeslaTurrets {

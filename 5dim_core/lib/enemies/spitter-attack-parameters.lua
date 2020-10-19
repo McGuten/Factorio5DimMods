@@ -95,11 +95,12 @@ function selectAttackParams(size, type, data)
             )
         end
     elseif type == "fire" then
-        if size == "small" then
+        if size == "small" then 
             return {
                 type = "stream",
                 cooldown = 4,
                 range = data.range,
+                damage_modifier = data.damage_modifier,
                 min_range = 6,
                 turn_range = 1.0 / 3.0,
                 fire_penalty = 15,
@@ -189,7 +190,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -215,7 +216,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -241,7 +242,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -267,7 +268,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -295,7 +296,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -306,7 +307,7 @@ function selectAttackParams(size, type, data)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = "explosive-rocket",
+                            projectile = "rocket",
                             starting_speed = 0.1,
                             source_effects = {
                                 type = "create-entity",
@@ -321,7 +322,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -332,7 +333,7 @@ function selectAttackParams(size, type, data)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = "explosive-rocket",
+                            projectile = "rocket",
                             starting_speed = 0.1,
                             source_effects = {
                                 type = "create-entity",
@@ -347,7 +348,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,
@@ -373,7 +374,7 @@ function selectAttackParams(size, type, data)
             return {
                 type = "projectile",
                 ammo_category = "explosive-rocket",
-                cooldown = 120,
+                cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
                 damage_modifier = data.damage_modifier,

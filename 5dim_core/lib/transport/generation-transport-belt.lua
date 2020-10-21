@@ -288,7 +288,7 @@ function genTransportBelts(inputs)
     entitySplitter.minable.result = itemSplitter.name
     entitySplitter.speed = inputs.speed
 
-    if inputs.number ~= "01" then
+    if inputs.number ~= "01" or inputs.number ~= "02" then
         entitySplitter.belt_animation_set.animation_set.hr_version.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
 

@@ -37,7 +37,7 @@ function genSteamEngines(inputs)
         recipe.normal.ingredients = inputs.ingredients
         recipe.expensive.result = item.name
         if inputs.new then
-            recipe.normal.enabled = false
+            recipe.expensive.enabled = false
         end
         recipe.expensive.ingredients = inputs.ingredients
     end

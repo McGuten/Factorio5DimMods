@@ -55,3 +55,6 @@
 
 -- Personal tesla defense
     require("prototypes.gen-personal-tesla-defense-equipment")
+
+-- Personal tesla defense
+    require("prototypes.night-vision-equipment")

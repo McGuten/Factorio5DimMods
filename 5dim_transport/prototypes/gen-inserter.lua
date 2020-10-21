@@ -90,8 +90,7 @@ genInserters {
             {"iron-gear-wheel", 15},
             {"electronic-circuit", 15},
             {"advanced-circuit", 1},
-            {"stack-inserter", 1},
-            {"inserter", 1}
+            {"stack-inserter", 1}
         },
         stackFilterInserter = {
             {"5d-stack-inserter-02", 1},

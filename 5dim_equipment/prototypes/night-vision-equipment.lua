@@ -15,6 +15,7 @@ item.placed_as_equipment_result = item.name
 recipe.name = item.name
 recipe.result = item.name
 recipe.icon = item.icon
+recipe.icon_size = 64
 recipe.enabled = false
 recipe.ingredients = {
     {"night-vision-equipment", 1},

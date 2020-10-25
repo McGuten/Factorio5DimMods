@@ -146,7 +146,7 @@ experimentalSpitterFire.alternative_attacking_frame_sequence = nil
 experimentalSpitterFire.max_health = spitter.health.experimental
 experimentalSpitterFire.resistances = spitter.resistances.basic.experimental
 experimentalSpitterFire.run_animation =
-    spitterrunanimation(spitter.scale.experimental, spitter.colors.primary.rocket, spitter.colors.secondary.secondColor)
+    spitterrunanimation(spitter.scale.experimental, spitter.colors.primary.fire, spitter.colors.secondary.secondColor)
 experimentalSpitterFire.water_reflection = spitter_water_reflection(spitter.scale.experimental)
 experimentalSpitterFire.attack_parameters = {
     type = "stream",
@@ -185,7 +185,7 @@ experimentalSpitterRocket.water_reflection = spitter_water_reflection(spitter.sc
 experimentalSpitterRocket.attack_parameters = {
     type = "projectile",
     ammo_category = "explosive-rocket",
-    cooldown = 60,
+    cooldown = 90,
     range = spitter.range.experimental,
     projectile_creation_distance = 0.5,
     damage_modifier = spitter.damage.experimental,
@@ -226,7 +226,7 @@ experimentalSpitterRocket.water_reflection = spitter_water_reflection(spitter.sc
 experimentalSpitterRocket.attack_parameters = {
     type = "projectile",
     ammo_category = "explosive-rocket",
-    cooldown = 10,
+    cooldown = 60,
     range = spitter.range.experimental,
     projectile_creation_distance = 0.5,
     damage_modifier = spitter.damage.experimental,

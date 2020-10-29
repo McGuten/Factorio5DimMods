@@ -52,7 +52,7 @@ genMasher {
     order = "b",
     ingredients = {
         {"5d-masher-01", 1},
-        {"iron-plate", 10},
+        {"steel-plate", 10},
         {"electronic-circuit", 5},
         {"iron-gear-wheel", 10}
     },
@@ -88,7 +88,7 @@ genMasher {
     order = "c",
     ingredients = {
         {"5d-masher-02", 1},
-        {"iron-plate", 10},
+        {"steel-plate", 10},
         {"advanced-circuit", 3},
         {"iron-gear-wheel", 10}
     },

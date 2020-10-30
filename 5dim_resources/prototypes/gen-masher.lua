@@ -36,7 +36,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 modules = modules + 1
 energy = energy + 180
 emisions = emisions + 0.75
@@ -73,7 +73,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 energy = energy + 180
 emisions = emisions + 0.75
 
@@ -111,7 +111,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 modules = modules + 1
 energy = energy + 180
 emisions = emisions + 0.75
@@ -149,7 +149,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 energy = energy + 180
 emisions = emisions + 0.75
 
@@ -187,7 +187,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 modules = modules + 1
 energy = energy + 180
 emisions = emisions + 0.75
@@ -226,7 +226,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 energy = energy + 180
 emisions = emisions + 0.75
 
@@ -264,7 +264,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 modules = modules + 1
 energy = energy + 180
 emisions = emisions + 0.75
@@ -305,7 +305,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 energy = energy + 180
 emisions = emisions + 0.75
 
@@ -344,7 +344,7 @@ genMasher {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 2
 modules = modules + 1
 energy = energy + 180
 emisions = emisions + 0.75

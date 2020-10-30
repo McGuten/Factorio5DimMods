@@ -25,7 +25,7 @@ genElectricFurnaces {
     tech = nil
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 modules = modules + 1
 energy = energy + 90
 emisions = emisions + 0.75
@@ -61,7 +61,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 energy = energy + 90
 emisions = emisions + 0.75
 
@@ -98,7 +98,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 modules = modules + 1
 energy = energy + 90
 emisions = emisions + 0.75
@@ -135,7 +135,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 energy = energy + 90
 emisions = emisions + 0.75
 
@@ -172,7 +172,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 modules = modules + 1
 energy = energy + 90
 emisions = emisions + 0.75
@@ -210,7 +210,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 energy = energy + 90
 emisions = emisions + 0.75
 
@@ -247,7 +247,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 modules = modules + 1
 energy = energy + 90
 emisions = emisions + 0.75
@@ -287,7 +287,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 energy = energy + 90
 emisions = emisions + 0.75
 
@@ -325,7 +325,7 @@ genElectricFurnaces {
     }
 }
 
-crafting = crafting + 0.5
+crafting = crafting + 1
 modules = modules + 1
 energy = energy + 90
 emisions = emisions + 0.75

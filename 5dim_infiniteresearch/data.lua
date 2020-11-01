@@ -26,5 +26,6 @@ if settings.startup["5d-braking"].value then
 end
 
 -- Player upgrades
+require("prototypes.worker-robots-battery")
 require("prototypes.crafting-speed")
 require("prototypes.mining-speed")

@@ -150,7 +150,7 @@ function genInserters(inputs)
     entity.pickup_position = {0, -1}
     entity.insert_position = {0, 1.2}
     entity.energy_source.drain = inputs.energyDrain .. "kW"
-    entity.fast_replaceable_group = "stack-inserter"
+    entity.fast_replaceable_group = "inserter"
 
     -- Platform
     entity.platform_picture.sheet.hr_version.filename =
@@ -211,7 +211,7 @@ function genInserters(inputs)
     entity.pickup_position = {0, -1}
     entity.insert_position = {0, 1.2}
     entity.energy_source.drain = inputs.energyDrain .. "kW"
-    entity.fast_replaceable_group = "stack-filter-inserter"
+    entity.fast_replaceable_group = "filter-inserter"
 
     -- Platform
     entity.platform_picture.sheet.hr_version.filename =

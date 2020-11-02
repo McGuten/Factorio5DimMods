@@ -18,4 +18,7 @@ require("prototypes.item-groups-defense")
 require("prototypes.item-groups-liquids")
 
 --Tech
-require("prototypes.tech")
+-- require("prototypes.tech")
+
+-- Changes
+require("prototypes.changes")

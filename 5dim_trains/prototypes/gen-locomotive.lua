@@ -2,6 +2,8 @@ require("__5dim_core__.lib.trains.generation-locomotive")
 
 local speed = 1.2
 local energy = 600
+local weightWagon = 2000
+local maxHealth = 1000
 local techCount = 100
 
 -- Electric furnace 01
@@ -10,6 +12,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = false,
     order = "a",
     ingredients = {
@@ -20,8 +24,10 @@ genLocomotives {
     tech = nil
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 02
 genLocomotives {
@@ -29,6 +35,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "b",
     ingredients = {
@@ -51,8 +59,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 03
 genLocomotives {
@@ -60,6 +70,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "c",
     ingredients = {
@@ -84,8 +96,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 04
 genLocomotives {
@@ -93,6 +107,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "d",
     ingredients = {
@@ -117,8 +133,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 05
 genLocomotives {
@@ -126,6 +144,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "e",
     ingredients = {
@@ -151,8 +171,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 06
 genLocomotives {
@@ -160,6 +182,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "f",
     ingredients = {
@@ -184,8 +208,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 07
 genLocomotives {
@@ -193,6 +219,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "g",
     ingredients = {
@@ -219,8 +247,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 08
 genLocomotives {
@@ -228,6 +258,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "h",
     ingredients = {
@@ -253,8 +285,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 09
 genLocomotives {
@@ -262,6 +296,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "i",
     ingredients = {
@@ -287,8 +323,10 @@ genLocomotives {
     }
 }
 
-speed = speed + 0.35
-energy = energy + 300
+speed = speed + 0.15
+energy = energy + 100
+weightWagon = weightWagon + 500
+maxHealth = maxHealth + 250
 
 -- Electric furnace 10
 genLocomotives {
@@ -296,6 +334,8 @@ genLocomotives {
     subgroup = "trains-locomotive",
     maxSpeed = speed,
     maxPower = energy,
+    weight = weightWagon,
+    health = maxHealth,
     new = true,
     order = "j",
     ingredients = {

@@ -32,6 +32,8 @@ function genFluidWagons(inputs)
     entity.minable.result = item.name
     entity.max_speed = inputs.maxSpeed or 1.5
     entity.capacity = inputs.cargo or 25000
+    entity.weight = inputs.weight or 2000
+    entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "fluid-wagon"
 
     data:extend({entity, recipe, item})

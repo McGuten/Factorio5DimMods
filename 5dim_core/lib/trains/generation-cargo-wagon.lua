@@ -32,6 +32,8 @@ function genCargoWagons(inputs)
     entity.minable.result = item.name
     entity.max_speed = inputs.maxSpeed or 1.5
     entity.inventory_size = inputs.cargo or 40
+    entity.weight = inputs.weight or 2000
+    entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "cargo-wagon"
 
     data:extend({entity, recipe, item})

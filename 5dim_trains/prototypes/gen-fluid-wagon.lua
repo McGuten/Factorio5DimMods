@@ -2,6 +2,7 @@ require("__5dim_core__.lib.trains.generation-fluid-wagon")
 
 local speed = 1.5
 local maxCargo = 25000
+local weightWagon = 2000
 local techCount = 100
 
 -- Electric furnace 01
@@ -10,6 +11,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = false,
     order = "a",
     ingredients = {
@@ -21,8 +23,9 @@ genFluidWagons {
     tech = nil
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 02
 genFluidWagons {
@@ -30,6 +33,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "b",
     ingredients = {
@@ -53,8 +57,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 03
 genFluidWagons {
@@ -62,6 +67,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "c",
     ingredients = {
@@ -86,8 +92,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 04
 genFluidWagons {
@@ -95,6 +102,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "d",
     ingredients = {
@@ -119,8 +127,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 05
 genFluidWagons {
@@ -128,6 +137,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "e",
     ingredients = {
@@ -152,8 +162,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 06
 genFluidWagons {
@@ -161,6 +172,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "f",
     ingredients = {
@@ -185,8 +197,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 07
 genFluidWagons {
@@ -194,6 +207,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "g",
     ingredients = {
@@ -220,8 +234,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 08
 genFluidWagons {
@@ -229,6 +244,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "h",
     ingredients = {
@@ -254,8 +270,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 09
 genFluidWagons {
@@ -263,6 +280,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "i",
     ingredients = {
@@ -288,8 +306,9 @@ genFluidWagons {
     }
 }
 
-speed = speed + 0.4
+speed = speed + 0.17
 maxCargo = maxCargo + 25000
+weightWagon = weightWagon + 500
 
 -- Electric furnace 10
 genFluidWagons {
@@ -297,6 +316,7 @@ genFluidWagons {
     subgroup = "trains-liquids",
     maxSpeed = speed,
     cargo = maxCargo,
+    weight = weightWagon,
     new = true,
     order = "j",
     ingredients = {

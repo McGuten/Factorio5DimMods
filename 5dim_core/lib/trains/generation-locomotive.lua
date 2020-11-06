@@ -32,6 +32,8 @@ function genLocomotives(inputs)
     entity.minable.result = item.name
     entity.max_speed = inputs.maxSpeed or 1.2
     entity.max_power = (inputs.maxPower .. "kW") or (600 .. "kW")
+    entity.weight = inputs.weight or 2000
+    entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "locomotive"
 
     data:extend({entity, recipe, item})

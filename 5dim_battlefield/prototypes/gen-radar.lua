@@ -25,7 +25,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 02
 genRadars {
@@ -58,7 +58,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 03
 genRadars {
@@ -93,7 +93,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 04
 genRadars {
@@ -127,7 +127,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 05
 genRadars {
@@ -163,7 +163,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 06
 genRadars {
@@ -198,7 +198,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 07
 genRadars {
@@ -233,7 +233,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 08
 genRadars {
@@ -270,7 +270,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 09
 genRadars {
@@ -306,7 +306,7 @@ genRadars {
 
 escaner = escaner + 2
 revelado = revelado + 2
-energia = energia + 150
+energia = energia + 300
 
 -- Radar 10
 genRadars {

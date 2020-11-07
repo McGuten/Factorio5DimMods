@@ -54,6 +54,7 @@ function genTeslaTurrets(inputs)
     entity.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
     entity.max_health = inputs.health or 1500
     entity.fast_replaceable_group = "tesla-turret"
+    entity.resistances = inputs.resistances or nil
 
     -- Base
     -- entity.picture.layers[1].hr_version.filename =

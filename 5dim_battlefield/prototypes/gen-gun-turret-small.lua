@@ -25,6 +25,16 @@ genGunTurrets {
         {"copper-plate", 7},
         {"iron-plate", 13}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 5
+        },
+        {
+            type = "explosion",
+            percent = 2.5
+        }
+    },
     nextUpdate = "5d-gun-turret-small-02",
     tech = {
         number = "5d-turrets-small-1",
@@ -58,6 +68,16 @@ genGunTurrets {
         {"iron-gear-wheel", 3},
         {"copper-plate", 3},
         {"iron-plate", 5}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 15
+        },
+        {
+            type = "explosion",
+            percent = 7.5
+        }
     },
     nextUpdate = "5d-gun-turret-small-03",
     tech = {
@@ -93,6 +113,16 @@ genGunTurrets {
         {"copper-plate", 3},
         {"iron-plate", 5}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 15
+        },
+        {
+            type = "explosion",
+            percent = 7.5
+        }
+    },
     nextUpdate = "5d-gun-turret-small-04",
     tech = {
         number = "5d-turrets-small-3",
@@ -126,6 +156,16 @@ genGunTurrets {
         {"iron-gear-wheel", 3},
         {"copper-plate", 3},
         {"iron-plate", 5}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 20
+        },
+        {
+            type = "explosion",
+            percent = 10
+        }
     },
     nextUpdate = "5d-gun-turret-small-05",
     tech = {
@@ -163,6 +203,16 @@ genGunTurrets {
         {"copper-plate", 3},
         {"iron-plate", 5}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 25
+        },
+        {
+            type = "explosion",
+            percent = 12.5
+        }
+    },
     nextUpdate = "5d-gun-turret-small-06",
     tech = {
         number = "5d-turrets-small-5",
@@ -198,6 +248,16 @@ genGunTurrets {
         {"iron-gear-wheel", 3},
         {"copper-plate", 3},
         {"iron-plate", 5}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 30
+        },
+        {
+            type = "explosion",
+            percent = 15
+        }
     },
     nextUpdate = "5d-gun-turret-small-07",
     tech = {
@@ -236,6 +296,16 @@ genGunTurrets {
         {"copper-plate", 3},
         {"iron-plate", 5}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 35
+        },
+        {
+            type = "explosion",
+            percent = 17.5
+        }
+    },
     nextUpdate = "5d-gun-turret-small-08",
     tech = {
         number = "5d-turrets-small-7",
@@ -272,6 +342,16 @@ genGunTurrets {
         {"copper-plate", 3},
         {"iron-plate", 5}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 40
+        },
+        {
+            type = "explosion",
+            percent = 20
+        }
+    },
     nextUpdate = "5d-gun-turret-small-09",
     tech = {
         number = "5d-turrets-small-8",
@@ -307,6 +387,16 @@ genGunTurrets {
         {"iron-gear-wheel", 3},
         {"copper-plate", 3},
         {"iron-plate", 5}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 45
+        },
+        {
+            type = "explosion",
+            percent = 22.5
+        }
     },
     nextUpdate = "5d-gun-turret-small-10",
     tech = {
@@ -345,6 +435,16 @@ genGunTurrets {
         {"iron-gear-wheel", 3},
         {"copper-plate", 3},
         {"iron-plate", 5}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 50
+        },
+        {
+            type = "explosion",
+            percent = 25
+        }
     },
     tech = {
         number = "5d-turrets-small-10",

@@ -73,6 +73,7 @@ function genGunTurrets(inputs)
     entity.prepared_animation.layers[2].hr_version.tint = inputs.tint
     entity.max_health = inputs.health or 480
     entity.fast_replaceable_group = "gun-turret"
+    entity.resistances = inputs.resistances or nil
 
     data:extend(
         {

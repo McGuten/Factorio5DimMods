@@ -62,6 +62,7 @@ function genLaserTurrets(inputs)
     }
     entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "laser-turret"
+    entity.resistances = inputs.resistances or nil
 
     -- Base
     -- entity.picture.layers[1].hr_version.filename =

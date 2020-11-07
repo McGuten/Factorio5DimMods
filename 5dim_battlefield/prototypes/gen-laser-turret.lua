@@ -23,6 +23,16 @@ genLaserTurrets {
         {"electronic-circuit", 20},
         {"battery", 12}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 5
+        },
+        {
+            type = "explosion",
+            percent = 2.5
+        }
+    },
     nextUpdate = "5d-laser-turret-02",
     tech = nil
 }
@@ -46,6 +56,16 @@ genLaserTurrets {
         {"steel-plate", 5},
         {"electronic-circuit", 5},
         {"battery", 4}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 15
+        },
+        {
+            type = "explosion",
+            percent = 7.5
+        }
     },
     nextUpdate = "5d-laser-turret-03",
     tech = {
@@ -83,6 +103,16 @@ genLaserTurrets {
         {"electronic-circuit", 5},
         {"battery", 4}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 15
+        },
+        {
+            type = "explosion",
+            percent = 7.5
+        }
+    },
     nextUpdate = "5d-laser-turret-04",
     tech = {
         number = "laser-turrets-3",
@@ -118,6 +148,16 @@ genLaserTurrets {
         {"steel-plate", 5},
         {"electronic-circuit", 5},
         {"battery", 4}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 20
+        },
+        {
+            type = "explosion",
+            percent = 10
+        }
     },
     nextUpdate = "5d-laser-turret-05",
     tech = {
@@ -155,6 +195,16 @@ genLaserTurrets {
         {"electronic-circuit", 5},
         {"battery", 4}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 25
+        },
+        {
+            type = "explosion",
+            percent = 12.5
+        }
+    },
     nextUpdate = "5d-laser-turret-06",
     tech = {
         number = "laser-turrets-5",
@@ -191,6 +241,16 @@ genLaserTurrets {
         {"electronic-circuit", 5},
         {"battery", 4}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 30
+        },
+        {
+            type = "explosion",
+            percent = 15
+        }
+    },
     nextUpdate = "5d-laser-turret-07",
     tech = {
         number = "laser-turrets-6",
@@ -226,6 +286,16 @@ genLaserTurrets {
         {"steel-plate", 5},
         {"electronic-circuit", 5},
         {"battery", 4}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 35
+        },
+        {
+            type = "explosion",
+            percent = 17.5
+        }
     },
     nextUpdate = "5d-laser-turret-08",
     tech = {
@@ -265,6 +335,16 @@ genLaserTurrets {
         {"electronic-circuit", 5},
         {"battery", 4}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 40
+        },
+        {
+            type = "explosion",
+            percent = 20
+        }
+    },
     nextUpdate = "5d-laser-turret-09",
     tech = {
         number = "laser-turrets-8",
@@ -302,6 +382,16 @@ genLaserTurrets {
         {"electronic-circuit", 5},
         {"battery", 4}
     },
+    resistances = {
+        {
+            type = "fire",
+            percent = 45
+        },
+        {
+            type = "explosion",
+            percent = 22.5
+        }
+    },
     nextUpdate = "5d-laser-turret-10",
     tech = {
         number = "laser-turrets-9",
@@ -338,6 +428,16 @@ genLaserTurrets {
         {"steel-plate", 5},
         {"electronic-circuit", 5},
         {"battery", 4}
+    },
+    resistances = {
+        {
+            type = "fire",
+            percent = 50
+        },
+        {
+            type = "explosion",
+            percent = 25
+        }
     },
     tech = {
         number = "laser-turrets-10",

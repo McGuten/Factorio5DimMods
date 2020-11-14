@@ -38,7 +38,7 @@ function genEnergyShields(inputs)
     equipment.max_shield_value = inputs.shieldCapacity
     equipment.energy_source.buffer_capacity = inputs.capacity .. "kJ"
     equipment.energy_source.input_flow_limit = inputs.inputFlow .. "kW"
-    equipment.energy_per_shield = inputs.capacity .. "kJ"
+    equipment.energy_per_shield = inputs.energyPerShield .. "kJ"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/energy-shield/energy-shield-equipment-" .. inputs.number .. ".png"
 

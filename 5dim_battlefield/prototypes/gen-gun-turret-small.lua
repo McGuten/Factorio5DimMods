@@ -3,7 +3,7 @@ require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
 local rango = 12
 local ammo = 15
 local shootingSpeed = 4
-local damageModif = 0.6
+local damageModif = 0.55
 local color = {r = 1, g = 1, b = 0.1, a = 1}
 local hp = 400
 local techCount = 50

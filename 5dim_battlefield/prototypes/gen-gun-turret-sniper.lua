@@ -1,9 +1,9 @@
 require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
 
-local rango = 42
+local rango = 52
 local ammo = 5
-local shootingSpeed = 18
-local damageModif = 9
+local shootingSpeed = 20
+local damageModif = 10
 local color = {r = 0, g = 1, b = 1, a = 1}
 local hp = 750
 local techCount = 200
@@ -459,7 +459,9 @@ genGunTurrets {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "5d-turrets-sniper-9"

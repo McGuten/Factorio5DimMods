@@ -1,6 +1,6 @@
 require("__5dim_core__.lib.battlefield.laser-turret.generation-laser-turret")
 
-local rango = 40
+local rango = 42
 local shootingSpeed = 80
 local damageModif = 6
 local color = {r = 0.2, g = 0.2, b = 1, a = 1}

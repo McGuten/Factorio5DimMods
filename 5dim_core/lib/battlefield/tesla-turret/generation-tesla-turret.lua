@@ -14,7 +14,7 @@ function genTeslaTurrets(inputs)
         item.name = "5d-tesla-turret-" .. inputs.number
     end
     item.icon =
-        "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-icon.png"
+        "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -55,10 +55,10 @@ function genTeslaTurrets(inputs)
     entity.max_health = inputs.health or 1500
     entity.fast_replaceable_group = "tesla-turret"
     entity.resistances = inputs.resistances or nil
-
-    -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
+    entity.energy_source.buffer_capacity = 801 * 6 .. "kJ"
+    entity.energy_source.input_flow_limit = 9600 * 6 .. "kW"
+    entity.energy_source.drain = 24 * 6 .. "kW"
+    entity.attack_parameters.ammo_type.energy_consumption = 800 * 6 .. "kJ"
 
     data:extend({entity, recipe, item})
 

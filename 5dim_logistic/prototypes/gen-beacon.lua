@@ -49,7 +49,9 @@ genBeacons {
         count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
             "effect-transmission"
@@ -82,7 +84,9 @@ genBeacons {
         count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
             "effect-transmission-2"
@@ -115,11 +119,11 @@ genBeacons {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "effect-transmission-3",
-            "chemical-science-pack"
+            "effect-transmission-3"
         }
     }
 }
@@ -150,10 +154,13 @@ genBeacons {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "effect-transmission-4"
+            "effect-transmission-4",
+            "utility-science-pack"
         }
     }
 }
@@ -184,11 +191,11 @@ genBeacons {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
-            "effect-transmission-5",
-            "production-science-pack"
+            "effect-transmission-5"
         }
     }
 }
@@ -220,7 +227,8 @@ genBeacons {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            {"production-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "effect-transmission-6"
@@ -258,8 +266,7 @@ genBeacons {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "effect-transmission-7",
-            "utility-science-pack"
+            "effect-transmission-7"
         }
     }
 }

@@ -1,5 +1,18 @@
 require("tint-gun-turret")
 
+function string:split(delimiter)
+    local result = {}
+    local from = 1
+    local delim_from, delim_to = string.find(self, delimiter, from)
+    while delim_from do
+        table.insert(result, string.sub(self, from, delim_from - 1))
+        from = delim_to + 1
+        delim_from, delim_to = string.find(self, delimiter, from)
+    end
+    table.insert(result, string.sub(self, from))
+    return result
+end
+
 function genGunTurrets(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["gun-turret"])
@@ -14,14 +27,16 @@ function genGunTurrets(inputs)
         item.name = "5d-gun-turret-" .. inputs.number
     end
 
+    local split = inputs.number:split("-")
+
     if string.find(inputs.number, "small") ~= nil then
-        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-small.png"
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/small/gun-turret-small-" .. split[2] .. ".png"
     elseif string.find(inputs.number, "big") ~= nil then
-        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-big.png"
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/big/gun-turret-big-" .. split[2] .. ".png"
     elseif string.find(inputs.number, "sniper") ~= nil then
-        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-sniper.png"
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/sniper/gun-turret-sniper-" .. split[2] .. ".png"
     else
-        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/gun-turret-normal.png"
+        item.icon = "__5dim_battlefield__/graphics/icon/gun-turret/normal/gun-turret-normal-" .. split[1] .. ".png"
     end
 
     item.subgroup = inputs.subgroup
@@ -74,7 +89,6 @@ function genGunTurrets(inputs)
     entity.max_health = inputs.health or 480
     entity.fast_replaceable_group = "gun-turret"
     entity.resistances = inputs.resistances or nil
-
     data:extend(
         {
             entity,

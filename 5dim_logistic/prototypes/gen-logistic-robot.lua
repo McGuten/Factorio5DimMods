@@ -38,9 +38,8 @@ genLogisticRobots {
     order = "b",
     ingredients = {
         {"logistic-robot", 1},
-        {"electric-engine-unit", 1},
-        {"advanced-circuit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -72,9 +71,8 @@ genLogisticRobots {
     order = "c",
     ingredients = {
         {"5d-logistic-robot-02", 1},
-        {"electric-engine-unit", 1},
-        {"advanced-circuit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -107,9 +105,8 @@ genLogisticRobots {
     order = "d",
     ingredients = {
         {"5d-logistic-robot-03", 1},
-        {"electric-engine-unit", 1},
-        {"advanced-circuit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -144,9 +141,8 @@ genLogisticRobots {
     order = "e",
     ingredients = {
         {"5d-logistic-robot-04", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
     tech = {
@@ -180,9 +176,8 @@ genLogisticRobots {
     order = "f",
     ingredients = {
         {"5d-logistic-robot-05", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"processing-unit", 1}
     },
     pollution = emisions,
     tech = {
@@ -218,9 +213,8 @@ genLogisticRobots {
     order = "g",
     ingredients = {
         {"5d-logistic-robot-06", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"processing-unit", 1}
     },
     pollution = emisions,
     tech = {
@@ -255,9 +249,8 @@ genLogisticRobots {
     order = "h",
     ingredients = {
         {"5d-logistic-robot-07", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"processing-unit", 1}
     },
     pollution = emisions,
     tech = {
@@ -294,9 +287,8 @@ genLogisticRobots {
     order = "i",
     ingredients = {
         {"5d-logistic-robot-08", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"processing-unit", 1}
     },
     pollution = emisions,
     tech = {
@@ -332,9 +324,8 @@ genLogisticRobots {
     order = "j",
     ingredients = {
         {"5d-logistic-robot-09", 1},
-        {"electric-engine-unit", 1},
-        {"processing-unit", 1},
-        {"battery", 1}
+        {"flying-robot-frame", 1},
+        {"processing-unit", 1}
     },
     pollution = emisions,
     tech = {

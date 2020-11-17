@@ -397,7 +397,8 @@ genTeslaTurrets {
             {"logistic-science-pack", 1},
             {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-laser-turrets-sniper-8",
@@ -445,7 +446,8 @@ genTeslaTurrets {
             {"logistic-science-pack", 1},
             {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-laser-turrets-sniper-9",
@@ -492,7 +494,8 @@ genTeslaTurrets {
             {"logistic-science-pack", 1},
             {"military-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"utility-science-pack", 1},
+            {"space-science-pack", 1}
         },
         prerequisites = {
             "5d-laser-turrets-sniper-10",

@@ -71,7 +71,10 @@ genEnergyShields {
         count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            {"logistic-science-pack", 1},
+            {"chemical-science-pack", 1},
+            {"military-science-pack", 1},
+            {"utility-science-pack", 1}
         },
         prerequisites = {
             "energy-shield-mk2-equipment"

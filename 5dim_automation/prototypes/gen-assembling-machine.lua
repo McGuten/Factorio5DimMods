@@ -62,8 +62,8 @@ genAssemblingMachines {
     new = false,
     order = "c",
     ingredients = {
-        {"speed-module", 4},
-        {"assembling-machine-2", 2}
+        {"speed-module", 5},
+        {"assembling-machine-2", 1}
     },
     nextUpdate = "5d-assembling-machine-04",
     tech = nil,
@@ -82,7 +82,7 @@ genAssemblingMachines {
     new = true,
     order = "d",
     ingredients = {
-        {"assembling-machine-3", 2},
+        {"assembling-machine-3", 1},
         {"productivity-module", 4},
         {"steel-plate", 6}
     },
@@ -115,7 +115,7 @@ genAssemblingMachines {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-assembling-machine-04", 2},
+        {"5d-assembling-machine-04", 1},
         {"speed-module-2", 4},
         {"steel-plate", 6}
     },
@@ -148,7 +148,7 @@ genAssemblingMachines {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-assembling-machine-05", 2},
+        {"5d-assembling-machine-05", 1},
         {"productivity-module-2", 4},
         {"steel-plate", 6}
     },
@@ -181,7 +181,7 @@ genAssemblingMachines {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-assembling-machine-06", 2},
+        {"5d-assembling-machine-06", 1},
         {"speed-module-3", 4},
         {"steel-plate", 6}
     },
@@ -216,7 +216,7 @@ genAssemblingMachines {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-assembling-machine-07", 2},
+        {"5d-assembling-machine-07", 1},
         {"productivity-module-3", 4},
         {"steel-plate", 6}
     },

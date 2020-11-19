@@ -10,7 +10,7 @@ function genLabs(inputs)
         item.name = "5d-lab-" .. inputs.number
     end
     item.icon =
-        "__5dim_automatization__/graphics/icon/lab/lab-icon-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/icon/lab/lab-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -36,10 +36,10 @@ function genLabs(inputs)
     entity.fast_replaceable_group = "lab"
     
     entity.on_animation.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
     
     entity.off_animation.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})
 

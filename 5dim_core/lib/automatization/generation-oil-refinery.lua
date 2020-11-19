@@ -10,7 +10,7 @@ function genChemicalPlants(inputs)
         item.name = "5d-oil-refinery-" .. inputs.number
     end
     item.icon =
-        "__5dim_automatization__/graphics/icon/oil-refinery/oil-refinery-icon-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/icon/oil-refinery/oil-refinery-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -35,19 +35,19 @@ function genChemicalPlants(inputs)
 
     -- East
     entity.animation.east.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
 
     -- North
     entity.animation.north.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
 
     -- South
     entity.animation.south.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
 
     -- West
     entity.animation.west.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})
 

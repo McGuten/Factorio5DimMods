@@ -36,6 +36,8 @@ function genRoboports(inputs)
     entity.robot_slots_count = inputs.botSlots
     entity.recharge_minimum = inputs.recharge .. "MJ"
     entity.fast_replaceable_group = "roboport"
+    entity.charging_offsets = nil
+    entity.charging_station_count = inputs.rechargeSlots
 
     -- Base
     entity.base.layers[1].hr_version.filename =

@@ -13,7 +13,7 @@ function genAssemblingMachines(inputs)
     if inputs.new then
         item.name = "5d-assembling-machine-" .. inputs.number
     end
-    item.icon = "__5dim_automatization__/graphics/icon/assembling-machine/assembling-machine-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_automation__/graphics/icon/assembling-machine/assembling-machine-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -39,7 +39,7 @@ function genAssemblingMachines(inputs)
 
     -- Base
     entity.animation.layers[1].hr_version.filename =
-        "__5dim_automatization__/graphics/entities/assembling-machine/assembling-machine-" .. inputs.number .. ".png"
+        "__5dim_automation__/graphics/entities/assembling-machine/assembling-machine-" .. inputs.number .. ".png"
     entity.animation.layers[1].hr_version.width = 214
     entity.animation.layers[1].hr_version.height = 226
 

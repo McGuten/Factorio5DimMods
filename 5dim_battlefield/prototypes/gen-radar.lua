@@ -108,7 +108,7 @@ genRadars {
         {"electronic-circuit", 7},
         {"iron-gear-wheel", 5},
         {"steel-plate", 5},
-        {"5d-radar-02", 1}
+        {"5d-radar-03", 1}
     },
     nextUpdate = "5d-radar-02",
     tech = {

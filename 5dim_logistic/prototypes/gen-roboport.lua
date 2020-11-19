@@ -8,6 +8,7 @@ local logistic = 25
 local constructions = 55
 local botSlot = 7
 local recharges = 40
+local slots = 4
 local techCount = 500
 
 -- Electric furnace 01
@@ -17,6 +18,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = false,
     order = "a",
     ingredients = {
@@ -34,6 +36,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -49,6 +52,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "b",
     ingredients = {
@@ -78,6 +82,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -93,6 +98,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "c",
     ingredients = {
@@ -123,6 +129,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -138,6 +145,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "d",
     ingredients = {
@@ -170,6 +178,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -185,6 +194,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "e",
     ingredients = {
@@ -216,6 +226,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -231,6 +242,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "f",
     ingredients = {
@@ -264,6 +276,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -279,6 +292,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "g",
     ingredients = {
@@ -311,6 +325,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -326,6 +341,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "h",
     ingredients = {
@@ -360,6 +376,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -375,6 +392,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "i",
     ingredients = {
@@ -408,6 +426,7 @@ genRoboports {
 }
 
 recharges = recharges + 20
+slots = slots + 2
 modules = modules + 1.5
 speed = speed + 500
 energy = energy + 45
@@ -423,6 +442,7 @@ genRoboports {
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
+    rechargeSlots = slots,
     new = true,
     order = "j",
     ingredients = {

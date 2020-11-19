@@ -82,10 +82,9 @@ genAssemblingMachines {
     new = true,
     order = "d",
     ingredients = {
-        {"assembling-machine-3", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"assembling-machine-3", 2},
+        {"productivity-module", 4},
+        {"steel-plate", 6}
     },
     nextUpdate = "5d-assembling-machine-05",
     tech = {
@@ -116,10 +115,9 @@ genAssemblingMachines {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-assembling-machine-04", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"5d-assembling-machine-04", 2},
+        {"speed-module-2", 4},
+        {"steel-plate", 6}
     },
     nextUpdate = "5d-assembling-machine-06",
     tech = {
@@ -150,10 +148,9 @@ genAssemblingMachines {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-assembling-machine-05", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"5d-assembling-machine-05", 2},
+        {"productivity-module-2", 4},
+        {"steel-plate", 6}
     },
     nextUpdate = "5d-assembling-machine-07",
     tech = {
@@ -184,10 +181,9 @@ genAssemblingMachines {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-assembling-machine-06", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"5d-assembling-machine-06", 2},
+        {"speed-module-3", 4},
+        {"steel-plate", 6}
     },
     nextUpdate = "5d-assembling-machine-08",
     tech = {
@@ -220,10 +216,9 @@ genAssemblingMachines {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-assembling-machine-07", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"5d-assembling-machine-07", 2},
+        {"productivity-module-3", 4},
+        {"steel-plate", 6}
     },
     nextUpdate = "5d-assembling-machine-09",
     tech = {
@@ -256,9 +251,9 @@ genAssemblingMachines {
     order = "i",
     ingredients = {
         {"5d-assembling-machine-08", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"speed-module-3", 4},
+        {"low-density-structure", 2},
+        {"processing-unit", 2}
     },
     nextUpdate = "5d-assembling-machine-10",
     tech = {
@@ -291,9 +286,9 @@ genAssemblingMachines {
     order = "j",
     ingredients = {
         {"5d-assembling-machine-09", 1},
-        {"electronic-circuit", 1},
-        {"copper-cable", 3},
-        {"iron-plate", 1}
+        {"productivity-module-3", 4},
+        {"low-density-structure", 2},
+        {"processing-unit", 2}
     },
     tech = {
         number = 10,

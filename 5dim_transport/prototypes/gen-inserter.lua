@@ -1,15 +1,5 @@
 require("__5dim_core__.lib.transport.generation-inserter")
 
---inserter
---[[
-    extension_speed = 0.03,
-    rotation_speed = 0.014,
-]]
---fast inserter
---[[
-    extension_speed = 0.07,
-    rotation_speed = 0.04,
-]]
 local rotation = 0.014
 local extension = 0.03
 local energy = 5
@@ -114,6 +104,7 @@ genInserters {
         },
         prerequisites = {
             "stack-inserter",
+            "logistics-2",
             "chemical-science-pack"
         }
     },
@@ -175,7 +166,8 @@ genInserters {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "stack-inserter-2"
+            "stack-inserter-2",
+            "logistics-3"
         }
     },
     copyName = "fast-inserter"
@@ -238,7 +230,8 @@ genInserters {
         },
         prerequisites = {
             "stack-inserter-3",
-            "production-science-pack"
+            "production-science-pack",
+            "logistics-4"
         }
     },
     copyName = "fast-inserter"
@@ -300,7 +293,8 @@ genInserters {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "stack-inserter-4"
+            "stack-inserter-4",
+            "logistics-5"
         }
     },
     copyName = "fast-inserter"
@@ -362,7 +356,8 @@ genInserters {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "stack-inserter-5"
+            "stack-inserter-5",
+            "logistics-6"
         }
     },
     copyName = "fast-inserter"
@@ -426,7 +421,8 @@ genInserters {
         },
         prerequisites = {
             "stack-inserter-6",
-            "utility-science-pack"
+            "utility-science-pack",
+            "logistics-7"
         }
     },
     copyName = "fast-inserter"
@@ -489,7 +485,8 @@ genInserters {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "stack-inserter-7"
+            "stack-inserter-7",
+            "logistics-8"
         }
     },
     copyName = "fast-inserter"
@@ -554,7 +551,8 @@ genInserters {
         },
         prerequisites = {
             "stack-inserter-8",
-            "space-science-pack"
+            "space-science-pack",
+            "logistics-9"
         }
     },
     copyName = "fast-inserter"
@@ -618,7 +616,8 @@ genInserters {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "stack-inserter-9"
+            "stack-inserter-9",
+            "logistics-10"
         }
     },
     copyName = "fast-inserter"

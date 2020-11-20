@@ -13,8 +13,9 @@ genExoskeletons {
     new = false,
     order = "a",
     ingredients = {
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = nil
 }
@@ -32,8 +33,9 @@ genExoskeletons {
     order = "b",
     ingredients = {
         {"exoskeleton-equipment", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 2,
@@ -61,8 +63,9 @@ genExoskeletons {
     order = "c",
     ingredients = {
         {"5d-exoskeleton-equipment-02", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 3,
@@ -90,8 +93,9 @@ genExoskeletons {
     order = "d",
     ingredients = {
         {"5d-exoskeleton-equipment-03", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 4,
@@ -122,8 +126,9 @@ genExoskeletons {
     order = "e",
     ingredients = {
         {"5d-exoskeleton-equipment-04", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 5,
@@ -154,8 +159,9 @@ genExoskeletons {
     order = "f",
     ingredients = {
         {"5d-exoskeleton-equipment-05", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 6,
@@ -187,8 +193,9 @@ genExoskeletons {
     order = "g",
     ingredients = {
         {"5d-exoskeleton-equipment-06", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 7,
@@ -220,8 +227,9 @@ genExoskeletons {
     order = "h",
     ingredients = {
         {"5d-exoskeleton-equipment-07", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 8,
@@ -253,8 +261,9 @@ genExoskeletons {
     order = "i",
     ingredients = {
         {"5d-exoskeleton-equipment-08", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 9,
@@ -286,8 +295,9 @@ genExoskeletons {
     order = "j",
     ingredients = {
         {"5d-exoskeleton-equipment-09", 1},
-        {"processing-unit", 200},
-        {"low-density-structure", 50}
+        {"processing-unit", 10},
+        {"electric-engine-unit", 30},
+        {"steel-plate", 20}
     },
     tech = {
         number = 10,

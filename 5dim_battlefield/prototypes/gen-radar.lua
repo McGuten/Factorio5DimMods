@@ -75,7 +75,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-02", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-04",
     tech = {
         number = 2,
         count = techCount * 2,
@@ -110,7 +110,7 @@ genRadars {
         {"steel-plate", 5},
         {"5d-radar-03", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-05",
     tech = {
         number = 3,
         count = techCount * 3,
@@ -142,9 +142,9 @@ genRadars {
         {"advanced-circuit", 7},
         {"iron-gear-wheel", 5},
         {"steel-plate", 5},
-        {"5d-radar-03", 1}
+        {"5d-radar-04", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-06",
     tech = {
         number = 4,
         count = techCount * 4,
@@ -178,9 +178,9 @@ genRadars {
         {"advanced-circuit", 7},
         {"iron-gear-wheel", 5},
         {"steel-plate", 5},
-        {"5d-radar-04", 1}
+        {"5d-radar-05", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-07",
     tech = {
         number = 5,
         count = techCount * 5,
@@ -213,9 +213,9 @@ genRadars {
         {"advanced-circuit", 7},
         {"iron-gear-wheel", 5},
         {"steel-plate", 5},
-        {"5d-radar-05", 1}
+        {"5d-radar-06", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-08",
     tech = {
         number = 6,
         count = techCount * 6,
@@ -248,9 +248,9 @@ genRadars {
         {"processing-unit", 3},
         {"iron-gear-wheel", 5},
         {"steel-plate", 5},
-        {"5d-radar-06", 1}
+        {"5d-radar-07", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-09",
     tech = {
         number = 7,
         count = techCount * 7,
@@ -285,9 +285,9 @@ genRadars {
         {"processing-unit", 3},
         {"low-density-structure", 2},
         {"steel-plate", 5},
-        {"5d-radar-07", 1}
+        {"5d-radar-08", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-10",
     tech = {
         number = 8,
         count = techCount * 8,
@@ -321,7 +321,7 @@ genRadars {
         {"processing-unit", 3},
         {"low-density-structure", 2},
         {"steel-plate", 5},
-        {"5d-radar-08", 1}
+        {"5d-radar-09", 1}
     },
     tech = {
         number = 9,

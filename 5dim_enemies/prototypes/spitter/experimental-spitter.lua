@@ -41,6 +41,7 @@ experimentalSpitter.attack_parameters =
         )
     }
 )
+experimentalSpitter.pollution_to_join_attack = 1000
 
 -- Laser
 experimentalSpitterLaser.name = "5d-experimental-spitter-laser"
@@ -65,6 +66,7 @@ experimentalSpitterLaser.attack_parameters =
         roarvolume = 0.8
     }
 )
+experimentalSpitterLaser.pollution_to_join_attack = 1000
 
 -- Physical
 experimentalSpitterPhysical.name = "5d-experimental-spitter-physical"
@@ -89,6 +91,7 @@ experimentalSpitterPhysical.attack_parameters =
         roarvolume = 0.8
     }
 )
+experimentalSpitterPhysical.pollution_to_join_attack = 1000
 
 -- Swimer
 experimentalSpitterSwimmer.name = "5d-experimental-spitter-swimmer"
@@ -114,6 +117,7 @@ experimentalSpitterSwimmer.attack_parameters =
         roarvolume = 0.8
     }
 )
+experimentalSpitterSwimmer.pollution_to_join_attack = 1000
 
 -- Climber
 experimentalSpitterClimber.name = "5d-experimental-spitter-climber"
@@ -139,6 +143,7 @@ experimentalSpitterClimber.attack_parameters =
         roarvolume = 0.8
     }
 )
+experimentalSpitterClimber.pollution_to_join_attack = 1000
 
 -- Fire
 experimentalSpitterFire.name = "5d-experimental-spitter-fire"
@@ -173,6 +178,7 @@ experimentalSpitterFire.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
+experimentalSpitterFire.pollution_to_join_attack = 1000
 
 -- Rocket
 experimentalSpitterRocket.name = "5d-experimental-spitter-rocketery"
@@ -210,20 +216,21 @@ experimentalSpitterRocket.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
+experimentalSpitterRocket.pollution_to_join_attack = 1000
 
 -- Suicide
-experimentalSpitterRocket.name = "5d-experimental-spitter-suicide"
-experimentalSpitterRocket.alternative_attacking_frame_sequence = nil
-experimentalSpitterRocket.max_health = spitter.health.experimental
-experimentalSpitterRocket.resistances = spitter.resistances.basic.experimental
-experimentalSpitterRocket.run_animation =
+experimentalSpitterExplosive.name = "5d-experimental-spitter-suicide"
+experimentalSpitterExplosive.alternative_attacking_frame_sequence = nil
+experimentalSpitterExplosive.max_health = spitter.health.experimental
+experimentalSpitterExplosive.resistances = spitter.resistances.basic.experimental
+experimentalSpitterExplosive.run_animation =
     spitterrunanimation(
     spitter.scale.experimental,
     spitter.colors.primary.explosive,
     spitter.colors.secondary.secondColor
 )
-experimentalSpitterRocket.water_reflection = spitter_water_reflection(spitter.scale.experimental)
-experimentalSpitterRocket.attack_parameters = {
+experimentalSpitterExplosive.water_reflection = spitter_water_reflection(spitter.scale.experimental)
+experimentalSpitterExplosive.attack_parameters = {
     type = "projectile",
     ammo_category = "explosive-rocket",
     cooldown = 60,
@@ -251,6 +258,7 @@ experimentalSpitterRocket.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
+experimentalSpitterExplosive.pollution_to_join_attack = 1000
 
 -- Spawner
 experimentalSpitterSpawner.name = "5d-experimental-spitter-spawner"

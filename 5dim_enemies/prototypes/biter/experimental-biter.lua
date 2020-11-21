@@ -20,6 +20,7 @@ experimentalBiter.resistances = biter.resistances.basic.experimental
 experimentalBiter.run_animation =
     biterrunanimation(biter.scale.experimental, biter.colors.primary.biter, biter.colors.secondary.secondColor)
 experimentalBiter.water_reflection = biter_water_reflection(biter.scale.experimental)
+experimentalBiter.pollution_to_join_attack = 1000
 
 -- Experimental biter laser
 experimentalBiterLaser.name = "5d-experimental-biter-laser"
@@ -31,6 +32,7 @@ experimentalBiterLaser.resistances = biter.resistances.laser.experimental
 experimentalBiterLaser.run_animation =
     biterrunanimation(biter.scale.experimental, biter.colors.primary.laser, biter.colors.secondary.secondColor)
 experimentalBiterLaser.water_reflection = biter_water_reflection(biter.scale.experimental)
+experimentalBiterLaser.pollution_to_join_attack = 1000
 
 -- Experimental biter physical
 experimentalBiterPhysical.name = "5d-experimental-biter-physical"
@@ -42,6 +44,7 @@ experimentalBiterPhysical.resistances = biter.resistances.physical.experimental
 experimentalBiterPhysical.run_animation =
     biterrunanimation(biter.scale.experimental, biter.colors.primary.physical, biter.colors.secondary.secondColor)
 experimentalBiterPhysical.water_reflection = biter_water_reflection(biter.scale.experimental)
+experimentalBiterPhysical.pollution_to_join_attack = 1000
 
 -- Experimental biter swimer
 experimentalBiterSwimmer.name = "5d-experimental-biter-swimer"
@@ -54,6 +57,7 @@ experimentalBiterSwimmer.run_animation =
     biterrunanimation(biter.scale.experimental, biter.colors.primary.swimmer, biter.colors.secondary.secondColor)
 experimentalBiterSwimmer.water_reflection = biter_water_reflection(biter.scale.experimental)
 experimentalBiterSwimmer.collision_mask = {"object-layer"}
+experimentalBiterSwimmer.pollution_to_join_attack = 1000
 
 -- Experimental biter climber
 experimentalBiterClimber.name = "5d-experimental-biter-climber"
@@ -66,6 +70,7 @@ experimentalBiterClimber.run_animation =
     biterrunanimation(biter.scale.experimental, biter.colors.primary.climber, biter.colors.secondary.secondColor)
 experimentalBiterClimber.water_reflection = biter_water_reflection(biter.scale.experimental)
 experimentalBiterClimber.collision_mask = {"item-layer", "water-tile"}
+experimentalBiterClimber.pollution_to_join_attack = 1000
 
 -- Spawner
 experimentalBiterSpawner.name = "5d-experimental-biter-spawner"

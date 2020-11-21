@@ -37,7 +37,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -83,7 +83,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -130,7 +130,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -179,7 +179,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -227,7 +227,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -277,7 +277,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -326,7 +326,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -377,7 +377,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50
@@ -427,7 +427,7 @@ genRoboports {
 
 recharges = recharges + 20
 slots = slots + 2
-modules = modules + 1.5
+modules = modules + 13
 speed = speed + 500
 energy = energy + 45
 emisions = emisions + 50

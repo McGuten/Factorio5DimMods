@@ -3,7 +3,7 @@ require("__5dim_core__.lib.nuclear.generation-nuclear-reactor")
 local speed = 1
 local modules = 2
 local energy = 40
-local emisions = 1
+local emisions = 10
 local techCount = 500
 
 -- Electric furnace 01
@@ -28,8 +28,8 @@ genNuclearReactors {
 
 speed = speed + 0.5
 modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 02
 genNuclearReactors {
@@ -68,8 +68,8 @@ genNuclearReactors {
 }
 
 speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 03
 genNuclearReactors {
@@ -111,8 +111,8 @@ genNuclearReactors {
 
 speed = speed + 0.5
 modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 04
 genNuclearReactors {
@@ -155,8 +155,8 @@ genNuclearReactors {
 }
 
 speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 05
 genNuclearReactors {
@@ -200,8 +200,8 @@ genNuclearReactors {
 
 speed = speed + 0.5
 modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 06
 genNuclearReactors {
@@ -244,8 +244,8 @@ genNuclearReactors {
 }
 
 speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 07
 genNuclearReactors {
@@ -289,8 +289,8 @@ genNuclearReactors {
 
 speed = speed + 0.5
 modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 08
 genNuclearReactors {
@@ -333,8 +333,8 @@ genNuclearReactors {
 }
 
 speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 09
 genNuclearReactors {
@@ -378,8 +378,8 @@ genNuclearReactors {
 
 speed = speed + 0.5
 modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+energy = energy + 20
+emisions = emisions + 1
 
 -- Electric furnace 10
 genNuclearReactors {

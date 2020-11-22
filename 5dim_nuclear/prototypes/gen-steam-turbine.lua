@@ -25,7 +25,7 @@ genSteamTurbines {
     tech = nil
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -64,7 +64,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -105,7 +105,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -149,7 +149,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -192,7 +192,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -236,7 +236,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -279,7 +279,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -322,7 +322,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -364,7 +364,7 @@ genSteamTurbines {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 0.15
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15

@@ -25,9 +25,9 @@ genHeatExchangers {
     tech = nil
 }
 
-speed = speed + 0.5
+speed = speed + 1
 modules = modules + 1
-energy = energy + 0.5
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 02
@@ -64,8 +64,8 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
-energy = energy + 0.5
+speed = speed + 1
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 03
@@ -104,9 +104,9 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 1
 modules = modules + 1
-energy = energy + 0.5
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 04
@@ -148,8 +148,8 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
-energy = energy + 0.5
+speed = speed + 1
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 05
@@ -191,9 +191,9 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 1
 modules = modules + 1
-energy = energy + 0.5
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 06
@@ -235,8 +235,8 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
-energy = energy + 0.5
+speed = speed + 1
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 07
@@ -278,9 +278,9 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 1
 modules = modules + 1
-energy = energy + 0.5
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 08
@@ -322,8 +322,8 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
-energy = energy + 0.5
+speed = speed + 1
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 09
@@ -365,9 +365,9 @@ genHeatExchangers {
     }
 }
 
-speed = speed + 0.5
+speed = speed + 1
 modules = modules + 1
-energy = energy + 0.5
+energy = energy + 5
 emisions = emisions + 15
 
 -- Electric furnace 10

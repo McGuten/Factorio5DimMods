@@ -32,7 +32,8 @@ function genNuclearReactors(inputs)
     entity.minable.result = item.name
     entity.energy_source.effectivity = inputs.craftingSpeed
     entity.consumption = inputs.energyUsage .. "MW"
-    entity.neighbour_bonus = inputs.pollution
+    -- entity.heat_buffer.specific_heat = inputs.pollution .. "MJ"
+    -- entity.heat_buffer.max_transfer = inputs.pollution .. "MW"
     entity.fast_replaceable_group = "nuclear-reactor"
 
     -- Base

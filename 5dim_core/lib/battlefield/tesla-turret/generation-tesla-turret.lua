@@ -5,7 +5,7 @@ function genTeslaTurrets(inputs)
     local item = table.deepcopy(data.raw.item["laser-turret"])
     local recipe = table.deepcopy(data.raw.recipe["laser-turret"])
     local entity = table.deepcopy(data.raw["electric-turret"]["laser-turret"])
-    local tech = table.deepcopy(data.raw.technology["turrets"])
+    local tech = table.deepcopy(data.raw.technology["laser-turret"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 

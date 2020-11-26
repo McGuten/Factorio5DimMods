@@ -4,7 +4,7 @@ data:extend(
             type = "technology",
             name = "weapon-shooting-speed-7",
             icon = "__base__/graphics/technology/weapon-shooting-speed-3.png",
-            icon_size = 128,
+            icon_size = 256,
             effects = {
                 {
                     type = "gun-speed",

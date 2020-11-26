@@ -37,13 +37,13 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-02",
     tech = {
-        number = "5d-turrets-big-1",
+        number = "5d-gun-turret-big-1",
         count = 50,
         packs = {
             {"automation-science-pack", 1}
         },
         prerequisites = {
-            "turrets"
+            "gun-turret"
         }
     }
 }
@@ -81,13 +81,13 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-03",
     tech = {
-        number = "5d-turrets-big-2",
+        number = "5d-gun-turret-big-2",
         count = techCount * 1,
         packs = {
             {"automation-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-1"
+            "5d-gun-turret-big-1"
         }
     }
 }
@@ -125,13 +125,13 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-04",
     tech = {
-        number = "5d-turrets-big-3",
+        number = "5d-gun-turret-big-3",
         count = techCount * 2,
         packs = {
             {"automation-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-2"
+            "5d-gun-turret-big-2"
         }
     }
 }
@@ -169,14 +169,14 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-05",
     tech = {
-        number = "5d-turrets-big-4",
+        number = "5d-gun-turret-big-4",
         count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-3",
+            "5d-gun-turret-big-3",
             "logistic-science-pack"
         }
     }
@@ -215,14 +215,14 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-06",
     tech = {
-        number = "5d-turrets-big-5",
+        number = "5d-gun-turret-big-5",
         count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-4"
+            "5d-gun-turret-big-4"
         }
     }
 }
@@ -260,7 +260,7 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-07",
     tech = {
-        number = "5d-turrets-big-6",
+        number = "5d-gun-turret-big-6",
         count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
@@ -268,7 +268,7 @@ genGunTurrets {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-5",
+            "5d-gun-turret-big-5",
             "military-science-pack"
         }
     }
@@ -307,7 +307,7 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-08",
     tech = {
-        number = "5d-turrets-big-7",
+        number = "5d-gun-turret-big-7",
         count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
@@ -315,7 +315,7 @@ genGunTurrets {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-6"
+            "5d-gun-turret-big-6"
         }
     }
 }
@@ -353,7 +353,7 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-09",
     tech = {
-        number = "5d-turrets-big-8",
+        number = "5d-gun-turret-big-8",
         count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
@@ -361,7 +361,7 @@ genGunTurrets {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-7"
+            "5d-gun-turret-big-7"
         }
     }
 }
@@ -399,7 +399,7 @@ genGunTurrets {
     },
     nextUpdate = "5d-gun-turret-big-10",
     tech = {
-        number = "5d-turrets-big-9",
+        number = "5d-gun-turret-big-9",
         count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
@@ -408,7 +408,7 @@ genGunTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-8",
+            "5d-gun-turret-big-8",
             "chemical-science-pack"
         }
     }
@@ -446,7 +446,7 @@ genGunTurrets {
         }
     },
     tech = {
-        number = "5d-turrets-big-10",
+        number = "5d-gun-turret-big-10",
         count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
@@ -455,7 +455,7 @@ genGunTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-turrets-big-9"
+            "5d-gun-turret-big-9"
         }
     }
 }

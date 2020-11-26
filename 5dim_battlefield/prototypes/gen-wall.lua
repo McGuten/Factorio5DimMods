@@ -39,7 +39,7 @@ genStoneWalls {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls",
+            "stone-wall",
             "logistic-science-pack"
         }
     }
@@ -69,7 +69,7 @@ genStoneWalls {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-2",
+            "stone-wall-2",
             "military-science-pack"
         }
     }
@@ -99,7 +99,7 @@ genStoneWalls {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-3"
+            "stone-wall-3"
         }
     }
 }
@@ -128,7 +128,7 @@ genStoneWalls {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-4"
+            "stone-wall-4"
         }
     }
 }
@@ -158,7 +158,7 @@ genStoneWalls {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-5",
+            "stone-wall-5",
             "chemical-science-pack"
         }
     }
@@ -189,7 +189,7 @@ genStoneWalls {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-6"
+            "stone-wall-6"
         }
     }
 }
@@ -220,7 +220,7 @@ genStoneWalls {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-7",
+            "stone-wall-7",
             "utility-science-pack"
         }
     }
@@ -252,7 +252,7 @@ genStoneWalls {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-8"
+            "stone-wall-8"
         }
     }
 }
@@ -282,7 +282,7 @@ genStoneWalls {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "stone-walls-9"
+            "stone-wall-9"
         }
     }
 }

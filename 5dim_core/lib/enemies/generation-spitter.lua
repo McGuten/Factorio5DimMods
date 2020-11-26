@@ -1,6 +1,6 @@
 require("spitter-attack-parameters")
 
-local sounds = require("__base__.prototypes.entity.demo-sounds")
+-- local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 function genSpitter(inputs)
     -- Copy entities

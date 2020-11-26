@@ -43,8 +43,8 @@ genGates {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "gates",
-            "stone-walls-2",
+            "gate",
+            "stone-wall-2",
             "logistic-science-pack"
         }
     }
@@ -75,8 +75,8 @@ genGates {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "gates-2",
-            "stone-walls-3",
+            "gate-2",
+            "stone-wall-3",
             "military-science-pack"
         }
     }
@@ -107,8 +107,8 @@ genGates {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "gates-3",
-            "stone-walls-4"
+            "gate-3",
+            "stone-wall-4"
         }
     }
 }
@@ -138,8 +138,8 @@ genGates {
             {"military-science-pack", 1}
         },
         prerequisites = {
-            "gates-4",
-            "stone-walls-5"
+            "gate-4",
+            "stone-wall-5"
         }
     }
 }
@@ -170,8 +170,8 @@ genGates {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "gates-5",
-            "stone-walls-6",
+            "gate-5",
+            "stone-wall-6",
             "chemical-science-pack"
         }
     }
@@ -203,8 +203,8 @@ genGates {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "gates-6",
-            "stone-walls-7"
+            "gate-6",
+            "stone-wall-7"
         }
     }
 }
@@ -236,8 +236,8 @@ genGates {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "gates-7",
-            "stone-walls-8",
+            "gate-7",
+            "stone-wall-8",
             "utility-science-pack"
         }
     }
@@ -270,8 +270,8 @@ genGates {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "gates-8",
-            "stone-walls-9"
+            "gate-8",
+            "stone-wall-9"
         }
     }
 }
@@ -302,8 +302,8 @@ genGates {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "gates-9",
-            "stone-walls-10"
+            "gate-9",
+            "stone-wall-10"
         }
     }
 }

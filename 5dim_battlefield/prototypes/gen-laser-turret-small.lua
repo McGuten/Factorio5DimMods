@@ -35,7 +35,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-1",
+        number = "5d-laser-turret-small-1",
         count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
@@ -44,7 +44,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets",
+            "laser-turret",
             "logistic-science-pack"
         }
     }
@@ -82,7 +82,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-2",
+        number = "5d-laser-turret-small-2",
         count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
@@ -91,7 +91,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-1",
+            "5d-laser-turret-small-1",
             "logistic-science-pack"
         }
     }
@@ -129,7 +129,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-3",
+        number = "5d-laser-turret-small-3",
         count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
@@ -138,7 +138,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-2",
+            "5d-laser-turret-small-2",
             "chemical-science-pack"
         }
     }
@@ -176,7 +176,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-4",
+        number = "5d-laser-turret-small-4",
         count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
@@ -185,7 +185,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-3"
+            "5d-laser-turret-small-3"
         }
     }
 }
@@ -222,7 +222,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-5",
+        number = "5d-laser-turret-small-5",
         count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
@@ -231,7 +231,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-4",
+            "5d-laser-turret-small-4",
             "production-science-pack"
         }
     }
@@ -269,7 +269,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-6",
+        number = "5d-laser-turret-small-6",
         count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
@@ -278,7 +278,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-5"
+            "5d-laser-turret-small-5"
         }
     }
 }
@@ -315,7 +315,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-7",
+        number = "5d-laser-turret-small-7",
         count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
@@ -325,7 +325,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-6",
+            "5d-laser-turret-small-6",
             "utility-science-pack"
         }
     }
@@ -363,7 +363,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-8",
+        number = "5d-laser-turret-small-8",
         count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
@@ -373,7 +373,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-7"
+            "5d-laser-turret-small-7"
         }
     }
 }
@@ -410,7 +410,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-small-02",
     tech = {
-        number = "5d-laser-turrets-small-9",
+        number = "5d-laser-turret-small-9",
         count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
@@ -420,7 +420,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-8"
+            "5d-laser-turret-small-8"
         }
     }
 }
@@ -456,7 +456,7 @@ genLaserTurrets {
         }
     },
     tech = {
-        number = "5d-laser-turrets-small-10",
+        number = "5d-laser-turret-small-10",
         count = techCount * 10,
         packs = {
             {"automation-science-pack", 1},
@@ -466,7 +466,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-9"
+            "5d-laser-turret-small-9"
         }
     }
 }

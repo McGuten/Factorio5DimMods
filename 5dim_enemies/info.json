@@ -1,11 +1,11 @@
 {
     "name": "5dim_enemies",
-    "version": "1.0.1",
-    "factorio_version": "1.0",
+    "version": "1.1.0",
+    "factorio_version": "1.1",
     "title": "5Dim's mod - New Enemies",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Add a lot of new enemies, make the game more harder",
-    "dependencies": ["5dim_core >= 1.0.3"]
+    "dependencies": ["5dim_core >= 1.1.0"]
 }

@@ -1,6 +1,6 @@
 require("prototypes.settings")
 
-local sounds = require("__base__.prototypes.entity.demo-sounds")
+-- local sounds = require("__base__.prototypes.entity.demo-sounds")
 
 --Copy entities
 local experimentalBiterSpawner = table.deepcopy(data.raw["unit-spawner"]["biter-spawner"])

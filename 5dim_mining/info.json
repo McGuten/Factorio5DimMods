@@ -1,11 +1,11 @@
 {
     "name": "5dim_mining",
-    "version": "1.0.2",
-    "factorio_version": "1.0",
+    "version": "1.1.0",
+    "factorio_version": "1.1",
     "title": "5Dim's mod - New Mining",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Mining for 5dim's mod -> Add 3 speedy mining drill and 3 range mining drills, 2 new tiers of pumpjack and a water pumpjack",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "dependencies": ["5dim_core >= 1.1.0"]
 }

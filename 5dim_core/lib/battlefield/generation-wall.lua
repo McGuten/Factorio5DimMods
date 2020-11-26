@@ -3,7 +3,7 @@ function genStoneWalls(inputs)
     local item = table.deepcopy(data.raw.item["stone-wall"])
     local recipe = table.deepcopy(data.raw.recipe["stone-wall"])
     local entity = table.deepcopy(data.raw["wall"]["stone-wall"])
-    local tech = table.deepcopy(data.raw.technology["stone-walls"])
+    local tech = table.deepcopy(data.raw.technology["stone-wall"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
@@ -43,7 +43,7 @@ function genStoneWalls(inputs)
 
     -- Technology
     if inputs.tech then
-        tech.name = "stone-walls-" .. inputs.tech.number
+        tech.name = "stone-wall-" .. inputs.tech.number
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

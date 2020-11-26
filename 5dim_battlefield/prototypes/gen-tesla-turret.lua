@@ -45,10 +45,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-5",
-            "laser-turrets-5",
-            "5d-laser-turrets-big-5",
-            "5d-laser-turrets-sniper-1"
+            "5d-laser-turret-small-5",
+            "laser-turret-5",
+            "5d-laser-turret-big-5",
+            "5d-laser-turret-sniper-1"
         }
     }
 }
@@ -95,10 +95,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-6",
-            "laser-turrets-6",
-            "5d-laser-turrets-big-6",
-            "5d-laser-turrets-sniper-2",
+            "5d-laser-turret-small-6",
+            "laser-turret-6",
+            "5d-laser-turret-big-6",
+            "5d-laser-turret-sniper-2",
             "5d-tesla-turrets-1"
         }
     }
@@ -146,10 +146,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-7",
-            "laser-turrets-7",
-            "5d-laser-turrets-big-7",
-            "5d-laser-turrets-sniper-3",
+            "5d-laser-turret-small-7",
+            "laser-turret-7",
+            "5d-laser-turret-big-7",
+            "5d-laser-turret-sniper-3",
             "5d-tesla-turrets-2"
         }
     }
@@ -197,10 +197,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-8",
-            "laser-turrets-8",
-            "5d-laser-turrets-big-8",
-            "5d-laser-turrets-sniper-4",
+            "5d-laser-turret-small-8",
+            "laser-turret-8",
+            "5d-laser-turret-big-8",
+            "5d-laser-turret-sniper-4",
             "5d-tesla-turrets-3"
         }
     }
@@ -248,10 +248,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-9",
-            "laser-turrets-9",
-            "5d-laser-turrets-big-9",
-            "5d-laser-turrets-sniper-5",
+            "5d-laser-turret-small-9",
+            "laser-turret-9",
+            "5d-laser-turret-big-9",
+            "5d-laser-turret-sniper-5",
             "5d-tesla-turrets-4"
         }
     }
@@ -299,10 +299,10 @@ genTeslaTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-small-10",
-            "laser-turrets-10",
-            "5d-laser-turrets-big-10",
-            "5d-laser-turrets-sniper-6",
+            "5d-laser-turret-small-10",
+            "laser-turret-10",
+            "5d-laser-turret-big-10",
+            "5d-laser-turret-sniper-6",
             "5d-tesla-turrets-5"
         }
     }
@@ -351,7 +351,7 @@ genTeslaTurrets {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-sniper-7",
+            "5d-laser-turret-sniper-7",
             "5d-tesla-turrets-6",
             "space-science-pack"
         }
@@ -401,7 +401,7 @@ genTeslaTurrets {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-sniper-8",
+            "5d-laser-turret-sniper-8",
             "5d-tesla-turrets-7"
         }
     }
@@ -450,7 +450,7 @@ genTeslaTurrets {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-sniper-9",
+            "5d-laser-turret-sniper-9",
             "5d-tesla-turrets-8"
         }
     }
@@ -498,7 +498,7 @@ genTeslaTurrets {
             {"space-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turrets-sniper-10",
+            "5d-laser-turret-sniper-10",
             "5d-tesla-turrets-9"
         }
     }

@@ -9,8 +9,7 @@ function genWaterPumpjacks(inputs)
     if inputs.new then
         item.name = "5d-water-pumpjack-" .. inputs.number
     end
-    item.icon =
-        "__5dim_mining__/graphics/icon/water-pumpjack/water-pumpjack-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_mining__/graphics/icon/water-pumpjack/water-pumpjack-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -140,6 +139,7 @@ function genWaterPumpjacks(inputs)
     if inputs.tech then
         tech.name = "5d-water-pumpjack-" .. inputs.tech.number
         tech.icon = "__5dim_mining__/graphics/technology/water-pumpjack-tech.png"
+        tech.icon_size = 128
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

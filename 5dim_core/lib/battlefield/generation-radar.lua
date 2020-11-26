@@ -3,7 +3,7 @@ function genRadars(inputs)
     local item = table.deepcopy(data.raw.item["radar"])
     local recipe = table.deepcopy(data.raw.recipe["radar"])
     local entity = table.deepcopy(data.raw["radar"]["radar"])
-    local tech = table.deepcopy(data.raw.technology["turrets"])
+    local tech = table.deepcopy(data.raw.technology["gun-turret"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 

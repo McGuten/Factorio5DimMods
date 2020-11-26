@@ -69,7 +69,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-03",
     tech = {
-        number = "laser-turrets-2",
+        number = "laser-turret-2",
         count = techCount * 1,
         packs = {
             {"automation-science-pack", 1},
@@ -78,7 +78,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets"
+            "laser-turret"
         }
     }
 }
@@ -115,7 +115,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-04",
     tech = {
-        number = "laser-turrets-3",
+        number = "laser-turret-3",
         count = techCount * 2,
         packs = {
             {"automation-science-pack", 1},
@@ -124,7 +124,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-2"
+            "laser-turret-2"
         }
     }
 }
@@ -161,7 +161,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-05",
     tech = {
-        number = "laser-turrets-4",
+        number = "laser-turret-4",
         count = techCount * 3,
         packs = {
             {"automation-science-pack", 1},
@@ -170,7 +170,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-3"
+            "laser-turret-3"
         }
     }
 }
@@ -207,7 +207,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-06",
     tech = {
-        number = "laser-turrets-5",
+        number = "laser-turret-5",
         count = techCount * 4,
         packs = {
             {"automation-science-pack", 1},
@@ -216,7 +216,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-4"
+            "laser-turret-4"
         }
     }
 }
@@ -253,7 +253,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-07",
     tech = {
-        number = "laser-turrets-6",
+        number = "laser-turret-6",
         count = techCount * 5,
         packs = {
             {"automation-science-pack", 1},
@@ -262,7 +262,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-5"
+            "laser-turret-5"
         }
     }
 }
@@ -299,7 +299,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-08",
     tech = {
-        number = "laser-turrets-7",
+        number = "laser-turret-7",
         count = techCount * 6,
         packs = {
             {"automation-science-pack", 1},
@@ -309,7 +309,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-6",
+            "laser-turret-6",
             "utility-science-pack"
         }
     }
@@ -347,7 +347,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-09",
     tech = {
-        number = "laser-turrets-8",
+        number = "laser-turret-8",
         count = techCount * 7,
         packs = {
             {"automation-science-pack", 1},
@@ -357,7 +357,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-7"
+            "laser-turret-7"
         }
     }
 }
@@ -394,7 +394,7 @@ genLaserTurrets {
     },
     nextUpdate = "5d-laser-turret-10",
     tech = {
-        number = "laser-turrets-9",
+        number = "laser-turret-9",
         count = techCount * 8,
         packs = {
             {"automation-science-pack", 1},
@@ -404,7 +404,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-8"
+            "laser-turret-8"
         }
     }
 }
@@ -440,7 +440,7 @@ genLaserTurrets {
         }
     },
     tech = {
-        number = "laser-turrets-10",
+        number = "laser-turret-10",
         count = techCount * 9,
         packs = {
             {"automation-science-pack", 1},
@@ -450,7 +450,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "laser-turrets-9"
+            "laser-turret-9"
         }
     }
 }

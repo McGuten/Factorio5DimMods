@@ -374,7 +374,7 @@ function genTransportBelts(inputs)
     entityLoader.structure.direction_out.sheet.width = 128
     entityLoader.structure.direction_out.sheet.height = 128
     entityLoader.structure.direction_out.sheet.y = 128
-    entityLoader.flags = nil
+    entityLoader.flags = {"placeable-neutral", "player-creation", "fast-replaceable-no-build-while-moving"},
     data:extend({entityLoader, recipeLoader, itemLoader})
 
     -- Technology

@@ -351,6 +351,7 @@ function genTransportBelts(inputs)
             recipeLoader.normal.result = itemLoader.name
         end
     end
+    recipeLoader.hidden = false
 
     --Entity
     entityLoader.name = itemLoader.name
@@ -366,9 +367,14 @@ function genTransportBelts(inputs)
 
     entityLoader.structure.direction_in.sheet.filename =
         "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
+    entityLoader.structure.direction_in.sheet.width = 128
+    entityLoader.structure.direction_in.sheet.height = 128
     entityLoader.structure.direction_out.sheet.filename =
         "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
-
+    entityLoader.structure.direction_out.sheet.width = 128
+    entityLoader.structure.direction_out.sheet.height = 128
+    entityLoader.structure.direction_out.sheet.y = 128
+    entityLoader.flags = nil
     data:extend({entityLoader, recipeLoader, itemLoader})
 
     -- Technology

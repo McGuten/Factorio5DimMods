@@ -3,8 +3,8 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-storage-4",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = util.technology_icon_constant_capacity("__base__/graphics/technology/worker-robots-storage.png"),
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-storage",

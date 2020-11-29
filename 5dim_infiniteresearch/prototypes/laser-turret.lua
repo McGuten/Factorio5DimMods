@@ -3,7 +3,7 @@ data:extend(
         {
             type = "technology",
             name = "laser-shooting-speed-8",
-            icon = "__base__/graphics/technology/laser-shooting-speed.png",
+            icons = util.technology_icon_constant_speed("__base__/graphics/technology/energy-weapons-damage.png"),
             icon_size = 256,
             effects = {
                 {

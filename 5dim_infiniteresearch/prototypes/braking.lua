@@ -3,8 +3,8 @@ data:extend(
         {
             type = "technology",
             name = "braking-force-8",
-            icon = "__base__/graphics/technology/braking-force.png",
-            icon_size = 128,
+            icons = util.technology_icon_constant_braking_force("__base__/graphics/technology/braking-force.png"),
+            icon_size = 256,
             effects = {
                 {
                     type = "train-braking-force-bonus",

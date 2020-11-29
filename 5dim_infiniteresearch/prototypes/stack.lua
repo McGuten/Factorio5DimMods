@@ -3,8 +3,8 @@ data:extend(
         {
             type = "technology",
             name = "inserter-capacity-bonus-8",
-            icon = "__base__/graphics/technology/inserter-capacity.png",
-            icon_size = 128,
+            icons = util.technology_icon_constant_stack_size("__base__/graphics/technology/inserter-capacity.png"),
+            icon_size = 256,
             effects = {
                 {
                     type = "inserter-stack-size-bonus",

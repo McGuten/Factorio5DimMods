@@ -47,7 +47,7 @@ function genSteamEngines(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.effectivity = inputs.craftingSpeed
+    --entity.effectivity = inputs.craftingSpeed
     entity.fluid_usage_per_tick = inputs.energyUsage
 
     -- Horizontal

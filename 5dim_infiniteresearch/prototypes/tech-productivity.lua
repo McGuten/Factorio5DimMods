@@ -3,8 +3,8 @@ data:extend(
         {
             type = "technology",
             name = "research-productivity",
-            icon = "__base__/graphics/technology/research-speed.png",
-            icon_size = 128,
+            icons = util.technology_icon_constant_productivity("__base__/graphics/technology/research-speed.png"),
+            icon_size = 256,
             effects = {
                 {
                     type = "laboratory-productivity",

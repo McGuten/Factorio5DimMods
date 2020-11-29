@@ -3,7 +3,7 @@ data:extend(
         {
             type = "technology",
             name = "weapon-shooting-speed-7",
-            icon = "__base__/graphics/technology/weapon-shooting-speed-3.png",
+            icons = util.technology_icon_constant_speed("__base__/graphics/technology/weapon-shooting-speed-1.png"),
             icon_size = 256,
             effects = {
                 {
@@ -35,7 +35,8 @@ data:extend(
                     {"logistic-science-pack", 1},
                     {"chemical-science-pack", 1},
                     {"military-science-pack", 1},
-                    {"utility-science-pack", 1}
+                    {"utility-science-pack", 1},
+                    {"space-science-pack", 1}
                 },
                 time = 60
             },

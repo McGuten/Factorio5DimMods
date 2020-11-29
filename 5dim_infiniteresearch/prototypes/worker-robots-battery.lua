@@ -3,8 +3,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-1",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",
@@ -27,8 +39,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-2",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",
@@ -51,8 +75,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-3",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",
@@ -76,8 +112,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-4",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",
@@ -101,8 +149,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-5",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",
@@ -127,8 +187,20 @@ data:extend(
         {
             type = "technology",
             name = "worker-robots-battery-6",
-            icon = "__base__/graphics/technology/worker-robots-storage.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/worker-robots-speed.png",
+                    icon_size = 256,
+                    icon_mipmaps = 4
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
+                    icon_size = 128,
+                    icon_mipmaps = 3,
+                    shift = {100, 100}
+                }
+            },
+            icon_size = 256,
             effects = {
                 {
                     type = "worker-robot-battery",

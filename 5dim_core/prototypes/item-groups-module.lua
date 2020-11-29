@@ -34,21 +34,9 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "module-4",
+            name = "merged",
             group = "module",
             order = "e"
-        },
-        {
-            type = "item-subgroup",
-            name = "module-5",
-            group = "module",
-            order = "f"
-        },
-        {
-            type = "item-subgroup",
-            name = "welder",
-            group = "module",
-            order = "g"
         }
     }
 )

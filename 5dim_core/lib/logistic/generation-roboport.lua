@@ -38,6 +38,7 @@ function genRoboports(inputs)
     entity.fast_replaceable_group = "roboport"
     entity.charging_offsets = nil
     entity.charging_station_count = inputs.rechargeSlots
+    entity.charging_distance = 3
 
     -- Base
     entity.base.layers[1].hr_version.filename =

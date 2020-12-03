@@ -582,7 +582,7 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-09",
         groundBelt50 = "5d-underground-belt-50-09",
         splitter = "5d-splitter-09",
-        loader = "5d-loader-09"
+        loader = nil
     },
     order = "h",
     ingredients = {
@@ -674,7 +674,7 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-10",
         groundBelt50 = "5d-underground-belt-50-10",
         splitter = "5d-splitter-10",
-        loader = "5d-loader-10"
+        loader = nil
     },
     order = "i",
     ingredients = {

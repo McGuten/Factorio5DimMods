@@ -25,6 +25,7 @@ function genBeacons(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
+    entity.fast_replaceable_group = "beacon"
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.supply_area_distance = inputs.area or 3

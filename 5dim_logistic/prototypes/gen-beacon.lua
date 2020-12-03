@@ -22,6 +22,7 @@ genBeacons {
         {"steel-plate", 10},
         {"copper-cable", 10}
     },
+    nextUpdate = "5d-beacon-02",
     tech = nil
 }
 
@@ -44,6 +45,7 @@ genBeacons {
         {"electronic-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-03",
     tech = {
         number = 2,
         count = techCount * 1,
@@ -79,6 +81,7 @@ genBeacons {
         {"electronic-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-04",
     tech = {
         number = 3,
         count = techCount * 2,
@@ -113,6 +116,7 @@ genBeacons {
         {"electronic-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-05",
     tech = {
         number = 4,
         count = techCount * 3,
@@ -148,6 +152,7 @@ genBeacons {
         {"advanced-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-06",
     tech = {
         number = 5,
         count = techCount * 4,
@@ -184,6 +189,7 @@ genBeacons {
         {"advanced-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-07",
     tech = {
         number = 6,
         count = techCount * 5,
@@ -220,6 +226,7 @@ genBeacons {
         {"advanced-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-08",
     tech = {
         number = 7,
         count = techCount * 6,
@@ -255,6 +262,7 @@ genBeacons {
         {"advanced-circuit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-09",
     tech = {
         number = 8,
         count = techCount * 7,
@@ -291,6 +299,7 @@ genBeacons {
         {"processing-unit", 5},
         {"battery", 5}
     },
+    nextUpdate = "5d-beacon-10",
     tech = {
         number = 9,
         count = techCount * 8,

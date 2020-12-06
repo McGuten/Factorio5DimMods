@@ -1,4 +1,4 @@
-require("__5dim_core__.lib.automatization.generation-chemical-plant")
+require("__5dim_core__.lib.automation.generation-chemical-plant")
 
 local speed = 1
 local modules = 3

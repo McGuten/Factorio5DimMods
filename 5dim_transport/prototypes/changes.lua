@@ -14,7 +14,7 @@ table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe"
 -- table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk2"})
 -- table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk2-30"})
 -- table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk2-50"})
-table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "long-handed-inserter"})
+table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "fast-inserter"})
 table.insert(data.raw.technology["logistics-2"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-02"})
 
 -- Logistics 3
@@ -25,7 +25,7 @@ table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe"
 -- table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk3"})
 -- table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk3-30"})
 -- table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk3-50"})
-table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "fast-inserter"})
+table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "5d-inserter-03"})
 table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-03"})
 
 -- Logistics 4

@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Automatization for 5dim's mod -> Add a lot of new inserters, side inserters, more faster inserter, loaders, new tiers of oil refineries and new tiers of assembling machine.",
+    "description": "Automation for 5dim's mod\n\rAdd a lot of new tiers oil refineries, new tiers of assembling machine, chemical plants and laboratories\n\rThis mod include:\n\r- 10 tiers of assembling machines\n\r- 10 tiers of chemical plants\n\r- 10 tiers of oil refineries\n\r- 10 tiers of laboratories",
     "dependencies": ["5dim_core >= 1.1.0"]
 }

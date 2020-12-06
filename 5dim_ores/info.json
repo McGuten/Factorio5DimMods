@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Ores for 5dim's mod",
+    "description": "Ores for 5dim's mod\n\rAdd a lot of new ores to make factorio more fun\n\rThis mod include:\n\r-",
     "dependencies": ["5dim_core >= 1.1.0", "boblibrary >= 1.0.0"]
 }

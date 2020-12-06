@@ -1,4 +1,4 @@
-require("__5dim_core__.lib.automatization.generation-assembling-machine")
+require("__5dim_core__.lib.automation.generation-assembling-machine")
 
 local energy = 75
 local crafting = 0.5

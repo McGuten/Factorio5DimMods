@@ -1,56 +1,52 @@
-require("__5dim_core__.lib.automation.generation-oil-refinery")
+require("__5dim_core__.lib.mining.generation-offshore-pump")
 
-local speed = 1
-local modules = 3
-local energy = 420
-local emisions = 6
-local techCount = 200
+local speed = 20
+local modules = 2
+local energy = 90
+local emisions = 10
+local techCount = 100
 
 -- Electric furnace 01
-genChemicalPlants {
+genOffshorePumps {
     number = "01",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"stone-brick", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {"electronic-circuit", 2},
+        {"pipe", 1},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-02",
+    nextUpdate = "5d-offshore-pump-02",
     tech = nil
 }
 
-speed = speed + 1
+speed = speed + 5
 modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 02
-genChemicalPlants {
+genOffshorePumps {
     number = "02",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
     new = true,
     order = "b",
     ingredients = {
-        {"oil-refinery", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {"offshore-pump", 1},
+        {"electronic-circuit", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-03",
+    nextUpdate = "5d-offshore-pump-03",
     tech = {
         number = 1,
         count = techCount * 1,
@@ -59,35 +55,33 @@ genChemicalPlants {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "oil-processing",
+            "fluid-handling",
             "logistic-science-pack"
         }
     }
 }
 
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
+speed = speed + 5
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 03
-genChemicalPlants {
+genOffshorePumps {
     number = "03",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
     new = true,
     order = "c",
     ingredients = {
-        {"5d-oil-refinery-02", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {"5d-offshore-pump-02", 1},
+        {"electronic-circuit", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-04",
+    nextUpdate = "5d-offshore-pump-04",
     tech = {
         number = 2,
         count = techCount * 2,
@@ -96,35 +90,35 @@ genChemicalPlants {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-1"
+            "5d-offshore-pump-1",
+            "5d-boiler-1",
+            "5d-steam-engine-1"
         }
     }
 }
 
-speed = speed + 1
+speed = speed + 5
 modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 04
-genChemicalPlants {
+genOffshorePumps {
     number = "04",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
     new = true,
     order = "d",
     ingredients = {
-        {"5d-oil-refinery-03", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10}
+        {"5d-offshore-pump-03", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 2}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-05",
+    nextUpdate = "5d-offshore-pump-05",
     tech = {
         number = 3,
         count = techCount * 3,
@@ -134,36 +128,35 @@ genChemicalPlants {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-2",
+            "5d-offshore-pump-2",
+            "5d-boiler-2",
+            "5d-steam-engine-2",
             "chemical-science-pack"
         }
     }
 }
 
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
+speed = speed + 5
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 05
-genChemicalPlants {
+genOffshorePumps {
     number = "05",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
     new = true,
     order = "e",
     ingredients = {
-        {"5d-oil-refinery-04", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"refined-concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"speed-module", 1}
+        {"5d-offshore-pump-04", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-06",
+    nextUpdate = "5d-offshore-pump-06",
     tech = {
         number = 4,
         count = techCount * 4,
@@ -173,36 +166,35 @@ genChemicalPlants {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-3"
+            "5d-offshore-pump-3",
+            "5d-boiler-3",
+            "5d-steam-engine-3"
         }
     }
 }
 
-speed = speed + 1
+speed = speed + 5
 modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 06
-genChemicalPlants {
+genOffshorePumps {
     number = "06",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
     new = true,
     order = "f",
     ingredients = {
-        {"5d-oil-refinery-05", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"refined-concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"productivity-module", 1}
+        {"5d-offshore-pump-05", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"iron-gear-wheel", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-07",
+    nextUpdate = "5d-offshore-pump-07",
     tech = {
         number = 5,
         count = techCount * 5,
@@ -213,36 +205,35 @@ genChemicalPlants {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-4",
+            "5d-offshore-pump-4",
+            "5d-boiler-4",
+            "5d-steam-engine-4",
             "production-science-pack"
         }
     }
 }
 
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
+speed = speed + 5
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 07
-genChemicalPlants {
+genOffshorePumps {
     number = "07",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
     new = true,
     order = "g",
     ingredients = {
-        {"5d-oil-refinery-06", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"speed-module-2", 1}
+        {"5d-offshore-pump-06", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-08",
+    nextUpdate = "5d-offshore-pump-08",
     tech = {
         number = 6,
         count = techCount * 6,
@@ -253,36 +244,35 @@ genChemicalPlants {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-5"
+            "5d-offshore-pump-5",
+            "5d-boiler-5",
+            "5d-steam-engine-5"
         }
     }
 }
 
-speed = speed + 1
+speed = speed + 5
 modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 08
-genChemicalPlants {
+genOffshorePumps {
     number = "08",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules,
     energyUsage = energy,
     new = true,
     order = "h",
     ingredients = {
-        {"5d-oil-refinery-07", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"productivity-module-2", 1}
+        {"5d-offshore-pump-07", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-09",
+    nextUpdate = "5d-offshore-pump-09",
     tech = {
         number = 7,
         count = techCount * 7,
@@ -294,36 +284,36 @@ genChemicalPlants {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-6",
+            "5d-offshore-pump-6",
+            "5d-boiler-6",
+            "5d-steam-engine-6",
             "utility-science-pack"
         }
     }
 }
 
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
+speed = speed + 5
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 09
-genChemicalPlants {
+genOffshorePumps {
     number = "09",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
     new = true,
     order = "i",
     ingredients = {
-        {"5d-oil-refinery-08", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"processing-unit", 2},
-        {"pipe", 10},
-        {"speed-module-3", 1}
+        {"5d-offshore-pump-08", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1},
+        {"low-density-structure", 1}
     },
     pollution = emisions,
-    nextUpdate = "5d-oil-refinery-10",
+    nextUpdate = "5d-offshore-pump-10",
     tech = {
         number = 8,
         count = techCount * 8,
@@ -335,33 +325,33 @@ genChemicalPlants {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-7"
+            "5d-offshore-pump-7",
+            "5d-boiler-7",
+            "5d-steam-engine-7"
         }
     }
 }
 
-speed = speed + 1
+speed = speed + 5
 modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+energy = energy + 45
+emisions = emisions + 5
 
 -- Electric furnace 10
-genChemicalPlants {
+genOffshorePumps {
     number = "10",
-    subgroup = "liquid-refinery",
+    subgroup = "liquid-offshore-pump",
     craftingSpeed = speed,
     moduleSlots = modules + 1,
     energyUsage = energy,
     new = true,
     order = "j",
     ingredients = {
-        {"5d-oil-refinery-09", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"processing-unit", 2},
-        {"pipe", 10},
-        {"productivity-module-3", 1}
+        {"5d-offshore-pump-09", 1},
+        {"steel-plate", 5},
+        {"pipe", 3},
+        {"advanced-circuit", 1},
+        {"low-density-structure", 1}
     },
     pollution = emisions,
     tech = {
@@ -375,7 +365,9 @@ genChemicalPlants {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-oil-refinery-8"
+            "5d-offshore-pump-8",
+            "5d-boiler-8",
+            "5d-steam-engine-8"
         }
     }
 }

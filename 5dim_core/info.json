@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Core and settings of 5dim's mod",
+    "description": "Core, library and settings of 5Dim's mod. REQUIRED for any other module",
     "dependencies": ["base >= 1.1.0"]
 }

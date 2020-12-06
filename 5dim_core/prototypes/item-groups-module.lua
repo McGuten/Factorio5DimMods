@@ -37,6 +37,12 @@ data:extend(
             name = "merged",
             group = "module",
             order = "e"
-        }
+        },
+        {
+            type = "item-subgroup",
+            name = "beacon",
+            group = "module",
+            order = "f"
+        },
     }
 )

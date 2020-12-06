@@ -9,6 +9,3 @@ require("prototypes.gen-logistic-robot")
 
 -- Construction robot
 require("prototypes.gen-construction-robot")
-
--- Beacon
-require("prototypes.gen-beacon")

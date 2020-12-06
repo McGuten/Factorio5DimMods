@@ -9,7 +9,7 @@ function genConstructionRobots(inputs)
     if inputs.new then
         item.name = "5d-construction-robot-" .. inputs.number
     end
-    item.icon = "__5dim_logistic__/graphics/icon/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_logistic__/graphics/icons/construction-robot/construction-robot-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name

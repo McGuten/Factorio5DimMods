@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Add a lot of new enemies, make the game more harder",
+    "description": "Enemies for 5dim's mod\n\rAdd a lot of new biters, spitter and spawners, recommended for experimented players, be carefull\n\rThis mod include:\n\r- New spiters, biters and spawner\n\r- New experimental enemy (huge and powerfull)",
     "dependencies": ["5dim_core >= 1.1.0"]
 }

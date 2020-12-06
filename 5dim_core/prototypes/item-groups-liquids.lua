@@ -40,15 +40,27 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "liquid-store",
+            name = "liquid-offshore-pump",
             group = "liquid",
             order = "f"
         },
         {
             type = "item-subgroup",
-            name = "liquid-store-multi",
+            name = "liquid-small-pump",
             group = "liquid",
             order = "g"
+        },
+        {
+            type = "item-subgroup",
+            name = "liquid-store",
+            group = "liquid",
+            order = "h"
+        },
+        {
+            type = "item-subgroup",
+            name = "liquid-store-multi",
+            group = "liquid",
+            order = "i"
         },
         {
             type = "item-subgroup",
@@ -60,43 +72,43 @@ data:extend(
             type = "item-subgroup",
             name = "liquid-pump",
             group = "liquid",
-            order = "i"
+            order = "j"
         },
         {
             type = "item-subgroup",
             name = "liquid-refinery",
             group = "liquid",
-            order = "j"
+            order = "k"
         },
         {
             type = "item-subgroup",
             name = "liquid-plant",
             group = "liquid",
-            order = "k"
+            order = "l"
         },
         {
             type = "item-subgroup",
             name = "transport-pipe",
             group = "liquid",
-            order = "l"
+            order = "m"
         },
         {
             type = "item-subgroup",
             name = "transport-pipe-ground",
             group = "liquid",
-            order = "m"
+            order = "n"
         },
         {
             type = "item-subgroup",
             name = "transport-pipe-ground-30",
             group = "liquid",
-            order = "n"
+            order = "o"
         },
         {
             type = "item-subgroup",
             name = "transport-pipe-ground-50",
             group = "liquid",
-            order = "o"
+            order = "p"
         }
     }
 )

@@ -39,7 +39,7 @@ genInserters {
         }
     },
     nextUpdate = {
-        inserter = "long-handed-inserter",
+        inserter = "fast-inserter",
         filterInserter = "5d-filter-inserter-02",
         stackInserter = "5d-stack-inserter-02",
         stackFilterInserter = "5d-stack-filter-inserter-02"
@@ -89,7 +89,7 @@ genInserters {
         }
     },
     nextUpdate = {
-        inserter = "fast-inserter",
+        inserter = "5d-inserter-03",
         filterInserter = "5d-filter-inserter-03",
         stackInserter = "5d-stack-inserter-03",
         stackFilterInserter = "5d-stack-filter-inserter-03"
@@ -108,7 +108,7 @@ genInserters {
             "chemical-science-pack"
         }
     },
-    copyName = "long-handed-inserter"
+    copyName = "fast-inserter"
 }
 
 extension = extension + 0.02
@@ -124,22 +124,22 @@ genInserters {
     energyMovement = energy,
     energyRotation = energy,
     energyDrain = drain,
-    new = false,
+    new = true,
     order = "c",
     ingredients = {
         inserter = {
-            {"long-handed-inserter", 1},
+            {"fast-inserter", 1},
             {"electronic-circuit", 1},
             {"iron-gear-wheel", 1},
             {"iron-plate", 1}
         },
         filterInserter = {
-            {"fast-inserter", 1},
+            {"5d-inserter-03", 1},
             {"5d-filter-inserter-02", 1},
             {"electronic-circuit", 4}
         },
         stackInserter = {
-            {"fast-inserter", 1},
+            {"5d-inserter-03", 1},
             {"5d-stack-inserter-02", 1},
             {"iron-gear-wheel", 15},
             {"electronic-circuit", 15},

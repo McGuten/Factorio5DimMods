@@ -9,7 +9,7 @@ function genLogisticRobots(inputs)
     if inputs.new then
         item.name = "5d-logistic-robot-" .. inputs.number
     end
-    item.icon = "__5dim_logistic__/graphics/icon/logistic-robot/logistic-robot-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_logistic__/graphics/icons/logistic-robot/logistic-robot-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name

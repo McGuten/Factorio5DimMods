@@ -1,10 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.2
+Version: 1.1.0
 Date: ????
   Changes:
-    - Update example to update with enemies
----------------------------------------------------------------------------------------------------
-Version: 1.0.1
-Date: 2020-08-21
-  Changes:
-    - Added Russian by geefuze
+    - New version updated to Factorio 1.1

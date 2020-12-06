@@ -40,31 +40,31 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "transport-loader",
+            name = "transport-inserter",
             group = "transport",
             order = "f"
         },
         {
             type = "item-subgroup",
-            name = "transport-inserter",
+            name = "transport-filter-inserter",
             group = "transport",
             order = "g"
         },
         {
             type = "item-subgroup",
-            name = "transport-filter-inserter",
+            name = "transport-stack-inserter",
             group = "transport",
             order = "h"
         },
         {
             type = "item-subgroup",
-            name = "transport-stack-inserter",
+            name = "transport-stack-filter-inserter",
             group = "transport",
             order = "i"
         },
         {
             type = "item-subgroup",
-            name = "transport-stack-filter-inserter",
+            name = "transport-loader",
             group = "transport",
             order = "j"
         },

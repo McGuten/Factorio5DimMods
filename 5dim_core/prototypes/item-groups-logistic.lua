@@ -70,21 +70,15 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "logistic-beacon",
+            name = "logistic-wire",
             group = "logistic",
             order = "i"
         },
         {
             type = "item-subgroup",
-            name = "logistic-wire",
-            group = "logistic",
-            order = "j"
-        },
-        {
-            type = "item-subgroup",
             name = "logistic-comb",
             group = "logistic",
-            order = "k"
+            order = "j"
         }
     }
 )

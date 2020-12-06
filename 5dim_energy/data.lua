@@ -1,12 +1,6 @@
 --Changes
 require("prototypes.changes")
 
---small pump
-require("prototypes.gen-pump")
-
---offshore pump
-require("prototypes.gen-offshore-pump")
-
 --Accumulator
 require("prototypes.gen-accumulator")
 

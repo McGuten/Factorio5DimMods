@@ -90,9 +90,7 @@ genOffshorePumps {
             {"logistic-science-pack", 1}
         },
         prerequisites = {
-            "5d-offshore-pump-1",
-            "5d-boiler-1",
-            "5d-steam-engine-1"
+            "5d-offshore-pump-1"
         }
     }
 }
@@ -129,8 +127,6 @@ genOffshorePumps {
         },
         prerequisites = {
             "5d-offshore-pump-2",
-            "5d-boiler-2",
-            "5d-steam-engine-2",
             "chemical-science-pack"
         }
     }
@@ -166,9 +162,7 @@ genOffshorePumps {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-offshore-pump-3",
-            "5d-boiler-3",
-            "5d-steam-engine-3"
+            "5d-offshore-pump-3"
         }
     }
 }
@@ -206,8 +200,6 @@ genOffshorePumps {
         },
         prerequisites = {
             "5d-offshore-pump-4",
-            "5d-boiler-4",
-            "5d-steam-engine-4",
             "production-science-pack"
         }
     }
@@ -245,7 +237,6 @@ genOffshorePumps {
         },
         prerequisites = {
             "5d-offshore-pump-5",
-            "5d-boiler-5",
             "5d-steam-engine-5"
         }
     }
@@ -285,8 +276,6 @@ genOffshorePumps {
         },
         prerequisites = {
             "5d-offshore-pump-6",
-            "5d-boiler-6",
-            "5d-steam-engine-6",
             "utility-science-pack"
         }
     }
@@ -325,9 +314,7 @@ genOffshorePumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-offshore-pump-7",
-            "5d-boiler-7",
-            "5d-steam-engine-7"
+            "5d-offshore-pump-7"
         }
     }
 }
@@ -365,9 +352,7 @@ genOffshorePumps {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-offshore-pump-8",
-            "5d-boiler-8",
-            "5d-steam-engine-8"
+            "5d-offshore-pump-8"
         }
     }
 }

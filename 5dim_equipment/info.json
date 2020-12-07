@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Equipment for 5dim's mod\n\rImprove your character with a new bundle of objects for your power armor\n\rThis mod include:\n\r- Batteries\n\r-Exoskeletons\n\r- Roboports\n\r- Personal laser defense\n\r- Personal tesla defense\n\r- Solar panels\n\r- Reactors\n\r- Shields",
+    "description": "Equipment for 5dim's mod\n\rImprove your character with a new bundle of objects for your power armor\n\rThis mod include:\n\r- Batteries\n\r- Exoskeletons\n\r- Roboports\n\r- Personal laser defense\n\r- Personal tesla defense\n\r- Solar panels\n\r- Reactors\n\r- Shields",
     "dependencies": ["5dim_core >= 1.1.0"]
 }

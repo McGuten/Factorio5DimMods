@@ -236,8 +236,7 @@ genOffshorePumps {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-offshore-pump-5",
-            "5d-steam-engine-5"
+            "5d-offshore-pump-5"
         }
     }
 }

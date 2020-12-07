@@ -128,7 +128,8 @@ genLocomotives {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-locomotive-3"
+            "5d-locomotive-3",
+            "production-science-pack"
         }
     }
 }
@@ -165,8 +166,7 @@ genLocomotives {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-locomotive-4",
-            "production-science-pack"
+            "5d-locomotive-4"
         }
     }
 }

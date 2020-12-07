@@ -97,7 +97,8 @@ genAssemblingMachines {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "automation-3"
+            "automation-3",
+            "production-science-pack"
         }
     },
     copy = nil
@@ -126,11 +127,11 @@ genAssemblingMachines {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "automation-4",
-            "production-science-pack"
+            "automation-4"
         }
     },
     copy = nil

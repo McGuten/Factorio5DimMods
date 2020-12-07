@@ -122,7 +122,8 @@ genFluidWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-wagon-3"
+            "fluid-wagon-3",
+            "production-science-pack"
         }
     }
 }
@@ -153,11 +154,11 @@ genFluidWagons {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
-            "fluid-wagon-4",
-            "production-science-pack"
+            "fluid-wagon-4"
         }
     }
 }

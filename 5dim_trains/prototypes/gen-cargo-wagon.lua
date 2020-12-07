@@ -117,7 +117,8 @@ genCargoWagons {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "5d-cargo-wagon-3"
+            "5d-cargo-wagon-3",
+            "production-science-pack"
         }
     }
 }
@@ -147,7 +148,8 @@ genCargoWagons {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
             "5d-cargo-wagon-4",

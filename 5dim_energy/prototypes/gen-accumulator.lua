@@ -127,7 +127,8 @@ genAccumulators {
             {"production-science-pack", 1}
         },
         prerequisites = {
-            "electric-energy-accumulators-3"
+            "electric-energy-accumulators-3",
+            "production-science-pack"
         }
     }
 }
@@ -160,7 +161,8 @@ genAccumulators {
         packs = {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            {"chemical-science-pack", 1},
+            {"production-science-pack", 1}
         },
         prerequisites = {
             "electric-energy-accumulators-4",

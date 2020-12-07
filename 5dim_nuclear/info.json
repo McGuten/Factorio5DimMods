@@ -1,11 +1,11 @@
 {
     "name": "5dim_nuclear",
-    "version": "1.0.2",
-    "factorio_version": "1.0",
-    "title": "5Dim's mod - Nuclear",
+    "version": "1.1.0",
+    "factorio_version": "1.1",
+    "title": "5Dim's mod - New Nuclear",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Nuclear for 5dim's mod -> Add a new tier of nuclear energy",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "description": "Nuclear for 5dim's mod\n\rIf you are a mad of nuclear power with this mod you can upgrade all your blueprints to a new level.\n\rThis mod include:\n\r- 10 tiers of all nuclear stuff",
+    "dependencies": ["5dim_core >= 1.1.0"]
 }

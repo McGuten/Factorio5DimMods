@@ -1,25 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.6
+Version: 1.1.0
 Date: ????
   Changes:
----------------------------------------------------------------------------------------------------
-Version: 1.0.5
-Date: 2020-08-25
-  Changes:
----------------------------------------------------------------------------------------------------
-Version: 1.0.4
-Date: 2020-08-23
-  Changes:
-    - Compatibility with 5Dim -  Enemies
-    - Fix compatibility with mods that add turrets (e.g. tiberium mod) ty to 
----------------------------------------------------------------------------------------------------
-Version: 1.0.3
-Date: 2020-08-21
-  Changes:
-    - Correct info.json
-    - Condicional bitter load for 5dim enemies (next module will be upload in next days
----------------------------------------------------------------------------------------------------
-Version: 1.0.2
-Date: 2020-08-20
-  Changes:
-    - In next versions 5dim_battlefield will stop having the content of enemies (biter and spiter), this will be moved to a new module (5dim_enemies), this should be totally transparent for you if you have both mods installed.
+    - New version updated to Factorio 1.1

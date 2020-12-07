@@ -1,11 +1,11 @@
 {
     "name": "5dim_module",
-    "version": "1.0.2",
-    "factorio_version": "1.0",
-    "title": "5Dim's mod - Module",
+    "version": "1.1.0",
+    "factorio_version": "1.1",
+    "title": "5Dim's mod - New Module",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Modules for 5dim's mod -> Add pollution module, add tier 4 and 5 of all modules and make welded modules (you can combine 2 modules)",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "description": "Modules for 5dim's mod\n\rAdds a brand new merged modules and 10 tiers of the rest of the modules\n\rThis mod include:\n\r- New pollution module\n\r- New merged module that combine effect of all modules of this tier\n\r- 10 tiers of all modules\n\r- 10 tiers of beacons",
+    "dependencies": ["5dim_core >= 1.1.0"]
 }

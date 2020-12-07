@@ -7,5 +7,6 @@
 /mod-settings.dat
 5dim_ztemplate
 *.DS_Store
-*.vscode
+.vscode
 *.zip
+to-do.txt

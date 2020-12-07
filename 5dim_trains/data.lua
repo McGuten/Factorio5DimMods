@@ -1,21 +1,11 @@
-require("config")
-
--- Technology
-require("prototypes.tech")
-
 -- Vanilla changes
 require("prototypes.changes")
 
--- High speed locomotive
-require("prototypes.high-speed-locomotive")
+-- Locomotives
+require("prototypes.gen-locomotive")
 
--- Reinforced locomotive
-require("prototypes.reinforced-locomotive")
+-- Cargo wagon
+require("prototypes.gen-cargo-wagon")
 
--- Wagon
-require("prototypes.wagon-2")
-require("prototypes.wagon-3")
-
--- Liquid wagon
-require("prototypes.liquid-2")
-require("prototypes.liquid-3")
+-- Cargo wagon
+require("prototypes.gen-fluid-wagon")

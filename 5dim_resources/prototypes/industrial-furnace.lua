@@ -1,116 +1,72 @@
-data:extend(
-  {
-    -- Item
+-- Copy electric furnace
+local item = table.deepcopy(data.raw.item["electric-furnace"])
+local recipe = table.deepcopy(data.raw.recipe["electric-furnace"])
+local entity = table.deepcopy(data.raw["furnace"]["electric-furnace"])
+local tech = table.deepcopy(data.raw.technology["advanced-material-processing-2"])
+
+--Item
+item.name = "5d-industrial-furnace"
+item.icon = "__5dim_resources__/graphics/icon/industrial-furnace/industrial-furnace-icon.png"
+item.icon_size = 32
+item.subgroup = "furnace-industrial"
+item.order = "a"
+item.place_result = item.name
+
+--Recipe
+recipe.name = item.name
+recipe.result = item.name
+recipe.icon = item.icon
+recipe.icon_size = 32
+recipe.enabled = false
+recipe.ingredients = {
+    {"5d-electric-furnace-10", 2},
+    {"steel-plate", 10},
+    {"refined-concrete", 10},
+    {"advanced-circuit", 10}
+}
+
+--Entity
+entity.name = item.name
+entity.next_upgrade = nil
+entity.icon = item.icon
+entity.icon_size = 32
+entity.minable.result = item.name
+entity.crafting_speed = 7
+entity.module_specification.module_slots = 4
+entity.energy_usage = 7500 .. "kW"
+entity.animation = {
+    filename = "__5dim_resources__/graphics/entities/industrial-furnace/industrial-furnace.png",
+    priority = "high",
+    width = 224,
+    height = 224,
+    frame_count = 1,
+    shift = {0, 0}
+}
+entity.energy_source.emissions_per_minute = 35
+entity.collision_box = {{-2.2, -2.2}, {2.2, 2.2}}
+entity.selection_box = {{-2.5, -2.5}, {2.5, 2.5}}
+entity.crafting_categories = {"industrial-furnace"}
+
+-- Technology
+tech.name = "advanced-material-processing-12"
+tech.unit.count = 1500
+tech.unit.ingredients = {
+    {"automation-science-pack", 1},
+    {"logistic-science-pack", 1},
+    {"chemical-science-pack", 1},
+    {"production-science-pack", 1},
+    {"utility-science-pack", 1},
+    {"space-science-pack", 1}
+}
+tech.prerequisites = {
+    "advanced-material-processing-11",
+    "space-science-pack"
+}
+tech.effects = {
     {
-      type = "item",
-      name = "5d-industrial-furnace",
-      icon = "__5dim_resources__/graphics/icon/ifurnace.png",
-      icon_size = 32,
-      subgroup = "furnace-electric",
-      order = "b",
-      place_result = "5d-industrial-furnace",
-      stack_size = 50
-    },
-    --Recipe
-    {
-      type = "recipe",
-      name = "5d-industrial-furnace",
-      enabled = "false",
-      ingredients = {
-        {"5d-electric-furnace", 2},
-        {"steel-plate", 10},
-        {"advanced-circuit", 10}
-      },
-      result = "5d-industrial-furnace",
-      energy_required = 5
-    },
-    --Entity
-    {
-      type = "furnace",
-      name = "5d-industrial-furnace",
-      icon = "__5dim_resources__/graphics/icon/ifurnace.png",
-      flags = {"placeable-neutral", "placeable-player", "player-creation"},
-      minable = {mining_time = 1, result = "5d-industrial-furnace"},
-      icon_size = 32,
-      max_health = 150,
-      corpse = "big-remnants",
-      dying_explosion = "medium-explosion",
-      light = {intensity = 1, size = 10},
-      resistances = {
-        {
-          type = "fire",
-          percent = 80
-        }
-      },
-      collision_box = {{-1.2, -1.2}, {1.2, 1.2}},
-      selection_box = {{-1.5, -1.5}, {1.5, 1.5}},
-      module_specification = {
-        module_slots = 4,
-        module_info_icon_shift = {0, 0.8}
-      },
-      allowed_effects = {"consumption", "speed", "productivity", "pollution"},
-      crafting_categories = {"industrial-furnace"},
-      crafting_speed = 1,
-      energy_usage = "3000kW",
-      source_inventory_size = 1,
-      result_inventory_size = 1,
-      energy_source = {
-        type = "electric",
-        usage_priority = "secondary-input",
-        emissions = 0.005
-      },
-      working_sound = {
-        sound = {
-          filename = "__base__/sound/electric-furnace.ogg",
-          volume = 0.7
-        },
-        apparent_volume = 1.5
-      },
-      animation = {
-        filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-base_3.png",
-        priority = "high",
-        width = 129,
-        height = 100,
-        frame_count = 1,
-        shift = {0.421875, 0}
-      },
-      working_visualisations = {
-        {
-          animation = {
-            filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-heater_3.png",
-            priority = "high",
-            width = 25,
-            height = 15,
-            frame_count = 12,
-            animation_speed = 0.5,
-            shift = {0.015625, 0.890625}
-          },
-          light = {intensity = 0.4, size = 6, shift = {0.0, 1.0}}
-        },
-        {
-          animation = {
-            filename = "__5dim_resources__/graphics/icon/icon_5d_electric-furnace-propeller-1.png",
-            priority = "high",
-            width = 19,
-            height = 13,
-            frame_count = 4,
-            animation_speed = 0.5,
-            shift = {-0.671875, -0.640625}
-          }
-        },
-        {
-          animation = {
-            filename = "__base__/graphics/entity/electric-furnace/electric-furnace-propeller-2.png",
-            priority = "high",
-            width = 12,
-            height = 9,
-            frame_count = 4,
-            animation_speed = 0.5,
-            shift = {0.0625, -1.234375}
-          }
-        }
-      },
-      fast_replaceable_group = "electric-furnace"
+        type = "unlock-recipe",
+        recipe = item.name
     }
-  }
-)
+}
+
+data:extend({entity, recipe, item, tech})

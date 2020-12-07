@@ -1,10 +1,10 @@
 {
     "name": "5dim_autofill",
-    "version": "1.0.2",
-    "factorio_version": "1.0",
+    "version": "1.1.0",
+    "factorio_version": "1.1",
     "title": "5Dim's mod - Automated Fuel & Ammo",
-    "author": "Original: folk and Updated: 5Dim",
+    "author": "Original: folk and updated: 5Dim",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Most likely automatically fills in things properly, probably. Preferrably both fuel and ammunition, if possible.",
-    "dependencies": ["5dim_core >= 1.0.0"]
+    "dependencies": ["5dim_core >= 1.1.0"]
 }

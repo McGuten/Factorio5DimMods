@@ -1,69 +1,27 @@
-require("config")
 --Changes
 require("prototypes.changes")
-require("prototypes.wall")
-require("prototypes.gate")
-require("prototypes.ammo-category")
-require("prototypes.tech")
-
---Worms
-if settings.startup["5d-worm"].value then
---require("prototypes.experimental-worm")
-end
-
---Biters
-if not mods["5dim_enemies"] then
-    require("prototypes.bitter")
-    --require("prototypes.bitter-test")
-    require("prototypes.physical")
-    require("prototypes.laser")
-
-    if settings.startup["5d-swimmer"].value then
-        require("prototypes.swimmer")
-    end
-    if settings.startup["5d-climber"].value then
-        require("prototypes.climber")
-    end
-end
-
---Spiters
-if not mods["5dim_enemies"] then
-    require("prototypes.spitter")
-    require("prototypes.rocket")
-    require("prototypes.fire")
-
-    if settings.startup["5d-suicide"].value then
-        require("prototypes.explosive")
-    end
-end
---Experimental
-if settings.startup["5d-exp"].value then
-    require("prototypes.exp")
-end
-
---FlameThrower turret
-require("prototypes.flamethrower-turret")
-
---Laser turret
-require("prototypes.small-laser")
-require("prototypes.big-laser")
 
 --Gun turret
-require("prototypes.small-ammo")
-require("prototypes.big-ammo")
+require("prototypes.gen-gun-turret-small")
+require("prototypes.gen-gun-turret")
+require("prototypes.gen-gun-turret-big")
+require("prototypes.gen-gun-turret-sniper")
 
---Sniper turret
-require("prototypes.exp-turret")
-require("prototypes.tesla-turret")
+--Laser turret
+require("prototypes.gen-laser-turret-small")
+require("prototypes.gen-laser-turret")
+require("prototypes.gen-laser-turret-big")
+require("prototypes.gen-laser-turret-sniper")
 
---Electric turret
-require("prototypes.electric-turret")
+-- Tesla turret
+require("prototypes.gen-tesla-turret")
 
---Tank
-require("prototypes.tank-2")
+-- Flamethrower turret
+require("prototypes.gen-flamethrower-turret")
 
---Artillery
---require("prototypes.artillery")
+-- Radar
+require("prototypes.gen-radar")
 
---Radar
---require("prototypes.radar-2")
+-- Wall
+require("prototypes.gen-wall")
+require("prototypes.gen-gate")

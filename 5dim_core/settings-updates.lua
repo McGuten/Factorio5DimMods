@@ -83,7 +83,7 @@ data:extend(
         {
             type = "bool-setting",
             name = "5d-tree",
-            order = "ca",
+            order = "caa",
             setting_type = "startup",
             default_value = false,
             per_user = false,
@@ -144,6 +144,15 @@ data:extend(
             minimum_value = 0.1,
             maximum_value = 1000,
             localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
+        },
+        {
+            type = "bool-setting",
+            name = "5d-stack-artillery-bullets",
+            order = "cab",
+            setting_type = "startup",
+            default_value = false,
+            per_user = false,
+            localised_name = "[5Dim's mods] Stackeable artillery bullets"
         }
     }
 )
@@ -184,7 +193,7 @@ if not mods["Rampant"] then
     )
 end
 
-if mods["5dim_battlefield"] or mods["5dim_enemies"] then
+if mods["5dim_enemies"] then
     --order d for battelfield
     data:extend(
         {
@@ -246,26 +255,6 @@ if mods["5dim_infiniteresearch"] then
     --order e for infinite research
     data:extend(
         {
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-trash",
-            --     order = "ea",
-            --     setting_type = "startup",
-            --     default_value = false,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Infinite Research] Infinite trash slots",
-            --     localised_description = "You want to active infinite trash slots? (Default: False)"
-            -- },
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-logistics",
-            --     order = "eb",
-            --     setting_type = "startup",
-            --     default_value = false,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Infinite Research] Infinite logistics slots",
-            --     localised_description = "You want to active infinite logistics slots? (Default: False)"
-            -- },
             {
                 type = "bool-setting",
                 name = "5d-storage",

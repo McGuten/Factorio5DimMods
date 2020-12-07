@@ -1,4 +1,3 @@
-require("config")
 require("prototypes.tin-ore")
 require("prototypes.lead-ore")
 require("prototypes.zinc-ore")
@@ -11,7 +10,7 @@ bobmods.lib.resource.generate(lead)
 bobmods.lib.resource.generate(tin)
 require("prototypes.changes")
 
-if automatization == true then
+if mods["5dim_automatization"] then
     require("prototypes.automatization")
 end
 
@@ -23,30 +22,30 @@ end
 -- require("prototypes.equipment")
 -- end
 
-if energy == true then
+if mods["5dim_energy"] then
     require("prototypes.energy")
 end
 
-if logistic == true then
+if mods["5dim_logistic"] then
     require("prototypes.logistic")
 end
 
-if mining == true then
+if mods["5dim_mining"] then
     require("prototypes.mining")
 end
 
-if modules == true then
+if mods["5dim_modules"] then
     require("prototypes.modules")
 end
 
-if resources == true then
+if mods["5dim_resources"] then
     require("prototypes.resources")
 end
 
-if transport == true then
+if mods["5dim_transport"] then
     require("prototypes.transport")
 end
 
-if vehicles == true then
+if mods["5dim_vehicles"] then
     require("prototypes.vehicles")
 end

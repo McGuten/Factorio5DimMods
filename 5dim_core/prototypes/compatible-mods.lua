@@ -17,3 +17,12 @@ if mods["aai-industry"] then
     data.raw["offshore-pump"]["offshore-pump"].collision_box = {{-0.6, -1.05}, {0.6, 0.3}}
     data.raw["offshore-pump"]["offshore-pump"].selection_box = {{-0.6, -1.49}, {0.6, 0.49}}
 end
+
+if mods["Krastorio2"] then
+    for _, pipe in pairs(data.raw["pipe"]) do
+        pipe.collision_mask = {"object-layer"}
+    end
+    for _, pipe in pairs(data.raw["pipe-to-ground"]) do
+        pipe.collision_mask = {"object-layer"}
+    end
+end

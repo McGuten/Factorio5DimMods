@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.4
-Date: ????
+Date: 2020-12-09
   Changes:
     - Added compatibility with Cargo Ships mod
     - Added some compatible mods as optional dependencies

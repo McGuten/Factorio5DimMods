@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Core, library and settings of 5Dim's mod. REQUIRED for any other module",
-    "dependencies": ["base >= 1.1.0"]
+    "dependencies": ["base >= 1.1.0", "? Krastorio2", "? cargo-ships", "? bobinserters", "? aai-industry", "? LoaderRedux", "? Orbital Ion Cannon"]
 }

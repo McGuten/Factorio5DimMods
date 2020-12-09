@@ -397,8 +397,7 @@ genNuclearReactors {
         {"processing-unit", 100},
         {"copper-plate", 400},
         {"low-density-structure", 50},
-        {"productivity-module-3", 5},
-            {"space-science-pack", 1}
+        {"productivity-module-3", 5}
     },
     pollution = emisions,
     tech = {

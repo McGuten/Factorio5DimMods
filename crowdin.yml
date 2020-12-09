@@ -1,0 +1,3 @@
+files:
+  - source: 5dim_locale/locale/en.example/**.cfg
+    translation: 5dim_locale/locale/%two_letters_code%/%file_name%.cfg

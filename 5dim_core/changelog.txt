@@ -2,6 +2,7 @@
 Version: 1.1.5
 Date: ????
   Changes:
+    - Added compatibility with Space Exploration
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.4
 Date: 2020-12-09

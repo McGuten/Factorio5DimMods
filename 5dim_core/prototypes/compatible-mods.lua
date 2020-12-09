@@ -1,10 +1,15 @@
+-- Orbital Ion Cannon compatibility
 if mods["Orbital Ion Cannon"] then
     data.raw["ammo-turret"]["ion-cannon-targeter"].next_upgrade = nil
     data.raw["ammo-turret"]["ion-cannon-targeter"].fast_replaceable_group = nil
 end
+
+-- Loader Redux compatibility
 if mods["LoaderRedux"] and mods["5dim_transport"] then
     data.raw["loader"]["express-loader"].next_upgrade = "5d-loader-04"
 end
+
+-- AAI Industry compatibility
 if mods["aai-industry"] then
     data.raw.recipe["power-armor-mk2"].ingredients = {
         {"power-armor", 1},
@@ -18,6 +23,7 @@ if mods["aai-industry"] then
     data.raw["offshore-pump"]["offshore-pump"].selection_box = {{-0.6, -1.49}, {0.6, 0.49}}
 end
 
+-- Krastorio 2 compatibility
 if mods["Krastorio2"] then
     for _, pipe in pairs(data.raw["pipe"]) do
         pipe.collision_mask = {"object-layer"}
@@ -27,6 +33,7 @@ if mods["Krastorio2"] then
     end
 end
 
+-- Cargo Ships compatibility
 if mods["cargo-ships"] then
     data.raw["radar"]["or_radar"].next_upgrade = nil
     data.raw["lamp"]["or_lamp"].next_upgrade = nil
@@ -37,4 +44,9 @@ if mods["cargo-ships"] then
     for _, chain in pairs(data.raw["rail-chain-signal"]) do
         chain.collision_mask = {"object-layer"}
     end
+end
+
+-- AAI Industry and Space Exploration compatibility
+if mods["aai-industry"] and mods["space-exploration"] then
+    data.raw["offshore-pump"]["offshore-pump"].next_upgrade = nil
 end

@@ -7,6 +7,7 @@
 - [Download from ModPortal](https://mods.factorio.com/mods/McGuten)
 - [Issues](https://github.com/McGuten/Factorio5DimMods/issues)
 - [Discord comunity](https://discord.gg/CTEMFd9)
+- [Crowdin translation](https://crowdin.com/project/5dims-mod)
 
 ## Description
 
@@ -61,9 +62,11 @@ This mod is a **total conversion** and it has **tons of modules** and we recomme
     - Utility mod to help recall/collect bots within a network.
   - **Locales**.
     - Add translates for 5dim's mod.
+  - **Compatibility**.
+    - Add compatibility for 5dim's mod with other mods.
 
 ## Translations
-1. If you want to translate the mod to other lang you should use the follow template
+1. If you want to translate the mod to other lang you should use the follow template or help me in [Crowdin translation](https://crowdin.com/project/5dims-mod)
 2. [5Dim's Locale > locale > en.example](5dim_locale/locale/en.example)
 3. You should use this template to translate the mod and upload it with [Pull Request](https://github.com/McGuten/Factorio5DimMods/pulls)
 

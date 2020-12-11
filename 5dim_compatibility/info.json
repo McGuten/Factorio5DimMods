@@ -6,15 +6,15 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Compatibility mods for 5dim's mod\n\rThis mod add compatibility with other mods\n\rActual compatibility:\n\r- Krastorio 2\n\r- Space Exploration\n\r- Cargo Ships\n\r- Bob inserters\n\r- AAI Industry\n\r- And more!",
+    "description": "Compatibility mods for 5dim's mod\n\rThis mod add compatibility with other mods\n\rActual compatibility:\n\r- Krastorio 2\n\r- Space Exploration\n\r- Bob's mods\n\r- Cargo Ships\n\r- Bob inserters\n\r- AAI Industry\n\r- And more!",
     "dependencies": [
         "5dim_core >= 1.1.7",
         "? Krastorio2",
+        "? space-exploration",
+        "? boblibrary",
         "? cargo-ships",
-        "? bobinserters",
         "? aai-industry",
         "? LoaderRedux",
-        "? Orbital Ion Cannon",
-        "? space-exploration"
+        "? Orbital Ion Cannon"
     ]
 }

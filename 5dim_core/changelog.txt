@@ -2,6 +2,8 @@
 Version: 1.1.8
 Date: ????
   Changes:
+    - Change sort tabs
+    - Add new categories for 5Dim compatibility mod
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.7
 Date: 2020-12-10

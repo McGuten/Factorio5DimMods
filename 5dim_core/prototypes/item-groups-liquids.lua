@@ -3,7 +3,7 @@ data:extend(
         {
             type = "item-group",
             name = "liquid",
-            order = "gab",
+            order = "gaa",
             inventory_order = "gaa",
             icon = "__5dim_core__/graphics/icon/liquids.png",
             icon_size = 64
@@ -109,6 +109,12 @@ data:extend(
             name = "transport-pipe-ground-50",
             group = "liquid",
             order = "p"
+        },
+        {
+            type = "item-subgroup",
+            name = "liquid-misc",
+            group = "liquid",
+            order = "z"
         }
     }
 )

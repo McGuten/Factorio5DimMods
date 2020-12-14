@@ -70,9 +70,21 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "transport-misc",
+            name = "transport-dead-loader",
             group = "transport",
             order = "k"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-dead-beltbox",
+            group = "transport",
+            order = "l"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-misc",
+            group = "transport",
+            order = "z"
         }
     }
 )

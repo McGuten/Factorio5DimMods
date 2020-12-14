@@ -1,0 +1,28 @@
+-- Storehouse
+data.raw.item["storehouse-basic"].subgroup = "store-solid"
+data.raw.item["storehouse-basic"].order = "g"
+data.raw.item["storehouse-passive-provider"].subgroup = "logistic-pasive"
+data.raw.item["storehouse-passive-provider"].order = "e"
+data.raw.item["storehouse-storage"].subgroup = "logistic-storage"
+data.raw.item["storehouse-storage"].order = "e"
+data.raw.item["storehouse-active-provider"].subgroup = "logistic-active"
+data.raw.item["storehouse-active-provider"].order = "e"
+data.raw.item["storehouse-requester"].subgroup = "logistic-requester"
+data.raw.item["storehouse-requester"].order = "e"
+data.raw.item["storehouse-buffer"].subgroup = "logistic-buffer"
+data.raw.item["storehouse-buffer"].order = "e"
+
+-- Warehouse
+data.raw.item["warehouse-basic"].subgroup = "store-solid"
+data.raw.item["warehouse-basic"].order = "h"
+data.raw.item["warehouse-passive-provider"].subgroup = "logistic-pasive"
+data.raw.item["warehouse-passive-provider"].order = "f"
+data.raw.item["warehouse-storage"].subgroup = "logistic-storage"
+data.raw.item["warehouse-storage"].order = "f"
+data.raw.item["warehouse-active-provider"].subgroup = "logistic-active"
+data.raw.item["warehouse-active-provider"].order = "f"
+data.raw.item["warehouse-requester"].subgroup = "logistic-requester"
+data.raw.item["warehouse-requester"].order = "f"
+data.raw.item["warehouse-buffer"].subgroup = "logistic-buffer"
+data.raw.item["warehouse-buffer"].order = "f"
+

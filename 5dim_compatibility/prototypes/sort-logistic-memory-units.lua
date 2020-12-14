@@ -1,0 +1,11 @@
+-- Memory Unit
+data.raw.item["active-provider-memory-unit"].subgroup = "logistic-active"
+data.raw.item["active-provider-memory-unit"].order = "g"
+data.raw.item["passive-provider-memory-unit"].subgroup = "logistic-pasive"
+data.raw.item["passive-provider-memory-unit"].order = "g"
+data.raw.item["storage-memory-unit"].subgroup = "logistic-storage"
+data.raw.item["storage-memory-unit"].order = "g"
+data.raw.item["requester-memory-unit"].subgroup = "logistic-requester"
+data.raw.item["requester-memory-unit"].order = "g"
+data.raw.item["buffer-memory-unit"].subgroup = "logistic-buffer"
+data.raw.item["buffer-memory-unit"].order = "g"

@@ -3,8 +3,8 @@ data:extend(
         {
             type = "item-group",
             name = "plates",
-            order = "gaa",
-            inventory_order = "gaa",
+            order = "gab",
+            inventory_order = "gab",
             icon = "__5dim_core__/graphics/icon/plates.png",
             icon_size = 64
         },

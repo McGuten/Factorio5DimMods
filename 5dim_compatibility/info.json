@@ -20,6 +20,9 @@
         "? deadlock-beltboxes-loaders",
         "? Deadlock5Dims",
         "? aai-containers",
+        "? deep-storage-unit",
+        "? fluid-memory-storage",
+        "? logistic-memory-units",
         "? Orbital Ion Cannon"
     ]
 }

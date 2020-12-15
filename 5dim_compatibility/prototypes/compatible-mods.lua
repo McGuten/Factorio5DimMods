@@ -52,10 +52,6 @@ if mods["aai-industry"] and mods["space-exploration"] then
 end
 
 -- Bobs mod compatibility
-if mods["bobassembly"] and mods["5dim_resources"] then
-    data.raw.furnace["electric-furnace-2"].fast_replaceable_group = "electric-furnace"
-    data.raw.furnace["electric-furnace-3"].fast_replaceable_group = "electric-furnace"
-end
 if mods["bobpower"] and mods["5dim_nuclear"] then
     data.raw.boiler["heat-exchanger"].fast_replaceable_group = "heat-exchanger"
     data.raw.boiler["heat-exchanger-2"].fast_replaceable_group = "heat-exchanger"
@@ -72,7 +68,7 @@ if mods["bobpower"] and mods["5dim_energy"] then
     data.raw["electric-pole"]["substation-3"].fast_replaceable_group = "substation"
     data.raw["electric-pole"]["substation-4"].fast_replaceable_group = "substation"
 end
-if mods["bobassembly"] and mods["5dim_transport"] then
+if mods["boblogistics"] and mods["5dim_transport"] then
     data.raw["pump"]["pump"].fast_replaceable_group = "pump"
     data.raw["pump"]["bob-pump-2"].fast_replaceable_group = "pump"
     data.raw["pump"]["bob-pump-3"].fast_replaceable_group = "pump"

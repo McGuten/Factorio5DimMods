@@ -2,6 +2,7 @@
 Version: 1.1.5
 Date: ????
   Changes:
+    - Add compatibility with Omni mod series (except omnifluid)
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.4
 Date: 2020-12-14

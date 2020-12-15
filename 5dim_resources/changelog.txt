@@ -2,6 +2,7 @@
 Version: 1.1.1
 Date: ????
   Changes:
+    - Fix problem with fast_reemplazable_group for electric furnaces to make the mod more compatible with others
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2020-12-07

@@ -2,11 +2,12 @@
 Version: 1.1.6
 Date: ????
   Changes:
+    - Add compatibility with Transport Drones.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.5
 Date: 2020-12-15
   Changes:
-    - Add compatibility with Omni mod series (except omnifluid)
+    - Add compatibility with Omni mod series (except omnifluid).
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.4
 Date: 2020-12-14
@@ -24,9 +25,9 @@ Date: 2020-12-14
 Version: 1.1.1
 Date: 2020-12-11
   Changes:
-    - Add compatibility with bob's mods!
+    - Add compatibility with bob's mods.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2020-12-10
   Changes:
-    - Release the mod with some compatibilities
+    - Release the mod with some compatibilities.

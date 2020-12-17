@@ -78,3 +78,8 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
     data.raw["ammo-turret"]["gun-turret"].fast_replaceable_group = "gun-turret"
     data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
 end
+
+-- Transport drones
+if mods["Transport_Drones"] and mods["5dim_transport"] then
+    data.raw["pump"]["transport-depot-writer"].next_upgrade = nil
+end

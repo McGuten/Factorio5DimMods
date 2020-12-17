@@ -24,8 +24,10 @@
         "? deep-storage-unit",
         "? fluid-memory-storage",
         "? logistic-memory-units",
+        "? Transport_Drones",
         "? Orbital Ion Cannon",
 
-        "! omnifluid"
+        "! omnifluid",
+        "! CircuitProcessing"
     ]
 }

@@ -190,7 +190,7 @@ genInserters {
     order = "d",
     ingredients = {
         inserter = {
-            {"fast-inserter", 1},
+            {"5d-inserter-03", 1},
             {"electronic-circuit", 1},
             {"iron-gear-wheel", 1},
             {"iron-plate", 1}

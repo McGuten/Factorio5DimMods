@@ -2,6 +2,7 @@
 Version: 1.1.2
 Date: ????
   Changes:
+    - Fix recipe for filter inserter and stack inserter MK9
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 2020-12-17

@@ -516,12 +516,12 @@ genInserters {
         },
         filterInserter = {
             {"5d-inserter-09", 1},
-            {"5d-stack-inserter-08", 1},
             {"5d-filter-inserter-08", 1},
             {"electronic-circuit", 4}
         },
         stackInserter = {
             {"5d-inserter-09", 1},
+            {"5d-stack-inserter-08", 1},
             {"iron-gear-wheel", 15},
             {"electronic-circuit", 15},
             {"advanced-circuit", 1}

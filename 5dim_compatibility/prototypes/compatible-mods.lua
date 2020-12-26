@@ -83,3 +83,12 @@ end
 if mods["Transport_Drones"] and mods["5dim_transport"] then
     data.raw["pump"]["transport-depot-writer"].next_upgrade = nil
 end
+
+--Bio Industries
+if mods["Bio_Industries"] and mods["5dim_decoration"] then
+    data.raw.tree["5d-banner-1"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-1"}
+    data.raw.tree["5d-banner-2"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-2"}
+    data.raw.tree["5d-banner-3"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-3"}
+    data.raw.tree["5d-obelisk"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-obelisk"}
+    data.raw.tree["5d-statue"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-statue"}
+end

@@ -6,7 +6,7 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Compatibility mods for 5dim's mod\n\rThis mod add compatibility with other mods and include some items into 5Dim's tabs\n\rActual compatibility:\n\r- Krastorio 2\n\r- Space Exploration\n\r- Bob's mods\n\r- Angel's mods\n\r- Omni mods (Except omnifuild)\n\r- Cargo Ships\n\r- Bob inserters\n\r- AAI Industry\n\r- Bio industries\n\r- And more!",
+    "description": "Compatibility mods for 5dim's mod\n\rThis mod add compatibility with other mods and include some items into 5Dim's tabs\n\rActual compatibility:\n\r- Krastorio 2\n\r- Space Exploration\n\r- Bob's mods\n\r- Angel's mods\n\r- Omni mods (Except omnifuild)\n\r- Cargo Ships\n\r- Bob inserters\n\r- AAI Industry\n\r- Bio industries\n\r- Mod Mash\n\r- And more!",
     "dependencies": [
         "5dim_core >= 1.1.8",
         "? Krastorio2",
@@ -27,6 +27,7 @@
         "? Transport_Drones",
         "? Orbital Ion Cannon",
         "? Bio_Industries",
+        "? modmash",
 
         "! omnifluid",
         "! CircuitProcessing"

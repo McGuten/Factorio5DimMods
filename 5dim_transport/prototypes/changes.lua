@@ -32,27 +32,27 @@ table.insert(data.raw.technology["logistics-3"].effects, {type = "unlock-recipe"
 table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-inserter-04"})
 table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-04"})
 
--- Logistics 4
+-- Logistics 5
 table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-inserter-05"})
 table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-05"})
 
--- Logistics 4
+-- Logistics 6
 table.insert(data.raw.technology["logistics-6"].effects, {type = "unlock-recipe", recipe = "5d-inserter-06"})
 table.insert(data.raw.technology["logistics-6"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-06"})
 
--- Logistics 4
+-- Logistics 7
 table.insert(data.raw.technology["logistics-7"].effects, {type = "unlock-recipe", recipe = "5d-inserter-07"})
 table.insert(data.raw.technology["logistics-7"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-07"})
 
--- Logistics 4
+-- Logistics 8
 table.insert(data.raw.technology["logistics-8"].effects, {type = "unlock-recipe", recipe = "5d-inserter-08"})
 table.insert(data.raw.technology["logistics-8"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-08"})
 
--- Logistics 4
+-- Logistics 9
 table.insert(data.raw.technology["logistics-9"].effects, {type = "unlock-recipe", recipe = "5d-inserter-09"})
 table.insert(data.raw.technology["logistics-9"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-09"})
 
--- Logistics 4
+-- Logistics 10
 table.insert(data.raw.technology["logistics-10"].effects, {type = "unlock-recipe", recipe = "5d-inserter-10"})
 table.insert(data.raw.technology["logistics-10"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-10"})
 

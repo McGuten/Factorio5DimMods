@@ -2,6 +2,7 @@
 Version: 1.1.1
 Date: ????
   Changes:
+    - Fix stack inserter tech to apply for stack inserters.
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2020-12-07

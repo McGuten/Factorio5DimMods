@@ -6,7 +6,7 @@ local energy = 29
 local emisions = 10
 local techCount = 100
 
--- Electric furnace 01
+-- Liquid Pump 01
 genPumps {
     number = "01",
     subgroup = "liquid-small-pump",
@@ -30,7 +30,7 @@ modules = modules + 1
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 02
+-- Liquid Pump 02
 genPumps {
     number = "02",
     subgroup = "liquid-small-pump",
@@ -65,7 +65,7 @@ speed = speed + 50
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 03
+-- Liquid Pump 03
 genPumps {
     number = "03",
     subgroup = "liquid-small-pump",
@@ -103,7 +103,7 @@ modules = modules + 1
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 04
+-- Liquid Pump 04
 genPumps {
     number = "04",
     subgroup = "liquid-small-pump",
@@ -140,7 +140,7 @@ speed = speed + 50
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 05
+-- Liquid Pump 05
 genPumps {
     number = "05",
     subgroup = "liquid-small-pump",
@@ -178,7 +178,7 @@ modules = modules + 1
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 06
+-- Liquid Pump 06
 genPumps {
     number = "06",
     subgroup = "liquid-small-pump",
@@ -215,7 +215,7 @@ speed = speed + 50
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 07
+-- Liquid Pump 07
 genPumps {
     number = "07",
     subgroup = "liquid-small-pump",
@@ -255,7 +255,7 @@ modules = modules + 1
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 08
+-- Liquid Pump 08
 genPumps {
     number = "08",
     subgroup = "liquid-small-pump",
@@ -293,7 +293,7 @@ speed = speed + 50
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 09
+-- Liquid Pump 09
 genPumps {
     number = "09",
     subgroup = "liquid-small-pump",
@@ -332,7 +332,7 @@ modules = modules + 1
 energy = energy + 15
 emisions = emisions + 5
 
--- Electric furnace 10
+-- Liquid Pump 10
 genPumps {
     number = "10",
     subgroup = "liquid-small-pump",

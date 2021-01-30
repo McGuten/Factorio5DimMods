@@ -6,7 +6,7 @@ local energy = 90
 local emisions = 10
 local techCount = 100
 
--- Electric furnace 01
+-- Offshore Pump 01
 genOffshorePumps {
     number = "01",
     subgroup = "liquid-offshore-pump",
@@ -30,7 +30,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 02
+-- Offshore Pump 02
 genOffshorePumps {
     number = "02",
     subgroup = "liquid-offshore-pump",
@@ -65,7 +65,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 03
+-- Offshore Pump 03
 genOffshorePumps {
     number = "03",
     subgroup = "liquid-offshore-pump",
@@ -100,7 +100,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 04
+-- Offshore Pump 04
 genOffshorePumps {
     number = "04",
     subgroup = "liquid-offshore-pump",
@@ -136,7 +136,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 05
+-- Offshore Pump 05
 genOffshorePumps {
     number = "05",
     subgroup = "liquid-offshore-pump",
@@ -172,7 +172,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 06
+-- Offshore Pump 06
 genOffshorePumps {
     number = "06",
     subgroup = "liquid-offshore-pump",
@@ -209,7 +209,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 07
+-- Offshore Pump 07
 genOffshorePumps {
     number = "07",
     subgroup = "liquid-offshore-pump",
@@ -246,7 +246,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 08
+-- Offshore Pump 08
 genOffshorePumps {
     number = "08",
     subgroup = "liquid-offshore-pump",
@@ -284,7 +284,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 09
+-- Offshore Pump 09
 genOffshorePumps {
     number = "09",
     subgroup = "liquid-offshore-pump",
@@ -323,7 +323,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 10
+-- Offshore Pump 10
 genOffshorePumps {
     number = "10",
     subgroup = "liquid-offshore-pump",

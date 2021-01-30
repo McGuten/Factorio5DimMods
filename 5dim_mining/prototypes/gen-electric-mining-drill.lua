@@ -6,7 +6,7 @@ local energy = 90
 local emisions = 10
 local techCount = 200
 
--- Electric furnace 01
+-- Electric Mining Drill 01
 genMiningDrills {
     number = "01",
     subgroup = "mining-speed",
@@ -30,7 +30,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 02
+-- Electric Mining Drill 02
 genMiningDrills {
     number = "02",
     subgroup = "mining-speed",
@@ -65,7 +65,7 @@ speed = speed + 0.5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 03
+-- Electric Mining Drill 03
 genMiningDrills {
     number = "03",
     subgroup = "mining-speed",
@@ -100,7 +100,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 04
+-- Electric Mining Drill 04
 genMiningDrills {
     number = "04",
     subgroup = "mining-speed",
@@ -136,7 +136,7 @@ speed = speed + 0.5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 05
+-- Electric Mining Drill 05
 genMiningDrills {
     number = "05",
     subgroup = "mining-speed",
@@ -172,7 +172,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 06
+-- Electric Mining Drill 06
 genMiningDrills {
     number = "06",
     subgroup = "mining-speed",
@@ -209,7 +209,7 @@ speed = speed + 0.5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 07
+-- Electric Mining Drill 07
 genMiningDrills {
     number = "07",
     subgroup = "mining-speed",
@@ -246,7 +246,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 08
+-- Electric Mining Drill 08
 genMiningDrills {
     number = "08",
     subgroup = "mining-speed",
@@ -284,7 +284,7 @@ speed = speed + 0.5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 09
+-- Electric Mining Drill 09
 genMiningDrills {
     number = "09",
     subgroup = "mining-speed",
@@ -322,7 +322,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 10
+-- Electric Mining Drill 10
 genMiningDrills {
     number = "10",
     subgroup = "mining-speed",

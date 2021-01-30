@@ -6,7 +6,7 @@ local energy = 90
 local emisions = 10
 local techCount = 150
 
--- Electric furnace 01
+-- Water pumpjack 01
 genWaterPumpjacks {
     number = "01",
     subgroup = "liquid-water",
@@ -42,7 +42,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 02
+-- Water pumpjack 02
 genWaterPumpjacks {
     number = "02",
     subgroup = "liquid-water",
@@ -77,7 +77,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 03
+-- Water pumpjack 03
 genWaterPumpjacks {
     number = "03",
     subgroup = "liquid-water",
@@ -113,7 +113,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 04
+-- Water pumpjack 04
 genWaterPumpjacks {
     number = "04",
     subgroup = "liquid-water",
@@ -150,7 +150,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 05
+-- Water pumpjack 05
 genWaterPumpjacks {
     number = "05",
     subgroup = "liquid-water",
@@ -187,7 +187,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 06
+-- Water pumpjack 06
 genWaterPumpjacks {
     number = "06",
     subgroup = "liquid-water",
@@ -225,7 +225,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 07
+-- Water pumpjack 07
 genWaterPumpjacks {
     number = "07",
     subgroup = "liquid-water",
@@ -263,7 +263,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 08
+-- Water pumpjack 08
 genWaterPumpjacks {
     number = "08",
     subgroup = "liquid-water",
@@ -302,7 +302,7 @@ speed = speed + 5
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 09
+-- Water pumpjack 09
 genWaterPumpjacks {
     number = "09",
     subgroup = "liquid-water",
@@ -341,7 +341,7 @@ modules = modules + 1
 energy = energy + 45
 emisions = emisions + 5
 
--- Electric furnace 10
+-- Water pumpjack 10
 genWaterPumpjacks {
     number = "10",
     subgroup = "liquid-water",

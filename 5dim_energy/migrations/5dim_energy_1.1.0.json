@@ -1,0 +1,71 @@
+{
+    "item": [
+        ["5d-solar-panel", "5d-solar-panel-01"],
+        ["5d-solar-panel-2", "5d-solar-panel-02"],
+        ["5d-solar-panel-3", "5d-solar-panel-03"],
+		
+        ["5d-steam-engine", "5d-steam-engine-01"],
+        ["5d-steam-engine-2", "5d-steam-engine-02"],
+        ["5d-steam-engine-3", "5d-steam-engine-03"],
+		
+        ["5d-lamp", "5d-lamp-01"],
+        ["5d-lamp-2", "5d-lamp-02"],
+        ["5d-lamp-3", "5d-lamp-03"],
+		
+        ["5d-boiler", "5d-boiler-01"],
+        ["5d-boiler-2", "5d-boiler-02"],
+        ["5d-boiler-3", "5d-boiler-03"],
+		
+        ["5d-basic-accumulator", "5d-accumulator-01"],
+        ["5d-basic-accumulator-2", "5d-accumulator-02"],
+        ["5d-basic-accumulator-3", "5d-accumulator-03"]
+    ],
+    "entity": [
+        ["5d-solar-panel", "5d-solar-panel-01"],
+        ["5d-solar-panel-2", "5d-solar-panel-02"],
+        ["5d-solar-panel-3", "5d-solar-panel-03"],
+		
+        ["5d-steam-engine", "5d-steam-engine-01"],
+        ["5d-steam-engine-2", "5d-steam-engine-02"],
+        ["5d-steam-engine-3", "5d-steam-engine-03"],
+		
+        ["5d-lamp", "5d-lamp-02"],
+        ["5d-lamp-2", "5d-lamp-03"],
+        ["5d-lamp-3", "5d-lamp-04"],
+		
+        ["5d-boiler", "5d-boiler-01"],
+        ["5d-boiler-2", "5d-boiler-02"],
+        ["5d-boiler-3", "5d-boiler-03"],
+		
+        ["5d-basic-accumulator", "5d-accumulator-01"],
+        ["5d-basic-accumulator-2", "5d-accumulator-02"],
+        ["5d-basic-accumulator-3", "5d-accumulator-03"]
+    ],
+	"recipe": [
+        ["5d-solar-panel", "5d-solar-panel-01"],
+        ["5d-solar-panel-2", "5d-solar-panel-02"],
+        ["5d-solar-panel-3", "5d-solar-panel-03"],
+		
+        ["5d-steam-engine", "5d-steam-engine-01"],
+        ["5d-steam-engine-2", "5d-steam-engine-02"],
+        ["5d-steam-engine-3", "5d-steam-engine-03"],
+		
+        ["5d-lamp", "5d-lamp-01"],
+        ["5d-lamp-2", "5d-lamp-02"],
+        ["5d-lamp-3", "5d-lamp-03"],
+		
+        ["5d-boiler", "5d-boiler-01"],
+        ["5d-boiler-2", "5d-boiler-02"],
+        ["5d-boiler-3", "5d-boiler-03"],
+		
+        ["5d-basic-accumulator", "5d-accumulator-01"],
+        ["5d-basic-accumulator-2", "5d-accumulator-02"],
+        ["5d-basic-accumulator-3", "5d-accumulator-03"]
+    ],
+	"technology": [
+		["boiler-tech", "5d-boiler-1"],
+		["boiler-tech-2", "5d-boiler-2"],
+		["engine-2", "5d-steam-engine-1"],
+		["engine-3", "5d-steam-engine-2"]
+	]
+}

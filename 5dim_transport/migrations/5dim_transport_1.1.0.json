@@ -11,8 +11,8 @@
         ["5d-mk2-transport-belt-to-ground-30", "5d-fast-underground-belt-30-02"],
         ["5d-mk2-transport-belt-to-ground-50", "5d-fast-underground-belt-50-02"],
 		
-        ["5d-express-underground-belt-30", "5d-express-underground-belt-30-03"],
-        ["5d-express-underground-belt-50", "5d-express-underground-belt-50-03"],
+        ["5d-mk3-transport-belt-to-ground-30", "5d-express-underground-belt-30-03"],
+        ["5d-mk3-transport-belt-to-ground-50", "5d-express-underground-belt-50-03"],
         
 		["5d-mk4-transport-belt", "5d-transport-belt-04"],
         ["5d-mk4-transport-belt-to-ground", "5d-underground-belt-04"],
@@ -32,12 +32,13 @@
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-mk2", "pipe"],
+		["5d-pipe-to-ground-mk2", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-mk3", "pipe"],
+		["5d-pipe-to-ground-mk3", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]
-		
+		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]t
     ],
     "entity": [
         ["long-handed-inserter", "fast-inserter"],
@@ -51,8 +52,8 @@
         ["5d-mk2-transport-belt-to-ground-30", "5d-fast-underground-belt-30-02"],
         ["5d-mk2-transport-belt-to-ground-50", "5d-fast-underground-belt-50-02"],
 		
-        ["5d-express-underground-belt-30", "5d-express-underground-belt-30-03"],
-        ["5d-express-underground-belt-50", "5d-express-underground-belt-50-03"],
+        ["5d-mk3-transport-belt-to-ground-30", "5d-express-underground-belt-30-03"],
+        ["5d-mk3-transport-belt-to-ground-50", "5d-express-underground-belt-50-03"],
         
 		["5d-mk4-transport-belt", "5d-transport-belt-04"],
         ["5d-mk4-transport-belt-to-ground", "5d-underground-belt-04"],
@@ -68,13 +69,14 @@
         ["5d-mk5-splitter", "5d-splitter-05"],
         ["5d-mk5-loader", "5d-loader-05"],
 		
-		
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-mk2", "pipe"],
+		["5d-pipe-to-ground-mk2", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-mk3", "pipe"],
+		["5d-pipe-to-ground-mk3", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]
     ],
@@ -90,8 +92,8 @@
         ["5d-mk2-transport-belt-to-ground-30", "5d-fast-underground-belt-30-02"],
         ["5d-mk2-transport-belt-to-ground-50", "5d-fast-underground-belt-50-02"],
 		
-        ["5d-express-underground-belt-30", "5d-express-underground-belt-30-03"],
-        ["5d-express-underground-belt-50", "5d-express-underground-belt-50-03"],
+        ["5d-mk3-transport-belt-to-ground-30", "5d-express-underground-belt-30-03"],
+        ["5d-mk3-transport-belt-to-ground-50", "5d-express-underground-belt-50-03"],
         
 		["5d-mk4-transport-belt", "5d-transport-belt-04"],
         ["5d-mk4-transport-belt-to-ground", "5d-underground-belt-04"],
@@ -106,5 +108,8 @@
         ["5d-mk5-transport-belt-to-ground-50", "5d-underground-belt-50-05"],
         ["5d-mk5-splitter", "5d-splitter-05"],
         ["5d-mk5-loader", "5d-loader-05"]
-    ]
+    ],
+	"technology": [
+		["", ""]
+	]
 }

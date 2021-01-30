@@ -30,15 +30,15 @@
 		
 		
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
+		["5d-pipe-to-ground-50", "5d-pipe-to-ground-mk1-50"],
 		["5d-pipe-mk2", "pipe"],
 		["5d-pipe-to-ground-mk2", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
+		["5d-pipe-to-ground-mk2-50", "5d-pipe-to-ground-mk1-50"],
 		["5d-pipe-mk3", "pipe"],
 		["5d-pipe-to-ground-mk3", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]
+		["5d-pipe-to-ground-mk3-50", "5d-pipe-to-ground-mk1-50"]
     ],
     "entity": [
         ["long-handed-inserter", "fast-inserter"],
@@ -70,15 +70,15 @@
         ["5d-mk5-loader", "5d-loader-05"],
 		
 		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-30", "5d-pipe-to-ground-mk1-30"],
+		["5d-pipe-to-ground-50", "5d-pipe-to-ground-mk1-50"],
 		["5d-pipe-mk2", "pipe"],
 		["5d-pipe-to-ground-mk2", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk2-30", "5d-pipe-to-ground-mk1-30"],
+		["5d-pipe-to-ground-mk2-50", "5d-pipe-to-ground-mk1-50"],
 		["5d-pipe-mk3", "pipe"],
 		["5d-pipe-to-ground-mk3", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]
+		["5d-pipe-to-ground-mk3-50", "5d-pipe-to-ground-mk1-50"]
     ],
 	"recipe": [
         ["long-handed-inserter", "fast-inserter"],

@@ -38,7 +38,7 @@
 		["5d-pipe-mk3", "pipe"],
 		["5d-pipe-to-ground-mk3", "pipe-to-ground"],
 		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"],
-		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]t
+		["5d-pipe-to-ground-mk3-30", "5d-pipe-to-ground-mk1-30"]
     ],
     "entity": [
         ["long-handed-inserter", "fast-inserter"],

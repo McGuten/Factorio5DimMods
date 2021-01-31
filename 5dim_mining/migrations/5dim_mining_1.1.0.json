@@ -1,0 +1,42 @@
+{
+    "item": [
+		["5d-mining-drill-speed-1", "5d-electric-mining-drill-02"],
+		["5d-mining-drill-speed-2", "5d-electric-mining-drill-03"],
+		["5d-mining-drill-speed-3", "5d-electric-mining-drill-04"],
+		["5d-offshore-pump", "5d-offshore-pump-02"],
+		["5d-offshore-pump-2", "5d-offshore-pump-03"],
+		["5d-pumpjack-2", "5d-pumpjack-02"],
+		["5d-pumpjack-3", "5d-pumpjack-03"],
+		["5d-water-pumpjack", "5d-water-pumpjack-01"]
+    ],
+    "entity": [
+		["5d-mining-drill-speed-1", "5d-electric-mining-drill-02"],
+		["5d-mining-drill-speed-2", "5d-electric-mining-drill-03"],
+		["5d-mining-drill-speed-3", "5d-electric-mining-drill-04"],
+		["5d-offshore-pump", "5d-offshore-pump-02"],
+		["5d-offshore-pump-2", "5d-offshore-pump-03"],
+		
+		["5d-pumpjack-2", "5d-pumpjack-02"],
+		["5d-pumpjack-3", "5d-pumpjack-03"],
+		["5d-water-pumpjack", "5d-water-pumpjack-01"]
+    ],
+	"recipe": [
+		["5d-mining-drill-speed-1", "5d-electric-mining-drill-02"],
+		["5d-mining-drill-speed-2", "5d-electric-mining-drill-03"],
+		["5d-mining-drill-speed-3", "5d-electric-mining-drill-04"],
+		["5d-offshore-pump", "5d-offshore-pump-02"],
+		["5d-offshore-pump-2", "5d-offshore-pump-03"],
+		
+		["5d-pumpjack-2", "5d-pumpjack-02"],
+		["5d-pumpjack-3", "5d-pumpjack-03"],
+		["5d-water-pumpjack", "5d-water-pumpjack-01"]
+    ],
+	"technology":[
+		["offshore-pump-tech", "5d-offshore-pump-1"],
+		["offshore-pump-tech-2", "5d-offshore-pump-2"],
+		["mining", "5d-mining-1"],
+		["mining-2", "5d-mining-2"],
+		["mining-3", "5d-mining-3"],
+		["water-pumpjack", "5d-water-pumpjack-1"]
+	]
+}

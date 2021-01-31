@@ -1,29 +1,24 @@
-data.raw.recipe["5d-electric-furnace"].ingredients = {
+data.raw.recipe["5d-electric-furnace-02"].ingredients = {
     {"electric-furnace", 1},
     {"tin-plate", 20},
     {"5d-zinc-gear-wheel", 5},
     {"advanced-circuit", 10}
 }
 data.raw.recipe["5d-industrial-furnace"].ingredients = {
-    {"5d-electric-furnace", 2},
+    {"5d-electric-furnace-10", 2},
     {"tin-plate", 20},
     {"5d-zinc-gear-wheel", 5},
     {"advanced-circuit", 10}
 }
-data.raw.recipe["5d-furnace"].ingredients = {
-    {"steel-furnace", 1},
-    {"5d-zinc-gear-wheel", 5},
-    {"stone-brick", 10}
-}
-data.raw.recipe["5d-masher-2"].ingredients = {
+data.raw.recipe["5d-masher-02"].ingredients = {
     {"steel-plate", 3},
     {"zinc-plate", 7},
     {"tin-plate", 15},
     {"stone-brick", 20},
-    {"5d-masher", 1},
+    {"5d-masher-01", 1},
     {"advanced-circuit", 10}
 }
-data.raw.recipe["5d-masher"].ingredients = {
+data.raw.recipe["5d-masher-01"].ingredients = {
     {"iron-plate", 20},
     {"zinc-plate", 5},
     {"tin-plate", 15},
@@ -36,7 +31,7 @@ data:extend(
         {
             type = "item",
             name = "5d-tin-dust",
-            icon = "__5dim_resources__/graphics/icon/tindust-ore.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-tin-dust.png",
             icon_size = 32,
             subgroup = "plates-dust",
             order = "c",
@@ -46,7 +41,7 @@ data:extend(
         {
             type = "item",
             name = "5d-gold-dust",
-            icon = "__5dim_resources__/graphics/icon/golddust-ore.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-gold-dust.png",
             icon_size = 32,
             subgroup = "plates-dust",
             order = "g",
@@ -56,7 +51,7 @@ data:extend(
         {
             type = "item",
             name = "5d-lead-dust",
-            icon = "__5dim_resources__/graphics/icon/leaddust-ore.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-lead-dust.png",
             icon_size = 32,
             subgroup = "plates-dust",
             order = "d",
@@ -66,7 +61,7 @@ data:extend(
         {
             type = "item",
             name = "5d-zinc-dust",
-            icon = "__5dim_resources__/graphics/icon/zincdust-ore.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-zinc-dust.png",
             icon_size = 32,
             subgroup = "plates-dust",
             order = "e",
@@ -76,7 +71,7 @@ data:extend(
         {
             type = "item",
             name = "5d-aluminium-dust",
-            icon = "__5dim_resources__/graphics/icon/bauxitedust-ore.png",
+            icon = "__5dim_resources__/graphics/icon/resources/5d-bauxite-dust.png",
             icon_size = 32,
             subgroup = "plates-dust",
             order = "f",

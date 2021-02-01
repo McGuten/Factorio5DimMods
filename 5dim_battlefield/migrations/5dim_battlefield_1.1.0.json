@@ -1,20 +1,29 @@
 {
 	"entity": [
 		["5d-gun-turret-small", "5d-gun-turret-small-01"],
-		["5d-gun-turret-exp", "5d-gun-turret-exp-01"],
+		["5d-gun-turret-exp", "5d-gun-turret-01"],
 		["5d-gun-turret-big", "5d-gun-turret-big-01"],
+		["5d-laser-turret-small", "5d-laser-turret-small-01"],
+		["5d-telsa-turret", "5d-telsa-turret-01"],
+		["5d-laser-turret-big", "5d-laser-turret-big-01"],
 		["5d-metal-wall", "5d-stone-wall-02"]
 	],
 	"item": [
 		["5d-gun-turret-small", "5d-gun-turret-small-01"],
-		["5d-gun-turret-exp", "5d-gun-turret-exp-01"],
+		["5d-gun-turret-exp", "5d-gun-turret-01"],
 		["5d-gun-turret-big", "5d-gun-turret-big-01"],
+		["5d-laser-turret-small", "5d-laser-turret-small-01"],
+		["5d-telsa-turret", "5d-telsa-turret-01"],
+		["5d-laser-turret-big", "5d-laser-turret-big-01"],
 		["5d-metal-wall", "5d-stone-wall-02"]
 	],
 	"recipe": [
 		["5d-gun-turret-small", "5d-gun-turret-small-01"],
-		["5d-gun-turret-exp", "5d-gun-turret-exp-01"],
+		["5d-gun-turret-exp", "5d-gun-turret-01"],
 		["5d-gun-turret-big", "5d-gun-turret-big-01"],
+		["5d-laser-turret-small", "5d-laser-turret-small-01"],
+		["5d-telsa-turret", "5d-telsa-turret-01"],
+		["5d-laser-turret-big", "5d-laser-turret-big-01"],
 		["5d-metal-wall", "5d-stone-wall-02"]
 	],
     "technology": [

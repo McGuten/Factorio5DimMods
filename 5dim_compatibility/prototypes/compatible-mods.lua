@@ -78,6 +78,21 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
     data.raw["ammo-turret"]["gun-turret"].fast_replaceable_group = "gun-turret"
     data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
 end
+if mods["bobtech"] and mods["5dim_nuclear"] then
+    inputLab = {
+        "science-pack-gold",
+        "alien-science-pack",
+        "alien-science-pack-blue",
+        "alien-science-pack-orange",
+        "alien-science-pack-purple",
+        "alien-science-pack-yellow",
+        "alien-science-pack-green",
+        "alien-science-pack-red"
+    }
+    for _, lab in pairs(data.raw.lab) do
+        lab.inputs = inputLab
+    end
+end
 
 -- Transport drones
 if mods["Transport_Drones"] and mods["5dim_transport"] then
@@ -137,8 +152,14 @@ end
 -- ModSmash
 if mods["modmashsplinterassembling"] and mods["5dim_automation"] then
     -- Automation 4
-    table.insert(data.raw.technology["automation-4"].effects, {type = "unlock-recipe", recipe = "5d-assembling-machine-04"})
+    table.insert(
+        data.raw.technology["automation-4"].effects,
+        {type = "unlock-recipe", recipe = "5d-assembling-machine-04"}
+    )
 
     -- Automation 5
-    table.insert(data.raw.technology["automation-5"].effects, {type = "unlock-recipe", recipe = "5d-assembling-machine-05"})
+    table.insert(
+        data.raw.technology["automation-5"].effects,
+        {type = "unlock-recipe", recipe = "5d-assembling-machine-05"}
+    )
 end

@@ -89,10 +89,15 @@ if mods["bobtech"] then
         "utility-science-pack",
         "space-science-pack"
     }
-    log(inputLab)
-    for _, lab in pairs(data.raw.lab) do
-        lab.inputs = inputLab
-    end
+    data.raw.lab["5d-lab-2"].inputs = inputLab
+    data.raw.lab["5d-lab-3"].inputs = inputLab
+    data.raw.lab["5d-lab-4"].inputs = inputLab
+    data.raw.lab["5d-lab-5"].inputs = inputLab
+    data.raw.lab["5d-lab-6"].inputs = inputLab
+    data.raw.lab["5d-lab-7"].inputs = inputLab
+    data.raw.lab["5d-lab-8"].inputs = inputLab
+    data.raw.lab["5d-lab-9"].inputs = inputLab
+    data.raw.lab["5d-lab-10"].inputs = inputLab
 end
 
 -- Transport drones

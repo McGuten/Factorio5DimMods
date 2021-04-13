@@ -1,0 +1,19 @@
+{
+	"entity": [
+		["5d-exp-biter", "5d-experimental-biter"],
+		["5d-exp-biter-laser", "5d-experimental-biter-laser"],
+		["5d-exp-biter-physical", "5d-experimental-biter-physical"],
+		
+		["5d-exp-spiter", "5d-experimental-spitter"],
+		["5d-exp-spiter-fire", "5d-experimental-spitter-fire"],
+		["5d-exp-spiter-rocket", "5d-experimental-spitter-rocketery"],
+		
+		["exp-biter-spawner", "5d-experimental-biter-spawner"]
+	],
+	"item": [
+	],
+	"recipe": [
+	],
+    "technology": [
+    ]
+}

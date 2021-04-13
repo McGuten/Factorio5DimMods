@@ -1,0 +1,13 @@
+{
+	"entity": [
+		["construction-robot", "5d-construction-robot-01"]
+	],
+	"item": [
+		["construction-robot", "5d-construction-robot-01"]
+	],
+	"recipe": [
+		["construction-robot", "5d-construction-robot-01"]
+	],
+    "technology": [
+    ]
+}

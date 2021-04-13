@@ -78,17 +78,18 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
     data.raw["ammo-turret"]["gun-turret"].fast_replaceable_group = "gun-turret"
     data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
 end
-if mods["bobtech"] and mods["5dim_nuclear"] then
-    inputLab = {
-        "science-pack-gold",
-        "alien-science-pack",
-        "alien-science-pack-blue",
-        "alien-science-pack-orange",
-        "alien-science-pack-purple",
-        "alien-science-pack-yellow",
-        "alien-science-pack-green",
-        "alien-science-pack-red"
+if mods["bobtech"] then
+    local inputLab = {
+        "automation-science-pack",
+        "logistic-science-pack",
+        "chemical-science-pack",
+        "military-science-pack",
+        "production-science-pack",
+        "advanced-logistic-science-pack",
+        "utility-science-pack",
+        "space-science-pack"
     }
+    log(inputLab)
     for _, lab in pairs(data.raw.lab) do
         lab.inputs = inputLab
     end

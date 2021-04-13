@@ -78,7 +78,7 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
     data.raw["ammo-turret"]["gun-turret"].fast_replaceable_group = "gun-turret"
     data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
 end
-if mods["bobtech"] then
+if mods["bobtech"] and mods["5dim_automation"] then
     local inputLab = {
         "automation-science-pack",
         "logistic-science-pack",
@@ -89,15 +89,15 @@ if mods["bobtech"] then
         "utility-science-pack",
         "space-science-pack"
     }
-    data.raw.lab["5d-lab-2"].inputs = inputLab
-    data.raw.lab["5d-lab-3"].inputs = inputLab
-    data.raw.lab["5d-lab-4"].inputs = inputLab
-    data.raw.lab["5d-lab-5"].inputs = inputLab
-    data.raw.lab["5d-lab-6"].inputs = inputLab
-    data.raw.lab["5d-lab-7"].inputs = inputLab
-    data.raw.lab["5d-lab-8"].inputs = inputLab
-    data.raw.lab["5d-lab-9"].inputs = inputLab
-    data.raw.lab["5d-lab-10"].inputs = inputLab
+    data.raw["lab"]["5d-lab-02"].inputs = inputLab
+    data.raw["lab"]["5d-lab-03"].inputs = inputLab
+    data.raw["lab"]["5d-lab-04"].inputs = inputLab
+    data.raw["lab"]["5d-lab-05"].inputs = inputLab
+    data.raw["lab"]["5d-lab-06"].inputs = inputLab
+    data.raw["lab"]["5d-lab-07"].inputs = inputLab
+    data.raw["lab"]["5d-lab-08"].inputs = inputLab
+    data.raw["lab"]["5d-lab-09"].inputs = inputLab
+    data.raw["lab"]["5d-lab-10"].inputs = inputLab
 end
 
 -- Transport drones

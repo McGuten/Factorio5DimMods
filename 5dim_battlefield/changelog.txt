@@ -2,11 +2,12 @@
 Version: 1.1.4
 Date: ????
   Changes:
+    - Fix technology name for big gun turrets
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.3
 Date: 2021-06-21
   Changes:
-    - Fix technologie for small and big gun turrets
+    - Fix technology name for small and sniper gun turrets
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2021-01-31

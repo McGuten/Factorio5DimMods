@@ -41,12 +41,10 @@ genLaserTurrets {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-big-5",
-            "utility-science-pack"
+            "5d-laser-turret-big-5"
         }
     }
 }
@@ -89,8 +87,7 @@ genLaserTurrets {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
             "5d-laser-turret-sniper-1"
@@ -136,12 +133,10 @@ genLaserTurrets {
             {"automation-science-pack", 1},
             {"logistic-science-pack", 1},
             {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            {"military-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-sniper-2",
-            "chemical-science-pack"
+            "5d-laser-turret-sniper-2"
         }
     }
 }
@@ -188,7 +183,8 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-sniper-3"
+            "5d-laser-turret-sniper-3",
+            "utility-science-pack"
         }
     }
 }
@@ -235,8 +231,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-sniper-4",
-            "production-science-pack"
+            "5d-laser-turret-sniper-4"
         }
     }
 }
@@ -330,8 +325,7 @@ genLaserTurrets {
             {"utility-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-sniper-6",
-            "utility-science-pack"
+            "5d-laser-turret-sniper-6"
         }
     }
 }

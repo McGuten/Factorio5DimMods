@@ -231,8 +231,7 @@ genLaserTurrets {
             {"chemical-science-pack", 1}
         },
         prerequisites = {
-            "5d-laser-turret-big-4",
-            "production-science-pack"
+            "5d-laser-turret-big-4"
         }
     }
 }

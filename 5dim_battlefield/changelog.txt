@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.5
-Date: ????
+Date: 2021-07-06
   Changes:
     - Fix technology requeriments for big laser turrets
     - Fix technology requeriments for sniper laser turrets

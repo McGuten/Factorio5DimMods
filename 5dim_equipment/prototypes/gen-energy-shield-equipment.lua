@@ -1,7 +1,6 @@
 require("__5dim_core__.lib.equipment.generation-energy-shield-equipment")
 
 local bufferCapacity = 120
-local energyShield = 20
 local shield = 50
 local input = 240
 local techCount = 200
@@ -11,7 +10,6 @@ genEnergyShields {
     number = "01",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = false,
@@ -24,7 +22,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -33,7 +30,6 @@ genEnergyShields {
     number = "02",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = false,
@@ -47,7 +43,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -56,7 +51,6 @@ genEnergyShields {
     number = "03",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -83,7 +77,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -92,7 +85,6 @@ genEnergyShields {
     number = "04",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -119,7 +111,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -128,7 +119,6 @@ genEnergyShields {
     number = "05",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -155,7 +145,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -164,7 +153,6 @@ genEnergyShields {
     number = "06",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -192,7 +180,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -201,7 +188,6 @@ genEnergyShields {
     number = "07",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -229,7 +215,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -238,7 +223,6 @@ genEnergyShields {
     number = "08",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -266,7 +250,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -275,7 +258,6 @@ genEnergyShields {
     number = "09",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,
@@ -303,7 +285,6 @@ genEnergyShields {
 }
 
 bufferCapacity = bufferCapacity + 60
-energyShield = energyShield + 10
 shield = shield * 2
 input = input + 120
 
@@ -312,7 +293,6 @@ genEnergyShields {
     number = "10",
     subgroup = "armor-shield",
     capacity = bufferCapacity,
-    energyPerShield = energyShield,
     shieldCapacity = shield,
     inputFlow = input,
     new = true,

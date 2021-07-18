@@ -376,9 +376,7 @@ function genTransportBelts(inputs)
     entityLoader.structure.direction_out.sheet.y = 128
     entityLoader.flags = {"placeable-neutral", "player-creation", "fast-replaceable-no-build-while-moving"}
 
-    if inputs.number ~= "09" and inputs.number ~= "10" then
-        data:extend({entityLoader, recipeLoader, itemLoader})
-    end
+    data:extend({entityLoader, recipeLoader, itemLoader})
 
     -- Technology
     if inputs.tech then
@@ -388,57 +386,57 @@ function genTransportBelts(inputs)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites
-        if inputs.number ~= "09" and inputs.number ~= "10" then
-            tech.effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = itemTransportBelt.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemSplitter.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt30.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt50.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = entityLoader.name
-                }
+        -- if inputs.number ~= "09" and inputs.number ~= "10" then
+        tech.effects = {
+            {
+                type = "unlock-recipe",
+                recipe = itemTransportBelt.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = itemUndergroundBelt.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = itemSplitter.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = itemUndergroundBelt30.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = itemUndergroundBelt50.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = entityLoader.name
             }
-        else
-            tech.effects = {
-                {
-                    type = "unlock-recipe",
-                    recipe = itemTransportBelt.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemSplitter.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt30.name
-                },
-                {
-                    type = "unlock-recipe",
-                    recipe = itemUndergroundBelt50.name
-                }
-            }
-        end
+        }
+        -- else
+        --     tech.effects = {
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = itemTransportBelt.name
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = itemUndergroundBelt.name
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = itemSplitter.name
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = itemUndergroundBelt30.name
+        --         },
+        --         {
+        --             type = "unlock-recipe",
+        --             recipe = itemUndergroundBelt50.name
+        --         }
+        --     }
+        -- end
         data:extend({tech})
     end
 end

@@ -14,13 +14,22 @@ end
 
 function fiveDimsAddProductivityLimitation(module, recipe_name)
     local has_it = false
+    local recipeExists = false
+
+    if data.raw.recipe[recipe_name] then
+        recipeExists = true
+    else
+        return
+    end
+
     if module.limitation then
         has_it = fiveDimsHasLimitationRecipe(module.limitation, recipe_name)
       else
         module.limitation = {}
       end
 
-      if not has_it then
+      if not has_it and recipeExists == true then
+
         table.insert(module.limitation, recipe_name)
 
         if not module.limitation_message_key then

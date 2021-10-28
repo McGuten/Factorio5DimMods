@@ -1,43 +1,3 @@
-
-function fiveDimsHasLimitationRecipe(limitations, recipe_name)
-    local has_it = false
-    if limitations and #limitations > 0 then
-        for i, name in pairs(limitations) do
-        if name == recipe_name then
-            has_it = true
-            break
-        end
-        end
-    end
-    return has_it
-end
-
-function fiveDimsAddProductivityLimitation(module, recipe_name)
-    local has_it = false
-    local recipeExists = false
-
-    if data.raw.recipe[recipe_name] then
-        recipeExists = true
-    else
-        return
-    end
-
-    if module.limitation then
-        has_it = fiveDimsHasLimitationRecipe(module.limitation, recipe_name)
-      else
-        module.limitation = {}
-      end
-
-      if not has_it and recipeExists == true then
-
-        table.insert(module.limitation, recipe_name)
-
-        if not module.limitation_message_key then
-          module.limitation_message_key = "production-module-limitation"
-        end
-      end
-end
-
 function genModules(inputs)
     -- Copy Speed module
     local itemSpeed = ""
@@ -168,11 +128,6 @@ function genModules(inputs)
     itemProductivity.order = inputs.order
     itemProductivity.effect = inputs.effects.productivity
     itemProductivity.tier = inputs.tier
-
-    fiveDimsAddProductivityLimitation(itemProductivity, '5d-iron-plate')
-    fiveDimsAddProductivityLimitation(itemProductivity, '5d-iron-dust')
-    fiveDimsAddProductivityLimitation(itemProductivity, '5d-copper-plate')
-    fiveDimsAddProductivityLimitation(itemProductivity, '5d-copper-dust')
 
     --Recipe
     recipeProductivity.name = itemProductivity.name

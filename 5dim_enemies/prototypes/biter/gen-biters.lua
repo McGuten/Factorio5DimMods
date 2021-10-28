@@ -44,7 +44,7 @@ genBiter {
 }
 
 -- Climber
-if settings.startup["5d-swimmer"].value then
+if settings.startup["5d-climber"].value then
     genBiter {
         tint = biter.colors.primary.climber,
         tint2 = biter.colors.secondary.secondColor,
@@ -61,7 +61,7 @@ if settings.startup["5d-swimmer"].value then
 end
 
 -- Swimmer
-if settings.startup["5d-climber"].value then
+if settings.startup["5d-swimmer"].value then
     genBiter {
         tint = biter.colors.primary.swimmer,
         tint2 = biter.colors.secondary.secondColor,

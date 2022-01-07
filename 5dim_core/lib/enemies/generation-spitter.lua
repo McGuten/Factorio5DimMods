@@ -33,6 +33,7 @@ function genSpitter(inputs)
             tint2 = inputs.tint2
         }
     )
+    small.corpse = small.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -65,6 +66,7 @@ function genSpitter(inputs)
             tint2 = inputs.tint2
         }
     )
+    medium.corpse = medium.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -97,6 +99,7 @@ function genSpitter(inputs)
             tint2 = inputs.tint2
         }
     )
+    big.corpse = big.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -129,6 +132,7 @@ function genSpitter(inputs)
             tint2 = inputs.tint2
         }
     )
+    behemoth.corpse = behemoth.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -178,6 +182,80 @@ function genSpitter(inputs)
         spawner.collision_mask = {"item-layer", "water-tile"}
     end
 
+    -- Corpse
+    local corpseSmall =
+        add_spitter_die_animation(
+        inputs.scale.small,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = small.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+    local corpseMedium =
+        add_spitter_die_animation(
+        inputs.scale.medium,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = medium.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+    local corpseBig =
+        add_spitter_die_animation(
+        inputs.scale.big,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = big.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+    local corpseBehemoth =
+        add_spitter_die_animation(
+        inputs.scale.behemoth,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = behemoth.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+
     -- Update changes
-    data:extend({spawner, small, medium, big, behemoth})
+    data:extend({spawner, small, medium, big, behemoth, corpseSmall, corpseMedium, corpseBig, corpseBehemoth})
 end

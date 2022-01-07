@@ -42,6 +42,27 @@ experimentalSpitter.attack_parameters =
     }
 )
 experimentalSpitter.pollution_to_join_attack = 1000
+experimentalSpitter.corpse = "5d-experimental-spitter-corpse"
+
+--Corpse
+local experimentalSpitterCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    spitter.colors.primary.spiter,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Laser
 experimentalSpitterLaser.name = "5d-experimental-spitter-laser"
@@ -67,6 +88,27 @@ experimentalSpitterLaser.attack_parameters =
     }
 )
 experimentalSpitterLaser.pollution_to_join_attack = 1000
+experimentalSpitterLaser.corpse = "5d-experimental-spitter-laser-corpse"
+
+--Corpse
+local experimentalSpitterLaserCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    biter.colors.primary.laser,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-laser-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Physical
 experimentalSpitterPhysical.name = "5d-experimental-spitter-physical"
@@ -92,6 +134,27 @@ experimentalSpitterPhysical.attack_parameters =
     }
 )
 experimentalSpitterPhysical.pollution_to_join_attack = 1000
+experimentalSpitterPhysical.corpse = "5d-experimental-spitter-physical-corpse"
+
+--Corpse
+local experimentalSpitterPhysicalCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    biter.colors.primary.physical,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-physical-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Swimer
 experimentalSpitterSwimmer.name = "5d-experimental-spitter-swimmer"
@@ -118,6 +181,27 @@ experimentalSpitterSwimmer.attack_parameters =
     }
 )
 experimentalSpitterSwimmer.pollution_to_join_attack = 1000
+experimentalSpitterSwimmer.corpse = "5d-experimental-spitter-swimmer-corpse"
+
+--Corpse
+local experimentalSpitterSwimmerCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    biter.colors.primary.swimmer,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-swimmer-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Climber
 experimentalSpitterClimber.name = "5d-experimental-spitter-climber"
@@ -144,6 +228,27 @@ experimentalSpitterClimber.attack_parameters =
     }
 )
 experimentalSpitterClimber.pollution_to_join_attack = 1000
+experimentalSpitterClimber.corpse = "5d-experimental-spitter-climber-corpse"
+
+--Corpse
+local experimentalSpitterClimberCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    biter.colors.primary.climber,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-climber-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Fire
 experimentalSpitterFire.name = "5d-experimental-spitter-fire"
@@ -179,6 +284,27 @@ experimentalSpitterFire.attack_parameters = {
     )
 }
 experimentalSpitterFire.pollution_to_join_attack = 1000
+experimentalSpitterFire.corpse = "5d-experimental-spitter-fire-corpse"
+
+--Corpse
+local experimentalSpitterFireCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    spitter.colors.primary.fire,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-fire-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Rocket
 experimentalSpitterRocket.name = "5d-experimental-spitter-rocketery"
@@ -217,6 +343,27 @@ experimentalSpitterRocket.attack_parameters = {
     )
 }
 experimentalSpitterRocket.pollution_to_join_attack = 1000
+experimentalSpitterRocket.corpse = "5d-experimental-spitter-rocketery-corpse"
+
+--Corpse
+local experimentalSpitterRocketCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    spitter.colors.primary.rocket,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-rocketery-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Suicide
 experimentalSpitterExplosive.name = "5d-experimental-spitter-suicide"
@@ -259,6 +406,27 @@ experimentalSpitterExplosive.attack_parameters = {
     )
 }
 experimentalSpitterExplosive.pollution_to_join_attack = 1000
+experimentalSpitterExplosive.corpse = "5d-experimental-spitter-suicide-corpse"
+
+--Corpse
+local experimentalSpitterExplosiveCorpse =
+    add_spitter_die_animation(
+    spitter.scale.experimental,
+    spitter.colors.primary.explosive,
+    spitter.colors.secondary.secondColor,
+    {
+        type = "corpse",
+        name = "5d-experimental-spitter-suicide-corpse",
+        icon = "__base__/graphics/icons/medium-biter-corpse.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        selectable_in_game = false,
+        selection_box = {{-1, -1}, {1, 1}},
+        subgroup = "corpses",
+        order = "c[corpse]-a[biter]-b[medium]",
+        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+    }
+)
 
 -- Spawner
 experimentalSpitterSpawner.name = "5d-experimental-spitter-spawner"
@@ -298,6 +466,14 @@ data:extend(
         experimentalSpitterClimber,
         experimentalSpitterFire,
         experimentalSpitterRocket,
-        experimentalSpitterExplosive
+        experimentalSpitterExplosive,
+        experimentalSpitterCorpse,
+        experimentalSpitterLaserCorpse,
+        experimentalSpitterPhysicalCorpse,
+        experimentalSpitterSwimmerCorpse,
+        experimentalSpitterClimberCorpse,
+        experimentalSpitterFireCorpse,
+        experimentalSpitterRocketCorpse,
+        experimentalSpitterExplosiveCorpse
     }
 )

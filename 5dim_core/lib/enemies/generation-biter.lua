@@ -20,6 +20,7 @@ function genBiter(inputs)
     small.resistances = inputs.resistances.small
     small.run_animation = biterrunanimation(inputs.scale.small, inputs.tint, inputs.tint2)
     small.water_reflection = biter_water_reflection(inputs.scale.small)
+    small.corpse = small.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -28,7 +29,6 @@ function genBiter(inputs)
     if inputs.name == "climber" then
         small.collision_mask = {"item-layer", "water-tile"}
     end
-    
 
     -- Biter medium
     if inputs.new then
@@ -42,6 +42,7 @@ function genBiter(inputs)
     medium.resistances = inputs.resistances.medium
     medium.run_animation = biterrunanimation(inputs.scale.medium, inputs.tint, inputs.tint2)
     medium.water_reflection = biter_water_reflection(inputs.scale.medium)
+    medium.corpse = medium.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -63,6 +64,7 @@ function genBiter(inputs)
     big.resistances = inputs.resistances.big
     big.run_animation = biterrunanimation(inputs.scale.big, inputs.tint, inputs.tint2)
     big.water_reflection = biter_water_reflection(inputs.scale.big)
+    big.corpse = big.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -84,6 +86,7 @@ function genBiter(inputs)
     behemoth.resistances = inputs.resistances.behemoth
     behemoth.run_animation = biterrunanimation(inputs.scale.behemoth, inputs.tint, inputs.tint2)
     behemoth.water_reflection = biter_water_reflection(inputs.scale.behemoth)
+    behemoth.corpse = behemoth.name .. "-corpse"
 
     --Optional properties
     if inputs.name == "swimmer" then
@@ -114,7 +117,7 @@ function genBiter(inputs)
             res[4] = {big.name, inputs.spawnerRating.big}
             res[5] = {behemoth.name, inputs.spawnerRating.behemoth}
             return res
-        else 
+        else
             res[1] = {small.name, inputs.spawnerRating.small}
             res[2] = {medium.name, inputs.spawnerRating.medium}
             res[3] = {big.name, inputs.spawnerRating.big}
@@ -132,6 +135,83 @@ function genBiter(inputs)
         spawner.collision_mask = {"item-layer", "water-tile"}
     end
 
+    -- Corpses
+    local corpseSmall =
+        add_biter_die_animation(
+        inputs.scale.small,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = small.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+
+    local corpseMedium =
+        add_biter_die_animation(
+        inputs.scale.medium,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = medium.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+
+    local corpseBig =
+        add_biter_die_animation(
+        inputs.scale.big,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = big.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+    
+    local corpseBehemoth =
+        add_biter_die_animation(
+        inputs.scale.behemoth,
+        inputs.tint,
+        inputs.tint2,
+        {
+            type = "corpse",
+            name = behemoth.name .. "-corpse",
+            icon = "__base__/graphics/icons/medium-biter-corpse.png",
+            icon_size = 64,
+            icon_mipmaps = 4,
+            selectable_in_game = false,
+            selection_box = {{-1, -1}, {1, 1}},
+            subgroup = "corpses",
+            order = "c[corpse]-a[biter]-b[medium]",
+            flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+        }
+    )
+
     -- Update changes
-    data:extend({spawner, small, medium, big, behemoth})
+    data:extend({spawner, small, medium, big, behemoth, corpseSmall, corpseMedium, corpseBig, corpseBehemoth})
 end

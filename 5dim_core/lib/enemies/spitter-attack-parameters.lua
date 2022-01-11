@@ -39,7 +39,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.4,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -55,7 +55,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.5,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -71,7 +71,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.6,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -87,7 +87,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.8,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -408,7 +408,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.4,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -424,7 +424,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.5,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -440,7 +440,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.6,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)
@@ -456,7 +456,7 @@ function selectAttackParams(size, type, data)
                     cooldown_deviation = 0.15,
                     damage_modifier = data.damage,
                     scale = data.scale,
-                    tint1 = data.tint,
+                    tint = data.tint,
                     tint2 = data.tint2,
                     roarvolume = 0.8,
                     animation = spitterattackanimation(data.scale, data.tint, data.tint2)

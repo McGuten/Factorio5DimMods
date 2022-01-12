@@ -36,7 +36,8 @@ end
 -- Cargo Ships compatibility
 if mods["cargo-ships"] then
     data.raw["radar"]["or_radar"].next_upgrade = nil
-    data.raw["lamp"]["or_lamp"].next_upgrade = nil
+    -- or_lamp is (temporarily?) commented out in the cargo ships mod currently, thus causing an error on startup when attempting to set next_upgrade
+    --data.raw["lamp"]["or_lamp"].next_upgrade = nil
     data.raw["mining-drill"]["oil_rig"].next_upgrade = nil
     for _, signal in pairs(data.raw["rail-signal"]) do
         signal.collision_mask = {"object-layer"}

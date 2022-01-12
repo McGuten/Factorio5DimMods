@@ -2,6 +2,7 @@
 Version: 1.1.12
 Date: ????
   Changes:
+    - Fix cargo-ships compatibility. (Thanks to RealSimplyData)
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.11
 Date: 2021-04-13

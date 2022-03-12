@@ -58,6 +58,9 @@ function genTransportBelts(inputs)
     entityTransportBelt.icon = itemTransportBelt.icon
     entityTransportBelt.minable.result = itemTransportBelt.name
     entityTransportBelt.speed = inputs.speed
+    if inputs.new then
+        entityTransportBelt.related_underground_belt = "5d-underground-belt-" .. inputs.number
+    end
 
     -- East
     if inputs.number ~= "01" then

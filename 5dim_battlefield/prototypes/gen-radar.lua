@@ -42,7 +42,7 @@ genRadars {
         {"iron-plate", 10},
         {"radar", 1}
     },
-    nextUpdate = "5d-radar-02",
+    nextUpdate = "5d-radar-03",
     tech = {
         number = 1,
         count = techCount * 1,

@@ -80,9 +80,7 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
     data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
 end
 if mods["bobtech"] and mods["5dim_automation"] then
-    local inputLab = {
-        "advanced-logistic-science-pack"
-    }
+    local inputLab = "advanced-logistic-science-pack"
     table.insert(data.raw["lab"]["5d-lab-02"].inputs, inputLab)
     table.insert(data.raw["lab"]["5d-lab-03"].inputs, inputLab)
     table.insert(data.raw["lab"]["5d-lab-04"].inputs, inputLab)

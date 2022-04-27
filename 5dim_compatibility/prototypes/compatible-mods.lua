@@ -81,24 +81,17 @@ if mods["bobwarfare"] and mods["5dim_battlefield"] then
 end
 if mods["bobtech"] and mods["5dim_automation"] then
     local inputLab = {
-        "automation-science-pack",
-        "logistic-science-pack",
-        "chemical-science-pack",
-        "military-science-pack",
-        "production-science-pack",
-        "advanced-logistic-science-pack",
-        "utility-science-pack",
-        "space-science-pack"
+        "advanced-logistic-science-pack"
     }
-    data.raw["lab"]["5d-lab-02"].inputs = inputLab
-    data.raw["lab"]["5d-lab-03"].inputs = inputLab
-    data.raw["lab"]["5d-lab-04"].inputs = inputLab
-    data.raw["lab"]["5d-lab-05"].inputs = inputLab
-    data.raw["lab"]["5d-lab-06"].inputs = inputLab
-    data.raw["lab"]["5d-lab-07"].inputs = inputLab
-    data.raw["lab"]["5d-lab-08"].inputs = inputLab
-    data.raw["lab"]["5d-lab-09"].inputs = inputLab
-    data.raw["lab"]["5d-lab-10"].inputs = inputLab
+    table.insert(data.raw["lab"]["5d-lab-02"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-03"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-04"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-05"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-06"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-07"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-08"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-09"].inputs, inputLab)
+    table.insert(data.raw["lab"]["5d-lab-10"].inputs, inputLab)
 end
 
 -- Transport drones

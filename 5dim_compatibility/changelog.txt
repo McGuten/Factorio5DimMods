@@ -2,6 +2,7 @@
 Version: 1.1.13
 Date: ????
   Changes:
+    - Clean bobs compatibility for other mods that add science packs
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.12
 Date: 2022-01-12

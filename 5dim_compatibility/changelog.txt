@@ -2,6 +2,7 @@
 Version: 1.1.15
 Date: ????
   Changes:
+    - Add compatibility with Kux orbital cannon
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.14
 Date: 2022-04-27

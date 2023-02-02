@@ -1,5 +1,15 @@
-script.on_event(defines.events.on_player_created, setStartItems)
-script.on_event(defines.events.on_cutscene_cancelled, setStartItems)
+script.on_event(
+    defines.events.on_player_created,
+    function(event)
+        setStartItems(event)
+    end
+)
+script.on_event(
+    defines.events.on_cutscene_cancelled,
+    function(event)
+        setStartItems(event)
+    end
+)
 
 function setStartItems(event)
     local atStart = {}

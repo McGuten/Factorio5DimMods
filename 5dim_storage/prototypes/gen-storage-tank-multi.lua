@@ -11,17 +11,17 @@ genStorageTankMultis {
     new = true,
     order = "a",
     ingredients = {
-        {"iron-plate", 20},
-        {"steel-plate", 5}
+        { type = "item", name = "iron-plate",  amount = 20 },
+        { type = "item", name = "steel-plate", amount = 5 }
     },
     nextUpdate = "5d-storage-tank-multi-02",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "fluid-handling"
@@ -37,19 +37,19 @@ genStorageTankMultis {
     new = true,
     order = "b",
     ingredients = {
-        {"5d-storage-tank-multi-01", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"stone-brick", 5}
+        { type = "item", name = "5d-storage-tank-multi-01", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "stone-brick",              amount = 5 }
     },
     nextUpdate = "5d-storage-tank-multi-03",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "fluid-handling-2",
@@ -66,20 +66,20 @@ genStorageTankMultis {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-storage-tank-multi-02", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"concrete", 5}
+        { type = "item", name = "5d-storage-tank-multi-02", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "concrete",                 amount = 5 }
     },
     nextUpdate = "5d-storage-tank-multi-04",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-handling-3",
@@ -97,20 +97,20 @@ genStorageTankMultis {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-storage-tank-multi-03", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"concrete", 5}
+        { type = "item", name = "5d-storage-tank-multi-03", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "concrete",                 amount = 5 }
     },
     nextUpdate = "5d-storage-tank-multi-05",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-handling-4",
@@ -127,21 +127,21 @@ genStorageTankMultis {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-storage-tank-multi-04", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"concrete", 5},
-        {"speed-module", 1}
+        { type = "item", name = "5d-storage-tank-multi-04", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "concrete",                 amount = 5 },
+        { type = "item", name = "speed-module",             amount = 1 }
     },
     nextUpdate = "5d-storage-tank-multi-06",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-handling-5",
@@ -158,21 +158,21 @@ genStorageTankMultis {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-storage-tank-multi-05", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"refined-concrete", 5},
-        {"productivity-module", 1}
+        { type = "item", name = "5d-storage-tank-multi-05", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "refined-concrete",         amount = 5 },
+        { type = "item", name = "productivity-module",      amount = 1 }
     },
     nextUpdate = "5d-storage-tank-multi-07",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-handling-6",
@@ -189,21 +189,21 @@ genStorageTankMultis {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-storage-tank-multi-06", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"refined-concrete", 5},
-        {"speed-module-2", 1}
+        { type = "item", name = "5d-storage-tank-multi-06", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "advanced-circuit",         amount = 3 },
+        { type = "item", name = "refined-concrete",         amount = 5 },
+        { type = "item", name = "speed-module-2",           amount = 1 }
     },
     nextUpdate = "5d-storage-tank-multi-08",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-handling-7",
@@ -220,22 +220,22 @@ genStorageTankMultis {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-storage-tank-multi-07", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 1},
-        {"refined-concrete", 5},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-storage-tank-multi-07", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "low-density-structure",    amount = 1 },
+        { type = "item", name = "refined-concrete",         amount = 5 },
+        { type = "item", name = "productivity-module-2",    amount = 1 }
     },
     nextUpdate = "5d-storage-tank-multi-09",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-handling-8",
@@ -253,22 +253,22 @@ genStorageTankMultis {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-storage-tank-multi-08", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 1},
-        {"refined-concrete", 5},
-        {"speed-module-3", 1}
+        { type = "item", name = "5d-storage-tank-multi-08", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "low-density-structure",    amount = 1 },
+        { type = "item", name = "refined-concrete",         amount = 5 },
+        { type = "item", name = "speed-module-3",           amount = 1 }
     },
     nextUpdate = "5d-storage-tank-multi-10",
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-handling-9",
@@ -285,21 +285,21 @@ genStorageTankMultis {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-storage-tank-multi-09", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 3},
-        {"refined-concrete", 5},
-        {"productivity-module-3", 1}
+        { type = "item", name = "5d-storage-tank-multi-09", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 5 },
+        { type = "item", name = "low-density-structure",    amount = 3 },
+        { type = "item", name = "refined-concrete",         amount = 5 },
+        { type = "item", name = "productivity-module-3",    amount = 1 }
     },
     tech = {
         number = 10,
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-handling-10",

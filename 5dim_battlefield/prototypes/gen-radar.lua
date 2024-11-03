@@ -15,9 +15,9 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"electronic-circuit", 5},
-        {"iron-gear-wheel", 5},
-        {"iron-plate", 10}
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 5 },
+        { type = "item", name = "iron-plate",         amount = 10 }
     },
     nextUpdate = "5d-radar-02",
     tech = nil
@@ -37,18 +37,18 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"electronic-circuit", 5},
-        {"iron-gear-wheel", 5},
-        {"iron-plate", 10},
-        {"radar", 1}
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 5 },
+        { type = "item", name = "iron-plate",         amount = 10 },
+        { type = "item", name = "radar",              amount = 1 }
     },
     nextUpdate = "5d-radar-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "electronics"
@@ -70,19 +70,19 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"electronic-circuit", 7},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-02", 1}
+        { type = "item", name = "electronic-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",    amount = 5 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "5d-radar-02",        amount = 1 }
     },
     nextUpdate = "5d-radar-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-radars-1",
@@ -105,19 +105,19 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"electronic-circuit", 7},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-03", 1}
+        { type = "item", name = "electronic-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",    amount = 5 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "5d-radar-03",        amount = 1 }
     },
     nextUpdate = "5d-radar-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-radars-2"
@@ -139,20 +139,20 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"advanced-circuit", 7},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-04", 1}
+        { type = "item", name = "advanced-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",  amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 },
+        { type = "item", name = "5d-radar-04",      amount = 1 }
     },
     nextUpdate = "5d-radar-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-radars-3",
@@ -175,20 +175,20 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"advanced-circuit", 7},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-05", 1}
+        { type = "item", name = "advanced-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",  amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 },
+        { type = "item", name = "5d-radar-05",      amount = 1 }
     },
     nextUpdate = "5d-radar-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-radars-4"
@@ -210,20 +210,20 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"advanced-circuit", 7},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-06", 1}
+        { type = "item", name = "advanced-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",  amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 },
+        { type = "item", name = "5d-radar-06",      amount = 1 }
     },
     nextUpdate = "5d-radar-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-radars-5"
@@ -245,21 +245,21 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"processing-unit", 3},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5},
-        {"5d-radar-07", 1}
+        { type = "item", name = "processing-unit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel", amount = 5 },
+        { type = "item", name = "steel-plate",     amount = 5 },
+        { type = "item", name = "5d-radar-07",     amount = 1 }
     },
     nextUpdate = "5d-radar-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-radars-6",
@@ -282,21 +282,21 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"processing-unit", 3},
-        {"low-density-structure", 2},
-        {"steel-plate", 5},
-        {"5d-radar-08", 1}
+        { type = "item", name = "processing-unit",       amount = 3 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "5d-radar-08",           amount = 1 }
     },
     nextUpdate = "5d-radar-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-radars-7"
@@ -318,20 +318,20 @@ genRadars {
     scan = escaner,
     energy = energia,
     ingredients = {
-        {"processing-unit", 3},
-        {"low-density-structure", 2},
-        {"steel-plate", 5},
-        {"5d-radar-09", 1}
+        { type = "item", name = "processing-unit",       amount = 3 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "5d-radar-09",           amount = 1 }
     },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-radars-8"

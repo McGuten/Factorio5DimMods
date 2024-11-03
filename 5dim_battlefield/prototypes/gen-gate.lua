@@ -11,9 +11,9 @@ genGates {
     new = false,
     health = revelado,
     ingredients = {
-        {"stone-wall", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2}
+        { type = "item", name = "stone-wall",         amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 2 },
+        { type = "item", name = "electronic-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-02",
     tech = nil
@@ -29,18 +29,18 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-02", 1},
-        {"gate", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2}
+        { type = "item", name = "5d-stone-wall-02",   amount = 1 },
+        { type = "item", name = "gate",               amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 2 },
+        { type = "item", name = "electronic-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-03",
     tech = {
         number = 2,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "gate",
@@ -60,19 +60,19 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-03", 1},
-        {"5d-gate-02", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2}
+        { type = "item", name = "5d-stone-wall-03",   amount = 1 },
+        { type = "item", name = "5d-gate-02",         amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 2 },
+        { type = "item", name = "electronic-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-04",
     tech = {
         number = 3,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "gate-2",
@@ -92,19 +92,19 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-04", 1},
-        {"5d-gate-03", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2}
+        { type = "item", name = "5d-stone-wall-04",   amount = 1 },
+        { type = "item", name = "5d-gate-03",         amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 2 },
+        { type = "item", name = "electronic-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-05",
     tech = {
         number = 4,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "gate-3",
@@ -123,19 +123,19 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-05", 1},
-        {"5d-gate-04", 1},
-        {"steel-plate", 2},
-        {"advanced-circuit", 2}
+        { type = "item", name = "5d-stone-wall-05", amount = 1 },
+        { type = "item", name = "5d-gate-04",       amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 2 },
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-06",
     tech = {
         number = 5,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "gate-4",
@@ -154,20 +154,20 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-06", 1},
-        {"5d-gate-05", 1},
-        {"steel-plate", 2},
-        {"advanced-circuit", 2}
+        { type = "item", name = "5d-stone-wall-06", amount = 1 },
+        { type = "item", name = "5d-gate-05",       amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 2 },
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-07",
     tech = {
         number = 6,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "gate-5",
@@ -187,20 +187,20 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-07", 1},
-        {"5d-gate-06", 1},
-        {"steel-plate", 2},
-        {"advanced-circuit", 2}
+        { type = "item", name = "5d-stone-wall-07", amount = 1 },
+        { type = "item", name = "5d-gate-06",       amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 2 },
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     nextUpdate = "5d-gate-08",
     tech = {
         number = 7,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "gate-6",
@@ -219,21 +219,21 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-08", 1},
-        {"5d-gate-07", 1},
-        {"low-density-structure", 2},
-        {"advanced-circuit", 2}
+        { type = "item", name = "5d-stone-wall-08",      amount = 1 },
+        { type = "item", name = "5d-gate-07",            amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "advanced-circuit",      amount = 2 }
     },
     nextUpdate = "5d-gate-09",
     tech = {
         number = 8,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "gate-7",
@@ -253,21 +253,21 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-09", 1},
-        {"5d-gate-08", 1},
-        {"low-density-structure", 2},
-        {"advanced-circuit", 2}
+        { type = "item", name = "5d-stone-wall-09",      amount = 1 },
+        { type = "item", name = "5d-gate-08",            amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "advanced-circuit",      amount = 2 }
     },
     nextUpdate = "5d-gate-10",
     tech = {
         number = 9,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "gate-8",
@@ -286,20 +286,20 @@ genGates {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-10", 1},
-        {"5d-gate-09", 1},
-        {"low-density-structure", 2},
-        {"processing-unit", 2}
+        { type = "item", name = "5d-stone-wall-10",      amount = 1 },
+        { type = "item", name = "5d-gate-09",            amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "processing-unit",       amount = 2 }
     },
     tech = {
         number = 10,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "gate-9",

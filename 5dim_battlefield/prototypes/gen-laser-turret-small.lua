@@ -3,7 +3,7 @@ require("__5dim_core__.lib.battlefield.laser-turret.generation-laser-turret")
 local rango = 18
 local shootingSpeed = 20
 local damageModif = 1.1
-local color = {r = 1, g = 1, b = 0.1, a = 1}
+local color = { r = 1, g = 1, b = 0.1, a = 1 }
 local hp = 800
 local techCount = 50
 
@@ -19,9 +19,9 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"steel-plate", 10},
-        {"electronic-circuit", 10},
-        {"battery", 6}
+        { type = "item", name = "steel-plate",        amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "battery",            amount = 6 }
     },
     resistances = {
         {
@@ -38,10 +38,10 @@ genLaserTurrets {
         number = "5d-laser-turret-small-1",
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "laser-turret",
@@ -65,10 +65,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-01", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-01", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -80,15 +80,15 @@ genLaserTurrets {
             percent = 7.5
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-03",
     tech = {
         number = "5d-laser-turret-small-2",
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-laser-turret-small-1",
@@ -112,10 +112,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-02", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-02", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -127,15 +127,15 @@ genLaserTurrets {
             percent = 7.5
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-04",
     tech = {
         number = "5d-laser-turret-small-3",
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-laser-turret-small-2",
@@ -159,10 +159,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-03", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-03", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -174,15 +174,15 @@ genLaserTurrets {
             percent = 10
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-05",
     tech = {
         number = "5d-laser-turret-small-4",
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-laser-turret-small-3"
@@ -205,10 +205,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-04", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-04", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -220,15 +220,15 @@ genLaserTurrets {
             percent = 12.5
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-06",
     tech = {
         number = "5d-laser-turret-small-5",
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-laser-turret-small-4",
@@ -252,10 +252,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-05", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-05", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -267,15 +267,15 @@ genLaserTurrets {
             percent = 15
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-07",
     tech = {
         number = "5d-laser-turret-small-6",
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-laser-turret-small-5"
@@ -298,10 +298,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-06", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-06", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -313,16 +313,16 @@ genLaserTurrets {
             percent = 17.5
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-08",
     tech = {
         number = "5d-laser-turret-small-7",
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-laser-turret-small-6",
@@ -346,10 +346,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-07", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-07", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -361,16 +361,16 @@ genLaserTurrets {
             percent = 20
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-09",
     tech = {
         number = "5d-laser-turret-small-8",
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-laser-turret-small-7"
@@ -393,10 +393,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-08", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-08", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -408,16 +408,16 @@ genLaserTurrets {
             percent = 22.5
         }
     },
-    nextUpdate = "5d-laser-turret-small-02",
+    nextUpdate = "5d-laser-turret-small-10",
     tech = {
         number = "5d-laser-turret-small-9",
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-laser-turret-small-8"
@@ -440,10 +440,10 @@ genLaserTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-laser-turret-small-09", 1},
-        {"steel-plate", 2},
-        {"electronic-circuit", 2},
-        {"battery", 2}
+        { type = "item", name = "5d-laser-turret-small-09", amount = 1 },
+        { type = "item", name = "steel-plate",              amount = 2 },
+        { type = "item", name = "electronic-circuit",       amount = 2 },
+        { type = "item", name = "battery",                  amount = 2 }
     },
     resistances = {
         {
@@ -459,11 +459,11 @@ genLaserTurrets {
         number = "5d-laser-turret-small-10",
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-laser-turret-small-9"

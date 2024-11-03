@@ -21,10 +21,10 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"pipe", 10},
-        {"engine-unit", 5}
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-02",
     tech = nil
@@ -46,11 +46,11 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"flamethrower-turret", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"pipe", 10},
-        {"engine-unit", 5}
+        {type = "item", name = "flamethrower-turret", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-03",
     tech = {
@@ -84,11 +84,11 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-02", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"pipe", 10},
-        {"engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-02", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-04",
     tech = {
@@ -121,11 +121,11 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-03", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-03", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-05",
     tech = {
@@ -161,12 +161,12 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-04", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"advanced-circuit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-04", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "advanced-circuit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-06",
     tech = {
@@ -200,12 +200,12 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-05", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"advanced-circuit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-05", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "advanced-circuit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-07",
     tech = {
@@ -240,12 +240,12 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-06", 1},
-        {"steel-plate", 30},
-        {"iron-gear-wheel", 15},
-        {"advanced-circuit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-06", amount = 1},
+        {type = "item", name = "steel-plate", amount = 30},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "advanced-circuit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-08",
     tech = {
@@ -281,12 +281,12 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-07", 1},
-        {"low-density-structure", 5},
-        {"iron-gear-wheel", 15},
-        {"advanced-circuit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-07", amount = 1},
+        {type = "item", name = "low-density-structure", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 15},
+        {type = "item", name = "advanced-circuit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-09",
     tech = {
@@ -322,11 +322,11 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-08", 1},
-        {"low-density-structure", 5},
-        {"processing-unit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-08", amount = 1},
+        {type = "item", name = "low-density-structure", amount = 5},
+        {type = "item", name = "processing-unit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     nextUpdate = "5d-flamethrower-turret-10",
     tech = {
@@ -361,11 +361,11 @@ genFlamethrowerTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-flamethrower-turret-09", 1},
-        {"low-density-structure", 5},
-        {"processing-unit", 4},
-        {"pipe", 10},
-        {"electric-engine-unit", 5}
+        {type = "item", name = "5d-flamethrower-turret-09", amount = 1},
+        {type = "item", name = "low-density-structure", amount = 5},
+        {type = "item", name = "processing-unit", amount = 4},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 5}
     },
     tech = {
         number = 9,

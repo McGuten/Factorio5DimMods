@@ -10,7 +10,7 @@ genStoneWalls {
     new = false,
     health = revelado,
     ingredients = {
-        {"stone-brick", 5}
+        { type = "item", name = "stone-brick", amount = 5 }
     },
     nextUpdate = "5d-stone-wall-02",
     tech = nil
@@ -26,17 +26,17 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"stone-wall", 1},
-        {"stone-brick", 5},
-        {"iron-plate", 5}
+        { type = "item", name = "stone-wall",  amount = 1 },
+        { type = "item", name = "stone-brick", amount = 5 },
+        { type = "item", name = "iron-plate",  amount = 5 }
     },
     nextUpdate = "5d-stone-wall-03",
     tech = {
         number = 2,
         count = 500,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall",
@@ -55,18 +55,18 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-02", 1},
-        {"stone-brick", 5},
-        {"iron-plate", 5}
+        { type = "item", name = "5d-stone-wall-02", amount = 1 },
+        { type = "item", name = "stone-brick",      amount = 5 },
+        { type = "item", name = "iron-plate",       amount = 5 }
     },
     nextUpdate = "5d-stone-wall-04",
     tech = {
         number = 3,
         count = 750,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall-2",
@@ -85,18 +85,18 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-03", 1},
-        {"concrete", 5},
-        {"iron-plate", 5}
+        { type = "item", name = "5d-stone-wall-03", amount = 1 },
+        { type = "item", name = "concrete",         amount = 5 },
+        { type = "item", name = "iron-plate",       amount = 5 }
     },
     nextUpdate = "5d-stone-wall-05",
     tech = {
         number = 4,
         count = 1000,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall-3"
@@ -114,18 +114,18 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-04", 1},
-        {"concrete", 5},
-        {"iron-plate", 5}
+        { type = "item", name = "5d-stone-wall-04", amount = 1 },
+        { type = "item", name = "concrete",         amount = 5 },
+        { type = "item", name = "iron-plate",       amount = 5 }
     },
     nextUpdate = "5d-stone-wall-06",
     tech = {
         number = 5,
         count = 1250,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall-4"
@@ -143,19 +143,19 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-05", 1},
-        {"concrete", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-stone-wall-05", amount = 1 },
+        { type = "item", name = "concrete",         amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 }
     },
     nextUpdate = "5d-stone-wall-07",
     tech = {
         number = 6,
         count = 1500,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall-5",
@@ -174,19 +174,19 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-06", 1},
-        {"concrete", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-stone-wall-06", amount = 1 },
+        { type = "item", name = "concrete",         amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 }
     },
     nextUpdate = "5d-stone-wall-08",
     tech = {
         number = 7,
         count = 1750,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "stone-wall-6"
@@ -204,20 +204,20 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-07", 1},
-        {"refined-concrete", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-stone-wall-07", amount = 1 },
+        { type = "item", name = "refined-concrete", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 }
     },
     nextUpdate = "5d-stone-wall-09",
     tech = {
         number = 8,
         count = 2000,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "stone-wall-7",
@@ -236,20 +236,20 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-08", 1},
-        {"refined-concrete", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-stone-wall-08", amount = 1 },
+        { type = "item", name = "refined-concrete", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 5 }
     },
     nextUpdate = "5d-stone-wall-10",
     tech = {
         number = 9,
         count = 2250,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "stone-wall-8"
@@ -267,19 +267,19 @@ genStoneWalls {
     new = true,
     health = revelado,
     ingredients = {
-        {"5d-stone-wall-09", 1},
-        {"refined-concrete", 5},
-        {"low-density-structure", 2}
+        { type = "item", name = "5d-stone-wall-09",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 2 }
     },
     tech = {
         number = 10,
         count = 2500,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "stone-wall-9"

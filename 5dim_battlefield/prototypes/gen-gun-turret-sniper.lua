@@ -4,7 +4,7 @@ local rango = 52
 local ammo = 5
 local shootingSpeed = 20
 local damageModif = 10
-local color = {r = 0, g = 1, b = 1, a = 1}
+local color = { r = 0, g = 1, b = 1, a = 1 }
 local hp = 750
 local techCount = 200
 
@@ -21,9 +21,9 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 10},
-        {"steel-plate", 5}
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "steel-plate",        amount = 5 }
     },
     resistances = {
         {
@@ -40,9 +40,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-1",
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-big-5",
@@ -67,10 +67,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-01", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-01", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -87,9 +87,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-2",
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-1",
@@ -114,10 +114,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-02", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-02", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -134,9 +134,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-3",
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-2"
@@ -160,10 +160,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-03", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-03", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -180,9 +180,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-4",
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-3"
@@ -206,10 +206,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-04", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-04", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -226,9 +226,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-5",
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-4"
@@ -252,10 +252,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-05", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-05", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -272,9 +272,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-6",
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-5"
@@ -298,10 +298,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-06", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-06", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -318,9 +318,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-7",
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-6"
@@ -344,10 +344,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-07", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-07", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -364,9 +364,9 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-8",
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-7"
@@ -390,10 +390,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-08", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-08", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -410,11 +410,11 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-9",
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-8"
@@ -438,10 +438,10 @@ genGunTurrets {
     health = hp,
     tint = color,
     ingredients = {
-        {"5d-gun-turret-sniper-09", 1},
-        {"iron-gear-wheel", 6},
-        {"electronic-circuit", 6},
-        {"steel-plate", 3}
+        { type = "item", name = "5d-gun-turret-sniper-09", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",         amount = 6 },
+        { type = "item", name = "electronic-circuit",      amount = 6 },
+        { type = "item", name = "steel-plate",             amount = 3 }
     },
     resistances = {
         {
@@ -457,11 +457,11 @@ genGunTurrets {
         number = "5d-gun-turret-sniper-10",
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-gun-turret-sniper-9"

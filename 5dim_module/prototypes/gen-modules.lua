@@ -10,20 +10,20 @@ genModules {
     order = "a",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -31,34 +31,34 @@ genModules {
     new = false,
     ingredients = {
         speed = {
-            {"advanced-circuit", 3},
-            {"electronic-circuit", 3}
+            { type = "item", name = "advanced-circuit",   amount = 3 },
+            { type = "item", name = "electronic-circuit", amount = 3 }
         },
         effectivity = {
-            {"advanced-circuit", 3},
-            {"electronic-circuit", 3}
+            { type = "item", name = "advanced-circuit",   amount = 3 },
+            { type = "item", name = "electronic-circuit", amount = 3 }
         },
         productivity = {
-            {"advanced-circuit", 3},
-            {"electronic-circuit", 3}
+            { type = "item", name = "advanced-circuit",   amount = 3 },
+            { type = "item", name = "electronic-circuit", amount = 3 }
         },
         pollution = {
-            {"advanced-circuit", 3},
-            {"electronic-circuit", 3}
+            { type = "item", name = "advanced-circuit",   amount = 3 },
+            { type = "item", name = "electronic-circuit", amount = 3 }
         },
         merged = {
-            {"speed-module", 1},
-            {"effectivity-module", 1},
-            {"productivity-module", 1},
-            {"5d-pollution-module-01", 1}
+            { type = "item", name = "speed-module",           amount = 1 },
+            { type = "item", name = "efficiency-module",      amount = 1 },
+            { type = "item", name = "productivity-module",    amount = 1 },
+            { type = "item", name = "5d-pollution-module-01", amount = 1 }
         }
     },
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             pollution = {
@@ -66,7 +66,7 @@ genModules {
             },
             merged = {
                 "speed-module",
-                "effectivity-module",
+                "efficiency-module",
                 "productivity-module",
                 "5d-pollution-module-1"
             }
@@ -83,20 +83,20 @@ genModules {
     order = "b",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -104,39 +104,39 @@ genModules {
     new = false,
     ingredients = {
         speed = {
-            {"speed-module", 3},
-            {"advanced-circuit", 4},
-            {"electronic-circuit", 4}
+            { type = "item", name = "speed-module",       amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 4 },
+            { type = "item", name = "electronic-circuit", amount = 4 }
         },
         effectivity = {
-            {"effectivity-module", 3},
-            {"advanced-circuit", 4},
-            {"electronic-circuit", 4}
+            { type = "item", name = "efficiency-module",  amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 4 },
+            { type = "item", name = "electronic-circuit", amount = 4 }
         },
         productivity = {
-            {"productivity-module", 3},
-            {"advanced-circuit", 4},
-            {"electronic-circuit", 4}
+            { type = "item", name = "productivity-module", amount = 3 },
+            { type = "item", name = "advanced-circuit",    amount = 4 },
+            { type = "item", name = "electronic-circuit",  amount = 4 }
         },
         pollution = {
-            {"5d-pollution-module-01", 3},
-            {"advanced-circuit", 4},
-            {"electronic-circuit", 4}
+            { type = "item", name = "5d-pollution-module-01", amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 4 },
+            { type = "item", name = "electronic-circuit",     amount = 4 }
         },
         merged = {
-            {"speed-module-2", 1},
-            {"effectivity-module-2", 1},
-            {"productivity-module-2", 1},
-            {"5d-pollution-module-02", 1}
+            { type = "item", name = "speed-module-2",         amount = 1 },
+            { type = "item", name = "efficiency-module-2",    amount = 1 },
+            { type = "item", name = "productivity-module-2",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-02", amount = 1 }
         }
     },
     tech = {
         number = 2,
         count = techCount * 1.5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             pollution = {
@@ -145,7 +145,7 @@ genModules {
             merged = {
                 "5d-merged-module-1",
                 "speed-module-2",
-                "effectivity-module-2",
+                "efficiency-module-2",
                 "productivity-module-2",
                 "5d-pollution-module-2"
             }
@@ -162,20 +162,20 @@ genModules {
     order = "c",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -183,40 +183,40 @@ genModules {
     new = false,
     ingredients = {
         speed = {
-            {"speed-module-2", 3},
-            {"advanced-circuit", 5},
-            {"electronic-circuit", 5}
+            { type = "item", name = "speed-module-2",     amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 5 },
+            { type = "item", name = "electronic-circuit", amount = 5 }
         },
         effectivity = {
-            {"effectivity-module-2", 3},
-            {"advanced-circuit", 5},
-            {"electronic-circuit", 5}
+            { type = "item", name = "efficiency-module-2", amount = 3 },
+            { type = "item", name = "advanced-circuit",    amount = 5 },
+            { type = "item", name = "electronic-circuit",  amount = 5 }
         },
         productivity = {
-            {"productivity-module-2", 3},
-            {"advanced-circuit", 5},
-            {"electronic-circuit", 5}
+            { type = "item", name = "productivity-module-2", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "electronic-circuit",    amount = 5 }
         },
         pollution = {
-            {"5d-pollution-module-02", 3},
-            {"advanced-circuit", 5},
-            {"electronic-circuit", 5}
+            { type = "item", name = "5d-pollution-module-02", amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 5 },
+            { type = "item", name = "electronic-circuit",     amount = 5 }
         },
         merged = {
-            {"speed-module-3", 1},
-            {"effectivity-module-3", 1},
-            {"productivity-module-3", 1},
-            {"5d-pollution-module-03", 1}
+            { type = "item", name = "speed-module-3",         amount = 1 },
+            { type = "item", name = "efficiency-module-3",    amount = 1 },
+            { type = "item", name = "productivity-module-3",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-03", amount = 1 }
         }
     },
     tech = {
         number = 3,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             pollution = {
@@ -225,7 +225,7 @@ genModules {
             merged = {
                 "5d-merged-module-2",
                 "speed-module-3",
-                "effectivity-module-3",
+                "efficiency-module-3",
                 "productivity-module-3",
                 "5d-pollution-module-3"
             }
@@ -242,20 +242,20 @@ genModules {
     order = "d",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -263,47 +263,47 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"speed-module-3", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "speed-module-3",   amount = 3 },
+            { type = "item", name = "advanced-circuit", amount = 3 },
+            { type = "item", name = "processing-unit",  amount = 3 }
         },
         effectivity = {
-            {"effectivity-module-3", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "efficiency-module-3", amount = 3 },
+            { type = "item", name = "advanced-circuit",    amount = 3 },
+            { type = "item", name = "processing-unit",     amount = 3 }
         },
         productivity = {
-            {"productivity-module-3", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "productivity-module-3", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 3 },
+            { type = "item", name = "processing-unit",       amount = 3 }
         },
         pollution = {
-            {"5d-pollution-module-03", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "5d-pollution-module-03", amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 3 },
+            { type = "item", name = "processing-unit",        amount = 3 }
         },
         merged = {
-            {"5d-speed-module-04", 1},
-            {"5d-effectivity-module-04", 1},
-            {"5d-productivity-module-04", 1},
-            {"5d-pollution-module-04", 1}
+            { type = "item", name = "5d-speed-module-04",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-04",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-04", amount = 1 },
+            { type = "item", name = "5d-pollution-module-04",    amount = 1 }
         }
     },
     tech = {
         number = 4,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-3"
             },
             effectivity = {
-                "effectivity-module-3"
+                "efficiency-module-3"
             },
             productivity = {
                 "productivity-module-3"
@@ -314,7 +314,7 @@ genModules {
             merged = {
                 "5d-merged-module-3",
                 "speed-module-4",
-                "effectivity-module-4",
+                "efficiency-module-4",
                 "productivity-module-4",
                 "5d-pollution-module-4"
             }
@@ -331,20 +331,20 @@ genModules {
     order = "e",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -352,48 +352,48 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-04", 3},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-speed-module-04",   amount = 3 },
+            { type = "item", name = "advanced-circuit", amount = 4 },
+            { type = "item", name = "processing-unit",  amount = 4 }
         },
         effectivity = {
-            {"5d-effectivity-module-04", 3},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-efficiency-module-04", amount = 3 },
+            { type = "item", name = "advanced-circuit",    amount = 4 },
+            { type = "item", name = "processing-unit",     amount = 4 }
         },
         productivity = {
-            {"5d-productivity-module-04", 3},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-productivity-module-04", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 4 },
+            { type = "item", name = "processing-unit",       amount = 4 }
         },
         pollution = {
-            {"5d-pollution-module-04", 3},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-pollution-module-04", amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 4 },
+            { type = "item", name = "processing-unit",        amount = 4 }
         },
         merged = {
-            {"5d-speed-module-05", 1},
-            {"5d-effectivity-module-05", 1},
-            {"5d-productivity-module-05", 1},
-            {"5d-pollution-module-05", 1}
+            { type = "item", name = "5d-speed-module-05",         amount = 1 },
+            { type = "item", name = "5d-efficiency-module-05",    amount = 1 },
+            { type = "item", name = "5d-productivity-module-05",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-05", amount = 1 }
         }
     },
     tech = {
         number = 5,
         count = techCount * 12,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-4"
             },
             effectivity = {
-                "effectivity-module-4"
+                "efficiency-module-4"
             },
             productivity = {
                 "productivity-module-4"
@@ -404,7 +404,7 @@ genModules {
             merged = {
                 "5d-merged-module-4",
                 "speed-module-5",
-                "effectivity-module-5",
+                "efficiency-module-5",
                 "productivity-module-5",
                 "5d-pollution-module-5"
             }
@@ -421,20 +421,20 @@ genModules {
     order = "f",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -442,48 +442,48 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-05", 3},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-speed-module-05",   amount = 3 },
+            { type = "item", name = "advanced-circuit", amount = 5 },
+            { type = "item", name = "processing-unit",  amount = 5 }
         },
         effectivity = {
-            {"5d-effectivity-module-05", 3},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-efficiency-module-05", amount = 3 },
+            { type = "item", name = "advanced-circuit",    amount = 5 },
+            { type = "item", name = "processing-unit",     amount = 5 }
         },
         productivity = {
-            {"5d-productivity-module-05", 3},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-productivity-module-05", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "processing-unit",       amount = 5 }
         },
         pollution = {
-            {"5d-pollution-module-05", 3},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-pollution-module-05", amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 5 },
+            { type = "item", name = "processing-unit",        amount = 5 }
         },
         merged = {
-            {"5d-speed-module-06", 1},
-            {"5d-effectivity-module-06", 1},
-            {"5d-productivity-module-06", 1},
-            {"5d-pollution-module-06", 1}
+            { type = "item", name = "5d-speed-module-06",         amount = 1 },
+            { type = "item", name = "5d-efficiency-module-06",    amount = 1 },
+            { type = "item", name = "5d-productivity-module-06",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-06", amount = 1 }
         }
     },
     tech = {
         number = 6,
         count = techCount * 15,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-5"
             },
             effectivity = {
-                "effectivity-module-5"
+                "efficiency-module-5"
             },
             productivity = {
                 "productivity-module-5"
@@ -494,7 +494,7 @@ genModules {
             merged = {
                 "5d-merged-module-5",
                 "speed-module-6",
-                "effectivity-module-6",
+                "efficiency-module-6",
                 "productivity-module-6",
                 "5d-pollution-module-6"
             }
@@ -511,20 +511,20 @@ genModules {
     order = "g",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -532,53 +532,52 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-06", 3},
-            {"low-density-structure", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "5d-speed-module-06",        amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 3 },
+            { type = "item", name = "processing-unit",       amount = 3 }
         },
         effectivity = {
-            {"5d-effectivity-module-06", 3},
-            {"low-density-structure", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "5d-efficiency-module-06",   amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 3 },
+            { type = "item", name = "processing-unit",       amount = 3 }
         },
         productivity = {
-            {"5d-productivity-module-06", 3},
-            {"low-density-structure", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "5d-productivity-module-06", amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 3 },
+            { type = "item", name = "processing-unit",       amount = 3 }
         },
         pollution = {
-            {"5d-pollution-module-06", 3},
-            {"low-density-structure", 3},
-            {"advanced-circuit", 3},
-            {"processing-unit", 3}
+            { type = "item", name = "5d-pollution-module-06", amount = 3 },
+            { type = "item", name = "low-density-structure",  amount = 3 },
+            { type = "item", name = "advanced-circuit",       amount = 3 },
+            { type = "item", name = "processing-unit",        amount = 3 }
         },
         merged = {
-            {"5d-speed-module-07", 1},
-            {"5d-effectivity-module-07", 1},
-            {"5d-productivity-module-07", 1},
-            {"5d-pollution-module-07", 1},
-            {"utility-science-pack", 1}
+            { type = "item", name = "5d-speed-module-07",         amount = 1 },
+            { type = "item", name = "5d-efficiency-module-07",    amount = 1 },
+            { type = "item", name = "5d-productivity-module-07",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-07", amount = 1 }
         }
     },
     tech = {
         number = 7,
         count = techCount * 18,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-6"
             },
             effectivity = {
-                "effectivity-module-6"
+                "efficiency-module-6"
             },
             productivity = {
                 "productivity-module-6"
@@ -589,7 +588,7 @@ genModules {
             merged = {
                 "5d-merged-module-6",
                 "speed-module-7",
-                "effectivity-module-7",
+                "efficiency-module-7",
                 "productivity-module-7",
                 "5d-pollution-module-7"
             }
@@ -606,20 +605,20 @@ genModules {
     order = "h",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -627,53 +626,53 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-07", 3},
-            {"low-density-structure", 4},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-speed-module-07",        amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 4 },
+            { type = "item", name = "advanced-circuit",      amount = 4 },
+            { type = "item", name = "processing-unit",       amount = 4 }
         },
         effectivity = {
-            {"5d-effectivity-module-07", 3},
-            {"low-density-structure", 4},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-efficiency-module-07",   amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 4 },
+            { type = "item", name = "advanced-circuit",      amount = 4 },
+            { type = "item", name = "processing-unit",       amount = 4 }
         },
         productivity = {
-            {"5d-productivity-module-07", 3},
-            {"low-density-structure", 4},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-productivity-module-07", amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 4 },
+            { type = "item", name = "advanced-circuit",      amount = 4 },
+            { type = "item", name = "processing-unit",       amount = 4 }
         },
         pollution = {
-            {"5d-pollution-module-07", 3},
-            {"low-density-structure", 4},
-            {"advanced-circuit", 4},
-            {"processing-unit", 4}
+            { type = "item", name = "5d-pollution-module-07", amount = 3 },
+            { type = "item", name = "low-density-structure",  amount = 4 },
+            { type = "item", name = "advanced-circuit",       amount = 4 },
+            { type = "item", name = "processing-unit",        amount = 4 }
         },
         merged = {
-            {"5d-speed-module-08", 1},
-            {"5d-effectivity-module-08", 1},
-            {"5d-productivity-module-08", 1},
-            {"5d-pollution-module-08", 1}
+            { type = "item", name = "5d-speed-module-08",         amount = 1 },
+            { type = "item", name = "5d-efficiency-module-08",    amount = 1 },
+            { type = "item", name = "5d-productivity-module-08",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-08", amount = 1 }
         }
     },
     tech = {
         number = 8,
         count = techCount * 21,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-7"
             },
             effectivity = {
-                "effectivity-module-7"
+                "efficiency-module-7"
             },
             productivity = {
                 "productivity-module-7"
@@ -684,7 +683,7 @@ genModules {
             merged = {
                 "5d-merged-module-7",
                 "speed-module-8",
-                "effectivity-module-8",
+                "efficiency-module-8",
                 "productivity-module-8",
                 "5d-pollution-module-8"
             }
@@ -701,20 +700,20 @@ genModules {
     order = "i",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -722,53 +721,53 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-08", 3},
-            {"low-density-structure", 5},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-speed-module-08",        amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 5 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "processing-unit",       amount = 5 }
         },
         effectivity = {
-            {"5d-effectivity-module-08", 3},
-            {"low-density-structure", 5},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-efficiency-module-08",   amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 5 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "processing-unit",       amount = 5 }
         },
         productivity = {
-            {"5d-productivity-module-08", 3},
-            {"low-density-structure", 5},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-productivity-module-08", amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 5 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "processing-unit",       amount = 5 }
         },
         pollution = {
-            {"5d-pollution-module-08", 3},
-            {"low-density-structure", 5},
-            {"advanced-circuit", 5},
-            {"processing-unit", 5}
+            { type = "item", name = "5d-pollution-module-08", amount = 3 },
+            { type = "item", name = "low-density-structure",  amount = 5 },
+            { type = "item", name = "advanced-circuit",       amount = 5 },
+            { type = "item", name = "processing-unit",        amount = 5 }
         },
         merged = {
-            {"5d-speed-module-09", 1},
-            {"5d-effectivity-module-09", 1},
-            {"5d-productivity-module-09", 1},
-            {"5d-pollution-module-09", 1}
+            { type = "item", name = "5d-speed-module-09",         amount = 1 },
+            { type = "item", name = "5d-efficiency-module-09",    amount = 1 },
+            { type = "item", name = "5d-productivity-module-09",  amount = 1 },
+            { type = "item", name = "5d-pollution-module-09", amount = 1 }
         }
     },
     tech = {
         number = 9,
         count = techCount * 24,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-8"
             },
             effectivity = {
-                "effectivity-module-8"
+                "efficiency-module-8"
             },
             productivity = {
                 "productivity-module-8"
@@ -779,7 +778,7 @@ genModules {
             merged = {
                 "5d-merged-module-8",
                 "speed-module-9",
-                "effectivity-module-9",
+                "efficiency-module-9",
                 "productivity-module-9",
                 "5d-pollution-module-9"
             }
@@ -796,20 +795,20 @@ genModules {
     order = "j",
     effects = {
         speed = {
-            speed = {bonus = 0.08 * level},
-            consumption = {bonus = 0.16 * level}
+            speed = 0.08 * level ,
+            consumption = 0.16 * level 
         },
         effectivity = {
-            consumption = {bonus = -0.16 * level}
+            consumption = -0.16 * level 
         },
         productivity = {
-            productivity = {bonus = 0.02 * level},
-            consumption = {bonus = 0.4 * level},
-            pollution = {bonus = 0.04 * level},
-            speed = {bonus = -0.08 * level}
+            productivity = 0.02 * level ,
+            consumption = 0.4 * level ,
+            pollution = 0.04 * level ,
+            speed = -0.08 * level 
         },
         pollution = {
-            pollution = {bonus = -0.08 * level}
+            pollution = -0.08 * level 
         }
     },
     tier = level,
@@ -817,53 +816,53 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            {"5d-speed-module-09", 3},
-            {"low-density-structure", 6},
-            {"advanced-circuit", 6},
-            {"processing-unit", 6}
+            { type = "item", name = "5d-speed-module-09",    amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 6 },
+            { type = "item", name = "advanced-circuit",      amount = 6 },
+            { type = "item", name = "processing-unit",       amount = 6 }
         },
         effectivity = {
-            {"5d-effectivity-module-09", 3},
-            {"low-density-structure", 6},
-            {"advanced-circuit", 6},
-            {"processing-unit", 6}
+            { type = "item", name = "5d-efficiency-module-09", amount = 3 },
+            { type = "item", name = "low-density-structure",    amount = 6 },
+            { type = "item", name = "advanced-circuit",         amount = 6 },
+            { type = "item", name = "processing-unit",          amount = 6 }
         },
         productivity = {
-            {"5d-productivity-module-09", 3},
-            {"low-density-structure", 6},
-            {"advanced-circuit", 6},
-            {"processing-unit", 6}
+            { type = "item", name = "5d-productivity-module-09", amount = 3 },
+            { type = "item", name = "low-density-structure",     amount = 6 },
+            { type = "item", name = "advanced-circuit",          amount = 6 },
+            { type = "item", name = "processing-unit",           amount = 6 }
         },
         pollution = {
-            {"5d-pollution-module-09", 3},
-            {"low-density-structure", 6},
-            {"advanced-circuit", 6},
-            {"processing-unit", 6}
+            { type = "item", name = "5d-pollution-module-09", amount = 3 },
+            { type = "item", name = "low-density-structure",  amount = 6 },
+            { type = "item", name = "advanced-circuit",       amount = 6 },
+            { type = "item", name = "processing-unit",        amount = 6 }
         },
         merged = {
-            {"5d-speed-module-10", 1},
-            {"5d-effectivity-module-10", 1},
-            {"5d-productivity-module-10", 1},
-            {"5d-pollution-module-10", 1}
+            { type = "item", name = "5d-speed-module-10",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-10",  amount = 1 },
+            { type = "item", name = "5d-productivity-module-10", amount = 1 },
+            { type = "item", name = "5d-pollution-module-10",    amount = 1 }
         }
     },
     tech = {
         number = 10,
         count = techCount * 27,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             speed = {
                 "speed-module-9"
             },
             effectivity = {
-                "effectivity-module-9"
+                "efficiency-module-9"
             },
             productivity = {
                 "productivity-module-9"
@@ -874,7 +873,7 @@ genModules {
             merged = {
                 "5d-merged-module-9",
                 "speed-module-10",
-                "effectivity-module-10",
+                "efficiency-module-10",
                 "productivity-module-10",
                 "5d-pollution-module-10"
             }

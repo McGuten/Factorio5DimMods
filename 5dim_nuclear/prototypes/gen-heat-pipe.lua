@@ -16,10 +16,10 @@ genHeatPipes {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 10},
-        {"copper-plate", 20}
+        { type = "item", name = "steel-plate",  amount = 10 },
+        { type = "item", name = "copper-plate", amount = 20 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-02",
     tech = nil
 }
@@ -39,21 +39,21 @@ genHeatPipes {
     new = true,
     order = "b",
     ingredients = {
-        {"heat-pipe", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20}
+        { type = "item", name = "heat-pipe",    amount = 1 },
+        { type = "item", name = "steel-plate",  amount = 10 },
+        { type = "item", name = "copper-plate", amount = 20 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "nuclear-power",
@@ -75,22 +75,22 @@ genHeatPipes {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-heat-pipe-02", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-heat-pipe-02",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-1",
@@ -116,23 +116,23 @@ genHeatPipes {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-heat-pipe-03", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-heat-pipe-03",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-2",
@@ -158,24 +158,24 @@ genHeatPipes {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-heat-pipe-04", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module", 1}
+        { type = "item", name = "5d-heat-pipe-04",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module",     amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-3",
@@ -201,24 +201,24 @@ genHeatPipes {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-heat-pipe-05", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module", 1}
+        { type = "item", name = "5d-heat-pipe-05",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module",     amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-4",
@@ -243,24 +243,24 @@ genHeatPipes {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-heat-pipe-06", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module-2", 1}
+        { type = "item", name = "5d-heat-pipe-06",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module-2",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-5",
@@ -286,24 +286,24 @@ genHeatPipes {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-heat-pipe-07", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module-2", 1}
+        { type = "item", name = "5d-heat-pipe-07",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module-2",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-6",
@@ -328,24 +328,24 @@ genHeatPipes {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-heat-pipe-08", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module-3", 1}
+        { type = "item", name = "5d-heat-pipe-08",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module-3",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-heat-pipe-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-7",
@@ -371,22 +371,23 @@ genHeatPipes {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-heat-pipe-09", 1},
-        {"steel-plate", 10},
-        {"copper-plate", 20},
-        {"low-density-structure", 2},
-        {"effectivity-module-3", 1}
+        { type = "item", name = "5d-heat-pipe-09",       amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "copper-plate",          amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "efficiency-module-3",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-8",

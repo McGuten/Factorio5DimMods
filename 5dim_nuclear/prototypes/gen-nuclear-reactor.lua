@@ -16,12 +16,12 @@ genNuclearReactors {
     new = false,
     order = "a",
     ingredients = {
-        {"concrete", 500},
-        {"steel-plate", 500},
-        {"advanced-circuit", 500},
-        {"copper-plate", 500}
+        { type = "item", name = "concrete",         amount = 500 },
+        { type = "item", name = "steel-plate",      amount = 500 },
+        { type = "item", name = "advanced-circuit", amount = 500 },
+        { type = "item", name = "copper-plate",     amount = 500 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-02",
     tech = nil
 }
@@ -41,24 +41,24 @@ genNuclearReactors {
     new = true,
     order = "b",
     ingredients = {
-        {"nuclear-reactor", 1},
-        {"concrete", 400},
-        {"steel-plate", 400},
-        {"advanced-circuit", 400},
-        {"copper-plate", 400},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "nuclear-reactor",  amount = 1 },
+        { type = "item", name = "concrete",         amount = 400 },
+        { type = "item", name = "steel-plate",      amount = 400 },
+        { type = "item", name = "advanced-circuit", amount = 400 },
+        { type = "item", name = "copper-plate",     amount = 400 },
+        { type = "item", name = "iron-gear-wheel",  amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "nuclear-power",
@@ -81,24 +81,24 @@ genNuclearReactors {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-nuclear-reactor-02", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "5d-nuclear-reactor-02", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-1",
@@ -124,25 +124,25 @@ genNuclearReactors {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-nuclear-reactor-03", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "5d-nuclear-reactor-03", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-2",
@@ -168,26 +168,26 @@ genNuclearReactors {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-nuclear-reactor-04", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"iron-gear-wheel", 100},
-        {"speed-module", 5}
+        { type = "item", name = "5d-nuclear-reactor-04", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 },
+        { type = "item", name = "speed-module",          amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-3",
@@ -213,26 +213,26 @@ genNuclearReactors {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-nuclear-reactor-05", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"iron-gear-wheel", 100},
-        {"productivity-module", 5}
+        { type = "item", name = "5d-nuclear-reactor-05", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 },
+        { type = "item", name = "productivity-module",   amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-4",
@@ -257,26 +257,26 @@ genNuclearReactors {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-nuclear-reactor-06", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"low-density-structure", 50},
-        {"speed-module-2", 5}
+        { type = "item", name = "5d-nuclear-reactor-06", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "low-density-structure", amount = 50 },
+        { type = "item", name = "speed-module-2",        amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-5",
@@ -302,26 +302,26 @@ genNuclearReactors {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-nuclear-reactor-07", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"low-density-structure", 50},
-        {"productivity-module-2", 5}
+        { type = "item", name = "5d-nuclear-reactor-07", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "low-density-structure", amount = 50 },
+        { type = "item", name = "productivity-module-2", amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-6",
@@ -346,26 +346,26 @@ genNuclearReactors {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-nuclear-reactor-08", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"low-density-structure", 50},
-        {"speed-module-3", 5}
+        { type = "item", name = "5d-nuclear-reactor-08", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "low-density-structure", amount = 50 },
+        { type = "item", name = "speed-module-3",        amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-nuclear-reactor-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-7",
@@ -391,24 +391,24 @@ genNuclearReactors {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-nuclear-reactor-09", 1},
-        {"refined-concrete", 400},
-        {"steel-plate", 400},
-        {"processing-unit", 100},
-        {"copper-plate", 400},
-        {"low-density-structure", 50},
-        {"productivity-module-3", 5}
+        { type = "item", name = "5d-nuclear-reactor-09", amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 400 },
+        { type = "item", name = "steel-plate",           amount = 400 },
+        { type = "item", name = "processing-unit",       amount = 100 },
+        { type = "item", name = "copper-plate",          amount = 400 },
+        { type = "item", name = "low-density-structure", amount = 50 },
+        { type = "item", name = "productivity-module-3", amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-nuclear-reactor-8",

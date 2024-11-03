@@ -16,12 +16,12 @@ genCentrifuges {
     new = false,
     order = "a",
     ingredients = {
-        {"concrete", 100},
-        {"steel-plate", 50},
-        {"advanced-circuit", 100},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "concrete",         amount = 100 },
+        { type = "item", name = "steel-plate",      amount = 50 },
+        { type = "item", name = "advanced-circuit", amount = 100 },
+        { type = "item", name = "iron-gear-wheel",  amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-02",
     tech = nil
 }
@@ -41,21 +41,21 @@ genCentrifuges {
     new = true,
     order = "b",
     ingredients = {
-        {"centrifuge", 1},
-        {"concrete", 100},
-        {"steel-plate", 50},
-        {"advanced-circuit", 100},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "centrifuge",       amount = 1 },
+        { type = "item", name = "concrete",         amount = 100 },
+        { type = "item", name = "steel-plate",      amount = 50 },
+        { type = "item", name = "advanced-circuit", amount = 100 },
+        { type = "item", name = "iron-gear-wheel",  amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "uranium-processing"
@@ -77,21 +77,21 @@ genCentrifuges {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-centrifuge-02", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"advanced-circuit", 100},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "5d-centrifuge-02",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 100 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-centrifuge-1"
@@ -114,22 +114,22 @@ genCentrifuges {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-centrifuge-03", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"advanced-circuit", 100},
-        {"iron-gear-wheel", 100}
+        { type = "item", name = "5d-centrifuge-03",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 100 },
+        { type = "item", name = "iron-gear-wheel",       amount = 100 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-centrifuge-2",
@@ -152,23 +152,23 @@ genCentrifuges {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-centrifuge-04", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"speed-module", 1}
+        { type = "item", name = "5d-centrifuge-04",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "speed-module",          amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-centrifuge-3",
@@ -192,24 +192,23 @@ genCentrifuges {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-centrifuge-05", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"productivity-module", 1}
-
+        { type = "item", name = "5d-centrifuge-05",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "productivity-module",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-centrifuge-4"
@@ -231,24 +230,24 @@ genCentrifuges {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-centrifuge-06", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"speed-module-2", 1}
+        { type = "item", name = "5d-centrifuge-06",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "speed-module-2",        amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-centrifuge-5",
@@ -272,24 +271,24 @@ genCentrifuges {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-centrifuge-07", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-centrifuge-07",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "productivity-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-centrifuge-6"
@@ -311,24 +310,24 @@ genCentrifuges {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-centrifuge-08", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"speed-module-3", 1}
+        { type = "item", name = "5d-centrifuge-08",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "speed-module-3",        amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-centrifuge-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-centrifuge-7"
@@ -351,23 +350,23 @@ genCentrifuges {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-centrifuge-09", 1},
-        {"refined-concrete", 100},
-        {"low-density-structure", 5},
-        {"processing-unit", 15},
-        {"steel-plate", 50},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-centrifuge-09",      amount = 1 },
+        { type = "item", name = "refined-concrete",      amount = 100 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 15 },
+        { type = "item", name = "steel-plate",           amount = 50 },
+        { type = "item", name = "productivity-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-centrifuge-8"

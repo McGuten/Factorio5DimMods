@@ -17,9 +17,9 @@ genLocomotives {
     new = false,
     order = "a",
     ingredients = {
-        {"engine-unit", 20},
-        {"electronic-circuit", 10},
-        {"steel-plate", 30}
+        { type = "item", name = "engine-unit",        amount = 20 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "steel-plate",        amount = 30 }
     },
     tech = nil
 }
@@ -40,18 +40,18 @@ genLocomotives {
     new = true,
     order = "b",
     ingredients = {
-        {"locomotive", 1},
-        {"engine-unit", 20},
-        {"electronic-circuit", 10},
-        {"steel-plate", 30},
-        {"pipe", 2}
+        { type = "item", name = "locomotive",         amount = 1 },
+        { type = "item", name = "engine-unit",        amount = 20 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "steel-plate",        amount = 30 },
+        { type = "item", name = "pipe",               amount = 2 }
     },
     tech = {
         number = 2,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "railway"
@@ -75,19 +75,19 @@ genLocomotives {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-locomotive-02", 1},
-        {"engine-unit", 15},
-        {"electronic-circuit", 5},
-        {"steel-plate", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-02",   amount = 1 },
+        { type = "item", name = "engine-unit",        amount = 15 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",        amount = 20 },
+        { type = "item", name = "pipe",               amount = 5 }
     },
     tech = {
         number = 3,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-locomotive-2",
@@ -112,20 +112,20 @@ genLocomotives {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-locomotive-03", 1},
-        {"engine-unit", 15},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-03", amount = 1 },
+        { type = "item", name = "engine-unit",      amount = 15 },
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 20 },
+        { type = "item", name = "pipe",             amount = 5 }
     },
     tech = {
         number = 4,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-locomotive-3",
@@ -150,20 +150,20 @@ genLocomotives {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-locomotive-04", 1},
-        {"engine-unit", 15},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-04", amount = 1 },
+        { type = "item", name = "engine-unit",      amount = 15 },
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 20 },
+        { type = "item", name = "pipe",             amount = 5 }
     },
     tech = {
         number = 5,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-locomotive-4"
@@ -187,20 +187,20 @@ genLocomotives {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-locomotive-05", 1},
-        {"engine-unit", 15},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-05", amount = 1 },
+        { type = "item", name = "engine-unit",      amount = 15 },
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 20 },
+        { type = "item", name = "pipe",             amount = 5 }
     },
     tech = {
         number = 6,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-locomotive-5"
@@ -224,21 +224,21 @@ genLocomotives {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-locomotive-06", 1},
-        {"engine-unit", 15},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-06",      amount = 1 },
+        { type = "item", name = "engine-unit",           amount = 15 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 20 },
+        { type = "item", name = "pipe",                  amount = 5 }
     },
     tech = {
         number = 7,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-locomotive-6",
@@ -263,21 +263,21 @@ genLocomotives {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-locomotive-07", 1},
-        {"engine-unit", 15},
-        {"processing-unit", 2},
-        {"low-density-structure", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-07",      amount = 1 },
+        { type = "item", name = "engine-unit",           amount = 15 },
+        { type = "item", name = "processing-unit",       amount = 2 },
+        { type = "item", name = "low-density-structure", amount = 20 },
+        { type = "item", name = "pipe",                  amount = 5 }
     },
     tech = {
         number = 8,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-locomotive-7"
@@ -301,21 +301,21 @@ genLocomotives {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-locomotive-08", 1},
-        {"engine-unit", 15},
-        {"processing-unit", 2},
-        {"low-density-structure", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-08",      amount = 1 },
+        { type = "item", name = "engine-unit",           amount = 15 },
+        { type = "item", name = "processing-unit",       amount = 2 },
+        { type = "item", name = "low-density-structure", amount = 20 },
+        { type = "item", name = "pipe",                  amount = 5 }
     },
     tech = {
         number = 9,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-locomotive-8"
@@ -339,21 +339,21 @@ genLocomotives {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-locomotive-09", 1},
-        {"engine-unit", 15},
-        {"processing-unit", 2},
-        {"low-density-structure", 20},
-        {"pipe", 5}
+        { type = "item", name = "5d-locomotive-09",      amount = 1 },
+        { type = "item", name = "engine-unit",           amount = 15 },
+        { type = "item", name = "processing-unit",       amount = 2 },
+        { type = "item", name = "low-density-structure", amount = 20 },
+        { type = "item", name = "pipe",                  amount = 5 }
     },
     tech = {
         number = 10,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-locomotive-9"

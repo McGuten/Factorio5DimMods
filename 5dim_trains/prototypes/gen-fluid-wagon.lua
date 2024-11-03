@@ -15,10 +15,10 @@ genFluidWagons {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-gear-wheel", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "iron-gear-wheel", amount = 10 },
+        { type = "item", name = "steel-plate",     amount = 16 },
+        { type = "item", name = "pipe",            amount = 8 },
+        { type = "item", name = "storage-tank",    amount = 1 }
     },
     tech = nil
 }
@@ -37,18 +37,18 @@ genFluidWagons {
     new = true,
     order = "b",
     ingredients = {
-        {"fluid-wagon", 1},
-        {"iron-gear-wheel", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "fluid-wagon",     amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 10 },
+        { type = "item", name = "steel-plate",     amount = 16 },
+        { type = "item", name = "pipe",            amount = 8 },
+        { type = "item", name = "storage-tank",    amount = 1 }
     },
     tech = {
         number = 2,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "fluid-wagon",
@@ -71,19 +71,19 @@ genFluidWagons {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-fluid-wagon-02", 1},
-        {"iron-gear-wheel", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-02", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",   amount = 10 },
+        { type = "item", name = "steel-plate",       amount = 16 },
+        { type = "item", name = "pipe",              amount = 8 },
+        { type = "item", name = "storage-tank",      amount = 1 }
     },
     tech = {
         number = 3,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "fluid-wagon-2",
@@ -106,20 +106,20 @@ genFluidWagons {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-fluid-wagon-03", 1},
-        {"electronic-circuit", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-03",  amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "steel-plate",        amount = 16 },
+        { type = "item", name = "pipe",               amount = 8 },
+        { type = "item", name = "storage-tank",       amount = 1 }
     },
     tech = {
         number = 4,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-wagon-3",
@@ -142,20 +142,20 @@ genFluidWagons {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-fluid-wagon-04", 1},
-        {"electronic-circuit", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-04",  amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 10 },
+        { type = "item", name = "steel-plate",        amount = 16 },
+        { type = "item", name = "pipe",               amount = 8 },
+        { type = "item", name = "storage-tank",       amount = 1 }
     },
     tech = {
         number = 5,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-wagon-4"
@@ -177,20 +177,20 @@ genFluidWagons {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-fluid-wagon-05", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-05", amount = 1 },
+        { type = "item", name = "advanced-circuit",  amount = 10 },
+        { type = "item", name = "steel-plate",       amount = 16 },
+        { type = "item", name = "pipe",              amount = 8 },
+        { type = "item", name = "storage-tank",      amount = 1 }
     },
     tech = {
         number = 6,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "fluid-wagon-5"
@@ -212,21 +212,21 @@ genFluidWagons {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-fluid-wagon-06", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 16},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-06", amount = 1 },
+        { type = "item", name = "advanced-circuit",  amount = 10 },
+        { type = "item", name = "steel-plate",       amount = 16 },
+        { type = "item", name = "pipe",              amount = 8 },
+        { type = "item", name = "storage-tank",      amount = 1 }
     },
     tech = {
         number = 7,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-wagon-6",
@@ -249,21 +249,21 @@ genFluidWagons {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-fluid-wagon-07", 1},
-        {"advanced-circuit", 10},
-        {"low-density-structure", 5},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-07",     amount = 1 },
+        { type = "item", name = "advanced-circuit",      amount = 10 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "pipe",                  amount = 8 },
+        { type = "item", name = "storage-tank",          amount = 1 }
     },
     tech = {
         number = 8,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-wagon-7"
@@ -285,21 +285,21 @@ genFluidWagons {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-fluid-wagon-08", 1},
-        {"advanced-circuit", 10},
-        {"low-density-structure", 5},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-08",     amount = 1 },
+        { type = "item", name = "advanced-circuit",      amount = 10 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "pipe",                  amount = 8 },
+        { type = "item", name = "storage-tank",          amount = 1 }
     },
     tech = {
         number = 9,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-wagon-8"
@@ -321,21 +321,21 @@ genFluidWagons {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-fluid-wagon-09", 1},
-        {"processing-unit", 5},
-        {"low-density-structure", 5},
-        {"pipe", 8},
-        {"storage-tank", 1}
+        { type = "item", name = "5d-fluid-wagon-09",     amount = 1 },
+        { type = "item", name = "processing-unit",       amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "pipe",                  amount = 8 },
+        { type = "item", name = "storage-tank",          amount = 1 }
     },
     tech = {
         number = 10,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "fluid-wagon-9"

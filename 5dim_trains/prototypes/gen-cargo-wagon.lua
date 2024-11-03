@@ -15,9 +15,9 @@ genCargoWagons {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-gear-wheel", 10},
-        {"iron-plate", 20},
-        {"steel-plate", 20}
+        { type = "item", name = "iron-gear-wheel", amount = 10 },
+        { type = "item", name = "iron-plate",      amount = 20 },
+        { type = "item", name = "steel-plate",     amount = 20 }
     },
     tech = nil
 }
@@ -36,17 +36,17 @@ genCargoWagons {
     new = true,
     order = "b",
     ingredients = {
-        {"cargo-wagon", 1},
-        {"iron-gear-wheel", 10},
-        {"iron-plate", 20},
-        {"steel-plate", 20}
+        { type = "item", name = "cargo-wagon",     amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 10 },
+        { type = "item", name = "iron-plate",      amount = 20 },
+        { type = "item", name = "steel-plate",     amount = 20 }
     },
     tech = {
         number = 2,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "railway"
@@ -68,18 +68,18 @@ genCargoWagons {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-cargo-wagon-02", 1},
-        {"iron-gear-wheel", 10},
-        {"iron-plate", 20},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-02", amount = 1 },
+        { type = "item", name = "iron-gear-wheel",   amount = 10 },
+        { type = "item", name = "iron-plate",        amount = 20 },
+        { type = "item", name = "steel-plate",       amount = 20 }
     },
     tech = {
         number = 3,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-cargo-wagon-2",
@@ -102,19 +102,19 @@ genCargoWagons {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-cargo-wagon-03", 1},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-03",  amount = 1 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",        amount = 20 }
     },
     tech = {
         number = 4,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-cargo-wagon-3",
@@ -137,19 +137,19 @@ genCargoWagons {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-cargo-wagon-04", 1},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-04",  amount = 1 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",        amount = 20 }
     },
     tech = {
         number = 5,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-cargo-wagon-4",
@@ -172,19 +172,19 @@ genCargoWagons {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-cargo-wagon-05", 1},
-        {"low-density-structure", 5},
-        {"electronic-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-05",     amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "electronic-circuit",    amount = 5 },
+        { type = "item", name = "steel-plate",           amount = 20 }
     },
     tech = {
         number = 6,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-cargo-wagon-5"
@@ -206,20 +206,20 @@ genCargoWagons {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-cargo-wagon-06", 1},
-        {"low-density-structure", 5},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-06",     amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "steel-plate",           amount = 20 }
     },
     tech = {
         number = 7,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-cargo-wagon-6",
@@ -242,20 +242,20 @@ genCargoWagons {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-cargo-wagon-07", 1},
-        {"low-density-structure", 5},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-07",     amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "steel-plate",           amount = 20 }
     },
     tech = {
         number = 8,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-cargo-wagon-7"
@@ -277,20 +277,20 @@ genCargoWagons {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-cargo-wagon-08", 1},
-        {"low-density-structure", 5},
-        {"advanced-circuit", 5},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-08",     amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "steel-plate",           amount = 20 }
     },
     tech = {
         number = 9,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-cargo-wagon-8"
@@ -312,20 +312,20 @@ genCargoWagons {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-cargo-wagon-09", 1},
-        {"low-density-structure", 5},
-        {"processing-unit", 3},
-        {"steel-plate", 20}
+        { type = "item", name = "5d-cargo-wagon-09",     amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 3 },
+        { type = "item", name = "steel-plate",           amount = 20 }
     },
     tech = {
         number = 10,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-cargo-wagon-9"

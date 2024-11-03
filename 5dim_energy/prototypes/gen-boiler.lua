@@ -16,10 +16,10 @@ genBoilers {
     new = false,
     order = "a",
     ingredients = {
-        {"stone-furnace", 1},
-        {"pipe", 4}
+        { type = "item", name = "stone-furnace", amount = 1 },
+        { type = "item", name = "pipe",          amount = 4 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-02",
     tech = nil
 }
@@ -39,18 +39,18 @@ genBoilers {
     new = true,
     order = "b",
     ingredients = {
-        {"boiler", 1},
-        {"stone", 5},
-        {"pipe", 4}
+        { type = "item", name = "boiler", amount = 1 },
+        { type = "item", name = "stone",  amount = 5 },
+        { type = "item", name = "pipe",   amount = 4 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "fluid-handling",
@@ -73,18 +73,18 @@ genBoilers {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-boiler-02", 1},
-        {"stone-brick", 5},
-        {"pipe", 10}
+        { type = "item", name = "5d-boiler-02", amount = 1 },
+        { type = "item", name = "stone-brick",  amount = 5 },
+        { type = "item", name = "pipe",         amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-boiler-1",
@@ -108,19 +108,19 @@ genBoilers {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-boiler-03", 1},
-        {"stone-brick", 5},
-        {"pipe", 4}
+        { type = "item", name = "5d-boiler-03", amount = 1 },
+        { type = "item", name = "stone-brick",  amount = 5 },
+        { type = "item", name = "pipe",         amount = 4 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-boiler-2",
@@ -144,20 +144,20 @@ genBoilers {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-boiler-04", 1},
-        {"stone-brick", 5},
-        {"pipe", 4},
-        {"effectivity-module", 1}
+        { type = "item", name = "5d-boiler-04",       amount = 1 },
+        { type = "item", name = "stone-brick",        amount = 5 },
+        { type = "item", name = "pipe",               amount = 4 },
+        { type = "item", name = "efficiency-module", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-boiler-3",
@@ -181,22 +181,22 @@ genBoilers {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-boiler-05", 1},
-        {"steel-plate", 2},
-        {"concrete", 5},
-        {"pipe", 4},
-        {"productivity-module", 1}
+        { type = "item", name = "5d-boiler-05",        amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 2 },
+        { type = "item", name = "concrete",            amount = 5 },
+        { type = "item", name = "pipe",                amount = 4 },
+        { type = "item", name = "productivity-module", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-boiler-4",
@@ -220,22 +220,22 @@ genBoilers {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-boiler-06", 1},
-        {"steel-plate", 2},
-        {"concrete", 5},
-        {"pipe", 4},
-        {"effectivity-module-2", 1}
+        { type = "item", name = "5d-boiler-06",         amount = 1 },
+        { type = "item", name = "steel-plate",          amount = 2 },
+        { type = "item", name = "concrete",             amount = 5 },
+        { type = "item", name = "pipe",                 amount = 4 },
+        { type = "item", name = "efficiency-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-boiler-5",
@@ -259,23 +259,23 @@ genBoilers {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-boiler-07", 1},
-        {"steel-plate", 2},
-        {"concrete", 5},
-        {"pipe", 4},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-boiler-07",          amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 2 },
+        { type = "item", name = "concrete",              amount = 5 },
+        { type = "item", name = "pipe",                  amount = 4 },
+        { type = "item", name = "productivity-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-boiler-6",
@@ -299,23 +299,23 @@ genBoilers {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-boiler-08", 1},
-        {"low-density-structure", 2},
-        {"refined-concrete", 5},
-        {"pipe", 4},
-        {"effectivity-module-3", 1}
+        { type = "item", name = "5d-boiler-08",          amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "refined-concrete",      amount = 5 },
+        { type = "item", name = "pipe",                  amount = 4 },
+        { type = "item", name = "efficiency-module-3",  amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-boiler-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-boiler-7",
@@ -339,22 +339,22 @@ genBoilers {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-boiler-09", 1},
-        {"low-density-structure", 2},
-        {"refined-concrete", 5},
-        {"pipe", 4},
-        {"productivity-module-3", 1}
+        { type = "item", name = "5d-boiler-09",          amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "refined-concrete",      amount = 5 },
+        { type = "item", name = "pipe",                  amount = 4 },
+        { type = "item", name = "productivity-module-3", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-boiler-8",

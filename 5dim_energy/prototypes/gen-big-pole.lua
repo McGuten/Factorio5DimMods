@@ -16,11 +16,11 @@ genBigPoles {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "iron-stick",   amount = 8 },
+        { type = "item", name = "steel-plate",  amount = 5 },
+        { type = "item", name = "copper-plate", amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-02",
     tech = nil
 }
@@ -40,19 +40,19 @@ genBigPoles {
     new = true,
     order = "b",
     ingredients = {
-        {"big-electric-pole", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "big-electric-pole", amount = 1 },
+        { type = "item", name = "iron-stick",        amount = 8 },
+        { type = "item", name = "steel-plate",       amount = 5 },
+        { type = "item", name = "copper-plate",      amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "electric-energy-distribution-1"
@@ -74,20 +74,20 @@ genBigPoles {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-big-electric-pole-02", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "5d-big-electric-pole-02", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "copper-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-substation-1",
@@ -113,21 +113,21 @@ genBigPoles {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-big-electric-pole-03", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "5d-big-electric-pole-03", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "copper-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-substation-2",
@@ -151,20 +151,20 @@ genBigPoles {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-big-electric-pole-04", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "5d-big-electric-pole-04", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "copper-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-substation-3",
@@ -190,21 +190,21 @@ genBigPoles {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-big-electric-pole-05", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "5d-big-electric-pole-05", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "copper-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-substation-4",
@@ -228,22 +228,22 @@ genBigPoles {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-big-electric-pole-06", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"copper-plate", 5}
+        { type = "item", name = "5d-big-electric-pole-06", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "copper-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-substation-5",
@@ -269,23 +269,23 @@ genBigPoles {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-big-electric-pole-07", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"electronic-circuit", 5},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-big-electric-pole-07", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "electronic-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-substation-6",
@@ -309,23 +309,23 @@ genBigPoles {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-big-electric-pole-08", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"electronic-circuit", 5},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-big-electric-pole-08", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "electronic-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-big-electric-pole-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-substation-7",
@@ -350,22 +350,22 @@ genBigPoles {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-big-electric-pole-09", 1},
-        {"iron-stick", 8},
-        {"steel-plate", 5},
-        {"electronic-circuit", 5},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-big-electric-pole-09", amount = 1 },
+        { type = "item", name = "iron-stick",              amount = 8 },
+        { type = "item", name = "steel-plate",             amount = 5 },
+        { type = "item", name = "electronic-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-substation-8",

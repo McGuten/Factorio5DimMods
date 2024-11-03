@@ -16,10 +16,10 @@ genAccumulators {
     new = false,
     order = "a",
     ingredients = {
-        {"iron-plate", 2},
-        {"battery", 5}
+        {type = "item", name = "iron-plate", amount = 2},
+        {type = "item", name = "battery", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-02",
     tech = nil
 }
@@ -39,12 +39,12 @@ genAccumulators {
     new = true,
     order = "b",
     ingredients = {
-        {"accumulator", 1},
-        {"electronic-circuit", 2},
-        {"iron-plate", 2},
-        {"battery", 5}
+        {type = "item", name = "accumulator", amount = 1},
+        {type = "item", name = "electronic-circuit", amount = 2},
+        {type = "item", name = "iron-plate", amount = 2},
+        {type = "item", name = "battery", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-03",
     tech = {
         number = 2,
@@ -73,12 +73,12 @@ genAccumulators {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-accumulator-02", 1},
-        {"electronic-circuit", 7},
-        {"iron-plate", 4},
-        {"battery", 10}
+        {type = "item", name = "5d-accumulator-02", amount = 1},
+        {type = "item", name = "electronic-circuit", amount = 7},
+        {type = "item", name = "iron-plate", amount = 4},
+        {type = "item", name = "battery", amount = 10}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-04",
     tech = {
         number = 3,
@@ -110,12 +110,12 @@ genAccumulators {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-accumulator-03", 1},
-        {"advanced-circuit", 7},
-        {"steel-plate", 7},
-        {"battery", 15}
+        {type = "item", name = "5d-accumulator-03", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 7},
+        {type = "item", name = "steel-plate", amount = 7},
+        {type = "item", name = "battery", amount = 15}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-05",
     tech = {
         number = 4,
@@ -147,13 +147,13 @@ genAccumulators {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-accumulator-04", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 2},
-        {"battery", 15},
-        {"effectivity-module", 1}
+        {type = "item", name = "5d-accumulator-04", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 2},
+        {type = "item", name = "steel-plate", amount = 2},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-06",
     tech = {
         number = 5,
@@ -186,13 +186,13 @@ genAccumulators {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-accumulator-05", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 2},
-        {"battery", 15},
-        {"effectivity-module", 1}
+        {type = "item", name = "5d-accumulator-05", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 2},
+        {type = "item", name = "steel-plate", amount = 2},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-07",
     tech = {
         number = 6,
@@ -223,13 +223,13 @@ genAccumulators {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-accumulator-06", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 2},
-        {"battery", 15},
-        {"effectivity-module-2", 1}
+        {type = "item", name = "5d-accumulator-06", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 2},
+        {type = "item", name = "steel-plate", amount = 2},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-08",
     tech = {
         number = 7,
@@ -263,13 +263,13 @@ genAccumulators {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-accumulator-07", 1},
-        {"processing-unit", 2},
-        {"steel-plate", 2},
-        {"battery", 15},
-        {"effectivity-module-2", 1}
+        {type = "item", name = "5d-accumulator-07", amount = 1},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "steel-plate", amount = 2},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-09",
     tech = {
         number = 8,
@@ -301,13 +301,13 @@ genAccumulators {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-accumulator-08", 1},
-        {"processing-unit", 2},
-        {"low-density-structure", 1},
-        {"battery", 15},
-        {"effectivity-module-3", 1}
+        {type = "item", name = "5d-accumulator-08", amount = 1},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "low-density-structure", amount = 1},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-accumulator-10",
     tech = {
         number = 9,
@@ -340,13 +340,13 @@ genAccumulators {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-accumulator-09", 1},
-        {"processing-unit", 2},
-        {"low-density-structure", 1},
-        {"battery", 15},
-        {"effectivity-module-3", 1}
+        {type = "item", name = "5d-accumulator-09", amount = 1},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "low-density-structure", amount = 1},
+        {type = "item", name = "battery", amount = 15},
+        {type = "item", name = "efficiency-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 10,
         count = techCount * 9,

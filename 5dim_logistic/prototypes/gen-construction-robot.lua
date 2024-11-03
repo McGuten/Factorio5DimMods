@@ -16,10 +16,10 @@ genConstructionRobots {
     new = false,
     order = "a",
     ingredients = {
-        {"flying-robot-frame", 1},
-        {"electronic-circuit", 2}
+        { type = "item", name = "flying-robot-frame", amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 2 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = nil
 }
 
@@ -37,17 +37,17 @@ genConstructionRobots {
     new = true,
     order = "b",
     ingredients = {
-        {"construction-robot", 1},
-        {"flying-robot-frame", 1},
-        {"electronic-circuit", 1}
+        { type = "item", name = "construction-robot", amount = 1 },
+        { type = "item", name = "flying-robot-frame", amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "logistic-robotics",
@@ -70,17 +70,17 @@ genConstructionRobots {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-construction-robot-02", 1},
-        {"flying-robot-frame", 1},
-        {"electronic-circuit", 1}
+        { type = "item", name = "5d-construction-robot-02", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "electronic-circuit",       amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-1",
@@ -104,18 +104,18 @@ genConstructionRobots {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-construction-robot-03", 1},
-        {"flying-robot-frame", 1},
-        {"advanced-circuit", 1}
+        { type = "item", name = "5d-construction-robot-03", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "advanced-circuit",         amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-2",
@@ -140,18 +140,18 @@ genConstructionRobots {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-construction-robot-04", 1},
-        {"flying-robot-frame", 1},
-        {"advanced-circuit", 1}
+        { type = "item", name = "5d-construction-robot-04", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "advanced-circuit",         amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-3",
@@ -175,19 +175,19 @@ genConstructionRobots {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-construction-robot-05", 1},
-        {"flying-robot-frame", 1},
-        {"advanced-circuit", 1}
+        { type = "item", name = "5d-construction-robot-05", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "advanced-circuit",         amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-construction-robot-4",
@@ -212,19 +212,19 @@ genConstructionRobots {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-construction-robot-06", 1},
-        {"flying-robot-frame", 1},
-        {"processing-unit", 1}
+        { type = "item", name = "5d-construction-robot-06", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "processing-unit",          amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-construction-robot-5",
@@ -248,20 +248,20 @@ genConstructionRobots {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-construction-robot-07", 1},
-        {"flying-robot-frame", 1},
-        {"processing-unit", 1}
+        { type = "item", name = "5d-construction-robot-07", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "processing-unit",          amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-6",
@@ -286,20 +286,20 @@ genConstructionRobots {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-construction-robot-08", 1},
-        {"flying-robot-frame", 1},
-        {"processing-unit", 1}
+        { type = "item", name = "5d-construction-robot-08", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "processing-unit",          amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-7",
@@ -323,20 +323,20 @@ genConstructionRobots {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-construction-robot-09", 1},
-        {"flying-robot-frame", 1},
-        {"processing-unit", 1}
+        { type = "item", name = "5d-construction-robot-09", amount = 1 },
+        { type = "item", name = "flying-robot-frame",       amount = 1 },
+        { type = "item", name = "processing-unit",          amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-8",

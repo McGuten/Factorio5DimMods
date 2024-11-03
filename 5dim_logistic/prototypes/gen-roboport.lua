@@ -22,9 +22,9 @@ genRoboports {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -56,10 +56,10 @@ genRoboports {
     new = true,
     order = "b",
     ingredients = {
-        {"roboport", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "roboport",         amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -71,8 +71,8 @@ genRoboports {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "logistic-robotics",
@@ -102,10 +102,10 @@ genRoboports {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-roboport-02", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-02",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -117,8 +117,8 @@ genRoboports {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-1",
@@ -149,10 +149,10 @@ genRoboports {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-roboport-03", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-03",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -164,9 +164,9 @@ genRoboports {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-2",
@@ -198,10 +198,10 @@ genRoboports {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-roboport-04", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-04",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -213,9 +213,9 @@ genRoboports {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-construction-robot-3",
@@ -246,10 +246,10 @@ genRoboports {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-roboport-05", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-05",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -261,10 +261,10 @@ genRoboports {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-construction-robot-4",
@@ -296,10 +296,10 @@ genRoboports {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-roboport-06", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-06",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -311,10 +311,10 @@ genRoboports {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-construction-robot-5",
@@ -345,10 +345,10 @@ genRoboports {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-roboport-07", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-07",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -360,11 +360,11 @@ genRoboports {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-6",
@@ -396,10 +396,10 @@ genRoboports {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-roboport-08", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-08",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -411,11 +411,11 @@ genRoboports {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-7",
@@ -446,10 +446,10 @@ genRoboports {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-roboport-09", 1},
-        {"steel-plate", 45},
-        {"iron-gear-wheel", 45},
-        {"advanced-circuit", 45}
+        { type = "item", name = "5d-roboport-09",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 45 },
+        { type = "item", name = "iron-gear-wheel",  amount = 45 },
+        { type = "item", name = "advanced-circuit", amount = 45 }
     },
     pollution = emisions,
     logistics = logistic,
@@ -460,11 +460,11 @@ genRoboports {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-construction-robot-8",

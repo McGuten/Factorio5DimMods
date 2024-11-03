@@ -16,12 +16,12 @@ genChemicalPlants {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"electronic-circuit", 5},
-        {"pipe", 5}
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 5},
+        {type = "item", name = "electronic-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-02",
     tech = nil
 }
@@ -41,13 +41,13 @@ genChemicalPlants {
     new = true,
     order = "b",
     ingredients = {
-        {"chemical-plant", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"electronic-circuit", 5},
-        {"pipe", 5}
+        {type = "item", name = "chemical-plant", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 5},
+        {type = "item", name = "electronic-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-03",
     tech = {
         number = 1,
@@ -77,13 +77,13 @@ genChemicalPlants {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-chemical-plant-02", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"electronic-circuit", 5},
-        {"pipe", 5}
+        {type = "item", name = "5d-chemical-plant-02", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 5},
+        {type = "item", name = "electronic-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-04",
     tech = {
         number = 2,
@@ -113,13 +113,13 @@ genChemicalPlants {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-chemical-plant-03", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"advanced-circuit", 5},
-        {"pipe", 5}
+        {type = "item", name = "5d-chemical-plant-03", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 5},
+        {type = "item", name = "advanced-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-05",
     tech = {
         number = 3,
@@ -150,14 +150,14 @@ genChemicalPlants {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-chemical-plant-04", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 5},
-        {"advanced-circuit", 5},
-        {"pipe", 5},
-        {"speed-module", 1}
+        {type = "item", name = "5d-chemical-plant-04", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "iron-gear-wheel", amount = 5},
+        {type = "item", name = "advanced-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5},
+        {type = "item", name = "speed-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-06",
     tech = {
         number = 4,
@@ -188,12 +188,12 @@ genChemicalPlants {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-chemical-plant-05", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module", 1}
+        {type = "item", name = "5d-chemical-plant-05", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "advanced-circuit", amount = 5},
+        {type = "item", name = "productivity-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-07",
     tech = {
         number = 5,
@@ -225,14 +225,14 @@ genChemicalPlants {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-chemical-plant-06", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"advanced-circuit", 5},
-        {"pipe", 5},
-        {"speed-module-2", 1}
+        {type = "item", name = "5d-chemical-plant-06", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "low-density-structure", amount = 2},
+        {type = "item", name = "advanced-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5},
+        {type = "item", name = "speed-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-08",
     tech = {
         number = 6,
@@ -264,14 +264,14 @@ genChemicalPlants {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-chemical-plant-07", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"advanced-circuit", 5},
-        {"pipe", 5},
-        {"productivity-module-2", 1}
+        {type = "item", name = "5d-chemical-plant-07", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "low-density-structure", amount = 2},
+        {type = "item", name = "advanced-circuit", amount = 5},
+        {type = "item", name = "pipe", amount = 5},
+        {type = "item", name = "productivity-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-09",
     tech = {
         number = 7,
@@ -304,14 +304,14 @@ genChemicalPlants {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-chemical-plant-08", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"processing-unit", 3},
-        {"pipe", 5},
-        {"speed-module-3", 1}
+        {type = "item", name = "5d-chemical-plant-08", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "low-density-structure", amount = 2},
+        {type = "item", name = "processing-unit", amount = 3},
+        {type = "item", name = "pipe", amount = 5},
+        {type = "item", name = "speed-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-chemical-plant-10",
     tech = {
         number = 8,
@@ -344,14 +344,14 @@ genChemicalPlants {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-chemical-plant-09", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 2},
-        {"processing-unit", 3},
-        {"pipe", 5},
-        {"productivity-module-3", 1}
+        {type = "item", name = "5d-chemical-plant-09", amount = 1},
+        {type = "item", name = "steel-plate", amount = 5},
+        {type = "item", name = "low-density-structure", amount = 2},
+        {type = "item", name = "processing-unit", amount = 3},
+        {type = "item", name = "pipe", amount = 5},
+        {type = "item", name = "productivity-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,

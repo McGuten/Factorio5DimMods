@@ -7,7 +7,7 @@ local emisions = 6
 local techCount = 200
 
 -- Electric furnace 01
-genChemicalPlants {
+genOilRefinery {
     number = "01",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -16,13 +16,13 @@ genChemicalPlants {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"stone-brick", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "stone-brick", amount = 10},
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-02",
     tech = nil
 }
@@ -33,7 +33,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 02
-genChemicalPlants {
+genOilRefinery {
     number = "02",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -42,14 +42,14 @@ genChemicalPlants {
     new = true,
     order = "b",
     ingredients = {
-        {"oil-refinery", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {type = "item", name = "oil-refinery", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-03",
     tech = {
         number = 1,
@@ -70,7 +70,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 03
-genChemicalPlants {
+genOilRefinery {
     number = "03",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -79,14 +79,14 @@ genChemicalPlants {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-oil-refinery-02", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"electronic-circuit", 10},
-        {"pipe", 10}
+        {type = "item", name = "5d-oil-refinery-02", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-04",
     tech = {
         number = 2,
@@ -107,7 +107,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 04
-genChemicalPlants {
+genOilRefinery {
     number = "04",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -116,14 +116,14 @@ genChemicalPlants {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-oil-refinery-03", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10}
+        {type = "item", name = "5d-oil-refinery-03", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-05",
     tech = {
         number = 3,
@@ -145,7 +145,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 05
-genChemicalPlants {
+genOilRefinery {
     number = "05",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -154,15 +154,15 @@ genChemicalPlants {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-oil-refinery-04", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"refined-concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"speed-module", 1}
+        {type = "item", name = "5d-oil-refinery-04", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "refined-concrete", amount = 10},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "speed-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-06",
     tech = {
         number = 4,
@@ -184,7 +184,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 06
-genChemicalPlants {
+genOilRefinery {
     number = "06",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -193,15 +193,15 @@ genChemicalPlants {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-oil-refinery-05", 1},
-        {"steel-plate", 15},
-        {"iron-gear-wheel", 10},
-        {"refined-concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"productivity-module", 1}
+        {type = "item", name = "5d-oil-refinery-05", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "refined-concrete", amount = 10},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "productivity-module", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-07",
     tech = {
         number = 5,
@@ -224,7 +224,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 07
-genChemicalPlants {
+genOilRefinery {
     number = "07",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -233,15 +233,15 @@ genChemicalPlants {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-oil-refinery-06", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"speed-module-2", 1}
+        {type = "item", name = "5d-oil-refinery-06", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "speed-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-08",
     tech = {
         number = 6,
@@ -264,7 +264,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 08
-genChemicalPlants {
+genOilRefinery {
     number = "08",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -273,15 +273,15 @@ genChemicalPlants {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-oil-refinery-07", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"advanced-circuit", 10},
-        {"pipe", 10},
-        {"productivity-module-2", 1}
+        {type = "item", name = "5d-oil-refinery-07", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "productivity-module-2", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-09",
     tech = {
         number = 7,
@@ -305,7 +305,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 09
-genChemicalPlants {
+genOilRefinery {
     number = "09",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -314,15 +314,15 @@ genChemicalPlants {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-oil-refinery-08", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"processing-unit", 2},
-        {"pipe", 10},
-        {"speed-module-3", 1}
+        {type = "item", name = "5d-oil-refinery-08", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "speed-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-oil-refinery-10",
     tech = {
         number = 8,
@@ -346,7 +346,7 @@ energy = energy + 200
 emisions = emisions + 3
 
 -- Electric furnace 10
-genChemicalPlants {
+genOilRefinery {
     number = "10",
     subgroup = "liquid-refinery",
     craftingSpeed = speed,
@@ -355,15 +355,15 @@ genChemicalPlants {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-oil-refinery-09", 1},
-        {"steel-plate", 15},
-        {"low-density-structure", 3},
-        {"concrete", 10},
-        {"processing-unit", 2},
-        {"pipe", 10},
-        {"productivity-module-3", 1}
+        {type = "item", name = "5d-oil-refinery-09", amount = 1},
+        {type = "item", name = "steel-plate", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "concrete", amount = 10},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "pipe", amount = 10},
+        {type = "item", name = "productivity-module-3", amount = 1}
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,

@@ -15,9 +15,9 @@ genLabs {
     new = false,
     order = "a",
     ingredients = {
-        {"electronic-circuit", 10},
-        {"iron-gear-wheel", 10},
-        {"transport-belt", 4}
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "transport-belt", amount = 4}
     },
     nextUpdate = "5d-lab-02",
     tech = nil
@@ -37,10 +37,10 @@ genLabs {
     new = true,
     order = "b",
     ingredients = {
-        {"lab", 1},
-        {"electronic-circuit", 10},
-        {"iron-gear-wheel", 10},
-        {"transport-belt", 4}
+        {type = "item", name = "lab", amount = 1},
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "iron-gear-wheel", amount = 10},
+        {type = "item", name = "transport-belt", amount = 4}
     },
     nextUpdate = "5d-lab-03",
     tech = {
@@ -70,10 +70,10 @@ genLabs {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-lab-02", 1},
-        {"electronic-circuit", 10},
-        {"steel-plate", 10},
-        {"transport-belt", 4}
+        {type = "item", name = "5d-lab-02", amount = 1},
+        {type = "item", name = "electronic-circuit", amount = 10},
+        {type = "item", name = "steel-plate", amount = 10},
+        {type = "item", name = "transport-belt", amount = 4}
     },
     nextUpdate = "5d-lab-04",
     tech = {
@@ -103,10 +103,10 @@ genLabs {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-lab-03", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 10},
-        {"fast-transport-belt", 4}
+        {type = "item", name = "5d-lab-03", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "steel-plate", amount = 10},
+        {type = "item", name = "fast-transport-belt", amount = 4}
     },
     nextUpdate = "5d-lab-05",
     tech = {
@@ -137,11 +137,11 @@ genLabs {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-lab-04", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 10},
-        {"fast-transport-belt", 4},
-        {"speed-module", 1}
+        {type = "item", name = "5d-lab-04", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "steel-plate", amount = 10},
+        {type = "item", name = "fast-transport-belt", amount = 4},
+        {type = "item", name = "speed-module", amount = 1}
     },
     nextUpdate = "5d-lab-06",
     tech = {
@@ -172,11 +172,11 @@ genLabs {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-lab-05", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 10},
-        {"fast-transport-belt", 4},
-        {"productivity-module", 1}
+        {type = "item", name = "5d-lab-05", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "steel-plate", amount = 10},
+        {type = "item", name = "fast-transport-belt", amount = 4},
+        {type = "item", name = "productivity-module", amount = 1}
     },
     nextUpdate = "5d-lab-07",
     tech = {
@@ -208,11 +208,11 @@ genLabs {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-lab-06", 1},
-        {"advanced-circuit", 10},
-        {"steel-plate", 10},
-        {"express-transport-belt", 4},
-        {"speed-module-2", 1}
+        {type = "item", name = "5d-lab-06", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "steel-plate", amount = 10},
+        {type = "item", name = "express-transport-belt", amount = 4},
+        {type = "item", name = "speed-module-2", amount = 1}
     },
     nextUpdate = "5d-lab-08",
     tech = {
@@ -244,11 +244,11 @@ genLabs {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-lab-07", 1},
-        {"advanced-circuit", 10},
-        {"low-density-structure", 3},
-        {"express-transport-belt", 4},
-        {"productivity-module-2", 1}
+        {type = "item", name = "5d-lab-07", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "express-transport-belt", amount = 4},
+        {type = "item", name = "productivity-module-2", amount = 1}
     },
     nextUpdate = "5d-lab-09",
     tech = {
@@ -281,11 +281,11 @@ genLabs {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-lab-08", 1},
-        {"advanced-circuit", 10},
-        {"low-density-structure", 3},
-        {"express-transport-belt", 4},
-        {"speed-module-3", 1}
+        {type = "item", name = "5d-lab-08", amount = 1},
+        {type = "item", name = "advanced-circuit", amount = 10},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "express-transport-belt", amount = 4},
+        {type = "item", name = "speed-module-3", amount = 1}
     },
     nextUpdate = "5d-lab-10",
     tech = {
@@ -318,11 +318,11 @@ genLabs {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-lab-09", 1},
-        {"processing-unit", 2},
-        {"low-density-structure", 3},
-        {"express-transport-belt", 4},
-        {"productivity-module-3", 1}
+        {type = "item", name = "5d-lab-09", amount = 1},
+        {type = "item", name = "processing-unit", amount = 2},
+        {type = "item", name = "low-density-structure", amount = 3},
+        {type = "item", name = "express-transport-belt", amount = 4},
+        {type = "item", name = "productivity-module-3", amount = 1}
     },
     tech = {
         number = 9,

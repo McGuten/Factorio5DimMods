@@ -17,6 +17,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 1,
     new = false,
+    liquids = false,
     number = "01",
     nextUpdate = {
         transportBelt = "fast-transport-belt",
@@ -29,32 +30,32 @@ genTransportBelts {
     order = "a",
     ingredients = {
         transportBelt = {
-            {"iron-plate", 1},
-            {"iron-gear-wheel", 1}
+            { type = "item", name = "iron-plate",      amount = 1 },
+            { type = "item", name = "iron-gear-wheel", amount = 1 }
         },
         groundBelt = {
-            {"iron-plate", 10},
-            {"transport-belt", 5}
+            { type = "item", name = "iron-plate",     amount = 10 },
+            { type = "item", name = "transport-belt", amount = 5 }
         },
         groundBelt30 = {
-            {"iron-plate", 10},
-            {"transport-belt", 30}
+            { type = "item", name = "iron-plate",     amount = 10 },
+            { type = "item", name = "transport-belt", amount = 30 }
         },
         groundBelt50 = {
-            {"iron-plate", 10},
-            {"transport-belt", 50}
+            { type = "item", name = "iron-plate",     amount = 10 },
+            { type = "item", name = "transport-belt", amount = 50 }
         },
         splitter = {
-            {"electronic-circuit", 5},
-            {"iron-plate", 5},
-            {"transport-belt", 4}
+            { type = "item", name = "electronic-circuit", amount = 5 },
+            { type = "item", name = "iron-plate",         amount = 5 },
+            { type = "item", name = "transport-belt",     amount = 4 }
         },
         loader = {
-            {"inserter", 5},
-            {"electronic-circuit", 5},
-            {"iron-gear-wheel", 5},
-            {"iron-plate", 5},
-            {"transport-belt", 5}
+            { type = "item", name = "inserter",           amount = 5 },
+            { type = "item", name = "electronic-circuit", amount = 5 },
+            { type = "item", name = "iron-gear-wheel",    amount = 5 },
+            { type = "item", name = "iron-plate",         amount = 5 },
+            { type = "item", name = "transport-belt",     amount = 5 }
         }
     },
     tech = nil
@@ -74,6 +75,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 2,
     new = false,
+    liquids = false,
     number = "02",
     nextUpdate = {
         transportBelt = "express-transport-belt",
@@ -86,29 +88,29 @@ genTransportBelts {
     order = "b",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 5},
-            {"transport-belt", 1}
+            { type = "item", name = "iron-gear-wheel", amount = 5 },
+            { type = "item", name = "transport-belt",  amount = 1 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 40},
-            {"underground-belt", 2}
+            { type = "item", name = "iron-gear-wheel",  amount = 40 },
+            { type = "item", name = "underground-belt", amount = 2 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 40},
-            {"5d-underground-belt-30-01", 2}
+            { type = "item", name = "iron-gear-wheel",           amount = 40 },
+            { type = "item", name = "5d-underground-belt-30-01", amount = 2 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 40},
-            {"5d-underground-belt-50-01", 2}
+            { type = "item", name = "iron-gear-wheel",           amount = 40 },
+            { type = "item", name = "5d-underground-belt-50-01", amount = 2 }
         },
         splitter = {
-            {"splitter", 1},
-            {"iron-gear-wheel", 10},
-            {"electronic-circuit", 10}
+            { type = "item", name = "splitter",           amount = 1 },
+            { type = "item", name = "iron-gear-wheel",    amount = 10 },
+            { type = "item", name = "electronic-circuit", amount = 10 }
         },
         loader = {
-            {"fast-transport-belt", 5},
-            {"loader", 1}
+            { type = "item", name = "fast-transport-belt", amount = 5 },
+            { type = "item", name = "loader",              amount = 1 }
         }
     },
     tech = nil
@@ -128,6 +130,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 3,
     new = false,
+    liquids = true,
     number = "03",
     nextUpdate = {
         transportBelt = "5d-transport-belt-04",
@@ -140,54 +143,34 @@ genTransportBelts {
     order = "c",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 10},
-            {"fast-transport-belt", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",     amount = 10 },
+            { type = "item",  name = "fast-transport-belt", amount = 1 },
+            { type = "fluid", name = "lubricant",           amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"fast-underground-belt", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",       amount = 80 },
+            { type = "item",  name = "fast-underground-belt", amount = 2 },
+            { type = "fluid", name = "lubricant",             amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-fast-underground-belt-30-02", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",                amount = 80 },
+            { type = "item",  name = "5d-fast-underground-belt-30-02", amount = 2 },
+            { type = "fluid", name = "lubricant",                      amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-fast-underground-belt-50-02", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",                amount = 80 },
+            { type = "item",  name = "5d-fast-underground-belt-50-02", amount = 2 },
+            { type = "fluid", name = "lubricant",                      amount = 40 }
         },
         splitter = {
-            {"fast-splitter", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "fast-splitter",    amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"express-transport-belt", 5},
-            {"fast-loader", 1}
+            { type = "item", name = "express-transport-belt", amount = 5 },
+            { type = "item", name = "fast-loader",            amount = 1 }
         }
     },
     tech = nil
@@ -200,13 +183,14 @@ genTransportBelts {
             preName = "express-",
             postName = ""
         },
-        tech = "logistics-3"
+        tech = "logistics"
     },
     name = {
         preName = ""
     },
     speed = transportBeltSpeed * 4,
     new = true,
+    liquids = true,
     number = "04",
     nextUpdate = {
         transportBelt = "5d-transport-belt-05",
@@ -219,67 +203,49 @@ genTransportBelts {
     order = "d",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"express-transport-belt", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 15 },
+            { type = "item",  name = "express-transport-belt", amount = 1 },
+            { type = "fluid", name = "lubricant",              amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"express-underground-belt", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",          amount = 80 },
+            { type = "item",  name = "express-underground-belt", amount = 2 },
+            { type = "fluid", name = "lubricant",                amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-express-underground-belt-30-03", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",                   amount = 80 },
+            { type = "item",  name = "5d-express-underground-belt-30-03", amount = 2 },
+            { type = "fluid", name = "lubricant",                         amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-express-underground-belt-50-03", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",                   amount = 80 },
+            { type = "item",  name = "5d-express-underground-belt-50-03", amount = 2 },
+            { type = "fluid", name = "lubricant",                         amount = 40 }
         },
         splitter = {
-            {"express-splitter", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "express-splitter", amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-04", 5},
-            {"express-loader", 1}
+            { type = "item", name = "5d-transport-belt-04", amount = 5 },
+            { type = "item", name = "express-loader",       amount = 1 }
         }
     },
     tech = {
         number = 4,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "logistics-3"
+            "logistics-3",
+            "utility-science-pack"
         }
     }
 }
@@ -288,7 +254,7 @@ genTransportBelts {
 genTransportBelts {
     copy = {
         name = {
-            preName = "express-",
+            preName = "",
             postName = ""
         },
         tech = "logistics-3"
@@ -298,6 +264,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 5,
     new = true,
+    liquids = true,
     number = "05",
     nextUpdate = {
         transportBelt = "5d-transport-belt-06",
@@ -310,65 +277,45 @@ genTransportBelts {
     order = "e",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-04", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-04", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-04", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-04", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-04", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-04", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-04", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-04", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-04", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-04",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-05", 5},
-            {"5d-loader-04", 1}
+            { type = "item", name = "5d-transport-belt-05", amount = 5 },
+            { type = "item", name = "5d-loader-04",         amount = 1 }
         }
     },
     tech = {
         number = 5,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-4",
@@ -391,6 +338,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 6,
     new = true,
+    liquids = true,
     number = "06",
     nextUpdate = {
         transportBelt = "5d-transport-belt-07",
@@ -403,65 +351,45 @@ genTransportBelts {
     order = "f",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-05", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-05", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-05", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-05", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-05", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-05", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-05", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-05", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-05", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-05",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-06", 5},
-            {"5d-loader-05", 1}
+            { type = "item", name = "5d-transport-belt-06", amount = 5 },
+            { type = "item", name = "5d-loader-05",         amount = 1 }
         }
     },
     tech = {
         number = 6,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-5"
@@ -483,6 +411,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 7,
     new = true,
+    liquids = true,
     number = "07",
     nextUpdate = {
         transportBelt = "5d-transport-belt-08",
@@ -495,65 +424,45 @@ genTransportBelts {
     order = "g",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-06", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-06", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-06", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-06", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-06", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-06", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-06", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-06", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-06", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-06",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-07", 5},
-            {"5d-loader-06", 1}
+            { type = "item", name = "5d-transport-belt-07", amount = 5 },
+            { type = "item", name = "5d-loader-06",         amount = 1 }
         }
     },
     tech = {
         number = 7,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-6"
@@ -575,6 +484,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 8,
     new = true,
+    liquids = true,
     number = "08",
     nextUpdate = {
         transportBelt = "5d-transport-belt-09",
@@ -587,65 +497,45 @@ genTransportBelts {
     order = "h",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-07", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-07", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-07", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-07", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-07", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-07", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-07", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-07", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-07", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-07",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-08", 5},
-            {"5d-loader-07", 1}
+            { type = "item", name = "5d-transport-belt-08", amount = 5 },
+            { type = "item", name = "5d-loader-07",         amount = 1 }
         }
     },
     tech = {
         number = 8,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-7"
@@ -667,6 +557,7 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 9,
     new = true,
+    liquids = true,
     number = "09",
     nextUpdate = {
         transportBelt = "5d-transport-belt-10",
@@ -679,65 +570,45 @@ genTransportBelts {
     order = "i",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-08", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-08", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-08", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-08", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-08", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-08", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-08", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-08", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-08", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-08",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-09", 5},
-            {"5d-loader-08", 1}
+            { type = "item", name = "5d-transport-belt-09", amount = 5 },
+            { type = "item", name = "5d-loader-08",         amount = 1 }
         }
     },
     tech = {
         number = 9,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-8"
@@ -759,70 +630,51 @@ genTransportBelts {
     },
     speed = transportBeltSpeed * 10,
     new = true,
+    liquids = true,
     number = "10",
     nextUpdate = {},
     order = "j",
     ingredients = {
         transportBelt = {
-            {"iron-gear-wheel", 15},
-            {"5d-transport-belt-09", 1},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 20
-            }
+            { type = "item",  name = "iron-gear-wheel",      amount = 15 },
+            { type = "item",  name = "5d-transport-belt-09", amount = 1 },
+            { type = "fluid", name = "lubricant",            amount = 20 }
         },
         groundBelt = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-09", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",        amount = 80 },
+            { type = "item",  name = "5d-underground-belt-09", amount = 2 },
+            { type = "fluid", name = "lubricant",              amount = 40 }
         },
         groundBelt30 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-30-09", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-30-09", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         groundBelt50 = {
-            {"iron-gear-wheel", 80},
-            {"5d-underground-belt-50-09", 2},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 40
-            }
+            { type = "item",  name = "iron-gear-wheel",           amount = 80 },
+            { type = "item",  name = "5d-underground-belt-50-09", amount = 2 },
+            { type = "fluid", name = "lubricant",                 amount = 40 }
         },
         splitter = {
-            {"5d-splitter-09", 1},
-            {"iron-gear-wheel", 10},
-            {"advanced-circuit", 10},
-            {
-                type = "fluid",
-                name = "lubricant",
-                amount = 80
-            }
+            { type = "item",  name = "5d-splitter-09",   amount = 1 },
+            { type = "item",  name = "iron-gear-wheel",  amount = 10 },
+            { type = "item",  name = "advanced-circuit", amount = 10 },
+            { type = "fluid", name = "lubricant",        amount = 80 }
         },
         loader = {
-            {"5d-transport-belt-10", 5},
-            {"5d-loader-09", 1}
+            { type = "item", name = "5d-transport-belt-10", amount = 5 },
+            { type = "item", name = "5d-loader-09",         amount = 1 }
         }
     },
     tech = {
         number = 10,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "logistics-9"

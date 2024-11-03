@@ -16,11 +16,11 @@ genPumps {
     new = false,
     order = "a",
     ingredients = {
-        {"engine-unit", 1},
-        {"steel-plate", 1},
-        {"pipe", 1}
+        { type = "item", name = "engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate", amount = 1 },
+        { type = "item", name = "pipe",        amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-02",
     tech = nil
 }
@@ -40,19 +40,19 @@ genPumps {
     new = true,
     order = "b",
     ingredients = {
-        {"pump", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"pipe", 2}
+        { type = "item", name = "pump",        amount = 1 },
+        { type = "item", name = "engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate", amount = 5 },
+        { type = "item", name = "pipe",        amount = 2 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-03",
     tech = {
         number = 2,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "fluid-handling",
@@ -75,21 +75,21 @@ genPumps {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-pump-02", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 2},
-        {"iron-gear-wheel", 3},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-02",      amount = 1 },
+        { type = "item", name = "engine-unit",     amount = 1 },
+        { type = "item", name = "steel-plate",     amount = 2 },
+        { type = "item", name = "iron-gear-wheel", amount = 3 },
+        { type = "item", name = "pipe",            amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-04",
     tech = {
         number = 3,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-pump-2",
@@ -113,22 +113,22 @@ genPumps {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-pump-03", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-03",         amount = 1 },
+        { type = "item", name = "engine-unit",        amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "pipe",               amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-05",
     tech = {
         number = 4,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-pump-3"
@@ -150,21 +150,21 @@ genPumps {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-pump-04", 1},
-        {"engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-04",         amount = 1 },
+        { type = "item", name = "engine-unit",        amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "pipe",               amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-06",
     tech = {
         number = 5,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-pump-4",
@@ -188,22 +188,22 @@ genPumps {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-pump-05", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-05",           amount = 1 },
+        { type = "item", name = "electric-engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate",          amount = 5 },
+        { type = "item", name = "electronic-circuit",   amount = 2 },
+        { type = "item", name = "pipe",                 amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-07",
     tech = {
         number = 6,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-pump-5"
@@ -225,23 +225,23 @@ genPumps {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-pump-06", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-06",           amount = 1 },
+        { type = "item", name = "electric-engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate",          amount = 5 },
+        { type = "item", name = "electronic-circuit",   amount = 2 },
+        { type = "item", name = "pipe",                 amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-08",
     tech = {
         number = 7,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pump-6",
@@ -265,23 +265,23 @@ genPumps {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-pump-07", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"electronic-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-07",           amount = 1 },
+        { type = "item", name = "electric-engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate",          amount = 5 },
+        { type = "item", name = "electronic-circuit",   amount = 2 },
+        { type = "item", name = "pipe",                 amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-09",
     tech = {
         number = 8,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pump-7"
@@ -303,23 +303,23 @@ genPumps {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-pump-08", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 2},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-08",           amount = 1 },
+        { type = "item", name = "electric-engine-unit", amount = 1 },
+        { type = "item", name = "steel-plate",          amount = 5 },
+        { type = "item", name = "advanced-circuit",     amount = 2 },
+        { type = "item", name = "pipe",                 amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pump-10",
     tech = {
         number = 9,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pump-8"
@@ -342,23 +342,23 @@ genPumps {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-pump-09", 1},
-        {"electric-engine-unit", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 2},
-        {"low-density-structure", 1},
-        {"pipe", 1}
+        { type = "item", name = "5d-pump-09",            amount = 1 },
+        { type = "item", name = "electric-engine-unit",  amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "advanced-circuit",      amount = 2 },
+        { type = "item", name = "low-density-structure", amount = 1 },
+        { type = "item", name = "pipe",                  amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 10,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pump-9"

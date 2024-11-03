@@ -16,11 +16,11 @@ genMiningDrills {
     new = false,
     order = "a",
     ingredients = {
-        {"electronic-circuit", 3},
-        {"iron-gear-wheel", 5},
-        {"iron-plate", 10}
+        { type = "item", name = "electronic-circuit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel",    amount = 5 },
+        { type = "item", name = "iron-plate",         amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-02",
     tech = nil
 }
@@ -40,19 +40,19 @@ genMiningDrills {
     new = true,
     order = "b",
     ingredients = {
-        {"electric-mining-drill", 1},
-        {"electronic-circuit", 3},
-        {"iron-gear-wheel", 5},
-        {"iron-plate", 5}
+        { type = "item", name = "electric-mining-drill", amount = 1 },
+        { type = "item", name = "electronic-circuit",    amount = 3 },
+        { type = "item", name = "iron-gear-wheel",       amount = 5 },
+        { type = "item", name = "iron-plate",            amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "automation-2",
@@ -75,19 +75,19 @@ genMiningDrills {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-electric-mining-drill-02", 1},
-        {"electronic-circuit", 3},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-electric-mining-drill-02", amount = 1 },
+        { type = "item", name = "electronic-circuit",          amount = 3 },
+        { type = "item", name = "iron-gear-wheel",             amount = 5 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-mining-1"
@@ -110,20 +110,20 @@ genMiningDrills {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-electric-mining-drill-03", 1},
-        {"electronic-circuit", 3},
-        {"iron-gear-wheel", 5},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-electric-mining-drill-03", amount = 1 },
+        { type = "item", name = "electronic-circuit",          amount = 3 },
+        { type = "item", name = "iron-gear-wheel",             amount = 5 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-mining-2",
@@ -146,20 +146,20 @@ genMiningDrills {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-electric-mining-drill-04", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"speed-module", 1}
+        { type = "item", name = "5d-electric-mining-drill-04", amount = 1 },
+        { type = "item", name = "steel-plate",                 amount = 5 },
+        { type = "item", name = "advanced-circuit",            amount = 3 },
+        { type = "item", name = "speed-module",                amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-mining-3"
@@ -182,21 +182,21 @@ genMiningDrills {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-electric-mining-drill-05", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"productivity-module", 1}
+        { type = "item", name = "5d-electric-mining-drill-05", amount = 1 },
+        { type = "item", name = "steel-plate",                 amount = 5 },
+        { type = "item", name = "advanced-circuit",            amount = 3 },
+        { type = "item", name = "productivity-module",         amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-mining-4",
@@ -219,21 +219,21 @@ genMiningDrills {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-electric-mining-drill-06", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 3},
-        {"speed-module-2", 1}
+        { type = "item", name = "5d-electric-mining-drill-06", amount = 1 },
+        { type = "item", name = "steel-plate",                 amount = 5 },
+        { type = "item", name = "advanced-circuit",            amount = 3 },
+        { type = "item", name = "speed-module-2",              amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-mining-5"
@@ -256,22 +256,22 @@ genMiningDrills {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-electric-mining-drill-07", 1},
-        {"advanced-circuit", 3},
-        {"low-density-structure", 2},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-electric-mining-drill-07", amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 3 },
+        { type = "item", name = "low-density-structure",       amount = 2 },
+        { type = "item", name = "productivity-module-2",       amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-mining-6",
@@ -294,22 +294,22 @@ genMiningDrills {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-electric-mining-drill-08", 1},
-        {"advanced-circuit", 3},
-        {"low-density-structure", 2},
-        {"speed-module-3", 1}
+        { type = "item", name = "5d-electric-mining-drill-08", amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 3 },
+        { type = "item", name = "low-density-structure",       amount = 2 },
+        { type = "item", name = "speed-module-3",              amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-electric-mining-drill-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-mining-7"
@@ -332,22 +332,22 @@ genMiningDrills {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-electric-mining-drill-09", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 5},
-        {"processing-unit", 2},
-        {"productivity-module-3", 1}
+        { type = "item", name = "5d-electric-mining-drill-09", amount = 1 },
+        { type = "item", name = "steel-plate",                 amount = 5 },
+        { type = "item", name = "low-density-structure",       amount = 5 },
+        { type = "item", name = "processing-unit",             amount = 2 },
+        { type = "item", name = "productivity-module-3",       amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-mining-8"

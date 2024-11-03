@@ -16,12 +16,12 @@ genPumpjacks {
     new = false,
     order = "a",
     ingredients = {
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-02",
     tech = nil
 }
@@ -41,20 +41,20 @@ genPumpjacks {
     new = true,
     order = "b",
     ingredients = {
-        {"pumpjack", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        { type = "item", name = "pumpjack",           amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "oil-processing",
@@ -77,20 +77,20 @@ genPumpjacks {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-pumpjack-02", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        { type = "item", name = "5d-pumpjack-02",     amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-pumpjack-1"
@@ -113,21 +113,21 @@ genPumpjacks {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-pumpjack-03", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        { type = "item", name = "5d-pumpjack-03",     amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-pumpjack-2",
@@ -150,21 +150,21 @@ genPumpjacks {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-pumpjack-04", 1},
-        {"steel-plate", 5},
-        {"iron-gear-wheel", 10},
-        {"electronic-circuit", 5},
-        {"pipe", 10}
+        { type = "item", name = "5d-pumpjack-04",     amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-pumpjack-3"
@@ -187,21 +187,21 @@ genPumpjacks {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-pumpjack-05", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"productivity-module", 1}
+        { type = "item", name = "5d-pumpjack-05",      amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "advanced-circuit",    amount = 5 },
+        { type = "item", name = "productivity-module", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-pumpjack-4",
@@ -224,21 +224,21 @@ genPumpjacks {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-pumpjack-06", 1},
-        {"steel-plate", 5},
-        {"advanced-circuit", 5},
-        {"speed-module-2", 1}
+        { type = "item", name = "5d-pumpjack-06",   amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 5 },
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "speed-module-2",   amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-pumpjack-5"
@@ -261,22 +261,22 @@ genPumpjacks {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-pumpjack-07", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-pumpjack-07",        amount = 1 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "productivity-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pumpjack-6",
@@ -299,22 +299,22 @@ genPumpjacks {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-pumpjack-08", 1},
-        {"advanced-circuit", 5},
-        {"low-density-structure", 2},
-        {"speed-module-3", 1}
+        { type = "item", name = "5d-pumpjack-08",        amount = 1 },
+        { type = "item", name = "advanced-circuit",      amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "speed-module-3",        amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-pumpjack-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pumpjack-7"
@@ -337,22 +337,22 @@ genPumpjacks {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-pumpjack-09", 1},
-        {"steel-plate", 5},
-        {"low-density-structure", 5},
-        {"processing-unit", 2},
-        {"productivity-module-3", 1}
+        { type = "item", name = "5d-pumpjack-09",        amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "processing-unit",       amount = 2 },
+        { type = "item", name = "productivity-module-3", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-pumpjack-8"

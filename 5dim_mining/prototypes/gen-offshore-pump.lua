@@ -16,11 +16,11 @@ genOffshorePumps {
     new = false,
     order = "a",
     ingredients = {
-        {"electronic-circuit", 2},
-        {"pipe", 1},
-        {"iron-gear-wheel", 1}
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "pipe",               amount = 1 },
+        { type = "item", name = "iron-gear-wheel",    amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-02",
     tech = nil
 }
@@ -40,19 +40,19 @@ genOffshorePumps {
     new = true,
     order = "b",
     ingredients = {
-        {"offshore-pump", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        { type = "item", name = "offshore-pump",      amount = 1 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "pipe",               amount = 3 },
+        { type = "item", name = "iron-gear-wheel",    amount = 2 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-03",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "fluid-handling",
@@ -75,19 +75,19 @@ genOffshorePumps {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-offshore-pump-02", 1},
-        {"electronic-circuit", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        { type = "item", name = "5d-offshore-pump-02", amount = 1 },
+        { type = "item", name = "electronic-circuit",  amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "iron-gear-wheel",     amount = 2 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-04",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "5d-offshore-pump-1"
@@ -110,20 +110,20 @@ genOffshorePumps {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-offshore-pump-03", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 2}
+        { type = "item", name = "5d-offshore-pump-03", amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "iron-gear-wheel",     amount = 2 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-05",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-offshore-pump-2",
@@ -146,20 +146,20 @@ genOffshorePumps {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-offshore-pump-04", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        { type = "item", name = "5d-offshore-pump-04", amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "iron-gear-wheel",     amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-06",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-offshore-pump-3"
@@ -182,21 +182,21 @@ genOffshorePumps {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-offshore-pump-05", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"iron-gear-wheel", 1}
+        { type = "item", name = "5d-offshore-pump-05", amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "iron-gear-wheel",     amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-07",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-offshore-pump-4",
@@ -219,21 +219,21 @@ genOffshorePumps {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-offshore-pump-06", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        { type = "item", name = "5d-offshore-pump-06", amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "advanced-circuit",    amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-08",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-offshore-pump-5"
@@ -256,22 +256,22 @@ genOffshorePumps {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-offshore-pump-07", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1}
+        { type = "item", name = "5d-offshore-pump-07", amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 5 },
+        { type = "item", name = "pipe",                amount = 3 },
+        { type = "item", name = "advanced-circuit",    amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-09",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-offshore-pump-6",
@@ -294,23 +294,23 @@ genOffshorePumps {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-offshore-pump-08", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-offshore-pump-08",   amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "pipe",                  amount = 3 },
+        { type = "item", name = "advanced-circuit",      amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-offshore-pump-10",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-offshore-pump-7"
@@ -333,22 +333,22 @@ genOffshorePumps {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-offshore-pump-09", 1},
-        {"steel-plate", 5},
-        {"pipe", 3},
-        {"advanced-circuit", 1},
-        {"low-density-structure", 1}
+        { type = "item", name = "5d-offshore-pump-09",   amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 5 },
+        { type = "item", name = "pipe",                  amount = 3 },
+        { type = "item", name = "advanced-circuit",      amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-offshore-pump-8"

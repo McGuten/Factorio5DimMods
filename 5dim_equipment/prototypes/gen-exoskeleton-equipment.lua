@@ -13,9 +13,9 @@ genExoskeletons {
     new = false,
     order = "a",
     ingredients = {
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = nil
 }
@@ -32,10 +32,10 @@ genExoskeletons {
     new = true,
     order = "b",
     ingredients = {
-        {"exoskeleton-equipment", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "exoskeleton-equipment", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 2,
@@ -62,10 +62,10 @@ genExoskeletons {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-exoskeleton-equipment-02", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-02", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 3,
@@ -92,10 +92,10 @@ genExoskeletons {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-exoskeleton-equipment-03", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-03", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 4,
@@ -125,10 +125,10 @@ genExoskeletons {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-exoskeleton-equipment-04", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-04", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 5,
@@ -158,10 +158,10 @@ genExoskeletons {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-exoskeleton-equipment-05", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-05", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 6,
@@ -192,10 +192,10 @@ genExoskeletons {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-exoskeleton-equipment-06", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-06", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 7,
@@ -226,10 +226,10 @@ genExoskeletons {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-exoskeleton-equipment-07", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-07", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 8,
@@ -260,10 +260,10 @@ genExoskeletons {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-exoskeleton-equipment-08", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-08", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 9,
@@ -294,10 +294,10 @@ genExoskeletons {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-exoskeleton-equipment-09", 1},
-        {"processing-unit", 10},
-        {"electric-engine-unit", 30},
-        {"steel-plate", 20}
+        {type = "item", name = "5d-exoskeleton-equipment-09", amount = 1},
+        {type = "item", name = "processing-unit", amount = 10},
+        {type = "item", name = "electric-engine-unit", amount = 30},
+        {type = "item", name = "steel-plate", amount = 20}
     },
     tech = {
         number = 10,

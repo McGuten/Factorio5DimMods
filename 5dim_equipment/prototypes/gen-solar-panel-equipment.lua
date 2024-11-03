@@ -11,9 +11,9 @@ genSolarPanels {
     new = false,
     order = "a",
     ingredients = {
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "solar-panel",      amount = 1 },
+        { type = "item", name = "advanced-circuit", amount = 2 },
+        { type = "item", name = "steel-plate",      amount = 5 }
     },
     tech = nil
 }
@@ -28,17 +28,17 @@ genSolarPanels {
     new = true,
     order = "b",
     ingredients = {
-        {"solar-panel-equipment", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "solar-panel-equipment", amount = 1 },
+        { type = "item", name = "solar-panel",           amount = 1 },
+        { type = "item", name = "advanced-circuit",      amount = 2 },
+        { type = "item", name = "steel-plate",           amount = 5 }
     },
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "solar-panel-equipment"
@@ -56,17 +56,17 @@ genSolarPanels {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-solar-panel-equipment-02", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-02", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "solar-panel-equipment-2"
@@ -84,20 +84,20 @@ genSolarPanels {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-solar-panel-equipment-03", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-03", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "solar-panel-equipment-3"
@@ -115,20 +115,20 @@ genSolarPanels {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-solar-panel-equipment-04", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-04", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "solar-panel-equipment-4"
@@ -146,21 +146,21 @@ genSolarPanels {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-solar-panel-equipment-05", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-05", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "solar-panel-equipment-5"
@@ -178,21 +178,21 @@ genSolarPanels {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-solar-panel-equipment-06", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-06", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "solar-panel-equipment-6"
@@ -210,21 +210,21 @@ genSolarPanels {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-solar-panel-equipment-07", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-07", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "solar-panel-equipment-7"
@@ -242,21 +242,21 @@ genSolarPanels {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-solar-panel-equipment-08", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-08", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "solar-panel-equipment-8"
@@ -274,21 +274,21 @@ genSolarPanels {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-solar-panel-equipment-09", 1},
-        {"solar-panel", 1},
-        {"advanced-circuit", 2},
-        {"steel-plate", 5}
+        { type = "item", name = "5d-solar-panel-equipment-09", amount = 1 },
+        { type = "item", name = "solar-panel",                 amount = 1 },
+        { type = "item", name = "advanced-circuit",            amount = 2 },
+        { type = "item", name = "steel-plate",                 amount = 5 }
     },
     tech = {
         number = 10,
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "solar-panel-equipment-9"

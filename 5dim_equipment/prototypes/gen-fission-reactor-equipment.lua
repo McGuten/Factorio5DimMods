@@ -1,12 +1,12 @@
-require("__5dim_core__.lib.equipment.generation-fusion-reactor-equipment")
+require("__5dim_core__.lib.equipment.generation-fission-reactor-equipment")
 
-local powerProduction = 750
-local techCount = 200
+local powerProduction = 2500
+local techCount = 800
 
 -- Beacon 01
-genFusionReactors {
+genFissionReactors {
     number = "01",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = false,
     order = "a",
@@ -20,9 +20,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 02
-genFusionReactors {
+genFissionReactors {
     number = "02",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "b",
@@ -50,9 +50,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 03
-genFusionReactors {
+genFissionReactors {
     number = "03",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "c",
@@ -80,9 +80,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 04
-genFusionReactors {
+genFissionReactors {
     number = "04",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "d",
@@ -110,9 +110,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 05
-genFusionReactors {
+genFissionReactors {
     number = "05",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "e",
@@ -140,9 +140,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 06
-genFusionReactors {
+genFissionReactors {
     number = "06",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "f",
@@ -171,9 +171,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 07
-genFusionReactors {
+genFissionReactors {
     number = "07",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "g",
@@ -202,9 +202,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 08
-genFusionReactors {
+genFissionReactors {
     number = "08",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "h",
@@ -233,9 +233,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 09
-genFusionReactors {
+genFissionReactors {
     number = "09",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "i",
@@ -264,9 +264,9 @@ genFusionReactors {
 powerProduction = powerProduction * 1.75
 
 -- Beacon 10
-genFusionReactors {
+genFissionReactors {
     number = "10",
-    subgroup = "armor-reactor",
+    subgroup = "armor-fision-reactor",
     power = powerProduction,
     new = true,
     order = "j",

@@ -17,18 +17,18 @@ genPersonalLaserDefenses {
     new = true,
     order = "a",
     ingredients = {
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "processing-unit",       amount = 20 },
+        { type = "item", name = "low-density-structure", amount = 5 },
+        { type = "item", name = "laser-turret",          amount = 5 }
     },
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 }
         },
         prerequisites = {
             "personal-laser-defense-equipment"
@@ -52,20 +52,20 @@ genPersonalLaserDefenses {
     new = true,
     order = "b",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-01", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-01", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-1",
@@ -91,20 +91,20 @@ genPersonalLaserDefenses {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-02", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-02", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-2",
@@ -129,21 +129,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-03", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-03", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-3",
@@ -169,21 +169,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-04", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-04", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-4",
@@ -208,21 +208,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-05", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-05", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-5",
@@ -247,21 +247,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-06", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-06", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-6",
@@ -286,21 +286,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-07", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-07", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-7",
@@ -325,21 +325,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-08", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-08", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-8",
@@ -364,21 +364,21 @@ genPersonalLaserDefenses {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-personal-tesla-defense-equipment-09", 1},
-        {"processing-unit", 20},
-        {"low-density-structure", 5},
-        {"laser-turret", 5}
+        { type = "item", name = "5d-personal-tesla-defense-equipment-09", amount = 1 },
+        { type = "item", name = "processing-unit",                        amount = 20 },
+        { type = "item", name = "low-density-structure",                  amount = 5 },
+        { type = "item", name = "laser-turret",                           amount = 5 }
     },
     tech = {
         number = 10,
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-tesla-defense-equipment-9",

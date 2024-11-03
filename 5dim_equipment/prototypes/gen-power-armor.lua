@@ -15,9 +15,9 @@ genPowerArmors {
     new = false,
     order = "a",
     ingredients = {
-        {"processing-unit", 40},
-        {"electric-engine-unit", 20},
-        {"steel-plate", 40}
+        { type = "item", name = "processing-unit",      amount = 40 },
+        { type = "item", name = "electric-engine-unit", amount = 20 },
+        { type = "item", name = "steel-plate",          amount = 40 }
     },
     tech = nil
 }
@@ -34,12 +34,12 @@ genPowerArmors {
     new = false,
     order = "b",
     ingredients = {
-        {"power-armor", 1},
-        {"effectivity-module-2", 25},
-        {"speed-module-2", 25},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "power-armor",           amount = 1 },
+        { type = "item", name = "efficiency-module-2",   amount = 25 },
+        { type = "item", name = "speed-module-2",        amount = 25 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = nil
 }
@@ -56,19 +56,19 @@ genPowerArmors {
     new = true,
     order = "c",
     ingredients = {
-        {"power-armor-mk2", 1},
-        {"effectivity-module-2", 25},
-        {"speed-module-2", 25},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "power-armor-mk2",       amount = 1 },
+        { type = "item", name = "efficiency-module-2",   amount = 25 },
+        { type = "item", name = "speed-module-2",        amount = 25 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 1,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 }
         },
         prerequisites = {
             "power-armor-mk2"
@@ -90,22 +90,22 @@ genPowerArmors {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-power-armor-03", 1},
-        {"effectivity-module-2", 25},
-        {"speed-module-2", 25},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-03",     amount = 1 },
+        { type = "item", name = "efficiency-module-2",   amount = 25 },
+        { type = "item", name = "speed-module-2",        amount = 25 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 2,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-power-armor-1"
@@ -126,22 +126,22 @@ genPowerArmors {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-power-armor-04", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-04",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 3,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-power-armor-2"
@@ -162,23 +162,23 @@ genPowerArmors {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-power-armor-05", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-05",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 4,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-power-armor-3",
@@ -200,23 +200,23 @@ genPowerArmors {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-power-armor-06", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-06",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 5,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-power-armor-4"
@@ -237,23 +237,23 @@ genPowerArmors {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-power-armor-07", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-07",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 6,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-power-armor-5"
@@ -274,23 +274,23 @@ genPowerArmors {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-power-armor-08", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-08",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 7,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-power-armor-6"
@@ -311,23 +311,23 @@ genPowerArmors {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-power-armor-09", 1},
-        {"effectivity-module-3", 10},
-        {"speed-module-3", 10},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { type = "item", name = "5d-power-armor-09",     amount = 1 },
+        { type = "item", name = "efficiency-module-3",   amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 60 },
+        { type = "item", name = "electric-engine-unit",  amount = 40 },
+        { type = "item", name = "low-density-structure", amount = 30 }
     },
     tech = {
         number = 8,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-power-armor-7"

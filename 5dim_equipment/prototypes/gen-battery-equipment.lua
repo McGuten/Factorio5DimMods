@@ -11,8 +11,8 @@ genBatterys {
     new = false,
     order = "a",
     ingredients = {
-        {"battery", 5},
-        {"steel-plate", 10}
+        {type = "item", name = "battery", amount = 5},
+        {type = "item", name = "steel-plate", amount = 10}
     },
     tech = nil
 }
@@ -27,9 +27,9 @@ genBatterys {
     new = false,
     order = "b",
     ingredients = {
-        {"battery-equipment", 10},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "battery-equipment", amount = 10},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = nil
 }
@@ -44,9 +44,9 @@ genBatterys {
     new = true,
     order = "c",
     ingredients = {
-        {"battery-mk2-equipment", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "battery-mk2-equipment", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 1,
@@ -71,9 +71,9 @@ genBatterys {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-battery-equipment-03", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-03", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 2,
@@ -101,9 +101,9 @@ genBatterys {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-battery-equipment-04", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-04", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 3,
@@ -131,9 +131,9 @@ genBatterys {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-battery-equipment-05", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-05", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 4,
@@ -162,9 +162,9 @@ genBatterys {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-battery-equipment-06", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-06", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 5,
@@ -193,9 +193,9 @@ genBatterys {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-battery-equipment-07", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-07", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 6,
@@ -224,9 +224,9 @@ genBatterys {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-battery-equipment-08", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-08", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 7,
@@ -255,9 +255,9 @@ genBatterys {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-battery-equipment-09", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        {type = "item", name = "5d-battery-equipment-09", amount = 2},
+        {type = "item", name = "processing-unit", amount = 15},
+        {type = "item", name = "low-density-structure", amount = 5}
     },
     tech = {
         number = 8,

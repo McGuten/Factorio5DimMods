@@ -19,8 +19,8 @@ genPersonalRoboports {
     new = false,
     order = "a",
     ingredients = {
-        {"advanced-circuit", 5},
-        {"steel-plate", 10}
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "steel-plate",      amount = 10 }
     },
     tech = nil
 }
@@ -43,9 +43,9 @@ genPersonalRoboports {
     new = false,
     order = "b",
     ingredients = {
-        {"personal-roboport-equipment", 10},
-        {"processing-unit", 5},
-        {"low-density-structure", 5}
+        { type = "item", name = "personal-roboport-equipment", amount = 10 },
+        { type = "item", name = "processing-unit",             amount = 5 },
+        { type = "item", name = "low-density-structure",       amount = 5 }
     },
     tech = nil
 }
@@ -68,19 +68,19 @@ genPersonalRoboports {
     new = true,
     order = "c",
     ingredients = {
-        {"personal-roboport-mk2-equipment", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "personal-roboport-mk2-equipment", amount = 2 },
+        { type = "item", name = "processing-unit",                 amount = 15 },
+        { type = "item", name = "low-density-structure",           amount = 5 }
     },
     tech = {
         number = 1,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "personal-roboport-mk2-equipment"
@@ -106,19 +106,19 @@ genPersonalRoboports {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-personal-roboport-equipment-03", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-03", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 2,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-1"
@@ -144,19 +144,19 @@ genPersonalRoboports {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-personal-roboport-equipment-04", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-04", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 3,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-2"
@@ -182,20 +182,20 @@ genPersonalRoboports {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-personal-roboport-equipment-05", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-05", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 4,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-3"
@@ -221,20 +221,20 @@ genPersonalRoboports {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-personal-roboport-equipment-06", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-06", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 5,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-4"
@@ -260,20 +260,20 @@ genPersonalRoboports {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-personal-roboport-equipment-07", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-07", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 6,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-5"
@@ -299,20 +299,20 @@ genPersonalRoboports {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-personal-roboport-equipment-08", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-08", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 7,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-6"
@@ -338,20 +338,20 @@ genPersonalRoboports {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-personal-roboport-equipment-09", 2},
-        {"processing-unit", 15},
-        {"low-density-structure", 5}
+        { type = "item", name = "5d-personal-roboport-equipment-09", amount = 2 },
+        { type = "item", name = "processing-unit",                   amount = 15 },
+        { type = "item", name = "low-density-structure",             amount = 5 }
     },
     tech = {
         number = 8,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"military-science-pack", 1},
-            {"utility-science-pack", 1},
-            {"space-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "military-science-pack",   1 },
+            { "utility-science-pack",    1 },
+            { "space-science-pack",      1 }
         },
         prerequisites = {
             "5d-personal-roboport-equipment-7"

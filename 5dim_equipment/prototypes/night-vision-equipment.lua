@@ -9,18 +9,18 @@ item.name = "5d-night-vision-equipment-02"
 item.icon = "__5dim_equipment__/graphics/icon/night-vision/night-vision-equipment-02.png"
 item.subgroup = "armor-util"
 item.order = "e"
-item.placed_as_equipment_result = item.name
+item.place_as_equipment_result = item.name
 
 --Recipe
 recipe.name = item.name
-recipe.result = item.name
+recipe.results = { { type = "item", name = item.name, amount = 1 } }
 recipe.icon = item.icon
 recipe.icon_size = 64
 recipe.enabled = false
 recipe.ingredients = {
-    {"night-vision-equipment", 1},
-    {"advanced-circuit", 5},
-    {"steel-plate", 10}
+    { type = "item", name = "night-vision-equipment", amount = 1 },
+    { type = "item", name = "advanced-circuit",       amount = 5 },
+    { type = "item", name = "steel-plate",            amount = 10 }
 }
 
 -- Equipment
@@ -28,16 +28,16 @@ equipment.name = item.name
 equipment.energy_input = 20 .. "kW"
 equipment.sprite.filename = "__5dim_equipment__/graphics/equipment/night-vision/night-vision-equipment-02.png"
 equipment.color_lookup = {
-    {0.5, "__core__/graphics/color_luts/identity-lut.png"}
+    { 0.5, "__core__/graphics/color_luts/identity-lut.png" }
 }
 
 -- Technology
 tech.name = "night-vision-equipment-2"
 tech.unit.count = 100
 tech.unit.ingredients = {
-    {"automation-science-pack", 1},
-    {"logistic-science-pack", 1},
-    {"chemical-science-pack", 1}
+    { "automation-science-pack", 1 },
+    { "logistic-science-pack",   1 },
+    { "chemical-science-pack",   1 }
 }
 tech.prerequisites = {
     "night-vision-equipment",
@@ -50,4 +50,4 @@ tech.effects = {
     }
 }
 
-data:extend({equipment, recipe, item, tech})
+data:extend({ equipment, recipe, item, tech })

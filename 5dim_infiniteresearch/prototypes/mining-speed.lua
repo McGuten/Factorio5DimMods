@@ -19,7 +19,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "5",
+            max_level = 5,
             order = "b-f-h"
         },
         {
@@ -43,7 +43,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "10",
+            max_level = 10,
             order = "b-f-h"
         },
         {
@@ -68,7 +68,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "15",
+            max_level = 15,
             order = "b-f-h"
         },
         {
@@ -94,7 +94,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "20",
+            max_level = 20,
             order = "b-f-h"
         },
         {
@@ -121,7 +121,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "25",
+            max_level = 25,
             order = "b-f-h"
         },
         {

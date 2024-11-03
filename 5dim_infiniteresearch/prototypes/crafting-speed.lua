@@ -8,7 +8,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             unit = {
@@ -19,7 +19,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "5",
+            max_level = 5,
             order = "b-f-h"
         },
         {
@@ -30,7 +30,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             prerequisites = {"crafting-speed-1"},
@@ -43,7 +43,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "10",
+            max_level = 10,
             order = "b-f-h"
         },
         {
@@ -54,7 +54,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             prerequisites = {"crafting-speed-6"},
@@ -68,7 +68,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "15",
+            max_level = 15,
             order = "b-f-h"
         },
         {
@@ -79,7 +79,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             prerequisites = {"crafting-speed-11"},
@@ -94,7 +94,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "20",
+            max_level = 20,
             order = "b-f-h"
         },
         {
@@ -105,7 +105,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             prerequisites = {"crafting-speed-16"},
@@ -121,7 +121,7 @@ data:extend(
                 time = 10
             },
             upgrade = true,
-            max_level = "25",
+            max_level = 25,
             order = "b-f-h"
         },
         {
@@ -132,7 +132,7 @@ data:extend(
             effects = {
                 {
                     type = "character-crafting-speed",
-                    modifier = 0.2
+                    modifier = 1
                 }
             },
             prerequisites = {"crafting-speed-21"},
@@ -148,8 +148,8 @@ data:extend(
                 },
                 time = 10
             },
-            upgrade = true,
             max_level = "infinite",
+            upgrade = true,
             order = "b-f-h"
         }
     }

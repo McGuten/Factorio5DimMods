@@ -7,7 +7,7 @@ data:extend(
             icon_size = 256,
             effects = {
                 {
-                    type = "stack-inserter-capacity-bonus",
+                    type = "bulk-inserter-capacity-bonus",
                     modifier = 1
                 }
             },

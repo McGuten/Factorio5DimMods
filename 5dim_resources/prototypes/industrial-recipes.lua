@@ -10,10 +10,11 @@ data:extend(
             category = "industrial-furnace",
             energy_required = 65,
             ingredients = {
-                {"5d-iron-dust", 85}
+                { type = "item", name = "5d-iron-dust", amount = 85 }
             },
-            result = "iron-plate",
-            result_count = 100
+            results = {
+                { type = "item", name = "iron-plate", amount = 100 }
+            }
         },
         {
             type = "recipe",
@@ -25,10 +26,11 @@ data:extend(
             category = "industrial-furnace",
             energy_required = 65,
             ingredients = {
-                {"iron-ore", 85}
+                { type = "item", name = "iron-ore", amount = 85 }
             },
-            result = "iron-plate",
-            result_count = 100
+            results = {
+                { type = "item", name = "iron-plate", amount = 100 }
+            }
         },
         {
             type = "recipe",
@@ -40,10 +42,11 @@ data:extend(
             category = "industrial-furnace",
             energy_required = 65,
             ingredients = {
-                {"copper-ore", 85}
+                { type = "item", name = "copper-ore", amount = 85 }
             },
-            result = "copper-plate",
-            result_count = 100
+            results = {
+                { type = "item", name = "copper-plate", amount = 100 }
+            }
         },
         {
             type = "recipe",
@@ -55,10 +58,11 @@ data:extend(
             category = "industrial-furnace",
             energy_required = 65,
             ingredients = {
-                {"5d-copper-dust", 85}
+                { type = "item", name = "5d-copper-dust", amount = 85 }
             },
-            result = "copper-plate",
-            result_count = 100
+            results = {
+                { type = "item", name = "copper-plate", amount = 100 }
+            }
         },
         {
             type = "recipe",
@@ -70,10 +74,11 @@ data:extend(
             category = "industrial-furnace",
             energy_required = 90,
             ingredients = {
-                {"iron-plate", 80}
+                { type = "item", name = "iron-plate", amount = 80 }
             },
-            result = "steel-plate",
-            result_count = 20
+            results = {
+                { type = "item", name = "steel-plate", amount = 20 }
+            }
         }
     }
 )

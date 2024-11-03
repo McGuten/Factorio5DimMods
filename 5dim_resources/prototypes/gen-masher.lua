@@ -16,19 +16,19 @@ genMasher {
     new = true,
     order = "a",
     ingredients = {
-        {"steel-plate", 10},
-        {"electronic-circuit", 7},
-        {"iron-gear-wheel", 10}
+        { type = "item", name = "steel-plate",        amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 7 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-02",
     tech = {
         number = 1,
         count = techCount * 1,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "advanced-material-processing-2"
@@ -51,20 +51,20 @@ genMasher {
     new = true,
     order = "b",
     ingredients = {
-        {"5d-masher-01", 1},
-        {"steel-plate", 10},
-        {"electronic-circuit", 5},
-        {"iron-gear-wheel", 10}
+        { type = "item", name = "5d-masher-01",       amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = "iron-gear-wheel",    amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-03",
     tech = {
         number = 2,
         count = techCount * 2,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 }
         },
         prerequisites = {
             "5d-masher-1",
@@ -87,21 +87,21 @@ genMasher {
     new = true,
     order = "c",
     ingredients = {
-        {"5d-masher-02", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"iron-gear-wheel", 10}
+        { type = "item", name = "5d-masher-02",     amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 10 },
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel",  amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-04",
     tech = {
         number = 3,
         count = techCount * 3,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-masher-2",
@@ -126,21 +126,21 @@ genMasher {
     new = true,
     order = "d",
     ingredients = {
-        {"5d-masher-03", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"iron-gear-wheel", 10}
+        { type = "item", name = "5d-masher-03",     amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 10 },
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel",  amount = 10 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-05",
     tech = {
         number = 4,
         count = techCount * 4,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-masher-3",
@@ -163,22 +163,22 @@ genMasher {
     new = true,
     order = "e",
     ingredients = {
-        {"5d-masher-04", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"iron-gear-wheel", 10},
-        {"speed-module", 1}
+        { type = "item", name = "5d-masher-04",     amount = 1 },
+        { type = "item", name = "steel-plate",      amount = 10 },
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel",  amount = 10 },
+        { type = "item", name = "speed-module",     amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-06",
     tech = {
         number = 5,
         count = techCount * 5,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-masher-4",
@@ -202,22 +202,22 @@ genMasher {
     new = true,
     order = "f",
     ingredients = {
-        {"5d-masher-05", 1},
-        {"steel-plate", 10},
-        {"advanced-circuit", 3},
-        {"iron-gear-wheel", 10},
-        {"productivity-module", 1}
+        { type = "item", name = "5d-masher-05",        amount = 1 },
+        { type = "item", name = "steel-plate",         amount = 10 },
+        { type = "item", name = "advanced-circuit",    amount = 3 },
+        { type = "item", name = "iron-gear-wheel",     amount = 10 },
+        { type = "item", name = "productivity-module", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-07",
     tech = {
         number = 6,
         count = techCount * 6,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-masher-5",
@@ -240,22 +240,22 @@ genMasher {
     new = true,
     order = "g",
     ingredients = {
-        {"5d-masher-06", 1},
-        {"steel-plate", 10},
-        {"processing-unit", 5},
-        {"iron-gear-wheel", 10},
-        {"speed-module-2", 1}
+        { type = "item", name = "5d-masher-06",    amount = 1 },
+        { type = "item", name = "steel-plate",     amount = 10 },
+        { type = "item", name = "processing-unit", amount = 5 },
+        { type = "item", name = "iron-gear-wheel", amount = 10 },
+        { type = "item", name = "speed-module-2",  amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-08",
     tech = {
         number = 7,
         count = techCount * 7,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = {
             "5d-masher-6",
@@ -279,23 +279,23 @@ genMasher {
     new = true,
     order = "h",
     ingredients = {
-        {"5d-masher-07", 1},
-        {"steel-plate", 10},
-        {"processing-unit", 5},
-        {"iron-gear-wheel", 10},
-        {"productivity-module-2", 1}
+        { type = "item", name = "5d-masher-07",          amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "processing-unit",       amount = 5 },
+        { type = "item", name = "iron-gear-wheel",       amount = 10 },
+        { type = "item", name = "productivity-module-2", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-09",
     tech = {
         number = 8,
         count = techCount * 8,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-masher-7",
@@ -319,23 +319,23 @@ genMasher {
     new = true,
     order = "i",
     ingredients = {
-        {"5d-masher-08", 1},
-        {"steel-plate", 10},
-        {"low-density-structure", 2},
-        {"iron-gear-wheel", 10},
-        {"speed-module-3", 1}
+        { type = "item", name = "5d-masher-08",          amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "iron-gear-wheel",       amount = 10 },
+        { type = "item", name = "speed-module-3",        amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     nextUpdate = "5d-masher-10",
     tech = {
         number = 9,
         count = techCount * 9,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-masher-8",
@@ -359,22 +359,22 @@ genMasher {
     new = true,
     order = "j",
     ingredients = {
-        {"5d-masher-09", 1},
-        {"steel-plate", 10},
-        {"low-density-structure", 2},
-        {"iron-gear-wheel", 10},
-        {"productivity-module-3", 1}
+        { type = "item", name = "5d-masher-09",          amount = 1 },
+        { type = "item", name = "steel-plate",           amount = 10 },
+        { type = "item", name = "low-density-structure", amount = 2 },
+        { type = "item", name = "iron-gear-wheel",       amount = 10 },
+        { type = "item", name = "productivity-module-3", amount = 1 }
     },
-    pollution = emisions,
+    pollution = { pollution = emisions },
     tech = {
         number = 10,
         count = techCount * 10,
         packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack",   1 },
+            { "chemical-science-pack",   1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack",    1 }
         },
         prerequisites = {
             "5d-masher-9",

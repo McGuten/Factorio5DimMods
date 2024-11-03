@@ -21,21 +21,24 @@ data:extend(
             category = "smelting",
             energy_required = 3.2,
             ingredients = {
-                {"5d-iron-dust", 1}
+                { type = "item", name = "5d-iron-dust", amount = 1 }
             },
-            result = "iron-plate"
+            results = {
+                { type = "item", name = "iron-plate", amount = 1 }
+            }
         },
         {
             type = "recipe",
             name = "5d-iron-dust",
-            enabled = "true",
+            enabled = true,
             category = "mashering",
             energy_required = 3.2,
             ingredients = {
-                {"iron-ore", 1}
+                { type = "item", name = "iron-ore", amount = 1 }
             },
-            result = "5d-iron-dust",
-            result_count = 2
+            results = {
+                { type = "item", name = "5d-iron-dust", amount = 2 }
+            }
         },
         -- Item
         {
@@ -58,21 +61,24 @@ data:extend(
             category = "smelting",
             energy_required = 3.2,
             ingredients = {
-                {"5d-copper-dust", 1}
+                { type = "item", name = "5d-copper-dust", amount = 1 }
             },
-            result = "copper-plate"
+            results = {
+                { type = "item", name = "copper-plate", amount = 1 }
+            }
         },
         {
             type = "recipe",
             name = "5d-copper-dust",
-            enabled = "true",
+            enabled = true,
             category = "mashering",
             energy_required = 3.2,
             ingredients = {
-                {"copper-ore", 1}
+                { type = "item", name = "copper-ore", amount = 1 }
             },
-            result = "5d-copper-dust",
-            result_count = 2
+            results = {
+                { type = "item", name = "5d-copper-dust", amount = 2 }
+            }
         }
     }
 )

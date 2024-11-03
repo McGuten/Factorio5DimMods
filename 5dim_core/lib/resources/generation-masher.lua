@@ -14,7 +14,7 @@ function genMasher(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
@@ -26,14 +26,14 @@ function genMasher(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.crafting_speed = inputs.craftingSpeed
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
-    entity.animation.layers[1].hr_version.filename =
-        "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
-    entity.animation.layers[1].hr_version.width = 160
-    entity.animation.layers[1].hr_version.height = 160
-    entity.animation.layers[1].hr_version.shift = {0, -0.421875}
-    entity.animation.layers[1].hr_version.scale = 1
+    -- entity.animation.layers[1].hr_version.filename =
+    --     "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
+    -- entity.animation.layers[1].hr_version.width = 160
+    -- entity.animation.layers[1].hr_version.height = 160
+    -- entity.animation.layers[1].hr_version.shift = {0, -0.421875}
+    -- entity.animation.layers[1].hr_version.scale = 1
     entity.crafting_categories = {"mashering"}
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "5d-masher"

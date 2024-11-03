@@ -17,7 +17,7 @@ function genElectricFurnaces(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
@@ -29,10 +29,10 @@ function genElectricFurnaces(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.crafting_speed = inputs.craftingSpeed
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
-    entity.animation.layers[1].hr_version.filename =
-        "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
+    -- entity.animation.layers[1].hr_version.filename =
+    --     "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
     data:extend({entity, recipe, item})

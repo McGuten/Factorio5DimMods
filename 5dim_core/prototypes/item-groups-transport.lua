@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "transport",
             order = "gd",
-            inventory_order = "gd",
             icon = "__5dim_core__/graphics/icon/transport.png",
             icon_size = 64
         },
@@ -36,7 +35,13 @@ data:extend(
             type = "item-subgroup",
             name = "transport-splitters",
             group = "transport",
-            order = "e"
+            order = "ea"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-turbo-belt",
+            group = "transport",
+            order = "eb"
         },
         {
             type = "item-subgroup",
@@ -46,19 +51,13 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "transport-filter-inserter",
-            group = "transport",
-            order = "g"
-        },
-        {
-            type = "item-subgroup",
             name = "transport-stack-inserter",
             group = "transport",
             order = "h"
         },
         {
             type = "item-subgroup",
-            name = "transport-stack-filter-inserter",
+            name = "transport-bulk-inserter",
             group = "transport",
             order = "i"
         },

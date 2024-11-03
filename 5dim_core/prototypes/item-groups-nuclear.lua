@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "nuclear",
             order = "gh",
-            inventory_order = "gh",
             icon = "__5dim_core__/graphics/icon/enuclear.png",
             icon_size = 64
         },
@@ -40,15 +39,27 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "nuclear-recipe",
+            name = "nuclear-fusion-reactor",
             group = "nuclear",
             order = "f"
         },
         {
             type = "item-subgroup",
-            name = "nuclear-item",
+            name = "nuclear-fusion-generator",
             group = "nuclear",
             order = "g"
+        },
+        {
+            type = "item-subgroup",
+            name = "nuclear-recipe",
+            group = "nuclear",
+            order = "y"
+        },
+        {
+            type = "item-subgroup",
+            name = "nuclear-item",
+            group = "nuclear",
+            order = "z"
         }
     }
 )

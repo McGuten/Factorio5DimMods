@@ -3,7 +3,7 @@ function genBoilers(inputs)
     local item = table.deepcopy(data.raw.item["boiler"])
     local recipe = table.deepcopy(data.raw.recipe["boiler"])
     local entity = table.deepcopy(data.raw["boiler"]["boiler"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,7 +18,7 @@ function genBoilers(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -36,16 +36,16 @@ function genBoilers(inputs)
     entity.fast_replaceable_group = "boiler"
 
     -- North
-    entity.structure.north.layers[1].hr_version.filename =
+    entity.pictures.north.structure.layers[1].filename =
         "__5dim_energy__/graphics/entities/boiler/boiler-N-idle/boiler-N-idle-" .. inputs.number .. ".png"
     -- East
-    entity.structure.east.layers[1].hr_version.filename =
+    entity.pictures.east.structure.layers[1].filename =
         "__5dim_energy__/graphics/entities/boiler/boiler-E-idle/boiler-E-idle-" .. inputs.number .. ".png"
     -- South
-    entity.structure.south.layers[1].hr_version.filename =
+    entity.pictures.south.structure.layers[1].filename =
         "__5dim_energy__/graphics/entities/boiler/boiler-S-idle/boiler-S-idle-" .. inputs.number .. ".png"
     -- West
-    entity.structure.west.layers[1].hr_version.filename =
+    entity.pictures.west.structure.layers[1].filename =
         "__5dim_energy__/graphics/entities/boiler/boiler-W-idle/boiler-W-idle-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

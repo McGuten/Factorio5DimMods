@@ -1,5 +1,5 @@
 -- Order sort
-require("prototypes.item-group-changes")
+require("prototypes.item-sort-changes")
 
 --Stack changes
 if settings.startup["5d-change-stack"] then

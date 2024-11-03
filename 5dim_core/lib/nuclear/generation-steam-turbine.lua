@@ -18,13 +18,13 @@ function genSteamTurbines(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = true
     end
     if recipe.normal == nil then
-        recipe.result = item.name
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
         if inputs.new then
             recipe.enabled = false
         end
@@ -52,9 +52,9 @@ function genSteamTurbines(inputs)
     entity.fast_replaceable_group = "steam-turbine"
 
     -- Base
-    entity.horizontal_animation.layers[1].hr_version.filename =
+    entity.horizontal_animation.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-H/steam-turbine-H-" .. inputs.number .. ".png"
-    entity.vertical_animation.layers[1].hr_version.filename =
+    entity.vertical_animation.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-V/steam-turbine-V-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

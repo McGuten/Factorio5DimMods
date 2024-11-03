@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "plates",
             order = "gab",
-            inventory_order = "gab",
             icon = "__5dim_core__/graphics/icon/plates.png",
             icon_size = 64
         },
@@ -55,6 +54,12 @@ data:extend(
             name = "plates-fuel",
             group = "plates",
             order = "h"
-        }
+        },
+        {
+            type = "item-subgroup",
+            name = "plates-orbit",
+            group = "plates",
+            order = "i"
+        },
     }
 )

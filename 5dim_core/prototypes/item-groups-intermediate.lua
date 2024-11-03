@@ -4,13 +4,18 @@ data:extend(
             type = "item-group",
             name = "intermediate",
             order = "gac",
-            inventory_order = "gc",
             icon = "__5dim_core__/graphics/icon/intermediate.png",
             icon_size = 64
         },
         {
             type = "item-subgroup",
             name = "intermediate-lab",
+            group = "intermediate",
+            order = "0"
+        },
+        {
+            type = "item-subgroup",
+            name = "intermediate-lab-space",
             group = "intermediate",
             order = "1"
         },
@@ -37,6 +42,30 @@ data:extend(
             name = "intermediate-silo",
             group = "intermediate",
             order = "5"
-        }
+        },
+        {
+            type = "item-subgroup",
+            name = "intermediate-orbit",
+            group = "intermediate",
+            order = "6"
+        },
+        {
+            type = "item-subgroup",
+            name = "intermediate-asteroids",
+            group = "intermediate",
+            order = "7"
+        },
+        {
+            type = "item-subgroup",
+            name = "intermediate-thrusters",
+            group = "intermediate",
+            order = "8"
+        },
+        {
+            type = "item-subgroup",
+            name = "intermediate-chunk",
+            group = "intermediate",
+            order = "9"
+        },
     }
 )

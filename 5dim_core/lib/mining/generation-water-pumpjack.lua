@@ -3,7 +3,7 @@ function genWaterPumpjacks(inputs)
     local item = table.deepcopy(data.raw.item["pumpjack"])
     local recipe = table.deepcopy(data.raw.recipe["pumpjack"])
     local entity = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -17,7 +17,7 @@ function genWaterPumpjacks(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.enabled = false
     recipe.ingredients = inputs.ingredients
@@ -30,109 +30,24 @@ function genWaterPumpjacks(inputs)
     entity.pumping_speed = inputs.craftingSpeed
     entity.fast_replaceable_group = "water-pumpjack"
 
-    entity.picture.north = {
-        priority = "high",
-        filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
-        line_length = 8,
-        width = 104,
-        height = 102,
-        frame_count = 40,
-        shift = util.by_pixel(-4, -24),
-        animation_speed = 0.5,
-        hr_version = {
-            priority = "high",
-            filename = "__5dim_mining__/graphics/entities/water-pumpjack/water-pumpjack-horsehead-" ..
-                inputs.number .. ".png",
-            animation_speed = 0.5,
-            scale = 0.5,
-            line_length = 8,
-            width = 206,
-            height = 202,
-            frame_count = 40,
-            shift = util.by_pixel(-4, -24)
-        }
-    }
-    entity.picture.east = {
-        priority = "high",
-        filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
-        line_length = 8,
-        width = 104,
-        height = 102,
-        frame_count = 40,
-        shift = util.by_pixel(-4, -24),
-        animation_speed = 0.5,
-        hr_version = {
-            priority = "high",
-            filename = "__5dim_mining__/graphics/entities/water-pumpjack/water-pumpjack-horsehead-" ..
-                inputs.number .. ".png",
-            animation_speed = 0.5,
-            scale = 0.5,
-            line_length = 8,
-            width = 206,
-            height = 202,
-            frame_count = 40,
-            shift = util.by_pixel(-4, -24)
-        }
-    }
-    entity.picture.south = {
-        priority = "high",
-        filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
-        line_length = 8,
-        width = 104,
-        height = 102,
-        frame_count = 40,
-        shift = util.by_pixel(-4, -24),
-        animation_speed = 0.5,
-        hr_version = {
-            priority = "high",
-            filename = "__5dim_mining__/graphics/entities/water-pumpjack/water-pumpjack-horsehead-" ..
-                inputs.number .. ".png",
-            animation_speed = 0.5,
-            scale = 0.5,
-            line_length = 8,
-            width = 206,
-            height = 202,
-            frame_count = 40,
-            shift = util.by_pixel(-4, -24)
-        }
-    }
-    entity.picture.west = {
-        priority = "high",
-        filename = "__base__/graphics/entity/pumpjack/pumpjack-horsehead.png",
-        line_length = 8,
-        width = 104,
-        height = 102,
-        frame_count = 40,
-        shift = util.by_pixel(-4, -24),
-        animation_speed = 0.5,
-        hr_version = {
-            priority = "high",
-            filename = "__5dim_mining__/graphics/entities/water-pumpjack/water-pumpjack-horsehead-" ..
-                inputs.number .. ".png",
-            animation_speed = 0.5,
-            scale = 0.5,
-            line_length = 8,
-            width = 206,
-            height = 202,
-            frame_count = 40,
-            shift = util.by_pixel(-4, -24)
-        }
-    }
-    entity.collision_mask = {"ground-tile"}
-    entity.adjacent_tile_collision_mask = nil
-    entity.adjacent_tile_collision_test = {"ground-tile"}
-    entity.graphics_set = nil
-    entity.water_reflection = nil
-    entity.animation = nil
-    entity.placeable_position_visualization = nil
-    entity.collision_box = {{-1.2, -1.2}, {1.2, 1.2}}
-    entity.selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
-    entity.collision_mask = {"water-tile", "object-layer", "player-layer", "item-layer"}
-    entity.adjacent_tile_collision_test = {"ground-tile"}
-    entity.adjacent_tile_collision_mask = nil
-    entity.fluid_box.pipe_connections[1].position = {0, 2}
-    circuit_wire_connection_points = circuit_connector_definitions["pumpjack"].points
-    circuit_connector_sprites = circuit_connector_definitions["pumpjack"].sprites
+    entity.collision_mask = {layers={item=true, object=true, player=true, water_tile=true, elevated_rail=true, is_object=true, is_lower_object=true}}
+    entity.tile_buildability_rules = nil
+
+    -- North
+    entity.graphics_set.animation.north.layers[1].filename =
+        "__5dim_mining__/graphics/entities/offshore-pump/north/offshore-pump-north-" .. inputs.number .. ".png"
+
+    -- East
+    entity.graphics_set.animation.east.layers[1].filename =
+        "__5dim_mining__/graphics/entities/offshore-pump/east/offshore-pump-east-" .. inputs.number .. ".png"
+
+    -- South
+    entity.graphics_set.animation.south.layers[1].filename =
+        "__5dim_mining__/graphics/entities/offshore-pump/south/offshore-pump-south-" .. inputs.number .. ".png"
+
+    -- West
+    entity.graphics_set.animation.west.layers[1].filename =
+        "__5dim_mining__/graphics/entities/offshore-pump/west/offshore-pump-west-" .. inputs.number .. ".png"
     data:extend({entity, recipe, item})
 
     -- Technology

@@ -18,7 +18,7 @@ function genNuclearReactors(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -37,7 +37,7 @@ function genNuclearReactors(inputs)
     entity.fast_replaceable_group = "nuclear-reactor"
 
     -- Base
-    entity.picture.layers[1].hr_version.filename =
+    entity.picture.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/nuclear-reactor/reactor-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

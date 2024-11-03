@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "module",
             order = "gf",
-            inventory_order = "gf",
             icon = "__5dim_core__/graphics/icon/module.png",
             icon_size = 64
         },
@@ -16,7 +15,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "effectivity",
+            name = "efficiency",
             group = "module",
             order = "b"
         },
@@ -28,21 +27,27 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "pollution",
+            name = "quality",
             group = "module",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "merged",
+            name = "pollution",
             group = "module",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "beacon",
+            name = "merged",
             group = "module",
             order = "f"
+        },
+        {
+            type = "item-subgroup",
+            name = "beacon",
+            group = "module",
+            order = "g"
         },
     }
 )

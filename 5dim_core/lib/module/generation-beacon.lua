@@ -17,7 +17,7 @@ function genBeacons(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
@@ -30,9 +30,9 @@ function genBeacons(inputs)
     entity.minable.result = item.name
     entity.supply_area_distance = inputs.area or 3
     entity.distribution_effectivity = inputs.efficiency or 0.5
-    entity.module_specification.module_slots = inputs.moduleSlots or 2
+    entity.module_slots = inputs.moduleSlots or 2
     entity.energy_usage = inputs.energyUsage .. "kW"
-    entity.graphics_set.animation_list[1].animation.layers[1].hr_version.filename =
+    entity.graphics_set.animation_list[1].animation.layers[1].filename =
         "__5dim_module__/graphics/entities/beacon/beacon-bottom-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

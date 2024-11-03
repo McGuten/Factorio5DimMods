@@ -7,13 +7,14 @@ function genAssemblingMachines(inputs)
     local item = table.deepcopy(data.raw.item[copyName])
     local recipe = table.deepcopy(data.raw.recipe[copyName])
     local entity = table.deepcopy(data.raw["assembling-machine"][copyName])
-    local tech = table.deepcopy(data.raw.technology["automation"])
+    local tech = table.deepcopy(data.raw.technology["automation-2"])
 
     --Item
     if inputs.new then
         item.name = "5d-assembling-machine-" .. inputs.number
     end
-    item.icon = "__5dim_automation__/graphics/icon/assembling-machine/assembling-machine-icon-" .. inputs.number .. ".png"
+    item.icon = "__5dim_automation__/graphics/icon/assembling-machine/assembling-machine-icon-" ..
+        inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -21,12 +22,12 @@ function genAssemblingMachines(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
     end
     recipe.ingredients = inputs.ingredients
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
 
     --Entity
     entity.name = item.name
@@ -38,12 +39,12 @@ function genAssemblingMachines(inputs)
     entity.fast_replaceable_group = "assembling-machine"
 
     -- Base
-    entity.animation.layers[1].hr_version.filename =
+    entity.graphics_set.animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/assembling-machine/assembling-machine-" .. inputs.number .. ".png"
-    entity.animation.layers[1].hr_version.width = 214
-    entity.animation.layers[1].hr_version.height = 226
+    entity.graphics_set.animation.layers[1].width = 214
+    entity.graphics_set.animation.layers[1].height = 226
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -59,6 +60,6 @@ function genAssemblingMachines(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

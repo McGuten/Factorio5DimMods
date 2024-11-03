@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "defense",
             order = "gv",
-            inventory_order = "gv",
             icon = "__5dim_core__/graphics/icon/defense.png",
             icon_size = 64
         },
@@ -54,19 +53,37 @@ data:extend(
             type = "item-subgroup",
             name = "defense-laser-turret-sniper",
             group = "defense",
-            order = "h"
+            order = "ha"
         },
         {
             type = "item-subgroup",
-            name = "defense-tesla",
+            name = "defense-electric-laser",
             group = "defense",
-            order = "i"
+            order = "hb"
         },
         {
             type = "item-subgroup",
             name = "defense-flame",
             group = "defense",
-            order = "j"
+            order = "i"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-tesla",
+            group = "defense",
+            order = "ja"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-railgun-turret",
+            group = "defense",
+            order = "jb"
+        },
+        {
+            type = "item-subgroup",
+            name = "defense-rocket-turret",
+            group = "defense",
+            order = "jc"
         },
         {
             type = "item-subgroup",

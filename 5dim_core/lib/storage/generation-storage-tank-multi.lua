@@ -14,7 +14,7 @@ function genStorageTankMultis(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
@@ -26,17 +26,17 @@ function genStorageTankMultis(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.fluid_box.base_area = inputs.capacity
-    entity.pictures.picture.sheets[1].hr_version.filename =
+    entity.pictures.picture.sheets[1].filename =
         "__5dim_storage__/graphics/entities/storage-tank-multi/storage-tank-multi-" .. inputs.number .. ".png"
     entity.fluid_box.pipe_connections = {
-        {position = {-1, -2}},
-        {position = {-1, 2}},
-        {position = {1, -2}},
-        {position = {1, 2}},
-        {position = {-2, -1}},
-        {position = {-2, 1}},
-        {position = {2, -1}},
-        {position = {2, 1}}
+        { direction = defines.direction.north, position = { -1, -1 } },
+        { direction = defines.direction.north, position = { 1, -1 } },
+        { direction = defines.direction.south, position = { -1, 1 } },
+        { direction = defines.direction.south, position = { 1, 1 } },
+        { direction = defines.direction.west,  position = { -1, -1 } },
+        { direction = defines.direction.west,  position = { 1, -1 } },
+        { direction = defines.direction.east,  position = { -1, 1 } },
+        { direction = defines.direction.east,  position = { 1, 1 } }
     }
 
     data:extend(

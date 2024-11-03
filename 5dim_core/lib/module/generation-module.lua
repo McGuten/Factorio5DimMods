@@ -26,7 +26,7 @@ function genModules(inputs)
     --Recipe
     recipeSpeed.name = itemSpeed.name
     recipeSpeed.icon = itemSpeed.icon
-    recipeSpeed.result = itemSpeed.name
+    recipeSpeed.results = { { type = "item", name = itemSpeed.name, amount = 1 } }
     recipeSpeed.icon_size = 64
     if inputs.new then
         recipeSpeed.enabled = false
@@ -56,22 +56,22 @@ function genModules(inputs)
     local recipeEffectivity = ""
     local techEffectivity = ""
     if inputs.tier == 2 or inputs.tier == 3 then
-        itemEffectivity = table.deepcopy(data.raw.module["effectivity-module-" .. inputs.tier])
-        recipeEffectivity = table.deepcopy(data.raw.recipe["effectivity-module-" .. inputs.tier])
-        techEffectivity = table.deepcopy(data.raw.technology["effectivity-module-" .. inputs.tier])
+        itemEffectivity = table.deepcopy(data.raw.module["efficiency-module-" .. inputs.tier])
+        recipeEffectivity = table.deepcopy(data.raw.recipe["efficiency-module-" .. inputs.tier])
+        techEffectivity = table.deepcopy(data.raw.technology["efficiency-module-" .. inputs.tier])
     else
-        itemEffectivity = table.deepcopy(data.raw.module["effectivity-module"])
-        recipeEffectivity = table.deepcopy(data.raw.recipe["effectivity-module"])
-        techEffectivity = table.deepcopy(data.raw.technology["effectivity-module"])
+        itemEffectivity = table.deepcopy(data.raw.module["efficiency-module"])
+        recipeEffectivity = table.deepcopy(data.raw.recipe["efficiency-module"])
+        techEffectivity = table.deepcopy(data.raw.technology["efficiency-module"])
     end
 
     --Item
     if inputs.new then
-        itemEffectivity.name = "5d-effectivity-module-" .. inputs.number
+        itemEffectivity.name = "5d-efficiency-module-" .. inputs.number
     end
     itemEffectivity.icon =
-        "__5dim_module__/graphics/icons/effectivity-module/effectivity-module-" .. inputs.number .. ".png"
-    itemEffectivity.subgroup = "effectivity"
+        "__5dim_module__/graphics/icons/efficiency-module/efficiency-module-" .. inputs.number .. ".png"
+    itemEffectivity.subgroup = "efficiency"
     itemEffectivity.order = inputs.order
     itemEffectivity.effect = inputs.effects.effectivity
     itemEffectivity.tier = inputs.tier
@@ -79,7 +79,7 @@ function genModules(inputs)
     --Recipe
     recipeEffectivity.name = itemEffectivity.name
     recipeEffectivity.icon = itemEffectivity.icon
-    recipeEffectivity.result = itemEffectivity.name
+    recipeEffectivity.results = { { type = "item", name = itemEffectivity.name, amount = 1 } }
     recipeEffectivity.icon_size = 64
     if inputs.new then
         recipeEffectivity.enabled = false
@@ -91,7 +91,7 @@ function genModules(inputs)
 
     -- Technology
     if inputs.new then
-        techEffectivity.name = "effectivity-module-" .. inputs.tech.number
+        techEffectivity.name = "efficiency-module-" .. inputs.tech.number
         --tech.icon = "__base__/graphics/technology/oil-refinery.png"
         techEffectivity.unit.count = inputs.tech.count
         techEffectivity.unit.ingredients = inputs.tech.packs
@@ -132,7 +132,7 @@ function genModules(inputs)
     --Recipe
     recipeProductivity.name = itemProductivity.name
     recipeProductivity.icon = itemProductivity.icon
-    recipeProductivity.result = itemProductivity.name
+    recipeProductivity.results = { { type = "item", name = recipeProductivity.name, amount = 1 } }
     recipeProductivity.icon_size = 64
     if inputs.new then
         recipeProductivity.enabled = false
@@ -183,7 +183,7 @@ function genModules(inputs)
     --Recipe
     recipePollution.name = itemPollution.name
     recipePollution.icon = itemPollution.icon
-    recipePollution.result = itemPollution.name
+    recipePollution.results = { { type = "item", name = recipePollution.name, amount = 1 } }
     recipePollution.icon_size = 64
     if inputs.new then
         recipePollution.enabled = false
@@ -231,12 +231,10 @@ function genModules(inputs)
     local speed = inputs.effects.speed
     local pollu = inputs.effects.pollution
     itemMerged.effect = {
-        productivity = {bonus = product.productivity.bonus},
-        consumption = {
-            bonus = product.consumption.bonus + consump.consumption.bonus + speed.consumption.bonus
-        },
-        pollution = {bonus = product.pollution.bonus + pollu.pollution.bonus},
-        speed = {bonus = speed.speed.bonus + product.speed.bonus}
+        productivity = product.productivity,
+        consumption = product.consumption + consump.consumption + speed.consumption,
+        pollution = product.pollution + pollu.pollution,
+        speed = speed.speed + product.speed,
     }
     itemMerged.tier = inputs.tier
     itemMerged.localised_description = nil
@@ -244,7 +242,7 @@ function genModules(inputs)
     --Recipe
     recipeMerged.name = itemMerged.name
     recipeMerged.icon = itemMerged.icon
-    recipeMerged.result = itemMerged.name
+    recipeMerged.results = { { type = "item", name = recipeMerged.name, amount = 1 } }
     recipeMerged.icon_size = 64
     if inputs.new then
         recipeMerged.enabled = false

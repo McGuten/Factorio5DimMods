@@ -1,30 +1,7 @@
 -- Flamer
-data:extend(
-    {
-        {
-            type = "flame-thrower-explosion",
-            name = "flame-thrower-bicho",
-            flags = {"not-on-map"},
-            animation_speed = 1,
-            animations = {
-                {
-                    filename = "__5dim_enemies__/graphics/entities/flame-thrower-bicho.png",
-                    priority = "extra-high",
-                    width = 64,
-                    height = 64,
-                    frame_count = 64,
-                    line_length = 8
-                }
-            },
-            light = {intensity = 0.2, size = 20},
-            slow_down_factor = 1,
-            smoke = "smoke-fast",
-            smoke_count = 1,
-            smoke_slow_down_factor = 0.95,
-            damage = {amount = 0.3, type = "acid"}
-        }
-    }
-)
+local fire = table.deepcopy(data.raw.stream["flamethrower-fire-stream"])
+fire.name = "flamethrower-fire-bicho"
+data:extend({ fire })
 
 -- Spitter
 function selectAttackParams(size, type, data)
@@ -95,7 +72,7 @@ function selectAttackParams(size, type, data)
             )
         end
     elseif type == "fire" then
-        if size == "small" then 
+        if size == "small" then
             return {
                 type = "stream",
                 cooldown = 4,
@@ -105,14 +82,14 @@ function selectAttackParams(size, type, data)
                 turn_range = 1.0 / 3.0,
                 fire_penalty = 15,
                 gun_barrel_length = 0.4,
+                ammo_category = "flamethrower",
                 ammo_type = {
-                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "stream",
                             stream = "flamethrower-fire-stream",
-                            source_offset = {0.15, -0.5}
+                            source_offset = { 0.15, -0.5 }
                         }
                     }
                 },
@@ -127,14 +104,14 @@ function selectAttackParams(size, type, data)
                 turn_range = 1.0 / 3.0,
                 fire_penalty = 15,
                 gun_barrel_length = 0.4,
+                ammo_category = "flamethrower",
                 ammo_type = {
-                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "stream",
                             stream = "flamethrower-fire-stream",
-                            source_offset = {0.15, -0.5}
+                            source_offset = { 0.15, -0.5 }
                         }
                     }
                 },
@@ -149,14 +126,14 @@ function selectAttackParams(size, type, data)
                 turn_range = 1.0 / 3.0,
                 fire_penalty = 15,
                 gun_barrel_length = 0.4,
+                ammo_category = "flamethrower",
                 ammo_type = {
-                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "stream",
                             stream = "flamethrower-fire-stream",
-                            source_offset = {0.15, -0.5}
+                            source_offset = { 0.15, -0.5 }
                         }
                     }
                 },
@@ -171,14 +148,14 @@ function selectAttackParams(size, type, data)
                 turn_range = 1.0 / 3.0,
                 fire_penalty = 15,
                 gun_barrel_length = 0.4,
+                ammo_category = "flamethrower",
                 ammo_type = {
-                    category = "flamethrower",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "stream",
                             stream = "flamethrower-fire-stream",
-                            source_offset = {0.15, -0.5}
+                            source_offset = { 0.15, -0.5 }
                         }
                     }
                 },
@@ -189,7 +166,7 @@ function selectAttackParams(size, type, data)
         if size == "small" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
@@ -215,7 +192,7 @@ function selectAttackParams(size, type, data)
         elseif size == "medium" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
@@ -241,7 +218,7 @@ function selectAttackParams(size, type, data)
         elseif size == "big" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
@@ -267,7 +244,7 @@ function selectAttackParams(size, type, data)
         elseif size == "behemoth" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 60,
                 range = 1,
                 projectile_creation_distance = 0.5,
@@ -295,7 +272,7 @@ function selectAttackParams(size, type, data)
         if size == "small" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
@@ -321,7 +298,7 @@ function selectAttackParams(size, type, data)
         elseif size == "medium" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
@@ -347,7 +324,7 @@ function selectAttackParams(size, type, data)
         elseif size == "big" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,
@@ -373,7 +350,7 @@ function selectAttackParams(size, type, data)
         elseif size == "behemoth" then
             return {
                 type = "projectile",
-                ammo_category = "explosive-rocket",
+                ammo_category = "rocket",
                 cooldown = 150,
                 range = data.range,
                 projectile_creation_distance = 0.5,

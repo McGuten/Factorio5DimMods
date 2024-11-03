@@ -4,9 +4,14 @@ data:extend(
             type = "item-group",
             name = "decoration",
             order = "gz",
-            inventory_order = "gz",
             icon = "__5dim_core__/graphics/icon/decorative.png",
             icon_size = 64
+        },
+        {
+            type = "item-subgroup",
+            name = "decoration-landfill",
+            group = "decoration",
+            order = "0"
         },
         {
             type = "item-subgroup",

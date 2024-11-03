@@ -17,7 +17,7 @@ function genConstructionRobots(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
@@ -31,13 +31,13 @@ function genConstructionRobots(inputs)
     entity.max_energy = inputs.energyUsage .. "MJ"
 
     -- Idle
-    entity.idle.hr_version.filename =
+    entity.idle.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
     -- Idle
-    entity.in_motion.hr_version.filename =
+    entity.in_motion.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot/construction-robot-" .. inputs.number .. ".png"
     -- Working
-    entity.working.hr_version.filename =
+    entity.working.filename =
         "__5dim_logistic__/graphics/entities/construction-robot/construction-robot-working/construction-robot-working-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

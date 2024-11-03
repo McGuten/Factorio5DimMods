@@ -20,7 +20,7 @@ function genRadars(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -38,7 +38,7 @@ function genRadars(inputs)
     entity.fast_replaceable_group = "radar"
 
     -- Base
-    entity.pictures.layers[1].hr_version.filename =
+    entity.pictures.layers[1].filename =
         "__5dim_battlefield__/graphics/entities/radar/radar-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

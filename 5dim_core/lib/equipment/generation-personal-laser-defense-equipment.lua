@@ -12,18 +12,19 @@ function genPersonalLaserDefenses(inputs)
     item.icon = "__5dim_equipment__/graphics/icon/personal-laser-defense/personal-laser-defense-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
-    item.placed_as_equipment_result = item.name
+    item.place_as_equipment_result = item.name
 
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
 
     -- Equipment
     equipment.name = item.name
+    equipment.take_result = item.name
     equipment.attack_parameters.cooldown = inputs.cooldown
     equipment.attack_parameters.range = inputs.range
     equipment.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1

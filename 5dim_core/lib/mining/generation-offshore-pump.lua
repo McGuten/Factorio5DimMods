@@ -3,7 +3,7 @@ function genOffshorePumps(inputs)
     local item = table.deepcopy(data.raw.item["offshore-pump"])
     local recipe = table.deepcopy(data.raw.recipe["offshore-pump"])
     local entity = table.deepcopy(data.raw["offshore-pump"]["offshore-pump"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,7 +18,7 @@ function genOffshorePumps(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -34,19 +34,19 @@ function genOffshorePumps(inputs)
     entity.fast_replaceable_group = "offshore-pump"
 
     -- North
-    entity.graphics_set.animation.north.layers[1].hr_version.filename =
+    entity.graphics_set.animation.north.layers[1].filename =
         "__5dim_mining__/graphics/entities/offshore-pump/north/offshore-pump-north-" .. inputs.number .. ".png"
 
     -- East
-    entity.graphics_set.animation.east.layers[1].hr_version.filename =
+    entity.graphics_set.animation.east.layers[1].filename =
         "__5dim_mining__/graphics/entities/offshore-pump/east/offshore-pump-east-" .. inputs.number .. ".png"
 
     -- South
-    entity.graphics_set.animation.south.layers[1].hr_version.filename =
+    entity.graphics_set.animation.south.layers[1].filename =
         "__5dim_mining__/graphics/entities/offshore-pump/south/offshore-pump-south-" .. inputs.number .. ".png"
 
     -- West
-    entity.graphics_set.animation.west.layers[1].hr_version.filename =
+    entity.graphics_set.animation.west.layers[1].filename =
         "__5dim_mining__/graphics/entities/offshore-pump/west/offshore-pump-west-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

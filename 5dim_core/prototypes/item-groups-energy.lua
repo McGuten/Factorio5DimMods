@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "energy",
             order = "gb",
-            inventory_order = "gb",
             icon = "__5dim_core__/graphics/icon/energy.png",
             icon_size = 64
         },
@@ -72,7 +71,7 @@ data:extend(
             type = "item-subgroup",
             name = "energy-pole",
             group = "energy",
-            order = "k"
+            order = "z"
         }
     }
 )

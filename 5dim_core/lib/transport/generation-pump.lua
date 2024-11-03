@@ -3,7 +3,7 @@ function genPumps(inputs)
     local item = table.deepcopy(data.raw.item["pump"])
     local recipe = table.deepcopy(data.raw.recipe["pump"])
     local entity = table.deepcopy(data.raw["pump"]["pump"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,7 +18,7 @@ function genPumps(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -35,19 +35,19 @@ function genPumps(inputs)
     entity.fast_replaceable_group = "pump"
 
     -- North
-    entity.animations.north.hr_version.filename =
+    entity.animations.north.filename =
         "__5dim_transport__/graphics/entities/pump/pump-north/pump-north-" .. inputs.number .. ".png"
 
     -- -- East
-    entity.animations.east.hr_version.filename =
+    entity.animations.east.filename =
         "__5dim_transport__/graphics/entities/pump/pump-east/pump-east-" .. inputs.number .. ".png"
 
     -- -- South
-    entity.animations.south.hr_version.filename =
+    entity.animations.south.filename =
         "__5dim_transport__/graphics/entities/pump/pump-south/pump-south-" .. inputs.number .. ".png"
 
     -- -- West
-    entity.animations.west.hr_version.filename =
+    entity.animations.west.filename =
         "__5dim_transport__/graphics/entities/pump/pump-west/pump-west-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

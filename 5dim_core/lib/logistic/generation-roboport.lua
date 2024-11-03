@@ -17,7 +17,7 @@ function genRoboports(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
@@ -41,10 +41,10 @@ function genRoboports(inputs)
     entity.charging_distance = 3
 
     -- Base
-    entity.base.layers[1].hr_version.filename =
+    entity.base.layers[1].filename =
         "__5dim_logistic__/graphics/entities/roboport/roboport-base/roboport-base-" .. inputs.number .. ".png"
     -- Base patch
-    entity.base_patch.hr_version.filename =
+    entity.base_patch.filename =
         "__5dim_logistic__/graphics/entities/roboport/roboport-base-patch/roboport-base-patch-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

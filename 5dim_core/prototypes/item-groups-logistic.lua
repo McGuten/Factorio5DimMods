@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "logistic",
             order = "ge",
-            inventory_order = "ge",
             icon = "__5dim_core__/graphics/icon/logistic.png",
             icon_size = 64
         },

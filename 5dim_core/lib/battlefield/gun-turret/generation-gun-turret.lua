@@ -20,7 +20,7 @@ function genGunTurrets(inputs)
     local entity = table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
     local tech = table.deepcopy(data.raw.technology["gun-turret"])
 
-    local tint = {r = 1, g = 1, b = 0.1, a = 1}
+    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
     if inputs.new then
@@ -46,7 +46,7 @@ function genGunTurrets(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     -- if inputs.new then
     recipe.enabled = false
@@ -64,28 +64,28 @@ function genGunTurrets(inputs)
     entity.attack_parameters.damage_modifier = inputs.cooldown
     entity.folded_animation.layers[2] =
         dim_gun_turret_extension_mask {
-        frame_count = 1,
-        line_length = 1,
-        tint = inputs.tint
-    }
-    entity.preparing_animation.layers[2] = dim_gun_turret_extension_mask {tint = inputs.tint}
+            frame_count = 1,
+            line_length = 1,
+            tint = inputs.tint
+        }
+    entity.preparing_animation.layers[2] = dim_gun_turret_extension_mask { tint = inputs.tint }
     entity.folding_animation.layers[2] =
         dim_gun_turret_extension_mask {
-        run_mode = "backward",
-        tint = inputs.tint
-    }
-    entity.base_picture.layers[2].apply_runtime_tint = false
-    entity.base_picture.layers[2].tint = inputs.tint
-    entity.base_picture.layers[2].hr_version.apply_runtime_tint = false
-    entity.base_picture.layers[2].hr_version.tint = inputs.tint
+            run_mode = "backward",
+            tint = inputs.tint
+        }
+    entity.graphics_set.base_visualisation.animation.layers[2].apply_runtime_tint = false
+    entity.graphics_set.base_visualisation.animation.layers[2].tint = inputs.tint
+    entity.graphics_set.base_visualisation.animation.layers[2].apply_runtime_tint = false
+    entity.graphics_set.base_visualisation.animation.layers[2].tint = inputs.tint
     entity.attacking_animation.layers[2].apply_runtime_tint = false
     entity.attacking_animation.layers[2].tint = inputs.tint
-    entity.attacking_animation.layers[2].hr_version.apply_runtime_tint = false
-    entity.attacking_animation.layers[2].hr_version.tint = inputs.tint
+    entity.attacking_animation.layers[2].apply_runtime_tint = false
+    entity.attacking_animation.layers[2].tint = inputs.tint
     entity.prepared_animation.layers[2].apply_runtime_tint = false
     entity.prepared_animation.layers[2].tint = inputs.tint
-    entity.prepared_animation.layers[2].hr_version.apply_runtime_tint = false
-    entity.prepared_animation.layers[2].hr_version.tint = inputs.tint
+    entity.prepared_animation.layers[2].apply_runtime_tint = false
+    entity.prepared_animation.layers[2].tint = inputs.tint
     entity.max_health = inputs.health or 480
     entity.fast_replaceable_group = "gun-turret"
     entity.resistances = inputs.resistances or nil
@@ -111,40 +111,40 @@ function genGunTurrets(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
     table.insert(
         data.raw.technology["physical-projectile-damage-1"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.1}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.1 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-2"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.1}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.1 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-3"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-4"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-5"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-6"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.4}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.4 }
     )
 
     table.insert(
         data.raw.technology["physical-projectile-damage-7"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.7}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.7 }
     )
 end

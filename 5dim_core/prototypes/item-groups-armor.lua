@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "armor",
             order = "gw",
-            inventory_order = "gw",
             icon = "__5dim_core__/graphics/icon/armor.png",
             icon_size = 64
         },
@@ -18,7 +17,13 @@ data:extend(
             type = "item-subgroup",
             name = "armor-power-armor",
             group = "armor",
-            order = "b"
+            order = "ba"
+        },
+        {
+            type = "item-subgroup",
+            name = "armor-mech-armor",
+            group = "armor",
+            order = "bb"
         },
         {
             type = "item-subgroup",
@@ -28,9 +33,15 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "armor-fision-reactor",
+            group = "armor",
+            order = "da"
+        },
+        {
+            type = "item-subgroup",
             name = "armor-reactor",
             group = "armor",
-            order = "d"
+            order = "db"
         },
         {
             type = "item-subgroup",

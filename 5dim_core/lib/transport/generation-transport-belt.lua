@@ -28,11 +28,14 @@ function genTransportBelts(inputs)
     --Recipe
     recipeTransportBelt.name = itemTransportBelt.name
     recipeTransportBelt.icon = itemTransportBelt.icon
-    recipeTransportBelt.result = itemTransportBelt.name
+    recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
+    if inputs.liquids then
+        recipeTransportBelt.category = "crafting-with-fluid"
+    end
     recipeTransportBelt.icon_size = 64
     if recipeTransportBelt.normal == nil then
         recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-        recipeTransportBelt.result = itemTransportBelt.name
+        recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
         if inputs.new then
             recipeTransportBelt.enabled = false
         end
@@ -43,12 +46,12 @@ function genTransportBelts(inputs)
         recipeTransportBelt.enabled = false
         if inputs.new then
             recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-            recipeTransportBelt.result = itemTransportBelt.name
+            recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
             recipeTransportBelt.normal = nil
             recipeTransportBelt.expensive = nil
         else
             recipeTransportBelt.normal.ingredients = inputs.ingredients.transportBelt
-            recipeTransportBelt.normal.result = itemTransportBelt.name
+            recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
         end
     end
 
@@ -64,7 +67,7 @@ function genTransportBelts(inputs)
 
     -- East
     if inputs.number ~= "01" then
-        entityTransportBelt.belt_animation_set.animation_set.hr_version.filename =
+        entityTransportBelt.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
@@ -89,20 +92,23 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt.name = itemUndergroundBelt.name
     recipeUndergroundBelt.icon = itemUndergroundBelt.icon
     recipeUndergroundBelt.icon_size = 64
+    if inputs.liquids then
+        recipeUndergroundBelt.category = "crafting-with-fluid"
+    end
     if recipeUndergroundBelt.normal == nil then
         recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
-        recipeUndergroundBelt.result = itemUndergroundBelt.name
+        recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
         recipeUndergroundBelt.enabled = false
     else
         recipeUndergroundBelt.enabled = false
         if inputs.new then
             recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.result = itemUndergroundBelt.name
+            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
             recipeUndergroundBelt.normal = nil
             recipeUndergroundBelt.expensive = nil
         else
             recipeUndergroundBelt.normal.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.normal.result = itemUndergroundBelt.name
+            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
         end
     end
 
@@ -114,17 +120,17 @@ function genTransportBelts(inputs)
     entityUndergroundBelt.speed = inputs.speed
 
     if inputs.number ~= "01" then
-        entityUndergroundBelt.belt_animation_set.animation_set.hr_version.filename =
+        entityUndergroundBelt.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
-    entityUndergroundBelt.structure.direction_in.sheet.hr_version.filename =
+    entityUndergroundBelt.structure.direction_in.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt.structure.direction_out.sheet.hr_version.filename =
+    entityUndergroundBelt.structure.direction_out.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt.structure.direction_in_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt.structure.direction_in_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt.structure.direction_out_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
     data:extend({entityUndergroundBelt, recipeUndergroundBelt, itemUndergroundBelt})
@@ -145,23 +151,26 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt30.name = itemUndergroundBelt30.name
     recipeUndergroundBelt30.icon = itemUndergroundBelt30.icon
-    recipeUndergroundBelt30.result = itemUndergroundBelt30.name
+    recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
     recipeUndergroundBelt30.icon_size = 64
     recipeUndergroundBelt30.enabled = false
+    if inputs.liquids then
+        recipeUndergroundBelt30.category = "crafting-with-fluid"
+    end
     if recipeUndergroundBelt30.normal == nil then
         recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-        recipeUndergroundBelt30.result = itemUndergroundBelt30.name
+        recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
         recipeUndergroundBelt30.enabled = false
     else
         recipeUndergroundBelt30.enabled = false
         if inputs.new then
             recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.result = itemUndergroundBelt30.name
+            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
             recipeUndergroundBelt30.normal = nil
             recipeUndergroundBelt30.expensive = nil
         else
             recipeUndergroundBelt30.normal.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.normal.result = itemUndergroundBelt30.name
+            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
         end
     end
 
@@ -174,17 +183,17 @@ function genTransportBelts(inputs)
     entityUndergroundBelt30.speed = inputs.speed
 
     if inputs.number ~= "01" then
-        entityUndergroundBelt30.belt_animation_set.animation_set.hr_version.filename =
+        entityUndergroundBelt30.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
-    entityUndergroundBelt30.structure.direction_in.sheet.hr_version.filename =
+    entityUndergroundBelt30.structure.direction_in.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt30.structure.direction_out.sheet.hr_version.filename =
+    entityUndergroundBelt30.structure.direction_out.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt30.structure.direction_in_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt30.structure.direction_in_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt30.structure.direction_out_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt30.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
     data:extend({entityUndergroundBelt30, recipeUndergroundBelt30, itemUndergroundBelt30})
@@ -205,22 +214,25 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt50.name = itemUndergroundBelt50.name
     recipeUndergroundBelt50.icon = itemUndergroundBelt50.icon
-    recipeUndergroundBelt50.result = itemUndergroundBelt50.name
+    recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
     recipeUndergroundBelt50.icon_size = 64
+    if inputs.liquids then
+        recipeUndergroundBelt50.category = "crafting-with-fluid"
+    end
     if recipeUndergroundBelt50.normal == nil then
         recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-        recipeUndergroundBelt50.result = itemUndergroundBelt50.name
+        recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
         recipeUndergroundBelt50.enabled = false
     else
         recipeUndergroundBelt50.enabled = false
         if inputs.new then
             recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.result = itemUndergroundBelt50.name
+            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
             recipeUndergroundBelt50.normal = nil
             recipeUndergroundBelt50.expensive = nil
         else
             recipeUndergroundBelt50.normal.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.normal.result = itemUndergroundBelt50.name
+            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
         end
     end
 
@@ -233,17 +245,17 @@ function genTransportBelts(inputs)
     entityUndergroundBelt50.speed = inputs.speed
 
     if inputs.number ~= "01" then
-        entityUndergroundBelt50.belt_animation_set.animation_set.hr_version.filename =
+        entityUndergroundBelt50.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
-    entityUndergroundBelt50.structure.direction_in.sheet.hr_version.filename =
+    entityUndergroundBelt50.structure.direction_in.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt50.structure.direction_out.sheet.hr_version.filename =
+    entityUndergroundBelt50.structure.direction_out.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt50.structure.direction_in_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt50.structure.direction_in_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
-    entityUndergroundBelt50.structure.direction_out_side_loading.sheet.hr_version.filename =
+    entityUndergroundBelt50.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
     data:extend({entityUndergroundBelt50, recipeUndergroundBelt50, itemUndergroundBelt50})
@@ -265,22 +277,25 @@ function genTransportBelts(inputs)
     --Recipe
     recipeSplitter.name = itemSplitter.name
     recipeSplitter.icon = itemSplitter.icon
-    recipeSplitter.result = itemSplitter.name
+    recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
     recipeSplitter.icon_size = 64
+    if inputs.liquids then
+        recipeSplitter.category = "crafting-with-fluid"
+    end
     if recipeSplitter.normal == nil then
         recipeSplitter.ingredients = inputs.ingredients.splitter
-        recipeSplitter.result = itemSplitter.name
+        recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
         recipeSplitter.enabled = false
     else
         recipeSplitter.enabled = false
         if inputs.new then
             recipeSplitter.ingredients = inputs.ingredients.splitter
-            recipeSplitter.result = itemSplitter.name
+            recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
             recipeSplitter.normal = nil
             recipeSplitter.expensive = nil
         else
             recipeSplitter.normal.ingredients = inputs.ingredients.splitter
-            recipeSplitter.normal.result = itemSplitter.name
+            recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
         end
     end
 
@@ -291,28 +306,28 @@ function genTransportBelts(inputs)
     entitySplitter.minable.result = itemSplitter.name
     entitySplitter.speed = inputs.speed
 
-    entitySplitter.belt_animation_set.animation_set.hr_version.filename =
+    entitySplitter.belt_animation_set.animation_set.filename =
         "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
 
-    entitySplitter.structure.north.hr_version.filename =
+    entitySplitter.structure.north.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-north/splitter-north-" .. inputs.number .. ".png"
-    entitySplitter.structure.east.hr_version.filename =
+    entitySplitter.structure.east.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-east/splitter-east-" .. inputs.number .. ".png"
-    entitySplitter.structure.south.hr_version.filename =
+    entitySplitter.structure.south.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-south/splitter-south-" .. inputs.number .. ".png"
-    entitySplitter.structure.west.hr_version.filename =
+    entitySplitter.structure.west.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-west/splitter-west-" .. inputs.number .. ".png"
 
-    entitySplitter.structure_patch.east.hr_version.filename =
+    entitySplitter.structure_patch.east.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-east-top_patch/splitter-east-top_patch-" ..
         inputs.number .. ".png"
-    entitySplitter.structure_patch.west.hr_version.filename =
+    entitySplitter.structure_patch.west.filename =
         "__5dim_transport__/graphics/entities/splitter/splitter-west-top_patch/splitter-west-top_patch-" ..
         inputs.number .. ".png"
 
     if inputs.number == "01" or inputs.number == "02" then
-        entitySplitter.structure.west.hr_version.width = 94
-        entitySplitter.structure_patch.west.hr_version.width = 94
+        entitySplitter.structure.west.width = 94
+        entitySplitter.structure_patch.west.width = 94
     end
 
     data:extend({entitySplitter, recipeSplitter, itemSplitter})
@@ -331,27 +346,32 @@ function genTransportBelts(inputs)
     itemLoader.subgroup = "transport-loader"
     itemLoader.order = inputs.order
     itemLoader.flags = nil
+    itemLoader.hidden = false
     itemLoader.place_result = itemLoader.name
 
     --Recipe
     recipeLoader.name = itemLoader.name
     recipeLoader.icon = itemLoader.icon
-    recipeLoader.result = itemLoader.name
+    recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
     recipeLoader.icon_size = 64
+    recipeLoader.hidden = false
+    if inputs.liquids then
+        recipeLoader.category = "crafting-with-fluid"
+    end
     if recipeLoader.normal == nil then
         recipeLoader.ingredients = inputs.ingredients.loader
-        recipeLoader.result = itemLoader.name
+        recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
         recipeLoader.enabled = false
     else
         recipeLoader.enabled = false
         if inputs.new then
             recipeLoader.ingredients = inputs.ingredients.loader
-            recipeLoader.result = itemLoader.name
+            recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
             recipeLoader.normal = nil
             recipeLoader.expensive = nil
         else
             recipeLoader.normal.ingredients = inputs.ingredients.loader
-            recipeLoader.normal.result = itemLoader.name
+            recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
         end
     end
     recipeLoader.hidden = false
@@ -364,7 +384,7 @@ function genTransportBelts(inputs)
     entityLoader.speed = inputs.speed
 
     if inputs.number ~= "01" then
-        entityLoader.belt_animation_set.animation_set.hr_version.filename =
+        entityLoader.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
@@ -377,7 +397,7 @@ function genTransportBelts(inputs)
     entityLoader.structure.direction_out.sheet.width = 128
     entityLoader.structure.direction_out.sheet.height = 128
     entityLoader.structure.direction_out.sheet.y = 128
-    entityLoader.flags = {"placeable-neutral", "player-creation", "fast-replaceable-no-build-while-moving"}
+    entityLoader.flags = {"placeable-neutral", "player-creation"}
 
     data:extend({entityLoader, recipeLoader, itemLoader})
 

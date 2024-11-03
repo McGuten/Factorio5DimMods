@@ -20,7 +20,7 @@ function genMiningDrills(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     if recipe.normal == nil then
-        recipe.result = item.name
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
         if inputs.new then
             recipe.enabled = false
         end
@@ -44,51 +44,51 @@ function genMiningDrills(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.mining_speed = inputs.craftingSpeed
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
     --North
-    entity.graphics_set.animation.north.layers[1].hr_version.filename =
+    entity.graphics_set.animation.north.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-N/electric-mining-drill-N-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.animation.north.layers[1].hr_version.filename =
+    entity.wet_mining_graphics_set.animation.north.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-N/electric-mining-drill-N-wet-" ..
         inputs.number .. ".png"
 
     --East
-    entity.graphics_set.animation.east.layers[1].hr_version.filename =
+    entity.graphics_set.animation.east.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-E/electric-mining-drill-E-" ..
         inputs.number .. ".png"
-    entity.graphics_set.working_visualisations[7].east_animation.hr_version.filename =
+    entity.graphics_set.working_visualisations[7].east_animation.filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-E/electric-mining-drill-E-front-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.animation.east.layers[1].hr_version.filename =
+    entity.wet_mining_graphics_set.animation.east.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-E/electric-mining-drill-E-wet-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.working_visualisations[13].east_animation.layers[1].hr_version.filename =
+    entity.wet_mining_graphics_set.working_visualisations[13].east_animation.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-E/electric-mining-drill-E-wet-front-" ..
         inputs.number .. ".png"
 
     --South
-    entity.graphics_set.working_visualisations[7].south_animation.layers[2].hr_version.filename =
+    entity.graphics_set.working_visualisations[7].south_animation.layers[2].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-S/electric-mining-drill-S-front-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.working_visualisations[13].south_animation.layers[2].hr_version.filename =
+    entity.wet_mining_graphics_set.working_visualisations[13].south_animation.layers[2].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-S/electric-mining-drill-S-wet-front-" ..
         inputs.number .. ".png"
 
     --West
-    entity.graphics_set.animation.west.layers[1].hr_version.filename =
+    entity.graphics_set.animation.west.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-W/electric-mining-drill-W-" ..
         inputs.number .. ".png"
-    entity.graphics_set.working_visualisations[7].west_animation.hr_version.filename =
+    entity.graphics_set.working_visualisations[7].west_animation.filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-W/electric-mining-drill-W-front-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.animation.west.layers[1].hr_version.filename =
+    entity.wet_mining_graphics_set.animation.west.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-W/electric-mining-drill-W-wet-" ..
         inputs.number .. ".png"
-    entity.wet_mining_graphics_set.working_visualisations[13].west_animation.layers[1].hr_version.filename =
+    entity.wet_mining_graphics_set.working_visualisations[13].west_animation.layers[1].filename =
         "__5dim_mining__/graphics/entities/electric-mining-drill/hr-electric-mining-drill-W/electric-mining-drill-W-wet-front-" ..
         inputs.number .. ".png"
 

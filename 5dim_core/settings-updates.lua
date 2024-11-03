@@ -217,26 +217,26 @@ if mods["5dim_enemies"] then
                 localised_name = "[5Dim's Enemies] Experimental enemies",
                 localised_description = "You want to active experimental enemies? (Default: True)"
             },
-            {
-                type = "bool-setting",
-                name = "5d-swimmer",
-                order = "dh",
-                setting_type = "startup",
-                default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Enemies] Swimmer bitters",
-                localised_description = "You want to active experimental enemies? (Default: True)"
-            },
-            {
-                type = "bool-setting",
-                name = "5d-climber",
-                order = "di",
-                setting_type = "startup",
-                default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Enemies] Climber bitters",
-                localised_description = "You want to active experimental enemies? (Default: True)"
-            },
+            -- {
+            --     type = "bool-setting",
+            --     name = "5d-swimmer",
+            --     order = "dh",
+            --     setting_type = "startup",
+            --     default_value = true,
+            --     per_user = false,
+            --     localised_name = "[5Dim's Enemies] Swimmer bitters",
+            --     localised_description = "You want to active experimental enemies? (Default: True)"
+            -- },
+            -- {
+            --     type = "bool-setting",
+            --     name = "5d-climber",
+            --     order = "di",
+            --     setting_type = "startup",
+            --     default_value = true,
+            --     per_user = false,
+            --     localised_name = "[5Dim's Enemies] Climber bitters",
+            --     localised_description = "You want to active experimental enemies? (Default: True)"
+            -- },
             {
                 type = "bool-setting",
                 name = "5d-worm",

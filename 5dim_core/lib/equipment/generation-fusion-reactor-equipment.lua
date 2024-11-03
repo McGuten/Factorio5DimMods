@@ -5,6 +5,8 @@ function genFusionReactors(inputs)
     local equipment = table.deepcopy(data.raw["generator-equipment"]["fusion-reactor-equipment"])
     local tech = table.deepcopy(data.raw.technology["fusion-reactor-equipment"])
 
+    -- log("item Name: " .. item.name)
+
     --Item
     if inputs.new then
         item.name = "5d-fusion-reactor-equipment-" .. inputs.number
@@ -12,18 +14,19 @@ function genFusionReactors(inputs)
     item.icon = "__5dim_equipment__/graphics/icon/fusion-reactor/fusion-reactor-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
-    item.placed_as_equipment_result = item.name
+    item.place_as_equipment_result = item.name
 
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
 
     -- Equipment
     equipment.name = item.name
+    equipment.take_result = item.name
     equipment.power = inputs.power .. "kW"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/fusion-reactor/fusion-reactor-equipment-" .. inputs.number .. ".png"

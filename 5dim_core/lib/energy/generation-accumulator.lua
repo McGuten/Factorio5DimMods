@@ -18,7 +18,7 @@ function genAccumulators(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -36,13 +36,13 @@ function genAccumulators(inputs)
     entity.fast_replaceable_group = "accumulator"
 
     -- Base
-    entity.picture.layers[1].hr_version.filename =
+    entity.chargable_graphics.picture.layers[1].filename =
         "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
     -- Charge animation
-    entity.charge_animation.layers[1].layers[1].hr_version.filename =
+    entity.chargable_graphics.charge_animation.layers[1].layers[1].filename =
         "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
     -- Discharge animation
-    entity.discharge_animation.layers[1].layers[1].hr_version.filename =
+    entity.chargable_graphics.discharge_animation.layers[1].layers[1].filename =
         "__5dim_energy__/graphics/entities/accumulator/accumulator-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

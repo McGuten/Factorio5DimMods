@@ -3,7 +3,7 @@ function genLabs(inputs)
     local item = table.deepcopy(data.raw.item["lab"])
     local recipe = table.deepcopy(data.raw.recipe["lab"])
     local entity = table.deepcopy(data.raw["lab"]["lab"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,12 +18,12 @@ function genLabs(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
     end
     recipe.ingredients = inputs.ingredients
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
 
     --Entity
     entity.name = item.name
@@ -32,13 +32,13 @@ function genLabs(inputs)
     entity.minable.result = item.name
     entity.researching_speed = inputs.craftingSpeed
     entity.energy_usage = inputs.energyUsage .. "kW"
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.fast_replaceable_group = "lab"
     
-    entity.on_animation.layers[1].hr_version.filename =
+    entity.on_animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
     
-    entity.off_animation.layers[1].hr_version.filename =
+    entity.off_animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

@@ -18,7 +18,7 @@ function genHeatExchangers(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -36,16 +36,16 @@ function genHeatExchangers(inputs)
     entity.fast_replaceable_group = "heat-exchanger"
 
     -- North
-    entity.structure.north.layers[1].hr_version.filename =
+    entity.pictures.north.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-N-idle/heatex-N-idle-" .. inputs.number .. ".png"
     -- East
-    entity.structure.east.layers[1].hr_version.filename =
+    entity.pictures.east.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-E-idle/heatex-E-idle-" .. inputs.number .. ".png"
     -- South
-    entity.structure.south.layers[1].hr_version.filename =
+    entity.pictures.south.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-S-idle/heatex-S-idle-" .. inputs.number .. ".png"
     -- West
-    entity.structure.west.layers[1].hr_version.filename =
+    entity.pictures.west.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-W-idle/heatex-W-idle-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

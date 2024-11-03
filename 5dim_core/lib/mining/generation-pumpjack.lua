@@ -3,7 +3,7 @@ function genPumpjacks(inputs)
     local item = table.deepcopy(data.raw.item["pumpjack"])
     local recipe = table.deepcopy(data.raw.recipe["pumpjack"])
     local entity = table.deepcopy(data.raw["mining-drill"]["pumpjack"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,7 +18,7 @@ function genPumpjacks(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.enabled = false
     recipe.ingredients = inputs.ingredients
@@ -29,16 +29,16 @@ function genPumpjacks(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.mining_speed = inputs.craftingSpeed
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
     --Base
-    entity.base_picture.sheets[1].hr_version.filename =
+    entity.base_picture.sheets[1].filename =
         "__5dim_mining__/graphics/entities/pumpjack/pumpjack-base.png"
 
     -- Animation
-    entity.animations.north.layers[1].hr_version.filename =
+    entity.graphics_set.animation.north.layers[1].filename =
         "__5dim_mining__/graphics/entities/pumpjack/pumpjack-horsehead-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

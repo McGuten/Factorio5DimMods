@@ -15,6 +15,17 @@ require("prototypes.item-groups-intermediate")
 require("prototypes.item-groups-defense")
 require("prototypes.item-groups-liquids")
 
+-- Planets
+
+if mods["space-age"] then
+    require("prototypes.item-groups-planet-orbit")
+    require("prototypes.item-groups-planet-nauvis")
+    require("prototypes.item-groups-planet-gleba")
+    require("prototypes.item-groups-planet-vulcanus")
+    require("prototypes.item-groups-planet-fulgora")
+    require("prototypes.item-groups-planet-aquilo")
+end
+
 --Tech
 -- require("prototypes.tech")
 

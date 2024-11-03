@@ -3,7 +3,7 @@ function genSteamEngines(inputs)
     local item = table.deepcopy(data.raw.item["steam-engine"])
     local recipe = table.deepcopy(data.raw.recipe["steam-engine"])
     local entity = table.deepcopy(data.raw["generator"]["steam-engine"])
-    local tech = table.deepcopy(data.raw.technology["oil-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,13 +18,13 @@ function genSteamEngines(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
     end
     if recipe.normal == nil then
-        recipe.result = item.name
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
         if inputs.new then
             recipe.enabled = false
         end
@@ -51,10 +51,10 @@ function genSteamEngines(inputs)
     entity.fluid_usage_per_tick = inputs.energyUsage
 
     -- Horizontal
-    entity.horizontal_animation.layers[1].hr_version.filename =
+    entity.horizontal_animation.layers[1].filename =
         "__5dim_energy__/graphics/entities/steam-engine/steam-engine-H/steam-engine-H-" .. inputs.number .. ".png"
     -- Vertical
-    entity.vertical_animation.layers[1].hr_version.filename =
+    entity.vertical_animation.layers[1].filename =
         "__5dim_energy__/graphics/entities/steam-engine/steam-engine-V/steam-engine-V-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

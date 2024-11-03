@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "mining",
             order = "ga",
-            inventory_order = "ga",
             icon = "__5dim_core__/graphics/icon/mining.png",
             icon_size = 64
         },
@@ -28,15 +27,15 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "mining-speed",
+            name = "mining-range",
             group = "mining",
             order = "bb"
         },
         {
             type = "item-subgroup",
-            name = "mining-range",
+            name = "mining-speed",
             group = "mining",
-            order = "c"
+            order = "ca"
         },
         {
             type = "item-subgroup",
@@ -73,6 +72,18 @@ data:extend(
             name = "lab",
             group = "mining",
             order = "i"
-        }
+        },
+        {
+            type = "item-subgroup",
+            name = "biolab",
+            group = "mining",
+            order = "j"
+        },
+        {
+            type = "item-subgroup",
+            name = "recycler",
+            group = "mining",
+            order = "k"
+        },
     }
 )

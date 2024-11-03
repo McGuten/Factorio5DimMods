@@ -3,7 +3,7 @@ function genCentrifuges(inputs)
     local item = table.deepcopy(data.raw.item["centrifuge"])
     local recipe = table.deepcopy(data.raw.recipe["centrifuge"])
     local entity = table.deepcopy(data.raw["assembling-machine"]["centrifuge"])
-    local tech = table.deepcopy(data.raw.technology["uranium-processing"])
+    local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
 
     --Item
     if inputs.new then
@@ -18,7 +18,7 @@ function genCentrifuges(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -33,11 +33,11 @@ function genCentrifuges(inputs)
     entity.crafting_speed = inputs.craftingSpeed
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
-    entity.module_specification.module_slots = inputs.moduleSlots
+    entity.module_slots = inputs.moduleSlots
     entity.fast_replaceable_group = "centrifuge"
 
     -- Base
-    entity.idle_animation.layers[1].hr_version.filename =
+    entity.graphics_set.idle_animation.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/centrifuge/centrifuge-C-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

@@ -3,7 +3,7 @@ function genLamps(inputs)
     local item = table.deepcopy(data.raw.item["small-lamp"])
     local recipe = table.deepcopy(data.raw.recipe["small-lamp"])
     local entity = table.deepcopy(data.raw["lamp"]["small-lamp"])
-    local tech = table.deepcopy(data.raw.technology["optics"])
+    local tech = table.deepcopy(data.raw.technology["lamp"])
 
     --Item
     if inputs.new then
@@ -17,7 +17,7 @@ function genLamps(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
@@ -34,14 +34,14 @@ function genLamps(inputs)
     entity.fast_replaceable_group = "lamp"
 
     -- Base
-    entity.picture_off.layers[1].hr_version.filename =
+    entity.picture_off.layers[1].filename =
         "__5dim_energy__/graphics/entities/lamp/lamp-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})
 
     -- Technology
     if inputs.tech then
-        tech.name = "optics-" .. inputs.tech.number
+        tech.name = "lamp-" .. inputs.tech.number
         tech.icon = item.icon
         tech.icon_size = 64
         tech.unit.count = inputs.tech.count

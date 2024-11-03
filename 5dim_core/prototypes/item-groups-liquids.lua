@@ -4,7 +4,6 @@ data:extend(
             type = "item-group",
             name = "liquid",
             order = "gaa",
-            inventory_order = "gaa",
             icon = "__5dim_core__/graphics/icon/liquids.png",
             icon_size = 64
         },

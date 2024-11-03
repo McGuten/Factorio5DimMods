@@ -17,7 +17,7 @@ function genLogisticRobots(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
@@ -31,16 +31,16 @@ function genLogisticRobots(inputs)
     entity.max_energy = inputs.energyUsage .. "MJ"
 
     -- Idle
-    entity.idle.hr_version.filename =
+    entity.idle.filename =
         "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
     -- Idle
-    entity.idle_with_cargo.hr_version.filename =
+    entity.idle_with_cargo.filename =
         "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
     -- Idle
-    entity.in_motion.hr_version.filename =
+    entity.in_motion.filename =
         "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
     -- Idle
-    entity.in_motion_with_cargo.hr_version.filename =
+    entity.in_motion_with_cargo.filename =
         "__5dim_logistic__/graphics/entities/logistic-robot/logistic-robot-" .. inputs.number .. ".png"
 
     data:extend({entity, recipe, item})

@@ -23,21 +23,24 @@ function genBatterys(inputs)
     item.icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
-    item.placed_as_equipment_result = item.name
+    item.place_as_equipment_result = item.name
 
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.result = item.name
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
     recipe.enabled = false
 
     -- Equipment
     equipment.name = item.name
+    equipment.take_result = item.name
     equipment.energy_source.buffer_capacity = inputs.capacity .. "MJ"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/battery/battery-equipment-" .. inputs.number .. ".png"
+    equipment.sprite.width = 32
+    equipment.sprite.height = 64
 
     data:extend({equipment, recipe, item})
 

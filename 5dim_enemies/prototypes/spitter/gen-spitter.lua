@@ -14,6 +14,7 @@ genSpitter {
     name = "spitter",
     category = "spitter",
     resistances = spitter.resistances.basic,
+    autoplace = 11,
     new = false
 }
 
@@ -29,6 +30,7 @@ genSpitter {
     name = "fire",
     category = "spitter",
     resistances = spitter.resistances.basic,
+    autoplace = 12,
     new = true
 }
 
@@ -44,6 +46,7 @@ genSpitter {
     name = "rocket",
     category = "spitter",
     resistances = spitter.resistances.basic,
+    autoplace = 13,
     new = true
 }
 
@@ -60,6 +63,7 @@ if settings.startup["5d-suicide"].value then
         name = "suicide",
         category = "spitter",
         resistances = spitter.resistances.basic,
+        autoplace = 14,
         new = true
     }
 end
@@ -76,6 +80,7 @@ genSpitter {
     name = "laser",
     category = "spitter",
     resistances = biter.resistances.laser,
+    autoplace = 15,
     new = true
 }
 
@@ -91,39 +96,40 @@ genSpitter {
     name = "physical",
     category = "spitter",
     resistances = biter.resistances.physical,
+    autoplace = 16,
     new = true
 }
 
-if settings.startup["5d-climber"].value then
-    -- Climber
-    genSpitter {
-        tint = biter.colors.primary.climber,
-        tint2 = biter.colors.secondary.secondColor,
-        scale = spitter.scale,
-        health = spitter.health,
-        damage = spitter.damage,
-        range = spitter.range,
-        spawnerRating = spawnerRating.spitter.climber,
-        name = "climber",
-        category = "spitter",
-        resistances = biter.resistances.basic,
-        new = true
-    }
-end
+-- if settings.startup["5d-climber"].value then
+--     -- Climber
+--     genSpitter {
+--         tint = biter.colors.primary.climber,
+--         tint2 = biter.colors.secondary.secondColor,
+--         scale = spitter.scale,
+--         health = spitter.health,
+--         damage = spitter.damage,
+--         range = spitter.range,
+--         spawnerRating = spawnerRating.spitter.climber,
+--         name = "climber",
+--         category = "spitter",
+--         resistances = biter.resistances.basic,
+--         new = true
+--     }
+-- end
 
-if settings.startup["5d-swimmer"].value then
-    -- Swimmer
-    genSpitter {
-        tint = biter.colors.primary.swimmer,
-        tint2 = biter.colors.secondary.secondColor,
-        scale = spitter.scale,
-        health = spitter.health,
-        damage = spitter.damage,
-        range = spitter.range,
-        spawnerRating = spawnerRating.spitter.swimer,
-        name = "swimmer",
-        category = "spitter",
-        resistances = biter.resistances.basic,
-        new = true
-    }
-end
+-- if settings.startup["5d-swimmer"].value then
+--     -- Swimmer
+--     genSpitter {
+--         tint = biter.colors.primary.swimmer,
+--         tint2 = biter.colors.secondary.secondColor,
+--         scale = spitter.scale,
+--         health = spitter.health,
+--         damage = spitter.damage,
+--         range = spitter.range,
+--         spawnerRating = spawnerRating.spitter.swimer,
+--         name = "swimmer",
+--         category = "spitter",
+--         resistances = biter.resistances.basic,
+--         new = true
+--     }
+-- end

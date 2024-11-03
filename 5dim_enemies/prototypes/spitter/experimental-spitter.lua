@@ -41,7 +41,7 @@ experimentalSpitter.attack_parameters =
         )
     }
 )
-experimentalSpitter.pollution_to_join_attack = 1000
+experimentalSpitter.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitter.corpse = "5d-experimental-spitter-corpse"
 
 --Corpse
@@ -87,7 +87,7 @@ experimentalSpitterLaser.attack_parameters =
         roarvolume = 0.8
     }
 )
-experimentalSpitterLaser.pollution_to_join_attack = 1000
+experimentalSpitterLaser.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitterLaser.corpse = "5d-experimental-spitter-laser-corpse"
 
 --Corpse
@@ -133,7 +133,7 @@ experimentalSpitterPhysical.attack_parameters =
         roarvolume = 0.8
     }
 )
-experimentalSpitterPhysical.pollution_to_join_attack = 1000
+experimentalSpitterPhysical.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitterPhysical.corpse = "5d-experimental-spitter-physical-corpse"
 
 --Corpse
@@ -156,99 +156,99 @@ local experimentalSpitterPhysicalCorpse =
     }
 )
 
--- Swimer
-experimentalSpitterSwimmer.name = "5d-experimental-spitter-swimmer"
-experimentalSpitterSwimmer.alternative_attacking_frame_sequence = nil
-experimentalSpitterSwimmer.max_health = spitter.health.experimental
-experimentalSpitterSwimmer.resistances = spitter.resistances.basic.experimental
-experimentalSpitterSwimmer.run_animation =
-    spitterrunanimation(spitter.scale.experimental, biter.colors.primary.swimmer, spitter.colors.secondary.secondColor)
-experimentalSpitterSwimmer.water_reflection = spitter_water_reflection(spitter.scale.experimental)
-experimentalSpitterSwimmer.collision_mask = {"object-layer"}
-experimentalSpitterSwimmer.attack_parameters =
-    spitter_behemoth_attack_parameters(
-    {
-        acid_stream_name = "acid-stream-spitter-behemoth",
-        range = spitter.range.experimental,
-        min_attack_distance = 10,
-        cooldown = 100,
-        cooldown_deviation = 0.15,
-        damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.experimental,
-        tint1 = biter.colors.primary.swimmer,
-        tint2 = spitter.colors.secondary.secondColor,
-        roarvolume = 0.8
-    }
-)
-experimentalSpitterSwimmer.pollution_to_join_attack = 1000
-experimentalSpitterSwimmer.corpse = "5d-experimental-spitter-swimmer-corpse"
+-- -- Swimer
+-- experimentalSpitterSwimmer.name = "5d-experimental-spitter-swimmer"
+-- experimentalSpitterSwimmer.alternative_attacking_frame_sequence = nil
+-- experimentalSpitterSwimmer.max_health = spitter.health.experimental
+-- experimentalSpitterSwimmer.resistances = spitter.resistances.basic.experimental
+-- experimentalSpitterSwimmer.run_animation =
+--     spitterrunanimation(spitter.scale.experimental, biter.colors.primary.swimmer, spitter.colors.secondary.secondColor)
+-- experimentalSpitterSwimmer.water_reflection = spitter_water_reflection(spitter.scale.experimental)
+-- experimentalSpitterSwimmer.collision_mask = {"object-layer"}
+-- experimentalSpitterSwimmer.attack_parameters =
+--     spitter_behemoth_attack_parameters(
+--     {
+--         acid_stream_name = "acid-stream-spitter-behemoth",
+--         range = spitter.range.experimental,
+--         min_attack_distance = 10,
+--         cooldown = 100,
+--         cooldown_deviation = 0.15,
+--         damage_modifier = spitter.damage.experimental,
+--         scale = spitter.scale.experimental,
+--         tint1 = biter.colors.primary.swimmer,
+--         tint2 = spitter.colors.secondary.secondColor,
+--         roarvolume = 0.8
+--     }
+-- )
+-- experimentalSpitterSwimmer.absorptions_to_join_attack = { pollution = 1000 }
+-- experimentalSpitterSwimmer.corpse = "5d-experimental-spitter-swimmer-corpse"
 
---Corpse
-local experimentalSpitterSwimmerCorpse =
-    add_spitter_die_animation(
-    spitter.scale.experimental,
-    biter.colors.primary.swimmer,
-    spitter.colors.secondary.secondColor,
-    {
-        type = "corpse",
-        name = "5d-experimental-spitter-swimmer-corpse",
-        icon = "__base__/graphics/icons/medium-biter-corpse.png",
-        icon_size = 64,
-        icon_mipmaps = 4,
-        selectable_in_game = false,
-        selection_box = {{-1, -1}, {1, 1}},
-        subgroup = "corpses",
-        order = "c[corpse]-a[biter]-b[medium]",
-        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
-    }
-)
+-- --Corpse
+-- local experimentalSpitterSwimmerCorpse =
+--     add_spitter_die_animation(
+--     spitter.scale.experimental,
+--     biter.colors.primary.swimmer,
+--     spitter.colors.secondary.secondColor,
+--     {
+--         type = "corpse",
+--         name = "5d-experimental-spitter-swimmer-corpse",
+--         icon = "__base__/graphics/icons/medium-biter-corpse.png",
+--         icon_size = 64,
+--         icon_mipmaps = 4,
+--         selectable_in_game = false,
+--         selection_box = {{-1, -1}, {1, 1}},
+--         subgroup = "corpses",
+--         order = "c[corpse]-a[biter]-b[medium]",
+--         flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+--     }
+-- )
 
--- Climber
-experimentalSpitterClimber.name = "5d-experimental-spitter-climber"
-experimentalSpitterClimber.alternative_attacking_frame_sequence = nil
-experimentalSpitterClimber.max_health = spitter.health.experimental
-experimentalSpitterClimber.resistances = spitter.resistances.basic.experimental
-experimentalSpitterClimber.run_animation =
-    spitterrunanimation(spitter.scale.experimental, biter.colors.primary.climber, spitter.colors.secondary.secondColor)
-experimentalSpitterClimber.water_reflection = spitter_water_reflection(spitter.scale.experimental)
-experimentalSpitterClimber.collision_mask = {"item-layer", "water-tile"}
-experimentalSpitterClimber.attack_parameters =
-    spitter_behemoth_attack_parameters(
-    {
-        acid_stream_name = "acid-stream-spitter-behemoth",
-        range = spitter.range.experimental,
-        min_attack_distance = 10,
-        cooldown = 100,
-        cooldown_deviation = 0.15,
-        damage_modifier = spitter.damage.experimental,
-        scale = spitter.scale.experimental,
-        tint1 = biter.colors.primary.climber,
-        tint2 = spitter.colors.secondary.secondColor,
-        roarvolume = 0.8
-    }
-)
-experimentalSpitterClimber.pollution_to_join_attack = 1000
-experimentalSpitterClimber.corpse = "5d-experimental-spitter-climber-corpse"
+-- -- Climber
+-- experimentalSpitterClimber.name = "5d-experimental-spitter-climber"
+-- experimentalSpitterClimber.alternative_attacking_frame_sequence = nil
+-- experimentalSpitterClimber.max_health = spitter.health.experimental
+-- experimentalSpitterClimber.resistances = spitter.resistances.basic.experimental
+-- experimentalSpitterClimber.run_animation =
+--     spitterrunanimation(spitter.scale.experimental, biter.colors.primary.climber, spitter.colors.secondary.secondColor)
+-- experimentalSpitterClimber.water_reflection = spitter_water_reflection(spitter.scale.experimental)
+-- experimentalSpitterClimber.collision_mask = {"item-layer", "water-tile"}
+-- experimentalSpitterClimber.attack_parameters =
+--     spitter_behemoth_attack_parameters(
+--     {
+--         acid_stream_name = "acid-stream-spitter-behemoth",
+--         range = spitter.range.experimental,
+--         min_attack_distance = 10,
+--         cooldown = 100,
+--         cooldown_deviation = 0.15,
+--         damage_modifier = spitter.damage.experimental,
+--         scale = spitter.scale.experimental,
+--         tint1 = biter.colors.primary.climber,
+--         tint2 = spitter.colors.secondary.secondColor,
+--         roarvolume = 0.8
+--     }
+-- )
+-- experimentalSpitterClimber.absorptions_to_join_attack = { pollution = 1000 }
+-- experimentalSpitterClimber.corpse = "5d-experimental-spitter-climber-corpse"
 
---Corpse
-local experimentalSpitterClimberCorpse =
-    add_spitter_die_animation(
-    spitter.scale.experimental,
-    biter.colors.primary.climber,
-    spitter.colors.secondary.secondColor,
-    {
-        type = "corpse",
-        name = "5d-experimental-spitter-climber-corpse",
-        icon = "__base__/graphics/icons/medium-biter-corpse.png",
-        icon_size = 64,
-        icon_mipmaps = 4,
-        selectable_in_game = false,
-        selection_box = {{-1, -1}, {1, 1}},
-        subgroup = "corpses",
-        order = "c[corpse]-a[biter]-b[medium]",
-        flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
-    }
-)
+-- --Corpse
+-- local experimentalSpitterClimberCorpse =
+--     add_spitter_die_animation(
+--     spitter.scale.experimental,
+--     biter.colors.primary.climber,
+--     spitter.colors.secondary.secondColor,
+--     {
+--         type = "corpse",
+--         name = "5d-experimental-spitter-climber-corpse",
+--         icon = "__base__/graphics/icons/medium-biter-corpse.png",
+--         icon_size = 64,
+--         icon_mipmaps = 4,
+--         selectable_in_game = false,
+--         selection_box = {{-1, -1}, {1, 1}},
+--         subgroup = "corpses",
+--         order = "c[corpse]-a[biter]-b[medium]",
+--         flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
+--     }
+-- )
 
 -- Fire
 experimentalSpitterFire.name = "5d-experimental-spitter-fire"
@@ -266,8 +266,8 @@ experimentalSpitterFire.attack_parameters = {
     turn_range = 1.0 / 3.0,
     fire_penalty = 15,
     gun_barrel_length = 0.4,
+    ammo_category = "flamethrower",
     ammo_type = {
-        category = "flamethrower",
         action = {
             type = "direct",
             action_delivery = {
@@ -283,7 +283,7 @@ experimentalSpitterFire.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
-experimentalSpitterFire.pollution_to_join_attack = 1000
+experimentalSpitterFire.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitterFire.corpse = "5d-experimental-spitter-fire-corpse"
 
 --Corpse
@@ -316,7 +316,7 @@ experimentalSpitterRocket.run_animation =
 experimentalSpitterRocket.water_reflection = spitter_water_reflection(spitter.scale.experimental)
 experimentalSpitterRocket.attack_parameters = {
     type = "projectile",
-    ammo_category = "explosive-rocket",
+    ammo_category = "rocket",
     cooldown = 90,
     range = spitter.range.experimental,
     projectile_creation_distance = 0.5,
@@ -342,7 +342,7 @@ experimentalSpitterRocket.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
-experimentalSpitterRocket.pollution_to_join_attack = 1000
+experimentalSpitterRocket.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitterRocket.corpse = "5d-experimental-spitter-rocketery-corpse"
 
 --Corpse
@@ -379,7 +379,7 @@ experimentalSpitterExplosive.run_animation =
 experimentalSpitterExplosive.water_reflection = spitter_water_reflection(spitter.scale.experimental)
 experimentalSpitterExplosive.attack_parameters = {
     type = "projectile",
-    ammo_category = "explosive-rocket",
+    ammo_category = "rocket",
     cooldown = 60,
     range = spitter.range.experimental,
     projectile_creation_distance = 0.5,
@@ -405,7 +405,7 @@ experimentalSpitterExplosive.attack_parameters = {
         spitter.colors.secondary.secondColor
     )
 }
-experimentalSpitterExplosive.pollution_to_join_attack = 1000
+experimentalSpitterExplosive.absorptions_to_join_attack = { pollution = 1000 }
 experimentalSpitterExplosive.corpse = "5d-experimental-spitter-suicide-corpse"
 
 --Corpse
@@ -453,11 +453,17 @@ experimentalSpitterSpawner.result_units = (function()
     res[13] = {experimentalSpitterExplosive.name, {{0.999, 0.0}, {1.0, 0.2}}}
     return res
 end)()
-experimentalSpitterSpawner.autoplace = enemy_autoplace.enemy_spawner_autoplace(0)
+experimentalSpitterSpawner.autoplace = enemy_autoplace.enemy_spawner_autoplace("enemy_autoplace_base(0, 99)")
 
 -- Update changes
 data:extend(
     {
+        experimentalSpitterCorpse,
+        experimentalSpitterLaserCorpse,
+        experimentalSpitterPhysicalCorpse,
+        experimentalSpitterFireCorpse,
+        experimentalSpitterRocketCorpse,
+        experimentalSpitterExplosiveCorpse,
         experimentalSpitterSpawner,
         experimentalSpitter,
         experimentalSpitterLaser,
@@ -467,13 +473,5 @@ data:extend(
         experimentalSpitterFire,
         experimentalSpitterRocket,
         experimentalSpitterExplosive,
-        experimentalSpitterCorpse,
-        experimentalSpitterLaserCorpse,
-        experimentalSpitterPhysicalCorpse,
-        experimentalSpitterSwimmerCorpse,
-        experimentalSpitterClimberCorpse,
-        experimentalSpitterFireCorpse,
-        experimentalSpitterRocketCorpse,
-        experimentalSpitterExplosiveCorpse
     }
 )

@@ -12,6 +12,7 @@ genBiter {
     name = "biter",
     category = "biter",
     resistances = biter.resistances.basic,
+    autoplace = 8,
     new = false
 }
 
@@ -26,6 +27,7 @@ genBiter {
     name = "laser",
     category = "biter",
     resistances = biter.resistances.laser,
+    autoplace = 9,
     new = true
 }
 
@@ -40,39 +42,40 @@ genBiter {
     name = "physical",
     category = "biter",
     resistances = biter.resistances.physical,
+    autoplace = 10,
     new = true
 }
 
--- Climber
-if settings.startup["5d-climber"].value then
-    genBiter {
-        tint = biter.colors.primary.climber,
-        tint2 = biter.colors.secondary.secondColor,
-        scale = biter.scale,
-        health = biter.health,
-        damage = biter.damage,
-        spawnerRating = spawnerRating.biter.climber,
-        collisionMask = biter.collisionMask.climber,
-        name = "climber",
-        category = "biter",
-        resistances = biter.resistances.basic,
-        new = true
-    }
-end
+-- -- Climber
+-- if settings.startup["5d-climber"].value then
+--     genBiter {
+--         tint = biter.colors.primary.climber,
+--         tint2 = biter.colors.secondary.secondColor,
+--         scale = biter.scale,
+--         health = biter.health,
+--         damage = biter.damage,
+--         spawnerRating = spawnerRating.biter.climber,
+--         collisionMask = biter.collisionMask.climber,
+--         name = "climber",
+--         category = "biter",
+--         resistances = biter.resistances.basic,
+--         new = true
+--     }
+-- end
 
--- Swimmer
-if settings.startup["5d-swimmer"].value then
-    genBiter {
-        tint = biter.colors.primary.swimmer,
-        tint2 = biter.colors.secondary.secondColor,
-        scale = biter.scale,
-        health = biter.health,
-        damage = biter.damage,
-        spawnerRating = spawnerRating.biter.swimer,
-        collisionMask = biter.collisionMask.swimer,
-        name = "swimmer",
-        category = "biter",
-        resistances = biter.resistances.basic,
-        new = true
-    }
-end
+-- -- Swimmer
+-- if settings.startup["5d-swimmer"].value then
+--     genBiter {
+--         tint = biter.colors.primary.swimmer,
+--         tint2 = biter.colors.secondary.secondColor,
+--         scale = biter.scale,
+--         health = biter.health,
+--         damage = biter.damage,
+--         spawnerRating = spawnerRating.biter.swimer,
+--         collisionMask = biter.collisionMask.swimer,
+--         name = "swimmer",
+--         category = "biter",
+--         resistances = biter.resistances.basic,
+--         new = true
+--     }
+-- end

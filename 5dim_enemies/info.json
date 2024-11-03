@@ -1,11 +1,11 @@
 {
     "name": "5dim_enemies",
-    "version": "1.1.5",
-    "factorio_version": "1.1",
+    "version": "2.0.1",
+    "factorio_version": "2.0",
     "title": "5Dim's mod - New Enemies",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Enemies for 5dim's mod\n\rAdd a lot of new biters, spitter and spawners, recommended for experimented players, be carefull\n\rThis mod include:\n\r- New spiters, biters and spawner\n\r- New experimental enemy (huge and powerfull)",
-    "dependencies": ["5dim_core >= 1.1.0"]
+    "dependencies": ["5dim_core >= 2.0.0"]
 }

@@ -33,21 +33,25 @@ function genChemicalPlants(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
-    -- -- East
-    -- entity.graphics_set.animation.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
+    if mods['space-age'] then
+        entity.crafting_categories = {"chemistry", "chemistry-or-cryogenics", "organic-or-chemistry"}
+    end
 
-    -- -- North
-    -- entity.graphics_set.animation.north.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
+    -- East
+    entity.graphics_set.animation.east.layers[1].filename =
+        "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
 
-    -- -- South
-    -- entity.graphics_set.animation.south.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
+    -- North
+    entity.graphics_set.animation.north.layers[1].filename =
+        "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
 
-    -- -- West
-    -- entity.graphics_set.animation.west.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
+    -- South
+    entity.graphics_set.animation.south.layers[1].filename =
+        "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
+
+    -- West
+    entity.graphics_set.animation.west.layers[1].filename =
+        "__5dim_automation__/graphics/entities/chemical-plant/chemical-plant-" .. inputs.number .. ".png"
 
     make_4way_animation_from_spritesheet({ layers =
     {

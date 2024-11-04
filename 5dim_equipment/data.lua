@@ -35,13 +35,13 @@ require("prototypes.gen-power-armor")
 -- Solar panel equipment
 require("prototypes.gen-solar-panel-equipment")
 
--- Fusion reactor equipment
-require("prototypes.gen-fusion-reactor-equipment")
+-- if mods["space-age"] then
+    -- Fusion reactor equipment
+    -- require("prototypes.gen-fusion-reactor-equipment")
+-- end
 
-if mods["space-age"] then
-    -- Fission reactor equipment
-    require("prototypes.gen-fission-reactor-equipment")
-end
+-- Fission reactor equipment
+require("prototypes.gen-fission-reactor-equipment")
 
 -- Battery equipment
 require("prototypes.gen-battery-equipment")

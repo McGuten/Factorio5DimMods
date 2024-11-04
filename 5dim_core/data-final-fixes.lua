@@ -1,19 +1,36 @@
 -- Order sort
 require("prototypes.item-sort-changes")
 
+function table.contains(table, element)
+    for _, value in pairs(table) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 --Stack changes
 if settings.startup["5d-change-stack"] then
     for _, item in pairs(data.raw.item) do
-        item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        if not item.flags or not table.contains(item.flags, "not-stackable") then
+            item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        end
     end
     for _, item in pairs(data.raw.ammo) do
-        item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        if not item.flags or not table.contains(item.flags, "not-stackable") then
+            item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        end
     end
     for _, item in pairs(data.raw["capsule"]) do
-        item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        if not item.flags or not table.contains(item.flags, "not-stackable") then
+            item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        end
     end
     for _, item in pairs(data.raw["module"]) do
-        item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        if not item.flags or not table.contains(item.flags, "not-stackable") then
+            item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
+        end
     end
 end
 

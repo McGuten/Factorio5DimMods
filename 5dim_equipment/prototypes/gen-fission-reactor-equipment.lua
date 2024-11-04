@@ -27,7 +27,7 @@ genFissionReactors {
     new = true,
     order = "b",
     ingredients = {
-        { type = "item", name = "fusion-reactor-equipment", amount = 1 },
+        { type = "item", name = "fission-reactor-equipment", amount = 1 },
         { type = "item", name = "processing-unit",          amount = 200 },
         { type = "item", name = "low-density-structure",    amount = 50 }
     },
@@ -42,7 +42,7 @@ genFissionReactors {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment"
+            "fission-reactor-equipment"
         }
     }
 }
@@ -57,7 +57,7 @@ genFissionReactors {
     new = true,
     order = "c",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-02", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-02", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -72,7 +72,7 @@ genFissionReactors {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-2"
+            "fission-reactor-equipment-2"
         }
     }
 }
@@ -87,7 +87,7 @@ genFissionReactors {
     new = true,
     order = "d",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-03", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-03", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -102,7 +102,7 @@ genFissionReactors {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-3"
+            "fission-reactor-equipment-3"
         }
     }
 }
@@ -117,7 +117,7 @@ genFissionReactors {
     new = true,
     order = "e",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-04", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-04", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -132,7 +132,7 @@ genFissionReactors {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-4"
+            "fission-reactor-equipment-4"
         }
     }
 }
@@ -147,7 +147,7 @@ genFissionReactors {
     new = true,
     order = "f",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-05", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-05", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -163,7 +163,7 @@ genFissionReactors {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-5"
+            "fission-reactor-equipment-5"
         }
     }
 }
@@ -178,7 +178,7 @@ genFissionReactors {
     new = true,
     order = "g",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-06", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-06", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -194,7 +194,7 @@ genFissionReactors {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-6"
+            "fission-reactor-equipment-6"
         }
     }
 }
@@ -209,7 +209,7 @@ genFissionReactors {
     new = true,
     order = "h",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-07", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-07", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -225,7 +225,7 @@ genFissionReactors {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-7"
+            "fission-reactor-equipment-7"
         }
     }
 }
@@ -240,7 +240,7 @@ genFissionReactors {
     new = true,
     order = "i",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-08", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-08", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -256,7 +256,7 @@ genFissionReactors {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-8"
+            "fission-reactor-equipment-8"
         }
     }
 }
@@ -271,7 +271,7 @@ genFissionReactors {
     new = true,
     order = "j",
     ingredients = {
-        { type = "item", name = "5d-fusion-reactor-equipment-09", amount = 1 },
+        { type = "item", name = "5d-fission-reactor-equipment-09", amount = 1 },
         { type = "item", name = "processing-unit",                amount = 200 },
         { type = "item", name = "low-density-structure",          amount = 50 }
     },
@@ -287,7 +287,7 @@ genFissionReactors {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "fusion-reactor-equipment-9"
+            "fission-reactor-equipment-9"
         }
     }
 }

@@ -97,18 +97,18 @@ function genTransportBelts(inputs)
     end
     if recipeUndergroundBelt.normal == nil then
         recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
-        recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
+        recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
         recipeUndergroundBelt.enabled = false
     else
         recipeUndergroundBelt.enabled = false
         if inputs.new then
             recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
+            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
             recipeUndergroundBelt.normal = nil
             recipeUndergroundBelt.expensive = nil
         else
             recipeUndergroundBelt.normal.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 1 } }
+            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
         end
     end
 
@@ -151,7 +151,7 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt30.name = itemUndergroundBelt30.name
     recipeUndergroundBelt30.icon = itemUndergroundBelt30.icon
-    recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
+    recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
     recipeUndergroundBelt30.icon_size = 64
     recipeUndergroundBelt30.enabled = false
     if inputs.liquids then
@@ -159,18 +159,18 @@ function genTransportBelts(inputs)
     end
     if recipeUndergroundBelt30.normal == nil then
         recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-        recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
+        recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
         recipeUndergroundBelt30.enabled = false
     else
         recipeUndergroundBelt30.enabled = false
         if inputs.new then
             recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
+            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
             recipeUndergroundBelt30.normal = nil
             recipeUndergroundBelt30.expensive = nil
         else
             recipeUndergroundBelt30.normal.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 1 } }
+            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
         end
     end
 
@@ -214,25 +214,25 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt50.name = itemUndergroundBelt50.name
     recipeUndergroundBelt50.icon = itemUndergroundBelt50.icon
-    recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
+    recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
     recipeUndergroundBelt50.icon_size = 64
     if inputs.liquids then
         recipeUndergroundBelt50.category = "crafting-with-fluid"
     end
     if recipeUndergroundBelt50.normal == nil then
         recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-        recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
+        recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
         recipeUndergroundBelt50.enabled = false
     else
         recipeUndergroundBelt50.enabled = false
         if inputs.new then
             recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
+            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
             recipeUndergroundBelt50.normal = nil
             recipeUndergroundBelt50.expensive = nil
         else
             recipeUndergroundBelt50.normal.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 1 } }
+            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
         end
     end
 

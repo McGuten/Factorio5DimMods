@@ -38,6 +38,10 @@ function genAssemblingMachines(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.fast_replaceable_group = "assembling-machine"
 
+    if mods['space-age'] and inputs.new then
+        entity.crafting_categories = {"basic-crafting", "crafting", "advanced-crafting", "crafting-with-fluid", "electronics", "electronics-with-fluid", "pressing", "metallurgy-or-assembling", "organic-or-hand-crafting", "organic-or-assembling", "electronics-or-assembling", "cryogenics-or-assembling", "crafting-with-fluid-or-metallurgy"}
+    end
+
     -- Base
     entity.graphics_set.animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/assembling-machine/assembling-machine-" .. inputs.number .. ".png"

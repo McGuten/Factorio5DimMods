@@ -379,11 +379,13 @@ data.raw["repair-tool"]["repair-pack"].order = "a"
 data.raw.item["lab"].subgroup = "lab"
 data.raw.item["lab"].order = "a"
 
-if mods["quality"] then
-    data.raw.item["recycler"].subgroup = "recycler"
+if mods["quality"] and not mods["space-age"] then
+    data.raw.item["recycler"].subgroup = "mining-recycler"
     data.raw.item["recycler"].order = "a"
 end
 if mods["space-age"] then
+    data.raw.item["recycler"].subgroup = "fulgora-recycler"
+    data.raw.item["recycler"].order = "a"
     data.raw.item["biolab"].subgroup = "biolab"
     data.raw.item["biolab"].order = "a"
 end

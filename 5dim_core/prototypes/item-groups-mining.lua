@@ -81,7 +81,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "recycler",
+            name = "mining-recycler",
             group = "mining",
             order = "k"
         },

@@ -11,6 +11,12 @@ data:extend(
             type = "item-subgroup",
             name = "electromagnetic",
             group = "fulgora",
+            order = "a"
+        },
+        {
+            type = "item-subgroup",
+            name = "fulgora-recycler",
+            group = "fulgora",
             order = "b"
         },
         {

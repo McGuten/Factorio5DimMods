@@ -41,6 +41,24 @@ function genLabs(inputs)
     entity.off_animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
 
+    if mods['space-age'] and inputs.number ~= '01' then
+        entity.inputs =
+        {
+            "automation-science-pack",
+            "logistic-science-pack",
+            "military-science-pack",
+            "chemical-science-pack",
+            "production-science-pack",
+            "utility-science-pack",
+            "space-science-pack",
+            "metallurgic-science-pack",
+            "agricultural-science-pack",
+            "electromagnetic-science-pack",
+            "cryogenic-science-pack",
+            "promethium-science-pack"
+        }
+    end
+
     data:extend({entity, recipe, item})
 
     -- Technology

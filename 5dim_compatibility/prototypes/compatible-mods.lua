@@ -19,7 +19,7 @@ end
 if mods["aai-industry"] then
     data.raw.recipe["power-armor-mk2"].ingredients = {
         {"power-armor", 1},
-        {"effectivity-module-2", 25},
+        {"efficiency-module-2", 25},
         {"speed-module-2", 25},
         {"processing-unit", 60},
         {"electric-engine-unit", 40},

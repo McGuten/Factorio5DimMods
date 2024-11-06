@@ -28,7 +28,7 @@ function genTransportBelts(inputs)
     --Recipe
     recipeTransportBelt.name = itemTransportBelt.name
     recipeTransportBelt.icon = itemTransportBelt.icon
-    if inputs.number == 01 then
+    if inputs.number == "01" then
         recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
     else
         recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
@@ -39,7 +39,7 @@ function genTransportBelts(inputs)
     recipeTransportBelt.icon_size = 64
     if recipeTransportBelt.normal == nil then
         recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-        if inputs.number == 01 then
+        if inputs.number == "01" then
             recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
         else
             recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
@@ -54,7 +54,7 @@ function genTransportBelts(inputs)
         recipeTransportBelt.enabled = false
         if inputs.new then
             recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-            if inputs.number == 01 then
+            if inputs.number == "01" then
                 recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
             else
                 recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
@@ -63,7 +63,7 @@ function genTransportBelts(inputs)
             recipeTransportBelt.expensive = nil
         else
             recipeTransportBelt.normal.ingredients = inputs.ingredients.transportBelt
-            if inputs.number == 01 then
+            if inputs.number == "01" then
                 recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
             else
                 recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }

@@ -1,11 +1,11 @@
 {
     "name": "5dim_decoration",
-    "version": "1.1.2",
-    "factorio_version": "1.1",
+    "version": "2.0.0",
+    "factorio_version": "2.0",
     "title": "5Dim's mod - Decoration",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Decoration for 5dim's mod\n\rAdd some new items to decorate your base like numbers and letters",
-    "dependencies": ["5dim_core >= 1.1.0"]
+    "dependencies": ["5dim_core >= 2.0.0"]
 }

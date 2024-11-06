@@ -28,14 +28,22 @@ function genTransportBelts(inputs)
     --Recipe
     recipeTransportBelt.name = itemTransportBelt.name
     recipeTransportBelt.icon = itemTransportBelt.icon
-    recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
+    if inputs.number == 01 then
+        recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
+    else
+        recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
+    end
     if inputs.liquids then
         recipeTransportBelt.category = "crafting-with-fluid"
     end
     recipeTransportBelt.icon_size = 64
     if recipeTransportBelt.normal == nil then
         recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-        recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
+        if inputs.number == 01 then
+            recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
+        else
+            recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
+        end
         if inputs.new then
             recipeTransportBelt.enabled = false
         end
@@ -46,12 +54,20 @@ function genTransportBelts(inputs)
         recipeTransportBelt.enabled = false
         if inputs.new then
             recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-            recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
+            if inputs.number == 01 then
+                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
+            else
+                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
+            end
             recipeTransportBelt.normal = nil
             recipeTransportBelt.expensive = nil
         else
             recipeTransportBelt.normal.ingredients = inputs.ingredients.transportBelt
-            recipeTransportBelt.results = { { type = "item", name = itemTransportBelt.name, amount = 1 } }
+            if inputs.number == 01 then
+                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
+            else
+                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
+            end
         end
     end
 
@@ -71,7 +87,7 @@ function genTransportBelts(inputs)
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
 
-    data:extend({entityTransportBelt, recipeTransportBelt, itemTransportBelt})
+    data:extend({ entityTransportBelt, recipeTransportBelt, itemTransportBelt })
 
     -- Copy underground transport belt
     local itemUndergroundBelt = table.deepcopy(data.raw.item[undergroundName])
@@ -133,7 +149,7 @@ function genTransportBelts(inputs)
     entityUndergroundBelt.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
-    data:extend({entityUndergroundBelt, recipeUndergroundBelt, itemUndergroundBelt})
+    data:extend({ entityUndergroundBelt, recipeUndergroundBelt, itemUndergroundBelt })
 
     -- Copy underground transport belt x30
     local itemUndergroundBelt30 = table.deepcopy(data.raw.item[undergroundName])
@@ -196,7 +212,7 @@ function genTransportBelts(inputs)
     entityUndergroundBelt30.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
-    data:extend({entityUndergroundBelt30, recipeUndergroundBelt30, itemUndergroundBelt30})
+    data:extend({ entityUndergroundBelt30, recipeUndergroundBelt30, itemUndergroundBelt30 })
 
     -- Copy underground transport belt x50
     local itemUndergroundBelt50 = table.deepcopy(data.raw.item[undergroundName])
@@ -258,7 +274,7 @@ function genTransportBelts(inputs)
     entityUndergroundBelt50.structure.direction_out_side_loading.sheet.filename =
         "__5dim_transport__/graphics/entities/underground-belt/underground-belt-" .. inputs.number .. ".png"
 
-    data:extend({entityUndergroundBelt50, recipeUndergroundBelt50, itemUndergroundBelt50})
+    data:extend({ entityUndergroundBelt50, recipeUndergroundBelt50, itemUndergroundBelt50 })
 
     -- Copy splitter transport belt
     local itemSplitter = table.deepcopy(data.raw.item[splitterName])
@@ -330,7 +346,7 @@ function genTransportBelts(inputs)
         entitySplitter.structure_patch.west.width = 94
     end
 
-    data:extend({entitySplitter, recipeSplitter, itemSplitter})
+    data:extend({ entitySplitter, recipeSplitter, itemSplitter })
 
     -- Copy loader transport belt
     local itemLoader = table.deepcopy(data.raw.item[loaderName])
@@ -397,9 +413,9 @@ function genTransportBelts(inputs)
     entityLoader.structure.direction_out.sheet.width = 128
     entityLoader.structure.direction_out.sheet.height = 128
     entityLoader.structure.direction_out.sheet.y = 128
-    entityLoader.flags = {"placeable-neutral", "player-creation"}
+    entityLoader.flags = { "placeable-neutral", "player-creation" }
 
-    data:extend({entityLoader, recipeLoader, itemLoader})
+    data:extend({ entityLoader, recipeLoader, itemLoader })
 
     -- Technology
     if inputs.tech then
@@ -460,6 +476,6 @@ function genTransportBelts(inputs)
         --         }
         --     }
         -- end
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

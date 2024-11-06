@@ -18,7 +18,7 @@ data:extend({
     name = "5d-pipe-to-ground-mk1-50",
     enabled = false,
     ingredients = {
-      { type = "item", name = "pipe", amount = 50 },
+      { type = "item", name = "pipe",       amount = 50 },
       { type = "item", name = "iron-plate", amount = 5 }
     },
     results = {
@@ -45,7 +45,7 @@ data:extend({
     fast_replaceable_group = "pipe-to-ground",
     collision_box = { { -0.29, -0.29 }, { 0.29, 0.29 } },
     drawing_mask = { { -0.29, -0.29 }, { 0.29, 0.29 } },
-    collision_mask = {layers = {item = true, meltable = true, object = true, water_tile = true, is_object = true, is_lower_object = true}},
+    collision_mask = { layers = { item = true, meltable = true, object = true, water_tile = true, is_object = true, is_lower_object = true } },
     selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } },
     fluid_box =
     {
@@ -53,12 +53,12 @@ data:extend({
       pipe_covers = pipecoverspictures(),
       pipe_connections =
       {
-        { direction = defines.direction.north, position = {0, 0} },
+        { direction = defines.direction.north, position = { 0, 0 } },
         {
           connection_type = "underground",
           direction = defines.direction.south,
-          position = {0, 0},
-          max_underground_distance = 10
+          position = { 0, 0 },
+          max_underground_distance = 50
         }
       },
       hide_connection_info = true
@@ -115,7 +115,7 @@ data:extend({
         x = 64,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       south =
       {
@@ -124,7 +124,7 @@ data:extend({
         x = 192,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       west =
       {
@@ -133,7 +133,7 @@ data:extend({
         x = 256,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       east =
       {
@@ -142,7 +142,7 @@ data:extend({
         x = 128,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
     },
     disabled_visualization =
@@ -154,7 +154,7 @@ data:extend({
         x = 64,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       south =
       {
@@ -163,7 +163,7 @@ data:extend({
         x = 192,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       west =
       {
@@ -172,7 +172,7 @@ data:extend({
         x = 256,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
       east =
       {
@@ -181,7 +181,7 @@ data:extend({
         x = 128,
         size = 64,
         scale = 0.5,
-        flags = {"icon"}
+        flags = { "icon" }
       },
     },
   }

@@ -9,13 +9,13 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "cryogenic",
+            name = "aquilo-cryogenic",
             group = "aquilo",
             order = "1"
         },
         {
             type = "item-subgroup",
-            name = "heating-tower",
+            name = "aquilo-heating-tower",
             group = "aquilo",
             order = "2"
         },

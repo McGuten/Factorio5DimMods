@@ -9,37 +9,37 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "mining-big",
+            name = "vulcanus-mining-big",
             group = "vulcanus",
             order = "a"
         },
         {
             type = "item-subgroup",
-            name = "foundry",
+            name = "vulcanus-foundry",
             group = "vulcanus",
             order = "b"
         },
         {
             type = "item-subgroup",
-            name = "metallurgy",
+            name = "vulcanus-metallurgy",
             group = "vulcanus",
             order = "c"
         },
         {
             type = "item-subgroup",
-            name = "metallurgy-plates",
+            name = "vulcanus-metallurgy-plates",
             group = "vulcanus",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "metallurgy-items",
+            name = "vulcanus-metallurgy-items",
             group = "vulcanus",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "metallurgy-tungsten",
+            name = "vulcanus-metallurgy-tungsten",
             group = "vulcanus",
             order = "f"
         },

@@ -9,61 +9,61 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "agricultural-tower",
+            name = "gleba-agricultural-tower",
             group = "gleba",
             order = "1"
         },
         {
             type = "item-subgroup",
-            name = "biochamber",
+            name = "gleba-biochamber",
             group = "gleba",
             order = "2"
         },
         {
             type = "item-subgroup",
-            name = "captive",
+            name = "gleba-captive",
             group = "gleba",
             order = "3"
         },
         {
             type = "item-subgroup",
-            name = "agricultural-processing",
+            name = "gleba-agricultural-processing",
             group = "gleba",
             order = "4"
         },
         {
             type = "item-subgroup",
-            name = "nutrient",
+            name = "gleba-nutrient",
             group = "gleba",
             order = "5"
         },
         {
             type = "item-subgroup",
-            name = "cultivation",
+            name = "gleba-cultivation",
             group = "gleba",
             order = "6"
         },
         {
             type = "item-subgroup",
-            name = "seeds",
+            name = "gleba-seeds",
             group = "gleba",
             order = "7"
         },
         {
             type = "item-subgroup",
-            name = "items",
+            name = "gleba-items",
             group = "gleba",
             order = "8"
         },
         {
             type = "item-subgroup",
-            name = "items2",
+            name = "gleba-items2",
             group = "gleba",
             order = "9"
         },
         {
             type = "item-subgroup",
-            name = "liquids",
+            name = "gleba-liquids",
             group = "gleba",
             order = "9"
         },

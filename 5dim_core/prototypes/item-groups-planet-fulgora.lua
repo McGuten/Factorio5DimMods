@@ -9,7 +9,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "electromagnetic",
+            name = "fulgora-electromagnetic",
             group = "fulgora",
             order = "a"
         },
@@ -21,25 +21,25 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "rod",
+            name = "fulgora-rod",
             group = "fulgora",
             order = "c"
         },
         {
             type = "item-subgroup",
-            name = "collector",
+            name = "fulgora-collector",
             group = "fulgora",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "resources",
+            name = "fulgora-resources",
             group = "fulgora",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "liquids",
+            name = "fulgora-liquids",
             group = "fulgora",
             order = "f"
         },

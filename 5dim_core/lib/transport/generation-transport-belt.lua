@@ -4,6 +4,7 @@ function genTransportBelts(inputs)
     local undergroundName = inputs.copy.name.preName .. "underground-belt" .. inputs.copy.name.postName
     local splitterName = inputs.copy.name.preName .. "splitter" .. inputs.copy.name.postName
     local loaderName = inputs.copy.name.preName .. "loader" .. inputs.copy.name.postName
+    local loader1Name = "5d-loader-1x1-" .. inputs.number
 
     -- Technology
     local tech = table.deepcopy(data.raw.technology[inputs.copy.tech])
@@ -417,6 +418,66 @@ function genTransportBelts(inputs)
 
     data:extend({ entityLoader, recipeLoader, itemLoader })
 
+    -- Copy loader transport belt
+    local itemLoader1 = table.deepcopy(data.raw.item[loaderName])
+    local recipeLoader1 = table.deepcopy(data.raw.recipe[loaderName])
+    local entityLoader1 = table.deepcopy(data.raw["loader-1x1"]["loader-1x1"])
+
+    -- Loader 1x1
+    itemLoader1.name = loader1Name
+    itemLoader1.icon = "__5dim_transport__/graphics/icon/loader/loader-icon-" .. inputs.number .. ".png"
+    itemLoader1.icon_size = 64
+    itemLoader1.subgroup = "transport-loader-1x1"
+    itemLoader1.order = inputs.order
+    itemLoader1.flags = nil
+    itemLoader1.hidden = false
+    itemLoader1.place_result = itemLoader1.name
+
+    --Recipe
+    recipeLoader1.name = itemLoader1.name
+    recipeLoader1.icon = itemLoader1.icon
+    recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
+    recipeLoader1.icon_size = 64
+    recipeLoader1.hidden = false
+    if inputs.liquids then
+        recipeLoader1.category = "crafting-with-fluid"
+    end
+    if recipeLoader1.normal == nil then
+        recipeLoader1.ingredients = inputs.ingredients.loader
+        recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
+        recipeLoader1.enabled = false
+    else
+        recipeLoader1.enabled = false
+        recipeLoader1.ingredients = inputs.ingredients.loader
+        recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
+        recipeLoader1.normal = nil
+        recipeLoader1.expensive = nil
+    end
+    recipeLoader1.hidden = false
+
+    --Entity
+    entityLoader1.name = itemLoader1.name
+    -- entityLoader1.next_upgrade = inputs.nextUpdate.loader1 or nil
+    entityLoader1.icon = itemLoader1.icon
+    entityLoader1.minable = { mining_time = 0.1, result = itemLoader1.name }
+    entityLoader1.speed = inputs.speed
+
+    entityLoader1.belt_animation_set.animation_set.filename =
+        "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
+
+    entityLoader1.structure.direction_in.sheet.filename =
+        "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
+    entityLoader1.structure.direction_in.sheet.width = 128
+    entityLoader1.structure.direction_in.sheet.height = 128
+    entityLoader1.structure.direction_out.sheet.filename =
+        "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
+    entityLoader1.structure.direction_out.sheet.width = 128
+    entityLoader1.structure.direction_out.sheet.height = 128
+    entityLoader1.structure.direction_out.sheet.y = 128
+    entityLoader1.flags = { "placeable-neutral", "player-creation" }
+
+    data:extend({ entityLoader1, recipeLoader1, itemLoader1 })
+
     -- Technology
     if inputs.tech then
         tech.name = "logistics-" .. inputs.tech.number
@@ -425,7 +486,6 @@ function genTransportBelts(inputs)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites
-        -- if inputs.number ~= "09" and inputs.number ~= "10" then
         tech.effects = {
             {
                 type = "unlock-recipe",
@@ -450,32 +510,12 @@ function genTransportBelts(inputs)
             {
                 type = "unlock-recipe",
                 recipe = entityLoader.name
+            },
+            {
+                type = "unlock-recipe",
+                recipe = entityLoader1.name
             }
         }
-        -- else
-        --     tech.effects = {
-        --         {
-        --             type = "unlock-recipe",
-        --             recipe = itemTransportBelt.name
-        --         },
-        --         {
-        --             type = "unlock-recipe",
-        --             recipe = itemUndergroundBelt.name
-        --         },
-        --         {
-        --             type = "unlock-recipe",
-        --             recipe = itemSplitter.name
-        --         },
-        --         {
-        --             type = "unlock-recipe",
-        --             recipe = itemUndergroundBelt30.name
-        --         },
-        --         {
-        --             type = "unlock-recipe",
-        --             recipe = itemUndergroundBelt50.name
-        --         }
-        --     }
-        -- end
         data:extend({ tech })
     end
 end

@@ -25,7 +25,8 @@ genTransportBelts {
         groundBelt30 = "5d-fast-underground-belt-30-02",
         groundBelt50 = "5d-fast-underground-belt-50-02",
         splitter = "fast-splitter",
-        loader = "fast-loader"
+        loader = "fast-loader",
+        loader1 = "5d-loader-1x1-02",
     },
     order = "a",
     ingredients = {
@@ -83,7 +84,8 @@ genTransportBelts {
         groundBelt30 = "5d-express-underground-belt-30-03",
         groundBelt50 = "5d-express-underground-belt-50-03",
         splitter = "express-splitter",
-        loader = "express-loader"
+        loader = "express-loader",
+        loader1 = "5d-loader-1x1-03",
     },
     order = "b",
     ingredients = {
@@ -138,7 +140,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-04",
         groundBelt50 = "5d-underground-belt-50-04",
         splitter = "5d-splitter-04",
-        loader = "5d-loader-04"
+        loader = "5d-loader-04",
+        loader1 = "5d-loader-1x1-04",
     },
     order = "c",
     ingredients = {
@@ -198,7 +201,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-05",
         groundBelt50 = "5d-underground-belt-50-05",
         splitter = "5d-splitter-05",
-        loader = "5d-loader-05"
+        loader = "5d-loader-05",
+        loader1 = "5d-loader-1x1-05",
     },
     order = "d",
     ingredients = {
@@ -272,7 +276,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-06",
         groundBelt50 = "5d-underground-belt-50-06",
         splitter = "5d-splitter-06",
-        loader = "5d-loader-06"
+        loader = "5d-loader-06",
+        loader1 = "5d-loader-1x1-06",
     },
     order = "e",
     ingredients = {
@@ -346,7 +351,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-07",
         groundBelt50 = "5d-underground-belt-50-07",
         splitter = "5d-splitter-07",
-        loader = "5d-loader-07"
+        loader = "5d-loader-07",
+        loader1 = "5d-loader-1x1-07",
     },
     order = "f",
     ingredients = {
@@ -419,7 +425,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-08",
         groundBelt50 = "5d-underground-belt-50-08",
         splitter = "5d-splitter-08",
-        loader = "5d-loader-08"
+        loader = "5d-loader-08",
+        loader1 = "5d-loader-1x1-08",
     },
     order = "g",
     ingredients = {
@@ -492,7 +499,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-09",
         groundBelt50 = "5d-underground-belt-50-09",
         splitter = "5d-splitter-09",
-        loader = "5d-loader-09"
+        loader = "5d-loader-09",
+        loader1 = "5d-loader-1x1-09",
     },
     order = "h",
     ingredients = {
@@ -565,7 +573,8 @@ genTransportBelts {
         groundBelt30 = "5d-underground-belt-30-10",
         groundBelt50 = "5d-underground-belt-50-10",
         splitter = "5d-splitter-10",
-        loader = "5d-loader-09"
+        loader = "5d-loader-10",
+        loader1 = "5d-loader-1x1-10",
     },
     order = "i",
     ingredients = {

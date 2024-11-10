@@ -27,7 +27,7 @@ function genStorageTanks(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.fluid_box.base_area = inputs.capacity
+    entity.fluid_box.volume = inputs.capacity
     entity.pictures.picture.sheets[1].filename =
         "__5dim_storage__/graphics/entities/storage-tank/storage-tank-" .. inputs.number .. ".png"
 

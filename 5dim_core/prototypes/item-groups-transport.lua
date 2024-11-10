@@ -65,7 +65,13 @@ data:extend(
             type = "item-subgroup",
             name = "transport-loader",
             group = "transport",
-            order = "j"
+            order = "ja"
+        },
+        {
+            type = "item-subgroup",
+            name = "transport-loader-1x1",
+            group = "transport",
+            order = "jb"
         },
         {
             type = "item-subgroup",

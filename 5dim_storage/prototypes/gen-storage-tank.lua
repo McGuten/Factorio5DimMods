@@ -1,6 +1,6 @@
 require("__5dim_core__.lib.storage.generation-storage-tank")
 
-local tankCapacity = 250
+local tankCapacity = 25000
 local techCount = 250
 
 -- Electric furnace 01

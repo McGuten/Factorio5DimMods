@@ -25,7 +25,7 @@ genBigPoles {
     tech = nil
 }
 
-speed = speed + 4
+speed = speed + 3
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -60,7 +60,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -98,7 +98,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -137,7 +137,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -175,7 +175,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -214,7 +214,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -254,7 +254,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15
@@ -295,7 +295,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 energy = energy + 0.5
 emisions = emisions + 15
 
@@ -335,7 +335,7 @@ genBigPoles {
     }
 }
 
-speed = speed + 4
+speed = speed + 3
 modules = modules + 1
 energy = energy + 0.5
 emisions = emisions + 15

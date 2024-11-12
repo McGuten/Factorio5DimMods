@@ -391,7 +391,6 @@ function genTransportBelts(inputs)
             recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
         end
     end
-    recipeLoader.hidden = false
 
     --Entity
     entityLoader.name = itemLoader.name
@@ -399,6 +398,7 @@ function genTransportBelts(inputs)
     entityLoader.icon = itemLoader.icon
     entityLoader.minable.result = itemLoader.name
     entityLoader.speed = inputs.speed
+    entityLoader.hidden = false
 
     if inputs.number ~= "01" then
         entityLoader.belt_animation_set.animation_set.filename =
@@ -453,14 +453,15 @@ function genTransportBelts(inputs)
         recipeLoader1.normal = nil
         recipeLoader1.expensive = nil
     end
-    recipeLoader1.hidden = false
 
     --Entity
     entityLoader1.name = itemLoader1.name
-    -- entityLoader1.next_upgrade = inputs.nextUpdate.loader1 or nil
+    entityLoader1.next_upgrade = inputs.nextUpdate.loader1 or nil
     entityLoader1.icon = itemLoader1.icon
     entityLoader1.minable = { mining_time = 0.1, result = itemLoader1.name }
     entityLoader1.speed = inputs.speed
+    entityLoader1.fast_replaceable_group = "loader-1x1"
+    entityLoader1.hidden = false
 
     entityLoader1.belt_animation_set.animation_set.filename =
         "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
@@ -474,7 +475,7 @@ function genTransportBelts(inputs)
     entityLoader1.structure.direction_out.sheet.width = 128
     entityLoader1.structure.direction_out.sheet.height = 128
     entityLoader1.structure.direction_out.sheet.y = 128
-    entityLoader1.flags = { "placeable-neutral", "player-creation" }
+    entityLoader1.flags = {"placeable-player", "placeable-neutral", "player-creation"}
 
     data:extend({ entityLoader1, recipeLoader1, itemLoader1 })
 

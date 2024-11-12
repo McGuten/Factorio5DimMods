@@ -49,15 +49,7 @@ table.insert(data.raw.technology["logistics-9"].effects, {type = "unlock-recipe"
 -- Logistics 10
 table.insert(data.raw.technology["logistics-10"].effects, {type = "unlock-recipe", recipe = "5d-inserter-10"})
 
-
--- data.raw.recipe["loader"].hidden = false
--- data.raw.recipe["fast-loader"].hidden = false
--- data.raw.recipe["express-loader"].hidden = false
--- data.raw.item["loader"].hidden = false
--- data.raw.item["fast-loader"].hidden = false
--- data.raw.item["express-loader"].hidden = false
-
-data.raw["loader-1x1"]["loader-1x1"].fast_replaceable_group = "loader-1x1"
+-- Misc
 data.raw["loader-1x1"]["loader-1x1"].hidden = false
 
 data.raw["pipe-to-ground"]["pipe-to-ground"].fast_replaceable_group = "pipe-to-ground"

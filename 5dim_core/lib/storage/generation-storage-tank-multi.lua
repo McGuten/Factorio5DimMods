@@ -28,15 +28,19 @@ function genStorageTankMultis(inputs)
     entity.fluid_box.volume = inputs.capacity
     entity.pictures.picture.sheets[1].filename =
         "__5dim_storage__/graphics/entities/storage-tank-multi/storage-tank-multi-" .. inputs.number .. ".png"
+
     entity.fluid_box.pipe_connections = {
         { direction = defines.direction.north, position = { -1, -1 } },
         { direction = defines.direction.north, position = { 1, -1 } },
+
         { direction = defines.direction.south, position = { -1, 1 } },
         { direction = defines.direction.south, position = { 1, 1 } },
+
         { direction = defines.direction.west,  position = { -1, -1 } },
-        { direction = defines.direction.west,  position = { 1, -1 } },
-        { direction = defines.direction.east,  position = { -1, 1 } },
-        { direction = defines.direction.east,  position = { 1, 1 } }
+        { direction = defines.direction.west,  position = { -1, 1 } },
+
+        { direction = defines.direction.east,  position = { 1, 1 } },
+        { direction = defines.direction.east,  position = { 1, -1 } }
     }
 
     data:extend(

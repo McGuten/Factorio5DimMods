@@ -53,8 +53,8 @@ table.insert(data.raw.technology["logistics-10"].effects, {type = "unlock-recipe
 data.raw["loader-1x1"]["loader-1x1"].hidden = false
 
 data.raw["pipe-to-ground"]["pipe-to-ground"].fast_replaceable_group = "pipe-to-ground"
-data.raw["pipe-to-ground"]["pipe-to-ground"].collision_mask = {layers = {item = true, meltable = true, object = true, water_tile = true, is_object = true, is_lower_object = true}}
+data.raw["pipe-to-ground"]["pipe-to-ground"].collision_mask = {layers = {item = true, object = true, water_tile = true}}
 
 data.raw["pipe"]["pipe"].fast_replaceable_group = "pipe"
-data.raw["pipe"]["pipe"].collision_mask = {layers = {item = true, meltable = true, object = true, water_tile = true, is_object = true, is_lower_object = true}}
+data.raw["pipe"]["pipe"].collision_mask = {layers = {item = true, object = true, water_tile = true}}
 

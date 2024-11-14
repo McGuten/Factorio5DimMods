@@ -19,7 +19,7 @@ require("prototypes.item-groups-liquids")
 
 if mods["space-age"] then
     require("prototypes.item-groups-planet-orbit")
-    require("prototypes.item-groups-planet-nauvis")
+    -- require("prototypes.item-groups-planet-nauvis")
     require("prototypes.item-groups-planet-gleba")
     require("prototypes.item-groups-planet-vulcanus")
     require("prototypes.item-groups-planet-fulgora")

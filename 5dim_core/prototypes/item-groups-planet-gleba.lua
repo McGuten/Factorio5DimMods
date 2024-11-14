@@ -67,5 +67,11 @@ data:extend(
             group = "gleba",
             order = "9"
         },
+        {
+            type = "item-subgroup",
+            name = "gleba-nauvis-wood",
+            group = "gleba",
+            order = "99"
+        },
     }
 )

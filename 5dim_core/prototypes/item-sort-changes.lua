@@ -647,11 +647,6 @@ end
 
 -- Nauvis
 if mods["space-age"] then
-    data.raw.item["tree-seed"].subgroup = "nauvis-wood"
-    data.raw.recipe["wood-processing"].subgroup = "nauvis-wood"
-    data.raw.recipe["fish-breeding"].subgroup = "nauvis-wood"
-    data.raw.recipe["nutrients-from-fish"].subgroup = "nauvis-wood"
-    data.raw.recipe["nutrients-from-biter-egg"].subgroup = "nauvis-wood"
 end
 
 -- Vulcanus
@@ -742,6 +737,11 @@ if mods["space-age"] then
     data.raw.item["biter-egg"].subgroup = "gleba-items2"
     data.raw.item["pentapod-egg"].subgroup = "gleba-items2"
     data.raw.recipe["biolubricant"].subgroup = "gleba-liquids"
+    data.raw.item["tree-seed"].subgroup = "gleba-nauvis-wood"
+    data.raw.recipe["wood-processing"].subgroup = "gleba-nauvis-wood"
+    data.raw.recipe["fish-breeding"].subgroup = "gleba-nauvis-wood"
+    data.raw.recipe["nutrients-from-fish"].subgroup = "gleba-nauvis-wood"
+    data.raw.recipe["nutrients-from-biter-egg"].subgroup = "gleba-nauvis-wood"
 end
 
 -- Aquilo

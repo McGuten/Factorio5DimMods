@@ -173,7 +173,7 @@ function setStartItems(event)
         }
     elseif settings.startup["5d-equip-start"].value == "Power armor" then
         atStart["equip"] = {
-            { "fusion-reactor-equipment",    1 },
+            { "fission-reactor-equipment",    1 },
             { "battery-equipment",           3 },
             { "personal-roboport-equipment", 5 }
         }
@@ -184,7 +184,7 @@ function setStartItems(event)
         }
     elseif settings.startup["5d-equip-start"].value == "Power armor MK2" then
         atStart["equip"] = {
-            { "fusion-reactor-equipment",    2 },
+            { "fission-reactor-equipment",    2 },
             { "battery-equipment",           4 },
             { "exoskeleton-equipment",       2 },
             { "personal-roboport-equipment", 11 }

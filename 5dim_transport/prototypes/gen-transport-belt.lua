@@ -57,6 +57,13 @@ genTransportBelts {
             { type = "item", name = "iron-gear-wheel",    amount = 5 },
             { type = "item", name = "iron-plate",         amount = 5 },
             { type = "item", name = "transport-belt",     amount = 5 }
+        },
+        loader1 = {
+            { type = "item", name = "inserter",           amount = 5 },
+            { type = "item", name = "electronic-circuit", amount = 5 },
+            { type = "item", name = "iron-gear-wheel",    amount = 5 },
+            { type = "item", name = "iron-plate",         amount = 5 },
+            { type = "item", name = "transport-belt",     amount = 5 }
         }
     },
     tech = nil
@@ -113,6 +120,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "fast-transport-belt", amount = 5 },
             { type = "item", name = "loader",              amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "fast-transport-belt", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-01",    amount = 1 }
         }
     },
     tech = nil
@@ -174,6 +185,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "express-transport-belt", amount = 5 },
             { type = "item", name = "fast-loader",            amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "express-transport-belt", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-02",       amount = 1 }
         }
     },
     tech = nil
@@ -235,6 +250,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-04", amount = 5 },
             { type = "item", name = "express-loader",       amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-04", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-03",     amount = 1 }
         }
     },
     tech = {
@@ -310,6 +329,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-05", amount = 5 },
             { type = "item", name = "5d-loader-04",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-05", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-04",     amount = 1 }
         }
     },
     tech = {
@@ -385,6 +408,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-06", amount = 5 },
             { type = "item", name = "5d-loader-05",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-06", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-05",     amount = 1 }
         }
     },
     tech = {
@@ -459,6 +486,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-07", amount = 5 },
             { type = "item", name = "5d-loader-06",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-07", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-06",     amount = 1 }
         }
     },
     tech = {
@@ -533,6 +564,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-08", amount = 5 },
             { type = "item", name = "5d-loader-07",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-08", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-07",     amount = 1 }
         }
     },
     tech = {
@@ -607,6 +642,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-09", amount = 5 },
             { type = "item", name = "5d-loader-08",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-09", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-08",     amount = 1 }
         }
     },
     tech = {
@@ -673,6 +712,10 @@ genTransportBelts {
         loader = {
             { type = "item", name = "5d-transport-belt-10", amount = 5 },
             { type = "item", name = "5d-loader-09",         amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = "5d-transport-belt-10", amount = 5 },
+            { type = "item", name = "5d-loader-1x1-09",     amount = 1 }
         }
     },
     tech = {

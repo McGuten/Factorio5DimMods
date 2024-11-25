@@ -443,12 +443,12 @@ function genTransportBelts(inputs)
         recipeLoader1.category = "crafting-with-fluid"
     end
     if recipeLoader1.normal == nil then
-        recipeLoader1.ingredients = inputs.ingredients.loader
+        recipeLoader1.ingredients = inputs.ingredients.loader1
         recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
         recipeLoader1.enabled = false
     else
         recipeLoader1.enabled = false
-        recipeLoader1.ingredients = inputs.ingredients.loader
+        recipeLoader1.ingredients = inputs.ingredients.loader1
         recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
         recipeLoader1.normal = nil
         recipeLoader1.expensive = nil

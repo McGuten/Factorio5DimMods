@@ -2,6 +2,7 @@
 Version: 2.0.8
 Date: ????
   Changes:
+    - Fix loaders 1x1 MK3 to unlock with correct technology
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.7
 Date: 2024-11-25

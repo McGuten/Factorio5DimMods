@@ -29,7 +29,7 @@ function genBeacons(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.supply_area_distance = inputs.area or 3
-    entity.distribution_effectivity = inputs.efficiency or 0.5
+    entity.distribution_effectivity = inputs.efficiency or 1.5
     entity.module_slots = inputs.moduleSlots or 2
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.graphics_set.animation_list[1].animation.layers[1].filename =

@@ -3,7 +3,7 @@ require("__5dim_core__.lib.module.generation-beacon")
 local modules = 2
 local energy = 480
 local areaEffect = 3
-local efficiencyArea = 0.5
+local efficiencyArea = 1.5
 local techCount = 400
 
 -- Beacon 01

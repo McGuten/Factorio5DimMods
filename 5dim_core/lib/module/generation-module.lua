@@ -26,6 +26,7 @@ function genModules(inputs)
     --Recipe
     recipeSpeed.name = itemSpeed.name
     recipeSpeed.icon = itemSpeed.icon
+    recipeSpeed.category = "electronics"
     recipeSpeed.results = { { type = "item", name = itemSpeed.name, amount = 1 } }
     recipeSpeed.icon_size = 64
     if inputs.new then
@@ -79,6 +80,7 @@ function genModules(inputs)
     --Recipe
     recipeEffectivity.name = itemEffectivity.name
     recipeEffectivity.icon = itemEffectivity.icon
+    recipeEffectivity.category = "electronics"
     recipeEffectivity.results = { { type = "item", name = itemEffectivity.name, amount = 1 } }
     recipeEffectivity.icon_size = 64
     if inputs.new then
@@ -132,6 +134,7 @@ function genModules(inputs)
     --Recipe
     recipeProductivity.name = itemProductivity.name
     recipeProductivity.icon = itemProductivity.icon
+    recipeProductivity.category = "electronics"
     recipeProductivity.results = { { type = "item", name = recipeProductivity.name, amount = 1 } }
     recipeProductivity.icon_size = 64
     if inputs.new then
@@ -183,6 +186,7 @@ function genModules(inputs)
     --Recipe
     recipePollution.name = itemPollution.name
     recipePollution.icon = itemPollution.icon
+    recipePollution.category = "electronics"
     recipePollution.results = { { type = "item", name = recipePollution.name, amount = 1 } }
     recipePollution.icon_size = 64
     if inputs.new then
@@ -232,9 +236,9 @@ function genModules(inputs)
     local pollu = inputs.effects.pollution
     itemMerged.effect = {
         productivity = product.productivity,
-        consumption = product.consumption + consump.consumption + speed.consumption,
-        pollution = product.pollution + pollu.pollution,
-        speed = speed.speed + product.speed,
+        consumption = consump.consumption,
+        pollution = pollu.pollution,
+        speed = speed.speed,
     }
     itemMerged.tier = inputs.tier
     itemMerged.localised_description = nil
@@ -242,6 +246,7 @@ function genModules(inputs)
     --Recipe
     recipeMerged.name = itemMerged.name
     recipeMerged.icon = itemMerged.icon
+    recipeMerged.category = "electronics"
     recipeMerged.results = { { type = "item", name = recipeMerged.name, amount = 1 } }
     recipeMerged.icon_size = 64
     if inputs.new then

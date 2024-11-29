@@ -2,6 +2,8 @@
 Version: 2.0.17
 Date: ????
   Changes:
+    - Add modules into electromagnetic plants
+    - Better merged modules
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.16
 Date: 2024-11-25

@@ -26,7 +26,9 @@ function genModules(inputs)
     --Recipe
     recipeSpeed.name = itemSpeed.name
     recipeSpeed.icon = itemSpeed.icon
-    recipeSpeed.category = "electronics"
+    if mods["space-age"] then
+        recipeSpeed.category = "electronics"
+    end
     recipeSpeed.results = { { type = "item", name = itemSpeed.name, amount = 1 } }
     recipeSpeed.icon_size = 64
     if inputs.new then
@@ -35,7 +37,7 @@ function genModules(inputs)
     recipeSpeed.ingredients = inputs.ingredients.speed
     recipeSpeed.energy_required = inputs.timeCraft
 
-    data:extend({recipeSpeed, itemSpeed})
+    data:extend({ recipeSpeed, itemSpeed })
 
     -- Technology
     if inputs.new then
@@ -50,7 +52,7 @@ function genModules(inputs)
                 recipe = itemSpeed.name
             }
         }
-        data:extend({techSpeed})
+        data:extend({ techSpeed })
     end
     -- Copy effectivity module
     local itemEffectivity = ""
@@ -80,7 +82,9 @@ function genModules(inputs)
     --Recipe
     recipeEffectivity.name = itemEffectivity.name
     recipeEffectivity.icon = itemEffectivity.icon
-    recipeEffectivity.category = "electronics"
+    if mods["space-age"] then
+        recipeEffectivity.category = "electronics"
+    end
     recipeEffectivity.results = { { type = "item", name = itemEffectivity.name, amount = 1 } }
     recipeEffectivity.icon_size = 64
     if inputs.new then
@@ -89,7 +93,7 @@ function genModules(inputs)
     recipeEffectivity.ingredients = inputs.ingredients.effectivity
     recipeEffectivity.energy_required = inputs.timeCraft
 
-    data:extend({recipeEffectivity, itemEffectivity})
+    data:extend({ recipeEffectivity, itemEffectivity })
 
     -- Technology
     if inputs.new then
@@ -104,7 +108,7 @@ function genModules(inputs)
                 recipe = itemEffectivity.name
             }
         }
-        data:extend({techEffectivity})
+        data:extend({ techEffectivity })
     end
     -- Copy productivity module
     local itemProductivity = ""
@@ -134,7 +138,9 @@ function genModules(inputs)
     --Recipe
     recipeProductivity.name = itemProductivity.name
     recipeProductivity.icon = itemProductivity.icon
-    recipeProductivity.category = "electronics"
+    if mods["space-age"] then
+        recipeProductivity.category = "electronics"
+    end
     recipeProductivity.results = { { type = "item", name = recipeProductivity.name, amount = 1 } }
     recipeProductivity.icon_size = 64
     if inputs.new then
@@ -143,7 +149,7 @@ function genModules(inputs)
     recipeProductivity.ingredients = inputs.ingredients.productivity
     recipeProductivity.energy_required = inputs.timeCraft
 
-    data:extend({recipeProductivity, itemProductivity})
+    data:extend({ recipeProductivity, itemProductivity })
 
     -- Technology
     if inputs.new then
@@ -158,7 +164,7 @@ function genModules(inputs)
                 recipe = itemProductivity.name
             }
         }
-        data:extend({techProductivity})
+        data:extend({ techProductivity })
     end
     -- Copy pollution module
     local itemPollution = ""
@@ -186,7 +192,9 @@ function genModules(inputs)
     --Recipe
     recipePollution.name = itemPollution.name
     recipePollution.icon = itemPollution.icon
-    recipePollution.category = "electronics"
+    if mods["space-age"] then
+        recipePollution.category = "electronics"
+    end
     recipePollution.results = { { type = "item", name = recipePollution.name, amount = 1 } }
     recipePollution.icon_size = 64
     if inputs.new then
@@ -195,7 +203,7 @@ function genModules(inputs)
     recipePollution.ingredients = inputs.ingredients.pollution
     recipePollution.energy_required = inputs.timeCraft
 
-    data:extend({recipePollution, itemPollution})
+    data:extend({ recipePollution, itemPollution })
 
     -- Technology
     techPollution.name = "5d-pollution-module-" .. inputs.tech.number
@@ -209,7 +217,7 @@ function genModules(inputs)
             recipe = itemPollution.name
         }
     }
-    data:extend({techPollution})
+    data:extend({ techPollution })
 
     -- Copy merged module
     local itemMerged = ""
@@ -246,7 +254,9 @@ function genModules(inputs)
     --Recipe
     recipeMerged.name = itemMerged.name
     recipeMerged.icon = itemMerged.icon
-    recipeMerged.category = "electronics"
+    if mods["space-age"] then
+        recipeMerged.category = "electronics"
+    end
     recipeMerged.results = { { type = "item", name = recipeMerged.name, amount = 1 } }
     recipeMerged.icon_size = 64
     if inputs.new then
@@ -255,7 +265,7 @@ function genModules(inputs)
     recipeMerged.ingredients = inputs.ingredients.merged
     recipeMerged.energy_required = inputs.timeCraft
 
-    data:extend({recipeMerged, itemMerged})
+    data:extend({ recipeMerged, itemMerged })
 
     -- Technology
     techMerged.name = "5d-merged-module-" .. inputs.tech.number
@@ -269,5 +279,5 @@ function genModules(inputs)
             recipe = itemMerged.name
         }
     }
-    data:extend({techMerged})
+    data:extend({ techMerged })
 end

@@ -6,6 +6,7 @@ Date: ????
 Version: 2.0.18
 Date: 2024-11-29
   Changes:
+    - Add compatibility with non space age players
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.17
 Date: 2024-11-29

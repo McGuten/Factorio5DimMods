@@ -18,24 +18,24 @@ end
 -- AAI Industry compatibility
 if mods["aai-industry"] then
     data.raw.recipe["power-armor-mk2"].ingredients = {
-        {"power-armor", 1},
-        {"efficiency-module-2", 25},
-        {"speed-module-2", 25},
-        {"processing-unit", 60},
-        {"electric-engine-unit", 40},
-        {"low-density-structure", 30}
+        { "power-armor",           1 },
+        { "efficiency-module-2",   25 },
+        { "speed-module-2",        25 },
+        { "processing-unit",       60 },
+        { "electric-engine-unit",  40 },
+        { "low-density-structure", 30 }
     }
-    data.raw["offshore-pump"]["offshore-pump"].collision_box = {{-0.6, -1.05}, {0.6, 0.3}}
-    data.raw["offshore-pump"]["offshore-pump"].selection_box = {{-0.6, -1.49}, {0.6, 0.49}}
+    data.raw["offshore-pump"]["offshore-pump"].collision_box = { { -0.6, -1.05 }, { 0.6, 0.3 } }
+    data.raw["offshore-pump"]["offshore-pump"].selection_box = { { -0.6, -1.49 }, { 0.6, 0.49 } }
 end
 
 -- Krastorio 2 compatibility
 if mods["Krastorio2"] then
     for _, pipe in pairs(data.raw["pipe"]) do
-        pipe.collision_mask = {"object-layer"}
+        pipe.collision_mask = {layers = {item = true, object = true, water_tile = true}}
     end
     for _, pipe in pairs(data.raw["pipe-to-ground"]) do
-        pipe.collision_mask = {"object-layer"}
+        pipe.collision_mask = {layers = {item = true, object = true, water_tile = true}}
     end
 end
 
@@ -45,12 +45,6 @@ if mods["cargo-ships"] then
     -- or_lamp is (temporarily?) commented out in the cargo ships mod currently, thus causing an error on startup when attempting to set next_upgrade
     --data.raw["lamp"]["or_lamp"].next_upgrade = nil
     data.raw["mining-drill"]["oil_rig"].next_upgrade = nil
-    for _, signal in pairs(data.raw["rail-signal"]) do
-        signal.collision_mask = {"object-layer"}
-    end
-    for _, chain in pairs(data.raw["rail-chain-signal"]) do
-        chain.collision_mask = {"object-layer"}
-    end
 end
 
 -- AAI Industry and Space Exploration compatibility
@@ -105,52 +99,52 @@ end
 
 --Bio Industries
 if mods["Bio_Industries"] and mods["5dim_decoration"] then
-    data.raw.tree["5d-banner-1"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-1"}
-    data.raw.tree["5d-banner-2"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-2"}
-    data.raw.tree["5d-banner-3"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-banner-3"}
-    data.raw.tree["5d-obelisk"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-obelisk"}
-    data.raw.tree["5d-statue"].minable = {hardness = 0.2, mining_time = 0.5, result = "5d-statue"}
+    data.raw.tree["5d-banner-1"].minable = { hardness = 0.2, mining_time = 0.5, result = "5d-banner-1" }
+    data.raw.tree["5d-banner-2"].minable = { hardness = 0.2, mining_time = 0.5, result = "5d-banner-2" }
+    data.raw.tree["5d-banner-3"].minable = { hardness = 0.2, mining_time = 0.5, result = "5d-banner-3" }
+    data.raw.tree["5d-obelisk"].minable = { hardness = 0.2, mining_time = 0.5, result = "5d-obelisk" }
+    data.raw.tree["5d-statue"].minable = { hardness = 0.2, mining_time = 0.5, result = "5d-statue" }
 end
 
 -- ModSmash
 if mods["modmashsplinterlogistics"] and mods["5dim_transport"] then
     -- Logistics 4
-    table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-inserter-04"})
-    table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-04"})
-    table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-transport-belt-04"})
+    table.insert(data.raw.technology["logistics-4"].effects, { type = "unlock-recipe", recipe = "5d-inserter-04" })
+    table.insert(data.raw.technology["logistics-4"].effects, { type = "unlock-recipe", recipe = "5d-filter-inserter-04" })
+    table.insert(data.raw.technology["logistics-4"].effects, { type = "unlock-recipe", recipe = "5d-transport-belt-04" })
     table.insert(
         data.raw.technology["logistics-4"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-04"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-04" }
     )
     table.insert(
         data.raw.technology["logistics-4"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-30-04"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-30-04" }
     )
     table.insert(
         data.raw.technology["logistics-4"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-50-04"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-50-04" }
     )
-    table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-splitter-04"})
-    table.insert(data.raw.technology["logistics-4"].effects, {type = "unlock-recipe", recipe = "5d-loader-04"})
+    table.insert(data.raw.technology["logistics-4"].effects, { type = "unlock-recipe", recipe = "5d-splitter-04" })
+    table.insert(data.raw.technology["logistics-4"].effects, { type = "unlock-recipe", recipe = "5d-loader-04" })
 
     -- Logistics 5
-    table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-inserter-05"})
-    table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-filter-inserter-05"})
-    table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-transport-belt-05"})
+    table.insert(data.raw.technology["logistics-5"].effects, { type = "unlock-recipe", recipe = "5d-inserter-05" })
+    table.insert(data.raw.technology["logistics-5"].effects, { type = "unlock-recipe", recipe = "5d-filter-inserter-05" })
+    table.insert(data.raw.technology["logistics-5"].effects, { type = "unlock-recipe", recipe = "5d-transport-belt-05" })
     table.insert(
         data.raw.technology["logistics-5"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-05"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-05" }
     )
     table.insert(
         data.raw.technology["logistics-5"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-30-05"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-30-05" }
     )
     table.insert(
         data.raw.technology["logistics-5"].effects,
-        {type = "unlock-recipe", recipe = "5d-underground-belt-50-05"}
+        { type = "unlock-recipe", recipe = "5d-underground-belt-50-05" }
     )
-    table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-splitter-05"})
-    table.insert(data.raw.technology["logistics-5"].effects, {type = "unlock-recipe", recipe = "5d-loader-05"})
+    table.insert(data.raw.technology["logistics-5"].effects, { type = "unlock-recipe", recipe = "5d-splitter-05" })
+    table.insert(data.raw.technology["logistics-5"].effects, { type = "unlock-recipe", recipe = "5d-loader-05" })
 end
 
 -- ModSmash
@@ -158,12 +152,12 @@ if mods["modmashsplinterassembling"] and mods["5dim_automation"] then
     -- Automation 4
     table.insert(
         data.raw.technology["automation-4"].effects,
-        {type = "unlock-recipe", recipe = "5d-assembling-machine-04"}
+        { type = "unlock-recipe", recipe = "5d-assembling-machine-04" }
     )
 
     -- Automation 5
     table.insert(
         data.raw.technology["automation-5"].effects,
-        {type = "unlock-recipe", recipe = "5d-assembling-machine-05"}
+        { type = "unlock-recipe", recipe = "5d-assembling-machine-05" }
     )
 end

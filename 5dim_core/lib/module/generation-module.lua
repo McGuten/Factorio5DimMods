@@ -305,7 +305,7 @@ function genModules(inputs)
         consumption = consump.consumption,
         pollution = pollu.pollution,
         speed = speed.speed,
-        quality = quality.quality,
+        -- quality = quality.quality,
     }
     itemMerged.tier = inputs.tier
     itemMerged.localised_description = nil

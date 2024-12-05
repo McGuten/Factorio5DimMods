@@ -26,7 +26,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -108,7 +108,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -197,7 +197,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -287,7 +287,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -389,7 +389,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -492,7 +492,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -595,7 +595,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -703,7 +703,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -812,7 +812,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,
@@ -921,7 +921,7 @@ genModules {
             pollution = -0.08 * level
         },
         quality = {
-            quality = 0.075 * level
+            quality = 0.05 * level
         }
     },
     tier = level,

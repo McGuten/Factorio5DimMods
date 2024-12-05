@@ -22,7 +22,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "iron-gear-wheel",    amount = 15 },
             { type = "item", name = "electronic-circuit", amount = 15 },
             { type = "item", name = "advanced-circuit",   amount = 1 },
@@ -32,8 +32,8 @@ genInserters {
     nextUpdate = {
         inserter = "fast-inserter",
         filterInserter = "5d-filter-inserter-02",
-        stackInserter = "5d-bulk-inserter-02",
-        stackFilterInserter = "5d-bulk-filter-inserter-02"
+        bulkInserter = "5d-bulk-inserter-02",
+        bulkFilterInserter = "5d-bulk-filter-inserter-02"
     },
     tech = nil,
     copyName = "inserter"
@@ -61,7 +61,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "long-handed-inserter", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
             { type = "item", name = "electronic-circuit",   amount = 15 },
@@ -72,8 +72,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-03",
         filterInserter = "5d-filter-inserter-03",
-        stackInserter = "5d-bulk-inserter-03",
-        stackFilterInserter = "5d-bulk-filter-inserter-03"
+        bulkInserter = "5d-bulk-inserter-03",
+        bulkFilterInserter = "5d-bulk-filter-inserter-03"
     },
     tech = {
         number = 2,
@@ -114,7 +114,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-03",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-02", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -125,8 +125,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-04",
         filterInserter = "5d-filter-inserter-04",
-        stackInserter = "5d-bulk-inserter-04",
-        stackFilterInserter = "5d-bulk-filter-inserter-04"
+        bulkInserter = "5d-bulk-inserter-04",
+        bulkFilterInserter = "5d-bulk-filter-inserter-04"
     },
     tech = {
         number = 3,
@@ -137,7 +137,7 @@ genInserters {
             { "chemical-science-pack",   1 }
         },
         prerequisites = {
-            "stack-inserter-2",
+            "bulk-inserter-2",
             "logistics-3"
         }
     },
@@ -166,7 +166,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-04",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-03", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -177,8 +177,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-05",
         filterInserter = "5d-filter-inserter-05",
-        stackInserter = "5d-bulk-inserter-05",
-        stackFilterInserter = "5d-bulk-filter-inserter-05"
+        bulkInserter = "5d-bulk-inserter-05",
+        bulkFilterInserter = "5d-bulk-filter-inserter-05"
     },
     tech = {
         number = 4,
@@ -190,7 +190,7 @@ genInserters {
             { "production-science-pack", 1 }
         },
         prerequisites = {
-            "stack-inserter-3",
+            "bulk-inserter-3",
             "production-science-pack",
             "logistics-4"
         }
@@ -220,7 +220,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-05",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-04", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -231,8 +231,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-06",
         filterInserter = "5d-filter-inserter-06",
-        stackInserter = "5d-bulk-inserter-06",
-        stackFilterInserter = "5d-bulk-filter-inserter-06"
+        bulkInserter = "5d-bulk-inserter-06",
+        bulkFilterInserter = "5d-bulk-filter-inserter-06"
     },
     tech = {
         number = 5,
@@ -244,7 +244,7 @@ genInserters {
             { "production-science-pack", 1 }
         },
         prerequisites = {
-            "stack-inserter-4",
+            "bulk-inserter-4",
             "logistics-5"
         }
     },
@@ -273,7 +273,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-06",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-05", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -284,8 +284,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-07",
         filterInserter = "5d-filter-inserter-07",
-        stackInserter = "5d-bulk-inserter-07",
-        stackFilterInserter = "5d-bulk-filter-inserter-07"
+        bulkInserter = "5d-bulk-inserter-07",
+        bulkFilterInserter = "5d-bulk-filter-inserter-07"
     },
     tech = {
         number = 6,
@@ -297,7 +297,7 @@ genInserters {
             { "production-science-pack", 1 }
         },
         prerequisites = {
-            "stack-inserter-5",
+            "bulk-inserter-5",
             "logistics-6"
         }
     },
@@ -326,7 +326,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-06",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-05", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -337,8 +337,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-07",
         filterInserter = "5d-filter-inserter-07",
-        stackInserter = "5d-bulk-inserter-07",
-        stackFilterInserter = "5d-bulk-filter-inserter-07"
+        bulkInserter = "5d-bulk-inserter-07",
+        bulkFilterInserter = "5d-bulk-filter-inserter-07"
     },
     tech = {
         number = 6,
@@ -350,7 +350,7 @@ genInserters {
             { "production-science-pack", 1 }
         },
         prerequisites = {
-            "stack-inserter-5",
+            "bulk-inserter-5",
             "logistics-6"
         }
     },
@@ -379,7 +379,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-07",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-06", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -390,8 +390,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-08",
         filterInserter = "5d-filter-inserter-08",
-        stackInserter = "5d-bulk-inserter-08",
-        stackFilterInserter = "5d-bulk-filter-inserter-08"
+        bulkInserter = "5d-bulk-inserter-08",
+        bulkFilterInserter = "5d-bulk-filter-inserter-08"
     },
     tech = {
         number = 7,
@@ -404,7 +404,7 @@ genInserters {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "stack-inserter-6",
+            "bulk-inserter-6",
             "utility-science-pack",
             "logistics-7"
         }
@@ -434,7 +434,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-08",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-07", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -445,8 +445,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-09",
         filterInserter = "5d-filter-inserter-09",
-        stackInserter = "5d-bulk-inserter-09",
-        stackFilterInserter = "5d-bulk-filter-inserter-09"
+        bulkInserter = "5d-bulk-inserter-09",
+        bulkFilterInserter = "5d-bulk-filter-inserter-09"
     },
     tech = {
         number = 8,
@@ -459,7 +459,7 @@ genInserters {
             { "utility-science-pack",    1 }
         },
         prerequisites = {
-            "stack-inserter-7",
+            "bulk-inserter-7",
             "logistics-8"
         }
     },
@@ -488,7 +488,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-09",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-08", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -499,8 +499,8 @@ genInserters {
     nextUpdate = {
         inserter = "5d-inserter-10",
         filterInserter = "5d-filter-inserter-10",
-        stackInserter = "5d-bulk-inserter-10",
-        stackFilterInserter = "5d-bulk-filter-inserter-10"
+        bulkInserter = "5d-bulk-inserter-10",
+        bulkFilterInserter = "5d-bulk-filter-inserter-10"
     },
     tech = {
         number = 9,
@@ -514,7 +514,7 @@ genInserters {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "stack-inserter-8",
+            "bulk-inserter-8",
             "space-science-pack",
             "logistics-9"
         }
@@ -544,7 +544,7 @@ genInserters {
             { type = "item", name = "iron-gear-wheel",    amount = 1 },
             { type = "item", name = "iron-plate",         amount = 1 }
         },
-        stackInserter = {
+        bulkInserter = {
             { type = "item", name = "5d-inserter-10",       amount = 1 },
             { type = "item", name = "5d-bulk-inserter-09", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
@@ -555,8 +555,8 @@ genInserters {
     nextUpdate = {
         -- inserter = "fast-inserter",
         -- filterInserter = "5d-filter-inserter-04",
-        -- stackInserter = "5d-bulk-inserter-04",
-        -- stackFilterInserter = "5d-bulk-filter-inserter-04"
+        -- bulkInserter = "5d-bulk-inserter-04",
+        -- bulkFilterInserter = "5d-bulk-filter-inserter-04"
     },
     tech = {
         number = 10,
@@ -570,7 +570,7 @@ genInserters {
             { "space-science-pack",      1 }
         },
         prerequisites = {
-            "stack-inserter-9",
+            "bulk-inserter-9",
             "logistics-10"
         }
     },

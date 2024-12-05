@@ -58,7 +58,6 @@ genModules {
             { type = "item", name = "efficiency-module",      amount = 1 },
             { type = "item", name = "productivity-module",    amount = 1 },
             { type = "item", name = "5d-pollution-module-01", amount = 1 },
-            { type = "item", name = "quality-module",   amount = 1 },
         }
     },
     tech = {
@@ -145,7 +144,6 @@ genModules {
             { type = "item", name = "efficiency-module-2",    amount = 1 },
             { type = "item", name = "productivity-module-2",  amount = 1 },
             { type = "item", name = "5d-pollution-module-02", amount = 1 },
-            { type = "item", name = "quality-module-2",   amount = 1 },
         }
     },
     tech = {
@@ -234,7 +232,6 @@ genModules {
             { type = "item", name = "efficiency-module-3",    amount = 1 },
             { type = "item", name = "productivity-module-3",  amount = 1 },
             { type = "item", name = "5d-pollution-module-03", amount = 1 },
-            { type = "item", name = "quality-module-3",   amount = 1 },
         }
     },
     tech = {
@@ -324,7 +321,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-04",   amount = 1 },
             { type = "item", name = "5d-productivity-module-04", amount = 1 },
             { type = "item", name = "5d-pollution-module-04",    amount = 1 },
-            { type = "item", name = "5d-quality-module-04",      amount = 1 },
         }
     },
     tech = {
@@ -426,7 +422,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-05",   amount = 1 },
             { type = "item", name = "5d-productivity-module-05", amount = 1 },
             { type = "item", name = "5d-pollution-module-05",    amount = 1 },
-            { type = "item", name = "5d-quality-module-05",      amount = 1 },
         }
     },
     tech = {
@@ -529,7 +524,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-06",   amount = 1 },
             { type = "item", name = "5d-productivity-module-06", amount = 1 },
             { type = "item", name = "5d-pollution-module-06",    amount = 1 },
-            { type = "item", name = "5d-quality-module-06",    amount = 1 },
         }
     },
     tech = {
@@ -637,7 +631,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-07",   amount = 1 },
             { type = "item", name = "5d-productivity-module-07", amount = 1 },
             { type = "item", name = "5d-pollution-module-07",    amount = 1 },
-            { type = "item", name = "5d-quality-module-07",    amount = 1 },
         }
     },
     tech = {
@@ -745,7 +738,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-08",   amount = 1 },
             { type = "item", name = "5d-productivity-module-08", amount = 1 },
             { type = "item", name = "5d-pollution-module-08",    amount = 1 },
-            { type = "item", name = "5d-quality-module-08",    amount = 1 },
         }
     },
     tech = {
@@ -854,7 +846,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-09",   amount = 1 },
             { type = "item", name = "5d-productivity-module-09", amount = 1 },
             { type = "item", name = "5d-pollution-module-09",    amount = 1 },
-            { type = "item", name = "5d-quality-module-09",    amount = 1 },
         }
     },
     tech = {
@@ -963,7 +954,6 @@ genModules {
             { type = "item", name = "5d-efficiency-module-10",   amount = 1 },
             { type = "item", name = "5d-productivity-module-10", amount = 1 },
             { type = "item", name = "5d-pollution-module-10",    amount = 1 },
-            { type = "item", name = "5d-quality-module-10",    amount = 1 },
         }
     },
     tech = {

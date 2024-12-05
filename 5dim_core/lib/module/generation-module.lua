@@ -219,6 +219,63 @@ function genModules(inputs)
     }
     data:extend({ techPollution })
 
+    -- Copy Quality module
+    local itemQuality = ""
+    local recipeQuality = ""
+    local techQuality = ""
+    if inputs.tier == 2 or inputs.tier == 3 then
+        itemQuality = table.deepcopy(data.raw.module["quality-module-" .. inputs.tier])
+        recipeQuality = table.deepcopy(data.raw.recipe["quality-module-" .. inputs.tier])
+        techQuality = table.deepcopy(data.raw.technology["quality-module-" .. inputs.tier])
+    else
+        itemQuality = table.deepcopy(data.raw.module["quality-module"])
+        recipeQuality = table.deepcopy(data.raw.recipe["quality-module"])
+        techQuality = table.deepcopy(data.raw.technology["quality-module"])
+    end
+    --Item
+    if inputs.new then
+        itemQuality.name = "5d-quality-module-" .. inputs.number
+    end
+    itemQuality.icon =
+        "__5dim_module__/graphics/icons/quality-module/quality-module-" .. inputs.number .. ".png"
+    itemQuality.subgroup = "quality"
+    itemQuality.order = inputs.order
+    itemQuality.effect = inputs.effects.quality
+    itemQuality.tier = inputs.tier
+    itemQuality.localised_description = nil
+
+    --Recipe
+    recipeQuality.name = itemQuality.name
+    recipeQuality.icon = itemQuality.icon
+    if mods["space-age"] then
+        recipeQuality.category = "electronics"
+    end
+    recipeQuality.results = { { type = "item", name = recipeQuality.name, amount = 1 } }
+    recipeQuality.icon_size = 64
+    if inputs.new then
+        recipeQuality.enabled = false
+    end
+    recipeQuality.ingredients = inputs.ingredients.quality
+    recipeQuality.energy_required = inputs.timeCraft
+
+    data:extend({ recipeQuality, itemQuality })
+
+    if inputs.new then
+        -- Technology
+        techQuality.name = "quality-module-" .. inputs.tech.number
+        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        techQuality.unit.count = inputs.tech.count
+        techQuality.unit.ingredients = inputs.tech.packs
+        techQuality.prerequisites = inputs.tech.prerequisites.quality
+        techQuality.effects = {
+            {
+                type = "unlock-recipe",
+                recipe = itemQuality.name
+            }
+        }
+    end
+    data:extend({ techQuality })
+
     -- Copy merged module
     local itemMerged = ""
     local recipeMerged = ""
@@ -242,11 +299,13 @@ function genModules(inputs)
     local consump = inputs.effects.effectivity
     local speed = inputs.effects.speed
     local pollu = inputs.effects.pollution
+    local quality = inputs.effects.quality
     itemMerged.effect = {
         productivity = product.productivity,
         consumption = consump.consumption,
         pollution = pollu.pollution,
         speed = speed.speed,
+        quality = quality.quality,
     }
     itemMerged.tier = inputs.tier
     itemMerged.localised_description = nil

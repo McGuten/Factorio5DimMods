@@ -10,20 +10,23 @@ genModules {
     order = "a",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -46,11 +49,16 @@ genModules {
             { type = "item", name = "advanced-circuit",   amount = 3 },
             { type = "item", name = "electronic-circuit", amount = 3 }
         },
+        quality = {
+            { type = "item", name = "advanced-circuit",   amount = 3 },
+            { type = "item", name = "electronic-circuit", amount = 3 }
+        },
         merged = {
             { type = "item", name = "speed-module",           amount = 1 },
             { type = "item", name = "efficiency-module",      amount = 1 },
             { type = "item", name = "productivity-module",    amount = 1 },
-            { type = "item", name = "5d-pollution-module-01", amount = 1 }
+            { type = "item", name = "5d-pollution-module-01", amount = 1 },
+            { type = "item", name = "quality-module",   amount = 1 },
         }
     },
     tech = {
@@ -68,7 +76,8 @@ genModules {
                 "speed-module",
                 "efficiency-module",
                 "productivity-module",
-                "5d-pollution-module-1"
+                "5d-pollution-module-1",
+                "quality-module",
             }
         }
     }
@@ -83,20 +92,23 @@ genModules {
     order = "b",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -123,11 +135,17 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 4 },
             { type = "item", name = "electronic-circuit",     amount = 4 }
         },
+        quality = {
+            { type = "item", name = "quality-module",     amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 4 },
+            { type = "item", name = "electronic-circuit", amount = 4 }
+        },
         merged = {
             { type = "item", name = "speed-module-2",         amount = 1 },
             { type = "item", name = "efficiency-module-2",    amount = 1 },
             { type = "item", name = "productivity-module-2",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-02", amount = 1 }
+            { type = "item", name = "5d-pollution-module-02", amount = 1 },
+            { type = "item", name = "quality-module-2",   amount = 1 },
         }
     },
     tech = {
@@ -147,7 +165,8 @@ genModules {
                 "speed-module-2",
                 "efficiency-module-2",
                 "productivity-module-2",
-                "5d-pollution-module-2"
+                "5d-pollution-module-2",
+                "quality-module-2",
             }
         }
     }
@@ -162,20 +181,23 @@ genModules {
     order = "c",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -202,11 +224,17 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 5 },
             { type = "item", name = "electronic-circuit",     amount = 5 }
         },
+        quality = {
+            { type = "item", name = "quality-module-2",   amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 5 },
+            { type = "item", name = "electronic-circuit", amount = 5 }
+        },
         merged = {
             { type = "item", name = "speed-module-3",         amount = 1 },
             { type = "item", name = "efficiency-module-3",    amount = 1 },
             { type = "item", name = "productivity-module-3",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-03", amount = 1 }
+            { type = "item", name = "5d-pollution-module-03", amount = 1 },
+            { type = "item", name = "quality-module-3",   amount = 1 },
         }
     },
     tech = {
@@ -227,7 +255,8 @@ genModules {
                 "speed-module-3",
                 "efficiency-module-3",
                 "productivity-module-3",
-                "5d-pollution-module-3"
+                "5d-pollution-module-3",
+                "quality-module-3",
             }
         }
     }
@@ -242,20 +271,23 @@ genModules {
     order = "d",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -282,11 +314,17 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 3 },
             { type = "item", name = "processing-unit",        amount = 3 }
         },
+        quality = {
+            { type = "item", name = "quality-module-3", amount = 3 },
+            { type = "item", name = "advanced-circuit", amount = 3 },
+            { type = "item", name = "processing-unit",  amount = 3 }
+        },
         merged = {
             { type = "item", name = "5d-speed-module-04",        amount = 1 },
             { type = "item", name = "5d-efficiency-module-04",   amount = 1 },
             { type = "item", name = "5d-productivity-module-04", amount = 1 },
-            { type = "item", name = "5d-pollution-module-04",    amount = 1 }
+            { type = "item", name = "5d-pollution-module-04",    amount = 1 },
+            { type = "item", name = "5d-quality-module-04",      amount = 1 },
         }
     },
     tech = {
@@ -311,12 +349,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-3"
             },
+            quality = {
+                "quality-module-3"
+            },
             merged = {
                 "5d-merged-module-3",
                 "speed-module-4",
                 "efficiency-module-4",
                 "productivity-module-4",
-                "5d-pollution-module-4"
+                "5d-pollution-module-4",
+                "quality-module-4",
             }
         }
     }
@@ -331,20 +373,23 @@ genModules {
     order = "e",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -352,30 +397,36 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            { type = "item", name = "5d-speed-module-04",   amount = 3 },
-            { type = "item", name = "advanced-circuit", amount = 4 },
-            { type = "item", name = "processing-unit",  amount = 4 }
+            { type = "item", name = "5d-speed-module-04", amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 4 },
+            { type = "item", name = "processing-unit",    amount = 4 }
         },
         effectivity = {
             { type = "item", name = "5d-efficiency-module-04", amount = 3 },
-            { type = "item", name = "advanced-circuit",    amount = 4 },
-            { type = "item", name = "processing-unit",     amount = 4 }
+            { type = "item", name = "advanced-circuit",        amount = 4 },
+            { type = "item", name = "processing-unit",         amount = 4 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-04", amount = 3 },
-            { type = "item", name = "advanced-circuit",      amount = 4 },
-            { type = "item", name = "processing-unit",       amount = 4 }
+            { type = "item", name = "advanced-circuit",          amount = 4 },
+            { type = "item", name = "processing-unit",           amount = 4 }
         },
         pollution = {
             { type = "item", name = "5d-pollution-module-04", amount = 3 },
             { type = "item", name = "advanced-circuit",       amount = 4 },
             { type = "item", name = "processing-unit",        amount = 4 }
         },
+        quality = {
+            { type = "item", name = "5d-quality-module-04", amount = 3 },
+            { type = "item", name = "advanced-circuit",     amount = 4 },
+            { type = "item", name = "processing-unit",      amount = 4 }
+        },
         merged = {
-            { type = "item", name = "5d-speed-module-05",         amount = 1 },
-            { type = "item", name = "5d-efficiency-module-05",    amount = 1 },
-            { type = "item", name = "5d-productivity-module-05",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-05", amount = 1 }
+            { type = "item", name = "5d-speed-module-05",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-05",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-05", amount = 1 },
+            { type = "item", name = "5d-pollution-module-05",    amount = 1 },
+            { type = "item", name = "5d-quality-module-05",      amount = 1 },
         }
     },
     tech = {
@@ -401,12 +452,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-4"
             },
+            quality = {
+                "quality-module-4"
+            },
             merged = {
                 "5d-merged-module-4",
                 "speed-module-5",
                 "efficiency-module-5",
                 "productivity-module-5",
-                "5d-pollution-module-5"
+                "5d-pollution-module-5",
+                "quality-module-5",
             }
         }
     }
@@ -421,20 +476,23 @@ genModules {
     order = "f",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -442,30 +500,36 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            { type = "item", name = "5d-speed-module-05",   amount = 3 },
-            { type = "item", name = "advanced-circuit", amount = 5 },
-            { type = "item", name = "processing-unit",  amount = 5 }
+            { type = "item", name = "5d-speed-module-05", amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 5 },
+            { type = "item", name = "processing-unit",    amount = 5 }
         },
         effectivity = {
             { type = "item", name = "5d-efficiency-module-05", amount = 3 },
-            { type = "item", name = "advanced-circuit",    amount = 5 },
-            { type = "item", name = "processing-unit",     amount = 5 }
+            { type = "item", name = "advanced-circuit",        amount = 5 },
+            { type = "item", name = "processing-unit",         amount = 5 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-05", amount = 3 },
-            { type = "item", name = "advanced-circuit",      amount = 5 },
-            { type = "item", name = "processing-unit",       amount = 5 }
+            { type = "item", name = "advanced-circuit",          amount = 5 },
+            { type = "item", name = "processing-unit",           amount = 5 }
         },
         pollution = {
             { type = "item", name = "5d-pollution-module-05", amount = 3 },
             { type = "item", name = "advanced-circuit",       amount = 5 },
             { type = "item", name = "processing-unit",        amount = 5 }
         },
+        quality = {
+            { type = "item", name = "5d-quality-module-05", amount = 3 },
+            { type = "item", name = "advanced-circuit",   amount = 5 },
+            { type = "item", name = "processing-unit",    amount = 5 }
+        },
         merged = {
-            { type = "item", name = "5d-speed-module-06",         amount = 1 },
-            { type = "item", name = "5d-efficiency-module-06",    amount = 1 },
-            { type = "item", name = "5d-productivity-module-06",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-06", amount = 1 }
+            { type = "item", name = "5d-speed-module-06",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-06",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-06", amount = 1 },
+            { type = "item", name = "5d-pollution-module-06",    amount = 1 },
+            { type = "item", name = "5d-quality-module-06",    amount = 1 },
         }
     },
     tech = {
@@ -491,12 +555,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-5"
             },
+            quality = {
+                "quality-module-5"
+            },
             merged = {
                 "5d-merged-module-5",
                 "speed-module-6",
                 "efficiency-module-6",
                 "productivity-module-6",
-                "5d-pollution-module-6"
+                "5d-pollution-module-6",
+                "quality-module-6",
             }
         }
     }
@@ -511,20 +579,23 @@ genModules {
     order = "g",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -532,22 +603,22 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            { type = "item", name = "5d-speed-module-06",        amount = 3 },
+            { type = "item", name = "5d-speed-module-06",    amount = 3 },
             { type = "item", name = "low-density-structure", amount = 3 },
             { type = "item", name = "advanced-circuit",      amount = 3 },
             { type = "item", name = "processing-unit",       amount = 3 }
         },
         effectivity = {
-            { type = "item", name = "5d-efficiency-module-06",   amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 3 },
-            { type = "item", name = "advanced-circuit",      amount = 3 },
-            { type = "item", name = "processing-unit",       amount = 3 }
+            { type = "item", name = "5d-efficiency-module-06", amount = 3 },
+            { type = "item", name = "low-density-structure",   amount = 3 },
+            { type = "item", name = "advanced-circuit",        amount = 3 },
+            { type = "item", name = "processing-unit",         amount = 3 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-06", amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 3 },
-            { type = "item", name = "advanced-circuit",      amount = 3 },
-            { type = "item", name = "processing-unit",       amount = 3 }
+            { type = "item", name = "low-density-structure",     amount = 3 },
+            { type = "item", name = "advanced-circuit",          amount = 3 },
+            { type = "item", name = "processing-unit",           amount = 3 }
         },
         pollution = {
             { type = "item", name = "5d-pollution-module-06", amount = 3 },
@@ -555,11 +626,18 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 3 },
             { type = "item", name = "processing-unit",        amount = 3 }
         },
+        quality = {
+            { type = "item", name = "5d-speed-module-06",    amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 3 },
+            { type = "item", name = "advanced-circuit",      amount = 3 },
+            { type = "item", name = "processing-unit",       amount = 3 }
+        },
         merged = {
-            { type = "item", name = "5d-speed-module-07",         amount = 1 },
-            { type = "item", name = "5d-efficiency-module-07",    amount = 1 },
-            { type = "item", name = "5d-productivity-module-07",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-07", amount = 1 }
+            { type = "item", name = "5d-speed-module-07",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-07",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-07", amount = 1 },
+            { type = "item", name = "5d-pollution-module-07",    amount = 1 },
+            { type = "item", name = "5d-quality-module-07",    amount = 1 },
         }
     },
     tech = {
@@ -585,12 +663,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-6"
             },
+            quality = {
+                "quality-module-6"
+            },
             merged = {
                 "5d-merged-module-6",
                 "speed-module-7",
                 "efficiency-module-7",
                 "productivity-module-7",
-                "5d-pollution-module-7"
+                "5d-pollution-module-7",
+                "quality-module-7",
             }
         }
     }
@@ -605,20 +687,23 @@ genModules {
     order = "h",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -626,22 +711,22 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            { type = "item", name = "5d-speed-module-07",        amount = 3 },
+            { type = "item", name = "5d-speed-module-07",    amount = 3 },
             { type = "item", name = "low-density-structure", amount = 4 },
             { type = "item", name = "advanced-circuit",      amount = 4 },
             { type = "item", name = "processing-unit",       amount = 4 }
         },
         effectivity = {
-            { type = "item", name = "5d-efficiency-module-07",   amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 4 },
-            { type = "item", name = "advanced-circuit",      amount = 4 },
-            { type = "item", name = "processing-unit",       amount = 4 }
+            { type = "item", name = "5d-efficiency-module-07", amount = 3 },
+            { type = "item", name = "low-density-structure",   amount = 4 },
+            { type = "item", name = "advanced-circuit",        amount = 4 },
+            { type = "item", name = "processing-unit",         amount = 4 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-07", amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 4 },
-            { type = "item", name = "advanced-circuit",      amount = 4 },
-            { type = "item", name = "processing-unit",       amount = 4 }
+            { type = "item", name = "low-density-structure",     amount = 4 },
+            { type = "item", name = "advanced-circuit",          amount = 4 },
+            { type = "item", name = "processing-unit",           amount = 4 }
         },
         pollution = {
             { type = "item", name = "5d-pollution-module-07", amount = 3 },
@@ -649,11 +734,18 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 4 },
             { type = "item", name = "processing-unit",        amount = 4 }
         },
+        quality = {
+            { type = "item", name = "5d-quality-module-07",    amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 4 },
+            { type = "item", name = "advanced-circuit",      amount = 4 },
+            { type = "item", name = "processing-unit",       amount = 4 }
+        },
         merged = {
-            { type = "item", name = "5d-speed-module-08",         amount = 1 },
-            { type = "item", name = "5d-efficiency-module-08",    amount = 1 },
-            { type = "item", name = "5d-productivity-module-08",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-08", amount = 1 }
+            { type = "item", name = "5d-speed-module-08",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-08",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-08", amount = 1 },
+            { type = "item", name = "5d-pollution-module-08",    amount = 1 },
+            { type = "item", name = "5d-quality-module-08",    amount = 1 },
         }
     },
     tech = {
@@ -680,12 +772,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-7"
             },
+            quality = {
+                "quality-module-7"
+            },
             merged = {
                 "5d-merged-module-7",
                 "speed-module-8",
                 "efficiency-module-8",
                 "productivity-module-8",
-                "5d-pollution-module-8"
+                "5d-pollution-module-8",
+                "quality-module-8",
             }
         }
     }
@@ -700,20 +796,23 @@ genModules {
     order = "i",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -721,22 +820,22 @@ genModules {
     new = true,
     ingredients = {
         speed = {
-            { type = "item", name = "5d-speed-module-08",        amount = 3 },
+            { type = "item", name = "5d-speed-module-08",    amount = 3 },
             { type = "item", name = "low-density-structure", amount = 5 },
             { type = "item", name = "advanced-circuit",      amount = 5 },
             { type = "item", name = "processing-unit",       amount = 5 }
         },
         effectivity = {
-            { type = "item", name = "5d-efficiency-module-08",   amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 5 },
-            { type = "item", name = "advanced-circuit",      amount = 5 },
-            { type = "item", name = "processing-unit",       amount = 5 }
+            { type = "item", name = "5d-efficiency-module-08", amount = 3 },
+            { type = "item", name = "low-density-structure",   amount = 5 },
+            { type = "item", name = "advanced-circuit",        amount = 5 },
+            { type = "item", name = "processing-unit",         amount = 5 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-08", amount = 3 },
-            { type = "item", name = "low-density-structure", amount = 5 },
-            { type = "item", name = "advanced-circuit",      amount = 5 },
-            { type = "item", name = "processing-unit",       amount = 5 }
+            { type = "item", name = "low-density-structure",     amount = 5 },
+            { type = "item", name = "advanced-circuit",          amount = 5 },
+            { type = "item", name = "processing-unit",           amount = 5 }
         },
         pollution = {
             { type = "item", name = "5d-pollution-module-08", amount = 3 },
@@ -744,11 +843,18 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 5 },
             { type = "item", name = "processing-unit",        amount = 5 }
         },
+        quality = {
+            { type = "item", name = "5d-quality-module-08",    amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 5 },
+            { type = "item", name = "advanced-circuit",      amount = 5 },
+            { type = "item", name = "processing-unit",       amount = 5 }
+        },
         merged = {
-            { type = "item", name = "5d-speed-module-09",         amount = 1 },
-            { type = "item", name = "5d-efficiency-module-09",    amount = 1 },
-            { type = "item", name = "5d-productivity-module-09",  amount = 1 },
-            { type = "item", name = "5d-pollution-module-09", amount = 1 }
+            { type = "item", name = "5d-speed-module-09",        amount = 1 },
+            { type = "item", name = "5d-efficiency-module-09",   amount = 1 },
+            { type = "item", name = "5d-productivity-module-09", amount = 1 },
+            { type = "item", name = "5d-pollution-module-09",    amount = 1 },
+            { type = "item", name = "5d-quality-module-09",    amount = 1 },
         }
     },
     tech = {
@@ -775,12 +881,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-8"
             },
+            quality = {
+                "quality-module-8"
+            },
             merged = {
                 "5d-merged-module-8",
                 "speed-module-9",
                 "efficiency-module-9",
                 "productivity-module-9",
-                "5d-pollution-module-9"
+                "5d-pollution-module-9",
+                "quality-module-9",
             }
         }
     }
@@ -795,20 +905,23 @@ genModules {
     order = "j",
     effects = {
         speed = {
-            speed = 0.08 * level ,
-            consumption = 0.16 * level 
+            speed = 0.08 * level,
+            consumption = 0.16 * level
         },
         effectivity = {
-            consumption = -0.16 * level 
+            consumption = -0.16 * level
         },
         productivity = {
-            productivity = 0.02 * level ,
-            consumption = 0.4 * level ,
-            pollution = 0.04 * level ,
-            speed = -0.08 * level 
+            productivity = 0.02 * level,
+            consumption = 0.4 * level,
+            pollution = 0.04 * level,
+            speed = -0.08 * level
         },
         pollution = {
-            pollution = -0.08 * level 
+            pollution = -0.08 * level
+        },
+        quality = {
+            quality = 0.075 * level
         }
     },
     tier = level,
@@ -823,9 +936,9 @@ genModules {
         },
         effectivity = {
             { type = "item", name = "5d-efficiency-module-09", amount = 3 },
-            { type = "item", name = "low-density-structure",    amount = 6 },
-            { type = "item", name = "advanced-circuit",         amount = 6 },
-            { type = "item", name = "processing-unit",          amount = 6 }
+            { type = "item", name = "low-density-structure",   amount = 6 },
+            { type = "item", name = "advanced-circuit",        amount = 6 },
+            { type = "item", name = "processing-unit",         amount = 6 }
         },
         productivity = {
             { type = "item", name = "5d-productivity-module-09", amount = 3 },
@@ -839,11 +952,18 @@ genModules {
             { type = "item", name = "advanced-circuit",       amount = 6 },
             { type = "item", name = "processing-unit",        amount = 6 }
         },
+        quality = {
+            { type = "item", name = "5d-quality-module-09",    amount = 3 },
+            { type = "item", name = "low-density-structure", amount = 6 },
+            { type = "item", name = "advanced-circuit",      amount = 6 },
+            { type = "item", name = "processing-unit",       amount = 6 }
+        },
         merged = {
             { type = "item", name = "5d-speed-module-10",        amount = 1 },
-            { type = "item", name = "5d-efficiency-module-10",  amount = 1 },
+            { type = "item", name = "5d-efficiency-module-10",   amount = 1 },
             { type = "item", name = "5d-productivity-module-10", amount = 1 },
-            { type = "item", name = "5d-pollution-module-10",    amount = 1 }
+            { type = "item", name = "5d-pollution-module-10",    amount = 1 },
+            { type = "item", name = "5d-quality-module-10",    amount = 1 },
         }
     },
     tech = {
@@ -870,12 +990,16 @@ genModules {
             pollution = {
                 "5d-pollution-module-9"
             },
+            quality = {
+                "quality-module-9"
+            },
             merged = {
                 "5d-merged-module-9",
                 "speed-module-10",
                 "efficiency-module-10",
                 "productivity-module-10",
-                "5d-pollution-module-10"
+                "5d-pollution-module-10",
+                "quality-module-10",
             }
         }
     }

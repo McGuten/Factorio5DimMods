@@ -76,7 +76,6 @@ genModules {
                 "efficiency-module",
                 "productivity-module",
                 "5d-pollution-module-1",
-                "quality-module",
             }
         }
     }
@@ -164,7 +163,6 @@ genModules {
                 "efficiency-module-2",
                 "productivity-module-2",
                 "5d-pollution-module-2",
-                "quality-module-2",
             }
         }
     }
@@ -253,7 +251,6 @@ genModules {
                 "efficiency-module-3",
                 "productivity-module-3",
                 "5d-pollution-module-3",
-                "quality-module-3",
             }
         }
     }
@@ -354,7 +351,6 @@ genModules {
                 "efficiency-module-4",
                 "productivity-module-4",
                 "5d-pollution-module-4",
-                "quality-module-4",
             }
         }
     }
@@ -456,7 +452,6 @@ genModules {
                 "efficiency-module-5",
                 "productivity-module-5",
                 "5d-pollution-module-5",
-                "quality-module-5",
             }
         }
     }
@@ -558,7 +553,6 @@ genModules {
                 "efficiency-module-6",
                 "productivity-module-6",
                 "5d-pollution-module-6",
-                "quality-module-6",
             }
         }
     }
@@ -665,7 +659,6 @@ genModules {
                 "efficiency-module-7",
                 "productivity-module-7",
                 "5d-pollution-module-7",
-                "quality-module-7",
             }
         }
     }
@@ -773,7 +766,6 @@ genModules {
                 "efficiency-module-8",
                 "productivity-module-8",
                 "5d-pollution-module-8",
-                "quality-module-8",
             }
         }
     }
@@ -881,7 +873,6 @@ genModules {
                 "efficiency-module-9",
                 "productivity-module-9",
                 "5d-pollution-module-9",
-                "quality-module-9",
             }
         }
     }
@@ -989,7 +980,6 @@ genModules {
                 "efficiency-module-10",
                 "productivity-module-10",
                 "5d-pollution-module-10",
-                "quality-module-10",
             }
         }
     }

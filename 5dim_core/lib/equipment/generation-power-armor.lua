@@ -39,7 +39,7 @@ function genPowerArmors(inputs)
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
-    if not mods['space-age'] then
+    if not mods['aai-industry'] and not mods['space-age'] then
         table.insert(recipe.ingredients, { type = "item", name = "power-armor", amount = 1 })
     end
     recipe.enabled = false

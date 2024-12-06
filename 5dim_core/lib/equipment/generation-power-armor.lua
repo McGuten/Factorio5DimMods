@@ -1,8 +1,8 @@
 function genPowerArmors(inputs)
-        local item = ""
-        local grid = ""
-        local recipe = ""
-        local tech = ""
+    local item = ""
+    local grid = ""
+    local recipe = ""
+    local tech = ""
     -- Copy electric furnace
     if inputs.number == "01" then
         item = table.deepcopy(data.raw.armor["power-armor"])
@@ -39,9 +39,12 @@ function genPowerArmors(inputs)
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.ingredients = inputs.ingredients
+    if not mods['space-age'] then
+        table.insert(recipe.ingredients, { type = "item", name = "power-armor", amount = 1 })
+    end
     recipe.enabled = false
 
-    data:extend({grid, recipe, item})
+    data:extend({ grid, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -57,6 +60,6 @@ function genPowerArmors(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

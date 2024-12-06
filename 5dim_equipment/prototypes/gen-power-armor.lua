@@ -34,7 +34,6 @@ genPowerArmors {
     new = false,
     order = "b",
     ingredients = {
-        { type = "item", name = "power-armor",           amount = 1 },
         { type = "item", name = "efficiency-module-2",   amount = 25 },
         { type = "item", name = "speed-module-2",        amount = 25 },
         { type = "item", name = "processing-unit",       amount = 60 },

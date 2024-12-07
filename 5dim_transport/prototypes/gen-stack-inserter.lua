@@ -6,7 +6,7 @@ local energy = 5
 local drain = 0.4
 local techCount = 200
 
--- Electric furnace 01
+-- Stack inserter 01
 genStackInserters {
     number = "01",
     extensionSpeed = extension,
@@ -32,7 +32,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 02
+-- Stack inserter 02
 genStackInserters {
     number = "02",
     extensionSpeed = extension,
@@ -57,7 +57,7 @@ genStackInserters {
             { "chemical-science-pack",   1 }
         },
         prerequisites = {
-            "bulk-inserter",
+            "stack-inserter",
             "logistics-2",
             "chemical-science-pack"
         }
@@ -71,7 +71,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 03
+-- Stack inserter 03
 genStackInserters {
     number = "03",
     extensionSpeed = extension,
@@ -96,7 +96,7 @@ genStackInserters {
             { "chemical-science-pack",   1 }
         },
         prerequisites = {
-            "bulk-inserter-2",
+            "stack-inserter-2",
             "logistics-3"
         }
     },
@@ -109,7 +109,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 04
+-- Stack inserter 04
 genStackInserters {
     number = "04",
     extensionSpeed = extension,
@@ -149,7 +149,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 05
+-- Stack inserter 05
 genStackInserters {
     number = "05",
     extensionSpeed = extension,
@@ -188,7 +188,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 06
+-- Stack inserter 06
 genStackInserters {
     number = "06",
     extensionSpeed = extension,
@@ -227,7 +227,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 06
+-- Stack inserter 06
 genStackInserters {
     number = "06",
     extensionSpeed = extension,
@@ -266,7 +266,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 07
+-- Stack inserter 07
 genStackInserters {
     number = "07",
     extensionSpeed = extension,
@@ -307,7 +307,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 08
+-- Stack inserter 08
 genStackInserters {
     number = "08",
     extensionSpeed = extension,
@@ -347,7 +347,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 09
+-- Stack inserter 09
 genStackInserters {
     number = "09",
     extensionSpeed = extension,
@@ -389,7 +389,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 10
+-- Stack inserter 10
 genStackInserters {
     number = "10",
     extensionSpeed = extension,

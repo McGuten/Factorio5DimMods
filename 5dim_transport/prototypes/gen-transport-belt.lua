@@ -277,7 +277,7 @@ genTransportBelts {
 genTransportBelts {
     copy = {
         name = {
-            preName = "",
+            preName = "express-",
             postName = ""
         },
         tech = "logistics-3"

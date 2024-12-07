@@ -31,9 +31,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "fast-inserter",
-        filterInserter = "5d-filter-inserter-02",
         bulkInserter = "5d-bulk-inserter-02",
-        bulkFilterInserter = "5d-bulk-filter-inserter-02"
     },
     tech = nil,
     copyName = "inserter"
@@ -71,9 +69,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-03",
-        filterInserter = "5d-filter-inserter-03",
         bulkInserter = "5d-bulk-inserter-03",
-        bulkFilterInserter = "5d-bulk-filter-inserter-03"
     },
     tech = {
         number = 2,
@@ -124,9 +120,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-04",
-        filterInserter = "5d-filter-inserter-04",
         bulkInserter = "5d-bulk-inserter-04",
-        bulkFilterInserter = "5d-bulk-filter-inserter-04"
     },
     tech = {
         number = 3,
@@ -176,9 +170,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-05",
-        filterInserter = "5d-filter-inserter-05",
         bulkInserter = "5d-bulk-inserter-05",
-        bulkFilterInserter = "5d-bulk-filter-inserter-05"
     },
     tech = {
         number = 4,
@@ -230,9 +222,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-06",
-        filterInserter = "5d-filter-inserter-06",
         bulkInserter = "5d-bulk-inserter-06",
-        bulkFilterInserter = "5d-bulk-filter-inserter-06"
     },
     tech = {
         number = 5,
@@ -283,9 +273,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-07",
-        filterInserter = "5d-filter-inserter-07",
         bulkInserter = "5d-bulk-inserter-07",
-        bulkFilterInserter = "5d-bulk-filter-inserter-07"
     },
     tech = {
         number = 6,
@@ -336,9 +324,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-07",
-        filterInserter = "5d-filter-inserter-07",
         bulkInserter = "5d-bulk-inserter-07",
-        bulkFilterInserter = "5d-bulk-filter-inserter-07"
     },
     tech = {
         number = 6,
@@ -389,9 +375,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-08",
-        filterInserter = "5d-filter-inserter-08",
         bulkInserter = "5d-bulk-inserter-08",
-        bulkFilterInserter = "5d-bulk-filter-inserter-08"
     },
     tech = {
         number = 7,
@@ -444,9 +428,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-09",
-        filterInserter = "5d-filter-inserter-09",
         bulkInserter = "5d-bulk-inserter-09",
-        bulkFilterInserter = "5d-bulk-filter-inserter-09"
     },
     tech = {
         number = 8,
@@ -498,9 +480,7 @@ genInserters {
     },
     nextUpdate = {
         inserter = "5d-inserter-10",
-        filterInserter = "5d-filter-inserter-10",
         bulkInserter = "5d-bulk-inserter-10",
-        bulkFilterInserter = "5d-bulk-filter-inserter-10"
     },
     tech = {
         number = 9,

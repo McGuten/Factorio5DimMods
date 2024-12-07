@@ -80,11 +80,11 @@ function genInserters(inputs)
     if inputs.new then
         recipe.enabled = false
     end
-    recipe.ingredients = inputs.ingredients.stackInserter
+    recipe.ingredients = inputs.ingredients.bulkInserter
 
     --Entity
     entity.name = item.name
-    entity.next_upgrade = inputs.nextUpdate.stackInserter or nil
+    entity.next_upgrade = inputs.nextUpdate.bulkInserter or nil
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.extension_speed = inputs.extensionSpeed

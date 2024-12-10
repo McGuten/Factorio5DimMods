@@ -511,8 +511,8 @@ genModules {
         },
         quality = {
             { type = "item", name = "5d-quality-module-05", amount = 3 },
-            { type = "item", name = "advanced-circuit",   amount = 5 },
-            { type = "item", name = "processing-unit",    amount = 5 }
+            { type = "item", name = "advanced-circuit",     amount = 5 },
+            { type = "item", name = "processing-unit",      amount = 5 }
         },
         merged = {
             { type = "item", name = "5d-speed-module-06",        amount = 1 },
@@ -615,7 +615,7 @@ genModules {
             { type = "item", name = "processing-unit",        amount = 3 }
         },
         quality = {
-            { type = "item", name = "5d-quality-module-06",    amount = 3 },
+            { type = "item", name = "5d-quality-module-06",  amount = 3 },
             { type = "item", name = "low-density-structure", amount = 3 },
             { type = "item", name = "advanced-circuit",      amount = 3 },
             { type = "item", name = "processing-unit",       amount = 3 }
@@ -721,7 +721,7 @@ genModules {
             { type = "item", name = "processing-unit",        amount = 4 }
         },
         quality = {
-            { type = "item", name = "5d-quality-module-07",    amount = 3 },
+            { type = "item", name = "5d-quality-module-07",  amount = 3 },
             { type = "item", name = "low-density-structure", amount = 4 },
             { type = "item", name = "advanced-circuit",      amount = 4 },
             { type = "item", name = "processing-unit",       amount = 4 }
@@ -828,7 +828,7 @@ genModules {
             { type = "item", name = "processing-unit",        amount = 5 }
         },
         quality = {
-            { type = "item", name = "5d-quality-module-08",    amount = 3 },
+            { type = "item", name = "5d-quality-module-08",  amount = 3 },
             { type = "item", name = "low-density-structure", amount = 5 },
             { type = "item", name = "advanced-circuit",      amount = 5 },
             { type = "item", name = "processing-unit",       amount = 5 }
@@ -935,7 +935,7 @@ genModules {
             { type = "item", name = "processing-unit",        amount = 6 }
         },
         quality = {
-            { type = "item", name = "5d-quality-module-09",    amount = 3 },
+            { type = "item", name = "5d-quality-module-09",  amount = 3 },
             { type = "item", name = "low-density-structure", amount = 6 },
             { type = "item", name = "advanced-circuit",      amount = 6 },
             { type = "item", name = "processing-unit",       amount = 6 }

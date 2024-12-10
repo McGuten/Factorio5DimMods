@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Nuclear for 5dim's mod\n\rIf you are a mad of nuclear power with this mod you can upgrade all your blueprints to a new level.\n\rThis mod include:\n\r- 10 tiers of all nuclear stuff",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

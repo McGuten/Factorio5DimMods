@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Infinite researchs for 5dim's mod\n\rInclude some of infinity technologies and other new technolgies",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Logistic of all 5dim's mod\n\rLogistics network enhanced with tiers of worker robots and powerfull beacons\n\rThis mod include:\n\r- 10 tiers of all worker robots and their roboports",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

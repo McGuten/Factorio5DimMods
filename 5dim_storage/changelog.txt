@@ -2,6 +2,7 @@
 Version: 2.0.2
 Date: ????
   Changes:
+    - Change game stage load to data-updates to prevent compatibility errors. (Thanks to Kux)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 2024-11-11

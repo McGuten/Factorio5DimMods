@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Energy for 5dim's mod\n\rAdd more divertidity for electric stuffs\n\rThis mod include:\n\r- Tiered steam engines\n\r- Tiered boilers\n\r- Tiered electric poles\n\r- Solar panels and accumulators",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Defenses for 5dim's mod\n\rAdd 2 new laser turret, 2 new gun turret, new tesla turret, new tiers of walls, gates and new radars\n\rThis mod include:\n\r- All tiered turrets\n\r- Tiered radars\n\r- Tiered walls and gates",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Mining for 5dim's mod\n\rExtracts all kind of resources at high productivity also obtain water from everywhere.\n\rThis mod include:\n\r- 10 tiers of electric mining drills\n\r- 10 tiers of pumpjack\n\r- 10 tiers of water pumpjack, that allow to extract water on the ground\n\r- 10 tiers of offshore pumps",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.0.28"]
 }

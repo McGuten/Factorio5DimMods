@@ -404,17 +404,18 @@ function genTransportBelts(inputs)
         entityLoader.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
-
-    entityLoader.structure.direction_in.sheet.filename =
-        "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
-    entityLoader.structure.direction_in.sheet.width = 128
-    entityLoader.structure.direction_in.sheet.height = 128
-    entityLoader.structure.direction_out.sheet.filename =
-        "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
-    entityLoader.structure.direction_out.sheet.width = 128
-    entityLoader.structure.direction_out.sheet.height = 128
-    entityLoader.structure.direction_out.sheet.y = 128
-    entityLoader.flags = { "placeable-neutral", "player-creation" }
+    if not mods["aai-loaders"] then
+        entityLoader.structure.direction_in.sheet.filename =
+            "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
+        entityLoader.structure.direction_in.sheet.width = 128
+        entityLoader.structure.direction_in.sheet.height = 128
+        entityLoader.structure.direction_out.sheet.filename =
+            "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
+        entityLoader.structure.direction_out.sheet.width = 128
+        entityLoader.structure.direction_out.sheet.height = 128
+        entityLoader.structure.direction_out.sheet.y = 128
+        entityLoader.flags = { "placeable-neutral", "player-creation" }
+    end
 
     data:extend({ entityLoader, recipeLoader, itemLoader })
 
@@ -475,7 +476,7 @@ function genTransportBelts(inputs)
     entityLoader1.structure.direction_out.sheet.width = 128
     entityLoader1.structure.direction_out.sheet.height = 128
     entityLoader1.structure.direction_out.sheet.y = 128
-    entityLoader1.flags = {"placeable-player", "placeable-neutral", "player-creation"}
+    entityLoader1.flags = { "placeable-player", "placeable-neutral", "player-creation" }
 
     data:extend({ entityLoader1, recipeLoader1, itemLoader1 })
 

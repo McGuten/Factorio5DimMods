@@ -615,7 +615,7 @@ genModules {
             { type = "item", name = "processing-unit",        amount = 3 }
         },
         quality = {
-            { type = "item", name = "5d-speed-module-06",    amount = 3 },
+            { type = "item", name = "5d-quality-module-06",    amount = 3 },
             { type = "item", name = "low-density-structure", amount = 3 },
             { type = "item", name = "advanced-circuit",      amount = 3 },
             { type = "item", name = "processing-unit",       amount = 3 }

@@ -37,7 +37,7 @@ end
 -- Tree changes
 if settings.startup["5d-tree"].value then
     for _, tree in pairs(data.raw["tree"]) do
-        tree.collision_box = {{-0.02, -0.02}, {0.02, 0.02}}
+        tree.collision_box = { { -0.02, -0.02 }, { 0.02, 0.02 } }
     end
 end
 
@@ -72,7 +72,7 @@ end
 --Light
 if settings.startup["5d-light-radius"] then
     data.raw.character["character"].light = {
-        {minimum_darkness = 0.3, intensity = 0.9, size = settings.startup["5d-light-radius"].value}
+        { minimum_darkness = 0.3, intensity = 0.9, size = settings.startup["5d-light-radius"].value }
     }
 end
 
@@ -102,14 +102,18 @@ if not mods["Rampant"] then
     -- Enemies spawner health
     if settings.startup["5d-bicho-spawner-hp"] then
         for _, item in pairs(data.raw["unit-spawner"]) do
-            item.max_health = item.max_health * settings.startup["5d-bicho-spawner-hp"].value
+            if item.max_health then
+                item.max_health = item.max_health * settings.startup["5d-bicho-spawner-hp"].value
+            end
         end
     end
 
     -- Enemies health
     if settings.startup["5d-bicho-hp"] then
         for _, item in pairs(data.raw.unit) do
-            item.max_health = item.max_health * settings.startup["5d-bicho-hp"].value
+            if item.max_health then
+                item.max_health = item.max_health * settings.startup["5d-bicho-hp"].value
+            end
         end
     end
 

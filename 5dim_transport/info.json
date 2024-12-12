@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Transport for 5dim's mod\n\rYou can move all of your stuff along your base efficiently with a new bundle of transport belt, loaders and inserters\n\rThis mod include:\n\r- 10 tiers of transport belts.\n\r- 10 tiers of underground belt (and new x30 and x50 underground belts)\n\r- 10 tiers of splitters\n\r- 8 tiers of loaders\n\r- 10 tiers of default inserters, filter inserters, stack inserters and stack filter inserters\n\r- 10 tiers of pumps",
-    "dependencies": ["5dim_core >= 2.0.28", "bobinserters >= 1.3.2"]
+    "dependencies": ["5dim_core >= 2.0.28", "bobinserters >= 1.3.2", "? space-age >= 2.0.0"]
 }

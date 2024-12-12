@@ -18,10 +18,12 @@ function genChemicalPlants(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.enabled = false
-    recipe.ingredients = inputs.ingredients
+    if inputs.new then
+        recipe.ingredients = inputs.ingredients
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    end
 
     --Entity
     entity.name = item.name
@@ -34,7 +36,7 @@ function genChemicalPlants(inputs)
     entity.energy_source.emissions_per_minute = inputs.pollution
 
     if mods['space-age'] then
-        entity.crafting_categories = {"chemistry", "chemistry-or-cryogenics", "organic-or-chemistry"}
+        entity.crafting_categories = { "chemistry", "chemistry-or-cryogenics", "organic-or-chemistry" }
     end
 
     -- East
@@ -75,7 +77,7 @@ function genChemicalPlants(inputs)
     --     }
     -- }})
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -91,6 +93,6 @@ function genChemicalPlants(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

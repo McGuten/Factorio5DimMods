@@ -21,9 +21,9 @@ function genLabs(inputs)
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.ingredients = inputs.ingredients
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
     end
-    recipe.ingredients = inputs.ingredients
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
 
     --Entity
     entity.name = item.name
@@ -34,10 +34,10 @@ function genLabs(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.module_slots = inputs.moduleSlots
     entity.fast_replaceable_group = "lab"
-    
+
     entity.on_animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
-    
+
     entity.off_animation.layers[1].filename =
         "__5dim_automation__/graphics/entities/lab/lab-" .. inputs.number .. ".png"
 
@@ -59,7 +59,7 @@ function genLabs(inputs)
         }
     end
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -75,6 +75,6 @@ function genLabs(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

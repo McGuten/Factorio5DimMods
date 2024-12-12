@@ -17,10 +17,12 @@ function genPersonalLaserDefenses(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
-    recipe.ingredients = inputs.ingredients
     recipe.enabled = false
+    if inputs.new then
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
+    end
 
     -- Equipment
     equipment.name = item.name

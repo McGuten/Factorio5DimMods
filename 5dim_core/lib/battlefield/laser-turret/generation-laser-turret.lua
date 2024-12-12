@@ -20,7 +20,7 @@ function genLaserTurrets(inputs)
     local entity = table.deepcopy(data.raw["electric-turret"]["laser-turret"])
     local tech = table.deepcopy(data.raw.technology["laser-turret"])
 
-    local tint = {r = 1, g = 1, b = 0.1, a = 1}
+    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
     if inputs.new then
@@ -51,12 +51,12 @@ function genLaserTurrets(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
     end
-    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name
@@ -69,17 +69,17 @@ function genLaserTurrets(inputs)
     entity.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
     entity.folded_animation.layers[3] =
         dim_laser_turret_extension_mask {
-        frame_count = 1,
-        line_length = 1,
-        tint = inputs.tint
-    }
-    entity.preparing_animation.layers[3] = dim_laser_turret_extension_mask {tint = inputs.tint}
-    entity.prepared_animation.layers[3] = dim_laser_turret_shooting_mask {tint = inputs.tint}
+            frame_count = 1,
+            line_length = 1,
+            tint = inputs.tint
+        }
+    entity.preparing_animation.layers[3] = dim_laser_turret_extension_mask { tint = inputs.tint }
+    entity.prepared_animation.layers[3] = dim_laser_turret_shooting_mask { tint = inputs.tint }
     entity.folding_animation.layers[3] =
         dim_laser_turret_extension_mask {
-        run_mode = "backward",
-        tint = inputs.tint
-    }
+            run_mode = "backward",
+            tint = inputs.tint
+        }
     entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "laser-turret"
     entity.resistances = inputs.resistances or nil
@@ -88,7 +88,7 @@ function genLaserTurrets(inputs)
     entity.energy_source.drain = 24 * multiplier .. "kW"
     entity.attack_parameters.ammo_type.energy_consumption = 800 * multiplier .. "kJ"
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -104,6 +104,6 @@ function genLaserTurrets(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

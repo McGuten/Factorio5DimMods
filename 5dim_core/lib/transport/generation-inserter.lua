@@ -17,12 +17,12 @@ function genInserters(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients.inserter
     end
-    recipe.ingredients = inputs.ingredients.inserter
 
     --Entity
     entity.name = item.name
@@ -75,12 +75,12 @@ function genInserters(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients.bulkInserter
     end
-    recipe.ingredients = inputs.ingredients.bulkInserter
 
     --Entity
     entity.name = item.name

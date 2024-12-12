@@ -5,7 +5,7 @@ function genStoneWalls(inputs)
     local entity = table.deepcopy(data.raw["wall"]["stone-wall"])
     local tech = table.deepcopy(data.raw.technology["stone-wall"])
 
-    local tint = {r = 1, g = 1, b = 0.1, a = 1}
+    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
     if inputs.new then
@@ -20,12 +20,12 @@ function genStoneWalls(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
     end
-    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name
@@ -39,7 +39,7 @@ function genStoneWalls(inputs)
     -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/laser-turret/laser-turret-" .. inputs.number .. ".png"
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -53,6 +53,6 @@ function genStoneWalls(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

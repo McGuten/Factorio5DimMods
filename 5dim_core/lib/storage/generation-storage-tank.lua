@@ -16,11 +16,13 @@ function genStorageTanks(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
-    recipe.ingredients = inputs.ingredients
+    if inputs.new then
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
+    end
 
     --Entity
     entity.name = item.name

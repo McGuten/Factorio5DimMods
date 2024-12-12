@@ -7,7 +7,7 @@ function genFlamethrowerTurrets(inputs)
     local entity = table.deepcopy(data.raw["fluid-turret"]["flamethrower-turret"])
     local tech = table.deepcopy(data.raw.technology["flamethrower"])
 
-    local tint = {r = 1, g = 1, b = 0.1, a = 1}
+    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
     if inputs.new then
@@ -22,12 +22,12 @@ function genFlamethrowerTurrets(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
     end
-    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name
@@ -53,7 +53,7 @@ function genFlamethrowerTurrets(inputs)
     -- entity.picture.layers[1].hr_version.filename =
     --     "__5dim_energy__/graphics/entities/flamethrower-turret/flamethrower-turret-" .. inputs.number .. ".png"
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -69,37 +69,37 @@ function genFlamethrowerTurrets(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 
     -- Changes to add turrets to vanilla tech for damage
 
     table.insert(
         data.raw.technology["refined-flammables-1"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
     table.insert(
         data.raw.technology["refined-flammables-2"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
     table.insert(
         data.raw.technology["refined-flammables-3"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.3}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.3 }
     )
     table.insert(
         data.raw.technology["refined-flammables-4"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.3}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.3 }
     )
     table.insert(
         data.raw.technology["refined-flammables-5"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.4}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.4 }
     )
     table.insert(
         data.raw.technology["refined-flammables-6"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
     table.insert(
         data.raw.technology["refined-flammables-7"].effects,
-        {type = "turret-attack", turret_id = item.name, modifier = 0.2}
+        { type = "turret-attack", turret_id = item.name, modifier = 0.2 }
     )
 end

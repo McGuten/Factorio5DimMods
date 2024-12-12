@@ -29,6 +29,7 @@ function genTransportBelts(inputs)
     --Recipe
     recipeTransportBelt.name = itemTransportBelt.name
     recipeTransportBelt.icon = itemTransportBelt.icon
+    recipeTransportBelt.subgroup = "transport-belt"
     if inputs.number == "01" then
         recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
     else
@@ -38,38 +39,10 @@ function genTransportBelts(inputs)
         recipeTransportBelt.category = "crafting-with-fluid"
     end
     recipeTransportBelt.icon_size = 64
-    if recipeTransportBelt.normal == nil then
+
+    if inputs.new then
+        recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
         recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-        if inputs.number == "01" then
-            recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
-        else
-            recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
-        end
-        if inputs.new then
-            recipeTransportBelt.enabled = false
-        end
-    else
-        if inputs.new then
-            recipeTransportBelt.enabled = false
-        end
-        recipeTransportBelt.enabled = false
-        if inputs.new then
-            recipeTransportBelt.ingredients = inputs.ingredients.transportBelt
-            if inputs.number == "01" then
-                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
-            else
-                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
-            end
-            recipeTransportBelt.normal = nil
-            recipeTransportBelt.expensive = nil
-        else
-            recipeTransportBelt.normal.ingredients = inputs.ingredients.transportBelt
-            if inputs.number == "01" then
-                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 2 } }
-            else
-                recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
-            end
-        end
     end
 
     --Entity
@@ -108,25 +81,14 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt.name = itemUndergroundBelt.name
     recipeUndergroundBelt.icon = itemUndergroundBelt.icon
+    recipeUndergroundBelt.subgroup = "transport-ground"
     recipeUndergroundBelt.icon_size = 64
     if inputs.liquids then
         recipeUndergroundBelt.category = "crafting-with-fluid"
     end
-    if recipeUndergroundBelt.normal == nil then
-        recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
+    if inputs.new then
         recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
-        recipeUndergroundBelt.enabled = false
-    else
-        recipeUndergroundBelt.enabled = false
-        if inputs.new then
-            recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
-            recipeUndergroundBelt.normal = nil
-            recipeUndergroundBelt.expensive = nil
-        else
-            recipeUndergroundBelt.normal.ingredients = inputs.ingredients.groundBelt
-            recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
-        end
+        recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
     end
 
     --Entity
@@ -168,27 +130,15 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt30.name = itemUndergroundBelt30.name
     recipeUndergroundBelt30.icon = itemUndergroundBelt30.icon
-    recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
+    recipeUndergroundBelt30.subgroup = "transport-ground-30"
     recipeUndergroundBelt30.icon_size = 64
     recipeUndergroundBelt30.enabled = false
     if inputs.liquids then
         recipeUndergroundBelt30.category = "crafting-with-fluid"
     end
-    if recipeUndergroundBelt30.normal == nil then
-        recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
+    if inputs.new then
         recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
-        recipeUndergroundBelt30.enabled = false
-    else
-        recipeUndergroundBelt30.enabled = false
-        if inputs.new then
-            recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
-            recipeUndergroundBelt30.normal = nil
-            recipeUndergroundBelt30.expensive = nil
-        else
-            recipeUndergroundBelt30.normal.ingredients = inputs.ingredients.groundBelt30
-            recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
-        end
+        recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
     end
 
     --Entity
@@ -231,26 +181,14 @@ function genTransportBelts(inputs)
     --Recipe
     recipeUndergroundBelt50.name = itemUndergroundBelt50.name
     recipeUndergroundBelt50.icon = itemUndergroundBelt50.icon
-    recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
+    recipeUndergroundBelt50.subgroup = "transport-ground-50"
     recipeUndergroundBelt50.icon_size = 64
     if inputs.liquids then
         recipeUndergroundBelt50.category = "crafting-with-fluid"
     end
-    if recipeUndergroundBelt50.normal == nil then
-        recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
+    if inputs.new then
         recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
-        recipeUndergroundBelt50.enabled = false
-    else
-        recipeUndergroundBelt50.enabled = false
-        if inputs.new then
-            recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
-            recipeUndergroundBelt50.normal = nil
-            recipeUndergroundBelt50.expensive = nil
-        else
-            recipeUndergroundBelt50.normal.ingredients = inputs.ingredients.groundBelt50
-            recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
-        end
+        recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
     end
 
     --Entity
@@ -294,26 +232,14 @@ function genTransportBelts(inputs)
     --Recipe
     recipeSplitter.name = itemSplitter.name
     recipeSplitter.icon = itemSplitter.icon
-    recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
+    recipeSplitter.subgroup = "transport-splitters"
     recipeSplitter.icon_size = 64
     if inputs.liquids then
         recipeSplitter.category = "crafting-with-fluid"
     end
-    if recipeSplitter.normal == nil then
-        recipeSplitter.ingredients = inputs.ingredients.splitter
+    if inputs.new then
         recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
-        recipeSplitter.enabled = false
-    else
-        recipeSplitter.enabled = false
-        if inputs.new then
-            recipeSplitter.ingredients = inputs.ingredients.splitter
-            recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
-            recipeSplitter.normal = nil
-            recipeSplitter.expensive = nil
-        else
-            recipeSplitter.normal.ingredients = inputs.ingredients.splitter
-            recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
-        end
+        recipeSplitter.ingredients = inputs.ingredients.splitter
     end
 
     --Entity
@@ -369,27 +295,15 @@ function genTransportBelts(inputs)
     --Recipe
     recipeLoader.name = itemLoader.name
     recipeLoader.icon = itemLoader.icon
-    recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
+    recipeLoader.subgroup = "transport-loader"
     recipeLoader.icon_size = 64
     recipeLoader.hidden = false
     if inputs.liquids then
         recipeLoader.category = "crafting-with-fluid"
     end
-    if recipeLoader.normal == nil then
-        recipeLoader.ingredients = inputs.ingredients.loader
+    if inputs.new then
         recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
-        recipeLoader.enabled = false
-    else
-        recipeLoader.enabled = false
-        if inputs.new then
-            recipeLoader.ingredients = inputs.ingredients.loader
-            recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
-            recipeLoader.normal = nil
-            recipeLoader.expensive = nil
-        else
-            recipeLoader.normal.ingredients = inputs.ingredients.loader
-            recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
-        end
+        recipeLoader.ingredients = inputs.ingredients.loader
     end
 
     --Entity
@@ -437,22 +351,15 @@ function genTransportBelts(inputs)
     --Recipe
     recipeLoader1.name = itemLoader1.name
     recipeLoader1.icon = itemLoader1.icon
-    recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
+    recipeLoader1.subgroup = "transport-loader-1x1"
     recipeLoader1.icon_size = 64
     recipeLoader1.hidden = false
     if inputs.liquids then
         recipeLoader1.category = "crafting-with-fluid"
     end
-    if recipeLoader1.normal == nil then
-        recipeLoader1.ingredients = inputs.ingredients.loader1
+    if inputs.new then
         recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
-        recipeLoader1.enabled = false
-    else
-        recipeLoader1.enabled = false
         recipeLoader1.ingredients = inputs.ingredients.loader1
-        recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
-        recipeLoader1.normal = nil
-        recipeLoader1.expensive = nil
     end
 
     --Entity

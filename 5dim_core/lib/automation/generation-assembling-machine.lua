@@ -26,8 +26,10 @@ function genAssemblingMachines(inputs)
     if inputs.new then
         recipe.enabled = false
     end
-    recipe.ingredients = inputs.ingredients
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    if inputs.new then
+        recipe.ingredients = inputs.ingredients
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    end
 
     --Entity
     entity.name = item.name
@@ -39,7 +41,10 @@ function genAssemblingMachines(inputs)
     entity.fast_replaceable_group = "assembling-machine"
 
     if mods['space-age'] and inputs.new then
-        entity.crafting_categories = {"basic-crafting", "crafting", "advanced-crafting", "crafting-with-fluid", "electronics", "electronics-with-fluid", "pressing", "metallurgy-or-assembling", "organic-or-hand-crafting", "organic-or-assembling", "electronics-or-assembling", "cryogenics-or-assembling", "crafting-with-fluid-or-metallurgy"}
+        entity.crafting_categories = { "basic-crafting", "crafting", "advanced-crafting", "crafting-with-fluid",
+            "electronics", "electronics-with-fluid", "pressing", "metallurgy-or-assembling", "organic-or-hand-crafting",
+            "organic-or-assembling", "electronics-or-assembling", "cryogenics-or-assembling",
+            "crafting-with-fluid-or-metallurgy" }
     end
 
     -- Base

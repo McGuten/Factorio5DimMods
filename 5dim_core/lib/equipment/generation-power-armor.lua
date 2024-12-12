@@ -36,9 +36,11 @@ function genPowerArmors(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
-    recipe.ingredients = inputs.ingredients
+    if inputs.new then
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+        recipe.ingredients = inputs.ingredients
+    end
     if not mods['aai-industry'] and not mods['space-age'] and inputs.number == "02" then
         table.insert(recipe.ingredients, { type = "item", name = "power-armor", amount = 1 })
     end

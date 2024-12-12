@@ -18,10 +18,13 @@ function genOilRefinery(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     recipe.enabled = false
-    recipe.ingredients = inputs.ingredients
+
+    if inputs.new then
+        recipe.ingredients = inputs.ingredients
+        recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    end
 
     --Entity
     entity.name = item.name
@@ -49,7 +52,7 @@ function genOilRefinery(inputs)
     -- entity.animation.west.layers[1].filename =
     --     "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -65,6 +68,6 @@ function genOilRefinery(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

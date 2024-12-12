@@ -18,28 +18,11 @@ function genSteamEngines(inputs)
     --Recipe
     recipe.name = item.name
     recipe.icon = item.icon
-    recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
-    end
-    if recipe.normal == nil then
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        if inputs.new then
-            recipe.enabled = false
-        end
         recipe.ingredients = inputs.ingredients
-    else
-        recipe.normal.result = item.name
-        if inputs.new then
-            recipe.normal.enabled = false
-        end
-        recipe.normal.ingredients = inputs.ingredients
-        recipe.expensive.result = item.name
-        if inputs.new then
-            recipe.expensive.enabled = false
-        end
-        recipe.expensive.ingredients = inputs.ingredients
     end
 
     --Entity
@@ -57,7 +40,7 @@ function genSteamEngines(inputs)
     entity.vertical_animation.layers[1].filename =
         "__5dim_energy__/graphics/entities/steam-engine/steam-engine-V/steam-engine-V-" .. inputs.number .. ".png"
 
-    data:extend({entity, recipe, item})
+    data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
@@ -73,6 +56,6 @@ function genSteamEngines(inputs)
                 recipe = item.name
             }
         }
-        data:extend({tech})
+        data:extend({ tech })
     end
 end

@@ -40,7 +40,7 @@ genStackInserters {
     energyMovement = energy,
     energyRotation = energy,
     energyDrain = drain,
-    new = false,
+    new = true,
     order = "b",
     ingredients = {
         { type = "item", name = "stack-inserter",  amount = 1 },

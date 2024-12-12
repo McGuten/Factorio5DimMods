@@ -2,6 +2,7 @@
 Version: 2.0.32
 Date: ????
   Changes:
+    - Fix inserters and trandport belts recipes.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.31
 Date: 2024-12-12

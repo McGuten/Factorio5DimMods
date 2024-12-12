@@ -51,13 +51,13 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "transport-stack-inserter",
+            name = "transport-bulk-inserter",
             group = "transport",
             order = "h"
         },
         {
             type = "item-subgroup",
-            name = "transport-bulk-inserter",
+            name = "transport-stack-inserter",
             group = "transport",
             order = "i"
         },

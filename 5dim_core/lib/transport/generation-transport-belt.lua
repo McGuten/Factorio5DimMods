@@ -136,10 +136,8 @@ function genTransportBelts(inputs)
     if inputs.liquids then
         recipeUndergroundBelt30.category = "crafting-with-fluid"
     end
-    if inputs.new then
-        recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
-        recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
-    end
+    recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
+    recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
 
     --Entity
     entityUndergroundBelt30.name = itemUndergroundBelt30.name
@@ -186,10 +184,8 @@ function genTransportBelts(inputs)
     if inputs.liquids then
         recipeUndergroundBelt50.category = "crafting-with-fluid"
     end
-    if inputs.new then
-        recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
-        recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
-    end
+    recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
+    recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
 
     --Entity
     entityUndergroundBelt50.name = itemUndergroundBelt50.name

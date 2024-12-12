@@ -76,7 +76,7 @@ function genInserters(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.new then
+    if inputs.new or inputs.number ~= '01' then
         recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients.bulkInserter

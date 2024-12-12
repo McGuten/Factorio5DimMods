@@ -60,7 +60,6 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "long-handed-inserter", amount = 1 },
             { type = "item", name = "iron-gear-wheel",      amount = 15 },
             { type = "item", name = "electronic-circuit",   amount = 15 },
             { type = "item", name = "advanced-circuit",     amount = 1 },

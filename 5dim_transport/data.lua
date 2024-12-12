@@ -16,7 +16,5 @@ require("prototypes.gen-pump")
 --Changes
 require("prototypes.changes")
 
-if mods['space-age'] then
-    -- Stack inserters
-    require("prototypes.gen-stack-inserter")
-end
+-- Stack inserters
+require("prototypes.gen-stack-inserter")

@@ -353,10 +353,8 @@ function genTransportBelts(inputs)
     if inputs.liquids then
         recipeLoader1.category = "crafting-with-fluid"
     end
-    if inputs.new then
-        recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
-        recipeLoader1.ingredients = inputs.ingredients.loader1
-    end
+    recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
+    recipeLoader1.ingredients = inputs.ingredients.loader1
 
     --Entity
     entityLoader1.name = itemLoader1.name

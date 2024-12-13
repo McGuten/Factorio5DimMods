@@ -20,7 +20,7 @@ function genSteamTurbines(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     if inputs.new then
-        recipe.enabled = true
+        recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end

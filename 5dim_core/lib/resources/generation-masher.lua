@@ -30,12 +30,12 @@ function genMasher(inputs)
     entity.crafting_speed = inputs.craftingSpeed
     entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
-    -- entity.animation.layers[1].hr_version.width = 160
-    -- entity.animation.layers[1].hr_version.height = 160
-    -- entity.animation.layers[1].hr_version.shift = {0, -0.421875}
-    -- entity.animation.layers[1].hr_version.scale = 1
+    entity.graphics_set.animation.layers[1].filename =
+        "__5dim_resources__/graphics/entities/masher/masher-" .. inputs.number .. ".png"
+    entity.graphics_set.animation.layers[1].width = 160
+    entity.graphics_set.animation.layers[1].height = 160
+    entity.graphics_set.animation.layers[1].shift = {0, -0.421875}
+    entity.graphics_set.animation.layers[1].scale = 1
     entity.crafting_categories = {"mashering"}
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "5d-masher"

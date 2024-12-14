@@ -33,8 +33,8 @@ function genElectricFurnaces(inputs)
     entity.crafting_speed = inputs.craftingSpeed
     entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
-    -- entity.animation.layers[1].hr_version.filename =
-    --     "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
+    entity.graphics_set.animation.layers[1].filename =
+        "__5dim_resources__/graphics/entities/electric-furnace/hr-electric-furnace-" .. inputs.number .. ".png"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
     data:extend({entity, recipe, item})

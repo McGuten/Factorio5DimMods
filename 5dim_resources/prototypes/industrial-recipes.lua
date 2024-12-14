@@ -9,12 +9,13 @@ data:extend(
             order = "aa",
             category = "industrial-furnace",
             energy_required = 65,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "5d-iron-dust", amount = 85 }
             },
             results = {
                 { type = "item", name = "iron-plate", amount = 100 }
-            }
+            },
         },
         {
             type = "recipe",
@@ -25,6 +26,7 @@ data:extend(
             order = "aa",
             category = "industrial-furnace",
             energy_required = 65,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "iron-ore", amount = 85 }
             },
@@ -41,6 +43,7 @@ data:extend(
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "copper-ore", amount = 85 }
             },
@@ -57,6 +60,7 @@ data:extend(
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "5d-copper-dust", amount = 85 }
             },
@@ -73,6 +77,7 @@ data:extend(
             order = "zz",
             category = "industrial-furnace",
             energy_required = 90,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "iron-plate", amount = 80 }
             },

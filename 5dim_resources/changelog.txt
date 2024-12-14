@@ -2,6 +2,7 @@
 Version: 2.0.4
 Date: ????
   Changes:
+    - Fix recipes to allow productivity modules.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.3
 Date: 2024-12-14

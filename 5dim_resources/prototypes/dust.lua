@@ -20,6 +20,7 @@ data:extend(
             order = "a",
             category = "smelting",
             energy_required = 3.2,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "5d-iron-dust", amount = 1 }
             },
@@ -33,6 +34,7 @@ data:extend(
             enabled = true,
             category = "mashering",
             energy_required = 3.2,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "iron-ore", amount = 1 }
             },
@@ -60,6 +62,7 @@ data:extend(
             order = "b",
             category = "smelting",
             energy_required = 3.2,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "5d-copper-dust", amount = 1 }
             },
@@ -73,6 +76,7 @@ data:extend(
             enabled = true,
             category = "mashering",
             energy_required = 3.2,
+            allow_productivity = true,
             ingredients = {
                 { type = "item", name = "copper-ore", amount = 1 }
             },

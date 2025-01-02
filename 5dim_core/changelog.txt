@@ -2,6 +2,7 @@
 Version: 2.0.38
 Date: ????
   Changes:
+    - Fix beacons recipe for electromagnetic plants.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.37
 Date: 2025-01-02

@@ -19,6 +19,9 @@ function genBeacons(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
+    if mods['space-age'] then
+        recipe.category = "electronics"
+    end
     if inputs.new then
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients

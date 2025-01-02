@@ -338,7 +338,7 @@ function genTransportBelts(inputs)
         entityLoader.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
     end
-    if not (mods["aai-loaders"] and mods['vanilla-loaders-hd']) then
+    if not mods["aai-loaders"] and not mods['vanilla-loaders-hd'] then
         entityLoader.structure.direction_in.sheet.filename =
             "__5dim_transport__/graphics/entities/loader/loader-" .. inputs.number .. ".png"
         entityLoader.structure.direction_in.sheet.width = 128

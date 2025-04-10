@@ -10,6 +10,7 @@ function genPersonalLaserDefenses(inputs)
         item.name = "5d-personal-laser-defense-equipment-" .. inputs.number
     end
     item.icon = "__5dim_equipment__/graphics/icon/personal-laser-defense/personal-laser-defense-equipment-icon-" .. inputs.number .. ".png"
+    item.icon_size = 64
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_as_equipment_result = item.name
@@ -35,6 +36,8 @@ function genPersonalLaserDefenses(inputs)
     equipment.energy_source.buffer_capacity = inputs.energyConsumption * 4 .. "kJ"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/personal-laser-defense/personal-laser-defense-equipment-" .. inputs.number .. ".png"
+    equipment.sprite.width = 64
+    equipment.sprite.height = 64
 
     data:extend({equipment, recipe, item})
 

@@ -2,6 +2,7 @@
 Version: 2.0.39
 Date: ????
   Changes:
+    - Fix compatibility with Faactorio 2.0.47
     - Fix crash with Bob's Equipment mod
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.38

@@ -39,6 +39,7 @@ function genSteamTurbines(inputs)
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-H/steam-turbine-H-" .. inputs.number .. ".png"
     entity.vertical_animation.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-V/steam-turbine-V-" .. inputs.number .. ".png"
+    entity.vertical_animation.layers[1].height = 347
 
     data:extend({ entity, recipe, item })
 

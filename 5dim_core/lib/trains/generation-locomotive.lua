@@ -35,6 +35,9 @@ function genLocomotives(inputs)
     entity.weight = inputs.weight or 2000
     entity.max_health = inputs.health or 1000
     entity.fast_replaceable_group = "locomotive"
+    if mods["Krastorio2"] then
+        entity.equipment_grid = "kr-locomotive-grid"
+    end
 
     data:extend({entity, recipe, item})
 

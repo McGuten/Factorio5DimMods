@@ -1,7 +1,9 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.0.4
-Date: ????
+Version: 2.1.0
+Date: 2025-07-01
   Changes:
+    - Fix Deadlock's Beltboxes and Loader's compatibility
+    - If 5Dim's Transport is present, loaders for tiers 4 through 10 are added
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.3
 Date: 2024-12-06

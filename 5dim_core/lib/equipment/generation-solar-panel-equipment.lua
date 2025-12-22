@@ -30,7 +30,7 @@ function genSolarPanels(inputs)
     equipment.power = inputs.power .. "kW"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/solar-panel/solar-panel-equipment-" .. inputs.number .. ".png"
-    log("equipment.take_result: " .. equipment.take_result)
+    -- log("equipment.take_result: " .. equipment.take_result)
 
     data:extend({equipment, recipe, item})
 

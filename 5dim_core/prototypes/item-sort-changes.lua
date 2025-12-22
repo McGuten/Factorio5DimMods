@@ -556,14 +556,14 @@ data.raw.item["steel-chest"].order = "c"
 
 if mods["space-age"] then
     if mods["5dim_transport"] then
-        data.raw.item["turbo-loader"].subgroup = "transport-turbo-belt"
-        data.raw.item["turbo-loader"].order = "d"
-        data.raw.item["turbo-splitter"].subgroup = "transport-turbo-belt"
-        data.raw.item["turbo-splitter"].order = "c"
-        data.raw.item["turbo-transport-belt"].subgroup = "transport-turbo-belt"
-        data.raw.item["turbo-transport-belt"].order = "a"
-        data.raw.item["turbo-underground-belt"].subgroup = "transport-turbo-belt"
-        data.raw.item["turbo-underground-belt"].order = "b"
+        -- data.raw.item["turbo-loader"].subgroup = "transport-turbo-belt"
+        -- data.raw.item["turbo-loader"].order = "d"
+        -- data.raw.item["turbo-splitter"].subgroup = "transport-turbo-belt"
+        -- data.raw.item["turbo-splitter"].order = "c"
+        -- data.raw.item["turbo-transport-belt"].subgroup = "transport-turbo-belt"
+        -- data.raw.item["turbo-transport-belt"].order = "a"
+        -- data.raw.item["turbo-underground-belt"].subgroup = "transport-turbo-belt"
+        -- data.raw.item["turbo-underground-belt"].order = "b"
     else
         data.raw.item["turbo-loader"].subgroup = "transport-loader"
         data.raw.item["turbo-loader"].order = "d"

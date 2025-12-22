@@ -13,10 +13,15 @@ function genTransportBelts(inputs)
     -- Copy transport belt
     local itemTransportBelt = table.deepcopy(data.raw.item[transportBeltName])
     local recipeTransportBelt = table.deepcopy(data.raw.recipe[transportBeltName])
-    local entityTransportBelt = table.deepcopy(data.raw["transport-belt"][transportBeltName])
+    local entityTransportBelt = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entityTransportBelt = table.deepcopy(data.raw["transport-belt"]["express-transport-belt"])
+    else
+        entityTransportBelt = table.deepcopy(data.raw["transport-belt"][transportBeltName])
+    end
 
-    --Items
     -- transport belt
+    --Items
     if inputs.new then
         itemTransportBelt.name = "5d-transport-belt-" .. inputs.number
     end
@@ -59,10 +64,12 @@ function genTransportBelts(inputs)
         entityTransportBelt.related_underground_belt = "5d-underground-belt-" .. inputs.number
     end
 
-    -- East
     if inputs.number ~= "01" then
         entityTransportBelt.belt_animation_set.animation_set.filename =
             "__5dim_transport__/graphics/entities/transport-belt/transport-belt-" .. inputs.number .. ".png"
+        if inputs.number == "04" and mods["space-age"] then
+            entityTransportBelt.belt_animation_set.alternate = false
+        end
     end
 
     data:extend({ entityTransportBelt, recipeTransportBelt, itemTransportBelt })
@@ -70,7 +77,12 @@ function genTransportBelts(inputs)
     -- Copy underground transport belt
     local itemUndergroundBelt = table.deepcopy(data.raw.item[undergroundName])
     local recipeUndergroundBelt = table.deepcopy(data.raw.recipe[undergroundName])
-    local entityUndergroundBelt = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    local entityUndergroundBelt = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entityUndergroundBelt = table.deepcopy(data.raw["underground-belt"]["express-underground-belt"])
+    else
+        entityUndergroundBelt = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    end
 
     -- underground transport belt
     if inputs.new then
@@ -125,7 +137,12 @@ function genTransportBelts(inputs)
     -- Copy underground transport belt x30
     local itemUndergroundBelt30 = table.deepcopy(data.raw.item[undergroundName])
     local recipeUndergroundBelt30 = table.deepcopy(data.raw.recipe[undergroundName])
-    local entityUndergroundBelt30 = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    local entityUndergroundBelt30 = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entityUndergroundBelt30 = table.deepcopy(data.raw["underground-belt"]["express-underground-belt"])
+    else
+        entityUndergroundBelt30 = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    end
 
     -- underground transport belt
     itemUndergroundBelt30.name = "5d-" .. inputs.name.preName .. "underground-belt-30-" .. inputs.number
@@ -178,7 +195,12 @@ function genTransportBelts(inputs)
     -- Copy underground transport belt x50
     local itemUndergroundBelt50 = table.deepcopy(data.raw.item[undergroundName])
     local recipeUndergroundBelt50 = table.deepcopy(data.raw.recipe[undergroundName])
-    local entityUndergroundBelt50 = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    local entityUndergroundBelt50 = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entityUndergroundBelt50 = table.deepcopy(data.raw["underground-belt"]["express-underground-belt"])
+    else
+        entityUndergroundBelt50 = table.deepcopy(data.raw["underground-belt"][undergroundName])
+    end
 
     -- underground transport belt
     itemUndergroundBelt50.name = "5d-" .. inputs.name.preName .. "underground-belt-50-" .. inputs.number
@@ -230,7 +252,12 @@ function genTransportBelts(inputs)
     -- Copy splitter transport belt
     local itemSplitter = table.deepcopy(data.raw.item[splitterName])
     local recipeSplitter = table.deepcopy(data.raw.recipe[splitterName])
-    local entitySplitter = table.deepcopy(data.raw["splitter"][splitterName])
+    local entitySplitter = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entitySplitter = table.deepcopy(data.raw["splitter"]["express-splitter"])
+    else
+        entitySplitter = table.deepcopy(data.raw["splitter"][splitterName])
+    end
 
     -- underground transport belt
     if inputs.new then
@@ -294,7 +321,12 @@ function genTransportBelts(inputs)
     -- Copy loader transport belt
     local itemLoader = table.deepcopy(data.raw.item[loaderName])
     local recipeLoader = table.deepcopy(data.raw.recipe[loaderName])
-    local entityLoader = table.deepcopy(data.raw["loader"][loaderName])
+    local entityLoader = nil
+    if inputs.number == "04" and mods["space-age"] then
+        entityLoader = table.deepcopy(data.raw["loader"]["express-loader"])
+    else
+        entityLoader = table.deepcopy(data.raw["loader"][loaderName])
+    end
 
     -- underground transport belt
     if inputs.new then

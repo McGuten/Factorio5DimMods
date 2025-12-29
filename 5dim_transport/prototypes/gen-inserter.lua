@@ -6,7 +6,7 @@ local energy = 5
 local drain = 0.4
 local techCount = 200
 
--- Electric furnace 01
+-- Inserters 01
 genInserters {
     number = "01",
     extensionSpeed = extension,
@@ -42,7 +42,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 02
+-- Inserters 02
 genInserters {
     number = "02",
     extensionSpeed = extension,
@@ -60,10 +60,10 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 },
-            { type = "item", name = "bulk-inserter",       amount = 1 }
+            { type = "item", name = "iron-gear-wheel",    amount = 15 },
+            { type = "item", name = "electronic-circuit", amount = 15 },
+            { type = "item", name = "advanced-circuit",   amount = 1 },
+            { type = "item", name = "bulk-inserter",      amount = 1 }
         },
     },
     nextUpdate = {
@@ -92,7 +92,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 03
+-- Inserters 03
 genInserters {
     number = "03",
     extensionSpeed = extension,
@@ -110,11 +110,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-03",       amount = 1 },
+            { type = "item", name = "5d-inserter-03",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-02", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -142,59 +142,108 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 04
-genInserters {
-    number = "04",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "d",
-    ingredients = {
-        inserter = {
-            { type = "item", name = "5d-inserter-03",     amount = 1 },
-            { type = "item", name = "electronic-circuit", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",    amount = 1 },
-            { type = "item", name = "iron-plate",         amount = 1 }
+-- Inserters 04
+if mods["space-age"] then
+    -- Inserters 04
+    genInserters {
+        number = "04",
+        extensionSpeed = extension,
+        rotationSpeed = rotation,
+        energyMovement = energy,
+        energyRotation = energy,
+        energyDrain = drain,
+        new = true,
+        order = "d",
+        ingredients = {
+            inserter = {
+                { type = "item", name = "5d-inserter-03",     amount = 1 },
+                { type = "item", name = "electronic-circuit", amount = 1 },
+                { type = "item", name = "iron-gear-wheel",    amount = 1 },
+                { type = "item", name = "iron-plate",         amount = 1 }
+            },
+            bulkInserter = {
+                { type = "item", name = "5d-inserter-03",      amount = 1 },
+                { type = "item", name = "5d-bulk-inserter-03", amount = 1 },
+                { type = "item", name = "iron-gear-wheel",     amount = 15 },
+                { type = "item", name = "electronic-circuit",  amount = 15 },
+                { type = "item", name = "advanced-circuit",    amount = 1 }
+            },
         },
-        bulkInserter = {
-            { type = "item", name = "5d-inserter-04",       amount = 1 },
-            { type = "item", name = "5d-bulk-inserter-03", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+        nextUpdate = {
+            inserter = "5d-inserter-05",
+            bulkInserter = "5d-bulk-inserter-05",
         },
-    },
-    nextUpdate = {
-        inserter = "5d-inserter-05",
-        bulkInserter = "5d-bulk-inserter-05",
-    },
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 }
+        tech = {
+            number = 4,
+            count = techCount * 4,
+            packs = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = {
+                "bulk-inserter-3",
+                "production-science-pack",
+                "turbo-transport-belt",
+            }
         },
-        prerequisites = {
-            "bulk-inserter-3",
-            "production-science-pack",
-            "logistics-4"
-        }
-    },
-    copyName = "fast-inserter"
-}
+        copyName = "fast-inserter"
+    }
+else
+    genInserters {
+        number = "04",
+        extensionSpeed = extension,
+        rotationSpeed = rotation,
+        energyMovement = energy,
+        energyRotation = energy,
+        energyDrain = drain,
+        new = true,
+        order = "d",
+        ingredients = {
+            inserter = {
+                { type = "item", name = "5d-inserter-03",     amount = 1 },
+                { type = "item", name = "electronic-circuit", amount = 1 },
+                { type = "item", name = "iron-gear-wheel",    amount = 1 },
+                { type = "item", name = "iron-plate",         amount = 1 }
+            },
+            bulkInserter = {
+                { type = "item", name = "5d-inserter-04",      amount = 1 },
+                { type = "item", name = "5d-bulk-inserter-03", amount = 1 },
+                { type = "item", name = "iron-gear-wheel",     amount = 15 },
+                { type = "item", name = "electronic-circuit",  amount = 15 },
+                { type = "item", name = "advanced-circuit",    amount = 1 }
+            },
+        },
+        nextUpdate = {
+            inserter = "5d-inserter-05",
+            bulkInserter = "5d-bulk-inserter-05",
+        },
+        tech = {
+            number = 4,
+            count = techCount * 4,
+            packs = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = {
+                "bulk-inserter-3",
+                "production-science-pack",
+                "logistics-4"
+            }
+        },
+        copyName = "fast-inserter"
+    }
+end
 
 extension = extension + 0.02
 rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 05
+-- Inserters 05
 genInserters {
     number = "05",
     extensionSpeed = extension,
@@ -212,11 +261,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-05",       amount = 1 },
+            { type = "item", name = "5d-inserter-05",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-04", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -245,7 +294,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 06
+-- Inserters 06
 genInserters {
     number = "06",
     extensionSpeed = extension,
@@ -263,11 +312,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-06",       amount = 1 },
+            { type = "item", name = "5d-inserter-06",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-05", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -296,7 +345,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 06
+-- Inserters 06
 genInserters {
     number = "06",
     extensionSpeed = extension,
@@ -314,11 +363,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-06",       amount = 1 },
+            { type = "item", name = "5d-inserter-06",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-05", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -347,7 +396,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 07
+-- Inserters 07
 genInserters {
     number = "07",
     extensionSpeed = extension,
@@ -365,11 +414,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-07",       amount = 1 },
+            { type = "item", name = "5d-inserter-07",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-06", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -400,7 +449,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 08
+-- Inserters 08
 genInserters {
     number = "08",
     extensionSpeed = extension,
@@ -418,11 +467,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-08",       amount = 1 },
+            { type = "item", name = "5d-inserter-08",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-07", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -452,7 +501,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 09
+-- Inserters 09
 genInserters {
     number = "09",
     extensionSpeed = extension,
@@ -470,11 +519,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-09",       amount = 1 },
+            { type = "item", name = "5d-inserter-09",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-08", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {
@@ -506,7 +555,7 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Electric furnace 10
+-- Inserters 10
 genInserters {
     number = "10",
     extensionSpeed = extension,
@@ -524,11 +573,11 @@ genInserters {
             { type = "item", name = "iron-plate",         amount = 1 }
         },
         bulkInserter = {
-            { type = "item", name = "5d-inserter-10",       amount = 1 },
+            { type = "item", name = "5d-inserter-10",      amount = 1 },
             { type = "item", name = "5d-bulk-inserter-09", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
+            { type = "item", name = "iron-gear-wheel",     amount = 15 },
+            { type = "item", name = "electronic-circuit",  amount = 15 },
+            { type = "item", name = "advanced-circuit",    amount = 1 }
         },
     },
     nextUpdate = {

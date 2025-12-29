@@ -110,39 +110,76 @@ energy = energy + 2
 drain = drain + 0.02
 
 -- Stack inserter 04
-genStackInserters {
-    number = "04",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 }
+if mods["space-age"] then
+    -- Stack inserter 04
+    genStackInserters {
+        number = "04",
+        extensionSpeed = extension,
+        rotationSpeed = rotation,
+        energyMovement = energy,
+        energyRotation = energy,
+        energyDrain = drain,
+        new = true,
+        order = "d",
+        ingredients = {
+            { type = "item", name = "5d-stack-inserter-03", amount = 1 },
+            { type = "item", name = "iron-gear-wheel",      amount = 15 },
+            { type = "item", name = "electronic-circuit",   amount = 15 },
+            { type = "item", name = "advanced-circuit",     amount = 1 }
         },
-        prerequisites = {
-            "stack-inserter-3",
-            "production-science-pack",
-            "logistics-4"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-05",
-    copyName = "stack-inserter"
-}
+        tech = {
+            number = 4,
+            count = techCount * 4,
+            packs = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = {
+                "stack-inserter-3",
+                "production-science-pack",
+                "turbo-transport-belt"
+            }
+        },
+        nextUpdate = "5d-stack-inserter-05",
+        copyName = "stack-inserter"
+    }
+else
+    genStackInserters {
+        number = "04",
+        extensionSpeed = extension,
+        rotationSpeed = rotation,
+        energyMovement = energy,
+        energyRotation = energy,
+        energyDrain = drain,
+        new = true,
+        order = "d",
+        ingredients = {
+            { type = "item", name = "5d-stack-inserter-03", amount = 1 },
+            { type = "item", name = "iron-gear-wheel",      amount = 15 },
+            { type = "item", name = "electronic-circuit",   amount = 15 },
+            { type = "item", name = "advanced-circuit",     amount = 1 }
+        },
+        tech = {
+            number = 4,
+            count = techCount * 4,
+            packs = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack",   1 },
+                { "chemical-science-pack",   1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = {
+                "stack-inserter-3",
+                "production-science-pack",
+                "logistics-4"
+            }
+        },
+        nextUpdate = "5d-stack-inserter-05",
+        copyName = "stack-inserter"
+    }
+end
 
 extension = extension + 0.02
 rotation = rotation + 0.02
@@ -227,45 +264,6 @@ rotation = rotation + 0.02
 energy = energy + 2
 drain = drain + 0.02
 
--- Stack inserter 06
-genStackInserters {
-    number = "06",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 }
-        },
-        prerequisites = {
-            "stack-inserter-5",
-            "logistics-6"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-08",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
 -- Stack inserter 07
 genStackInserters {
     number = "07",
@@ -298,7 +296,7 @@ genStackInserters {
             "logistics-7"
         }
     },
-    nextUpdate = "5d-stack-inserter-09",
+    nextUpdate = "5d-stack-inserter-08",
     copyName = "stack-inserter"
 }
 

@@ -1,0 +1,20 @@
+{
+    "item": [
+        ["5d-transport-belt-04", "turbo-transport-belt"],
+        ["5d-underground-belt-04", "turbo-underground-belt"],
+        ["5d-splitter-04", "turbo-splitter"],
+        ["5d-loader-04", "turbo-loader"]
+    ],
+    "entity": [
+        ["5d-transport-belt-04", "turbo-transport-belt"],
+        ["5d-underground-belt-04", "turbo-underground-belt"],
+        ["5d-splitter-04", "turbo-splitter"],
+        ["5d-loader-04", "turbo-loader"]
+    ],
+    "recipe": [
+        ["5d-transport-belt-04", "turbo-transport-belt"],
+        ["5d-underground-belt-04", "turbo-underground-belt"],
+        ["5d-splitter-04", "turbo-splitter"],
+        ["5d-loader-04", "turbo-loader"]
+    ]
+}

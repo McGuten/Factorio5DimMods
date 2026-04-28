@@ -1,505 +1,241 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Tesla Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.tesla-turret.generation-tesla-turret")
 
-local rango = 50
-local shootingSpeed = 60
-local damageModif = 25
-local color = { r = 0.9, g = 0.1, b = 0.9, a = 1 }
-local hp = 1500
-local techCount = 300
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local tierColors = require("__5dim_core__.lib.tier-colors")
 
--- Tesla turret 01
-genTeslaTurrets {
-    number = "01",
-    subgroup = "defense-electric-laser",
-    order = "a",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "steel-plate",        amount = 50 },
-        { type = "item", name = "electronic-circuit", amount = 50 },
-        { type = "item", name = "battery",            amount = 40 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 5
-        },
-        {
-            type = "explosion",
-            percent = 2.5
-        }
-    },
-    nextUpdate = "5d-tesla-turret-02",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (1500 → 7500), Damage x5 (50 → 250)
+-------------------------------------------------------------------------------
+
+-- Rebalanced: reduced base stats to be more in line with laser turrets
+-- Original: range 50, damage 50 (too powerful for tier position)
+local baseRange = 35                      -- Reduced from 50 (closer to laser T5)
+local baseDamage = 35                     -- Reduced from 50
+local baseHealth = 1200                   -- Reduced from 1500
+local rangeIncrement = 5
+local damageIncrement = 20                -- 35 → 215 (x6)
+local healthIncrement = 600               -- 1200 → 6600 (x5.5)
+local baseTechCount = 400                 -- Increased from 300
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a" },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
+}
+
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
+
+local techConfig = {
+    [1] = {
+        techName = 1,
+        countMultiplier = 1,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-laser-turret-small-5",
-            "laser-turret-5",
-            "5d-laser-turret-big-5",
-            "5d-laser-turret-sniper-1"
-        }
+        -- Increased prerequisite from laser-turret-5 to laser-turret-8 for better balance
+        prerequisites = { "laser-turret-8", "utility-science-pack" }
+    },
+    [2] = {
+        techName = 2,
+        countMultiplier = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-1" }
+    },
+    [3] = {
+        techName = 3,
+        countMultiplier = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-2" }
+    },
+    [4] = {
+        techName = 4,
+        countMultiplier = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-3" }
+    },
+    [5] = {
+        techName = 5,
+        countMultiplier = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-4" }
+    },
+    [6] = {
+        techName = 6,
+        countMultiplier = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-5" }
+    },
+    [7] = {
+        techName = 7,
+        countMultiplier = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-6" }
+    },
+    [8] = {
+        techName = 8,
+        countMultiplier = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-7" }
+    },
+    [9] = {
+        techName = 9,
+        countMultiplier = 9,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-8" }
+    },
+    [10] = {
+        techName = 10,
+        countMultiplier = 10,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-tesla-turrets-9" }
     }
 }
 
-rango = rango + 2
-hp = hp + 150
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
 
--- Tesla turret 02
-genTeslaTurrets {
-    number = "02",
-    subgroup = "defense-electric-laser",
-    order = "b",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-01", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery",            amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
-        }
-    },
-    nextUpdate = "5d-tesla-turret-03",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-small-6",
-            "laser-turret-6",
-            "5d-laser-turret-big-6",
-            "5d-laser-turret-sniper-2",
-            "5d-tesla-turrets-1"
-        }
+local function getResistances(tier)
+    local firePercent = 10 + (tier - 1) * 5
+    local explosionPercent = 5 + (tier - 1) * 5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
     }
-}
+end
 
-rango = rango + 2
-hp = hp + 150
+-------------------------------------------------------------------------------
+-- TYPE COLOR (Tesla = Purple)
+-------------------------------------------------------------------------------
 
--- Tesla turret 03
-genTeslaTurrets {
-    number = "03",
-    subgroup = "defense-electric-laser",
-    order = "c",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-02", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "advanced-circuit",   amount = 5 },
-        { type = "item", name = "battery",            amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
+local typeColor = { r = 0.8, g = 0.1, b = 0.8, a = 1 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local damage = baseDamage + (tier - 1) * damageIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.teslaTurret[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-tesla-turret-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration
+    local tech = nil
+    if techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tc.techName,
+            count = baseTechCount * tc.countMultiplier,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
-    },
-    nextUpdate = "5d-tesla-turret-04",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-small-7",
-            "laser-turret-7",
-            "5d-laser-turret-big-7",
-            "5d-laser-turret-sniper-3",
-            "5d-tesla-turrets-2"
-        }
+    end
+    
+    -- Generate the tesla turret
+    genTeslaTurrets {
+        number = tierNum,
+        subgroup = "defense-tesla",
+        order = config.order,
+        new = true,
+        range = range,
+        damage = damage,
+        health = health,
+        baseTint = tierColors[tier],
+        turretTint = typeColor,
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 04
-genTeslaTurrets {
-    number = "04",
-    subgroup = "defense-electric-laser",
-    order = "d",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-03", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "advanced-circuit",   amount = 5 },
-        { type = "item", name = "battery",            amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 20
-        },
-        {
-            type = "explosion",
-            percent = 10
-        }
-    },
-    nextUpdate = "5d-tesla-turret-05",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-small-8",
-            "laser-turret-8",
-            "5d-laser-turret-big-8",
-            "5d-laser-turret-sniper-4",
-            "5d-tesla-turrets-3"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 05
-genTeslaTurrets {
-    number = "05",
-    subgroup = "defense-electric-laser",
-    order = "e",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-04", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "advanced-circuit",   amount = 5 },
-        { type = "item", name = "battery",            amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 25
-        },
-        {
-            type = "explosion",
-            percent = 12.5
-        }
-    },
-    nextUpdate = "5d-tesla-turret-06",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-small-9",
-            "laser-turret-9",
-            "5d-laser-turret-big-9",
-            "5d-laser-turret-sniper-5",
-            "5d-tesla-turrets-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 06
-genTeslaTurrets {
-    number = "06",
-    subgroup = "defense-electric-laser",
-    order = "f",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-05",    amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 30 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "battery",               amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 30
-        },
-        {
-            type = "explosion",
-            percent = 15
-        }
-    },
-    nextUpdate = "5d-tesla-turret-07",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-small-10",
-            "laser-turret-10",
-            "5d-laser-turret-big-10",
-            "5d-laser-turret-sniper-6",
-            "5d-tesla-turrets-5"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 07
-genTeslaTurrets {
-    number = "07",
-    subgroup = "defense-electric-laser",
-    order = "g",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-06",    amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 30 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "battery",               amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 35
-        },
-        {
-            type = "explosion",
-            percent = 17.5
-        }
-    },
-    nextUpdate = "5d-tesla-turret-08",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-7",
-            "5d-tesla-turrets-6",
-            "space-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 08
-genTeslaTurrets {
-    number = "08",
-    subgroup = "defense-electric-laser",
-    order = "h",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-07",    amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "battery",               amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 40
-        },
-        {
-            type = "explosion",
-            percent = 20
-        }
-    },
-    nextUpdate = "5d-tesla-turret-09",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-8",
-            "5d-tesla-turrets-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 09
-genTeslaTurrets {
-    number = "09",
-    subgroup = "defense-electric-laser",
-    order = "i",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-08",    amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 3 },
-        { type = "item", name = "battery",               amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 45
-        },
-        {
-            type = "explosion",
-            percent = 22.5
-        }
-    },
-    nextUpdate = "5d-tesla-turret-10",
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-9",
-            "5d-tesla-turrets-8"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 150
-
--- Tesla turret 10
-genTeslaTurrets {
-    number = "10",
-    subgroup = "defense-electric-laser",
-    order = "j",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-tesla-turret-09",    amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 3 },
-        { type = "item", name = "battery",               amount = 10 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 50
-        },
-        {
-            type = "explosion",
-            percent = 25
-        }
-    },
-    tech = {
-        number = 10,
-        count = techCount * 10,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-10",
-            "5d-tesla-turrets-9"
-        }
-    }
-}
+end

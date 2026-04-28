@@ -2,10 +2,10 @@
     "name": "5dim_core",
     "version": "2.0.42",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Core",
+    "title": "5Dim's mod - Core",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Core for 5dim's mod\n\rCore, library and settings of 5Dim's mod. REQUIRED for any other module",
+    "description": "Core module for 5Dim's mod suite\n\rThis is the REQUIRED core library for all 5Dim's modules. It provides:\n\r- Organized item groups and subgroups for all categories\n\r- Core settings and configuration options\n\r- Shared functions and utilities\n\r- Support for Space Age DLC",
     "dependencies": ["base >= 2.0.0", "? space-age >= 2.0.0"]
 }

@@ -1,375 +1,186 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Nuclear - Centrifuge Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.nuclear.generation-centrifuge")
 
-local speed = 1
-local modules = 2
-local energy = 350
-local emisions = 4
-local techCount = 500
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genCentrifuges {
-    number = "01",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "concrete",         amount = 100 },
-        { type = "item", name = "steel-plate",      amount = 50 },
-        { type = "item", name = "advanced-circuit", amount = 100 },
-        { type = "item", name = "iron-gear-wheel",  amount = 100 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseCraftingSpeed = 1
+local baseModuleSlots = 2
+local baseEnergy = 350
+local baseEmissions = 4
+local baseTechCount = 500
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genCentrifuges {
-    number = "02",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "centrifuge",       amount = 1 },
-        { type = "item", name = "concrete",         amount = 100 },
-        { type = "item", name = "steel-plate",      amount = 50 },
-        { type = "item", name = "advanced-circuit", amount = 100 },
-        { type = "item", name = "iron-gear-wheel",  amount = 100 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "uranium-processing"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 03
-genCentrifuges {
-    number = "03",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-02",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "advanced-circuit",      amount = 100 },
-        { type = "item", name = "iron-gear-wheel",       amount = 100 }
+        prerequisites = { "uranium-processing" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-1"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 04
-genCentrifuges {
-    number = "04",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-03",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "advanced-circuit",      amount = 100 },
-        { type = "item", name = "iron-gear-wheel",       amount = 100 }
+        prerequisites = { "5d-centrifuge-1" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-2",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 05
-genCentrifuges {
-    number = "05",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-04",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "speed-module",          amount = 1 }
+        prerequisites = { "5d-centrifuge-2", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-3",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 06
-genCentrifuges {
-    number = "06",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-05",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "productivity-module",   amount = 1 }
+        prerequisites = { "5d-centrifuge-3" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-4"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 07
-genCentrifuges {
-    number = "07",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-06",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "speed-module-2",        amount = 1 }
+        prerequisites = { "5d-centrifuge-4" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-5",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 08
-genCentrifuges {
-    number = "08",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-07",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        prerequisites = { "5d-centrifuge-5", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-6"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 09
-genCentrifuges {
-    number = "09",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-08",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "speed-module-3",        amount = 1 }
+        prerequisites = { "5d-centrifuge-6" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-centrifuge-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-7"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.5
-emisions = emisions + 15
-
--- Electric furnace 10
-genCentrifuges {
-    number = "10",
-    subgroup = "nuclear-centri",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-centrifuge-09",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 100 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 15 },
-        { type = "item", name = "steel-plate",           amount = 50 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        prerequisites = { "5d-centrifuge-7" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-centrifuge-8"
-        }
+        prerequisites = { "5d-centrifuge-8" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
+    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Module slots: base + 1 every 2 tiers
+    local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)
+    -- Odd tiers >= 3 get an extra slot
+    if tier >= 3 and tier % 2 == 1 then
+        moduleSlots = moduleSlots + 1
+    end
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.centrifuge[tier]
+    
+    -- Determine next upgrade
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-centrifuge-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration (tier 1 is vanilla)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = baseTechCount * (tier - 1),
+            packs = tc.basePacks,
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the centrifuge
+    genCentrifuges {
+        number = tierNum,
+        subgroup = "nuclear-centri",
+        craftingSpeed = craftingSpeed,
+        moduleSlots = moduleSlots,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

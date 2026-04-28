@@ -145,7 +145,12 @@ function genTransportBelts(inputs)
     end
 
     -- underground transport belt
-    itemUndergroundBelt30.name = "5d-" .. inputs.name.preName .. "underground-belt-30-" .. inputs.number
+    -- For tier 4 with Space Age, don't include "turbo-" prefix in the 30/50/1x1 variant names
+    local namePrefix30 = inputs.name.preName
+    if inputs.number == "04" and mods["space-age"] then
+        namePrefix30 = ""
+    end
+    itemUndergroundBelt30.name = "5d-" .. namePrefix30 .. "underground-belt-30-" .. inputs.number
     itemUndergroundBelt30.icon =
         "__5dim_transport__/graphics/icon/underground-belt-30/underground-belt-icon-" .. inputs.number .. "-30.png"
     itemUndergroundBelt30.subgroup = "transport-ground-30"
@@ -203,7 +208,12 @@ function genTransportBelts(inputs)
     end
 
     -- underground transport belt
-    itemUndergroundBelt50.name = "5d-" .. inputs.name.preName .. "underground-belt-50-" .. inputs.number
+    -- For tier 4 with Space Age, don't include "turbo-" prefix in the variant names
+    local namePrefix50 = inputs.name.preName
+    if inputs.number == "04" and mods["space-age"] then
+        namePrefix50 = ""
+    end
+    itemUndergroundBelt50.name = "5d-" .. namePrefix50 .. "underground-belt-50-" .. inputs.number
     itemUndergroundBelt50.icon =
         "__5dim_transport__/graphics/icon/underground-belt-50/underground-belt-icon-" .. inputs.number .. "-50.png"
     itemUndergroundBelt50.subgroup = "transport-ground-50"
@@ -449,36 +459,42 @@ function genTransportBelts(inputs)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites
-        tech.effects = {
-            {
-                type = "unlock-recipe",
-                recipe = itemTransportBelt.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = itemUndergroundBelt.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = itemSplitter.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = itemUndergroundBelt30.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = itemUndergroundBelt50.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = entityLoader.name
-            },
-            {
-                type = "unlock-recipe",
-                recipe = entityLoader1.name
+        
+        -- If noRecipes flag is set, don't add recipe unlocks (used for bridge technologies)
+        if inputs.tech.noRecipes then
+            tech.effects = {}
+        else
+            tech.effects = {
+                {
+                    type = "unlock-recipe",
+                    recipe = itemTransportBelt.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = itemUndergroundBelt.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = itemSplitter.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = itemUndergroundBelt30.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = itemUndergroundBelt50.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = entityLoader.name
+                },
+                {
+                    type = "unlock-recipe",
+                    recipe = entityLoader1.name
+                }
             }
-        }
+        end
         data:extend({ tech })
     end
 end

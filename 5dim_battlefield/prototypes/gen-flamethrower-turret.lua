@@ -1,384 +1,210 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Flamethrower Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.flamethrower-turret.generation-flamethrower-turret")
 
-local rango = 30
-local minRango = 6
-local fluid_consumption = 0.2
-local damageModif = 19
-local color = {r = 0, g = 1, b = 1, a = 1}
-local hp = 1400
-local techCount = 150
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local tierColors = require("__5dim_core__.lib.tier-colors")
 
--- Tesla turret 01
-genFlamethrowerTurrets {
-    number = "01",
-    subgroup = "defense-flame",
-    order = "a",
-    new = false,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (1400 → 7000), Damage multiplier unchanged (DoT based)
+-------------------------------------------------------------------------------
+
+local baseRange = 30
+local baseDamage = 1
+local baseHealth = 1400
+local rangeIncrement = 3
+local damageIncrement = 1
+local healthIncrement = 622               -- 1400 → 7000 (x5)
+local baseTechCount = 150
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-rango = rango + 3
-hp = hp + 140
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Tesla turret 02
-genFlamethrowerTurrets {
-    number = "02",
-    subgroup = "defense-flame",
-    order = "b",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "flamethrower-turret", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
+local techConfig = {
+    [2] = {
+        techName = 2,
+        countMultiplier = 1,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "flamethrower"
-        }
+        prerequisites = { "flamethrower" }
+    },
+    [3] = {
+        techName = 3,
+        countMultiplier = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-2" }
+    },
+    [4] = {
+        techName = 4,
+        countMultiplier = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-3" }
+    },
+    [5] = {
+        techName = 5,
+        countMultiplier = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-4", "chemical-science-pack" }
+    },
+    [6] = {
+        techName = 6,
+        countMultiplier = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-5" }
+    },
+    [7] = {
+        techName = 7,
+        countMultiplier = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-6" }
+    },
+    [8] = {
+        techName = 8,
+        countMultiplier = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-7", "utility-science-pack" }
+    },
+    [9] = {
+        techName = 9,
+        countMultiplier = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-8" }
+    },
+    [10] = {
+        techName = 10,
+        countMultiplier = 9,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "flamethrower-9" }
     }
 }
 
-rango = rango + 2
-hp = hp + 140
-minRango = minRango + 1
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
 
--- Tesla turret 03
-genFlamethrowerTurrets {
-    number = "03",
-    subgroup = "defense-flame",
-    order = "c",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-02", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-1"
-        }
+local function getResistances(tier)
+    local firePercent = 100
+    local explosionPercent = 5 + (tier - 1) * 5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
     }
-}
+end
 
-rango = rango + 2
-hp = hp + 140
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Tesla turret 04
-genFlamethrowerTurrets {
-    number = "04",
-    subgroup = "defense-flame",
-    order = "d",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-03", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-2",
-            "chemical-science-pack"
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local damage = baseDamage + (tier - 1) * damageIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.flamethrowerTurret[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-flamethrower-turret-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tc.techName,
+            count = baseTechCount * tc.countMultiplier,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
+    end
+    
+    -- Generate the flamethrower turret
+    genFlamethrowerTurrets {
+        number = tierNum,
+        subgroup = "defense-flame",
+        order = config.order,
+        new = not config.isVanilla,
+        range = range,
+        damage = damage,
+        health = health,
+        tint = tierColors[tier],
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
-
-rango = rango + 2
-hp = hp + 140
-minRango = minRango + 1
-
--- Tesla turret 05
-genFlamethrowerTurrets {
-    number = "05",
-    subgroup = "defense-flame",
-    order = "e",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-04", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "advanced-circuit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-3"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Tesla turret 06
-genFlamethrowerTurrets {
-    number = "06",
-    subgroup = "defense-flame",
-    order = "f",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-05", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "advanced-circuit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-minRango = minRango + 1
-
--- Tesla turret 07
-genFlamethrowerTurrets {
-    number = "07",
-    subgroup = "defense-flame",
-    order = "g",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-06", amount = 1},
-        {type = "item", name = "steel-plate", amount = 30},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "advanced-circuit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-5",
-            "utility-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Tesla turret 08
-genFlamethrowerTurrets {
-    number = "08",
-    subgroup = "defense-flame",
-    order = "h",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-07", amount = 1},
-        {type = "item", name = "low-density-structure", amount = 5},
-        {type = "item", name = "iron-gear-wheel", amount = 15},
-        {type = "item", name = "advanced-circuit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-6"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-minRango = minRango + 1
-
--- Tesla turret 09
-genFlamethrowerTurrets {
-    number = "09",
-    subgroup = "defense-flame",
-    order = "i",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-08", amount = 1},
-        {type = "item", name = "low-density-structure", amount = 5},
-        {type = "item", name = "processing-unit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    nextUpdate = "5d-flamethrower-turret-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Tesla turret 10
-genFlamethrowerTurrets {
-    number = "10",
-    subgroup = "defense-flame",
-    order = "j",
-    new = true,
-    attackSpeed = fluid_consumption,
-    range = rango,
-    minRange = minRango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        {type = "item", name = "5d-flamethrower-turret-09", amount = 1},
-        {type = "item", name = "low-density-structure", amount = 5},
-        {type = "item", name = "processing-unit", amount = 4},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "electric-engine-unit", amount = 5}
-    },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"military-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-flamethrower-turrets-8"
-        }
-    }
-}
+end

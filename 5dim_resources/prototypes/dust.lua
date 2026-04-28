@@ -31,7 +31,7 @@ data:extend(
         {
             type = "recipe",
             name = "5d-iron-dust",
-            enabled = true,
+            enabled = false,
             category = "mashering",
             energy_required = 3.2,
             allow_productivity = true,
@@ -73,7 +73,7 @@ data:extend(
         {
             type = "recipe",
             name = "5d-copper-dust",
-            enabled = true,
+            enabled = false,
             category = "mashering",
             energy_required = 3.2,
             allow_productivity = true,

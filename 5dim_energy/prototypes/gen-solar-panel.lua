@@ -1,365 +1,167 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Energy - Solar Panel Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.energy.generation-solar-panel")
 
-local speed = 60
-local modules = 2
-local energy = 90
-local emisions = 10
-local techCount = 450
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genSolarPanels {
-    number = "01",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "copper-plate",       amount = 5 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local basePower = 60               -- kW power output
+local baseTechCount = 450
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-speed = speed + 30
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genSolarPanels {
-    number = "02",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "solar-panel",        amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "copper-plate",       amount = 5 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-03",
-    tech = {
-        number = 2,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy"
-        }
-    }
-}
-
-speed = speed + 30
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 03
-genSolarPanels {
-    number = "03",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-02",  amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "copper-plate",       amount = 5 }
+        prerequisites = { "solar-energy" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-04",
-    tech = {
-        number = 3,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 30
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 04
-genSolarPanels {
-    number = "04",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-03", amount = 1 },
-        { type = "item", name = "steel-plate",       amount = 5 },
-        { type = "item", name = "advanced-circuit",  amount = 15 },
-        { type = "item", name = "copper-plate",      amount = 5 }
+        prerequisites = { "solar-energy-2", "chemical-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-05",
-    tech = {
-        number = 4,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-3",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 30
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 05
-genSolarPanels {
-    number = "05",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-04",   amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "advanced-circuit",    amount = 15 },
-        { type = "item", name = "copper-plate",        amount = 5 },
-        { type = "item", name = "productivity-module", amount = 1 }
+        prerequisites = { "solar-energy-3", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-06",
-    tech = {
-        number = 5,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 30
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 06
-genSolarPanels {
-    number = "06",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-05",  amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "advanced-circuit",   amount = 15 },
-        { type = "item", name = "copper-plate",       amount = 5 },
-        { type = "item", name = "efficiency-module", amount = 1 }
+        prerequisites = { "solar-energy-4" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-07",
-    tech = {
-        number = 6,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-5"
-        }
-    }
-}
-
-speed = speed + 30
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 07
-genSolarPanels {
-    number = "07",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-06",     amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "advanced-circuit",      amount = 15 },
-        { type = "item", name = "copper-plate",          amount = 5 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        prerequisites = { "solar-energy-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-08",
-    tech = {
-        number = 7,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 30
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 08
-genSolarPanels {
-    number = "08",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-07",     amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 2 },
-        { type = "item", name = "low-density-structure", amount = 2 },
-        { type = "item", name = "efficiency-module-2",  amount = 1 }
+        prerequisites = { "solar-energy-6", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-09",
-    tech = {
-        number = 8,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-7"
-        }
-    }
-}
-
-speed = speed + 30
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 09
-genSolarPanels {
-    number = "09",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-08",     amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 10 },
-        { type = "item", name = "processing-unit",       amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 2 },
-        { type = "item", name = "productivity-module-3", amount = 1 }
+        prerequisites = { "solar-energy-7" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-solar-panel-10",
-    tech = {
-        number = 9,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-8"
-        }
-    }
-}
-
-speed = speed + 30
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 10
-genSolarPanels {
-    number = "10",
-    subgroup = "energy-solar-panel",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-solar-panel-09",     amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 15 },
-        { type = "item", name = "processing-unit",       amount = 8 },
-        { type = "item", name = "low-density-structure", amount = 2 },
-        { type = "item", name = "productivity-module-3", amount = 2 }
+        prerequisites = { "solar-energy-8" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 10,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "solar-energy-9"
-        }
+        prerequisites = { "solar-energy-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier (exponential scaling for better late-game value)
+    -- Factor 1.4: T1=60, T5=230, T10=1160 kW (instead of linear 60-330)
+    local powerFactor = 1.4
+    local power = math.floor(basePower * (powerFactor ^ (tier - 1)))
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.solarPanel[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        skipTierScaling = true
+    })
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the solar panel
+    genSolarPanels {
+        number = tierNum,
+        subgroup = "energy-solar-panel",
+        craftingSpeed = power,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        nextUpdate = tier < 10 and ("5d-solar-panel-" .. string.format("%02d", tier + 1)) or nil,
+        tech = tech
+    }
+end

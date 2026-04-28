@@ -39,18 +39,6 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "nuclear-fusion-reactor",
-            group = "nuclear",
-            order = "f"
-        },
-        {
-            type = "item-subgroup",
-            name = "nuclear-fusion-generator",
-            group = "nuclear",
-            order = "g"
-        },
-        {
-            type = "item-subgroup",
             name = "nuclear-recipe",
             group = "nuclear",
             order = "y"

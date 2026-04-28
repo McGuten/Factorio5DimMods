@@ -2,10 +2,10 @@
     "name": "5dim_locale",
     "version": "2.0.2",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Locales",
+    "title": "5Dim's mod - Locales",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Locale for 5dim's mod\n\rThis mod include:\n\r- English",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "description": "Localization module for 5Dim's mod\n\rProvides translations for all 5Dim's modules\n\rSupported languages:\n\r- Afrikaans, Arabic, Catalan, Czech, Danish\n\r- German, Greek, English, Spanish, Finnish\n\r- French, Hebrew, Hungarian, Italian, Japanese\n\r- Korean, Dutch, Norwegian, Polish, Portuguese\n\r- Romanian, Russian, Serbian, Swedish, Turkish\n\r- Ukrainian, Vietnamese, Chinese\n\rContribute translations via Crowdin!",
+    "dependencies": ["5dim_core >= 2.0.42"]
 }

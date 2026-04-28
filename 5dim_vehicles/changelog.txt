@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 2026-01-06
+  Features:
+    - Initial release for Factorio 2.0
+    - Added 10 tiers of tanks
+    - Added 10 tiers of spidertrons

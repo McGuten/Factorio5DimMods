@@ -1,0 +1,15 @@
+{
+    "name": "5dim_dev",
+    "version": "2.0.0",
+    "title": "5Dim's Development Tools",
+    "author": "5Dim",
+    "contact": "",
+    "homepage": "",
+    "description": "Development and debugging tools for 5Dim's mods. Shows useful information in console for testing enemies, spawners, and other mod features.",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "base >= 2.0.0",
+        "5dim_core",
+        "? 5dim_enemies"
+    ]
+}

@@ -9,6 +9,7 @@ function genInserters(inputs)
     if inputs.new then
         item.name = "5d-inserter-" .. inputs.number
     end
+    local inserterName = item.name  -- Save for technology unlock
     item.icon = "__5dim_transport__/graphics/icon/inserter/inserter/inserter-icon-" .. inputs.number .. ".png"
     item.subgroup = "transport-inserter"
     item.order = inputs.order
@@ -130,6 +131,10 @@ function genInserters(inputs)
             {
                 type = "unlock-recipe",
                 recipe = bulkInserter
+            },
+            {
+                type = "unlock-recipe",
+                recipe = inserterName
             },
         }
         data:extend({ tech })

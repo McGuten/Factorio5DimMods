@@ -4,36 +4,35 @@ GLOBALDAMAGE = 7.5
 --Health
 GLOBALHEALTH = 20
 
--- TST
+-- Biter configuration
 biter = {
     scale = {
         small = 0.5,
         medium = 0.8,
         big = 1.2,
         behemoth = 1.7,
-        experimental = 4.5
+        boss = 4.5
     },
     damage = {
         small = GLOBALDAMAGE * 1,
         medium = GLOBALDAMAGE * 2,
         big = GLOBALDAMAGE * 4,
         behemoth = GLOBALDAMAGE * 12,
-        experimental = GLOBALDAMAGE * 175
+        boss = GLOBALDAMAGE * 175
     },
     health = {
         small = GLOBALHEALTH * 1,
         medium = GLOBALHEALTH * 5,
         big = GLOBALHEALTH * 25,
         behemoth = GLOBALHEALTH * 200,
-        experimental = GLOBALHEALTH * 5000
+        boss = GLOBALHEALTH * 5000
     },
     colors = {
         primary = {
             biter = {r = 0, g = 0, b = 0, a = 1},
             laser = {r = 0, g = 0, b = 1, a = 1},
             physical = {r = 1, g = 1, b = 1, a = 1},
-            swimmer = {r = 0.2, g = 0.9, b = 1, a = 1},
-            climber = {r = 1, g = 0.3, b = 0, a = 1}
+            impact = {r = 0.25, g = 0.20, b = 0.15, a = 1}  -- Dark brown/black
         },
         secondary = {
             secondColor = {r = 0, g = 0, b = 0, a = 1},
@@ -95,7 +94,7 @@ biter = {
                     percent = 10
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "laser",
                     percent = 90
@@ -161,10 +160,101 @@ biter = {
                     percent = 10
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "physical",
                     percent = 90
+                },
+                {
+                    type = "explosion",
+                    decrease = 16,
+                    percent = 10
+                }
+            }
+        },
+        impact = {
+            spawner = {
+                {
+                    type = "impact",
+                    percent = 95
+                },
+                {
+                    type = "physical",
+                    decrease = 5,
+                    percent = 50
+                },
+                {
+                    type = "explosion",
+                    decrease = 5,
+                    percent = 15
+                },
+                {
+                    type = "fire",
+                    decrease = 3,
+                    percent = 60
+                }
+            },
+            small = {
+                {
+                    type = "impact",
+                    percent = 80
+                },
+                {
+                    type = "physical",
+                    percent = 40
+                }
+            },
+            medium = {
+                {
+                    type = "impact",
+                    percent = 85
+                },
+                {
+                    type = "physical",
+                    percent = 50
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            big = {
+                {
+                    type = "impact",
+                    percent = 88
+                },
+                {
+                    type = "physical",
+                    percent = 55
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            behemoth = {
+                {
+                    type = "impact",
+                    percent = 92
+                },
+                {
+                    type = "physical",
+                    percent = 60
+                },
+                {
+                    type = "explosion",
+                    decrease = 12,
+                    percent = 10
+                }
+            },
+            boss = {
+                {
+                    type = "impact",
+                    percent = 90
+                },
+                {
+                    type = "physical",
+                    percent = 55
                 },
                 {
                     type = "explosion",
@@ -226,7 +316,7 @@ biter = {
                     percent = 10
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "physical",
                     decrease = 16,
@@ -239,47 +329,47 @@ biter = {
                 }
             }
         }
-    },
-    collisionMask = {
-        swimmer = {"object-layer"},
-        climber = {"item-layer"}
     }
 }
+
+-- Spitter configuration
 spitter = {
     scale = {
         small = 0.5,
         medium = 0.8,
         big = 1.2,
         behemoth = 1.7,
-        experimental = 4.5
+        boss = 4.5
     },
     damage = {
         small = GLOBALDAMAGE * 2,
         medium = GLOBALDAMAGE * 3,
         big = GLOBALDAMAGE * 4,
         behemoth = GLOBALDAMAGE * 5,
-        experimental = GLOBALDAMAGE * 150
+        boss = GLOBALDAMAGE * 150
     },
     health = {
         small = GLOBALHEALTH * 1 / 2,
         medium = GLOBALHEALTH * 5 / 2,
         big = GLOBALHEALTH * 25 / 2,
         behemoth = GLOBALHEALTH * 200 / 2,
-        experimental = GLOBALHEALTH * 5000 / 2
+        boss = GLOBALHEALTH * 5000 / 2
     },
     range = {
         small = 10,
         medium = 15,
         big = 20,
         behemoth = 25,
-        experimental = 30
+        boss = 30
     },
     colors = {
         primary = {
-            spiter = {r = 0.68, g = 0.4, b = 0, a = 1},
+            spitter = {r = 0.68, g = 0.4, b = 0, a = 1},
             fire = {r = 0.1, g = 1, b = 0.1, a = 1},
             explosive = {r = 1, g = 0, b = 0, a = 1},
-            rocket = {r = 1, g = 0, b = 1, a = 1}
+            rocket = {r = 1, g = 0, b = 1, a = 1},
+            poison = {r = 0.2, g = 0.8, b = 0.1, a = 1},    -- Toxic green
+            electric = {r = 0.1, g = 0.9, b = 1, a = 1}     -- Cyan/electric blue
         },
         secondary = {
             secondColor = {r = 0, g = 0, b = 0, a = 1},
@@ -341,7 +431,7 @@ spitter = {
                     percent = 10
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "laser",
                     percent = 98
@@ -407,7 +497,7 @@ spitter = {
                     percent = 10
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "physical",
                     percent = 98
@@ -456,20 +546,149 @@ spitter = {
                     percent = 30
                 }
             },
-            experimental = {
+            boss = {
                 {
                     type = "explosion",
                     percent = 40
                 }
             }
+        },
+        poison = {
+            spawner = {
+                {
+                    type = "poison",
+                    percent = 95
+                },
+                {
+                    type = "explosion",
+                    decrease = 5,
+                    percent = 15
+                },
+                {
+                    type = "fire",
+                    decrease = 3,
+                    percent = 60
+                }
+            },
+            small = {
+                {
+                    type = "poison",
+                    percent = 90
+                }
+            },
+            medium = {
+                {
+                    type = "poison",
+                    percent = 92
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            big = {
+                {
+                    type = "poison",
+                    percent = 94
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            behemoth = {
+                {
+                    type = "poison",
+                    percent = 96
+                },
+                {
+                    type = "explosion",
+                    decrease = 12,
+                    percent = 10
+                }
+            },
+            boss = {
+                {
+                    type = "poison",
+                    percent = 98
+                },
+                {
+                    type = "explosion",
+                    decrease = 16,
+                    percent = 10
+                }
+            }
+        },
+        electric = {
+            spawner = {
+                {
+                    type = "electric",
+                    percent = 95
+                },
+                {
+                    type = "explosion",
+                    decrease = 5,
+                    percent = 15
+                },
+                {
+                    type = "fire",
+                    decrease = 3,
+                    percent = 60
+                }
+            },
+            small = {
+                {
+                    type = "electric",
+                    percent = 90
+                }
+            },
+            medium = {
+                {
+                    type = "electric",
+                    percent = 92
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            big = {
+                {
+                    type = "electric",
+                    percent = 94
+                },
+                {
+                    type = "explosion",
+                    percent = 10
+                }
+            },
+            behemoth = {
+                {
+                    type = "electric",
+                    percent = 96
+                },
+                {
+                    type = "explosion",
+                    decrease = 12,
+                    percent = 10
+                }
+            },
+            boss = {
+                {
+                    type = "electric",
+                    percent = 98
+                },
+                {
+                    type = "explosion",
+                    decrease = 16,
+                    percent = 10
+                }
+            }
         }
-    },
-    collisionMask = {
-        swimmer = {"object-layer"},
-        climber = {"item-layer"}
     }
 }
 
+-- Spawner ratings for evolution factor
 spawnerRating = {
     biter = {
         basic = {
@@ -490,17 +709,11 @@ spawnerRating = {
             big = {{0.65, 0.0}, {1.0, 0.3}},
             behemoth = {{0.8, 0.0}, {1.0, 0.4}}
         },
-        swimer = {
-            small = {{0.15, 0.8}, {0.6, 0.3}, {0.8, 0.1}},
-            medium = {{0.4, 0.0}, {1.0, 0.3}},
-            big = {{0.65, 0.0}, {1.0, 0.3}},
-            behemoth = {{0.8, 0.0}, {1.0, 0.4}}
-        },
-        climber = {
-            small = {{0.15, 0.8}, {0.6, 0.3}, {0.8, 0.1}},
-            medium = {{0.4, 0.0}, {1.0, 0.3}},
-            big = {{0.65, 0.0}, {1.0, 0.3}},
-            behemoth = {{0.8, 0.0}, {1.0, 0.4}}
+        impact = {
+            small = {{0.20, 0.8}, {0.6, 0.3}, {0.8, 0.1}},
+            medium = {{0.45, 0.0}, {1.0, 0.3}},
+            big = {{0.70, 0.0}, {1.0, 0.3}},
+            behemoth = {{0.85, 0.0}, {1.0, 0.4}}
         }
     },
     spitter = {
@@ -517,18 +730,6 @@ spawnerRating = {
             behemoth = {{0.80, 0.0}, {1.0, 0.4}}
         },
         physical = {
-            small = {{0.20, 0.3}, {0.7, 0.0}},
-            medium = {{0.40, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
-            big = {{0.60, 0.0}, {1.0, 0.3}},
-            behemoth = {{0.80, 0.0}, {1.0, 0.4}}
-        },
-        swimer = {
-            small = {{0.20, 0.3}, {0.7, 0.0}},
-            medium = {{0.40, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
-            big = {{0.60, 0.0}, {1.0, 0.3}},
-            behemoth = {{0.80, 0.0}, {1.0, 0.4}}
-        },
-        climber = {
             small = {{0.20, 0.3}, {0.7, 0.0}},
             medium = {{0.40, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
             big = {{0.60, 0.0}, {1.0, 0.3}},
@@ -551,6 +752,18 @@ spawnerRating = {
             medium = {{0.45, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
             big = {{0.65, 0.0}, {1.0, 0.3}},
             behemoth = {{0.85, 0.0}, {1.0, 0.4}}
+        },
+        poison = {
+            small = {{0.20, 0.3}, {0.7, 0.0}},
+            medium = {{0.40, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
+            big = {{0.60, 0.0}, {1.0, 0.3}},
+            behemoth = {{0.80, 0.0}, {1.0, 0.4}}
+        },
+        electric = {
+            small = {{0.20, 0.3}, {0.7, 0.0}},
+            medium = {{0.40, 0.0}, {0.6, 0.3}, {0.8, 0.1}},
+            big = {{0.60, 0.0}, {1.0, 0.3}},
+            behemoth = {{0.80, 0.0}, {1.0, 0.4}}
         }
     }
 }

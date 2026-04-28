@@ -1,461 +1,212 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Big Gun Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
 
-local rango = 32
-local ammo = 5
-local shootingSpeed = 10
-local damageModif = 3
-local color = { r = 0.2, g = 0.2, b = 1, a = 1 }
-local hp = 600
-local techCount = 150
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local TierColors = require("__5dim_core__.lib.tier-colors")
 
--- Big gun turret 01
-genGunTurrets {
-    number = "big-01",
-    subgroup = "defense-gun-turret-big",
-    order = "a",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "copper-plate",    amount = 10 },
-        { type = "item", name = "iron-plate",      amount = 30 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 5
-        },
-        {
-            type = "explosion",
-            percent = 2.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-02",
-    tech = {
-        number = "5d-gun-turret-big-1",
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (600 → 3000)
+-------------------------------------------------------------------------------
+
+local baseRange = 32
+local baseAmmo = 5
+local baseShootingSpeed = 10
+local baseDamageModif = 3
+local baseHealth = 600
+local rangeIncrement = 2
+local healthIncrement = 267               -- 600 → 3000 (x5)
+local baseTechCount = 150
+
+-- Type color: Big = Blue
+local typeColor = { r = 0.1, g = 0.1, b = 1, a = 1 }
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a" },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
+}
+
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
+
+local techConfig = {
+    [1] = {
+        techName = "5d-gun-turret-big-1",
         count = 50,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 02
-genGunTurrets {
-    number = "big-02",
-    subgroup = "defense-gun-turret-big",
-    order = "b",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-01", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "gun-turret" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 10
-        },
-        {
-            type = "explosion",
-            percent = 5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-03",
-    tech = {
-        number = "5d-gun-turret-big-2",
-        count = techCount * 1,
-        packs = {
+    [2] = {
+        techName = "5d-gun-turret-big-2",
+        countMultiplier = 1,
+        basePacks = {
             { "automation-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-1"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 03
-genGunTurrets {
-    number = "big-03",
-    subgroup = "defense-gun-turret-big",
-    order = "c",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-1" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-04",
-    tech = {
-        number = "5d-gun-turret-big-3",
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        techName = "5d-gun-turret-big-3",
+        countMultiplier = 2,
+        basePacks = {
             { "automation-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-2"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 04
-genGunTurrets {
-    number = "big-04",
-    subgroup = "defense-gun-turret-big",
-    order = "d",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-2" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 20
-        },
-        {
-            type = "explosion",
-            percent = 10
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-05",
-    tech = {
-        number = "5d-gun-turret-big-4",
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        techName = "5d-gun-turret-big-4",
+        countMultiplier = 3,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-3",
-            "logistic-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 05
-genGunTurrets {
-    number = "big-05",
-    subgroup = "defense-gun-turret-big",
-    order = "e",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-3", "logistic-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 25
-        },
-        {
-            type = "explosion",
-            percent = 12.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-06",
-    tech = {
-        number = "5d-gun-turret-big-5",
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        techName = "5d-gun-turret-big-5",
+        countMultiplier = 4,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 06
-genGunTurrets {
-    number = "big-06",
-    subgroup = "defense-gun-turret-big",
-    order = "f",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-4" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 30
-        },
-        {
-            type = "explosion",
-            percent = 15
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-07",
-    tech = {
-        number = "5d-gun-turret-big-6",
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        techName = "5d-gun-turret-big-6",
+        countMultiplier = 5,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-5",
-            "military-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 07
-genGunTurrets {
-    number = "big-07",
-    subgroup = "defense-gun-turret-big",
-    order = "g",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-5", "military-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 35
-        },
-        {
-            type = "explosion",
-            percent = 17.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-08",
-    tech = {
-        number = "5d-gun-turret-big-7",
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        techName = "5d-gun-turret-big-7",
+        countMultiplier = 6,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-6"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 08
-genGunTurrets {
-    number = "big-08",
-    subgroup = "defense-gun-turret-big",
-    order = "h",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-6" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 40
-        },
-        {
-            type = "explosion",
-            percent = 20
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-09",
-    tech = {
-        number = "5d-gun-turret-big-8",
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        techName = "5d-gun-turret-big-8",
+        countMultiplier = 7,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 09
-genGunTurrets {
-    number = "big-09",
-    subgroup = "defense-gun-turret-big",
-    order = "i",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-7" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 45
-        },
-        {
-            type = "explosion",
-            percent = 22.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-big-10",
-    tech = {
-        number = "5d-gun-turret-big-9",
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        techName = "5d-gun-turret-big-9",
+        countMultiplier = 8,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-8",
-            "chemical-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 60
-
--- Big gun turret 10
-genGunTurrets {
-    number = "big-10",
-    subgroup = "defense-gun-turret-big",
-    order = "j",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-big-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 6 },
-        { type = "item", name = "copper-plate",         amount = 4 },
-        { type = "item", name = "iron-plate",           amount = 10 }
+        prerequisites = { "5d-gun-turret-big-8", "chemical-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 50
-        },
-        {
-            type = "explosion",
-            percent = 25
-        }
-    },
-    tech = {
-        number = "5d-gun-turret-big-10",
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        techName = "5d-gun-turret-big-10",
+        countMultiplier = 9,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-gun-turret-big-9"
-        }
+        prerequisites = { "5d-gun-turret-big-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
+
+local function getResistances(tier)
+    local firePercent = 5 + (tier - 1) * 5
+    local explosionPercent = 2.5 + (tier - 1) * 2.5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
+    }
+end
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = "big-" .. string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.gunTurretBig[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-gun-turret-big-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration
+    local tech = nil
+    if techConfig[tier] then
+        local tc = techConfig[tier]
+        local count = tc.count or (baseTechCount * tc.countMultiplier)
+        tech = {
+            number = tc.techName,
+            count = count,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the big gun turret
+    genGunTurrets {
+        number = tierNum,
+        subgroup = "defense-gun-turret-big",
+        order = config.order,
+        new = true,
+        ammoCount = baseAmmo,
+        attackSpeed = baseShootingSpeed,
+        range = range,
+        cooldown = baseDamageModif,
+        health = health,
+        baseTint = TierColors[tier],
+        turretTint = typeColor,
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

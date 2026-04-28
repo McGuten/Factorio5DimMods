@@ -1,0 +1,24 @@
+---------------------------------------------------------------------------------------------------
+Version: 2.1.0
+Date: 2024-12-31
+  Features:
+    - Added 10 tiers of cargo landing pads (Orbit)
+    - Moved cargo landing pad to orbit menu subgroup
+---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 2024-12-29
+  Features:
+    - Initial release for Factorio 2.0 Space Age DLC
+    - Added 10 tiers of foundries (Vulcanus)
+    - Added 10 tiers of big mining drills (Vulcanus)
+    - Added 10 tiers of biochambers (Gleba)
+    - Added 10 tiers of agricultural towers (Gleba)
+    - Added 10 tiers of captive biter spawners (Gleba)
+    - Added 10 tiers of electromagnetic plants (Fulgora)
+    - Added 10 tiers of recyclers (Fulgora)
+    - Added 10 tiers of cryogenic plants (Aquilo)
+    - Added 10 tiers of heating towers (Aquilo)
+    - Added 10 tiers of cargo bays (Orbit)
+    - Added 10 tiers of asteroid collectors (Orbit)
+    - Added 10 tiers of crushers (Orbit)
+    - Added 10 tiers of thrusters (Orbit)

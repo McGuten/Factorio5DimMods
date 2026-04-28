@@ -1,5 +1,5 @@
 function genRoboports(inputs)
-    -- Copy electric furnace
+    -- Copy roboport prototype
     local item = table.deepcopy(data.raw.item["roboport"])
     local recipe = table.deepcopy(data.raw.recipe["roboport"])
     local entity = table.deepcopy(data.raw["roboport"]["roboport"])
@@ -29,10 +29,10 @@ function genRoboports(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.charging_energy = inputs.craftingSpeed .. "kW"
+    entity.charging_energy = inputs.chargingEnergy .. "kW"
     entity.energy_usage = inputs.energyUsage .. "kW"
-    entity.energy_source.buffer_capacity = inputs.pollution .. "MJ"
-    entity.energy_source.input_flow_limit = inputs.moduleSlots .. "MW"
+    entity.energy_source.buffer_capacity = inputs.bufferCapacity .. "MJ"
+    entity.energy_source.input_flow_limit = inputs.inputFlowLimit .. "MW"
     entity.logistics_radius = inputs.logistics
     entity.construction_radius = inputs.construction
     entity.robot_slots_count = inputs.botSlots

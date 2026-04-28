@@ -1,361 +1,181 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Mining - Pumpjack Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.mining.generation-pumpjack")
 
-local speed = 1
-local modules = 2
-local energy = 90
-local emisions = 10
-local techCount = 200
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genPumpjacks {
-    number = "01",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "iron-gear-wheel",    amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseSpeed = 1
+local baseModules = 2
+local baseEnergy = 90
+local baseEmissions = 10
+local baseTechCount = 200
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: speed bonus, module bonus, order, vanilla flag
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { speedBonus = 0,   moduleBonus = 0, order = "a", isVanilla = true },
+    [2]  = { speedBonus = 0.5, moduleBonus = 1, order = "b" },
+    [3]  = { speedBonus = 1.0, moduleBonus = 2, order = "c" },
+    [4]  = { speedBonus = 1.5, moduleBonus = 2, order = "d" },
+    [5]  = { speedBonus = 2.0, moduleBonus = 3, order = "e" },
+    [6]  = { speedBonus = 2.5, moduleBonus = 3, order = "f" },
+    [7]  = { speedBonus = 3.0, moduleBonus = 4, order = "g" },
+    [8]  = { speedBonus = 3.5, moduleBonus = 4, order = "h" },
+    [9]  = { speedBonus = 4.0, moduleBonus = 5, order = "i" },
+    [10] = { speedBonus = 4.5, moduleBonus = 6, order = "j" }
 }
 
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genPumpjacks {
-    number = "02",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "pumpjack",           amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "iron-gear-wheel",    amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "oil-processing",
-            "logistic-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 03
-genPumpjacks {
-    number = "03",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-02",     amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "iron-gear-wheel",    amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 10 }
+        prerequisites = { "oil-processing", "logistic-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-1"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 04
-genPumpjacks {
-    number = "04",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-03",     amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "iron-gear-wheel",    amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 10 }
+        prerequisites = { "5d-pumpjack-1" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 05
-genPumpjacks {
-    number = "05",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-04",     amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "iron-gear-wheel",    amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 10 }
+        prerequisites = { "5d-pumpjack-2", "chemical-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-3"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 06
-genPumpjacks {
-    number = "06",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-05",      amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "advanced-circuit",    amount = 5 },
-        { type = "item", name = "productivity-module", amount = 1 }
+        prerequisites = { "5d-pumpjack-3" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 07
-genPumpjacks {
-    number = "07",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-06",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 5 },
-        { type = "item", name = "advanced-circuit", amount = 5 },
-        { type = "item", name = "speed-module-2",   amount = 1 }
+        prerequisites = { "5d-pumpjack-4", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-5"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 08
-genPumpjacks {
-    number = "08",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-07",        amount = 1 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 2 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        prerequisites = { "5d-pumpjack-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 09
-genPumpjacks {
-    number = "09",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-08",        amount = 1 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 2 },
-        { type = "item", name = "speed-module-3",        amount = 1 }
+        prerequisites = { "5d-pumpjack-6", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-pumpjack-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-7"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric furnace 10
-genPumpjacks {
-    number = "10",
-    subgroup = "liquid-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-pumpjack-09",        amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit",       amount = 2 },
-        { type = "item", name = "productivity-module-3", amount = 1 }
+        prerequisites = { "5d-pumpjack-7" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-pumpjack-8"
-        }
+        prerequisites = { "5d-pumpjack-8" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local speed = baseSpeed + config.speedBonus
+    local modules = baseModules + config.moduleBonus
+    -- Energy scaling by speed (consistent with mining drill)
+    -- Uses exponent 1.5 for superlinear scaling
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.pumpjack[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+    })
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-pumpjack-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the pumpjack
+    genPumpjacks {
+        number = tierNum,
+        subgroup = "liquid-pump",
+        craftingSpeed = speed,
+        moduleSlots = modules,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

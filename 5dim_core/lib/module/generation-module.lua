@@ -274,8 +274,8 @@ function genModules(inputs)
                     recipe = itemQuality.name
                 }
             }
+            data:extend({ techQuality })
         end
-        data:extend({ techQuality })
     end
 
     -- Copy merged module

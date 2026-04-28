@@ -1,0 +1,16 @@
+{
+    "item": [
+        ["5d-turbo-underground-belt-30-04", "5d-underground-belt-30-04"],
+        ["5d-turbo-underground-belt-50-04", "5d-underground-belt-50-04"]
+    ],
+    "entity": [
+        ["5d-turbo-underground-belt-30-04", "5d-underground-belt-30-04"],
+        ["5d-turbo-underground-belt-50-04", "5d-underground-belt-50-04"]
+    ],
+    "recipe": [
+        ["5d-turbo-underground-belt-30-04", "5d-underground-belt-30-04"],
+        ["5d-turbo-underground-belt-50-04", "5d-underground-belt-50-04"],
+        ["5d-turbo-underground-belt-30-04-recycling", "5d-underground-belt-30-04-recycling"],
+        ["5d-turbo-underground-belt-50-04-recycling", "5d-underground-belt-50-04-recycling"]
+    ]
+}

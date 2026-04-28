@@ -1,0 +1,11 @@
+{
+    "name": "5dim_space_age",
+    "version": "2.0.0",
+    "factorio_version": "2.0",
+    "title": "5Dim's mod - Space Age",
+    "author": "5Dim",
+    "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
+    "homepage": "https://mods.factorio.com/user/McGuten",
+    "description": "Space Age module for 5Dim's mod (Requires Space Age DLC)\n\rExpands all Space Age machines with multiple tiers\n\rVulcanus:\n\r- 10 tiers of foundries\n\r- 10 tiers of big mining drills\n\rGleba:\n\r- 10 tiers of biochambers\n\r- 10 tiers of agricultural towers\n\r- 10 tiers of captive biter spawners\n\rFulgora:\n\r- 10 tiers of electromagnetic plants\n\r- 10 tiers of recyclers\n\rAquilo:\n\r- 10 tiers of cryogenic plants\n\r- 10 tiers of heating towers\n\rSpace Platform:\n\r- 10 tiers of cargo bays\n\r- 10 tiers of asteroid collectors\n\r- 10 tiers of crushers\n\r- 10 tiers of thrusters\n\r- 10 tiers of fusion reactor equipment",
+    "dependencies": ["5dim_core >= 2.0.42", "space-age >= 2.0.0", "quality >= 2.0.0"]
+}

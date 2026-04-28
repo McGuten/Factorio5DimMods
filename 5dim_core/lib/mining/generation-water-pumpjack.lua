@@ -34,7 +34,6 @@ function genWaterPumpjacks(inputs)
 
     entity.collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } }
     entity.tile_buildability_rules = nil
-    entity.adjacent_tile_collision_test = { "ground-tile" }
     entity.fluid_box.filter = "water"
     -- entity.fluid_box.pipe_connections[1].positions = {{1.5, -1.5}, {1.5, -1.5}, {-1.5, 1.5}, {-1.5, 1.5}}
     entity.fluid_box.pipe_connections = {
@@ -46,7 +45,6 @@ function genWaterPumpjacks(inputs)
     }
     entity.collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } }
     entity.selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
-    entity.drawing_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 
     -- North
     -- entity.graphics_set.animation.north.layers[1].filename =

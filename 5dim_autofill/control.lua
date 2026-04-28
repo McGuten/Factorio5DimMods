@@ -137,7 +137,7 @@ do
             if type(item) ~= "string" then
                 return 20
             end
-            local p = game.item_prototypes[item]
+            local p = prototypes.item[item]
             if type(p) == "table" then
                 local max = type(p.stack_size) ~= "nil" and tonumber(p.stack_size) or 50
                 if max > 1 then
@@ -219,7 +219,7 @@ do
         sortedFuels = {}
         fuelValues = {}
 
-        for name, item in pairs(game.item_prototypes) do
+        for name, item in pairs(prototypes.item) do
             if item.fuel_value and item.fuel_value > 0 then
                 -- Dang these values are crazy, up in the trillions
                 local realScore = (item.stack_size * item.fuel_value) / 10000000
@@ -245,10 +245,19 @@ do
     buildAmmoData = function()
         ammoCategories = {}
         ammoOrder = {}
-        for name, item in pairs(game.item_prototypes) do
-            local ammoType = item.get_ammo_type()
-            if ammoType and ammoType.category then
-                local c = ammoType.category
+        local ammoCount = 0
+        -- En Factorio 2.0, usamos get_item_filtered para obtener solo items de tipo "ammo"
+        local ammoItems = prototypes.get_item_filtered({{filter = "type", type = "ammo"}})
+        local totalAmmoItems = 0
+        for _ in pairs(ammoItems) do totalAmmoItems = totalAmmoItems + 1 end
+        -- game.print("[Autofill Debug] get_item_filtered returned " .. totalAmmoItems .. " items")
+        
+        for name, item in pairs(ammoItems) do
+            -- En Factorio 2.0, la categoría está directamente en item.ammo_category, no en get_ammo_type()
+            local ammoCat = item.ammo_category
+            if ammoCat then
+                ammoCount = ammoCount + 1
+                local c = ammoCat.name  -- ammo_category es un LuaAmmoCategoryPrototype, necesitamos .name
                 if not ammoCategories[c] then
                     ammoCategories[c] = {}
                 end
@@ -260,6 +269,11 @@ do
             table.sort(tbl, sortByOrder)
         end
         ammoOrder = nil
+        -- Debug output
+        -- game.print("[Autofill Debug] buildAmmoData: found " .. ammoCount .. " ammo items with categories")
+        for cat, items in pairs(ammoCategories) do
+            -- game.print("[Autofill Debug] Category '" .. cat .. "': " .. #items .. " items - first: " .. items[1])
+        end
     end
 end
 
@@ -378,17 +392,28 @@ local function insertTurretAmmo(entity, player, invAmmo)
         buildAmmoData()
     end
 
+    -- DEBUG: Print ammo categories found
+    -- player.print("[Autofill Debug] Entity: " .. entity.name .. ", invAmmo slots: " .. #invAmmo)
+    local catCount = 0
+    for category, items in pairs(ammoCategories) do
+        catCount = catCount + 1
+    end
+    -- player.print("[Autofill Debug] Total ammo categories found: " .. catCount)
+
     -- Find out which ammo types belong in each slot
     -- This block is only run once per entity entry
     if not slotCategories[entity.name] then
         slotCategories[entity.name] = {}
         local i = 1
         for category, validitems in pairs(ammoCategories) do
+            -- player.print("[Autofill Debug] Checking category: " .. category .. ", first item: " .. validitems[1])
             if invAmmo.can_insert(validitems[1]) then
+                -- player.print("[Autofill Debug] Category " .. category .. " accepted!")
                 slotCategories[entity.name][i] = category
                 i = i + 1
             end
         end
+        -- player.print("[Autofill Debug] Total categories for " .. entity.name .. ": " .. (i - 1))
     end
 
     local fromInv = nil
@@ -432,7 +457,7 @@ local function insertTurretAmmo(entity, player, invAmmo)
                     -- I presume this is exceptionally rare. In fact, I do presume that it will never happen.
                     -- But obviously only a fool would presume that.
                     -- The point is, we dont cache the stack_sizes, just look it up here.
-                    local size = game.item_prototypes[ammoItemName].stack_size
+                    local size = prototypes.item[ammoItemName].stack_size
                     if size and size > 1 then
                         if (count - toInsert) < (size + 1) then
                             break
@@ -563,10 +588,10 @@ do
     nameHandlers["burner-mining-drill"] = insertFuel
     nameHandlers.boiler = insertFuel
 
-    -- created_entity: LuaEntity
+    -- entity: LuaEntity (changed from created_entity in Factorio 2.0)
     -- player_index: int
     local function onBuildEntity(e)
-        local entity = e.created_entity
+        local entity = e.entity
         if not entity or not entity.valid or (not CONFIG_ENABLE[entity.type] and not CONFIG_ENABLE[entity.name]) then
             return
         end

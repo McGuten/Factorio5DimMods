@@ -27,6 +27,12 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "space-biolab",
+            group = "gleba",
+            order = "3a"
+        },
+        {
+            type = "item-subgroup",
             name = "gleba-agricultural-processing",
             group = "gleba",
             order = "4"

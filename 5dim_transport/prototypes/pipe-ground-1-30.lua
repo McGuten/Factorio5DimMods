@@ -32,7 +32,7 @@ data:extend({
     name = "5d-pipe-to-ground-mk1-30",
     icon = "__5dim_transport__/graphics/icon/pipe/icon_5d_pipe-to-underground_1_30_.png",
     flags = { "placeable-neutral", "player-creation" },
-    minable = { hardness = 0.2, mining_time = 0.5, result = "5d-pipe-to-ground-mk1-30" },
+    minable = { mining_time = 0.5, result = "5d-pipe-to-ground-mk1-30" },
     icon_size = 32,
     max_health = 150,
     corpse = "small-remnants",
@@ -62,14 +62,6 @@ data:extend({
       },
       hide_connection_info = true
     },
-    underground_sprite = {
-      filename = "__core__/graphics/arrows/underground-lines.png",
-      priority = "extra-high-no-scale",
-      width = 64,
-      height = 64,
-      scale = 0.5
-    },
-    vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.65 },
     pictures =
     {
       north =

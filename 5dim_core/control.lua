@@ -199,7 +199,6 @@ function setStartItems(event)
         player.insert({ name = item[1], count = item[2] })
     end
 
-    local player = game.get_player(event.player_index)
     for _, equip in pairs(atStart["equip"]) do
         player.insert({ name = equip[1], count = equip[2] })
     end

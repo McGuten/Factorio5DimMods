@@ -1,5 +1,5 @@
 function genLogisticRobots(inputs)
-    -- Copy electric furnace
+    -- Copy logistic robot prototype
     local item = table.deepcopy(data.raw.item["logistic-robot"])
     local recipe = table.deepcopy(data.raw.recipe["logistic-robot"])
     local entity = table.deepcopy(data.raw["logistic-robot"]["logistic-robot"])
@@ -29,8 +29,8 @@ function genLogisticRobots(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.speed = inputs.craftingSpeed
-    entity.max_energy = inputs.energyUsage .. "MJ"
+    entity.speed = inputs.speed
+    entity.max_energy = inputs.maxEnergy .. "MJ"
 
     -- Idle
     entity.idle.filename =

@@ -45,6 +45,48 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "equipment-grenade",
+            group = "equipment",
+            order = "10"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-cluster-grenade",
+            group = "equipment",
+            order = "11"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-poison-capsule",
+            group = "equipment",
+            order = "12"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-slowdown-capsule",
+            group = "equipment",
+            order = "13"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-defender",
+            group = "equipment",
+            order = "14"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-distractor",
+            group = "equipment",
+            order = "15"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-destroyer",
+            group = "equipment",
+            order = "16"
+        },
+        {
+            type = "item-subgroup",
             name = "equipment-capsule",
             group = "equipment",
             order = "99"

@@ -1,25 +1,26 @@
 function genBatterys(inputs)
+    -- Skip vanilla tiers (when new = false) - don't modify base game prototypes
+    if not inputs.new then
+        return
+    end
+
     local item = ""
     local equipment = ""
     local recipe = ""
-    local tech = ""
-    -- Copy electric furnace
+    
+    -- Copy base prototypes
     if inputs.number == "01" then
         item = table.deepcopy(data.raw.item["battery-equipment"])
         recipe = table.deepcopy(data.raw.recipe["battery-equipment"])
         equipment = table.deepcopy(data.raw["battery-equipment"]["battery-equipment"])
-        tech = table.deepcopy(data.raw.technology["battery-equipment"])
     else
         item = table.deepcopy(data.raw.item["battery-mk2-equipment"])
         recipe = table.deepcopy(data.raw.recipe["battery-mk2-equipment"])
         equipment = table.deepcopy(data.raw["battery-equipment"]["battery-mk2-equipment"])
-        tech = table.deepcopy(data.raw.technology["battery-mk2-equipment"])
     end
 
     --Item
-    if inputs.new then
-        item.name = "5d-battery-equipment-" .. inputs.number
-    end
+    item.name = "5d-battery-equipment-" .. inputs.number
     item.icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
     item.order = inputs.order
@@ -30,10 +31,8 @@ function genBatterys(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
-    if inputs.new then
-        recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        recipe.ingredients = inputs.ingredients
-    end
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    recipe.ingredients = inputs.ingredients
 
     -- Equipment
     equipment.name = item.name
@@ -48,6 +47,7 @@ function genBatterys(inputs)
 
     -- Technology
     if inputs.tech then
+        local tech = table.deepcopy(data.raw.technology["battery-mk2-equipment"])
         tech.name = "5d-battery-equipment-" .. inputs.tech.number
         tech.icon = item.icon
         tech.icon_size = 64

@@ -1,289 +1,173 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Storage - Storage Tank Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.storage.generation-storage-tank")
 
-local tankCapacity = 25000
-local techCount = 250
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genStorageTanks {
-    number = "01",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 1,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "iron-plate",  amount = 20 },
-        { type = "item", name = "steel-plate", amount = 5 }
-    },
-    nextUpdate = "5d-storage-tank-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseTankCapacity = 25000
+local baseTechCount = 250
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
--- Electric furnace 02
-genStorageTanks {
-    number = "02",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 2,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "storage-tank",     amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 5 },
-        { type = "item", name = "advanced-circuit", amount = 3 },
-        { type = "item", name = "stone-brick",      amount = 5 }
-    },
-    nextUpdate = "5d-storage-tank-03",
-    tech = {
-        number = 2,
-        count = techCount * 1,
-        packs = {
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
+
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling"
-        }
-    }
-}
-
--- Electric furnace 03
-genStorageTanks {
-    number = "03",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 3,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-02", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "advanced-circuit",   amount = 3 },
-        { type = "item", name = "concrete",           amount = 5 }
+        prerequisites = { "fluid-handling" }
     },
-    nextUpdate = "5d-storage-tank-04",
-    tech = {
-        number = 3,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-2",
-            "production-science-pack"
-        }
-    }
-}
-
--- Electric furnace 04
-genStorageTanks {
-    number = "04",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 4,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-03", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "advanced-circuit",   amount = 3 },
-        { type = "item", name = "concrete",           amount = 5 }
+        prerequisites = { "fluid-handling-2", "production-science-pack" }
     },
-    nextUpdate = "5d-storage-tank-05",
-    tech = {
-        number = 4,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-3"
-        }
-    }
-}
-
--- Electric furnace 05
-genStorageTanks {
-    number = "05",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 5,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-04", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "advanced-circuit",   amount = 3 },
-        { type = "item", name = "concrete",           amount = 5 },
-        { type = "item", name = "speed-module",       amount = 1 }
+        prerequisites = { "fluid-handling-3" }
     },
-    nextUpdate = "5d-storage-tank-06",
-    tech = {
-        number = 5,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-4"
-        }
-    }
-}
-
--- Electric furnace 06
-genStorageTanks {
-    number = "06",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 6,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-05",  amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "advanced-circuit",    amount = 3 },
-        { type = "item", name = "refined-concrete",    amount = 5 },
-        { type = "item", name = "productivity-module", amount = 1 }
+        prerequisites = { "fluid-handling-4" }
     },
-    nextUpdate = "5d-storage-tank-07",
-    tech = {
-        number = 6,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-5"
-        }
-    }
-}
-
--- Electric furnace 07
-genStorageTanks {
-    number = "07",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 7,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-06", amount = 1 },
-        { type = "item", name = "steel-plate",        amount = 5 },
-        { type = "item", name = "advanced-circuit",   amount = 3 },
-        { type = "item", name = "refined-concrete",   amount = 5 },
-        { type = "item", name = "speed-module-2",     amount = 1 }
+        prerequisites = { "fluid-handling-5" }
     },
-    nextUpdate = "5d-storage-tank-08",
-    tech = {
-        number = 7,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-6"
-        }
-    }
-}
-
--- Electric furnace 08
-genStorageTanks {
-    number = "08",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 8,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-07",    amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 5 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        prerequisites = { "fluid-handling-6" }
     },
-    nextUpdate = "5d-storage-tank-09",
-    tech = {
-        number = 8,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling-7",
-            "utility-science-pack"
-        }
+        prerequisites = { "fluid-handling-7", "utility-science-pack" }
+    },
+    [9] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fluid-handling-8" }
+    },
+    [10] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fluid-handling-9" }
     }
 }
 
--- Electric furnace 09
-genStorageTanks {
-    number = "09",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 9,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-08",    amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 5 },
-        { type = "item", name = "speed-module-3",        amount = 1 }
-    },
-    nextUpdate = "5d-storage-tank-10",
-    tech = {
-        number = 9,
-        count = techCount * 8,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "fluid-handling-8"
-        }
-    }
-}
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Electric furnace 10
-genStorageTanks {
-    number = "10",
-    subgroup = "liquid-store",
-    capacity = tankCapacity * 10,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-storage-tank-09",    amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 3 },
-        { type = "item", name = "refined-concrete",      amount = 5 },
-        { type = "item", name = "productivity-module-3", amount = 1 }
-    },
-    tech = {
-        number = 10,
-        count = techCount * 9,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "fluid-handling-9"
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate capacity for this tier
+    local capacity = baseTankCapacity * tier
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.storageTank[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true
+    })
+    
+    -- Determine next upgrade
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-storage-tank-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration (tier 1 is vanilla)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = baseTechCount * (tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
+    end
+    
+    -- Generate the storage tank
+    genStorageTanks {
+        number = tierNum,
+        subgroup = "liquid-store",
+        capacity = capacity,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
+end

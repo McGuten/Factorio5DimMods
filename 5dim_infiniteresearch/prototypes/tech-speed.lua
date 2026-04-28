@@ -4,7 +4,7 @@ data:extend(
             type = "technology",
             name = "research-speed-7",
             icons = util.technology_icon_constant_speed("__base__/graphics/technology/research-speed.png"),
-            -- icon_size = 256,
+            icon_size = 256,
             effects = {
                 {
                     type = "laboratory-speed",

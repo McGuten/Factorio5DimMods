@@ -2,10 +2,10 @@
     "name": "5dim_trains",
     "version": "2.0.3",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Trains",
+    "title": "5Dim's mod - Trains",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Trains for 5dim's mods\n\rWe know that you loves trains so we are created more tiers of locomotives and wagons.\n\rThis mod include:\n\r- 10 tiers of Locomotives, wagons and fluid wagons",
-    "dependencies": ["5dim_core >= 2.0.28"]
+    "description": "Trains module for 5Dim's mod\n\rExpands the railway system with faster and more capable trains\n\rThis mod includes:\n\r- 10 tiers of locomotives (increased speed and power)\n\r- 10 tiers of cargo wagons (increased capacity)\n\r- 10 tiers of fluid wagons (increased capacity)",
+    "dependencies": ["5dim_core >= 2.0.42"]
 }

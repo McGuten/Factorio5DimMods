@@ -1,381 +1,183 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Automation - Oil Refinery Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.automation.generation-oil-refinery")
 
-local speed = 1
-local modules = 3
-local energy = 420
-local emisions = 6
-local techCount = 200
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genOilRefinery {
-    number = "01",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "stone-brick", amount = 10},
-        {type = "item", name = "electronic-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseSpeed = 1
+local baseModules = 3
+local baseEnergy = 420
+local baseEmissions = 6
+local baseTechCount = 200
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: speed bonus, module bonus, order, vanilla flag
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { speedBonus = 0, moduleBonus = 0, order = "a", isVanilla = true },
+    [2]  = { speedBonus = 1, moduleBonus = 1, order = "b" },
+    [3]  = { speedBonus = 2, moduleBonus = 1, order = "c" },
+    [4]  = { speedBonus = 3, moduleBonus = 2, order = "d" },
+    [5]  = { speedBonus = 4, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 5, moduleBonus = 3, order = "f" },
+    [7]  = { speedBonus = 6, moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 7, moduleBonus = 4, order = "h" },
+    [9]  = { speedBonus = 8, moduleBonus = 4, order = "i" },
+    [10] = { speedBonus = 9, moduleBonus = 5, order = "j" }
 }
 
-speed = speed + 1
-modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genOilRefinery {
-    number = "02",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        {type = "item", name = "oil-refinery", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "electronic-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+local techConfig = {
+    [2] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "oil-processing",
-            "logistic-science-pack"
-        }
+        prerequisites = { "oil-processing", "logistic-science-pack" }
+    },
+    [3] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-1" }
+    },
+    [4] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-2", "chemical-science-pack" }
+    },
+    [5] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-3" }
+    },
+    [6] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-4", "production-science-pack" }
+    },
+    [7] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-5" }
+    },
+    [8] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-6", "utility-science-pack" }
+    },
+    [9] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-7" }
+    },
+    [10] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-oil-refinery-8" }
     }
 }
 
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Electric furnace 03
-genOilRefinery {
-    number = "03",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-02", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "electronic-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-1"
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local speed = baseSpeed + config.speedBonus
+    local modules = baseModules + config.moduleBonus
+    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.oilRefinery[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+    })
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-oil-refinery-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
+    end
+    
+    -- Generate the oil refinery
+    genOilRefinery {
+        number = tierNum,
+        subgroup = "liquid-refinery",
+        craftingSpeed = speed,
+        moduleSlots = modules,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
+end
 
-speed = speed + 1
-modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 04
-genOilRefinery {
-    number = "04",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-03", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "advanced-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 05
-genOilRefinery {
-    number = "05",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-04", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "refined-concrete", amount = 10},
-        {type = "item", name = "advanced-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "speed-module", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-3"
-        }
-    }
-}
-
-speed = speed + 1
-modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 06
-genOilRefinery {
-    number = "06",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-05", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "iron-gear-wheel", amount = 10},
-        {type = "item", name = "refined-concrete", amount = 10},
-        {type = "item", name = "advanced-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "productivity-module", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 07
-genOilRefinery {
-    number = "07",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-06", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "low-density-structure", amount = 3},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "advanced-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "speed-module-2", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-5"
-        }
-    }
-}
-
-speed = speed + 1
-modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 08
-genOilRefinery {
-    number = "08",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-07", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "low-density-structure", amount = 3},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "advanced-circuit", amount = 10},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "productivity-module-2", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 09
-genOilRefinery {
-    number = "09",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-08", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "low-density-structure", amount = 3},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "processing-unit", amount = 2},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "speed-module-3", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-oil-refinery-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-7"
-        }
-    }
-}
-
-speed = speed + 1
-modules = modules + 1
-energy = energy + 200
-emisions = emisions + 3
-
--- Electric furnace 10
-genOilRefinery {
-    number = "10",
-    subgroup = "liquid-refinery",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        {type = "item", name = "5d-oil-refinery-09", amount = 1},
-        {type = "item", name = "steel-plate", amount = 15},
-        {type = "item", name = "low-density-structure", amount = 3},
-        {type = "item", name = "concrete", amount = 10},
-        {type = "item", name = "processing-unit", amount = 2},
-        {type = "item", name = "pipe", amount = 10},
-        {type = "item", name = "productivity-module-3", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "5d-oil-refinery-8"
-        }
-    }
-}
+-- Log configuration at startup
+CostConfig.printDebugInfo()

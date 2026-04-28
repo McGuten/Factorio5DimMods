@@ -27,9 +27,15 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "mining-range",
+            name = "store-steel-chest",
             group = "mining",
             order = "bb"
+        },
+        {
+            type = "item-subgroup",
+            name = "mining-range",
+            group = "mining",
+            order = "bc"
         },
         {
             type = "item-subgroup",

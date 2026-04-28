@@ -1,6 +1,7 @@
 -- local sounds = require ("prototypes.entity.sounds")
 
-local make_unit_melee_ammo_type = function(damage_value)
+local make_unit_melee_ammo_type = function(damage_value, damage_type)
+    damage_type = damage_type or "physical"  -- Default to physical if not specified
     return
     {
         target_type = "entity",
@@ -13,7 +14,7 @@ local make_unit_melee_ammo_type = function(damage_value)
                 target_effects =
                 {
                     type = "damage",
-                    damage = { amount = damage_value, type = "physical" }
+                    damage = { amount = damage_value, type = damage_type }
                 }
             }
         }
@@ -21,6 +22,9 @@ local make_unit_melee_ammo_type = function(damage_value)
 end
 
 function genBiter(inputs)
+    -- Get damage type from inputs or default to "physical"
+    local damage_type = inputs.damage_type or "physical"
+    
     -- Copy entities
     local spawner = table.deepcopy(data.raw["unit-spawner"]["biter-spawner"])
     local small = table.deepcopy(data.raw["unit"]["small-biter"])
@@ -34,7 +38,7 @@ function genBiter(inputs)
     else
         small.name = "small-" .. inputs.name
     end
-    small.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.small)
+    small.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.small, damage_type)
     small.attack_parameters.animation = biterattackanimation(inputs.scale.small, inputs.tint, inputs.tint2)
     small.max_health = inputs.health.small
     small.resistances = inputs.resistances.small
@@ -56,7 +60,7 @@ function genBiter(inputs)
     else
         medium.name = "medium-" .. inputs.name
     end
-    medium.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.medium)
+    medium.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.medium, damage_type)
     medium.attack_parameters.animation = biterattackanimation(inputs.scale.medium, inputs.tint, inputs.tint2)
     medium.max_health = inputs.health.medium
     medium.resistances = inputs.resistances.medium
@@ -78,7 +82,7 @@ function genBiter(inputs)
     else
         big.name = "big-" .. inputs.name
     end
-    big.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.big)
+    big.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.big, damage_type)
     big.attack_parameters.animation = biterattackanimation(inputs.scale.big, inputs.tint, inputs.tint2)
     big.max_health = inputs.health.big
     big.resistances = inputs.resistances.big
@@ -100,7 +104,7 @@ function genBiter(inputs)
     else
         behemoth.name = "behemoth-" .. inputs.name
     end
-    behemoth.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.behemoth)
+    behemoth.attack_parameters.ammo_type = make_unit_melee_ammo_type(inputs.damage.behemoth, damage_type)
     behemoth.attack_parameters.animation = biterattackanimation(inputs.scale.behemoth, inputs.tint, inputs.tint2)
     behemoth.max_health = inputs.health.behemoth
     behemoth.resistances = inputs.resistances.behemoth

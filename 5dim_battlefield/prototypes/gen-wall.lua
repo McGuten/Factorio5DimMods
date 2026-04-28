@@ -1,288 +1,175 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Wall Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.generation-wall")
 
-local revelado = 350
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Stone wall 01
-genStoneWalls {
-    number = "01",
-    subgroup = "defense-wall",
-    order = "a",
-    new = false,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "stone-brick", amount = 5 }
-    },
-    nextUpdate = "5d-stone-wall-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (350 → 1750)
+-------------------------------------------------------------------------------
+
+local baseHealth = 350
+local healthIncrement = 156               -- 350 → 1750 (x5)
+local baseTechCount = 500
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-revelado = revelado + 70
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Stone wall 02
-genStoneWalls {
-    number = "02",
-    subgroup = "defense-wall",
-    order = "b",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "stone-wall",  amount = 1 },
-        { type = "item", name = "stone-brick", amount = 5 },
-        { type = "item", name = "iron-plate",  amount = 5 }
-    },
-    nextUpdate = "5d-stone-wall-03",
-    tech = {
-        number = 2,
+local techConfig = {
+    [2] = {
         count = 500,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall",
-            "logistic-science-pack"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 03
-genStoneWalls {
-    number = "03",
-    subgroup = "defense-wall",
-    order = "c",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-02", amount = 1 },
-        { type = "item", name = "stone-brick",      amount = 5 },
-        { type = "item", name = "iron-plate",       amount = 5 }
+        prerequisites = { "stone-wall", "logistic-science-pack" }
     },
-    nextUpdate = "5d-stone-wall-04",
-    tech = {
-        number = 3,
+    [3] = {
         count = 750,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-2",
-            "military-science-pack"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 04
-genStoneWalls {
-    number = "04",
-    subgroup = "defense-wall",
-    order = "d",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-03", amount = 1 },
-        { type = "item", name = "concrete",         amount = 5 },
-        { type = "item", name = "iron-plate",       amount = 5 }
+        prerequisites = { "stone-wall-2", "military-science-pack" }
     },
-    nextUpdate = "5d-stone-wall-05",
-    tech = {
-        number = 4,
+    [4] = {
         count = 1000,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-3"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 05
-genStoneWalls {
-    number = "05",
-    subgroup = "defense-wall",
-    order = "e",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-04", amount = 1 },
-        { type = "item", name = "concrete",         amount = 5 },
-        { type = "item", name = "iron-plate",       amount = 5 }
+        prerequisites = { "stone-wall-3" }
     },
-    nextUpdate = "5d-stone-wall-06",
-    tech = {
-        number = 5,
+    [5] = {
         count = 1250,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-4"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 06
-genStoneWalls {
-    number = "06",
-    subgroup = "defense-wall",
-    order = "f",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-05", amount = 1 },
-        { type = "item", name = "concrete",         amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 5 }
+        prerequisites = { "stone-wall-4" }
     },
-    nextUpdate = "5d-stone-wall-07",
-    tech = {
-        number = 6,
+    [6] = {
         count = 1500,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-5",
-            "chemical-science-pack"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 07
-genStoneWalls {
-    number = "07",
-    subgroup = "defense-wall",
-    order = "g",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-06", amount = 1 },
-        { type = "item", name = "concrete",         amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 5 }
+        prerequisites = { "stone-wall-5", "chemical-science-pack" }
     },
-    nextUpdate = "5d-stone-wall-08",
-    tech = {
-        number = 7,
+    [7] = {
         count = 1750,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-6"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 08
-genStoneWalls {
-    number = "08",
-    subgroup = "defense-wall",
-    order = "h",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-07", amount = 1 },
-        { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 5 }
+        prerequisites = { "stone-wall-6" }
     },
-    nextUpdate = "5d-stone-wall-09",
-    tech = {
-        number = 8,
+    [8] = {
         count = 2000,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-7",
-            "utility-science-pack"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 09
-genStoneWalls {
-    number = "09",
-    subgroup = "defense-wall",
-    order = "i",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-08", amount = 1 },
-        { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 5 }
+        prerequisites = { "stone-wall-7", "utility-science-pack" }
     },
-    nextUpdate = "5d-stone-wall-10",
-    tech = {
-        number = 9,
+    [9] = {
         count = 2250,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-8"
-        }
-    }
-}
-
-revelado = revelado + 70
-
--- Stone wall 10
-genStoneWalls {
-    number = "10",
-    subgroup = "defense-wall",
-    order = "j",
-    new = true,
-    health = revelado,
-    ingredients = {
-        { type = "item", name = "5d-stone-wall-09",      amount = 1 },
-        { type = "item", name = "refined-concrete",      amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 2 }
+        prerequisites = { "stone-wall-8" }
     },
-    tech = {
-        number = 10,
+    [10] = {
         count = 2500,
-        packs = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "stone-wall-9"
-        }
+        prerequisites = { "stone-wall-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.wall[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-stone-wall-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = tc.count,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the wall
+    genStoneWalls {
+        number = tierNum,
+        subgroup = "defense-wall",
+        order = config.order,
+        new = not config.isVanilla,
+        health = health,
+        ingredients = ingredients,
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

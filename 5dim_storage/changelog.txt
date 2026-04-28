@@ -1,7 +1,18 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.0.4
-Date: ????
+Version: 2.1.0
+Date: 2024-12-30
+  Features:
+    - Added 10 tiers of steel chests with progressively larger inventory sizes
+    - Added 10 tiers for all logistic chests (passive-provider, active-provider, storage, buffer, requester) when 5dim_logistic is installed
   Changes:
+    - Updated mod description to reflect new content
+    - Added optional dependency on 5dim_logistic for logistic chest tiers
+---------------------------------------------------------------------------------------------------
+Version: 2.0.4
+Date: 2024-12-29
+  Changes:
+    - Fixed typos in locale (conection -> connection)
+    - Fixed comments in generation files
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.3
 Date: 2024-12-12

@@ -1,475 +1,207 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Logistic - Roboport Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.logistic.generation-roboport")
 
-local speed = 1000
-local modules = 5
-local energy = 50
-local emisions = 100
-local logistic = 25
-local constructions = 55
-local botSlot = 7
-local recharges = 40
-local slots = 4
-local techCount = 500
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genRoboports {
-    number = "01",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
-    },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseChargingEnergy = 1000
+local baseBufferCapacity = 5
+local baseEnergy = 50
+local baseInputFlowLimit = 100
+-- REBALANCED: Reduced coverage scaling to prevent T10 from trivializing logistics
+-- T10 logistics: 97 tiles (was 137.5), construction: 205 (was 280)
+local baseLogistic = 25
+local baseConstruction = 55
+local logisticIncrement = 8      -- Reduced from 12.5
+local constructionIncrement = 17 -- Reduced from 25
+local baseBotSlot = 7
+local baseRecharge = 40
+-- Increased recharge slots increment for better bot support
+local baseSlots = 4
+local slotsIncrement = 3         -- Increased from 2 (better ratio)
+local baseTechCount = 500
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: order, vanilla flag, and stat bonuses
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genRoboports {
-    number = "02",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "roboport",         amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
-    },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "logistic-robotics",
-            "construction-robotics"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 03
-genRoboports {
-    number = "03",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-roboport-02",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "logistic-robotics", "construction-robotics" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-1",
-            "5d-logistic-robot-1",
-            "5d-roboport-1"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 04
-genRoboports {
-    number = "04",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-roboport-03",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-1", "5d-logistic-robot-1", "5d-roboport-1" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-2",
-            "5d-logistic-robot-2",
-            "5d-roboport-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 05
-genRoboports {
-    number = "05",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-roboport-04",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-2", "5d-logistic-robot-2", "5d-roboport-2", "chemical-science-pack" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-3",
-            "5d-logistic-robot-3",
-            "5d-roboport-3"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 06
-genRoboports {
-    number = "06",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-roboport-05",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-3", "5d-logistic-robot-3", "5d-roboport-3" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-4",
-            "5d-logistic-robot-4",
-            "5d-roboport-4",
-            "production-science-pack"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 07
-genRoboports {
-    number = "07",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-roboport-06",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-4", "5d-logistic-robot-4", "5d-roboport-4", "production-science-pack" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-5",
-            "5d-logistic-robot-5",
-            "5d-roboport-5"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 08
-genRoboports {
-    number = "08",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-roboport-07",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-5", "5d-logistic-robot-5", "5d-roboport-5" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-6",
-            "5d-logistic-robot-6",
-            "5d-roboport-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 09
-genRoboports {
-    number = "09",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-roboport-08",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-6", "5d-logistic-robot-6", "5d-roboport-6", "utility-science-pack" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    nextUpdate = "5d-roboport-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-7",
-            "5d-logistic-robot-7",
-            "5d-roboport-7"
-        }
-    }
-}
-
-recharges = recharges + 20
-slots = slots + 2
-modules = modules + 13
-speed = speed + 500
-energy = energy + 45
-emisions = emisions + 50
-logistic = logistic + 12.5
-constructions = constructions + 25
-botSlot = botSlot + 7
-
--- Electric furnace 10
-genRoboports {
-    number = "10",
-    subgroup = "logistic-roboport",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    rechargeSlots = slots,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-roboport-09",   amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 45 },
-        { type = "item", name = "iron-gear-wheel",  amount = 45 },
-        { type = "item", name = "advanced-circuit", amount = 45 }
+        prerequisites = { "5d-construction-robot-7", "5d-logistic-robot-7", "5d-roboport-7" }
     },
-    pollution = emisions,
-    logistics = logistic,
-    construction = constructions,
-    botSlots = botSlot,
-    recharge = recharges,
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-construction-robot-8",
-            "5d-logistic-robot-8",
-            "5d-roboport-8"
-        }
+        prerequisites = { "5d-construction-robot-8", "5d-logistic-robot-8", "5d-roboport-8" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier (using rebalanced increments)
+    local chargingEnergy = baseChargingEnergy + (tier - 1) * 500
+    local bufferCapacity = baseBufferCapacity + (tier - 1) * 13
+    -- Adjust for odd tiers 3, 5, 7, 9 (had +1 in original)
+    if tier % 2 == 1 and tier > 1 then
+        bufferCapacity = bufferCapacity + 1
+    end
+    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    local inputFlowLimit = baseInputFlowLimit + (tier - 1) * 50
+    -- Use rebalanced coverage increments
+    local logistic = baseLogistic + (tier - 1) * logisticIncrement
+    local construction = baseConstruction + (tier - 1) * constructionIncrement
+    local botSlot = baseBotSlot + (tier - 1) * 7
+    local recharge = baseRecharge + (tier - 1) * 20
+    local slots = baseSlots + (tier - 1) * slotsIncrement
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.roboport[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+    })
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-roboport-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the roboport
+    genRoboports {
+        number = tierNum,
+        subgroup = "logistic-roboport",
+        chargingEnergy = chargingEnergy,
+        bufferCapacity = bufferCapacity,
+        energyUsage = energy,
+        rechargeSlots = slots,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        inputFlowLimit = inputFlowLimit,
+        logistics = logistic,
+        construction = construction,
+        botSlots = botSlot,
+        recharge = recharge,
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end
+
+-- Log configuration at startup
+CostConfig.printDebugInfo()

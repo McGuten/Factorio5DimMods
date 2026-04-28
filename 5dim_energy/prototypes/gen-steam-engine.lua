@@ -1,378 +1,170 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Energy - Steam Engine Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.energy.generation-steam-engine")
 
-local speed = 1
-local modules = 2
-local energy = 0.5
-local emisions = 30
-local techCount = 500
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genSteamEngines {
-    number = "01",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "iron-gear-wheel", amount = 8 },
-        { type = "item", name = "pipe",            amount = 5 },
-        { type = "item", name = "iron-plate",      amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseCraftingSpeed = 1        -- Power output multiplier
+local baseModuleSlots = 2
+local baseEnergy = 0.5             -- MW
+local baseEmissions = 30
+local baseTechCount = 500
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true, moduleSlots = 2 },
+    [2]  = { order = "b", moduleSlots = 3 },
+    [3]  = { order = "c", moduleSlots = 4 },
+    [4]  = { order = "d", moduleSlots = 4 },
+    [5]  = { order = "e", moduleSlots = 5 },
+    [6]  = { order = "f", moduleSlots = 5 },
+    [7]  = { order = "g", moduleSlots = 6 },
+    [8]  = { order = "h", moduleSlots = 6 },
+    [9]  = { order = "i", moduleSlots = 7 },
+    [10] = { order = "j", moduleSlots = 8 }
 }
 
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.25
-emisions = emisions + 15
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genSteamEngines {
-    number = "02",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "steam-engine",       amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 8 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 5 },
-        { type = "item", name = "iron-plate",         amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling",
-            "logistic-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 03
-genSteamEngines {
-    number = "03",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 8 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 5 },
-        { type = "item", name = "steel-plate",        amount = 10 }
+        prerequisites = { "fluid-handling", "logistic-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-1",
-            "5d-steam-engine-1"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 04
-genSteamEngines {
-    number = "04",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 8 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 5 },
-        { type = "item", name = "steel-plate",        amount = 10 }
+        prerequisites = { "5d-boiler-1", "5d-steam-engine-1" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-2",
-            "5d-steam-engine-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 05
-genSteamEngines {
-    number = "05",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 8 },
-        { type = "item", name = "advanced-circuit",   amount = 2 },
-        { type = "item", name = "pipe",               amount = 5 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "efficiency-module", amount = 1 }
+        prerequisites = { "5d-boiler-2", "5d-steam-engine-2", "chemical-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-3",
-            "5d-steam-engine-3"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 06
-genSteamEngines {
-    number = "06",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 8 },
-        { type = "item", name = "advanced-circuit",   amount = 4 },
-        { type = "item", name = "pipe",               amount = 5 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "efficiency-module", amount = 1 }
+        prerequisites = { "5d-boiler-3", "5d-steam-engine-3" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-4",
-            "5d-steam-engine-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 07
-genSteamEngines {
-    number = "07",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-06",   amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 8 },
-        { type = "item", name = "advanced-circuit",     amount = 5 },
-        { type = "item", name = "pipe",                 amount = 5 },
-        { type = "item", name = "steel-plate",          amount = 10 },
-        { type = "item", name = "efficiency-module-2", amount = 1 }
+        prerequisites = { "5d-boiler-4", "5d-steam-engine-4", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-5",
-            "5d-steam-engine-5"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 08
-genSteamEngines {
-    number = "08",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-07",    amount = 1 },
-        { type = "item", name = "iron-gear-wheel",       amount = 8 },
-        { type = "item", name = "processing-unit",       amount = 5 },
-        { type = "item", name = "pipe",                  amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 10 },
-        { type = "item", name = "efficiency-module-2",  amount = 1 }
+        prerequisites = { "5d-boiler-5", "5d-steam-engine-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-6",
-            "5d-steam-engine-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 09
-genSteamEngines {
-    number = "09",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-08",    amount = 1 },
-        { type = "item", name = "iron-gear-wheel",       amount = 8 },
-        { type = "item", name = "processing-unit",       amount = 5 },
-        { type = "item", name = "pipe",                  amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 10 },
-        { type = "item", name = "efficiency-module-3",  amount = 1 }
+        prerequisites = { "5d-boiler-6", "5d-steam-engine-6", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-steam-engine-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-7",
-            "5d-steam-engine-7"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 0.25
-emisions = emisions + 15
-
--- Electric furnace 10
-genSteamEngines {
-    number = "10",
-    subgroup = "energy-engine-1",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-steam-engine-09",    amount = 1 },
-        { type = "item", name = "iron-gear-wheel",       amount = 8 },
-        { type = "item", name = "processing-unit",       amount = 5 },
-        { type = "item", name = "pipe",                  amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 10 },
-        { type = "item", name = "efficiency-module-3",  amount = 1 }
+        prerequisites = { "5d-boiler-7", "5d-steam-engine-7" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-boiler-8",
-            "5d-steam-engine-8"
-        }
+        prerequisites = { "5d-boiler-8", "5d-steam-engine-8" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier (exponential energy, decreasing pollution like vanilla)
+    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
+    -- Steam engine uses fluid_usage_per_tick which must preserve decimals
+    local energy = CostCalculator.scaleEnergy(baseEnergy, tier, true)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.steamEngine[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        skipTierScaling = true
+    })
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the steam engine
+    genSteamEngines {
+        number = tierNum,
+        subgroup = "energy-engine-1",
+        craftingSpeed = craftingSpeed,
+        moduleSlots = config.moduleSlots,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = tier < 10 and ("5d-steam-engine-" .. string.format("%02d", tier + 1)) or nil,
+        tech = tech
+    }
+end

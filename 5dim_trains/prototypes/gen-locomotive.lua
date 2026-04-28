@@ -1,362 +1,182 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Trains - Locomotive Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.trains.generation-locomotive")
 
-local speed = 1.2
-local energy = 600
-local weightWagon = 2000
-local maxHealth = 1000
-local techCount = 100
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genLocomotives {
-    number = "01",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "engine-unit",        amount = 20 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "steel-plate",        amount = 30 }
-    },
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseSpeed = 1.2
+local baseEnergy = 600
+local baseWeight = 2000
+local baseHealth = 1000
+local baseTechCount = 100
+
+-- Increments per tier
+-- REBALANCED: Increased energy increment for better power/weight ratio
+-- T10 now has 1950kW (was 1500kW) for better acceleration with heavy loads
+local speedIncrement = 0.15
+local energyIncrement = 150    -- Increased from 100
+local weightIncrement = 500
+local healthIncrement = 250
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genLocomotives {
-    number = "02",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "locomotive",         amount = 1 },
-        { type = "item", name = "engine-unit",        amount = 20 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "steel-plate",        amount = 30 },
-        { type = "item", name = "pipe",               amount = 2 }
-    },
-    tech = {
-        number = 2,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "railway"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 03
-genLocomotives {
-    number = "03",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-02",   amount = 1 },
-        { type = "item", name = "engine-unit",        amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "steel-plate",        amount = 20 },
-        { type = "item", name = "pipe",               amount = 5 }
+        prerequisites = { "railway" }
     },
-    tech = {
-        number = 3,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 04
-genLocomotives {
-    number = "04",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-03", amount = 1 },
-        { type = "item", name = "engine-unit",      amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 20 },
-        { type = "item", name = "pipe",             amount = 5 }
+        prerequisites = { "5d-locomotive-2", "chemical-science-pack" }
     },
-    tech = {
-        number = 4,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-3",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 05
-genLocomotives {
-    number = "05",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-04", amount = 1 },
-        { type = "item", name = "engine-unit",      amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 20 },
-        { type = "item", name = "pipe",             amount = 5 }
+        prerequisites = { "5d-locomotive-3", "production-science-pack" }
     },
-    tech = {
-        number = 5,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-4"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 06
-genLocomotives {
-    number = "06",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-05", amount = 1 },
-        { type = "item", name = "engine-unit",      amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 5 },
-        { type = "item", name = "steel-plate",      amount = 20 },
-        { type = "item", name = "pipe",             amount = 5 }
+        prerequisites = { "5d-locomotive-4" }
     },
-    tech = {
-        number = 6,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-5"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 07
-genLocomotives {
-    number = "07",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-06",      amount = 1 },
-        { type = "item", name = "engine-unit",           amount = 15 },
-        { type = "item", name = "advanced-circuit",      amount = 5 },
-        { type = "item", name = "low-density-structure", amount = 20 },
-        { type = "item", name = "pipe",                  amount = 5 }
+        prerequisites = { "5d-locomotive-5" }
     },
-    tech = {
-        number = 7,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 08
-genLocomotives {
-    number = "08",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-07",      amount = 1 },
-        { type = "item", name = "engine-unit",           amount = 15 },
-        { type = "item", name = "processing-unit",       amount = 2 },
-        { type = "item", name = "low-density-structure", amount = 20 },
-        { type = "item", name = "pipe",                  amount = 5 }
+        prerequisites = { "5d-locomotive-6", "utility-science-pack" }
     },
-    tech = {
-        number = 8,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-7"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 09
-genLocomotives {
-    number = "09",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-08",      amount = 1 },
-        { type = "item", name = "engine-unit",           amount = 15 },
-        { type = "item", name = "processing-unit",       amount = 2 },
-        { type = "item", name = "low-density-structure", amount = 20 },
-        { type = "item", name = "pipe",                  amount = 5 }
+        prerequisites = { "5d-locomotive-7" }
     },
-    tech = {
-        number = 9,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-8"
-        }
-    }
-}
-
-speed = speed + 0.15
-energy = energy + 100
-weightWagon = weightWagon + 500
-maxHealth = maxHealth + 250
-
--- Electric furnace 10
-genLocomotives {
-    number = "10",
-    subgroup = "trains-locomotive",
-    maxSpeed = speed,
-    maxPower = energy,
-    weight = weightWagon,
-    health = maxHealth,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-locomotive-09",      amount = 1 },
-        { type = "item", name = "engine-unit",           amount = 15 },
-        { type = "item", name = "processing-unit",       amount = 2 },
-        { type = "item", name = "low-density-structure", amount = 20 },
-        { type = "item", name = "pipe",                  amount = 5 }
+        prerequisites = { "5d-locomotive-8" }
     },
-    tech = {
-        number = 10,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-locomotive-9"
-        }
+        prerequisites = { "5d-locomotive-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+
+    -- Calculate stats for this tier
+    local speed = baseSpeed + (tier - 1) * speedIncrement
+    local energy = baseEnergy + (tier - 1) * energyIncrement
+    local weight = baseWeight + (tier - 1) * weightIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.locomotive[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+    })
+
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+
+    -- Generate the locomotive
+    genLocomotives {
+        number = tierNum,
+        subgroup = "trains-locomotive",
+        maxSpeed = speed,
+        maxPower = energy,
+        weight = weight,
+        health = health,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        tech = tech
+    }
+end

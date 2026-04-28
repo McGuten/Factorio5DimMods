@@ -162,112 +162,32 @@ function selectAttackParams(size, type, data)
                 animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         end
-    elseif type == "suicide" then
-        if size == "small" then
-            return {
-                type = "projectile",
-                ammo_category = "rocket",
-                cooldown = 60,
-                range = 1,
-                projectile_creation_distance = 0.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 5,
-                ammo_type = {
-                    category = "biological",
-                    action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "projectile",
-                            projectile = "explosive-rocket",
-                            starting_speed = 0.1,
-                            source_effects = {
-                                type = "create-entity",
-                                entity_name = "explosion-hit"
-                            }
+    elseif type == "suicide" or type == "explosive" then
+        -- Suicide/Explosive spitter - melee range explosion
+        return {
+            type = "projectile",
+            ammo_category = "biological",
+            cooldown = 60,
+            range = 1,
+            projectile_creation_distance = 0.5,
+            damage_modifier = data.damage_modifier or 1,
+            warmup = 5,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "projectile",
+                        projectile = "explosive-rocket",
+                        starting_speed = 0.1,
+                        source_effects = {
+                            type = "create-entity",
+                            entity_name = "explosion-hit"
                         }
                     }
-                },
-                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
-            }
-        elseif size == "medium" then
-            return {
-                type = "projectile",
-                ammo_category = "rocket",
-                cooldown = 60,
-                range = 1,
-                projectile_creation_distance = 0.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 5,
-                ammo_type = {
-                    category = "biological",
-                    action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "projectile",
-                            projectile = "explosive-rocket",
-                            starting_speed = 0.1,
-                            source_effects = {
-                                type = "create-entity",
-                                entity_name = "explosion-hit"
-                            }
-                        }
-                    }
-                },
-                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
-            }
-        elseif size == "big" then
-            return {
-                type = "projectile",
-                ammo_category = "rocket",
-                cooldown = 60,
-                range = 1,
-                projectile_creation_distance = 0.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 5,
-                ammo_type = {
-                    category = "biological",
-                    action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "projectile",
-                            projectile = "explosive-rocket",
-                            starting_speed = 0.1,
-                            source_effects = {
-                                type = "create-entity",
-                                entity_name = "explosion-hit"
-                            }
-                        }
-                    }
-                },
-                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
-            }
-        elseif size == "behemoth" then
-            return {
-                type = "projectile",
-                ammo_category = "rocket",
-                cooldown = 60,
-                range = 1,
-                projectile_creation_distance = 0.5,
-                damage_modifier = data.damage_modifier,
-                warmup = 5,
-                ammo_type = {
-                    category = "biological",
-                    action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "projectile",
-                            projectile = "explosive-rocket",
-                            starting_speed = 0.1,
-                            source_effects = {
-                                type = "create-entity",
-                                entity_name = "explosion-hit"
-                            }
-                        }
-                    }
-                },
-                animation = spitterattackanimation(data.scale, data.tint, data.tint2)
-            }
-        end
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
     elseif type == "rocket" then
         if size == "small" then
             return {
@@ -279,7 +199,6 @@ function selectAttackParams(size, type, data)
                 damage_modifier = data.damage_modifier,
                 warmup = 5,
                 ammo_type = {
-                    category = "biological",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -305,7 +224,6 @@ function selectAttackParams(size, type, data)
                 damage_modifier = data.damage_modifier,
                 warmup = 5,
                 ammo_type = {
-                    category = "biological",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -331,7 +249,6 @@ function selectAttackParams(size, type, data)
                 damage_modifier = data.damage_modifier,
                 warmup = 5,
                 ammo_type = {
-                    category = "biological",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -357,7 +274,6 @@ function selectAttackParams(size, type, data)
                 damage_modifier = data.damage_modifier,
                 warmup = 5,
                 ammo_type = {
-                    category = "biological",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -374,6 +290,161 @@ function selectAttackParams(size, type, data)
                 animation = spitterattackanimation(data.scale, data.tint, data.tint2)
             }
         end
+    elseif type == "laser" then
+        -- Laser spitter - shoots laser beams
+        return {
+            type = "beam",
+            ammo_category = "biological",
+            cooldown = 40,
+            range = data.range,
+            damage_modifier = data.damage_modifier or 1,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "beam",
+                        beam = "laser-beam",
+                        max_length = data.range,
+                        duration = 20,
+                        source_offset = {0, -0.5}
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
+    elseif type == "poison" then
+        -- Poison spitter - creates poison clouds
+        return {
+            type = "projectile",
+            ammo_category = "biological",
+            cooldown = 120,
+            range = data.range,
+            projectile_creation_distance = 0.5,
+            damage_modifier = data.damage_modifier or 1,
+            warmup = 10,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "projectile",
+                        projectile = "poison-capsule",
+                        starting_speed = 0.15,
+                        source_effects = {
+                            type = "create-entity",
+                            entity_name = "explosion-hit"
+                        }
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
+    elseif type == "electric" then
+        -- Electric spitter - electric discharge
+        return {
+            type = "beam",
+            ammo_category = "biological",
+            cooldown = 50,
+            range = data.range,
+            damage_modifier = data.damage_modifier or 1,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "beam",
+                        beam = "electric-beam",
+                        max_length = data.range,
+                        duration = 15,
+                        source_offset = {0, -0.5}
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
+    elseif type == "physical" then
+        -- Physical spitter - throws rocks/debris (uses cannon projectile)
+        return {
+            type = "projectile",
+            ammo_category = "biological",
+            cooldown = 80,
+            range = data.range,
+            projectile_creation_distance = 0.5,
+            damage_modifier = data.damage_modifier or 1,
+            warmup = 5,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "projectile",
+                        projectile = "cannon-projectile",
+                        starting_speed = 0.2,
+                        source_effects = {
+                            type = "create-entity",
+                            entity_name = "explosion-hit"
+                        }
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
+    elseif type == "railgun" then
+        -- Railgun spitter - high-velocity armor-piercing projectiles (Space Age)
+        return {
+            type = "projectile",
+            ammo_category = "biological",
+            cooldown = 120,  -- Slower but devastating
+            range = data.range + 5,  -- Extended range
+            projectile_creation_distance = 0.6,
+            damage_modifier = data.damage_modifier or 1,
+            warmup = 15,  -- Longer charge-up
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "projectile",
+                        projectile = "railgun-projectile",  -- Uses Space Age railgun
+                        starting_speed = 0.5,  -- Very fast
+                        source_effects = {
+                            type = "create-entity",
+                            entity_name = "explosion-hit"
+                        }
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
+    elseif type == "plasma" then
+        -- Plasma spitter - extreme energy projectiles (Space Age)
+        return {
+            type = "projectile",
+            ammo_category = "biological",
+            cooldown = 90,
+            range = data.range + 3,
+            projectile_creation_distance = 0.5,
+            damage_modifier = data.damage_modifier or 1,
+            warmup = 10,
+            ammo_type = {
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "projectile",
+                        projectile = "plasma-projectile",  -- Uses Space Age plasma
+                        starting_speed = 0.3,
+                        source_effects = {
+                            {
+                                type = "create-entity",
+                                entity_name = "explosion-hit"
+                            },
+                            {
+                                type = "create-trivial-smoke",
+                                smoke_name = "smoke-fast",
+                                repeat_count = 3
+                            }
+                        }
+                    }
+                }
+            },
+            animation = spitterattackanimation(data.scale, data.tint, data.tint2)
+        }
     else
         if size == "small" then
             return spitter_attack_parameters(

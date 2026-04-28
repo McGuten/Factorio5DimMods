@@ -11,13 +11,13 @@ data.raw.armor["power-armor-mk2"].subgroup = "armor-power-armor"
 data.raw.armor["power-armor-mk2"].order = "b"
 data.raw.item["solar-panel-equipment"].subgroup = "armor-solar"
 data.raw.item["solar-panel-equipment"].order = "a"
-data.raw.item["fission-reactor-equipment"].subgroup = "armor-fision-reactor"
+data.raw.item["fission-reactor-equipment"].subgroup = "armor-fission-reactor"
 data.raw.item["fission-reactor-equipment"].order = "a"
-data.raw.item["battery-equipment"].subgroup = "armor-baterry"
+data.raw.item["battery-equipment"].subgroup = "armor-battery"
 data.raw.item["battery-equipment"].order = "a"
-data.raw.item["battery-mk2-equipment"].subgroup = "armor-baterry"
+data.raw.item["battery-mk2-equipment"].subgroup = "armor-battery"
 data.raw.item["battery-mk2-equipment"].order = "b"
-data.raw.item["exoskeleton-equipment"].subgroup = "armor-exoesqueleto"
+data.raw.item["exoskeleton-equipment"].subgroup = "armor-exoskeleton"
 data.raw.item["exoskeleton-equipment"].order = "a"
 data.raw.item["personal-roboport-equipment"].subgroup = "armor-roboport"
 data.raw.item["personal-roboport-equipment"].order = "a"
@@ -41,13 +41,8 @@ data.raw.capsule["discharge-defense-remote"].order = "c"
 if mods["space-age"] then
     data.raw.armor["mech-armor"].subgroup = "armor-mech-armor"
     data.raw.armor["mech-armor"].order = "a"
-    if mods["5dim_equipment"] then
-        data.raw.item["battery-mk3-equipment"].subgroup = "armor-armor"
-        data.raw.item["battery-mk3-equipment"].order = "d"
-    else
-        data.raw.item["battery-mk3-equipment"].subgroup = "armor-baterry"
-        data.raw.item["battery-mk3-equipment"].order = "c"
-    end
+    data.raw.item["battery-mk3-equipment"].subgroup = "armor-battery"
+    data.raw.item["battery-mk3-equipment"].order = "c"
     data.raw.item["fusion-reactor-equipment"].subgroup = "armor-reactor"
     data.raw.item["fusion-reactor-equipment"].order = "a"
     data.raw.item["toolbelt-equipment"].subgroup = "armor-util"
@@ -86,8 +81,8 @@ data.raw.item["flamethrower-turret"].subgroup = "defense-flame"
 data.raw.item["flamethrower-turret"].order = "a"
 data.raw.item["artillery-turret"].subgroup = "defense-artillery"
 data.raw.item["artillery-turret"].order = "a"
-data.raw.ammo["artillery-shell"].subgroup = "defense-artillery"
-data.raw.ammo["artillery-shell"].order = "b"
+data.raw.ammo["artillery-shell"].subgroup = "defense-ammo-artillery"
+data.raw.ammo["artillery-shell"].order = "a"
 data.raw.capsule["artillery-targeting-remote"].subgroup = "defense-artillery"
 data.raw.capsule["artillery-targeting-remote"].order = "c"
 data.raw.item["stone-wall"].subgroup = "defense-wall"
@@ -98,11 +93,11 @@ data.raw.item["radar"].subgroup = "defense-radar"
 data.raw.item["radar"].order = "a"
 
 if mods["space-age"] then
-    data.raw.item["tesla-turret"].subgroup = "defense-tesla"
+    data.raw.item["tesla-turret"].subgroup = "turrets-tesla-sa"
     data.raw.item["tesla-turret"].order = "a"
-    data.raw.item["railgun-turret"].subgroup = "defense-railgun-turret"
+    data.raw.item["railgun-turret"].subgroup = "turrets-railgun"
     data.raw.item["railgun-turret"].order = "a"
-    data.raw.item["rocket-turret"].subgroup = "defense-rocket-turret"
+    data.raw.item["rocket-turret"].subgroup = "turrets-rocket"
     data.raw.item["rocket-turret"].order = "a"
 end
 
@@ -140,8 +135,8 @@ end
 --Equipment
 data.raw.gun["flamethrower"].subgroup = "equipment-flame"
 data.raw.gun["flamethrower"].order = "a"
-data.raw.item["land-mine"].subgroup = "equipment-capsule"
-data.raw.item["land-mine"].order = "ac"
+data.raw.item["land-mine"].subgroup = "defense-land-mine"
+data.raw.item["land-mine"].order = "a"
 data.raw.gun["rocket-launcher"].subgroup = "equipment-rocket"
 data.raw.gun["rocket-launcher"].order = "a"
 data.raw.gun["shotgun"].subgroup = "equipment-shotgun"
@@ -166,20 +161,20 @@ data.raw.ammo["piercing-shotgun-shell"].subgroup = "equipment-shotgun"
 data.raw.ammo["piercing-shotgun-shell"].order = "d"
 data.raw.ammo["shotgun-shell"].subgroup = "equipment-shotgun"
 data.raw.ammo["shotgun-shell"].order = "c"
-data.raw.capsule["grenade"].subgroup = "equipment-capsule"
+data.raw.capsule["grenade"].subgroup = "equipment-grenade"
 data.raw.capsule["grenade"].order = "a"
-data.raw.capsule["cluster-grenade"].subgroup = "equipment-capsule"
-data.raw.capsule["cluster-grenade"].order = "ab"
-data.raw.capsule["poison-capsule"].subgroup = "equipment-capsule"
-data.raw.capsule["poison-capsule"].order = "b"
-data.raw.capsule["slowdown-capsule"].subgroup = "equipment-capsule"
-data.raw.capsule["slowdown-capsule"].order = "c"
-data.raw.capsule["defender-capsule"].subgroup = "equipment-capsule"
-data.raw.capsule["defender-capsule"].order = "d"
-data.raw.capsule["distractor-capsule"].subgroup = "equipment-capsule"
-data.raw.capsule["distractor-capsule"].order = "e"
-data.raw.capsule["destroyer-capsule"].subgroup = "equipment-capsule"
-data.raw.capsule["destroyer-capsule"].order = "f"
+data.raw.capsule["cluster-grenade"].subgroup = "equipment-cluster-grenade"
+data.raw.capsule["cluster-grenade"].order = "a"
+data.raw.capsule["poison-capsule"].subgroup = "equipment-poison-capsule"
+data.raw.capsule["poison-capsule"].order = "a"
+data.raw.capsule["slowdown-capsule"].subgroup = "equipment-slowdown-capsule"
+data.raw.capsule["slowdown-capsule"].order = "a"
+data.raw.capsule["defender-capsule"].subgroup = "equipment-defender"
+data.raw.capsule["defender-capsule"].order = "a"
+data.raw.capsule["distractor-capsule"].subgroup = "equipment-distractor"
+data.raw.capsule["distractor-capsule"].order = "a"
+data.raw.capsule["destroyer-capsule"].subgroup = "equipment-destroyer"
+data.raw.capsule["destroyer-capsule"].order = "a"
 data.raw.ammo["uranium-rounds-magazine"].subgroup = "equipment-bullet"
 data.raw.ammo["uranium-rounds-magazine"].order = "e"
 data.raw.ammo["atomic-bomb"].subgroup = "equipment-rocket"
@@ -264,8 +259,11 @@ if not mods["space-age"] then
     data.raw.item["satellite"].subgroup = "intermediate-silo"
     data.raw.item["satellite"].order = "y"
 end
-data.raw.item["cargo-landing-pad"].subgroup = "intermediate-silo"
-data.raw.item["cargo-landing-pad"].order = "b"
+
+if mods["space-age"] then
+    data.raw.item["cargo-landing-pad"].subgroup = "orbit-landing-pad"
+    data.raw.item["cargo-landing-pad"].order = "a"
+end
 
 if mods["space-age"] then
     data.raw.tool["metallurgic-science-pack"].subgroup = "intermediate-lab-space"
@@ -512,9 +510,9 @@ data.raw.recipe["kovarex-enrichment-process"].subgroup = "nuclear-recipe"
 data.raw.recipe["kovarex-enrichment-process"].order = "d"
 
 if mods["space-age"] then
-    data.raw.item["fusion-reactor"].subgroup = "nuclear-fusion-reactor"
+    data.raw.item["fusion-reactor"].subgroup = "space-fusion-reactor"
     data.raw.item["fusion-reactor"].order = "a"
-    data.raw.item["fusion-generator"].subgroup = "nuclear-fusion-generator"
+    data.raw.item["fusion-generator"].subgroup = "space-fusion-generator"
     data.raw.item["fusion-generator"].order = "a"
 end
 
@@ -551,8 +549,8 @@ data.raw.item["wooden-chest"].subgroup = "store-solid"
 data.raw.item["wooden-chest"].order = "a"
 data.raw.item["iron-chest"].subgroup = "store-solid"
 data.raw.item["iron-chest"].order = "b"
-data.raw.item["steel-chest"].subgroup = "store-solid"
-data.raw.item["steel-chest"].order = "c"
+data.raw.item["steel-chest"].subgroup = "store-steel-chest"
+data.raw.item["steel-chest"].order = "a"
 
 if mods["space-age"] then
     if mods["5dim_transport"] then
@@ -596,7 +594,7 @@ data.raw.ammo["explosive-uranium-cannon-shell"].order = "z"
 data.raw["item-with-entity-data"]["spidertron"].subgroup = "vehicles-spider"
 data.raw["item-with-entity-data"]["spidertron"].order = "a"
 data.raw["spidertron-remote"]["spidertron-remote"].subgroup = "vehicles-spider"
-data.raw["spidertron-remote"]["spidertron-remote"].order = "b"
+data.raw["spidertron-remote"]["spidertron-remote"].order = "z"
 
 
 -- Planets
@@ -606,14 +604,14 @@ if mods["space-age"] then
     data.raw.item["space-platform-foundation"].order = "a"
     data.raw["space-platform-starter-pack"]["space-platform-starter-pack"].subgroup = "orbit-platform"
     data.raw["space-platform-starter-pack"]["space-platform-starter-pack"].order = "b"
-    data.raw.item["cargo-bay"].subgroup = "orbit-platform"
-    data.raw.item["cargo-bay"].order = "c"
-    data.raw.item["asteroid-collector"].subgroup = "orbit-buildings"
-    data.raw.item["asteroid-collector"].order = "d"
-    data.raw.item["crusher"].subgroup = "orbit-buildings"
-    data.raw.item["crusher"].order = "e"
-    data.raw.item["thruster"].subgroup = "orbit-buildings"
-    data.raw.item["thruster"].order = "f"
+    data.raw.item["cargo-bay"].subgroup = "orbit-cargo-bay"
+    data.raw.item["cargo-bay"].order = "a"
+    data.raw.item["asteroid-collector"].subgroup = "orbit-asteroid-collector"
+    data.raw.item["asteroid-collector"].order = "a"
+    data.raw.item["crusher"].subgroup = "orbit-crusher"
+    data.raw.item["crusher"].order = "a"
+    data.raw.item["thruster"].subgroup = "orbit-thruster"
+    data.raw.item["thruster"].order = "a"
     data.raw.recipe["metallic-asteroid-reprocessing"].subgroup = "orbit-reprocesing"
     data.raw.recipe["carbonic-asteroid-reprocessing"].subgroup = "orbit-reprocesing"
     data.raw.recipe["oxide-asteroid-reprocessing"].subgroup = "orbit-reprocesing"
@@ -646,8 +644,8 @@ if mods["space-age"] then
 end
 
 -- Nauvis
-if mods["space-age"] then
-end
+-- if mods["space-age"] then
+-- end
 
 -- Vulcanus
 if mods["space-age"] then

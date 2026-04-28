@@ -1,364 +1,171 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Energy - Accumulator Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.energy.generation-accumulator")
 
-local speed = 5
-local modules = 2
-local energy = 300
-local emisions = 10
-local techCount = 450
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genAccumulators {
-    number = "01",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        {type = "item", name = "iron-plate", amount = 2},
-        {type = "item", name = "battery", amount = 5}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseCapacityMJ = 5           -- MJ storage capacity (multiplier)
+local baseEnergyKJ = 300           -- KJ input/output
+local baseTechCount = 450
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-speed = speed + 2.5
-modules = modules + 1
-energy = energy + 150
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genAccumulators {
-    number = "02",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        {type = "item", name = "accumulator", amount = 1},
-        {type = "item", name = "electronic-circuit", amount = 2},
-        {type = "item", name = "iron-plate", amount = 2},
-        {type = "item", name = "battery", amount = 5}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-03",
-    tech = {
-        number = 2,
-        count = techCount * 1,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1}
+local techConfig = {
+    [2] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "electric-energy-accumulators"
-        }
+        prerequisites = { "electric-energy-accumulators" }
+    },
+    [3] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-2", "chemical-science-pack" }
+    },
+    [4] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-3", "production-science-pack" }
+    },
+    [5] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-4" }
+    },
+    [6] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-5" }
+    },
+    [7] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-6", "utility-science-pack" }
+    },
+    [8] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-7" }
+    },
+    [9] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-8" }
+    },
+    [10] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "electric-energy-accumulators-9" }
     }
 }
 
-speed = speed + 2.5
-energy = energy + 150
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Electric furnace 03
-genAccumulators {
-    number = "03",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-02", amount = 1},
-        {type = "item", name = "electronic-circuit", amount = 7},
-        {type = "item", name = "iron-plate", amount = 4},
-        {type = "item", name = "battery", amount = 10}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-04",
-    tech = {
-        number = 3,
-        count = techCount * 2,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-2",
-            "chemical-science-pack"
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier (exponential scaling for better late-game value)
+    -- Factor 1.35: T1=5MJ, T5=11.6MJ, T10=47MJ (instead of linear 5-27.5)
+    local capacityFactor = 1.35
+    local capacityMJ = math.floor(baseCapacityMJ * (capacityFactor ^ (tier - 1)) * 10) / 10
+    -- Flow scales with capacity
+    local energyKJ = math.floor(baseEnergyKJ * (capacityFactor ^ (tier - 1)))
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.accumulator[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        skipTierScaling = true
+    })
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
+    end
+    
+    -- Generate the accumulator
+    genAccumulators {
+        number = tierNum,
+        subgroup = "energy-accumulator",
+        craftingSpeed = capacityMJ,
+        energyUsage = energyKJ,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        nextUpdate = tier < 10 and ("5d-accumulator-" .. string.format("%02d", tier + 1)) or nil,
+        tech = tech
     }
-}
-
-speed = speed + 2.5
-modules = modules + 1
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 04
-genAccumulators {
-    number = "04",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-03", amount = 1},
-        {type = "item", name = "advanced-circuit", amount = 7},
-        {type = "item", name = "steel-plate", amount = 7},
-        {type = "item", name = "battery", amount = 15}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-05",
-    tech = {
-        number = 4,
-        count = techCount * 3,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-3",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 2.5
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 05
-genAccumulators {
-    number = "05",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-04", amount = 1},
-        {type = "item", name = "advanced-circuit", amount = 2},
-        {type = "item", name = "steel-plate", amount = 2},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-06",
-    tech = {
-        number = 5,
-        count = techCount * 4,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 2.5
-modules = modules + 1
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 06
-genAccumulators {
-    number = "06",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-05", amount = 1},
-        {type = "item", name = "advanced-circuit", amount = 2},
-        {type = "item", name = "steel-plate", amount = 2},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-07",
-    tech = {
-        number = 6,
-        count = techCount * 5,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-5"
-        }
-    }
-}
-
-speed = speed + 2.5
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 07
-genAccumulators {
-    number = "07",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-06", amount = 1},
-        {type = "item", name = "advanced-circuit", amount = 2},
-        {type = "item", name = "steel-plate", amount = 2},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module-2", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-08",
-    tech = {
-        number = 7,
-        count = techCount * 6,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 2.5
-modules = modules + 1
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 08
-genAccumulators {
-    number = "08",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-07", amount = 1},
-        {type = "item", name = "processing-unit", amount = 2},
-        {type = "item", name = "steel-plate", amount = 2},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module-2", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-09",
-    tech = {
-        number = 8,
-        count = techCount * 7,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-7"
-        }
-    }
-}
-
-speed = speed + 2.5
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 09
-genAccumulators {
-    number = "09",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-08", amount = 1},
-        {type = "item", name = "processing-unit", amount = 2},
-        {type = "item", name = "low-density-structure", amount = 1},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module-3", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-accumulator-10",
-    tech = {
-        number = 9,
-        count = techCount * 8,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-8"
-        }
-    }
-}
-
-speed = speed + 2.5
-modules = modules + 1
-energy = energy + 150
-emisions = emisions + 5
-
--- Electric furnace 10
-genAccumulators {
-    number = "10",
-    subgroup = "energy-accumulator",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        {type = "item", name = "5d-accumulator-09", amount = 1},
-        {type = "item", name = "processing-unit", amount = 2},
-        {type = "item", name = "low-density-structure", amount = 1},
-        {type = "item", name = "battery", amount = 15},
-        {type = "item", name = "efficiency-module-3", amount = 1}
-    },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 10,
-        count = techCount * 9,
-        packs = {
-            {"automation-science-pack", 1},
-            {"logistic-science-pack", 1},
-            {"chemical-science-pack", 1},
-            {"production-science-pack", 1},
-            {"utility-science-pack", 1}
-        },
-        prerequisites = {
-            "electric-energy-accumulators-9"
-        }
-    }
-}
+end

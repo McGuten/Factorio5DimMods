@@ -6,13 +6,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },
@@ -42,13 +40,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },
@@ -78,13 +74,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },
@@ -115,13 +109,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },
@@ -152,13 +144,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },
@@ -190,13 +180,11 @@ data:extend(
             icons = {
                 {
                     icon = "__base__/graphics/technology/worker-robots-speed.png",
-                    icon_size = 256,
-                    icon_mipmaps = 4
+                    icon_size = 256
                 },
                 {
                     icon = "__core__/graphics/icons/technology/constants/constant-battery.png",
                     icon_size = 128,
-                    icon_mipmaps = 3,
                     shift = {100, 100}
                 }
             },

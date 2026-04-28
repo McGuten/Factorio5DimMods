@@ -2,10 +2,10 @@
     "name": "5dim_infiniteresearch",
     "version": "2.0.3",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Infinite Research",
+    "title": "5Dim's mod - Infinite Research",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Infinite researchs for 5dim's mod\n\rInclude some of infinity technologies and other new technolgies",
-    "dependencies": ["5dim_core >= 2.0.28"]
+    "description": "Infinite Research module for 5Dim's mod\n\rAdds infinite research options for late-game progression\n\rThis mod includes:\n\r- Infinite crafting speed research\n\r- Infinite mining speed research\n\r- Infinite bullet damage research\n\r- Infinite laser turret damage research\n\r- Infinite worker robot battery research\n\r- Infinite worker robot storage research\n\r- Infinite braking force research\n\r- Infinite stack size research\n\r- Tech productivity and speed bonuses",
+    "dependencies": ["5dim_core >= 2.0.42"]
 }

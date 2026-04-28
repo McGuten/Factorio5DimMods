@@ -1,0 +1,11 @@
+{
+    "name": "5dim_vehicles",
+    "version": "2.0.0",
+    "factorio_version": "2.0",
+    "title": "5Dim's mod - Vehicles",
+    "author": "5Dim",
+    "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
+    "homepage": "https://mods.factorio.com/user/McGuten",
+    "description": "Vehicles module for 5Dim's mod\n\rExpands your combat vehicles with multiple tiers\n\rThis mod includes:\n\r- 10 tiers of tanks with improved stats\n\r- 10 tiers of spidertrons with larger equipment grids",
+    "dependencies": ["5dim_core >= 2.0.42"]
+}

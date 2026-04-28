@@ -1,453 +1,203 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Gun Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
 
-local rango = 22
-local ammo = 10
-local shootingSpeed = 6
-local damageModif = 1
-local color = { r = 1, g = 0.1, b = 0.1, a = 1 }
-local hp = 480
-local techCount = 100
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local TierColors = require("__5dim_core__.lib.tier-colors")
 
--- Gun turret 01
-genGunTurrets {
-    number = "01",
-    subgroup = "defense-gun-turret",
-    order = "a",
-    new = false,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "iron-gear-wheel", amount = 10 },
-        { type = "item", name = "copper-plate",    amount = 10 },
-        { type = "item", name = "iron-plate",      amount = 20 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 5
-        },
-        {
-            type = "explosion",
-            percent = 2.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (480 → 2400 at T10)
+-------------------------------------------------------------------------------
+
+local baseRange = 22
+local baseAmmo = 10
+local baseShootingSpeed = 6
+local baseDamageModif = 1
+local baseHealth = 480
+local rangeIncrement = 2
+local healthIncrement = 213               -- 480 → 2400 (x5)
+local baseTechCount = 100
+
+-- Type color: Medium/Normal = Red
+local typeColor = { r = 1, g = 0.1, b = 0.1, a = 1 }
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-rango = rango + 2
-hp = hp + 48
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Gun turret 02
-genGunTurrets {
-    number = "02",
-    subgroup = "defense-gun-turret",
-    order = "b",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "gun-turret",      amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 4 },
-        { type = "item", name = "copper-plate",    amount = 4 },
-        { type = "item", name = "iron-plate",      amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 10
-        },
-        {
-            type = "explosion",
-            percent = 5
-        }
-    },
-    nextUpdate = "5d-gun-turret-03",
-    tech = {
-        number = "gun-turret-2",
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        techName = "gun-turret-2",
+        countMultiplier = 1,
+        basePacks = {
             { "automation-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 03
-genGunTurrets {
-    number = "03",
-    subgroup = "defense-gun-turret",
-    order = "c",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-04",
-    tech = {
-        number = "gun-turret-3",
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        techName = "gun-turret-3",
+        countMultiplier = 2,
+        basePacks = {
             { "automation-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-2"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 04
-genGunTurrets {
-    number = "04",
-    subgroup = "defense-gun-turret",
-    order = "d",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-2" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 20
-        },
-        {
-            type = "explosion",
-            percent = 10
-        }
-    },
-    nextUpdate = "5d-gun-turret-05",
-    tech = {
-        number = "gun-turret-4",
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        techName = "gun-turret-4",
+        countMultiplier = 3,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-3",
-            "logistic-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 05
-genGunTurrets {
-    number = "05",
-    subgroup = "defense-gun-turret",
-    order = "e",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-3", "logistic-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 25
-        },
-        {
-            type = "explosion",
-            percent = 12.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-06",
-    tech = {
-        number = "gun-turret-5",
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        techName = "gun-turret-5",
+        countMultiplier = 4,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 06
-genGunTurrets {
-    number = "06",
-    subgroup = "defense-gun-turret",
-    order = "f",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-4" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 30
-        },
-        {
-            type = "explosion",
-            percent = 15
-        }
-    },
-    nextUpdate = "5d-gun-turret-07",
-    tech = {
-        number = "gun-turret-6",
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        techName = "gun-turret-6",
+        countMultiplier = 5,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-5",
-            "military-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 07
-genGunTurrets {
-    number = "07",
-    subgroup = "defense-gun-turret",
-    order = "g",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-5", "military-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 35
-        },
-        {
-            type = "explosion",
-            percent = 17.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-08",
-    tech = {
-        number = "gun-turret-7",
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        techName = "gun-turret-7",
+        countMultiplier = 6,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 08
-genGunTurrets {
-    number = "08",
-    subgroup = "defense-gun-turret",
-    order = "h",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-6" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 40
-        },
-        {
-            type = "explosion",
-            percent = 20
-        }
-    },
-    nextUpdate = "5d-gun-turret-09",
-    tech = {
-        number = "gun-turret-8",
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        techName = "gun-turret-8",
+        countMultiplier = 7,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 09
-genGunTurrets {
-    number = "09",
-    subgroup = "defense-gun-turret",
-    order = "i",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-7" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 45
-        },
-        {
-            type = "explosion",
-            percent = 22.5
-        }
-    },
-    nextUpdate = "5d-gun-turret-10",
-    tech = {
-        number = "gun-turret-9",
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        techName = "gun-turret-9",
+        countMultiplier = 8,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-8",
-            "chemical-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 48
-
--- Gun turret 10
-genGunTurrets {
-    number = "10",
-    subgroup = "defense-gun-turret",
-    order = "j",
-    new = true,
-    ammoCount = ammo,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-gun-turret-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",  amount = 4 },
-        { type = "item", name = "copper-plate",     amount = 4 },
-        { type = "item", name = "iron-plate",       amount = 7 }
+        prerequisites = { "gun-turret-8", "chemical-science-pack" }
     },
-    resistances = {
-        {
-            type = "fire",
-            percent = 50
-        },
-        {
-            type = "explosion",
-            percent = 25
-        }
-    },
-    tech = {
-        number = "gun-turret-10",
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        techName = "gun-turret-10",
+        countMultiplier = 9,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "gun-turret-9"
-        }
+        prerequisites = { "gun-turret-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
+
+local function getResistances(tier)
+    local firePercent = 5 + (tier - 1) * 5
+    local explosionPercent = 2.5 + (tier - 1) * 2.5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
+    }
+end
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.gunTurret[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-gun-turret-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tc.techName,
+            count = baseTechCount * tc.countMultiplier,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the gun turret
+    genGunTurrets {
+        number = tierNum,
+        subgroup = "defense-gun-turret",
+        order = config.order,
+        new = not config.isVanilla,
+        ammoCount = baseAmmo,
+        attackSpeed = baseShootingSpeed,
+        range = range,
+        cooldown = baseDamageModif,
+        health = health,
+        baseTint = TierColors[tier],
+        turretTint = typeColor,
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

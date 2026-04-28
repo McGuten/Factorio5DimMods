@@ -11,7 +11,7 @@ function table.contains(table, element)
 end
 
 --Stack changes
-if settings.startup["5d-change-stack"] then
+if settings.startup["5d-change-stack"].value then
     for _, item in pairs(data.raw.item) do
         if not item.flags or not table.contains(item.flags, "not-stackable") then
             item.stack_size = item.stack_size * settings.startup["5d-change-stack"].value
@@ -46,7 +46,7 @@ if settings.startup["5d-ores"].value then
     for _, ore in pairs(data.raw.resource) do
         if not ore.infinite then
             ore.infinite = true
-            if settings.startup["5d-ores"].value then
+            if settings.startup["5d-yield"].value then
                 ore.minimum = 100
                 ore.normal = 100
             else
@@ -59,48 +59,48 @@ end
 
 --Player changes
 --Inventory size
-if settings.startup["5d-change-inventory"] then
+if settings.startup["5d-change-inventory"].value then
     data.raw.character["character"].inventory_size = settings.startup["5d-change-inventory"].value
 end
 
 --Reach distance
-if settings.startup["5d-long-reach"] then
+if settings.startup["5d-long-reach"].value then
     data.raw.character["character"].build_distance = settings.startup["5d-long-reach"].value
     data.raw.character["character"].reach_distance = settings.startup["5d-long-reach"].value
 end
 
 --Light
-if settings.startup["5d-light-radius"] then
+if settings.startup["5d-light-radius"].value then
     data.raw.character["character"].light = {
         { minimum_darkness = 0.3, intensity = 0.9, size = settings.startup["5d-light-radius"].value }
     }
 end
 
 --Health
-if settings.startup["5d-hp"] then
+if settings.startup["5d-hp"].value then
     data.raw.character["character"].health = settings.startup["5d-hp"].value
 end
 
 --Healing per tick
-if settings.startup["5d-healing"] then
+if settings.startup["5d-healing"].value then
     data.raw.character["character"].healing_per_tick = settings.startup["5d-healing"].value
 end
 
 --Mining speed
-if settings.startup["5d-mining-speed"] then
+if settings.startup["5d-mining-speed"].value then
     data.raw.character["character"].mining_speed =
         data.raw.character["character"].mining_speed * settings.startup["5d-mining-speed"].value
 end
 
 --Mining range
-if settings.startup["5d-long-mine"] then
+if settings.startup["5d-long-mine"].value then
     data.raw.character["character"].reach_resource_distance = settings.startup["5d-long-mine"].value
 end
 
--- Harded game
+-- Harder game
 if not mods["Rampant"] then
     -- Enemies spawner health
-    if settings.startup["5d-bicho-spawner-hp"] then
+    if settings.startup["5d-bicho-spawner-hp"].value then
         for _, item in pairs(data.raw["unit-spawner"]) do
             if item.max_health then
                 item.max_health = item.max_health * settings.startup["5d-bicho-spawner-hp"].value
@@ -109,7 +109,7 @@ if not mods["Rampant"] then
     end
 
     -- Enemies health
-    if settings.startup["5d-bicho-hp"] then
+    if settings.startup["5d-bicho-hp"].value then
         for _, item in pairs(data.raw.unit) do
             if item.max_health then
                 item.max_health = item.max_health * settings.startup["5d-bicho-hp"].value
@@ -118,7 +118,7 @@ if not mods["Rampant"] then
     end
 
     -- Enemies healing per tick
-    if settings.startup["5d-bicho-healing"] then
+    if settings.startup["5d-bicho-healing"].value then
         for _, item in pairs(data.raw.unit) do
             if item.healing_per_tick then
                 item.healing_per_tick = item.healing_per_tick * settings.startup["5d-bicho-healing"].value
@@ -128,7 +128,3 @@ if not mods["Rampant"] then
         end
     end
 end
-
--- Technologies cost
-
--- Recipes cost

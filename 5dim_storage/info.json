@@ -1,11 +1,11 @@
 {
     "name": "5dim_storage",
-    "version": "2.0.4",
+    "version": "2.1.0",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Storage",
+    "title": "5Dim's mod - Storage",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Storage module for 5Dim's mod\n\rIf you hate limitated capacity of storage tanks, this mod extends its by new tiers.\n\rThis mod include:\n\r- 10 tiers of storage tank\n\r- 10 tiers of storage tank with all corner connections",
-    "dependencies": ["5dim_core >= 2.0.28"]
+    "description": "Storage module for 5Dim's mod\n\rExpands storage capabilities for fluids and items\n\rThis mod includes:\n\r- 10 tiers of storage tanks (increased capacity)\n\r- 10 tiers of multi-connection storage tanks (connections on all sides)\n\r- 10 tiers of steel chests (increased inventory size)\n\r- 10 tiers of all logistic chests (if 5dim_logistic is installed)",
+    "dependencies": ["5dim_core >= 2.0.42", "? 5dim_logistic"]
 }

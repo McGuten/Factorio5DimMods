@@ -1,7 +1,21 @@
 -- require("tint-laser-turret")
 
 function genFlamethrowerTurrets(inputs)
-    -- Copy electric furnace
+    -- Determine icon path
+    local iconPath = "__5dim_battlefield__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
+    
+    -- For vanilla tier (new = false), only update icon of base entity
+    if not inputs.new then
+        data.raw.item["flamethrower-turret"].icon = iconPath
+        data.raw.item["flamethrower-turret"].icon_size = 64
+        data.raw.recipe["flamethrower-turret"].icon = iconPath
+        data.raw.recipe["flamethrower-turret"].icon_size = 64
+        data.raw["fluid-turret"]["flamethrower-turret"].icon = iconPath
+        data.raw["fluid-turret"]["flamethrower-turret"].icon_size = 64
+        return
+    end
+    
+    -- Copy flamethrower turret
     local item = table.deepcopy(data.raw.item["flamethrower-turret"])
     local recipe = table.deepcopy(data.raw.recipe["flamethrower-turret"])
     local entity = table.deepcopy(data.raw["fluid-turret"]["flamethrower-turret"])
@@ -10,11 +24,8 @@ function genFlamethrowerTurrets(inputs)
     local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
-    if inputs.new then
-        item.name = "5d-flamethrower-turret-" .. inputs.number
-    end
-    item.icon =
-        "__5dim_battlefield__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
+    item.name = "5d-flamethrower-turret-" .. inputs.number
+    item.icon = iconPath
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -23,41 +34,41 @@ function genFlamethrowerTurrets(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.new then
-        recipe.enabled = false
-        recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        recipe.ingredients = inputs.ingredients
-    end
+    recipe.enabled = false
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.attack_parameters.cooldown = inputs.attackSpeed
-    entity.attack_parameters.range = inputs.range
-    entity.attack_parameters.min_range = inputs.minRange
+    -- Modify attack_parameters - keep original structure, just update allowed values
+    if entity.attack_parameters then
+        entity.attack_parameters.range = inputs.range
+        entity.attack_parameters.min_range = inputs.minRange
+    end
     entity.prepare_range = inputs.range + 5
     entity.max_health = inputs.health or 1400
     entity.fast_replaceable_group = "flamethrower-turret"
-    -- entity.base_picture.north.layers[2].tint = inputs.tint
-    -- entity.base_picture.north.layers[2].apply_runtime_tint = false
-    -- entity.base_picture.east.layers[2].tint = inputs.tint
-    -- entity.base_picture.east.layers[2].apply_runtime_tint = false
-    -- entity.base_picture.south.layers[2].tint = inputs.tint
-    -- entity.base_picture.south.layers[2].apply_runtime_tint = false
-    -- entity.base_picture.west.layers[2].tint = inputs.tint
-    -- entity.base_picture.west.layers[2].apply_runtime_tint = false
-
-    -- Base
-    -- entity.picture.layers[1].hr_version.filename =
-    --     "__5dim_energy__/graphics/entities/flamethrower-turret/flamethrower-turret-" .. inputs.number .. ".png"
+    
+    -- Apply tint to base masks for all directions
+    if inputs.tint then
+        entity.graphics_set.base_visualisation.animation.north.layers[2].tint = inputs.tint
+        entity.graphics_set.base_visualisation.animation.north.layers[2].apply_runtime_tint = false
+        entity.graphics_set.base_visualisation.animation.east.layers[2].tint = inputs.tint
+        entity.graphics_set.base_visualisation.animation.east.layers[2].apply_runtime_tint = false
+        entity.graphics_set.base_visualisation.animation.south.layers[2].tint = inputs.tint
+        entity.graphics_set.base_visualisation.animation.south.layers[2].apply_runtime_tint = false
+        entity.graphics_set.base_visualisation.animation.west.layers[2].tint = inputs.tint
+        entity.graphics_set.base_visualisation.animation.west.layers[2].apply_runtime_tint = false
+    end
 
     data:extend({ entity, recipe, item })
 
-    -- Technology
+    -- Technology - extends vanilla flamethrower as flamethrower-2, flamethrower-3, etc.
     if inputs.tech then
-        tech.name = "5d-flamethrower-turrets-" .. inputs.tech.number
+        tech.name = "flamethrower-" .. inputs.tech.number
         tech.icon = item.icon
         tech.icon_size = 64
         tech.unit.count = inputs.tech.count

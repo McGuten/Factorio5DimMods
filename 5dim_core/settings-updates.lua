@@ -7,8 +7,7 @@ data:extend(
             setting_type = "startup",
             default_value = 60,
             minimum_value = 1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Stacks of player inventory (Default: 60)"
+            maximum_value = 1000
         },
         {
             type = "int-setting",
@@ -17,8 +16,7 @@ data:extend(
             setting_type = "startup",
             default_value = 1,
             minimum_value = 1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Stacks of items (Multiplier)"
+            maximum_value = 1000
         },
         {
             type = "int-setting",
@@ -27,9 +25,7 @@ data:extend(
             setting_type = "startup",
             default_value = 6,
             minimum_value = 1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Long reach (Default: 6)",
-            localised_description = "Distance for build and open inventories, for can interact with all screen: 125"
+            maximum_value = 1000
         },
         {
             type = "int-setting",
@@ -38,9 +34,7 @@ data:extend(
             setting_type = "startup",
             default_value = 6,
             minimum_value = 1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Long Mine (Default: 6)",
-            localised_description = "Extend the mining distance of your player: 125"
+            maximum_value = 1000
         },
         {
             type = "double-setting",
@@ -49,8 +43,7 @@ data:extend(
             setting_type = "startup",
             default_value = 1,
             minimum_value = 0.01,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Mining speed (Multiplier)"
+            maximum_value = 1000
         },
         {
             type = "int-setting",
@@ -59,8 +52,7 @@ data:extend(
             setting_type = "startup",
             default_value = 25,
             minimum_value = 1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Light radius (Default: 25)"
+            maximum_value = 1000
         },
         {
             type = "bool-setting",
@@ -68,8 +60,7 @@ data:extend(
             order = "be",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Infinite ores"
+            per_user = false
         },
         {
             type = "bool-setting",
@@ -77,8 +68,7 @@ data:extend(
             order = "bf",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Infinite ores with full yield"
+            per_user = false
         },
         {
             type = "bool-setting",
@@ -86,8 +76,7 @@ data:extend(
             order = "caa",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Small tree collision box"
+            per_user = false
         },
         {
             type = "string-setting",
@@ -95,8 +84,7 @@ data:extend(
             order = "cb",
             setting_type = "startup",
             default_value = "Nothing",
-            allowed_values = {"Nothing", "Small amount", "Medium amount", "Big amount", "Huge amount"},
-            localised_name = "[5Dim's mods] Items to start a new map (Default: Nothing)"
+            allowed_values = {"Nothing", "Small amount", "Medium amount", "Big amount", "Huge amount"}
         },
         {
             type = "string-setting",
@@ -104,8 +92,7 @@ data:extend(
             order = "cc",
             setting_type = "startup",
             default_value = "Nothing",
-            allowed_values = {"Nothing", "Modular armor", "Power armor", "Power armor MK2"},
-            localised_name = "[5Dim's mods] Equipment to start a new map (Default: Nothing)"
+            allowed_values = {"Nothing", "Modular armor", "Power armor", "Power armor MK2"}
         },
         {
             type = "bool-setting",
@@ -113,8 +100,7 @@ data:extend(
             order = "cd",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Start with trains technologies"
+            per_user = false
         },
         {
             type = "bool-setting",
@@ -122,8 +108,7 @@ data:extend(
             order = "ce",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Start with robots technologies"
+            per_user = false
         },
         {
             type = "int-setting",
@@ -132,8 +117,7 @@ data:extend(
             setting_type = "startup",
             default_value = 250,
             minimum_value = 1,
-            maximum_value = 100000,
-            localised_name = "[5Dim's mods] Player health (Default 250)"
+            maximum_value = 100000
         },
         {
             type = "double-setting",
@@ -142,8 +126,7 @@ data:extend(
             setting_type = "startup",
             default_value = 0.15,
             minimum_value = 0.1,
-            maximum_value = 1000,
-            localised_name = "[5Dim's mods] Player healing per tick (Default 0.15)"
+            maximum_value = 1000
         },
         {
             type = "bool-setting",
@@ -151,8 +134,7 @@ data:extend(
             order = "cab",
             setting_type = "startup",
             default_value = false,
-            per_user = false,
-            localised_name = "[5Dim's mods] Stackeable artillery bullets"
+            per_user = false
         }
     }
 )
@@ -166,8 +148,7 @@ if not mods["Rampant"] then
                 setting_type = "startup",
                 default_value = 1,
                 minimum_value = 0.01,
-                maximum_value = 1000,
-                localised_name = "[5Dim's mods] Enemies spawners health (Multiplier)"
+                maximum_value = 1000
             },
             {
                 type = "double-setting",
@@ -176,8 +157,7 @@ if not mods["Rampant"] then
                 setting_type = "startup",
                 default_value = 1,
                 minimum_value = 0.01,
-                maximum_value = 1000,
-                localised_name = "[5Dim's mods] Enemies health (Multiplier)"
+                maximum_value = 1000
             },
             {
                 type = "double-setting",
@@ -186,66 +166,7 @@ if not mods["Rampant"] then
                 setting_type = "startup",
                 default_value = 1,
                 minimum_value = 0.001,
-                maximum_value = 1000,
-                localised_name = "[5Dim's mods] Enemies healing per tick (Multiplier)"
-            }
-        }
-    )
-end
-
-if mods["5dim_enemies"] then
-    --order d for battelfield
-    data:extend(
-        {
-            {
-                type = "bool-setting",
-                name = "5d-suicide",
-                order = "df",
-                setting_type = "startup",
-                default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Enemies] Suicide bitters",
-                localised_description = "You want to active suicide bitters? (Default: True)"
-            },
-            {
-                type = "bool-setting",
-                name = "5d-exp",
-                order = "dg",
-                setting_type = "startup",
-                default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Enemies] Experimental enemies",
-                localised_description = "You want to active experimental enemies? (Default: True)"
-            },
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-swimmer",
-            --     order = "dh",
-            --     setting_type = "startup",
-            --     default_value = true,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Enemies] Swimmer bitters",
-            --     localised_description = "You want to active experimental enemies? (Default: True)"
-            -- },
-            -- {
-            --     type = "bool-setting",
-            --     name = "5d-climber",
-            --     order = "di",
-            --     setting_type = "startup",
-            --     default_value = true,
-            --     per_user = false,
-            --     localised_name = "[5Dim's Enemies] Climber bitters",
-            --     localised_description = "You want to active experimental enemies? (Default: True)"
-            -- },
-            {
-                type = "bool-setting",
-                name = "5d-worm",
-                order = "dj",
-                setting_type = "startup",
-                default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Enemies] Behemoth and Experimental worm",
-                localised_description = "You want to active behemoth and experimental worms? (Default: True)"
+                maximum_value = 1000
             }
         }
     )
@@ -261,9 +182,7 @@ if mods["5dim_infiniteresearch"] then
                 order = "ec",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Infinite Research] Infinite robots cargo size",
-                localised_description = "You want to active infinite robots cargo size? (Default: True)"
+                per_user = false
             },
             {
                 type = "bool-setting",
@@ -271,9 +190,7 @@ if mods["5dim_infiniteresearch"] then
                 order = "ed",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Infinite Research] Infinite stack cargo size",
-                localised_description = "You want to active infinite stack cargo size? (Default: True)"
+                per_user = false
             },
             {
                 type = "bool-setting",
@@ -281,9 +198,7 @@ if mods["5dim_infiniteresearch"] then
                 order = "ee",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Infinite Research] Infinite research speed",
-                localised_description = "You want to active infinite research speed? (Default: True)"
+                per_user = false
             },
             {
                 type = "bool-setting",
@@ -291,9 +206,7 @@ if mods["5dim_infiniteresearch"] then
                 order = "ef",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Infinite Research] Infinite research speed for guns and turrets",
-                localised_description = "You want to active infinite research for speed guns and turrets? (Default: True)"
+                per_user = false
             },
             {
                 type = "bool-setting",
@@ -301,15 +214,13 @@ if mods["5dim_infiniteresearch"] then
                 order = "eg",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Infinite Research] Infinite research braking",
-                localised_description = "You want to active infinite research for braking? (Default: True)"
+                per_user = false
             }
         }
     )
 end
 
-if mods["5dim_vehicle"] and mods["5dim_equipment"] then
+if mods["5dim_transport"] and mods["5dim_equipment"] then
     --order z for misc
     data:extend(
         {
@@ -319,9 +230,7 @@ if mods["5dim_vehicle"] and mods["5dim_equipment"] then
                 order = "za",
                 setting_type = "startup",
                 default_value = true,
-                per_user = false,
-                localised_name = "[5Dim's Vehicles & Equipment] Active vehicle grids",
-                localised_description = "You want to active vehicle grids like a nanoarmor? (Default: True)"
+                per_user = false
             },
             {
                 type = "bool-setting",
@@ -329,9 +238,7 @@ if mods["5dim_vehicle"] and mods["5dim_equipment"] then
                 order = "zb",
                 setting_type = "startup",
                 default_value = false,
-                per_user = false,
-                localised_name = "[5Dim's Vehicles & Equipment] Override all vehicle grid",
-                localised_description = "You want to active all vehicle grids like a nanoarmor? (just work with non grid vehicles and need active vehicle grids) (Default: False)"
+                per_user = false
             }
         }
     )

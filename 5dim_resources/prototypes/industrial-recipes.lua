@@ -39,13 +39,13 @@ data:extend(
             name = "5d-copper-plate-industrial-dust",
             icon = "__base__/graphics/icons/copper-plate.png",
             icon_size = 64,
-            subgroup = "plates-industrial-ore",
+            subgroup = "plates-industrial-dust",
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
-                { type = "item", name = "copper-ore", amount = 85 }
+                { type = "item", name = "5d-copper-dust", amount = 85 }
             },
             results = {
                 { type = "item", name = "copper-plate", amount = 100 }
@@ -56,13 +56,13 @@ data:extend(
             name = "5d-copper-plate-industrial",
             icon = "__base__/graphics/icons/copper-plate.png",
             icon_size = 64,
-            subgroup = "plates-industrial-dust",
+            subgroup = "plates-industrial-ore",
             order = "ab",
             category = "industrial-furnace",
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
-                { type = "item", name = "5d-copper-dust", amount = 85 }
+                { type = "item", name = "copper-ore", amount = 85 }
             },
             results = {
                 { type = "item", name = "copper-plate", amount = 100 }

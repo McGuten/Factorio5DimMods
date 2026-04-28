@@ -2,10 +2,10 @@
     "name": "5dim_nuclear",
     "version": "2.0.4",
     "factorio_version": "2.0",
-    "title": "5Dim's mod - New Nuclear",
+    "title": "5Dim's mod - Nuclear",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Nuclear for 5dim's mod\n\rIf you are a mad of nuclear power with this mod you can upgrade all your blueprints to a new level.\n\rThis mod include:\n\r- 10 tiers of all nuclear stuff",
-    "dependencies": ["5dim_core >= 2.0.28"]
+    "description": "Nuclear module for 5Dim's mod\n\rExpands nuclear power generation with tiered components\n\rThis mod includes:\n\r- 10 tiers of nuclear reactors\n\r- 10 tiers of heat exchangers\n\r- 10 tiers of heat pipes\n\r- 10 tiers of steam turbines\n\r- 10 tiers of centrifuges",
+    "dependencies": ["5dim_core >= 2.0.42"]
 }

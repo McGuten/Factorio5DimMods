@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Decoration for 5dim's mod\n\rAdd some new items to decorate your base like numbers and letters",
-    "dependencies": ["5dim_core >= 2.0.0"]
+    "description": "Decoration module for 5Dim's mod\n\rAdd decorative elements to personalize your factory\n\rThis mod includes:\n\r- Placeable numbers (0-9)\n\r- Placeable letters (A-Z)\n\r- Decorative tiles\n\r- Signs and markers for factory organization",
+    "dependencies": ["5dim_core >= 2.0.42"]
 }

@@ -1,352 +1,183 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Module - Beacon Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.module.generation-beacon")
 
-local modules = 2
-local energy = 480
-local areaEffect = 3
-local efficiencyArea = 1.5
-local techCount = 400
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Beacon 01
-genBeacons {
-    number = "01",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "electronic-circuit", amount = 20 },
-        { type = "item", name = "advanced-circuit",   amount = 20 },
-        { type = "item", name = "steel-plate",        amount = 10 },
-        { type = "item", name = "copper-cable",       amount = 10 }
-    },
-    nextUpdate = "5d-beacon-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseModules = 2
+local baseEnergy = 480
+local baseAreaEffect = 3
+local baseEfficiency = 1.5
+local baseTechCount = 400
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: module slots bonus, area bonus, efficiency bonus, order, vanilla flag
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { moduleBonus = 0, areaBonus = 0, efficiencyBonus = 0,    order = "a", isVanilla = true },
+    [2]  = { moduleBonus = 1, areaBonus = 0, efficiencyBonus = 0,    order = "b" },
+    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.05, order = "c" },
+    [4]  = { moduleBonus = 3, areaBonus = 0, efficiencyBonus = 0.05, order = "d" },
+    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.10, order = "e" },
+    [6]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.10, order = "f" },
+    [7]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.15, order = "g" },
+    [8]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.15, order = "h" },
+    [9]  = { moduleBonus = 5, areaBonus = 3, efficiencyBonus = 0.20, order = "i" },
+    [10] = { moduleBonus = 6, areaBonus = 3, efficiencyBonus = 0.20, order = "j" }
 }
 
-modules = modules + 1
-energy = energy + 240
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Beacon 02
-genBeacons {
-    number = "02",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "beacon",               amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "electronic-circuit",   amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
-    },
-    nextUpdate = "5d-beacon-03",
-    tech = {
-        number = 2,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission"
-        }
-    }
-}
-
-efficiencyArea = efficiencyArea + 0.05
-modules = modules + 1
-energy = energy + 240
-
--- Beacon 03
-genBeacons {
-    number = "03",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-beacon-02",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "electronic-circuit",   amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission" }
     },
-    nextUpdate = "5d-beacon-04",
-    tech = {
-        number = 3,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-2"
-        }
-    }
-}
-
-modules = modules + 1
-energy = energy + 240
-
--- Beacon 04
-genBeacons {
-    number = "04",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-beacon-03",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "electronic-circuit",   amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-2" }
     },
-    nextUpdate = "5d-beacon-05",
-    tech = {
-        number = 4,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-3"
-        }
-    }
-}
-
-efficiencyArea = efficiencyArea + 0.05
-areaEffect = areaEffect + 1
-energy = energy + 240
-
--- Beacon 05
-genBeacons {
-    number = "05",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-beacon-04",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "advanced-circuit",     amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-3" }
     },
-    nextUpdate = "5d-beacon-06",
-    tech = {
-        number = 5,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-4",
-            "utility-science-pack"
-        }
-    }
-}
-
-energy = energy + 240
-modules = modules + 1
-
--- Beacon 06
-genBeacons {
-    number = "06",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-beacon-05",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "advanced-circuit",     amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-4", "utility-science-pack" }
     },
-    nextUpdate = "5d-beacon-07",
-    tech = {
-        number = 6,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-5"
-        }
-    }
-}
-
-efficiencyArea = efficiencyArea + 0.05
-energy = energy + 240
-areaEffect = areaEffect + 1
-
--- Beacon 07
-genBeacons {
-    number = "07",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-beacon-06",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "advanced-circuit",     amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-5" }
     },
-    nextUpdate = "5d-beacon-08",
-    tech = {
-        number = 7,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-6"
-        }
-    }
-}
-
-modules = modules + 1
-energy = energy + 240
-
--- Beacon 08
-genBeacons {
-    number = "08",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-beacon-07",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "advanced-circuit",     amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-6" }
     },
-    nextUpdate = "5d-beacon-09",
-    tech = {
-        number = 8,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-7"
-        }
-    }
-}
-
-efficiencyArea = efficiencyArea + 0.05
-energy = energy + 240
-areaEffect = areaEffect + 1
-
--- Beacon 09
-genBeacons {
-    number = "09",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-beacon-08",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "processing-unit",      amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-7" }
     },
-    nextUpdate = "5d-beacon-10",
-    tech = {
-        number = 9,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-8"
-        }
-    }
-}
-
-modules = modules + 1
-energy = energy + 240
-
--- Beacon 10
-genBeacons {
-    number = "10",
-    subgroup = "beacon",
-    area = areaEffect,
-    moduleSlots = modules,
-    energyUsage = energy,
-    efficiency = efficiencyArea,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-beacon-09",         amount = 1 },
-        { type = "item", name = "electric-engine-unit", amount = 5 },
-        { type = "item", name = "processing-unit",      amount = 5 },
-        { type = "item", name = "battery",              amount = 5 }
+        prerequisites = { "effect-transmission-8" }
     },
-    tech = {
-        number = 10,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "effect-transmission-9"
-        }
+        prerequisites = { "effect-transmission-9" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier (exponential scaling like vanilla)
+    local modules = baseModules + config.moduleBonus
+    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    local areaEffect = baseAreaEffect + config.areaBonus
+    local efficiency = baseEfficiency + config.efficiencyBonus
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.beacon[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-beacon-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the beacon
+    genBeacons {
+        number = tierNum,
+        subgroup = "beacon",
+        area = areaEffect,
+        moduleSlots = modules,
+        energyUsage = energy,
+        efficiency = efficiency,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end
+

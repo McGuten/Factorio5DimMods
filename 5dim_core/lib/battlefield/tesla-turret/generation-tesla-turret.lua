@@ -1,18 +1,25 @@
 require("tint-tesla-turret")
 
 function genTeslaTurrets(inputs)
-    -- Copy electric furnace
+    -- Skip vanilla tier (when new = false) - don't modify base game prototypes
+    if not inputs.new then
+        return
+    end
+    
+    -- Copy laser turret as base for tesla
     local item = table.deepcopy(data.raw.item["laser-turret"])
     local recipe = table.deepcopy(data.raw.recipe["laser-turret"])
     local entity = table.deepcopy(data.raw["electric-turret"]["laser-turret"])
     local tech = table.deepcopy(data.raw.technology["laser-turret"])
 
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
+    
+    -- Support for separate base and turret tints
+    local baseTint = inputs.baseTint or inputs.tint
+    local turretTint = inputs.turretTint or inputs.tint
 
     --Item
-    if inputs.new then
-        item.name = "5d-tesla-turret-" .. inputs.number
-    end
+    item.name = "5d-tesla-turret-" .. inputs.number
     item.icon =
         "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
@@ -24,9 +31,7 @@ function genTeslaTurrets(inputs)
     recipe.icon = item.icon
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.icon_size = 64
-    if inputs.new then
-        recipe.enabled = false
-    end
+    recipe.enabled = false
     recipe.ingredients = inputs.ingredients
 
     --Entity
@@ -38,27 +43,40 @@ function genTeslaTurrets(inputs)
         tesla_turret_extension_mask {
         frame_count = 1,
         line_length = 1,
-        tint = inputs.tint
+        tint = turretTint
     }
-    entity.preparing_animation.layers[3] = tesla_turret_extension_mask {tint = inputs.tint}
-    entity.prepared_animation.layers[3] = tesla_turret_shooting_mask {tint = inputs.tint}
+    entity.preparing_animation.layers[3] = tesla_turret_extension_mask {tint = turretTint}
+    entity.prepared_animation.layers[3] = tesla_turret_shooting_mask {tint = turretTint}
     entity.folding_animation.layers[3] =
         tesla_turret_extension_mask {
         run_mode = "backward",
-        tint = inputs.tint
+        tint = turretTint
     }
-    entity.attack_parameters.cooldown = inputs.attackSpeed
-    entity.attack_parameters.range = inputs.range
-    entity.attack_parameters.damage_modifier = inputs.cooldown
-    entity.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
-    entity.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+    
+    -- Apply tint to base visualization
+    entity.graphics_set.base_visualisation.animation.layers[1].tint = baseTint
+    
+    -- Modify attack_parameters - keep original structure, just update allowed values
+    if entity.attack_parameters then
+        entity.attack_parameters.range = inputs.range
+        entity.attack_parameters.damage_modifier = inputs.cooldown
+        -- Update ammo_type if it exists
+        if entity.attack_parameters.ammo_type and 
+           entity.attack_parameters.ammo_type.action and 
+           entity.attack_parameters.ammo_type.action.action_delivery then
+            entity.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
+            entity.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+        end
+    end
     entity.max_health = inputs.health or 1500
     entity.fast_replaceable_group = "tesla-turret"
     entity.resistances = inputs.resistances or nil
     entity.energy_source.buffer_capacity = 801 * 6 .. "kJ"
     entity.energy_source.input_flow_limit = 9600 * 6 .. "kW"
     entity.energy_source.drain = 24 * 6 .. "kW"
-    entity.attack_parameters.ammo_type.energy_consumption = 800 * 6 .. "kJ"
+    if entity.attack_parameters and entity.attack_parameters.ammo_type then
+        entity.attack_parameters.ammo_type.energy_consumption = 800 * 6 .. "kJ"
+    end
 
     data:extend({entity, recipe, item})
 

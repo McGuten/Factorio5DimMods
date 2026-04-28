@@ -31,7 +31,7 @@ function genHeatExchangers(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.energy_consumption = inputs.energyUsage .. "MW"
-    entity.energy_source.max_temperature = inputs.pollution
+    entity.energy_source.max_temperature = inputs.maxTemperature
     entity.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
     entity.fast_replaceable_group = "heat-exchanger"
 

@@ -29,7 +29,7 @@ function genLamps(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_usage_per_tick = inputs.energyUsage .. "kW"
     entity.light.size = inputs.lightSize
     entity.fast_replaceable_group = "lamp"
 

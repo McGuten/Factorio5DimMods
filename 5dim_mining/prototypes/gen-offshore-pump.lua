@@ -1,357 +1,173 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Mining - Offshore Pump Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.mining.generation-offshore-pump")
 
-local speed = 20
-local modules = 2
-local energy = 90
-local emisions = 10
-local techCount = 100
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Offshore Pump 01
-genOffshorePumps {
-    number = "01",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "pipe",               amount = 1 },
-        { type = "item", name = "iron-gear-wheel",    amount = 1 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseSpeed = 20
+local baseEmissions = 10
+local baseTechCount = 100
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: speed bonus, order, vanilla flag
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { speedBonus = 0,  order = "a", isVanilla = true },
+    [2]  = { speedBonus = 5,  order = "b" },
+    [3]  = { speedBonus = 10, order = "c" },
+    [4]  = { speedBonus = 15, order = "d" },
+    [5]  = { speedBonus = 20, order = "e" },
+    [6]  = { speedBonus = 25, order = "f" },
+    [7]  = { speedBonus = 30, order = "g" },
+    [8]  = { speedBonus = 35, order = "h" },
+    [9]  = { speedBonus = 40, order = "i" },
+    [10] = { speedBonus = 45, order = "j" }
 }
 
-speed = speed + 5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Offshore Pump 02
-genOffshorePumps {
-    number = "02",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "offshore-pump",      amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "pipe",               amount = 3 },
-        { type = "item", name = "iron-gear-wheel",    amount = 2 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "fluid-handling",
-            "logistic-science-pack"
-        }
-    }
-}
-
-speed = speed + 5
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 03
-genOffshorePumps {
-    number = "03",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-02", amount = 1 },
-        { type = "item", name = "electronic-circuit",  amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "iron-gear-wheel",     amount = 2 }
+        prerequisites = { "fluid-handling", "logistic-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-1"
-        }
-    }
-}
-
-speed = speed + 5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 04
-genOffshorePumps {
-    number = "04",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-03", amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "iron-gear-wheel",     amount = 2 }
+        prerequisites = { "5d-offshore-pump-1" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 5
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 05
-genOffshorePumps {
-    number = "05",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-04", amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "iron-gear-wheel",     amount = 1 }
+        prerequisites = { "5d-offshore-pump-2", "chemical-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-3"
-        }
-    }
-}
-
-speed = speed + 5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 06
-genOffshorePumps {
-    number = "06",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-05", amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "iron-gear-wheel",     amount = 1 }
+        prerequisites = { "5d-offshore-pump-3" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 5
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 07
-genOffshorePumps {
-    number = "07",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-06", amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "advanced-circuit",    amount = 1 }
+        prerequisites = { "5d-offshore-pump-4", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-5"
-        }
-    }
-}
-
-speed = speed + 5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 08
-genOffshorePumps {
-    number = "08",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-07", amount = 1 },
-        { type = "item", name = "steel-plate",         amount = 5 },
-        { type = "item", name = "pipe",                amount = 3 },
-        { type = "item", name = "advanced-circuit",    amount = 1 }
+        prerequisites = { "5d-offshore-pump-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 5
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 09
-genOffshorePumps {
-    number = "09",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-08",   amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "pipe",                  amount = 3 },
-        { type = "item", name = "advanced-circuit",      amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 1 }
+        prerequisites = { "5d-offshore-pump-6", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-offshore-pump-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-7"
-        }
-    }
-}
-
-speed = speed + 5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Offshore Pump 10
-genOffshorePumps {
-    number = "10",
-    subgroup = "liquid-offshore-pump",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-offshore-pump-09",   amount = 1 },
-        { type = "item", name = "steel-plate",           amount = 5 },
-        { type = "item", name = "pipe",                  amount = 3 },
-        { type = "item", name = "advanced-circuit",      amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 1 }
+        prerequisites = { "5d-offshore-pump-7" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-offshore-pump-8"
-        }
+        prerequisites = { "5d-offshore-pump-8" }
     }
 }
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local speed = baseSpeed + config.speedBonus
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.offshorePump[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+    })
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-offshore-pump-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the offshore pump
+    genOffshorePumps {
+        number = tierNum,
+        subgroup = "liquid-offshore-pump",
+        craftingSpeed = speed,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

@@ -33,7 +33,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "armor-fision-reactor",
+            name = "armor-fission-reactor",
             group = "armor",
             order = "da"
         },
@@ -45,7 +45,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "armor-baterry",
+            name = "armor-battery",
             group = "armor",
             order = "e"
         },
@@ -69,7 +69,7 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "armor-exoesqueleto",
+            name = "armor-exoskeleton",
             group = "armor",
             order = "i"
         },

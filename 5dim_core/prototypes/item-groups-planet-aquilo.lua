@@ -21,6 +21,18 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "space-fusion-reactor",
+            group = "aquilo",
+            order = "2a"
+        },
+        {
+            type = "item-subgroup",
+            name = "space-fusion-generator",
+            group = "aquilo",
+            order = "2b"
+        },
+        {
+            type = "item-subgroup",
             name = "aquilo-items",
             group = "aquilo",
             order = "3"

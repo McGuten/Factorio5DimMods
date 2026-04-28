@@ -15,45 +15,69 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "orbit-buildings",
+            name = "orbit-cargo-bay",
             group = "orbit",
             order = "b"
         },
         {
             type = "item-subgroup",
-            name = "orbit-crushing",
+            name = "orbit-landing-pad",
             group = "orbit",
             order = "c"
         },
         {
             type = "item-subgroup",
-            name = "orbit-advanced-crushing",
+            name = "orbit-asteroid-collector",
             group = "orbit",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "orbit-reprocesing",
+            name = "orbit-crusher",
             group = "orbit",
             order = "e"
         },
         {
             type = "item-subgroup",
-            name = "orbit-chunks",
+            name = "orbit-thruster",
             group = "orbit",
             order = "f"
+        },
+        {
+            type = "item-subgroup",
+            name = "orbit-crushing",
+            group = "orbit",
+            order = "g"
+        },
+        {
+            type = "item-subgroup",
+            name = "orbit-advanced-crushing",
+            group = "orbit",
+            order = "h"
+        },
+        {
+            type = "item-subgroup",
+            name = "orbit-reprocesing",
+            group = "orbit",
+            order = "i"
+        },
+        {
+            type = "item-subgroup",
+            name = "orbit-chunks",
+            group = "orbit",
+            order = "j"
         },
         {
             type = "item-subgroup",
             name = "orbit-resources",
             group = "orbit",
-            order = "f"
+            order = "k"
         },
         {
             type = "item-subgroup",
             name = "orbit-liquids",
             group = "orbit",
-            order = "g"
+            order = "l"
         },
     }
 )

@@ -56,6 +56,13 @@ function genMasher(inputs)
                 recipe = item.name
             }
         }
+        -- Add dust recipes unlock to first masher technology
+        if inputs.tech.number == 1 then
+            table.insert(tech.effects, { type = "unlock-recipe", recipe = "5d-iron-dust" })
+            table.insert(tech.effects, { type = "unlock-recipe", recipe = "5d-copper-dust" })
+            table.insert(tech.effects, { type = "unlock-recipe", recipe = "5d-iron-plate" })
+            table.insert(tech.effects, { type = "unlock-recipe", recipe = "5d-copper-plate" })
+        end
         data:extend({tech})
     end
 end

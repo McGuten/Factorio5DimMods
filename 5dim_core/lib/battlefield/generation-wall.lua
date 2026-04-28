@@ -1,5 +1,10 @@
 function genStoneWalls(inputs)
-    -- Copy electric furnace
+    -- Skip vanilla tier (when new = false) - don't modify base game prototypes
+    if not inputs.new then
+        return
+    end
+    
+    -- Copy stone wall
     local item = table.deepcopy(data.raw.item["stone-wall"])
     local recipe = table.deepcopy(data.raw.recipe["stone-wall"])
     local entity = table.deepcopy(data.raw["wall"]["stone-wall"])
@@ -8,9 +13,7 @@ function genStoneWalls(inputs)
     local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
-    if inputs.new then
-        item.name = "5d-stone-wall-" .. inputs.number
-    end
+    item.name = "5d-stone-wall-" .. inputs.number
     item.icon =
         "__5dim_battlefield__/graphics/icon/stone-wall/stone-wall-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
@@ -21,11 +24,9 @@ function genStoneWalls(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.new then
-        recipe.enabled = false
-        recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        recipe.ingredients = inputs.ingredients
-    end
+    recipe.enabled = false
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name

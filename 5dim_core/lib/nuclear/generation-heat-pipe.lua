@@ -30,8 +30,8 @@ function genHeatPipes(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.heat_buffer.max_temperature = inputs.craftingSpeed
-    entity.heat_buffer.max_transfer = inputs.energyUsage .. "GW"
+    entity.heat_buffer.max_temperature = inputs.maxTemperature
+    entity.heat_buffer.max_transfer = inputs.maxTransfer .. "GW"
     entity.fast_replaceable_group = "heat-pipe"
 
     -- Base

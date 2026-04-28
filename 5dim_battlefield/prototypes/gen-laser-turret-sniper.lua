@@ -1,471 +1,235 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Sniper Laser Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.laser-turret.generation-laser-turret")
 
-local rango = 62
-local shootingSpeed = 120
-local damageModif = 50
-local color = { r = 0, g = 1, b = 1, a = 1 }
-local hp = 1400
-local techCount = 200
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local tierColors = require("__5dim_core__.lib.tier-colors")
 
--- Sniper laser turret 01
-genLaserTurrets {
-    number = "sniper-01",
-    subgroup = "defense-laser-turret-sniper",
-    order = "a",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "steel-plate",        amount = 40 },
-        { type = "item", name = "electronic-circuit", amount = 40 },
-        { type = "item", name = "battery",            amount = 25 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 5
-        },
-        {
-            type = "explosion",
-            percent = 2.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-02",
-    tech = {
-        number = "5d-laser-turret-sniper-1",
-        count = techCount * 1,
-        packs = {
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (1400 → 7000), Damage x5 (60 → 300)
+-------------------------------------------------------------------------------
+
+local baseRange = 62
+local baseDamage = 60
+local baseHealth = 1400
+local rangeIncrement = 4
+local damageIncrement = 27                -- 60 → 303 (x5)
+local healthIncrement = 622               -- 1400 → 7000 (x5)
+local baseTechCount = 200
+
+-- Type color: Sniper = Cyan/Teal
+local typeColor = { r = 0.1, g = 0.8, b = 0.8, a = 1 }
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a" },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
+}
+
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
+
+local techConfig = {
+    [1] = {
+        techName = "5d-laser-turret-sniper-1",
+        countMultiplier = 1,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-laser-turret-big-5"
-        }
+        prerequisites = { "5d-laser-turret-big-5", "utility-science-pack" }
+    },
+    [2] = {
+        techName = "5d-laser-turret-sniper-2",
+        countMultiplier = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-1" }
+    },
+    [3] = {
+        techName = "5d-laser-turret-sniper-3",
+        countMultiplier = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-2" }
+    },
+    [4] = {
+        techName = "5d-laser-turret-sniper-4",
+        countMultiplier = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-3" }
+    },
+    [5] = {
+        techName = "5d-laser-turret-sniper-5",
+        countMultiplier = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-4" }
+    },
+    [6] = {
+        techName = "5d-laser-turret-sniper-6",
+        countMultiplier = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-5" }
+    },
+    [7] = {
+        techName = "5d-laser-turret-sniper-7",
+        countMultiplier = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-6" }
+    },
+    [8] = {
+        techName = "5d-laser-turret-sniper-8",
+        countMultiplier = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-7" }
+    },
+    [9] = {
+        techName = "5d-laser-turret-sniper-9",
+        countMultiplier = 9,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-8" }
+    },
+    [10] = {
+        techName = "5d-laser-turret-sniper-10",
+        countMultiplier = 10,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-sniper-9" }
     }
 }
 
-rango = rango + 2
-hp = hp + 140
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
 
--- Sniper laser turret 02
-genLaserTurrets {
-    number = "sniper-02",
-    subgroup = "defense-laser-turret-sniper",
-    order = "b",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-01", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-03",
-    tech = {
-        number = "5d-laser-turret-sniper-2",
-        count = techCount * 2,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-1"
-        }
+local function getResistances(tier)
+    local firePercent = 5 + (tier - 1) * 5
+    local explosionPercent = 2.5 + (tier - 1) * 2.5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
     }
-}
+end
 
-rango = rango + 2
-hp = hp + 140
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Sniper laser turret 03
-genLaserTurrets {
-    number = "sniper-03",
-    subgroup = "defense-laser-turret-sniper",
-    order = "c",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-02", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = "sniper-" .. string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local damage = baseDamage + (tier - 1) * damageIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.laserTurretSniper[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-laser-turret-sniper-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration
+    local tech = nil
+    if techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tc.techName,
+            count = baseTechCount * tc.countMultiplier,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
-    },
-    nextUpdate = "5d-laser-turret-sniper-04",
-    tech = {
-        number = "5d-laser-turret-sniper-3",
-        count = techCount * 3,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-2"
-        }
+    end
+    
+    -- Generate the sniper laser turret
+    genLaserTurrets {
+        number = tierNum,
+        subgroup = "defense-laser-turret-sniper",
+        order = config.order,
+        new = true,
+        range = range,
+        damage = damage,
+        health = health,
+        baseTint = tierColors[tier],
+        turretTint = typeColor,
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 04
-genLaserTurrets {
-    number = "sniper-04",
-    subgroup = "defense-laser-turret-sniper",
-    order = "d",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-03", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 20
-        },
-        {
-            type = "explosion",
-            percent = 10
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-05",
-    tech = {
-        number = "5d-laser-turret-sniper-4",
-        count = techCount * 4,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-3",
-            "utility-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 05
-genLaserTurrets {
-    number = "sniper-05",
-    subgroup = "defense-laser-turret-sniper",
-    order = "e",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-04", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 25
-        },
-        {
-            type = "explosion",
-            percent = 12.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-06",
-    tech = {
-        number = "5d-laser-turret-sniper-5",
-        count = techCount * 5,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 06
-genLaserTurrets {
-    number = "sniper-06",
-    subgroup = "defense-laser-turret-sniper",
-    order = "f",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-05", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 30
-        },
-        {
-            type = "explosion",
-            percent = 15
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-07",
-    tech = {
-        number = "5d-laser-turret-sniper-6",
-        count = techCount * 6,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-5"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 07
-genLaserTurrets {
-    number = "sniper-07",
-    subgroup = "defense-laser-turret-sniper",
-    order = "g",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-06", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 35
-        },
-        {
-            type = "explosion",
-            percent = 17.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-08",
-    tech = {
-        number = "5d-laser-turret-sniper-7",
-        count = techCount * 7,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-6"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 08
-genLaserTurrets {
-    number = "sniper-08",
-    subgroup = "defense-laser-turret-sniper",
-    order = "h",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-07", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 40
-        },
-        {
-            type = "explosion",
-            percent = 20
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-09",
-    tech = {
-        number = "5d-laser-turret-sniper-8",
-        count = techCount * 8,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 09
-genLaserTurrets {
-    number = "sniper-09",
-    subgroup = "defense-laser-turret-sniper",
-    order = "i",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-08", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 45
-        },
-        {
-            type = "explosion",
-            percent = 22.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-sniper-10",
-    tech = {
-        number = "5d-laser-turret-sniper-9",
-        count = techCount * 9,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-8"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 140
-
--- Sniper laser turret 10
-genLaserTurrets {
-    number = "sniper-10",
-    subgroup = "defense-laser-turret-sniper",
-    order = "j",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-sniper-09", amount = 1 },
-        { type = "item", name = "steel-plate",               amount = 10 },
-        { type = "item", name = "electronic-circuit",        amount = 10 },
-        { type = "item", name = "battery",                   amount = 7 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 50
-        },
-        {
-            type = "explosion",
-            percent = 25
-        }
-    },
-    tech = {
-        number = "5d-laser-turret-sniper-10",
-        count = techCount * 10,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-sniper-9"
-        }
-    }
-}
+end

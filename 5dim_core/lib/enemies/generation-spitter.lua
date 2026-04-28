@@ -35,6 +35,26 @@ function genSpitter(inputs)
         )
     small.corpse = small.name .. "-corpse"
 
+    -- Special behavior: suicide explosion on death
+    if inputs.special_behavior == "suicide" then
+        small.dying_trigger_effect = {
+            {
+                type = "create-entity",
+                entity_name = "medium-explosion",
+                offsets = {{0, 0}},
+                offset_deviation = {{-0.5, -0.5}, {0.5, 0.5}}
+            },
+            {
+                type = "damage",
+                damage = { amount = inputs.damage.small * 2, type = "explosion" }
+            },
+            {
+                type = "create-entity",
+                entity_name = "explosion-hit"
+            }
+        }
+    end
+
     --Optional properties
     -- if inputs.name == "swimmer" then
     --     small.collision_mask = {"object-layer"}
@@ -67,6 +87,26 @@ function genSpitter(inputs)
             }
         )
     medium.corpse = medium.name .. "-corpse"
+
+    -- Special behavior: suicide explosion on death
+    if inputs.special_behavior == "suicide" then
+        medium.dying_trigger_effect = {
+            {
+                type = "create-entity",
+                entity_name = "big-explosion",
+                offsets = {{0, 0}},
+                offset_deviation = {{-0.5, -0.5}, {0.5, 0.5}}
+            },
+            {
+                type = "damage",
+                damage = { amount = inputs.damage.medium * 2, type = "explosion" }
+            },
+            {
+                type = "create-entity",
+                entity_name = "explosion-hit"
+            }
+        }
+    end
 
     --Optional properties
     -- if inputs.name == "swimmer" then
@@ -101,6 +141,26 @@ function genSpitter(inputs)
         )
     big.corpse = big.name .. "-corpse"
 
+    -- Special behavior: suicide explosion on death
+    if inputs.special_behavior == "suicide" then
+        big.dying_trigger_effect = {
+            {
+                type = "create-entity",
+                entity_name = "big-explosion",
+                offsets = {{0, 0}},
+                offset_deviation = {{-0.5, -0.5}, {0.5, 0.5}}
+            },
+            {
+                type = "damage",
+                damage = { amount = inputs.damage.big * 3, type = "explosion" }
+            },
+            {
+                type = "create-entity",
+                entity_name = "explosion-hit"
+            }
+        }
+    end
+
     --Optional properties
     -- if inputs.name == "swimmer" then
     --     big.collision_mask = {"object-layer"}
@@ -133,6 +193,26 @@ function genSpitter(inputs)
             }
         )
     behemoth.corpse = behemoth.name .. "-corpse"
+
+    -- Special behavior: suicide explosion on death
+    if inputs.special_behavior == "suicide" then
+        behemoth.dying_trigger_effect = {
+            {
+                type = "create-entity",
+                entity_name = "massive-explosion",
+                offsets = {{0, 0}},
+                offset_deviation = {{-0.5, -0.5}, {0.5, 0.5}}
+            },
+            {
+                type = "damage",
+                damage = { amount = inputs.damage.behemoth * 4, type = "explosion" }
+            },
+            {
+                type = "create-entity",
+                entity_name = "big-explosion"
+            }
+        }
+    end
 
     --Optional properties
     -- if inputs.name == "swimmer" then

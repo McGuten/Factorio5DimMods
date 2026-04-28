@@ -8,6 +8,7 @@ function genStorageTankMultis(inputs)
     --Item
     item.name = "5d-storage-tank-multi-" .. inputs.number
     item.icon = "__5dim_storage__/graphics/icon/storage-tank-multi/storage-tank-multi-icon-" .. inputs.number .. ".png"
+    item.icon_size = 64
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -26,7 +27,9 @@ function genStorageTankMultis(inputs)
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
+    entity.icon_size = 64
     entity.minable.result = item.name
+    entity.fast_replaceable_group = "storage-tank-multi"
     entity.fluid_box.volume = inputs.capacity
     entity.pictures.picture.sheets[1].filename =
         "__5dim_storage__/graphics/entities/storage-tank-multi/storage-tank-multi-" .. inputs.number .. ".png"

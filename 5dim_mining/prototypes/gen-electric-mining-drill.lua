@@ -1,356 +1,192 @@
-require("__5dim_core__.lib.mining.generation-electric-mining-drill")
+-------------------------------------------------------------------------------
+-- 5Dim's Mining - Electric Mining Drill Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
 
-local speed = 0.5
-local modules = 2
-local energy = 90
-local emisions = 10
-local techCount = 200
+local genMiningDrills = require("__5dim_core__.lib.mining.generation-electric-mining-drill")
 
--- Electric Mining Drill 01
-genMiningDrills {
-    number = "01",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "electronic-circuit", amount = 3 },
-        { type = "item", name = "iron-gear-wheel",    amount = 5 },
-        { type = "item", name = "iron-plate",         amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-02",
-    tech = nil
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseSpeed = 0.5
+local baseModules = 2
+local baseEnergy = 90
+local baseEmissions = 10
+local baseTechCount = 200
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-- Each tier defines: speed bonus, module bonus, order, vanilla flag
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { speedBonus = 0,   moduleBonus = 0, order = "a", isVanilla = true },
+    [2]  = { speedBonus = 0.5, moduleBonus = 1, order = "b" },
+    [3]  = { speedBonus = 1.0, moduleBonus = 1, order = "c" },
+    [4]  = { speedBonus = 1.5, moduleBonus = 2, order = "d" },
+    [5]  = { speedBonus = 2.5, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 3.5, moduleBonus = 3, order = "f" },
+    [7]  = { speedBonus = 4.5, moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 6.5, moduleBonus = 4, order = "h" },
+    [9]  = { speedBonus = 8.0, moduleBonus = 4, order = "i" },
+    [10] = { speedBonus = 9.5, moduleBonus = 5, order = "j" }
 }
 
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric Mining Drill 02
-genMiningDrills {
-    number = "02",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "electric-mining-drill", amount = 1 },
-        { type = "item", name = "electronic-circuit",    amount = 3 },
-        { type = "item", name = "iron-gear-wheel",       amount = 5 },
-        { type = "item", name = "iron-plate",            amount = 5 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-03",
-    tech = {
-        number = 1,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "automation-2",
-            "logistic-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 03
-genMiningDrills {
-    number = "03",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-02", amount = 1 },
-        { type = "item", name = "electronic-circuit",          amount = 3 },
-        { type = "item", name = "iron-gear-wheel",             amount = 5 },
-        { type = "item", name = "steel-plate",                 amount = 5 }
+        prerequisites = { "automation-2", "logistic-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-04",
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 }
+            { "logistic-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-1"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 04
-genMiningDrills {
-    number = "04",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-03", amount = 1 },
-        { type = "item", name = "electronic-circuit",          amount = 3 },
-        { type = "item", name = "iron-gear-wheel",             amount = 5 },
-        { type = "item", name = "steel-plate",                 amount = 5 }
+        prerequisites = { "5d-mining-1" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-05",
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-2",
-            "chemical-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 05
-genMiningDrills {
-    number = "05",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-04", amount = 1 },
-        { type = "item", name = "steel-plate",                 amount = 5 },
-        { type = "item", name = "advanced-circuit",            amount = 3 },
-        { type = "item", name = "speed-module",                amount = 1 }
+        prerequisites = { "5d-mining-2", "chemical-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-06",
-    tech = {
-        number = 4,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-3"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 06
-genMiningDrills {
-    number = "06",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-05", amount = 1 },
-        { type = "item", name = "steel-plate",                 amount = 5 },
-        { type = "item", name = "advanced-circuit",            amount = 3 },
-        { type = "item", name = "productivity-module",         amount = 1 }
+        prerequisites = { "5d-mining-3" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-07",
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-4",
-            "production-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 07
-genMiningDrills {
-    number = "07",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-06", amount = 1 },
-        { type = "item", name = "steel-plate",                 amount = 5 },
-        { type = "item", name = "advanced-circuit",            amount = 3 },
-        { type = "item", name = "speed-module-2",              amount = 1 }
+        prerequisites = { "5d-mining-4", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-08",
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-5"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 08
-genMiningDrills {
-    number = "08",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-07", amount = 1 },
-        { type = "item", name = "advanced-circuit",            amount = 3 },
-        { type = "item", name = "low-density-structure",       amount = 2 },
-        { type = "item", name = "productivity-module-2",       amount = 1 }
+        prerequisites = { "5d-mining-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-09",
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-speed = speed + 0.5
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 09
-genMiningDrills {
-    number = "09",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-08", amount = 1 },
-        { type = "item", name = "advanced-circuit",            amount = 3 },
-        { type = "item", name = "low-density-structure",       amount = 2 },
-        { type = "item", name = "speed-module-3",              amount = 1 }
+        prerequisites = { "5d-mining-6", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-mining-drill-10",
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-7"
-        }
-    }
-}
-
-speed = speed + 0.5
-modules = modules + 1
-energy = energy + 45
-emisions = emisions + 5
-
--- Electric Mining Drill 10
-genMiningDrills {
-    number = "10",
-    subgroup = "mining-speed",
-    craftingSpeed = speed,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-electric-mining-drill-09", amount = 1 },
-        { type = "item", name = "steel-plate",                 amount = 5 },
-        { type = "item", name = "low-density-structure",       amount = 5 },
-        { type = "item", name = "processing-unit",             amount = 2 },
-        { type = "item", name = "productivity-module-3",       amount = 1 }
+        prerequisites = { "5d-mining-7" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "5d-mining-8"
-        }
+        prerequisites = { "5d-mining-8" }
     }
 }
+
+local infrastructureSpaceAgePackThresholds = {
+    { tier = 8, pack = "metallurgic-science-pack" },
+    { tier = 9, pack = "electromagnetic-science-pack" },
+    { tier = 10, pack = "cryogenic-science-pack" }
+}
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local speed = baseSpeed + config.speedBonus
+    local modules = baseModules + config.moduleBonus
+    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.miningDrill[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        skipSpaceAgeMaterials = true
+    })
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-electric-mining-drill-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier - 1,
+            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackThresholds = infrastructureSpaceAgePackThresholds
+            }),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the mining drill
+    genMiningDrills {
+        number = tierNum,
+        subgroup = "mining-speed",
+        craftingSpeed = speed,
+        moduleSlots = modules,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end
+
+-- Log configuration at startup
+CostConfig.printDebugInfo()

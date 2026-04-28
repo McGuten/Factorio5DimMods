@@ -1,364 +1,202 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Resources - Electric Furnace Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.resources.generation-electric-furnace")
 
-local crafting = 2
-local modules = 2
-local energy = 180
-local emisions = 1
-local techCount = 250
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Electric furnace 01
-genElectricFurnaces {
-    number = "01",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "steel-plate",      amount = 10 },
-        { type = "item", name = "advanced-circuit", amount = 3 },
-        { type = "item", name = "stone-brick",      amount = 10 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-02",
-    tech = nil
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseCraftingSpeed = 2
+local baseModuleSlots = 2
+local baseEnergy = 180
+local baseEmissions = 1
+local baseTechCount = 250
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-crafting = crafting + 2
-modules = modules + 1
-energy = energy + 90
-emisions = emisions + 0.75
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Electric furnace 02
-genElectricFurnaces {
-    number = "02",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "electric-furnace", amount = 1 },
-        { type = "item", name = "steel-plate",      amount = 5 },
-        { type = "item", name = "advanced-circuit", amount = 3 },
-        { type = "item", name = "stone-brick",      amount = 5 }
-    },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-03",
-    tech = {
-        number = 3,
-        count = techCount * 1,
-        packs = {
+local techConfig = {
+    [2] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-2"
-        }
-    }
-}
-
-crafting = crafting + 2
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 03
-genElectricFurnaces {
-    number = "03",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-02", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "advanced-circuit",       amount = 3 },
-        { type = "item", name = "concrete",               amount = 5 }
+        prerequisites = { "advanced-material-processing-2" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-04",
-    tech = {
-        number = 4,
-        count = techCount * 2,
-        packs = {
+    [3] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-3",
-            "production-science-pack"
-        }
-    }
-}
-
-crafting = crafting + 2
-modules = modules + 1
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 04
-genElectricFurnaces {
-    number = "04",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "d",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-03", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "advanced-circuit",       amount = 3 },
-        { type = "item", name = "concrete",               amount = 5 }
+        prerequisites = { "advanced-material-processing-3", "production-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-05",
-    tech = {
-        number = 5,
-        count = techCount * 3,
-        packs = {
+    [4] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-4"
-        }
-    }
-}
-
-crafting = crafting + 2
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 05
-genElectricFurnaces {
-    number = "05",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-04", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "advanced-circuit",       amount = 3 },
-        { type = "item", name = "concrete",               amount = 5 },
-        { type = "item", name = "speed-module",           amount = 1 }
+        prerequisites = { "advanced-material-processing-4" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-06",
-    tech = {
-        number = 6,
-        count = techCount * 4,
-        packs = {
+    [5] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-5"
-        }
-    }
-}
-
-crafting = crafting + 2
-modules = modules + 1
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 06
-genElectricFurnaces {
-    number = "06",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-05", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "advanced-circuit",       amount = 3 },
-        { type = "item", name = "refined-concrete",       amount = 5 },
-        { type = "item", name = "productivity-module",    amount = 1 }
+        prerequisites = { "advanced-material-processing-5" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-07",
-    tech = {
-        number = 7,
-        count = techCount * 5,
-        packs = {
+    [6] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-6"
-        }
-    }
-}
-
-crafting = crafting + 2
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 07
-genElectricFurnaces {
-    number = "07",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-06", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "advanced-circuit",       amount = 3 },
-        { type = "item", name = "refined-concrete",       amount = 5 },
-        { type = "item", name = "speed-module-2",         amount = 1 }
+        prerequisites = { "advanced-material-processing-6" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-08",
-    tech = {
-        number = 8,
-        count = techCount * 6,
-        packs = {
+    [7] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-7"
-        }
-    }
-}
-
-crafting = crafting + 2
-modules = modules + 1
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 08
-genElectricFurnaces {
-    number = "08",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules,
-    energyUsage = energy,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-07", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "low-density-structure",  amount = 1 },
-        { type = "item", name = "refined-concrete",       amount = 5 },
-        { type = "item", name = "productivity-module-2",  amount = 1 }
+        prerequisites = { "advanced-material-processing-7" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-09",
-    tech = {
-        number = 9,
-        count = techCount * 7,
-        packs = {
+    [8] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-8",
-            "utility-science-pack"
-        }
-    }
-}
-
-crafting = crafting + 2
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 09
-genElectricFurnaces {
-    number = "09",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-08", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "low-density-structure",  amount = 1 },
-        { type = "item", name = "refined-concrete",       amount = 5 },
-        { type = "item", name = "speed-module-3",         amount = 1 }
+        prerequisites = { "advanced-material-processing-8", "utility-science-pack" }
     },
-    pollution = { pollution = emisions },
-    nextUpdate = "5d-electric-furnace-10",
-    tech = {
-        number = 10,
-        count = techCount * 8,
-        packs = {
+    [9] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-9"
-        }
-    }
-}
-
-crafting = crafting + 2
-modules = modules + 1
-energy = energy + 90
-emisions = emisions + 0.75
-
--- Electric furnace 10
-genElectricFurnaces {
-    number = "10",
-    subgroup = "furnace-electric",
-    craftingSpeed = crafting,
-    moduleSlots = modules + 1,
-    energyUsage = energy,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-electric-furnace-09", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 5 },
-        { type = "item", name = "low-density-structure",  amount = 3 },
-        { type = "item", name = "refined-concrete",       amount = 5 },
-        { type = "item", name = "productivity-module-3",  amount = 1 }
+        prerequisites = { "advanced-material-processing-9" }
     },
-    pollution = { pollution = emisions },
-    tech = {
-        number = 11,
-        count = techCount * 9,
-        packs = {
+    [10] = {
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = {
-            "advanced-material-processing-10"
-        }
+        prerequisites = { "advanced-material-processing-10" }
     }
 }
+
+local infrastructureSpaceAgePackThresholds = {
+    { tier = 8, pack = "metallurgic-science-pack" },
+    { tier = 9, pack = "electromagnetic-science-pack" },
+    { tier = 10, pack = "cryogenic-science-pack" }
+}
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 2
+    if tier >= 6 then
+        craftingSpeed = craftingSpeed + 2
+    end
+    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    -- Pollution decreases with efficiency (vanilla pattern)
+    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    
+    -- Module slots: base + 1 every 2 tiers (3, 5, 7, 9 get +1)
+    local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)
+    -- Odd tiers >= 3 get an extra slot
+    if tier >= 3 and tier % 2 == 1 then
+        moduleSlots = moduleSlots + 1
+    end
+    
+    -- Get ingredients from template and process them
+    local baseIngredients = RecipeTemplates.electricFurnace[tier]
+    local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
+        isBulkItem = false,
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
+    
+    -- Determine next upgrade
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-electric-furnace-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration (tier 1 is vanilla)
+    local tech = nil
+    if tier > 1 and techConfig[tier] then
+        local tc = techConfig[tier]
+        tech = {
+            number = tier + 1,  -- Tech number offset
+            count = baseTechCount * (tier - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackThresholds = infrastructureSpaceAgePackThresholds
+            }),
+            prerequisites = tc.prerequisites
+        }
+    end
+    
+    -- Generate the electric furnace
+    genElectricFurnaces {
+        number = tierNum,
+        subgroup = "furnace-electric",
+        craftingSpeed = craftingSpeed,
+        moduleSlots = moduleSlots,
+        energyUsage = energy,
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        pollution = { pollution = emissions },
+        nextUpdate = nextUpgrade,
+        tech = tech
+    }
+end

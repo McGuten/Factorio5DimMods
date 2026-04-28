@@ -1,5 +1,10 @@
 function genGates(inputs)
-    -- Copy electric furnace
+    -- Skip vanilla tier (when new = false) - don't modify base game prototypes
+    if not inputs.new then
+        return
+    end
+    
+    -- Copy gate
     local item = table.deepcopy(data.raw.item["gate"])
     local recipe = table.deepcopy(data.raw.recipe["gate"])
     local entity = table.deepcopy(data.raw["gate"]["gate"])
@@ -8,9 +13,7 @@ function genGates(inputs)
     local tint = {r = 1, g = 1, b = 0.1, a = 1}
 
     --Item
-    if inputs.new then
-        item.name = "5d-gate-" .. inputs.number
-    end
+    item.name = "5d-gate-" .. inputs.number
     item.icon =
         "__5dim_battlefield__/graphics/icon/gate/gate-icon-" .. inputs.number .. ".png"
     item.subgroup = inputs.subgroup
@@ -21,11 +24,9 @@ function genGates(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.new then
-        recipe.enabled = false
-        recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        recipe.ingredients = inputs.ingredients
-    end
+    recipe.enabled = false
+    recipe.results = { { type = "item", name = item.name, amount = 1 } }
+    recipe.ingredients = inputs.ingredients
 
     --Entity
     entity.name = item.name

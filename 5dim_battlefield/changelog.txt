@@ -1,7 +1,26 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.5
 Date: ????
-  Changes:
+  Features:
+    - Added Land Mine T2-T10 (increased damage and trigger radius)
+    - Added Poison Mine T1-T10 (creates poison cloud on detonation)
+    - Added Acid Mine T1-T10 (deals acid damage on detonation)
+    - Added Decoy Structure T1-T10 (attracts enemy fire with is_military_target)
+    - Added 7 special artillery ammunition types:
+      - Poison shell (creates multiple poison clouds)
+      - Incendiary shell (creates fire and fire damage)
+      - Cluster shell (multiple explosions in area)
+      - Acid shell (area acid damage)
+      - Fragmentation shell (large area physical damage)
+      - Armor-piercing shell (high physical damage, small area)
+      - Shockwave shell (knockback enemies)
+    - Added Grenade T2-T10 (increased damage)
+    - Added Cluster Grenade T2-T10 (increased damage)
+    - Added Poison Capsule T2-T10 (increased range)
+    - Added Slowdown Capsule T2-T10 (increased range)
+    - Added Defender Capsule T2-T10 (with improved robots)
+    - Added Distractor Capsule T2-T10 (with improved robots)
+    - Added Destroyer Capsule T2-T10 (with improved robots)
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.4
 Date: 2024-12-12

@@ -1,424 +1,188 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Transport - Stack Inserter Generation (Space Age only)
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.transport.generation-stack-inserter")
 
-local rotation = 0.014
-local extension = 0.03
-local energy = 5
-local drain = 0.4
-local techCount = 200
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
--- Stack inserter 01
-genStackInserters {
-    number = "01",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = false,
-    order = "a",
-    ingredients = {
-        { type = "item", name = "bulk-inserter",   amount = 1 },
-        { type = "item", name = "processing-unit", amount = 1 },
-        { type = "item", name = "carbon-fiber",    amount = 2 },
-        { type = "item", name = "jelly",           amount = 10 }
-    },
-    tech = nil,
-    nextUpdate = "5d-stack-inserter-02",
-    copyName = "stack-inserter"
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-------------------------------------------------------------------------------
+
+local baseExtension = 0.03
+local baseRotation = 0.014
+local baseEnergy = 5
+local baseDrain = 0.4
+local baseTechCount = 200
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a", isVanilla = true },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
 }
 
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
 
--- Stack inserter 02
-genStackInserters {
-    number = "02",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "b",
-    ingredients = {
-        { type = "item", name = "stack-inserter",  amount = 1 },
-        { type = "item", name = "processing-unit", amount = 1 },
-        { type = "item", name = "carbon-fiber",    amount = 2 },
-        { type = "item", name = "jelly",           amount = 10 }
-    },
-    tech = {
-        number = 2,
-        count = techCount * 2,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "stack-inserter",
-            "logistics-2",
-            "chemical-science-pack"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-03",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 03
-genStackInserters {
-    number = "03",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "c",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 3,
-        count = techCount * 3,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "stack-inserter-2",
-            "logistics-3"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-04",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 04
-if mods["space-age"] then
-    -- Stack inserter 04
-    genStackInserters {
-        number = "04",
-        extensionSpeed = extension,
-        rotationSpeed = rotation,
-        energyMovement = energy,
-        energyRotation = energy,
-        energyDrain = drain,
-        new = true,
-        order = "d",
-        ingredients = {
-            { type = "item", name = "5d-stack-inserter-03", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
-        },
-        tech = {
-            number = 4,
-            count = techCount * 4,
-            packs = {
+local function getTechConfig(tier)
+    local configs = {
+        [2] = {
+            basePacks = {
                 { "automation-science-pack", 1 },
-                { "logistic-science-pack",   1 },
-                { "chemical-science-pack",   1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter", "logistics-2", "chemical-science-pack" }
+        },
+        [3] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-2", "logistics-3" }
+        },
+        [4] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 }
             },
-            prerequisites = {
-                "stack-inserter-3",
-                "production-science-pack",
-                "turbo-transport-belt"
-            }
+            prerequisites = { "stack-inserter-3", "production-science-pack", "logistics-4" }
         },
-        nextUpdate = "5d-stack-inserter-05",
-        copyName = "stack-inserter"
+        [5] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-4", "logistics-5" }
+        },
+        [6] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-5", "logistics-6" }
+        },
+        [7] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 },
+                { "utility-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-6", "utility-science-pack", "logistics-7" }
+        },
+        [8] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 },
+                { "utility-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-7", "logistics-8" }
+        },
+        [9] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 },
+                { "utility-science-pack", 1 },
+                { "space-science-pack", 1 }
+            },
+            -- FIXED: Changed from bulk-inserter-8 to stack-inserter-8
+            prerequisites = { "stack-inserter-8", "space-science-pack", "logistics-9" }
+        },
+        [10] = {
+            basePacks = {
+                { "automation-science-pack", 1 },
+                { "logistic-science-pack", 1 },
+                { "chemical-science-pack", 1 },
+                { "production-science-pack", 1 },
+                { "utility-science-pack", 1 },
+                { "space-science-pack", 1 }
+            },
+            prerequisites = { "stack-inserter-9", "logistics-10" }
+        }
     }
-else
+    return configs[tier]
+end
+
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
+
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = string.format("%02d", tier)
+    
+    -- Calculate stats with incremental bonuses
+    local tierBonus = (tier - 1) * 0.02
+    local extension = baseExtension + tierBonus
+    local rotation = baseRotation + tierBonus
+    -- Non-linear energy scaling (vanilla pattern)
+    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    local drain = baseDrain + tierBonus
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.stackInserter[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-stack-inserter-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration if not vanilla (tier 1)
+    local tech = nil
+    if tier > 1 then
+        local tc = getTechConfig(tier)
+        if tc then
+            tech = {
+                number = tier,
+                count = baseTechCount * tier,
+                packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+                prerequisites = tc.prerequisites
+            }
+        end
+    end
+    
+    -- Generate the stack inserter
     genStackInserters {
-        number = "04",
+        number = tierNum,
         extensionSpeed = extension,
         rotationSpeed = rotation,
         energyMovement = energy,
         energyRotation = energy,
         energyDrain = drain,
-        new = true,
-        order = "d",
-        ingredients = {
-            { type = "item", name = "5d-stack-inserter-03", amount = 1 },
-            { type = "item", name = "iron-gear-wheel",      amount = 15 },
-            { type = "item", name = "electronic-circuit",   amount = 15 },
-            { type = "item", name = "advanced-circuit",     amount = 1 }
-        },
-        tech = {
-            number = 4,
-            count = techCount * 4,
-            packs = {
-                { "automation-science-pack", 1 },
-                { "logistic-science-pack",   1 },
-                { "chemical-science-pack",   1 },
-                { "production-science-pack", 1 }
-            },
-            prerequisites = {
-                "stack-inserter-3",
-                "production-science-pack",
-                "logistics-4"
-            }
-        },
-        nextUpdate = "5d-stack-inserter-05",
+        new = not config.isVanilla,
+        order = config.order,
+        ingredients = ingredients,
+        nextUpdate = nextUpgrade,
+        tech = tech,
         copyName = "stack-inserter"
     }
 end
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 05
-genStackInserters {
-    number = "05",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "e",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 5,
-        count = techCount * 5,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 }
-        },
-        prerequisites = {
-            "stack-inserter-4",
-            "logistics-5"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-06",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 06
-genStackInserters {
-    number = "06",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "f",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 6,
-        count = techCount * 6,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 }
-        },
-        prerequisites = {
-            "stack-inserter-5",
-            "logistics-6"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-07",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 07
-genStackInserters {
-    number = "07",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "g",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 7,
-        count = techCount * 7,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "stack-inserter-6",
-            "utility-science-pack",
-            "logistics-7"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-08",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 08
-genStackInserters {
-    number = "08",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "h",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 8,
-        count = techCount * 8,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "stack-inserter-7",
-            "logistics-8"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-09",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 09
-genStackInserters {
-    number = "09",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "i",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 9,
-        count = techCount * 9,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "bulk-inserter-8",
-            "space-science-pack",
-            "logistics-9"
-        }
-    },
-    nextUpdate = "5d-stack-inserter-10",
-    copyName = "stack-inserter"
-}
-
-extension = extension + 0.02
-rotation = rotation + 0.02
-energy = energy + 2
-drain = drain + 0.02
-
--- Stack inserter 10
-genStackInserters {
-    number = "10",
-    extensionSpeed = extension,
-    rotationSpeed = rotation,
-    energyMovement = energy,
-    energyRotation = energy,
-    energyDrain = drain,
-    new = true,
-    order = "j",
-    ingredients = {
-        { type = "item", name = "5d-stack-inserter-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel",      amount = 15 },
-        { type = "item", name = "electronic-circuit",   amount = 15 },
-        { type = "item", name = "advanced-circuit",     amount = 1 }
-    },
-    tech = {
-        number = 10,
-        count = techCount * 10,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack",    1 },
-            { "space-science-pack",      1 }
-        },
-        prerequisites = {
-            "stack-inserter-9",
-            "logistics-10"
-        }
-    },
-    nextUpdate = nil,
-    copyName = "stack-inserter"
-}

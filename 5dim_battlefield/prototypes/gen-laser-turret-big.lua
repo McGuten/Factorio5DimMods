@@ -1,471 +1,231 @@
+-------------------------------------------------------------------------------
+-- 5Dim's Battlefield - Big Laser Turret Generation
+-- Uses the centralized cost system from 5dim_core
+-------------------------------------------------------------------------------
+
 require("__5dim_core__.lib.battlefield.laser-turret.generation-laser-turret")
 
-local rango = 42
-local shootingSpeed = 80
-local damageModif = 6
-local color = { r = 0.2, g = 0.2, b = 1, a = 1 }
-local hp = 1200
-local techCount = 150
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local tierColors = require("__5dim_core__.lib.tier-colors")
 
--- Big laser turret 01
-genLaserTurrets {
-    number = "big-01",
-    subgroup = "defense-laser-turret-big",
-    order = "a",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "steel-plate",        amount = 30 },
-        { type = "item", name = "electronic-circuit", amount = 30 },
-        { type = "item", name = "battery",            amount = 15 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 5
-        },
-        {
-            type = "explosion",
-            percent = 2.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-02",
-    tech = {
-        number = "5d-laser-turret-big-1",
-        count = techCount * 1,
-        packs = {
+-------------------------------------------------------------------------------
+-- BASE CONFIGURATION
+-- Scale: HP x5 (1200 → 6000), Damage x5 (40 → 200)
+-------------------------------------------------------------------------------
+
+local baseRange = 42
+local baseDamage = 40
+local baseHealth = 1200
+local rangeIncrement = 2
+local damageIncrement = 18                -- 40 → 202 (x5)
+local healthIncrement = 533               -- 1200 → 6000 (x5)
+local baseTechCount = 150
+
+-- Type color: Big = Blue
+local typeColor = { r = 0.1, g = 0.1, b = 1, a = 1 }
+
+-------------------------------------------------------------------------------
+-- TIER DEFINITIONS
+-------------------------------------------------------------------------------
+
+local tierConfig = {
+    [1]  = { order = "a" },
+    [2]  = { order = "b" },
+    [3]  = { order = "c" },
+    [4]  = { order = "d" },
+    [5]  = { order = "e" },
+    [6]  = { order = "f" },
+    [7]  = { order = "g" },
+    [8]  = { order = "h" },
+    [9]  = { order = "i" },
+    [10] = { order = "j" }
+}
+
+-------------------------------------------------------------------------------
+-- TECHNOLOGY CONFIGURATION BY TIER
+-------------------------------------------------------------------------------
+
+local techConfig = {
+    [1] = {
+        techName = "5d-laser-turret-big-1",
+        count = 100,
+        basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = {
-            "laser-turret",
-            "logistic-science-pack"
-        }
+        prerequisites = { "laser-turret" }
+    },
+    [2] = {
+        techName = "5d-laser-turret-big-2",
+        countMultiplier = 1,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-1" }
+    },
+    [3] = {
+        techName = "5d-laser-turret-big-3",
+        countMultiplier = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-2" }
+    },
+    [4] = {
+        techName = "5d-laser-turret-big-4",
+        countMultiplier = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-3" }
+    },
+    [5] = {
+        techName = "5d-laser-turret-big-5",
+        countMultiplier = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-4" }
+    },
+    [6] = {
+        techName = "5d-laser-turret-big-6",
+        countMultiplier = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-5", "utility-science-pack" }
+    },
+    [7] = {
+        techName = "5d-laser-turret-big-7",
+        countMultiplier = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-6" }
+    },
+    [8] = {
+        techName = "5d-laser-turret-big-8",
+        countMultiplier = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-7" }
+    },
+    [9] = {
+        techName = "5d-laser-turret-big-9",
+        countMultiplier = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-8" }
+    },
+    [10] = {
+        techName = "5d-laser-turret-big-10",
+        countMultiplier = 9,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-laser-turret-big-9" }
     }
 }
 
-rango = rango + 2
-hp = hp + 120
+-------------------------------------------------------------------------------
+-- RESISTANCES BY TIER
+-------------------------------------------------------------------------------
 
--- Big laser turret 02
-genLaserTurrets {
-    number = "big-02",
-    subgroup = "defense-laser-turret-big",
-    order = "b",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-01", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-03",
-    tech = {
-        number = "5d-laser-turret-big-2",
-        count = techCount * 2,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-1",
-            "logistic-science-pack"
-        }
+local function getResistances(tier)
+    local firePercent = 5 + (tier - 1) * 5
+    local explosionPercent = 2.5 + (tier - 1) * 2.5
+    return {
+        { type = "fire", percent = firePercent },
+        { type = "explosion", percent = explosionPercent }
     }
-}
+end
 
-rango = rango + 2
-hp = hp + 120
+-------------------------------------------------------------------------------
+-- GENERATION LOOP
+-------------------------------------------------------------------------------
 
--- Big laser turret 03
-genLaserTurrets {
-    number = "big-03",
-    subgroup = "defense-laser-turret-big",
-    order = "c",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-02", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 15
-        },
-        {
-            type = "explosion",
-            percent = 7.5
+for tier = 1, 10 do
+    local config = tierConfig[tier]
+    local tierNum = "big-" .. string.format("%02d", tier)
+    
+    -- Calculate stats for this tier
+    local range = baseRange + (tier - 1) * rangeIncrement
+    local damage = baseDamage + (tier - 1) * damageIncrement
+    local health = baseHealth + (tier - 1) * healthIncrement
+    
+    -- Get ingredients from template
+    local ingredients = RecipeTemplates.laserTurretBig[tier]
+    
+    -- Determine next upgrade (nil for tier 10)
+    local nextUpgrade = nil
+    if tier < 10 then
+        nextUpgrade = "5d-laser-turret-big-" .. string.format("%02d", tier + 1)
+    end
+    
+    -- Build tech configuration
+    local tech = nil
+    if techConfig[tier] then
+        local tc = techConfig[tier]
+        local count = tc.count or (baseTechCount * tc.countMultiplier)
+        tech = {
+            number = tc.techName,
+            count = count,
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            prerequisites = tc.prerequisites
         }
-    },
-    nextUpdate = "5d-laser-turret-big-04",
-    tech = {
-        number = "5d-laser-turret-big-3",
-        count = techCount * 3,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-2",
-            "chemical-science-pack"
-        }
+    end
+    
+    -- Generate the big laser turret
+    genLaserTurrets {
+        number = tierNum,
+        subgroup = "defense-laser-turret-big",
+        order = config.order,
+        new = true,
+        range = range,
+        damage = damage,
+        health = health,
+        baseTint = tierColors[tier],
+        turretTint = typeColor,
+        ingredients = ingredients,
+        resistances = getResistances(tier),
+        nextUpdate = nextUpgrade,
+        tech = tech
     }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 04
-genLaserTurrets {
-    number = "big-04",
-    subgroup = "defense-laser-turret-big",
-    order = "d",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-03", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 20
-        },
-        {
-            type = "explosion",
-            percent = 10
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-05",
-    tech = {
-        number = "5d-laser-turret-big-4",
-        count = techCount * 4,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-3"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 05
-genLaserTurrets {
-    number = "big-05",
-    subgroup = "defense-laser-turret-big",
-    order = "e",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-04", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 25
-        },
-        {
-            type = "explosion",
-            percent = 12.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-06",
-    tech = {
-        number = "5d-laser-turret-big-5",
-        count = techCount * 5,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-4"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 06
-genLaserTurrets {
-    number = "big-06",
-    subgroup = "defense-laser-turret-big",
-    order = "f",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-05", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 30
-        },
-        {
-            type = "explosion",
-            percent = 15
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-07",
-    tech = {
-        number = "5d-laser-turret-big-6",
-        count = techCount * 6,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-5"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 07
-genLaserTurrets {
-    number = "big-07",
-    subgroup = "defense-laser-turret-big",
-    order = "g",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-06", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 35
-        },
-        {
-            type = "explosion",
-            percent = 17.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-08",
-    tech = {
-        number = "5d-laser-turret-big-7",
-        count = techCount * 7,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-6",
-            "utility-science-pack"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 08
-genLaserTurrets {
-    number = "big-08",
-    subgroup = "defense-laser-turret-big",
-    order = "h",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-07", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 40
-        },
-        {
-            type = "explosion",
-            percent = 20
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-09",
-    tech = {
-        number = "5d-laser-turret-big-8",
-        count = techCount * 8,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-7"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 09
-genLaserTurrets {
-    number = "big-09",
-    subgroup = "defense-laser-turret-big",
-    order = "i",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-08", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 45
-        },
-        {
-            type = "explosion",
-            percent = 22.5
-        }
-    },
-    nextUpdate = "5d-laser-turret-big-10",
-    tech = {
-        number = "5d-laser-turret-big-9",
-        count = techCount * 9,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-8"
-        }
-    }
-}
-
-rango = rango + 2
-hp = hp + 120
-
--- Big laser turret 10
-genLaserTurrets {
-    number = "big-10",
-    subgroup = "defense-laser-turret-big",
-    order = "j",
-    new = true,
-    attackSpeed = shootingSpeed,
-    range = rango,
-    cooldown = damageModif,
-    health = hp,
-    tint = color,
-    ingredients = {
-        { type = "item", name = "5d-laser-turret-big-09", amount = 1 },
-        { type = "item", name = "steel-plate",            amount = 7 },
-        { type = "item", name = "electronic-circuit",     amount = 7 },
-        { type = "item", name = "battery",                amount = 5 }
-    },
-    resistances = {
-        {
-            type = "fire",
-            percent = 50
-        },
-        {
-            type = "explosion",
-            percent = 25
-        }
-    },
-    tech = {
-        number = "5d-laser-turret-big-10",
-        count = techCount * 10,
-        packs = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack",   1 },
-            { "military-science-pack",   1 },
-            { "chemical-science-pack",   1 },
-            { "utility-science-pack",    1 }
-        },
-        prerequisites = {
-            "5d-laser-turret-big-9"
-        }
-    }
-}
+end

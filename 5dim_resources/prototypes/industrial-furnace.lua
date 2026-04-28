@@ -42,31 +42,9 @@ entity.graphics_set.animation = {
     frame_count = 1,
     shift = {0, 0}
 }
--- entity.energy_source.emissions_per_minute = 35
+entity.energy_source.emissions_per_minute = { pollution = 0.5 }
 entity.collision_box = { { -2.2, -2.2 }, { 2.2, 2.2 } }
 entity.selection_box = { { -2.5, -2.5 }, { 2.5, 2.5 } }
 entity.crafting_categories = { "industrial-furnace" }
 
--- Technology
-tech.name = "advanced-material-processing-12"
-tech.unit.count = 1500
-tech.unit.ingredients = {
-    { type = "item", name = "automation-science-pack", amount = 1 },
-    { type = "item", name = "logistic-science-pack",   amount = 1 },
-    { type = "item", name = "chemical-science-pack",   amount = 1 },
-    { type = "item", name = "production-science-pack", amount = 1 },
-    { type = "item", name = "utility-science-pack",    amount = 1 },
-    { type = "item", name = "space-science-pack",      amount = 1 }
-}
-tech.prerequisites = {
-    "advanced-material-processing-11",
-    "space-science-pack"
-}
-tech.effects = {
-    {
-        type = "unlock-recipe",
-        recipe = item.name
-    }
-}
-
-data:extend({ entity, recipe, item, tech })
+data:extend({ entity, recipe, item })

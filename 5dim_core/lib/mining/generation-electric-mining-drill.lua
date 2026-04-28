@@ -1,4 +1,4 @@
-function genMiningDrills(inputs)
+local function genMiningDrills(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["electric-mining-drill"])
     local recipe = table.deepcopy(data.raw.recipe["electric-mining-drill"])
@@ -100,3 +100,5 @@ function genMiningDrills(inputs)
         data:extend({ tech })
     end
 end
+
+return genMiningDrills

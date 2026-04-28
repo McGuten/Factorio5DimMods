@@ -299,7 +299,7 @@ local function create_gui(player)
     for i, typeName in ipairs(TypeOrder) do
         local display = TypeDisplay[typeName]
         if display then
-            table.insert(typeItems, "[color=" .. (display.color or "white") .. "]" .. (display.name or typeName) .. "[/color]")
+                table.insert(typeItems, display.name or typeName)
             if typeName == selectedType then typeIndex = i end
         end
     end
@@ -323,7 +323,7 @@ local function create_gui(player)
     for j, cat in ipairs(availableCategories) do
         local display = CategoryDisplay[cat]
         if display then
-            table.insert(categoryItems, "[color=" .. display.color .. "]" .. display.name .. "[/color]")
+                table.insert(categoryItems, display.name)
             if cat == selectedCategory then categoryIndex = j end
         end
     end

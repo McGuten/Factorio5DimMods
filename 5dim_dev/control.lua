@@ -376,9 +376,11 @@ local function create_gui(player)
     
     local typeItems = {}
     local typeIndex = 1
-    for i, typeName in ipairs(TypeOrder) do
-        local display = TypeDisplay[typeName]
-        table.insert(typeItems, "[color=" .. display.color .. "]" .. display.name .. "[/color]")
+        local availableTypeOrder = TypeOrder or {"normal"}
+        local availableTypeDisplay = TypeDisplay or {}
+        for i, typeName in ipairs(availableTypeOrder) do
+            local display = availableTypeDisplay[typeName]
+            table.insert(typeItems, (display and display.name) or typeName)
         if typeName == selectedType then typeIndex = i end
     end
     
@@ -395,10 +397,15 @@ local function create_gui(player)
     
     local categoryItems = {}
     local categoryIndex = 1
-    local availableCategories = TierConfig.typeCategories[selectedType] or {"biter", "spitter", "worm"}
+        local typeCategories = {}
+        if type(TierConfig) == "table" then
+            typeCategories = TierConfig["typeCategories"] or {}
+        end
+        local availableCategoryDisplay = CategoryDisplay or {}
+        local availableCategories = typeCategories[selectedType] or {"biter", "spitter", "worm"}
     for j, cat in ipairs(availableCategories) do
-        local display = CategoryDisplay[cat]
-        table.insert(categoryItems, "[color=" .. display.color .. "]" .. display.name .. "[/color]")
+            local display = availableCategoryDisplay[cat]
+            table.insert(categoryItems, (display and display.name) or cat)
         if cat == selectedCategory then categoryIndex = j end
     end
     

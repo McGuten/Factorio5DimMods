@@ -9,7 +9,7 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (420 → 2100)
+-- Scale: HP x5 (420 → 2100), Damage +45% by T10
 -------------------------------------------------------------------------------
 
 local baseName = "5d-acid-turret"
@@ -18,6 +18,7 @@ local baseHealth = 420
 local baseCooldown = 40  -- ticks between shots
 local rangeIncrement = 2
 local healthIncrement = 187               -- 420 → 2100 (x5)
+local damageScalePerTier = 0.05
 local baseTechCount = 200
 
 -- Type color: Acid = Yellow-Green
@@ -264,6 +265,7 @@ for tier = 1, 10 do
     local range = baseRange + (tier - 1) * rangeIncrement
     local health = baseHealth + (tier - 1) * healthIncrement
     local cooldown = math.max(18, baseCooldown - (tier - 1) * 2)
+    local damageModifier = 1 + (tier - 1) * damageScalePerTier
     
     -- Combined tint (type color + tier color)
     local tint = {
@@ -447,6 +449,7 @@ for tier = 1, 10 do
             type = "projectile",
             ammo_categories = { "5d-acid-rounds" },
             cooldown = cooldown,
+            damage_modifier = damageModifier,
             range = range,
             projectile_creation_distance = 1.39375,
             projectile_center = { 0, -0.0875 },

@@ -55,6 +55,13 @@ function genArtilleryTurret(inputs)
                 recipe = item.name
             }
         }
+        if inputs.tech.attackModifier and inputs.tech.attackModifier > 0 then
+            table.insert(tech.effects, {
+                type = "turret-attack",
+                turret_id = item.name,
+                modifier = inputs.tech.attackModifier
+            })
+        end
         data:extend({ tech })
     end
 end

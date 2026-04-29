@@ -45,7 +45,9 @@ function genCentrifuges(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-centrifuge-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        tech.icons = nil
+        tech.icon = item.icon
+        tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

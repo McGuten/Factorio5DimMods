@@ -11,7 +11,7 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (1500 → 7500), Damage x5 (50 → 250)
+-- Scale: HP x5 (1500 → 7500), Damage +45% (35 → 50.75)
 -------------------------------------------------------------------------------
 
 -- Rebalanced: reduced base stats to be more in line with laser turrets
@@ -20,7 +20,7 @@ local baseRange = 35                      -- Reduced from 50 (closer to laser T5
 local baseDamage = 35                     -- Reduced from 50
 local baseHealth = 1200                   -- Reduced from 1500
 local rangeIncrement = 5
-local damageIncrement = 20                -- 35 → 215 (x6)
+local damageScalePerTier = 0.05
 local healthIncrement = 600               -- 1200 → 6600 (x5.5)
 local baseTechCount = 400                 -- Increased from 300
 
@@ -198,7 +198,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local range = baseRange + (tier - 1) * rangeIncrement
-    local damage = baseDamage + (tier - 1) * damageIncrement
+    local damage = baseDamage * (1 + (tier - 1) * damageScalePerTier)
     local health = baseHealth + (tier - 1) * healthIncrement
     
     -- Get ingredients from template

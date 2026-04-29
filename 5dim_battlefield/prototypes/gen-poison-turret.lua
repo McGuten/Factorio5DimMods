@@ -9,7 +9,7 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (400 → 2000)
+-- Scale: HP x5 (400 → 2000), Damage +45% by T10
 -------------------------------------------------------------------------------
 
 local baseName = "5d-poison-turret"
@@ -18,6 +18,7 @@ local baseHealth = 400
 local baseCooldown = 45  -- ticks between shots
 local rangeIncrement = 2
 local healthIncrement = 178               -- 400 → 2000 (x5)
+local damageScalePerTier = 0.05
 local baseTechCount = 200
 
 -- Type color: Poison = Green
@@ -266,6 +267,7 @@ for tier = 1, 10 do
     local range = baseRange + (tier - 1) * rangeIncrement
     local health = baseHealth + (tier - 1) * healthIncrement
     local cooldown = math.max(20, baseCooldown - (tier - 1) * 2)
+    local damageModifier = 1 + (tier - 1) * damageScalePerTier
     
     -- Combined tint (type color + tier color)
     local tint = {
@@ -449,6 +451,7 @@ for tier = 1, 10 do
             type = "projectile",
             ammo_categories = { "5d-poison-rounds" },
             cooldown = cooldown,
+            damage_modifier = damageModifier,
             range = range,
             projectile_creation_distance = 1.39375,
             projectile_center = { 0, -0.0875 },

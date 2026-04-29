@@ -15,6 +15,7 @@ local baseRange = 560 -- 7 chunks
 local rangeIncrement = 80 -- 1 chunk per tier
 local baseRotationSpeed = 0.001
 local baseManualRangeModifier = 3
+local damageScalePerTier = 0.05
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -163,6 +164,7 @@ for tier = 1, 10 do
         techData = {
             number = tier,
             count = baseTechCount * tier,
+            attackModifier = (tier - 1) * damageScalePerTier,
             packs = techConfig[tier].basePacks,
             prerequisites = techConfig[tier].prerequisites
         }

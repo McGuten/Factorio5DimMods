@@ -9,18 +9,17 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (600 → 3000), Damage x5 (80 → 400)
+-- Scale: HP x5 (600 → 3000), Damage +45% by T10
 -------------------------------------------------------------------------------
 
 local baseName = "5d-mortar-turret"
 local baseRange = 36
 local baseMinRange = 15
 local baseHealth = 600
-local baseDamage = 80
 local baseCooldown = 120  -- ticks between shots (2 seconds)
 local rangeIncrement = 3
 local healthIncrement = 267               -- 600 → 3000 (x5)
-local damageIncrement = 36                -- 80 → 404 (x5)
+local damageScalePerTier = 0.05
 local baseTechCount = 200
 
 -- Type color: Mortar = Brown/Orange
@@ -523,6 +522,7 @@ for tier = 1, 10 do
     local minRange = baseMinRange
     local health = baseHealth + (tier - 1) * healthIncrement
     local cooldown = math.max(60, baseCooldown - (tier - 1) * 6)  -- Faster at higher tiers
+    local damageModifier = 1 + (tier - 1) * damageScalePerTier
     
     -- Combined tint (type color + tier color)
     local tint = {
@@ -566,6 +566,7 @@ for tier = 1, 10 do
                 cooldown = cooldown,
                 range = range,
                 min_range = minRange,
+                damage_modifier = damageModifier,
                 projectile_creation_distance = 1,
                 projectile_center = { 0, 0 },
                 projectile_creation_offsets = {
@@ -615,6 +616,7 @@ for tier = 1, 10 do
                 cooldown = cooldown,
                 range = range,
                 min_range = minRange,
+                damage_modifier = damageModifier,
                 projectile_creation_distance = 1.39375,
                 projectile_center = { 0, -0.0875 },
                 sound = {

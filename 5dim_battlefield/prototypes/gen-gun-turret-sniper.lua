@@ -11,7 +11,7 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (750 → 3750)
+-- Scale: HP x5 (750 → 3750), Damage +45% at T10
 -------------------------------------------------------------------------------
 
 local baseRange = 52
@@ -20,6 +20,7 @@ local baseShootingSpeed = 20
 local baseDamageModif = 10
 local baseHealth = 750
 local rangeIncrement = 3
+local damageScalePerTier = 0.05
 local healthIncrement = 333               -- 750 → 3750 (x5)
 local baseTechCount = 200
 
@@ -182,6 +183,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local range = baseRange + (tier - 1) * rangeIncrement
+    local damageModifier = baseDamageModif * (1 + (tier - 1) * damageScalePerTier)
     local health = baseHealth + (tier - 1) * healthIncrement
     
     -- Get ingredients from template
@@ -214,7 +216,7 @@ for tier = 1, 10 do
         ammoCount = baseAmmo,
         attackSpeed = baseShootingSpeed,
         range = range,
-        cooldown = baseDamageModif,
+        damageModifier = damageModifier,
         health = health,
         baseTint = TierColors[tier],
         turretTint = typeColor,

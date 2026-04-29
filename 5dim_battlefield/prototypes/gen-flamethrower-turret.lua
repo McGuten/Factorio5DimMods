@@ -11,14 +11,13 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (1400 → 7000), Damage multiplier unchanged (DoT based)
+-- Scale: HP x5 (1400 → 7000), Damage +45% by T10 via fluid modifiers
 -------------------------------------------------------------------------------
 
 local baseRange = 30
-local baseDamage = 1
 local baseHealth = 1400
 local rangeIncrement = 3
-local damageIncrement = 1
+local damageScalePerTier = 0.05
 local healthIncrement = 622               -- 1400 → 7000 (x5)
 local baseTechCount = 150
 
@@ -168,7 +167,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local range = baseRange + (tier - 1) * rangeIncrement
-    local damage = baseDamage + (tier - 1) * damageIncrement
+    local damageMultiplier = 1 + (tier - 1) * damageScalePerTier
     local health = baseHealth + (tier - 1) * healthIncrement
     
     -- Get ingredients from template
@@ -199,7 +198,7 @@ for tier = 1, 10 do
         order = config.order,
         new = not config.isVanilla,
         range = range,
-        damage = damage,
+        damageMultiplier = damageMultiplier,
         health = health,
         tint = tierColors[tier],
         ingredients = ingredients,

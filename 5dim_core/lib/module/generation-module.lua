@@ -1,4 +1,31 @@
 function genModules(inputs)
+    local technologyIcons = {
+        speed = {
+            icon = "__base__/graphics/technology/speed-module-3.png",
+            icon_size = 256
+        },
+        effectivity = {
+            icon = "__base__/graphics/technology/efficiency-module-3.png",
+            icon_size = 256
+        },
+        productivity = {
+            icon = "__base__/graphics/technology/productivity-module-3.png",
+            icon_size = 256
+        },
+        pollution = {
+            icon = "__5dim_module__/graphics/icons/pollution-module/pollution-module-03.png",
+            icon_size = 64
+        },
+        quality = {
+            icon = "__quality__/graphics/technology/quality-module-3.png",
+            icon_size = 256
+        },
+        merged = {
+            icon = "__5dim_module__/graphics/icons/merged-module-03.png",
+            icon_size = 64
+        }
+    }
+
     -- Copy Speed module
     local itemSpeed = ""
     local recipeSpeed = ""
@@ -42,7 +69,9 @@ function genModules(inputs)
     -- Technology
     if inputs.new then
         techSpeed.name = "speed-module-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        techSpeed.icon = technologyIcons.speed.icon
+        techSpeed.icon_size = technologyIcons.speed.icon_size
+        techSpeed.icons = nil
         techSpeed.unit.count = inputs.tech.count
         techSpeed.unit.ingredients = inputs.tech.packs
         techSpeed.prerequisites = inputs.tech.prerequisites.speed
@@ -98,7 +127,9 @@ function genModules(inputs)
     -- Technology
     if inputs.new then
         techEffectivity.name = "efficiency-module-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        techEffectivity.icon = technologyIcons.effectivity.icon
+        techEffectivity.icon_size = technologyIcons.effectivity.icon_size
+        techEffectivity.icons = nil
         techEffectivity.unit.count = inputs.tech.count
         techEffectivity.unit.ingredients = inputs.tech.packs
         techEffectivity.prerequisites = inputs.tech.prerequisites.effectivity
@@ -154,7 +185,9 @@ function genModules(inputs)
     -- Technology
     if inputs.new then
         techProductivity.name = "productivity-module-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+        techProductivity.icon = technologyIcons.productivity.icon
+        techProductivity.icon_size = technologyIcons.productivity.icon_size
+        techProductivity.icons = nil
         techProductivity.unit.count = inputs.tech.count
         techProductivity.unit.ingredients = inputs.tech.packs
         techProductivity.prerequisites = inputs.tech.prerequisites.productivity
@@ -207,7 +240,9 @@ function genModules(inputs)
 
     -- Technology
     techPollution.name = "5d-pollution-module-" .. inputs.tech.number
-    --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+    techPollution.icon = technologyIcons.pollution.icon
+    techPollution.icon_size = technologyIcons.pollution.icon_size
+    techPollution.icons = nil
     techPollution.unit.count = inputs.tech.count
     techPollution.unit.ingredients = inputs.tech.packs
     techPollution.prerequisites = inputs.tech.prerequisites.pollution
@@ -264,7 +299,9 @@ function genModules(inputs)
         if inputs.new then
             -- Technology
             techQuality.name = "quality-module-" .. inputs.tech.number
-            --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+            techQuality.icon = technologyIcons.quality.icon
+            techQuality.icon_size = technologyIcons.quality.icon_size
+            techQuality.icons = nil
             techQuality.unit.count = inputs.tech.count
             techQuality.unit.ingredients = inputs.tech.packs
             techQuality.prerequisites = inputs.tech.prerequisites.quality
@@ -328,7 +365,9 @@ function genModules(inputs)
 
     -- Technology
     techMerged.name = "5d-merged-module-" .. inputs.tech.number
-    --tech.icon = "__base__/graphics/technology/oil-refinery.png"
+    techMerged.icon = technologyIcons.merged.icon
+    techMerged.icon_size = technologyIcons.merged.icon_size
+    techMerged.icons = nil
     techMerged.unit.count = inputs.tech.count
     techMerged.unit.ingredients = inputs.tech.packs
     techMerged.prerequisites = inputs.tech.prerequisites.merged

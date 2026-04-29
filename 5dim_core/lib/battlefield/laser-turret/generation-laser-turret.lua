@@ -78,7 +78,14 @@ function genLaserTurrets(inputs)
     -- The deepcopy preserves the full structure from the base game
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
-        entity.attack_parameters.damage_modifier = inputs.cooldown
+        if inputs.cooldown then
+            entity.attack_parameters.cooldown = inputs.cooldown
+        end
+        if inputs.damage then
+            local vanillaDamage = 20
+            local baseDamageModifier = entity.attack_parameters.damage_modifier or 2
+            entity.attack_parameters.damage_modifier = baseDamageModifier * (inputs.damage / vanillaDamage)
+        end
         -- Update ammo_type if it exists
         if entity.attack_parameters.ammo_type then
             entity.attack_parameters.ammo_type.energy_consumption = tostring(800 * multiplier) .. "kJ"

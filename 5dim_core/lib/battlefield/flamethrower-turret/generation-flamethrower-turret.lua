@@ -47,6 +47,11 @@ function genFlamethrowerTurrets(inputs)
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
         entity.attack_parameters.min_range = inputs.minRange
+        if inputs.damageMultiplier and entity.attack_parameters.fluids then
+            for _, fluid in pairs(entity.attack_parameters.fluids) do
+                fluid.damage_modifier = (fluid.damage_modifier or 1) * inputs.damageMultiplier
+            end
+        end
     end
     entity.prepare_range = inputs.range + 5
     entity.max_health = inputs.health or 1400

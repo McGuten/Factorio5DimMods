@@ -72,7 +72,19 @@ function genGunTurrets(inputs)
     -- Modify attack_parameters - keep original structure, just update allowed values
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
-        entity.attack_parameters.damage_modifier = inputs.cooldown
+        if inputs.attackSpeed then
+            entity.attack_parameters.cooldown = inputs.attackSpeed
+        elseif inputs.cooldown then
+            entity.attack_parameters.cooldown = inputs.cooldown
+        end
+
+        local damageModifier = inputs.damageModifier
+        if damageModifier == nil and inputs.cooldown and not inputs.attackSpeed then
+            damageModifier = inputs.cooldown
+        end
+        if damageModifier ~= nil then
+            entity.attack_parameters.damage_modifier = damageModifier
+        end
     end
     
     -- Use separate tints for base (tier color) and turret (type color)

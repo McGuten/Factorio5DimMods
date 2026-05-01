@@ -39,6 +39,13 @@ Research cost increases with each level:
 | 51-100 | 10x |
 | 100+ | 20x |
 
+### 🪐 Space Age Integration
+
+When `space-age` is active, every infinite tech that already required
+`space-science-pack` is automatically extended with `metallurgic-science-pack`,
+keeping mid-late game research aligned with the Space Age science progression.
+This is applied via `data-updates.lua`; no additional setting is needed.
+
 ### 🎯 Strategic Research
 
 Which infinite research to prioritize:

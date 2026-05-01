@@ -3,8 +3,18 @@ data:extend(
         {
             type = "technology",
             name = "advanced-material-processing-12",
-            icon = "__base__/graphics/technology/advanced-material-processing.png",
-            icon_size = 128,
+            icons = {
+                {
+                    icon = "__base__/graphics/technology/advanced-material-processing.png",
+                    icon_size = 256
+                },
+                {
+                    icon = "__5dim_resources__/graphics/icon/industrial-furnace/industrial-furnace-icon.png",
+                    icon_size = 32,
+                    scale = 4,
+                    shift = { 56, 56 }
+                }
+            },
             effects = {
                 {
                     type = "unlock-recipe",

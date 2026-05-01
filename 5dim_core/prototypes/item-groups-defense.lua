@@ -77,6 +77,12 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "defense-slow-turret",
+            group = "defense",
+            order = "haa"
+        },
+        {
+            type = "item-subgroup",
             name = "defense-electric-laser",
             group = "defense",
             order = "hb"

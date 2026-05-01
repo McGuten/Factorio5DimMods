@@ -965,4 +965,69 @@ Templates.artilleryWagon = {
     }
 }
 
+-- Slow Turret templates (electric debuff turret, T1-T10)
+-- Ingredients lean on laser tech tree (battery + circuits) plus a tier-1 chip
+-- for the slow effect logic; later tiers chain previous tier as upgrade.
+Templates.slowTurret = {
+    [1] = {
+        { type = "item", name = "steel-plate",        amount = 20 },
+        { type = "item", name = "electronic-circuit", amount = 30 },
+        { type = "item", name = "battery",            amount = 10 }
+    },
+    [2] = {
+        { type = "item", name = "5d-slow-turret-01",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "advanced-circuit",   amount = 5 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [3] = {
+        { type = "item", name = "5d-slow-turret-02",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "advanced-circuit",   amount = 5 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [4] = {
+        { type = "item", name = "5d-slow-turret-03",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "advanced-circuit",   amount = 5 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [5] = {
+        { type = "item", name = "5d-slow-turret-04",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "advanced-circuit",   amount = 5 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [6] = {
+        { type = "item", name = "5d-slow-turret-05",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "processing-unit",    amount = 3 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [7] = {
+        { type = "item", name = "5d-slow-turret-06",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "processing-unit",    amount = 3 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [8] = {
+        { type = "item", name = "5d-slow-turret-07",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "processing-unit",    amount = 3 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [9] = {
+        { type = "item", name = "5d-slow-turret-08",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "processing-unit",    amount = 3 },
+        { type = "item", name = "battery",            amount = 4 }
+    },
+    [10] = {
+        { type = "item", name = "5d-slow-turret-09",  amount = 1 },
+        { type = "item", name = "steel-plate",        amount = 5 },
+        { type = "item", name = "processing-unit",    amount = 3 },
+        { type = "item", name = "battery",            amount = 4 }
+    }
+}
+
 return Templates

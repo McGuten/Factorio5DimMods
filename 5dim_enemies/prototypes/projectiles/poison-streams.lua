@@ -20,7 +20,6 @@ local function create_poison_splash_fire(data)
     return {
         type = "fire",
         name = data.name,
-        localised_name = {"entity-name.poison-splash"},
         flags = {"placeable-off-grid", "not-on-map"},
         hidden = true,
         damage_per_tick = {amount = data.damage_per_tick or (0.5 / 60), type = "poison"},

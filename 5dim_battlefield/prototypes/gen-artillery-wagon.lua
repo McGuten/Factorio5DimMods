@@ -7,15 +7,21 @@
 require("__5dim_core__.lib.battlefield.generation-artillery-wagon")
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local baseEntity = data.raw["artillery-wagon"] and data.raw["artillery-wagon"]["artillery-wagon"] or {}
+local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun["artillery-wagon-cannon"] or {}
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseRange = 560 -- 7 chunks
-local rangeIncrement = 80 -- 1 chunk per tier
-local baseAmmoSlots = 3
-local baseMaxSpeed = 1.5
+local baseAutomaticRange = baseGun.attack_parameters and baseGun.attack_parameters.range or (7 * 32)
+local automaticRangeIncrement = 32 -- 1 chunk per tier
+local baseAmmoSlots = baseEntity.inventory_size or 3
+local baseMaxSpeed = baseEntity.max_speed or 1.5
+local baseRotationSpeed = baseEntity.turret_rotation_speed or 0.001
+local baseManualRangeModifier = baseEntity.manual_range_modifier or 2.5
+local automatedAmmoCountPerSlot = (baseEntity.automated_ammo_count or baseAmmoSlots) / baseAmmoSlots
+local damageScalePerTier = 0.05
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -151,9 +157,10 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentRange = baseRange
+local currentAutomaticRange = baseAutomaticRange
 local currentAmmoSlots = baseAmmoSlots
 local currentMaxSpeed = baseMaxSpeed
+local currentRotationSpeed = baseRotationSpeed
 
 for tier = 1, 10 do
     local config = tierConfig[tier]
@@ -164,6 +171,7 @@ for tier = 1, 10 do
         techData = {
             number = tier,
             count = baseTechCount * tier,
+            attackModifier = (tier - 1) * damageScalePerTier,
             packs = techConfig[tier].basePacks,
             prerequisites = techConfig[tier].prerequisites
         }
@@ -174,16 +182,20 @@ for tier = 1, 10 do
         subgroup = "trains-artillery",
         order = config.order,
         new = not config.isVanilla,
-        range = currentRange,
+        automaticRange = currentAutomaticRange,
         ammoSlots = currentAmmoSlots,
         maxSpeed = currentMaxSpeed,
+        automatedAmmoCount = math.max(1, math.floor((currentAmmoSlots * automatedAmmoCountPerSlot) + 0.5)),
+        rotationSpeed = currentRotationSpeed,
+        manualRangeModifier = baseManualRangeModifier,
         ingredients = RecipeTemplates.artilleryWagon[tier],
         nextUpdate = tier < 10 and ("5d-artillery-wagon-" .. string.format("%02d", tier + 1)) or nil,
         tech = techData
     })
 
-    currentRange = currentRange + rangeIncrement
+    currentAutomaticRange = currentAutomaticRange + automaticRangeIncrement
     currentMaxSpeed = currentMaxSpeed * 1.08
+    currentRotationSpeed = currentRotationSpeed * 1.1
     if tier % 2 == 0 and currentAmmoSlots < 6 then
         currentAmmoSlots = currentAmmoSlots + 1
     end

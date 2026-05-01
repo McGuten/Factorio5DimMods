@@ -563,8 +563,14 @@ local function getTech(tier)
             prerequisites = { "logistics-9" }
         }
     }
-    
-    return techConfigs[tier]
+
+    local cfg = techConfigs[tier]
+    if cfg then
+        -- Inject Space Age planet science packs (metallurgic / electromagnetic / cryogenic)
+        -- following the project-wide progression in CostConfig.spaceAgeSciencePacks.
+        cfg.packs = CostCalculator.getTechPacks(cfg.packs, tier)
+    end
+    return cfg
 end
 
 -------------------------------------------------------------------------------

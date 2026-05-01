@@ -6,15 +6,17 @@
 require("__5dim_core__.lib.battlefield.generation-artillery-turret")
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local baseEntity = data.raw["artillery-turret"] and data.raw["artillery-turret"]["artillery-turret"] or {}
+local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun["artillery-wagon-cannon"] or {}
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseRange = 560 -- 7 chunks
-local rangeIncrement = 80 -- 1 chunk per tier
-local baseRotationSpeed = 0.001
-local baseManualRangeModifier = 3
+local baseAutomaticRange = baseGun.attack_parameters and baseGun.attack_parameters.range or (7 * 32)
+local automaticRangeIncrement = 32 -- 1 chunk per tier
+local baseRotationSpeed = baseEntity.turret_rotation_speed or 0.001
+local baseManualRangeModifier = baseEntity.manual_range_modifier or 2.5
 local damageScalePerTier = 0.05
 local baseTechCount = 500
 
@@ -151,9 +153,8 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentRange = baseRange
+local currentAutomaticRange = baseAutomaticRange
 local currentRotationSpeed = baseRotationSpeed
-local currentManualRangeModifier = baseManualRangeModifier
 
 for tier = 1, 10 do
     local config = tierConfig[tier]
@@ -175,17 +176,14 @@ for tier = 1, 10 do
         subgroup = "defense-artillery",
         order = config.order,
         new = not config.isVanilla,
-        range = currentRange,
+        automaticRange = currentAutomaticRange,
         rotationSpeed = currentRotationSpeed,
-        manualRangeModifier = currentManualRangeModifier,
+        manualRangeModifier = baseManualRangeModifier,
         ingredients = RecipeTemplates.artilleryTurret[tier],
         nextUpdate = tier < 10 and ("5d-artillery-turret-" .. string.format("%02d", tier + 1)) or nil,
         tech = techData
     })
 
-    currentRange = currentRange + rangeIncrement
+    currentAutomaticRange = currentAutomaticRange + automaticRangeIncrement
     currentRotationSpeed = currentRotationSpeed * 1.1
-    if tier % 3 == 0 then
-        currentManualRangeModifier = currentManualRangeModifier + 0.5
-    end
 end

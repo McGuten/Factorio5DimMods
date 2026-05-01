@@ -19,3 +19,7 @@ require("prototypes.recipe-category")
 
 --Tech
 require("prototypes.tech")
+
+--Space Age planetary resources
+require("prototypes.dust-sa")
+require("prototypes.tech-sa")

@@ -5,6 +5,7 @@
 -------------------------------------------------------------------------------
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION (Vanilla: 250 area damage, 1000 direct damage = 1250 total)
@@ -20,6 +21,11 @@ local triggerRadiusIncrement = 0.25
 local baseAreaRadius = 6
 local areaRadiusIncrement = 0.5           -- 6 → 10.5 (moderate)
 local baseTechCount = 100
+
+local vanillaMineIcons = {
+    { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
+    { icon = "__base__/graphics/icons/explosion.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
+}
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -37,6 +43,23 @@ local tierConfig = {
     [9]  = { order = "i" },
     [10] = { order = "j" }
 }
+
+data.raw.item["land-mine"].icon = nil
+data.raw.item["land-mine"].icon_size = nil
+data.raw.item["land-mine"].icons = TierBadgeIcons.buildTieredIconsFromIcons(vanillaMineIcons, 1)
+
+data.raw["land-mine"]["land-mine"].is_military_target = false
+data.raw["land-mine"]["land-mine"].icon = nil
+data.raw["land-mine"]["land-mine"].icon_size = nil
+data.raw["land-mine"]["land-mine"].icons = TierBadgeIcons.buildTieredIconsFromIcons(vanillaMineIcons, 1)
+
+data.raw.recipe["land-mine"].icon = nil
+data.raw.recipe["land-mine"].icon_size = nil
+data.raw.recipe["land-mine"].icons = TierBadgeIcons.buildTieredIconsFromIcons(vanillaMineIcons, 1)
+
+data.raw.technology["land-mine"].icon = nil
+data.raw.technology["land-mine"].icon_size = nil
+data.raw.technology["land-mine"].icons = TierBadgeIcons.buildTieredIconsFromIcons(vanillaMineIcons, 1)
 
 -------------------------------------------------------------------------------
 -- TECHNOLOGY CONFIGURATION BY TIER
@@ -96,6 +119,7 @@ for tier, config in pairs(tierConfig) do
         local directDamage = baseDirectDamage + (tier - 1) * directIncrement
         local triggerRadius = baseTriggerRadius + (tier - 1) * triggerRadiusIncrement
         local areaRadius = baseAreaRadius + (tier - 1) * areaRadiusIncrement
+        local tieredIcons = TierBadgeIcons.buildTieredIconsFromIcons(vanillaMineIcons, tier)
         
         local name = "5d-land-mine-" .. tier
         
@@ -104,6 +128,10 @@ for tier, config in pairs(tierConfig) do
         entity.name = name
         entity.minable.result = name
         entity.trigger_radius = triggerRadius
+        entity.is_military_target = false
+        entity.icon = nil
+        entity.icon_size = nil
+        entity.icons = table.deepcopy(tieredIcons)
         
         -- Update damage values in the complex action structure
         -- Structure: action.action_delivery.source_effects
@@ -137,10 +165,7 @@ for tier, config in pairs(tierConfig) do
         item.place_result = name
         item.icon = nil
         item.icon_size = nil
-        item.icons = {
-            { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
-            { icon = "__base__/graphics/icons/explosion.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-        }
+        item.icons = table.deepcopy(tieredIcons)
         
         -- Create recipe
         local recipe = {
@@ -159,15 +184,15 @@ for tier, config in pairs(tierConfig) do
             },
             results = { { type = "item", name = name, amount = 1 } }
         }
+        recipe.icon = nil
+        recipe.icon_size = nil
+        recipe.icons = table.deepcopy(tieredIcons)
         
         -- Create technology
         local tech = {
             type = "technology",
             name = "5d-land-mine-" .. tier,
-            icons = {
-                { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
-                { icon = "__base__/graphics/icons/explosion.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-            },
+            icons = table.deepcopy(tieredIcons),
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },

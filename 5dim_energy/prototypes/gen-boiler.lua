@@ -129,10 +129,10 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential energy, decreasing pollution like vanilla)
+    -- Calculate stats for this tier (exponential energy, superlinear pollution)
     local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.boiler[tier]

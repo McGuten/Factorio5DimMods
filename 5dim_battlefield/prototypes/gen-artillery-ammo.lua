@@ -15,10 +15,37 @@ local function createArtilleryProjectile(name, action)
     return base
 end
 
+local function inheritVanillaArtilleryAmmo(shellName, projectileName)
+    local vanillaAmmo = data.raw.ammo and data.raw.ammo["artillery-shell"]
+    local existingAmmo = data.raw.ammo and data.raw.ammo[shellName]
+
+    if not vanillaAmmo or not existingAmmo then
+        return
+    end
+
+    local ammo = table.deepcopy(vanillaAmmo)
+
+    ammo.name = shellName
+    ammo.icon = nil
+    ammo.icon_size = nil
+    ammo.icons = existingAmmo.icons and table.deepcopy(existingAmmo.icons) or nil
+    ammo.pictures = existingAmmo.pictures and table.deepcopy(existingAmmo.pictures) or nil
+    ammo.subgroup = existingAmmo.subgroup
+    ammo.order = existingAmmo.order
+    ammo.stack_size = existingAmmo.stack_size
+    ammo.weight = existingAmmo.weight
+
+    if ammo.ammo_type and ammo.ammo_type.action and ammo.ammo_type.action.action_delivery then
+        ammo.ammo_type.action.action_delivery.projectile = projectileName
+    end
+
+    data.raw.ammo[shellName] = ammo
+end
+
 -------------------------------------------------------------------------------
 -- POISON ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + poison effect
--- Design: 500 impact + poison cloud (~750 DoT) = ~1250 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: anti-swarm shell with baseline artillery damage plus lingering poison
 -------------------------------------------------------------------------------
 
 local poisonShellAction = {
@@ -40,7 +67,7 @@ local poisonShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 500, type = "explosion" }
+                                damage = { amount = 2000, type = "explosion" }
                             }
                         }
                     }
@@ -122,8 +149,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- INCENDIARY ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + fire effect
--- Design: 500 impact + 350 fire + fire DoT = ~1200 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: area denial shell with stronger-than-baseline burst plus persistent fire damage
 -------------------------------------------------------------------------------
 
 local incendiaryShellAction = {
@@ -150,11 +177,11 @@ local incendiaryShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 500, type = "explosion" }
+                                damage = { amount = 1500, type = "explosion" }
                             },
                             {
                                 type = "damage",
-                                damage = { amount = 350, type = "fire" }
+                                damage = { amount = 900, type = "fire" }
                             }
                         }
                     }
@@ -233,8 +260,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- CLUSTER ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + cluster effect
--- Design: 300 center + 250 per cluster hit (wide area) = ~1250 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: widest anti-group shell; every direct hit beats the base shell while covering more ground
 -------------------------------------------------------------------------------
 
 local clusterShellAction = {
@@ -244,7 +271,7 @@ local clusterShellAction = {
         target_effects = {
             {
                 type = "damage",
-                damage = { amount = 300, type = "explosion" }
+                damage = { amount = 1300, type = "explosion" }
             },
             {
                 type = "nested-result",
@@ -256,7 +283,7 @@ local clusterShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 250, type = "explosion" }
+                                damage = { amount = 800, type = "explosion" }
                             },
                             {
                                 type = "create-entity",
@@ -342,8 +369,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- ACID ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + acid effect
--- Design: 400 impact + 500 acid (ignores some armor) = ~1300 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: anti-armor shell with stronger-than-baseline burst and corrosive follow-through
 -------------------------------------------------------------------------------
 
 local acidShellAction = {
@@ -361,11 +388,11 @@ local acidShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 400, type = "explosion" }
+                                damage = { amount = 1200, type = "explosion" }
                             },
                             {
                                 type = "damage",
-                                damage = { amount = 500, type = "acid" }
+                                damage = { amount = 1400, type = "acid" }
                             }
                         }
                     }
@@ -448,8 +475,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- FRAGMENTATION ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + wide shrapnel
--- Design: 600 physical + 400 explosion in large radius = ~1200 total (spread)
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: anti-group shell with high mixed damage over the widest lethal area
 -------------------------------------------------------------------------------
 
 local fragmentationShellAction = {
@@ -467,11 +494,11 @@ local fragmentationShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 600, type = "physical" }
+                                damage = { amount = 1300, type = "physical" }
                             },
                             {
                                 type = "damage",
-                                damage = { amount = 400, type = "explosion" }
+                                damage = { amount = 1100, type = "explosion" }
                             }
                         }
                     }
@@ -553,8 +580,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- ARMOR PIERCING ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + penetration
--- Design: 1500 physical concentrated (anti-behemoth) = ~1500 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: uranium-based high-penetration shell; clearly strongest non-nuclear option
 -------------------------------------------------------------------------------
 
 local armorPiercingShellAction = {
@@ -572,7 +599,7 @@ local armorPiercingShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 1500, type = "physical" }
+                                damage = { amount = 5000, type = "physical" }
                             }
                         }
                     }
@@ -654,8 +681,8 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- SHOCKWAVE ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + knockback
--- Design: 400 damage + massive knockback (crowd control) = ~1100 total
+-- Practical vanilla baseline: ~2400 total damage in radius 4 with current bonus
+-- Role: crowd-control shell with baseline-beating burst and very high displacement
 -------------------------------------------------------------------------------
 
 local shockwaveShellAction = {
@@ -673,7 +700,7 @@ local shockwaveShellAction = {
                         target_effects = {
                             {
                                 type = "damage",
-                                damage = { amount = 400, type = "explosion" }
+                                damage = { amount = 2000, type = "explosion" }
                             },
                             {
                                 type = "push-back",
@@ -759,99 +786,11 @@ data:extend({
 
 -------------------------------------------------------------------------------
 -- NUCLEAR ARTILLERY SHELL
--- Base: 1000 dmg vanilla shell + 2x atomic bombs
--- Design: MASSIVE damage, should be the ultimate artillery = ~7000+ total
--- 4000 center + 2000 (r25) + 800 (r40) = devastation
+-- Uses the vanilla atomic rocket impact chain as its projectile action
+-- Role: top-end artillery option; kept well above every other shell
 -------------------------------------------------------------------------------
 
-local nuclearShellAction = {
-    type = "direct",
-    action_delivery = {
-        type = "instant",
-        target_effects = {
-            {
-                type = "set-tile",
-                tile_name = "nuclear-ground",
-                radius = 15,
-                apply_projection = true,
-                tile_collision_mask = { layers = { water_tile = true } }
-            },
-            {
-                type = "destroy-cliffs",
-                radius = 12,
-                explosion_at_trigger = "explosion"
-            },
-            {
-                type = "create-entity",
-                entity_name = "nuke-explosion"
-            },
-            {
-                type = "camera-effect",
-                effect = "screen-burn",
-                duration = 60,
-                ease_in_duration = 5,
-                ease_out_duration = 60,
-                delay = 0,
-                strength = 8,
-                full_strength_max_distance = 250,
-                max_distance = 1000
-            },
-            {
-                type = "play-sound",
-                sound = {
-                    aggregation = { max_count = 1, remove = true },
-                    variations = {
-                        { filename = "__base__/sound/fight/nuclear-explosion-1.ogg", volume = 1.5 },
-                        { filename = "__base__/sound/fight/nuclear-explosion-2.ogg", volume = 1.5 },
-                        { filename = "__base__/sound/fight/nuclear-explosion-3.ogg", volume = 1.5 }
-                    }
-                },
-                play_on_target_position = false,
-                audible_distance_modifier = 3
-            },
-            {
-                type = "damage",
-                damage = { amount = 4000, type = "explosion" }
-            },
-            {
-                type = "nested-result",
-                action = {
-                    type = "area",
-                    radius = 25,
-                    action_delivery = {
-                        type = "instant",
-                        target_effects = {
-                            {
-                                type = "damage",
-                                damage = { amount = 2000, type = "explosion" }
-                            },
-                            {
-                                type = "create-entity",
-                                entity_name = "explosion"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                type = "nested-result",
-                action = {
-                    type = "area",
-                    radius = 40,
-                    action_delivery = {
-                        type = "instant",
-                        target_effects = {
-                            {
-                                type = "damage",
-                                damage = { amount = 800, type = "explosion" }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+local nuclearShellAction = table.deepcopy(data.raw.projectile["atomic-rocket"].action)
 
 data:extend({
     createArtilleryProjectile("5d-artillery-shell-nuclear", nuclearShellAction),
@@ -922,5 +861,14 @@ data:extend({
         }
     }
 })
+
+inheritVanillaArtilleryAmmo("5d-artillery-shell-poison", "5d-artillery-shell-poison-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-incendiary", "5d-artillery-shell-incendiary-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-cluster", "5d-artillery-shell-cluster-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-acid", "5d-artillery-shell-acid-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-fragmentation", "5d-artillery-shell-fragmentation-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-armor-piercing", "5d-artillery-shell-armor-piercing-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-shockwave", "5d-artillery-shell-shockwave-projectile")
+inheritVanillaArtilleryAmmo("5d-artillery-shell-nuclear", "5d-artillery-shell-nuclear-projectile")
 
 

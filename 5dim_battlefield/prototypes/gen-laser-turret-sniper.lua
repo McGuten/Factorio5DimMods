@@ -11,13 +11,13 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (1400 → 7000), Damage +45% (60 → 87)
+-- Scale: HP x5 (1400 → 7000), moderate damage boost and long range
 -------------------------------------------------------------------------------
 
-local baseRange = 62
-local baseDamage = 60
+local baseRange = 40
+local baseDamage = 26
 local baseHealth = 1400
-local rangeIncrement = 4
+local rangeIncrement = 3
 local damageScalePerTier = 0.05
 local healthIncrement = 622               -- 1400 → 7000 (x5)
 local baseTechCount = 200
@@ -54,10 +54,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = { "5d-laser-turret-big-5", "utility-science-pack" }
+        prerequisites = { "laser-turret-5" }
     },
     [2] = {
         techName = "5d-laser-turret-sniper-2",
@@ -66,8 +65,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-laser-turret-sniper-1" }
     },
@@ -78,8 +76,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-laser-turret-sniper-2" }
     },
@@ -90,8 +87,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-laser-turret-sniper-3" }
     },
@@ -102,8 +98,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-laser-turret-sniper-4" }
     },
@@ -225,6 +220,7 @@ for tier = 1, 10 do
         range = range,
         damage = damage,
         health = health,
+        repairBaseHealth = baseHealth,
         baseTint = tierColors[tier],
         turretTint = typeColor,
         ingredients = ingredients,

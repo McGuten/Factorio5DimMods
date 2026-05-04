@@ -35,6 +35,7 @@ function genBiochamber(inputs)
     entity.crafting_speed = inputs.craftingSpeed
     entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "biochamber"
 
     data:extend({ entity, recipe, item })

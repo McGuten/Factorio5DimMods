@@ -4,6 +4,7 @@
 -------------------------------------------------------------------------------
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -196,6 +197,7 @@ for tier, config in pairs(tierConfig) do
         flags = { "placeable-neutral", "placeable-player", "player-creation" },
         minable = { mining_time = 0.2, result = name },
         max_health = health,
+        repair_speed_modifier = RepairSpeedScaling.conservative(baseHealth, health),
         dying_explosion = "wall-explosion",
         is_military_target = true,
         allow_run_time_change_of_is_military_target = false,

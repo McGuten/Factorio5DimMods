@@ -6,6 +6,8 @@
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local TierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -16,7 +18,7 @@ local baseName = "5d-poison-turret"
 local baseRange = 24
 local baseHealth = 400
 local baseCooldown = 45  -- ticks between shots
-local rangeIncrement = 2
+local rangeIncrement = 3
 local healthIncrement = 178               -- 400 → 2000 (x5)
 local damageScalePerTier = 0.05
 local baseTechCount = 200
@@ -262,6 +264,14 @@ for tier = 1, 10 do
     local entityName = baseName .. "-" .. tier
     local tierColor = TierColors[tier]
     local order = tierConfig[tier].order
+    local itemIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
+        { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
+    local techIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = "__base__/graphics/technology/gun-turret.png", icon_size = 256 },
+        { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
     
     -- Calculate tier values
     local range = baseRange + (tier - 1) * rangeIncrement
@@ -281,11 +291,11 @@ for tier = 1, 10 do
     local entity = {
         type = "ammo-turret",
         name = entityName,
-        icon = "__base__/graphics/icons/gun-turret.png",
-        icon_size = 64,
+        icons = table.deepcopy(itemIcons),
         flags = { "placeable-player", "player-creation" },
         minable = { mining_time = 0.5, result = entityName },
         max_health = health,
+        repair_speed_modifier = RepairSpeedScaling.linear(baseHealth, health),
         corpse = "gun-turret-remnants",
         collision_box = {{ -0.7, -0.7 }, { 0.7, 0.7 }},
         selection_box = {{ -1, -1 }, { 1, 1 }},
@@ -492,10 +502,7 @@ for tier = 1, 10 do
     local item = {
         type = "item",
         name = entityName,
-        icons = {
-            { icon = "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
-            { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-        },
+        icons = table.deepcopy(itemIcons),
         subgroup = "defense-poison-turret",
         order = order .. "[" .. entityName .. "]",
         place_result = entityName,
@@ -503,20 +510,14 @@ for tier = 1, 10 do
     }
     
     -- Recipe
-    local ingredients = {}
-    for _, ing in ipairs(RecipeTemplates.gunTurret[tier]) do
-        table.insert(ingredients, { type = ing.type, name = ing.name, amount = ing.amount })
-    end
-    -- Add coal (for poison effect)
-    table.insert(ingredients, { type = "item", name = "coal", amount = 5 + tier * 2 })
-    
     local recipe = {
         type = "recipe",
         name = entityName,
         enabled = false,
         energy_required = 10 + tier * 2,
-        ingredients = ingredients,
-        results = { { type = "item", name = entityName, amount = 1 } }
+        ingredients = RecipeTemplates.poisonTurret[tier],
+        results = { { type = "item", name = entityName, amount = 1 } },
+        icons = table.deepcopy(itemIcons)
     }
     
     -- Technology
@@ -541,8 +542,7 @@ for tier = 1, 10 do
         tech = {
             type = "technology",
             name = tc.techName,
-            icon = "__base__/graphics/technology/gun-turret.png",
-            icon_size = 256,
+            icons = table.deepcopy(techIcons),
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,

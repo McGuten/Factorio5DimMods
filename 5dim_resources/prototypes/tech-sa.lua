@@ -7,28 +7,17 @@ if not mods["space-age"] then
     return
 end
 
+local DustCommon = require("prototypes.dust-common")
+
 data:extend({
     {
         type = "technology",
         name = "5d-vulcanus-resources",
-        icons = {
-            {
-                icon = "__space-age__/graphics/icons/tungsten-ore.png",
-                icon_size = 64
-            },
-            {
-                icon = "__5dim_resources__/graphics/icon/resources/5d-iron-dust.png",
-                icon_size = 32,
-                scale = 0.85,
-                shift = { 10, 10 }
-            },
-            {
-                icon = "__space-age__/graphics/icons/calcite.png",
-                icon_size = 64,
-                scale = 0.35,
-                shift = { -12, -12 }
-            }
-        },
+        icons = DustCommon.make_dust_technology_icons(
+            "__space-age__/graphics/icons/tungsten-ore.png",
+            DustCommon.tints.tungsten,
+            "__space-age__/graphics/icons/calcite.png"
+        ),
         prerequisites = { "foundry", "tungsten-steel" },
         effects = {
             { type = "unlock-recipe", recipe = "5d-tungsten-dust" },
@@ -54,24 +43,11 @@ data:extend({
     {
         type = "technology",
         name = "5d-fulgora-resources",
-        icons = {
-            {
-                icon = "__space-age__/graphics/icons/holmium-ore.png",
-                icon_size = 64
-            },
-            {
-                icon = "__5dim_resources__/graphics/icon/resources/5d-iron-dust.png",
-                icon_size = 32,
-                scale = 0.85,
-                shift = { 10, 10 }
-            },
-            {
-                icon = "__space-age__/graphics/icons/scrap.png",
-                icon_size = 64,
-                scale = 0.35,
-                shift = { -12, -12 }
-            }
-        },
+        icons = DustCommon.make_dust_technology_icons(
+            "__space-age__/graphics/icons/holmium-ore.png",
+            DustCommon.tints.holmium,
+            "__space-age__/graphics/icons/scrap.png"
+        ),
         prerequisites = { "recycling", "holmium-processing" },
         effects = {
             { type = "unlock-recipe", recipe = "5d-holmium-dust" },

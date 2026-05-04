@@ -1,4 +1,15 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genFissionReactors(inputs)
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/fission-reactor-equipment.png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["fission-reactor-equipment"])
     local recipe = table.deepcopy(data.raw.recipe["fission-reactor-equipment"])
@@ -11,15 +22,14 @@ function genFissionReactors(inputs)
     if inputs.new then
         item.name = "5d-fission-reactor-equipment-" .. inputs.number
     end
-    -- item.icon = "__5dim_equipment__/graphics/icon/fission-reactor/fission-reactor-equipment-icon-" .. inputs.number .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_as_equipment_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     recipe.enabled = false
     if inputs.new then
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
@@ -39,8 +49,7 @@ function genFissionReactors(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "fission-reactor-equipment-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

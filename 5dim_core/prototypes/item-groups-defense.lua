@@ -29,63 +29,39 @@ data:extend(
         -- TURRETS
         {
             type = "item-subgroup",
-            name = "defense-gun-turret-small",
+            name = "defense-gun-turret",
             group = "defense",
             order = "b"
         },
         {
             type = "item-subgroup",
-            name = "defense-gun-turret",
+            name = "defense-gun-turret-sniper",
             group = "defense",
             order = "c"
         },
         {
             type = "item-subgroup",
-            name = "defense-gun-turret-big",
+            name = "defense-laser-turret",
             group = "defense",
             order = "d"
         },
         {
             type = "item-subgroup",
-            name = "defense-gun-turret-sniper",
-            group = "defense",
-            order = "e"
-        },
-        {
-            type = "item-subgroup",
-            name = "defense-laser-turret-small",
-            group = "defense",
-            order = "e"
-        },
-        {
-            type = "item-subgroup",
-            name = "defense-laser-turret",
-            group = "defense",
-            order = "f"
-        },
-        {
-            type = "item-subgroup",
-            name = "defense-laser-turret-big",
-            group = "defense",
-            order = "g"
-        },
-        {
-            type = "item-subgroup",
             name = "defense-laser-turret-sniper",
             group = "defense",
-            order = "ha"
+            order = "e"
         },
         {
             type = "item-subgroup",
             name = "defense-slow-turret",
             group = "defense",
-            order = "haa"
+            order = "ea"
         },
         {
             type = "item-subgroup",
             name = "defense-electric-laser",
             group = "defense",
-            order = "hb"
+            order = "eb"
         },
         {
             type = "item-subgroup",

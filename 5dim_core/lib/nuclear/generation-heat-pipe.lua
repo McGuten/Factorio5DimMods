@@ -1,4 +1,15 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genHeatPipes(inputs)
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/heat-pipe.png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["heat-pipe"])
     local recipe = table.deepcopy(data.raw.recipe["heat-pipe"])
@@ -9,16 +20,14 @@ function genHeatPipes(inputs)
     if inputs.new then
         item.name = "5d-heat-pipe-" .. inputs.number
     end
-    -- item.icon =
-    --     "__5dim_energy__/graphics/icon/heat-pipe/heat-pipe-icon-" .. inputs.number .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new then
         recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
@@ -28,7 +37,7 @@ function genHeatPipes(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     entity.heat_buffer.max_temperature = inputs.maxTemperature
     entity.heat_buffer.max_transfer = inputs.maxTransfer .. "GW"
@@ -43,8 +52,7 @@ function genHeatPipes(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-heat-pipe-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

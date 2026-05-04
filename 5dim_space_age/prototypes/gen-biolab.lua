@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.space-age.generation-biolab")
 
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -15,6 +16,7 @@ local baseResearchSpeed = 2
 local speedMultiplier = 1.5
 local baseModuleSlots = 4
 local baseEnergyUsage = 300
+local baseEmissions = 8
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -160,12 +162,13 @@ local techConfig = {
 -------------------------------------------------------------------------------
 
 local currentSpeed = baseResearchSpeed
-local currentEnergy = baseEnergyUsage
 local currentModules = baseModuleSlots
 
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
+    local currentEnergy = CostCalculator.scaleEnergyBySpeed(baseEnergyUsage, baseResearchSpeed, currentSpeed, 1.5)
+    local currentEmissions = CostCalculator.scalePollution(baseEmissions, baseResearchSpeed, currentSpeed)
     
     local techData = nil
     if techConfig[tier] then
@@ -185,13 +188,13 @@ for tier = 1, 10 do
         researchSpeed = currentSpeed,
         moduleSlots = currentModules,
         energyUsage = currentEnergy,
+        pollution = { pollution = currentEmissions },
         ingredients = RecipeTemplates.biolab[tier],
         nextUpdate = tier < 10 and ("5d-biolab-" .. string.format("%02d", tier + 1)) or nil,
         tech = techData
     })
 
     currentSpeed = currentSpeed * speedMultiplier
-    currentEnergy = currentEnergy * 1.3
     if tier % 2 == 0 and currentModules < 8 then
         currentModules = currentModules + 1
     end

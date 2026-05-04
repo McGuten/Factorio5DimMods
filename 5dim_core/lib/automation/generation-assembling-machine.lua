@@ -37,7 +37,9 @@ function genAssemblingMachines(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.crafting_speed = inputs.craftingSpeed
+    entity.module_slots = inputs.moduleSlots
     entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "assembling-machine"
 
     if mods['space-age'] and inputs.new then

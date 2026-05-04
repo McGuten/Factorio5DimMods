@@ -14,11 +14,21 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- movement_energy_consumption = 250kW
 -- inventory_size = 80
 -- equipment_grid = 10x6
--- Scale: HP x5 (3000 → 15000)
+-- Scale: HP 3000 -> 30000
 -------------------------------------------------------------------------------
 
-local baseHealth = 3000
-local healthIncrement = 1333          -- +1333 HP per tier → 3000 → 15000 (x5)
+local healthByTier = {
+    [1] = 3000,
+    [2] = 4500,
+    [3] = 6300,
+    [4] = 8400,
+    [5] = 11100,
+    [6] = 14400,
+    [7] = 18300,
+    [8] = 22500,
+    [9] = 26700,
+    [10] = 30000
+}
 local baseMovementEnergy = 250        -- kW
 local movementEnergyIncrement = 50    -- +50 kW per tier
 local baseInventory = 80
@@ -26,21 +36,66 @@ local inventoryIncrement = 20         -- +20 slots per tier
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
+-- RESISTANCE SCALING
+-- Base resistances follow vanilla spidertron and improve per tier.
+-------------------------------------------------------------------------------
+
+local function getResistances(tier)
+    local bonus = (tier - 1) * 3
+    local decreaseBonus = (tier - 1) * 2
+
+    return {
+        { type = "fire", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 97) },
+        { type = "physical", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 97) },
+        { type = "impact", decrease = 50 + (tier - 1) * 6, percent = math.min(80 + bonus, 99) },
+        { type = "explosion", decrease = 20 + decreaseBonus, percent = math.min(75 + bonus, 98) },
+        { type = "acid", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 97) },
+        { type = "laser", decrease = 8 + decreaseBonus, percent = math.min(70 + bonus, 96) },
+        { type = "electric", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 97) },
+        { type = "poison", decrease = 15 + decreaseBonus, percent = math.min(85 + bonus, 99) }
+    }
+end
+
+local function getLegResistances(tier)
+    local resistances = table.deepcopy(getResistances(tier))
+
+    for index, resistance in ipairs(resistances) do
+        if resistance.type == "explosion" then
+            resistances[index] = { type = "explosion", percent = 100 }
+            break
+        end
+    end
+
+    return resistances
+end
+
+-------------------------------------------------------------------------------
 -- EQUIPMENT GRID DEFINITIONS
 -- Base grid: 10x6 (60 slots)
 -- Each tier adds more space
 -------------------------------------------------------------------------------
 
+local spidertronGridSizes = {
+    [2] = { width = 10, height = 7 },
+    [3] = { width = 11, height = 7 },
+    [4] = { width = 11, height = 8 },
+    [5] = { width = 12, height = 8 },
+    [6] = { width = 12, height = 9 },
+    [7] = { width = 13, height = 9 },
+    [8] = { width = 13, height = 10 },
+    [9] = { width = 14, height = 10 },
+    [10] = { width = 14, height = 11 }
+}
+
 for tier = 2, 10 do
-    local gridWidth = 10 + (tier - 1)      -- 10, 11, 12, 13, 14, 15, 16, 17, 18
-    local gridHeight = 6 + math.floor((tier - 1) / 2)  -- 6, 6, 7, 7, 8, 8, 9, 9, 10
+    local gridSize = spidertronGridSizes[tier]
     
     data:extend({
         {
             type = "equipment-grid",
             name = "5d-spidertron-equipment-grid-" .. tier,
-            width = gridWidth,
-            height = gridHeight,
+            width = gridSize.width,
+            height = gridSize.height,
             equipment_categories = {"armor"}
         }
     })
@@ -185,7 +240,7 @@ for tier, config in pairs(tierConfig) do
     local tierTech = techConfig[tier]
 
     -- Calculate stats for this tier
-    local health = baseHealth + (tier - 1) * healthIncrement
+    local health = healthByTier[tier]
     local movementEnergy = baseMovementEnergy + (tier - 1) * movementEnergyIncrement
     local inventorySize = baseInventory + (tier - 1) * inventoryIncrement
     local trashSize = 20 + (tier - 1) * 5
@@ -241,6 +296,8 @@ for tier, config in pairs(tierConfig) do
         movementEnergy = movementEnergy .. "kW",
         inventorySize = inventorySize,
         trashInventorySize = trashSize,
+        resistances = getResistances(tier),
+        legResistances = getLegResistances(tier),
         equipmentGrid = equipmentGrid,
         ingredients = ingredients,
         tint = tierColor,

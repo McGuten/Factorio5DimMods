@@ -1,4 +1,15 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genCargoLandingPad(inputs)
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/cargo-landing-pad.png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     -- Copy cargo-landing-pad
     local item = table.deepcopy(data.raw.item["cargo-landing-pad"])
     local recipe = table.deepcopy(data.raw.recipe["cargo-landing-pad"])
@@ -10,15 +21,14 @@ function genCargoLandingPad(inputs)
     if inputs.new then
         item.name = "5d-cargo-landing-pad-" .. inputs.number
     end
-    item.icon = "__base__/graphics/icons/cargo-landing-pad.png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new then
         recipe.enabled = false
     end
@@ -30,7 +40,7 @@ function genCargoLandingPad(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     entity.inventory_size = inputs.inventorySize
     entity.fast_replaceable_group = "cargo-landing-pad"
@@ -40,8 +50,7 @@ function genCargoLandingPad(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-cargo-landing-pad-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

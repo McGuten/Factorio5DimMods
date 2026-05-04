@@ -30,11 +30,45 @@ function genPersonalLaserDefenses(inputs)
     equipment.take_result = item.name
     equipment.attack_parameters.cooldown = inputs.cooldown
     equipment.attack_parameters.range = inputs.range
-    equipment.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
     equipment.attack_parameters.damage_modifier = inputs.damage
     equipment.attack_parameters.ammo_type.energy_consumption = inputs.energyConsumption .. "kJ"
     equipment.energy_source.buffer_capacity = inputs.energyConsumption * 4 .. "kJ"
-    equipment.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+    if mods["space-age"] then
+        equipment.attack_parameters.ammo_category = "tesla"
+        equipment.attack_parameters.ammo_type.action.action_delivery = {
+            type = "instant",
+            target_effects = {
+                {
+                    type = "nested-result",
+                    action = {
+                        type = "direct",
+                        action_delivery = {
+                            type = "chain",
+                            chain = "chain-tesla-gun-chain"
+                        }
+                    }
+                },
+                {
+                    type = "nested-result",
+                    action = {
+                        type = "direct",
+                        action_delivery = {
+                            type = "beam",
+                            beam = "chain-tesla-gun-beam-start",
+                            max_length = inputs.range + 1,
+                            duration = 30,
+                            add_to_shooter = false,
+                            destroy_with_source_or_target = false,
+                            source_offset = {0, -1.31439}
+                        }
+                    }
+                }
+            }
+        }
+    else
+        equipment.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
+        equipment.attack_parameters.ammo_type.action.action_delivery.beam = "electric-beam"
+    end
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/personal-tesla-defense/personal-tesla-defense-equipment-" .. inputs.number .. ".png"
     equipment.sprite.width = 64

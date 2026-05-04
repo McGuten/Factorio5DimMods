@@ -156,8 +156,7 @@ for tier = 1, 10 do
     local moduleSlots = baseModuleSlots + config.moduleBonus
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.foundry[tier]

@@ -1,41 +1,79 @@
 require("tint-gun-turret")
 
-function string:split(delimiter)
-    local result = {}
-    local from = 1
-    local delim_from, delim_to = string.find(self, delimiter, from)
-    while delim_from do
-        table.insert(result, string.sub(self, from, delim_from - 1))
-        from = delim_to + 1
-        delim_from, delim_to = string.find(self, delimiter, from)
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
+local function setPrototypeIcon(prototype, iconPath, iconSize, icons)
+    if icons then
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = icons
+        return
     end
-    table.insert(result, string.sub(self, from))
-    return result
+
+    prototype.icon = iconPath
+    prototype.icon_size = iconSize
+    prototype.icons = nil
+end
+
+local function applyGunTurretTints(entity, baseTint, turretTint)
+    if not entity or not baseTint or not turretTint then
+        return
+    end
+
+    entity.folded_animation.layers[2] =
+        dim_gun_turret_extension_mask {
+            frame_count = 1,
+            line_length = 1,
+            tint = turretTint
+        }
+    entity.preparing_animation.layers[2] = dim_gun_turret_extension_mask { tint = turretTint }
+    entity.folding_animation.layers[2] =
+        dim_gun_turret_extension_mask {
+            run_mode = "backward",
+            tint = turretTint
+        }
+    entity.graphics_set.base_visualisation.animation.layers[2].apply_runtime_tint = false
+    entity.graphics_set.base_visualisation.animation.layers[2].tint = baseTint
+    entity.attacking_animation.layers[2].apply_runtime_tint = false
+    entity.attacking_animation.layers[2].tint = turretTint
+    entity.prepared_animation.layers[2].apply_runtime_tint = false
+    entity.prepared_animation.layers[2].tint = turretTint
 end
 
 function genGunTurrets(inputs)
-    local split = inputs.number:split("-")
-    
-    -- Determine icon path based on variant type
-    local iconPath
-    if string.find(inputs.number, "small") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/gun-turret/small/gun-turret-small-" .. split[2] .. ".png"
-    elseif string.find(inputs.number, "big") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/gun-turret/big/gun-turret-big-" .. split[2] .. ".png"
-    elseif string.find(inputs.number, "sniper") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/gun-turret/sniper/gun-turret-sniper-" .. split[2] .. ".png"
+    local split = {}
+    local separator = string.find(inputs.number, "-", 1, true)
+    if separator then
+        split[1] = string.sub(inputs.number, 1, separator - 1)
+        split[2] = string.sub(inputs.number, separator + 1)
     else
-        iconPath = "__5dim_battlefield__/graphics/icon/gun-turret/normal/gun-turret-normal-" .. split[1] .. ".png"
+        split[1] = inputs.number
+    end
+    
+    local iconSize = inputs.iconSize or 64
+    local isSniper = string.find(inputs.number, "sniper") ~= nil
+    local tierNumber = tonumber(split[2] or split[1])
+
+    local iconPath = "__base__/graphics/icons/gun-turret.png"
+    local tieredIcons = nil
+    local baseTint = inputs.baseTint or inputs.tint
+    local turretTint = inputs.turretTint or inputs.tint
+    if tierNumber then
+        tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, 64)
     end
     
     -- For vanilla tier (new = false), only update icon of base entity
     if not inputs.new then
-        data.raw.item["gun-turret"].icon = iconPath
-        data.raw.item["gun-turret"].icon_size = 64
-        data.raw.recipe["gun-turret"].icon = iconPath
-        data.raw.recipe["gun-turret"].icon_size = 64
-        data.raw["ammo-turret"]["gun-turret"].icon = iconPath
-        data.raw["ammo-turret"]["gun-turret"].icon_size = 64
+        if isSniper then
+            return
+        end
+
+        setPrototypeIcon(data.raw.item["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.recipe["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw["ammo-turret"]["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.technology["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        applyGunTurretTints(data.raw["ammo-turret"]["gun-turret"], baseTint, turretTint)
         return
     end
     
@@ -45,11 +83,9 @@ function genGunTurrets(inputs)
     local entity = table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
     local tech = table.deepcopy(data.raw.technology["gun-turret"])
 
-    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
-
     --Item
     item.name = "5d-gun-turret-" .. inputs.number
-    item.icon = iconPath
+    setPrototypeIcon(item, iconPath, iconSize, tieredIcons)
 
     item.subgroup = inputs.subgroup
     item.order = inputs.order
@@ -57,8 +93,7 @@ function genGunTurrets(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcon(recipe, iconPath, iconSize, tieredIcons)
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
@@ -66,11 +101,14 @@ function genGunTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcon(entity, iconPath, iconSize, tieredIcons)
     entity.minable.result = item.name
     entity.automated_ammo_count = inputs.ammoCount
     -- Modify attack_parameters - keep original structure, just update allowed values
     if entity.attack_parameters then
+        if inputs.ammoCategory then
+            entity.attack_parameters.ammo_category = inputs.ammoCategory
+        end
         entity.attack_parameters.range = inputs.range
         if inputs.attackSpeed then
             entity.attack_parameters.cooldown = inputs.attackSpeed
@@ -87,33 +125,9 @@ function genGunTurrets(inputs)
         end
     end
     
-    -- Use separate tints for base (tier color) and turret (type color)
-    local baseTint = inputs.baseTint or inputs.tint
-    local turretTint = inputs.turretTint or inputs.tint
-    
-    -- Turret/gun extension animations (type color)
-    entity.folded_animation.layers[2] =
-        dim_gun_turret_extension_mask {
-            frame_count = 1,
-            line_length = 1,
-            tint = turretTint
-        }
-    entity.preparing_animation.layers[2] = dim_gun_turret_extension_mask { tint = turretTint }
-    entity.folding_animation.layers[2] =
-        dim_gun_turret_extension_mask {
-            run_mode = "backward",
-            tint = turretTint
-        }
-    -- Base visualization (tier color)
-    entity.graphics_set.base_visualisation.animation.layers[2].apply_runtime_tint = false
-    entity.graphics_set.base_visualisation.animation.layers[2].tint = baseTint
-    -- Attacking animation - turret part (type color)
-    entity.attacking_animation.layers[2].apply_runtime_tint = false
-    entity.attacking_animation.layers[2].tint = turretTint
-    -- Prepared animation - turret part (type color)
-    entity.prepared_animation.layers[2].apply_runtime_tint = false
-    entity.prepared_animation.layers[2].tint = turretTint
+    applyGunTurretTints(entity, baseTint, turretTint)
     entity.max_health = inputs.health or 480
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 480, entity.max_health)
     entity.fast_replaceable_group = "gun-turret"
     entity.resistances = inputs.resistances or nil
     data:extend(
@@ -127,8 +141,7 @@ function genGunTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcon(tech, iconPath, iconSize, tieredIcons)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

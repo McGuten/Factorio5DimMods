@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.space-age.generation-crusher")
 
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -14,6 +15,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseCraftingSpeed = 1
 local baseModuleSlots = 2
 local baseEnergy = 540
+local baseEmissions = 1
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -142,7 +144,8 @@ for tier = 1, 10 do
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + config.speedBonus
     local moduleSlots = baseModuleSlots + config.moduleBonus
-    local energyUsage = baseEnergy + config.energyBonus
+    local energyUsage = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.crusher[tier]
@@ -172,6 +175,7 @@ for tier = 1, 10 do
         craftingSpeed = craftingSpeed,
         moduleSlots = moduleSlots,
         energyUsage = energyUsage,
+        pollution = { pollution = emissions },
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

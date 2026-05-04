@@ -5,6 +5,23 @@
 -------------------------------------------------------------------------------
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
+local function setTieredIcons(prototype, baseIcon, tier)
+    prototype.icon = nil
+    prototype.icon_size = nil
+    prototype.icon_mipmaps = nil
+    prototype.icons = TierBadgeIcons.buildTieredIcons(baseIcon, tier, 64)
+end
+
+setTieredIcons(data.raw.capsule["grenade"], "__base__/graphics/icons/grenade.png", 1)
+setTieredIcons(data.raw.recipe["grenade"], "__base__/graphics/icons/grenade.png", 1)
+setTieredIcons(data.raw.capsule["cluster-grenade"], "__base__/graphics/icons/cluster-grenade.png", 1)
+setTieredIcons(data.raw.recipe["cluster-grenade"], "__base__/graphics/icons/cluster-grenade.png", 1)
+setTieredIcons(data.raw.capsule["poison-capsule"], "__base__/graphics/icons/poison-capsule.png", 1)
+setTieredIcons(data.raw.recipe["poison-capsule"], "__base__/graphics/icons/poison-capsule.png", 1)
+setTieredIcons(data.raw.capsule["slowdown-capsule"], "__base__/graphics/icons/slowdown-capsule.png", 1)
+setTieredIcons(data.raw.recipe["slowdown-capsule"], "__base__/graphics/icons/slowdown-capsule.png", 1)
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -110,6 +127,7 @@ for tier, config in pairs(tierConfig) do
         item.name = name
         item.subgroup = "equipment-grenade"
         item.order = config.order
+        setTieredIcons(item, "__base__/graphics/icons/grenade.png", tier)
         -- Update to use custom projectile
         item.capsule_action.attack_parameters.ammo_type.action[1].action_delivery.projectile = projectileName
         
@@ -128,13 +146,12 @@ for tier, config in pairs(tierConfig) do
             },
             results = { { type = "item", name = name, amount = 1 } }
         }
+        setTieredIcons(recipe, "__base__/graphics/icons/grenade.png", tier)
         
         -- Create technology
         local tech = {
             type = "technology",
             name = "5d-grenade-" .. tier,
-            icon = "__base__/graphics/icons/grenade.png",
-            icon_size = 64,
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },
@@ -145,6 +162,7 @@ for tier, config in pairs(tierConfig) do
                 time = 30
             }
         }
+        setTieredIcons(tech, "__base__/graphics/icons/grenade.png", tier)
         
         data:extend({ projectile, item, recipe, tech })
     end
@@ -181,6 +199,7 @@ for tier, config in pairs(tierConfig) do
         item.name = name
         item.subgroup = "equipment-cluster-grenade"
         item.order = config.order
+        setTieredIcons(item, "__base__/graphics/icons/cluster-grenade.png", tier)
         -- Update to use custom projectile
         item.capsule_action.attack_parameters.ammo_type.action[1].action_delivery.projectile = projectileName
         
@@ -199,13 +218,12 @@ for tier, config in pairs(tierConfig) do
             },
             results = { { type = "item", name = name, amount = 1 } }
         }
+        setTieredIcons(recipe, "__base__/graphics/icons/cluster-grenade.png", tier)
         
         -- Create technology
         local tech = {
             type = "technology",
             name = "5d-cluster-grenade-" .. tier,
-            icon = "__base__/graphics/icons/cluster-grenade.png",
-            icon_size = 64,
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },
@@ -216,6 +234,7 @@ for tier, config in pairs(tierConfig) do
                 time = 30
             }
         }
+        setTieredIcons(tech, "__base__/graphics/icons/cluster-grenade.png", tier)
         
         data:extend({ projectile, item, recipe, tech })
     end
@@ -266,6 +285,7 @@ for tier, config in pairs(tierConfig) do
         item.name = capsuleName
         item.subgroup = "equipment-poison-capsule"
         item.order = config.order
+        setTieredIcons(item, "__base__/graphics/icons/poison-capsule.png", tier)
         item.capsule_action.attack_parameters.range = range
         item.capsule_action.attack_parameters.ammo_type.action[1].action_delivery.projectile = projectileName
         
@@ -284,13 +304,12 @@ for tier, config in pairs(tierConfig) do
             },
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
+        setTieredIcons(recipe, "__base__/graphics/icons/poison-capsule.png", tier)
         
         -- Create technology
         local tech = {
             type = "technology",
             name = "5d-poison-capsule-" .. tier,
-            icon = "__base__/graphics/icons/poison-capsule.png",
-            icon_size = 64,
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
@@ -301,6 +320,7 @@ for tier, config in pairs(tierConfig) do
                 time = 30
             }
         }
+        setTieredIcons(tech, "__base__/graphics/icons/poison-capsule.png", tier)
         
         data:extend({ cloud, projectile, item, recipe, tech })
     end
@@ -349,6 +369,7 @@ for tier, config in pairs(tierConfig) do
         item.name = capsuleName
         item.subgroup = "equipment-slowdown-capsule"
         item.order = config.order
+        setTieredIcons(item, "__base__/graphics/icons/slowdown-capsule.png", tier)
         item.capsule_action.attack_parameters.range = range
         item.capsule_action.attack_parameters.ammo_type.action[1].action_delivery.projectile = projectileName
         
@@ -367,13 +388,12 @@ for tier, config in pairs(tierConfig) do
             },
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
+        setTieredIcons(recipe, "__base__/graphics/icons/slowdown-capsule.png", tier)
         
         -- Create technology
         local tech = {
             type = "technology",
             name = "5d-slowdown-capsule-" .. tier,
-            icon = "__base__/graphics/icons/slowdown-capsule.png",
-            icon_size = 64,
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
@@ -384,6 +404,7 @@ for tier, config in pairs(tierConfig) do
                 time = 30
             }
         }
+        setTieredIcons(tech, "__base__/graphics/icons/slowdown-capsule.png", tier)
         
         data:extend({ sticker, projectile, item, recipe, tech })
     end

@@ -7,6 +7,7 @@
 
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
@@ -16,11 +17,28 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -------------------------------------------------------------------------------
 
 local baseRange         = 22                       -- T1 range in tiles
-local rangeIncrement    = 2                        -- +2 per tier (T10 = 40)
+local rangeIncrement    = 3                        -- +3 per tier (T10 = 49)
 local baseHealth        = 1000
 local healthIncrement   = 444                      -- 1000 -> 5000 (x5)
 local baseTechCount     = 200
 local typeColor         = { r = 0.2, g = 0.8, b = 1.0, a = 1 } -- cyan
+local slowItemBaseIcon  = "__base__/graphics/icons/laser-turret.png"
+local slowTechBaseIcon  = "__base__/graphics/technology/laser-turret.png"
+local slowOverlayIcon   = "__base__/graphics/icons/slowdown-capsule.png"
+
+local function makeSlowItemIcons(tier)
+    return {
+        { icon = slowItemBaseIcon, icon_size = 64, tint = tierColors[tier] },
+        { icon = slowOverlayIcon, icon_size = 64, scale = 0.5, shift = { -8, -8 } }
+    }
+end
+
+local function makeSlowTechIcons()
+    return {
+        { icon = slowTechBaseIcon, icon_size = 256, tint = typeColor },
+        { icon = slowOverlayIcon, icon_size = 64, scale = 1.15, shift = { 72, 72 } }
+    }
+end
 
 -- Slow effect curve per tier
 -- T1: 30% movement speed, 1.5s   ->   T10: 80% reduction, 4s
@@ -271,16 +289,23 @@ for tier = 1, 10 do
     item.subgroup    = "defense-slow-turret"
     item.order       = config.order
     item.place_result = entityName
+    item.icon        = nil
+    item.icon_size   = nil
+    item.icons       = makeSlowItemIcons(tier)
 
     recipe.name        = entityName
     recipe.enabled     = false
     recipe.results     = { { type = "item", name = entityName, amount = 1 } }
     recipe.ingredients = RecipeTemplates.slowTurret[tier]
+    recipe.icon        = nil
+    recipe.icon_size   = nil
+    recipe.icons       = makeSlowItemIcons(tier)
 
     entity.name         = entityName
     entity.next_upgrade = (tier < 10) and ("5d-slow-turret-" .. string.format("%02d", tier + 1)) or nil
     entity.minable.result = entityName
     entity.max_health   = baseHealth + (tier - 1) * healthIncrement
+    entity.repair_speed_modifier = RepairSpeedScaling.linear(baseHealth, entity.max_health)
     entity.fast_replaceable_group = "5d-slow-turret"
     entity.resistances  = getResistances(tier)
 
@@ -331,6 +356,9 @@ for tier = 1, 10 do
         tech.unit.count    = baseTechCount * tc.countMultiplier
         tech.unit.ingredients = CostCalculator.getTechPacks(tc.basePacks, tier)
         tech.prerequisites = tc.prerequisites
+        tech.icon = nil
+        tech.icon_size = nil
+        tech.icons = makeSlowTechIcons()
         tech.effects = {
             { type = "unlock-recipe", recipe = entityName }
         }

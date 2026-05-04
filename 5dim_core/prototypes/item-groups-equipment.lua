@@ -15,75 +15,81 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "equipment-shotgun",
+            name = "equipment-sniper",
             group = "equipment",
             order = "02"
         },
         {
             type = "item-subgroup",
-            name = "equipment-rocket",
+            name = "equipment-shotgun",
             group = "equipment",
             order = "03"
         },
         {
             type = "item-subgroup",
-            name = "equipment-flame",
+            name = "equipment-rocket",
             group = "equipment",
             order = "04"
         },
         {
             type = "item-subgroup",
-            name = "equipment-railgun",
+            name = "equipment-flame",
             group = "equipment",
             order = "05"
+        },
+        {
+            type = "item-subgroup",
+            name = "equipment-railgun",
+            group = "equipment",
+            order = "06"
         },
         {
             type = "item-subgroup",
             name = "equipment-teslagun",
             group = "equipment",
-            order = "05"
+            order = "07"
         },
         {
             type = "item-subgroup",
             name = "equipment-grenade",
             group = "equipment",
-            order = "10"
+            order = "11"
         },
         {
             type = "item-subgroup",
             name = "equipment-cluster-grenade",
             group = "equipment",
-            order = "11"
+            order = "12"
         },
         {
             type = "item-subgroup",
             name = "equipment-poison-capsule",
             group = "equipment",
-            order = "12"
+            order = "13"
         },
         {
             type = "item-subgroup",
             name = "equipment-slowdown-capsule",
             group = "equipment",
-            order = "13"
+            order = "14"
         },
         {
             type = "item-subgroup",
             name = "equipment-defender",
             group = "equipment",
-            order = "14"
+            order = "15"
         },
         {
             type = "item-subgroup",
             name = "equipment-distractor",
             group = "equipment",
-            order = "15"
+            order = "16"
         },
         {
             type = "item-subgroup",
             name = "equipment-destroyer",
             group = "equipment",
-            order = "16"
+            order = "17"
         },
         {
             type = "item-subgroup",

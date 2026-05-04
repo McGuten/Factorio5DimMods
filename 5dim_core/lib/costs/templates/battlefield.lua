@@ -246,138 +246,102 @@ Templates.gunTurret = {
     }
 }
 
--- Gun Turret Big templates
-Templates.gunTurretBig = {
-    [1] = {
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "copper-plate", amount = 10 },
-        { type = "item", name = "iron-plate", amount = 30 }
-    },
-    [2] = {
-        { type = "item", name = "5d-gun-turret-big-01", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [3] = {
-        { type = "item", name = "5d-gun-turret-big-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [4] = {
-        { type = "item", name = "5d-gun-turret-big-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [5] = {
-        { type = "item", name = "5d-gun-turret-big-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [6] = {
-        { type = "item", name = "5d-gun-turret-big-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [7] = {
-        { type = "item", name = "5d-gun-turret-big-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [8] = {
-        { type = "item", name = "5d-gun-turret-big-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [9] = {
-        { type = "item", name = "5d-gun-turret-big-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    },
-    [10] = {
-        { type = "item", name = "5d-gun-turret-big-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 6 },
-        { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 10 }
-    }
-}
+local function buildDerivedGunTurretTemplates(previousTierNameFn, extraIngredientFn)
+    local templates = {}
 
--- Gun Turret Small templates
-Templates.gunTurretSmall = {
-    [1] = {
-        { type = "item", name = "iron-gear-wheel", amount = 7 },
-        { type = "item", name = "copper-plate", amount = 7 },
-        { type = "item", name = "iron-plate", amount = 13 }
-    },
-    [2] = {
-        { type = "item", name = "5d-gun-turret-small-01", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [3] = {
-        { type = "item", name = "5d-gun-turret-small-02", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [4] = {
-        { type = "item", name = "5d-gun-turret-small-03", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [5] = {
-        { type = "item", name = "5d-gun-turret-small-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [6] = {
-        { type = "item", name = "5d-gun-turret-small-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [7] = {
-        { type = "item", name = "5d-gun-turret-small-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [8] = {
-        { type = "item", name = "5d-gun-turret-small-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [9] = {
-        { type = "item", name = "5d-gun-turret-small-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    },
-    [10] = {
-        { type = "item", name = "5d-gun-turret-small-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 3 },
-        { type = "item", name = "copper-plate", amount = 3 },
-        { type = "item", name = "iron-plate", amount = 5 }
-    }
-}
+    for tier = 1, 10 do
+        local ingredients = {}
+
+        if tier == 1 then
+            for _, ing in ipairs(Templates.gunTurret[1]) do
+                table.insert(ingredients, {
+                    type = ing.type,
+                    name = ing.name,
+                    amount = ing.amount
+                })
+            end
+        else
+            table.insert(ingredients, {
+                type = "item",
+                name = previousTierNameFn(tier),
+                amount = 1
+            })
+
+            for index = 2, #Templates.gunTurret[tier] do
+                local ing = Templates.gunTurret[tier][index]
+                table.insert(ingredients, {
+                    type = ing.type,
+                    name = ing.name,
+                    amount = ing.amount
+                })
+            end
+        end
+
+        local extraIngredient = extraIngredientFn(tier)
+        table.insert(ingredients, {
+            type = extraIngredient.type,
+            name = extraIngredient.name,
+            amount = extraIngredient.amount
+        })
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
+Templates.acidTurret = buildDerivedGunTurretTemplates(
+    function(tier)
+        return "5d-acid-turret-" .. (tier - 1)
+    end,
+    function(tier)
+        return { type = "item", name = "sulfur", amount = 5 + tier * 2 }
+    end
+)
+
+Templates.poisonTurret = buildDerivedGunTurretTemplates(
+    function(tier)
+        return "5d-poison-turret-" .. (tier - 1)
+    end,
+    function(tier)
+        return { type = "item", name = "coal", amount = 5 + tier * 2 }
+    end
+)
+
+Templates.flareTurret = buildDerivedGunTurretTemplates(
+    function(tier)
+        return "5d-flare-turret-" .. (tier - 1)
+    end,
+    function(tier)
+        return { type = "item", name = "electronic-circuit", amount = 3 + tier }
+    end
+)
+
+Templates.mortarTurret = buildDerivedGunTurretTemplates(
+    function(tier)
+        return "5d-mortar-turret-" .. (tier - 1)
+    end,
+    function(tier)
+        return { type = "item", name = "steel-plate", amount = 5 + tier * 3 }
+    end
+)
+
+Templates.robotDeployer = buildDerivedGunTurretTemplates(
+    function(tier)
+        return "5d-robot-deployer-" .. (tier - 1)
+    end,
+    function(tier)
+        return { type = "item", name = "electronic-circuit", amount = 5 + tier * 2 }
+    end
+)
 
 -- Gun Turret Sniper templates
 Templates.gunTurretSniper = {
     [1] = {
+        { type = "item", name = "5d-gun-turret-05", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "steel-plate", amount = 5 }
+        { type = "item", name = "advanced-circuit", amount = 8 },
+        { type = "item", name = "steel-plate", amount = 12 }
     },
     [2] = {
         { type = "item", name = "5d-gun-turret-sniper-01", amount = 1 },
@@ -498,138 +462,13 @@ Templates.laserTurret = {
     }
 }
 
--- Laser Turret Big templates
-Templates.laserTurretBig = {
-    [1] = {
-        { type = "item", name = "steel-plate", amount = 30 },
-        { type = "item", name = "electronic-circuit", amount = 30 },
-        { type = "item", name = "battery", amount = 15 }
-    },
-    [2] = {
-        { type = "item", name = "5d-laser-turret-big-01", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [3] = {
-        { type = "item", name = "5d-laser-turret-big-02", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [4] = {
-        { type = "item", name = "5d-laser-turret-big-03", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [5] = {
-        { type = "item", name = "5d-laser-turret-big-04", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [6] = {
-        { type = "item", name = "5d-laser-turret-big-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [7] = {
-        { type = "item", name = "5d-laser-turret-big-06", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [8] = {
-        { type = "item", name = "5d-laser-turret-big-07", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [9] = {
-        { type = "item", name = "5d-laser-turret-big-08", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    },
-    [10] = {
-        { type = "item", name = "5d-laser-turret-big-09", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 7 },
-        { type = "item", name = "electronic-circuit", amount = 7 },
-        { type = "item", name = "battery", amount = 5 }
-    }
-}
-
--- Laser Turret Small templates
-Templates.laserTurretSmall = {
-    [1] = {
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 6 }
-    },
-    [2] = {
-        { type = "item", name = "5d-laser-turret-small-01", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [3] = {
-        { type = "item", name = "5d-laser-turret-small-02", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [4] = {
-        { type = "item", name = "5d-laser-turret-small-03", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [5] = {
-        { type = "item", name = "5d-laser-turret-small-04", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [6] = {
-        { type = "item", name = "5d-laser-turret-small-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [7] = {
-        { type = "item", name = "5d-laser-turret-small-06", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [8] = {
-        { type = "item", name = "5d-laser-turret-small-07", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [9] = {
-        { type = "item", name = "5d-laser-turret-small-08", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    },
-    [10] = {
-        { type = "item", name = "5d-laser-turret-small-09", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 2 },
-        { type = "item", name = "electronic-circuit", amount = 2 },
-        { type = "item", name = "battery", amount = 2 }
-    }
-}
-
 -- Laser Turret Sniper templates
 Templates.laserTurretSniper = {
     [1] = {
-        { type = "item", name = "steel-plate", amount = 40 },
-        { type = "item", name = "electronic-circuit", amount = 40 },
-        { type = "item", name = "battery", amount = 25 }
+        { type = "item", name = "5d-laser-turret-05", amount = 1 },
+        { type = "item", name = "steel-plate", amount = 15 },
+        { type = "item", name = "advanced-circuit", amount = 10 },
+        { type = "item", name = "battery", amount = 12 }
     },
     [2] = {
         { type = "item", name = "5d-laser-turret-sniper-01", amount = 1 },

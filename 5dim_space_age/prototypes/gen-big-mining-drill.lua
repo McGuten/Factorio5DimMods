@@ -156,8 +156,7 @@ for tier = 1, 10 do
     local moduleSlots = baseModuleSlots + config.moduleBonus
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseMiningSpeed, miningSpeed, 1.5)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseMiningSpeed, miningSpeed, 0.6)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.bigMiningDrill[tier]

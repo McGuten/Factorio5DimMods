@@ -7,6 +7,26 @@
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
 local sounds = require("__base__.prototypes.entity.sounds")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
+local function setTieredIcons(prototype, baseIcon, tier)
+    prototype.icon = nil
+    prototype.icon_size = nil
+    prototype.icon_mipmaps = nil
+    prototype.icons = TierBadgeIcons.buildTieredIcons(baseIcon, tier, 64)
+end
+
+setTieredIcons(data.raw.capsule["defender-capsule"], "__base__/graphics/icons/defender-capsule.png", 1)
+setTieredIcons(data.raw.recipe["defender-capsule"], "__base__/graphics/icons/defender-capsule.png", 1)
+setTieredIcons(data.raw.technology["defender"], "__base__/graphics/icons/defender.png", 1)
+
+setTieredIcons(data.raw.capsule["distractor-capsule"], "__base__/graphics/icons/distractor-capsule.png", 1)
+setTieredIcons(data.raw.recipe["distractor-capsule"], "__base__/graphics/icons/distractor-capsule.png", 1)
+setTieredIcons(data.raw.technology["distractor"], "__base__/graphics/icons/distractor.png", 1)
+
+setTieredIcons(data.raw.capsule["destroyer-capsule"], "__base__/graphics/icons/destroyer-capsule.png", 1)
+setTieredIcons(data.raw.recipe["destroyer-capsule"], "__base__/graphics/icons/destroyer-capsule.png", 1)
+setTieredIcons(data.raw.technology["destroyer"], "__base__/graphics/icons/destroyer.png", 1)
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -195,8 +215,7 @@ for tier, config in pairs(tierConfig) do
         local capsule = {
             type = "capsule",
             name = capsuleName,
-            icon = "__base__/graphics/icons/defender-capsule.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/defender-capsule.png", tier, 64),
             subgroup = "equipment-defender",
             order = config.order .. "[" .. capsuleName .. "]",
             capsule_action = {
@@ -253,14 +272,14 @@ for tier, config in pairs(tierConfig) do
                 { type = "item", name = "electronic-circuit", amount = 5 },
                 { type = "item", name = "iron-plate", amount = 5 }
             },
-            results = { { type = "item", name = capsuleName, amount = 1 } }
+            results = { { type = "item", name = capsuleName, amount = 1 } },
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/defender-capsule.png", tier, 64)
         }
         
         local tech = {
             type = "technology",
             name = "5d-defender-" .. tier,
-            icon = "__base__/graphics/icons/defender.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/defender.png", tier, 64),
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
@@ -374,8 +393,7 @@ for tier, config in pairs(tierConfig) do
         local capsule = {
             type = "capsule",
             name = capsuleName,
-            icon = "__base__/graphics/icons/distractor-capsule.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/distractor-capsule.png", tier, 64),
             subgroup = "equipment-distractor",
             order = config.order .. "[" .. capsuleName .. "]",
             capsule_action = {
@@ -432,14 +450,14 @@ for tier, config in pairs(tierConfig) do
                 { type = "item", name = "advanced-circuit", amount = 3 },
                 { type = "item", name = "steel-plate", amount = 5 }
             },
-            results = { { type = "item", name = capsuleName, amount = 1 } }
+            results = { { type = "item", name = capsuleName, amount = 1 } },
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/distractor-capsule.png", tier, 64)
         }
         
         local tech = {
             type = "technology",
             name = "5d-distractor-" .. tier,
-            icon = "__base__/graphics/icons/distractor.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/distractor.png", tier, 64),
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
@@ -571,8 +589,7 @@ for tier, config in pairs(tierConfig) do
         local capsule = {
             type = "capsule",
             name = capsuleName,
-            icon = "__base__/graphics/icons/destroyer-capsule.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/destroyer-capsule.png", tier, 64),
             subgroup = "equipment-destroyer",
             order = config.order .. "[" .. capsuleName .. "]",
             capsule_action = {
@@ -629,14 +646,14 @@ for tier, config in pairs(tierConfig) do
                 { type = "item", name = "processing-unit", amount = 2 },
                 { type = "item", name = "low-density-structure", amount = 2 }
             },
-            results = { { type = "item", name = capsuleName, amount = 1 } }
+            results = { { type = "item", name = capsuleName, amount = 1 } },
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/destroyer-capsule.png", tier, 64)
         }
         
         local tech = {
             type = "technology",
             name = "5d-destroyer-" .. tier,
-            icon = "__base__/graphics/icons/destroyer.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/destroyer.png", tier, 64),
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },

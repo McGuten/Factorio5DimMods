@@ -31,6 +31,7 @@ function genNuclearReactors(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.energy_source.effectivity = inputs.craftingSpeed
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.consumption = inputs.energyUsage .. "MW"
     -- entity.heat_buffer.specific_heat = inputs.pollution .. "MJ"
     -- entity.heat_buffer.max_transfer = inputs.pollution .. "MW"

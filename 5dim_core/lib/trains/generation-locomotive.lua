@@ -1,3 +1,5 @@
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
 function genLocomotives(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw["item-with-entity-data"]["locomotive"])
@@ -34,6 +36,7 @@ function genLocomotives(inputs)
     entity.max_power = (inputs.maxPower .. "kW") or (600 .. "kW")
     entity.weight = inputs.weight or 2000
     entity.max_health = inputs.health or 1000
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.conservative(inputs.repairBaseHealth or 1000, entity.max_health)
     entity.fast_replaceable_group = "locomotive"
     if mods["Krastorio2"] then
         entity.equipment_grid = "kr-locomotive-grid"

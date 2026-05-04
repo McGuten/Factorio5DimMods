@@ -6,11 +6,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    baseInventoryBonus = 20,
-    inventoryIncrement = 10,
-    baseArmorWidth = 10,
-    baseArmorHeight = 10,
-    heightIncrement = 2,
     baseTechCount = 400,
     subgroup = "armor-power-armor"
 }
@@ -19,11 +14,25 @@ local config = {
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
 local tiers = {
-    { number = "01", new = false, order = "a", tech = nil, heightBonus = 0 },
-    { number = "02", new = false, order = "b", tech = nil, heightBonus = 0 },
     {
-        -- FIXED: Added heightBonus = 2 for T03 (was 0, no grid improvement)
-        number = "03", new = true, order = "c", heightBonus = 2,
+        number = "01", new = false, order = "a",
+        inventoryBonus = 20,
+        width = 10,
+        height = 10,
+        tech = nil
+    },
+    {
+        number = "02", new = false, order = "b",
+        inventoryBonus = 30,
+        width = 10,
+        height = 10,
+        tech = nil
+    },
+    {
+        number = "03", new = true, order = "c",
+        inventoryBonus = 40,
+        width = 10,
+        height = 12,
         tech = {
             number = 1,
             countMultiplier = 2,
@@ -38,7 +47,10 @@ local tiers = {
         }
     },
     {
-        number = "04", new = true, order = "d", heightBonus = 2,
+        number = "04", new = true, order = "d",
+        inventoryBonus = 50,
+        width = 11,
+        height = 12,
         tech = {
             number = 2,
             countMultiplier = 3,
@@ -53,7 +65,10 @@ local tiers = {
         }
     },
     {
-        number = "05", new = true, order = "e", heightBonus = 4,
+        number = "05", new = true, order = "e",
+        inventoryBonus = 60,
+        width = 11,
+        height = 14,
         tech = {
             number = 3,
             countMultiplier = 4,
@@ -68,7 +83,10 @@ local tiers = {
         }
     },
     {
-        number = "06", new = true, order = "f", heightBonus = 6,
+        number = "06", new = true, order = "f",
+        inventoryBonus = 70,
+        width = 11,
+        height = 16,
         tech = {
             number = 4,
             countMultiplier = 5,
@@ -84,7 +102,10 @@ local tiers = {
         }
     },
     {
-        number = "07", new = true, order = "g", heightBonus = 8,
+        number = "07", new = true, order = "g",
+        inventoryBonus = 80,
+        width = 12,
+        height = 18,
         tech = {
             number = 5,
             countMultiplier = 6,
@@ -100,7 +121,10 @@ local tiers = {
         }
     },
     {
-        number = "08", new = true, order = "h", heightBonus = 10,
+        number = "08", new = true, order = "h",
+        inventoryBonus = 90,
+        width = 12,
+        height = 20,
         tech = {
             number = 6,
             countMultiplier = 7,
@@ -116,7 +140,10 @@ local tiers = {
         }
     },
     {
-        number = "09", new = true, order = "i", heightBonus = 12,
+        number = "09", new = true, order = "i",
+        inventoryBonus = 100,
+        width = 12,
+        height = 22,
         tech = {
             number = 7,
             countMultiplier = 8,
@@ -132,7 +159,10 @@ local tiers = {
         }
     },
     {
-        number = "10", new = true, order = "j", heightBonus = 14,
+        number = "10", new = true, order = "j",
+        inventoryBonus = 110,
+        width = 12,
+        height = 24,
         tech = {
             number = 8,
             countMultiplier = 9,
@@ -152,30 +182,27 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local inventoryBonus = config.baseInventoryBonus
-
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 
     genPowerArmors {
         number = tier.number,
         subgroup = config.subgroup,
-        inventoryBonus = inventoryBonus,
-        width = config.baseArmorWidth,
-        height = config.baseArmorHeight + tier.heightBonus,
+        inventoryBonus = tier.inventoryBonus,
+        width = tier.width,
+        height = tier.height,
         new = tier.new,
         order = tier.order,
         ingredients = RecipeTemplates.powerArmor[i],
         tech = techData
     }
-
-    inventoryBonus = inventoryBonus + config.inventoryIncrement
 end

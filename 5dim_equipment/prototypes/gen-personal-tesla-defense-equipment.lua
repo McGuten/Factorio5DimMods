@@ -4,17 +4,9 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
 -- CONFIGURATION
--- Scale: Damage x5 (3 → 15 at T10)
+-- Tesla line: shorter range, faster cadence, chain utility and crowd control.
 -------------------------------------------------------------------------------
 local config = {
-    baseEnergyConsumption = 50,
-    consumptionIncrement = 50,
-    baseCooldown = 40,
-    cooldownDecrement = 2,
-    baseRange = 15,
-    rangeIncrement = 3,
-    baseDamage = 3,
-    damageIncrement = 1.33,               -- 3 → 15 (x5)
     baseTechCount = 400,
     subgroup = "armor-tesla"
 }
@@ -25,6 +17,10 @@ local config = {
 local tiers = {
     {
         number = "01", new = true, order = "a",
+        energyConsumption = 45,
+        cooldown = 34,
+        range = 12,
+        damage = 2.5,
         tech = {
             number = 1,
             countMultiplier = 1,
@@ -39,6 +35,10 @@ local tiers = {
     },
     {
         number = "02", new = true, order = "b",
+        energyConsumption = 55,
+        cooldown = 32,
+        range = 13,
+        damage = 3.5,
         tech = {
             number = 2,
             countMultiplier = 2,
@@ -54,6 +54,10 @@ local tiers = {
     },
     {
         number = "03", new = true, order = "c",
+        energyConsumption = 65,
+        cooldown = 30,
+        range = 14,
+        damage = 4.5,
         tech = {
             number = 3,
             countMultiplier = 3,
@@ -69,6 +73,10 @@ local tiers = {
     },
     {
         number = "04", new = true, order = "d",
+        energyConsumption = 75,
+        cooldown = 28,
+        range = 15,
+        damage = 5.5,
         tech = {
             number = 4,
             countMultiplier = 4,
@@ -85,6 +93,10 @@ local tiers = {
     },
     {
         number = "05", new = true, order = "e",
+        energyConsumption = 85,
+        cooldown = 26,
+        range = 16,
+        damage = 6.5,
         tech = {
             number = 5,
             countMultiplier = 5,
@@ -101,6 +113,10 @@ local tiers = {
     },
     {
         number = "06", new = true, order = "f",
+        energyConsumption = 95,
+        cooldown = 24,
+        range = 17,
+        damage = 7.5,
         tech = {
             number = 6,
             countMultiplier = 6,
@@ -117,6 +133,10 @@ local tiers = {
     },
     {
         number = "07", new = true, order = "g",
+        energyConsumption = 105,
+        cooldown = 22,
+        range = 18,
+        damage = 8.5,
         tech = {
             number = 7,
             countMultiplier = 7,
@@ -133,6 +153,10 @@ local tiers = {
     },
     {
         number = "08", new = true, order = "h",
+        energyConsumption = 115,
+        cooldown = 20,
+        range = 19,
+        damage = 9.5,
         tech = {
             number = 8,
             countMultiplier = 8,
@@ -149,6 +173,10 @@ local tiers = {
     },
     {
         number = "09", new = true, order = "i",
+        energyConsumption = 125,
+        cooldown = 18,
+        range = 20,
+        damage = 10.5,
         tech = {
             number = 9,
             countMultiplier = 9,
@@ -165,6 +193,10 @@ local tiers = {
     },
     {
         number = "10", new = true, order = "j",
+        energyConsumption = 135,
+        cooldown = 16,
+        range = 22,
+        damage = 11.5,
         tech = {
             number = 10,
             countMultiplier = 10,
@@ -184,37 +216,28 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local energyConsumption = config.baseEnergyConsumption
-local cooldown = config.baseCooldown
-local range = config.baseRange
-local damage = config.baseDamage
-
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 
     genPersonalLaserDefenses {
         number = tier.number,
         subgroup = config.subgroup,
-        energyConsumption = energyConsumption,
-        cooldown = cooldown,
-        range = range,
-        damage = damage,
+        energyConsumption = tier.energyConsumption,
+        cooldown = tier.cooldown,
+        range = tier.range,
+        damage = tier.damage,
         new = tier.new,
         order = tier.order,
         ingredients = RecipeTemplates.personalTeslaDefenseEquipment[i],
         tech = techData
     }
-
-    energyConsumption = energyConsumption + config.consumptionIncrement
-    cooldown = cooldown - config.cooldownDecrement
-    range = range + config.rangeIncrement
-    damage = damage + config.damageIncrement
 end

@@ -1,13 +1,11 @@
 --Gun turret
-require("prototypes.gen-gun-turret-small")
 require("prototypes.gen-gun-turret")
-require("prototypes.gen-gun-turret-big")
+require("prototypes.gen-sniper-ammo")
+require("prototypes.gen-sniper-gun")
 require("prototypes.gen-gun-turret-sniper")
 
 --Laser turret
-require("prototypes.gen-laser-turret-small")
 require("prototypes.gen-laser-turret")
-require("prototypes.gen-laser-turret-big")
 require("prototypes.gen-laser-turret-sniper")
 
 -- Tesla turret

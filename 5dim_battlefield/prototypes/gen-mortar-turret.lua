@@ -6,6 +6,8 @@
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local TierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -516,6 +518,16 @@ for tier = 1, 10 do
     local entityName = baseName .. "-" .. tier
     local tierColor = TierColors[tier]
     local order = tierConfig[tier].order
+    local baseItemIcon = hasSpaceAge and "__space-age__/graphics/icons/rocket-turret.png" or "__base__/graphics/icons/gun-turret.png"
+    local baseTechIcon = hasSpaceAge and "__space-age__/graphics/technology/rocket-turret.png" or "__base__/graphics/technology/gun-turret.png"
+    local itemIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = baseItemIcon, icon_size = 64, tint = tierColor },
+        { icon = "__base__/graphics/icons/artillery-shell.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
+    local techIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = baseTechIcon, icon_size = 256 },
+        { icon = "__base__/graphics/icons/artillery-shell.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
     
     -- Calculate tier values
     local range = baseRange + (tier - 1) * rangeIncrement
@@ -540,11 +552,11 @@ for tier = 1, 10 do
         entity = {
             type = "ammo-turret",
             name = entityName,
-            icon = "__space-age__/graphics/icons/rocket-turret.png",
-            icon_size = 64,
+            icons = table.deepcopy(itemIcons),
             flags = { "placeable-player", "player-creation" },
             minable = { mining_time = 0.5, result = entityName },
             max_health = health,
+            repair_speed_modifier = RepairSpeedScaling.linear(baseHealth, health),
             corpse = "rocket-turret-remnants",
             collision_box = {{ -1.2, -1.2 }, { 1.2, 1.2 }},
             selection_box = {{ -1.5, -1.5 }, { 1.5, 1.5 }},
@@ -592,11 +604,11 @@ for tier = 1, 10 do
         entity = {
             type = "ammo-turret",
             name = entityName,
-            icon = "__base__/graphics/icons/gun-turret.png",
-            icon_size = 64,
+            icons = table.deepcopy(itemIcons),
             flags = { "placeable-player", "player-creation" },
             minable = { mining_time = 0.5, result = entityName },
             max_health = health,
+            repair_speed_modifier = RepairSpeedScaling.linear(baseHealth, health),
             corpse = "gun-turret-remnants",
             collision_box = {{ -0.7, -0.7 }, { 0.7, 0.7 }},
             selection_box = {{ -1, -1 }, { 1, 1 }},
@@ -657,10 +669,7 @@ for tier = 1, 10 do
     local item = {
         type = "item",
         name = entityName,
-        icons = {
-            { icon = hasSpaceAge and "__space-age__/graphics/icons/rocket-turret.png" or "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
-            { icon = "__base__/graphics/icons/artillery-shell.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-        },
+        icons = table.deepcopy(itemIcons),
         subgroup = "defense-mortar-turret",
         order = order .. "[" .. entityName .. "]",
         place_result = entityName,
@@ -668,19 +677,14 @@ for tier = 1, 10 do
     }
     
     -- Recipe
-    local ingredients = {}
-    for _, ing in ipairs(RecipeTemplates.gunTurret[tier]) do
-        table.insert(ingredients, { type = ing.type, name = ing.name, amount = ing.amount })
-    end
-    table.insert(ingredients, { type = "item", name = "steel-plate", amount = 5 + tier * 3 })
-    
     local recipe = {
         type = "recipe",
         name = entityName,
         enabled = false,
         energy_required = 12 + tier * 2,
-        ingredients = ingredients,
-        results = { { type = "item", name = entityName, amount = 1 } }
+        ingredients = RecipeTemplates.mortarTurret[tier],
+        results = { { type = "item", name = entityName, amount = 1 } },
+        icons = table.deepcopy(itemIcons)
     }
     
     -- Technology (includes mortar shell recipe on tier 1)
@@ -705,8 +709,7 @@ for tier = 1, 10 do
         tech = {
             type = "technology",
             name = tc.techName,
-            icon = hasSpaceAge and "__space-age__/graphics/technology/rocket-turret.png" or "__base__/graphics/technology/gun-turret.png",
-            icon_size = 256,
+            icons = table.deepcopy(techIcons),
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,

@@ -32,6 +32,7 @@ function genLabs(inputs)
     entity.minable.result = item.name
     entity.researching_speed = inputs.craftingSpeed
     entity.energy_usage = inputs.energyUsage .. "kW"
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.module_slots = inputs.moduleSlots
     entity.fast_replaceable_group = "lab"
 

@@ -11,17 +11,17 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
--- Scale: HP x5 (750 → 3750), Damage +45% at T10
+-- Scale: HP x5 (900 → 4500), Platform DPS +10% over standard gun turret
 -------------------------------------------------------------------------------
 
-local baseRange = 52
+local baseRange = 40
 local baseAmmo = 5
-local baseShootingSpeed = 20
-local baseDamageModif = 10
-local baseHealth = 750
+local baseShootingSpeed = 18
+local baseDamageModif = 3.3
+local baseHealth = 900
 local rangeIncrement = 3
 local damageScalePerTier = 0.05
-local healthIncrement = 333               -- 750 → 3750 (x5)
+local healthIncrement = 400               -- 900 → 4500 (x5)
 local baseTechCount = 200
 
 -- Type color: Sniper = Cyan/Teal
@@ -57,7 +57,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "5d-gun-turret-big-5", "military-science-pack" }
+        prerequisites = { "5d-sniper-rifle", "gun-turret-5", "military-science-pack" }
     },
     [2] = {
         techName = "5d-gun-turret-sniper-2",
@@ -67,7 +67,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "5d-gun-turret-sniper-1", "logistic-science-pack" }
+        prerequisites = { "5d-gun-turret-sniper-1" }
     },
     [3] = {
         techName = "5d-gun-turret-sniper-3",
@@ -213,11 +213,13 @@ for tier = 1, 10 do
         subgroup = "defense-gun-turret-sniper",
         order = config.order,
         new = true,
+        ammoCategory = "5d-sniper-rounds",
         ammoCount = baseAmmo,
         attackSpeed = baseShootingSpeed,
         range = range,
         damageModifier = damageModifier,
         health = health,
+        repairBaseHealth = baseHealth,
         baseTint = TierColors[tier],
         turretTint = typeColor,
         ingredients = ingredients,

@@ -6,7 +6,7 @@
 
 ## Overview
 
-5Dim's Equipment enhances your power armor with 10 tiers of all equipment types. Become an unstoppable force!
+5Dim's Equipment expands power armor progression with late-game tiers for combat, mobility, building, and portable power.
 
 ## Features
 
@@ -15,78 +15,81 @@
 | Tier | Capacity |
 |------|----------|
 | T1 | 20 MJ |
-| T5 | 100 MJ |
-| T10 | 400 MJ |
+| T5 | 600 MJ |
+| T10 | 2400 MJ |
 
 ### 🦿 Exoskeletons
 
 | Tier | Speed Bonus | Energy Usage |
 |------|------------|--------------|
 | T1 | +30% | 200 kW |
-| T5 | +75% | 400 kW |
-| T10 | +150% | 800 kW |
+| T5 | +75% | 500 kW |
+| T10 | +150% | 875 kW |
 
 ### 🤖 Personal Roboports
 
-| Tier | Robot Slots | Construction Range |
-|------|------------|-------------------|
-| T1 | 10 | 15 tiles |
-| T5 | 30 | 25 tiles |
-| T10 | 80 | 40 tiles |
+| Tier | Robot Slots | Construction Range | Input Flow |
+|------|------------|-------------------|-----------|
+| T1 | 10 | 15 tiles | 3.5 MW |
+| T5 | 55 | 26 tiles | 32 MW |
+| T10 | 110 | 36 tiles | 56 MW |
 
 ### ⚡ Personal Laser Defense
 
 | Tier | Damage | Range | Cooldown |
 |------|--------|-------|----------|
-| T1 | 25 | 15 | 20 ticks |
-| T5 | 75 | 20 | 15 ticks |
-| T10 | 200 | 30 | 10 ticks |
+| T1 | 3.00 | 15 | 40 ticks |
+| T5 | 9.50 | 28 | 32 ticks |
+| T10 | 20.00 | 48 | 22 ticks |
 
-### ⚡ Personal Tesla Defense (NEW!)
+### ⚡ Personal Tesla Defense
 
-Chain lightning that hits multiple enemies:
+Short-range anti-swarm line. With Space Age active it chains through nearby targets and applies Tesla slow/stun effects:
 
-| Tier | Damage | Chain Targets |
-|------|--------|--------------|
-| T1 | 20 | 3 |
-| T5 | 60 | 5 |
-| T10 | 150 | 8 |
+| Tier | Damage | Range | Cooldown |
+|------|--------|-------|----------|
+| T1 | 2.50 | 12 | 34 ticks |
+| T5 | 6.50 | 16 | 26 ticks |
+| T10 | 11.50 | 22 | 16 ticks |
 
 ### ☀️ Portable Solar Panels
 
 | Tier | Power Output |
 |------|-------------|
 | T1 | 30 kW |
-| T5 | 90 kW |
-| T10 | 300 kW |
+| T5 | 73 kW |
+| T10 | 224 kW |
 
 ### ☢️ Fission Reactors
 
 | Tier | Power Output | Size |
 |------|-------------|------|
-| T1 | 750 kW | 4x4 |
-| T5 | 2.25 MW | 4x4 |
-| T10 | 7.5 MW | 4x4 |
+| T1 | 1.5 MW | 4x4 |
+| T5 | 9 MW | 4x4 |
+| T10 | 32 MW | 4x4 |
 
 ### 🛡️ Energy Shields
 
 | Tier | Shield HP | Recharge Rate |
 |------|-----------|--------------|
-| T1 | 150 | 120/s |
-| T5 | 450 | 300/s |
-| T10 | 1500 | 1000/s |
+| T1 | 50 | 12/s |
+| T5 | 4125 | 270/s |
+| T10 | 56000 | 3000/s |
 
 ### 🌙 Night Vision
 
 | Tier | Brightness | Color Correction |
 |------|-----------|------------------|
 | T1 | Standard | Green tint |
-| T5 | Improved | Less green |
-| T10 | Perfect | No tint |
+| T2 | Improved | Neutral LUT, 10 kW draw |
 
 ### 🎖️ Power Armor Variants
 
-New power armor types with more equipment grid space!
+| Tier | Inventory Bonus | Equipment Grid |
+|------|-----------------|----------------|
+| T1 | +20 | 10x10 |
+| T5 | +60 | 11x14 |
+| T10 | +110 | 10x24 |
 
 ## Equipment Loadouts
 
@@ -111,8 +114,8 @@ New power armor types with more equipment grid space!
 
 1. **Power balance** - More equipment = more power needed
 2. **Shield stacking** - Multiple shields add HP together
-3. **Exoskeleton limit** - Diminishing returns after 5-6
-4. **Solar vs Fission** - Solar for daytime, fission for combat
+3. **Combat tradeoffs** - Laser favors reach and single-target pressure; Tesla favors short-range control and cleanup
+4. **Solar vs Fission** - Solar is efficient support power; fission covers sustained combat and builder bursts
 
 ## Dependencies
 
@@ -129,17 +132,19 @@ New power armor types with more equipment grid space!
 ```
 5dim_equipment/
 ├── data.lua
+├── data-updates.lua
 ├── info.json
 ├── prototypes/
-│   ├── batteries/
-│   ├── exoskeletons/
-│   ├── personal-roboports/
-│   ├── personal-laser-defense/
-│   ├── personal-tesla-defense/
-│   ├── solar-panels/
-│   ├── fission-reactors/
-│   ├── energy-shields/
-│   └── night-vision/
+│   ├── gen-battery-equipment.lua
+│   ├── gen-energy-shield-equipment.lua
+│   ├── gen-exoskeleton-equipment.lua
+│   ├── gen-fission-reactor-equipment.lua
+│   ├── gen-personal-laser-defense-equipment.lua
+│   ├── gen-personal-roboport-equipment.lua
+│   ├── gen-personal-tesla-defense-equipment.lua
+│   ├── gen-power-armor.lua
+│   ├── gen-solar-panel-equipment.lua
+│   └── night-vision-equipment.lua
 └── graphics/
 ```
 

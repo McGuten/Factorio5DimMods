@@ -1,4 +1,15 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genLightningRod(inputs)
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons("__space-age__/graphics/icons/lightning-rod.png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     -- Copy lightning-rod (type is lightning-attractor)
     local item = table.deepcopy(data.raw.item["lightning-rod"])
     local recipe = table.deepcopy(data.raw.recipe["lightning-rod"])
@@ -10,15 +21,14 @@ function genLightningRod(inputs)
     if inputs.new then
         item.name = "5d-lightning-rod-" .. inputs.number
     end
-    item.icon = "__space-age__/graphics/icons/lightning-rod.png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new then
         recipe.enabled = false
     end
@@ -30,7 +40,7 @@ function genLightningRod(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     entity.efficiency = inputs.efficiency
     entity.range_elongation = inputs.rangeElongation
@@ -52,8 +62,7 @@ function genLightningRod(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-lightning-rod-" .. inputs.tech.number
-        tech.icon = "__space-age__/graphics/icons/lightning-rod.png"
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

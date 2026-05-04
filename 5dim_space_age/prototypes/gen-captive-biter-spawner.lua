@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.space-age.generation-captive-biter-spawner")
 
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -12,6 +13,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseCraftingSpeed = 1
+local baseEmissions = -1
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -139,6 +141,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + config.speedBonus
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.captiveBiterSpawner[tier]
@@ -166,6 +169,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "gleba-captive",
         craftingSpeed = craftingSpeed,
+        pollution = { pollution = emissions },
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

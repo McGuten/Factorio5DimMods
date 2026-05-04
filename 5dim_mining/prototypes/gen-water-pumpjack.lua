@@ -16,7 +16,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseSpeed = 20
 local baseModules = 2
 local baseEnergy = 90
-local baseEmissions = 10
+local baseEmissions = 0
 local baseTechCount = 150
 
 -------------------------------------------------------------------------------
@@ -145,8 +145,7 @@ for tier = 1, 10 do
     local modules = baseModules + config.moduleBonus
     -- Non-linear energy scaling (vanilla pattern)
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.waterPumpjack[tier]

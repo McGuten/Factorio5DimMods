@@ -1,3 +1,5 @@
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
 function genStoneWalls(inputs)
     -- Skip vanilla tier (when new = false) - don't modify base game prototypes
     if not inputs.new then
@@ -34,6 +36,7 @@ function genStoneWalls(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.max_health = inputs.health
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 350, entity.max_health)
     entity.fast_replaceable_group = "wall"
 
     -- Base

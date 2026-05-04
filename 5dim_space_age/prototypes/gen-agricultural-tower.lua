@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.space-age.generation-agricultural-tower")
 
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -140,7 +141,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local radius = baseRadius + config.radiusBonus
-    local energyUsage = baseEnergyUsage + config.energyBonus
+    local energyUsage = CostCalculator.scaleEnergyBySpeed(baseEnergyUsage, baseRadius, radius, 1.5)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.agriculturalTower[tier]

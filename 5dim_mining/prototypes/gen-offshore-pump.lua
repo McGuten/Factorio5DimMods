@@ -14,7 +14,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseSpeed = 20
-local baseEmissions = 10
+local baseEmissions = 0
 local baseTechCount = 100
 
 -------------------------------------------------------------------------------
@@ -130,8 +130,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local speed = baseSpeed + config.speedBonus
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.offshorePump[tier]

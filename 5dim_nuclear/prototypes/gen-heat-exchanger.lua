@@ -161,8 +161,7 @@ for tier = 1, 10 do
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
     -- Temperature scales UP with tier (better heat exchanger = higher temp capacity)
     local maxTemperature = baseMaxTemperature + (tier - 1) * 100
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Module slots: base + 1 every 2 tiers
     local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)
@@ -205,7 +204,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         maxTemperature = maxTemperature,  -- Temperature for heat source
-        pollution = emissions,            -- Actual pollution emissions
+        pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
         tech = tech
     }

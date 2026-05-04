@@ -285,43 +285,38 @@ end
 
 -------------------------------------------------------------------------------
 -- POLLUTION/EMISSIONS SCALING
--- Based on Factorio vanilla pattern: pollution DECREASES with higher tiers
--- This represents improved efficiency of advanced machines
--- Tier 1: 4, Tier 2: 3, Tier 3: 2 (assembling machines)
+-- Pollution growth is moderate by default and can be overridden per family.
+-- This keeps electric general-purpose machines mostly constrained by power,
+-- while dirtier industries can opt into steeper pollution scaling.
 -------------------------------------------------------------------------------
 
--- Scale pollution with efficiency improvements at higher tiers
--- Higher tier machines are more efficient and pollute less per unit of work
--- @param basePollution: Base pollution value (tier 1)
--- @param tier: Tier number (1-10)
--- @param minPollution: Minimum pollution value (default 0.5)
--- @return: Scaled pollution value
-function CostCalculator.scalePollution(basePollution, tier, minPollution)
-    minPollution = minPollution or 0.5
-    if tier <= 1 then
-        return basePollution
+-- Scale pollution based on performance with superlinear growth.
+-- Default exponent 0.4 gives roughly +18% pollution for +50% speed.
+-- @param basePollution: Base pollution value at base performance
+-- @param basePerformance: Base speed/performance value
+-- @param currentPerformance: Current tier's speed/performance
+-- @param exponent: Growth rate (default 0.4)
+-- @return: Scaled pollution value rounded to 2 decimals
+function CostCalculator.scalePollution(basePollution, basePerformance, currentPerformance, exponent)
+    exponent = exponent or 0.4
+    local performanceRatio = currentPerformance / basePerformance
+
+    if basePollution < 0 then
+        local reducedCleanup = math.abs(basePollution) / (performanceRatio ^ exponent)
+        return -(math.floor(reducedCleanup * 100) / 100)
     end
-    -- Pollution decreases by ~15-20% per tier (efficiency improvement)
-    -- Factor 0.85 gives: T1=1x, T2=0.85x, T3=0.72x, T4=0.61x, T5=0.52x...
-    local factor = 0.85
-    local scaled = basePollution * (factor ^ (tier - 1))
-    return math.max(minPollution, math.floor(scaled * 100) / 100)  -- Round to 2 decimals
+
+    return math.floor(basePollution * (performanceRatio ^ exponent) * 100) / 100
 end
 
--- Scale pollution with custom factor
--- @param basePollution: Base pollution value (tier 1)
--- @param tier: Tier number (1-10)
--- @param factor: Reduction factor per tier (default 0.85)
--- @param minPollution: Minimum pollution value (default 0.5)
--- @return: Scaled pollution value
-function CostCalculator.scalePollutionCustom(basePollution, tier, factor, minPollution)
-    factor = factor or 0.85
-    minPollution = minPollution or 0.5
-    if tier <= 1 then
-        return basePollution
-    end
-    local scaled = basePollution * (factor ^ (tier - 1))
-    return math.max(minPollution, math.floor(scaled * 100) / 100)
+-- Scale pollution with a custom performance exponent.
+-- @param basePollution: Base pollution value at base performance
+-- @param basePerformance: Base speed/performance value
+-- @param currentPerformance: Current tier's speed/performance
+-- @param exponent: Growth rate (default 0.4)
+-- @return: Scaled pollution value rounded to 2 decimals
+function CostCalculator.scalePollutionCustom(basePollution, basePerformance, currentPerformance, exponent)
+    return CostCalculator.scalePollution(basePollution, basePerformance, currentPerformance, exponent)
 end
 
 -------------------------------------------------------------------------------

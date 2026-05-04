@@ -15,7 +15,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseSpeed = 200
 local baseModules = 2
 local baseEnergy = 29
-local baseEmissions = 10
+local baseEmissions = 0
 local baseTechCount = 100
 
 -------------------------------------------------------------------------------
@@ -135,12 +135,9 @@ for tier = 1, 10 do
     -- Calculate stats for this tier
     local speed = baseSpeed + config.speedBonus
     local modules = baseModules + config.moduleBonus
-    -- More conservative energy scaling (factor 1.3 instead of 1.58)
-    -- T10: ~400kW instead of ~1.8MW - better ratio vs throughput
-    local energyFactor = 1.3
-    local energy = math.floor(baseEnergy * (energyFactor ^ (tier - 1)))
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    -- Energy scales faster than throughput so higher tiers need meaningfully larger power infrastructure.
+    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.pump[tier]

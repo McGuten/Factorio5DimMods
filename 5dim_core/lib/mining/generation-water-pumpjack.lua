@@ -30,6 +30,7 @@ function genWaterPumpjacks(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.pumping_speed = inputs.craftingSpeed
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "water-pumpjack"
 
     entity.collision_mask = { layers = { item = true, object = true, player = true, water_tile = true, elevated_rail = true, is_object = true, is_lower_object = true } }

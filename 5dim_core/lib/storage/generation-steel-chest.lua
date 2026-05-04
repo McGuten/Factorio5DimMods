@@ -3,7 +3,24 @@
 -- Generates tiered steel chests with increased inventory size
 -------------------------------------------------------------------------------
 
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
+local function setPrototypeTierIcon(prototype, baseIconPath, tier, customIconPath, iconSize)
+    if customIconPath then
+        prototype.icon = customIconPath
+        prototype.icon_size = iconSize or 64
+        prototype.icons = nil
+        return
+    end
+
+    prototype.icon = nil
+    prototype.icon_size = nil
+    prototype.icons = TierBadgeIcons.buildTieredIcons(baseIconPath, tier, iconSize or 64)
+end
+
 function genSteelChests(inputs)
+    local tier = tonumber(inputs.number)
+    local baseIconPath = "__base__/graphics/icons/steel-chest.png"
     -- Copy steel chest
     local item = table.deepcopy(data.raw.item["steel-chest"])
     local recipe = table.deepcopy(data.raw.recipe["steel-chest"])
@@ -13,17 +30,14 @@ function genSteelChests(inputs)
     if inputs.new then
         item.name = "5d-steel-chest-" .. inputs.number
     end
-    -- Use vanilla icon for now (custom icons can be added later)
-    -- item.icon = "__5dim_storage__/graphics/icon/steel-chest/steel-chest-icon-" .. inputs.number .. ".png"
+    setPrototypeTierIcon(item, baseIconPath, tier, inputs.iconPath, 64)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    -- Use vanilla icon for now
-    -- recipe.icon = item.icon
-    -- recipe.icon_size = 64
+    setPrototypeTierIcon(recipe, baseIconPath, tier, inputs.iconPath, 64)
     recipe.enabled = false
     if inputs.new then
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
@@ -33,15 +47,14 @@ function genSteelChests(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    -- Use vanilla icon for now
-    -- entity.icon = item.icon
-    -- entity.icon_size = 64
+    setPrototypeTierIcon(entity, baseIconPath, tier, inputs.iconPath, 64)
     entity.minable.result = item.name
     entity.fast_replaceable_group = "container"
     entity.inventory_size = inputs.inventorySize
-    -- Use vanilla sprite for now
-    -- entity.picture.layers[1].filename =
-    --     "__5dim_storage__/graphics/entities/steel-chest/steel-chest-" .. inputs.number .. ".png"
+
+    if inputs.entityPicturePath then
+        entity.picture.layers[1].filename = inputs.entityPicturePath
+    end
 
     data:extend({entity, recipe, item})
 
@@ -50,9 +63,7 @@ function genSteelChests(inputs)
         local tech = table.deepcopy(data.raw.technology["steel-processing"])
         tech.name = "steel-chest-" .. inputs.tech.number
         tech.localised_name = nil  -- Use locale file instead
-        -- Use vanilla icon for now
-        tech.icon = "__base__/graphics/icons/steel-chest.png"
-        tech.icon_size = 64
+        setPrototypeTierIcon(tech, baseIconPath, tier, inputs.techIconPath, 64)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

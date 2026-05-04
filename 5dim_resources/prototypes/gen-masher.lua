@@ -152,15 +152,10 @@ for tier = 1, 10 do
     local craftingSpeed = baseCraftingSpeed + (tier - 1) * 2
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
-    -- Module slots: base + 1 every 2 tiers (2, 4, 6, 8, 10 get +1)
-    local moduleSlots = baseModuleSlots + math.floor(tier / 2)
-    -- Odd tiers >= 3 get an extra slot
-    if tier >= 3 and tier % 2 == 1 then
-        moduleSlots = moduleSlots + 1
-    end
+    -- Module slots: base + 1 every 2 tiers (1-2, 3-4, 5-6, 7-8, 9-10 share each step)
+    local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.masher[tier]

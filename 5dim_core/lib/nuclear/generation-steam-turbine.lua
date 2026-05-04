@@ -32,6 +32,7 @@ function genSteamTurbines(inputs)
     entity.minable.result = item.name
     entity.effectivity = inputs.craftingSpeed
     entity.fluid_usage_per_tick = inputs.energyUsage
+    entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "steam-turbine"
 
     -- Base

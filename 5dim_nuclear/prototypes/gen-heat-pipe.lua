@@ -159,8 +159,7 @@ for tier = 1, 10 do
     local maxTemperature = baseMaxTemperature + (tier - 1) * 100
     -- Transfer rate scales linearly
     local maxTransfer = baseMaxTransfer + (tier - 1) * 0.5
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseMaxTransfer, maxTransfer)
     
     -- Module slots: base + 1 every 2 tiers
     local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)

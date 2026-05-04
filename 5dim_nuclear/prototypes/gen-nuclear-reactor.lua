@@ -160,8 +160,7 @@ for tier = 1, 10 do
     -- T10 will be ~72MW instead of ~2462MW
     local energyFactor = 1.35
     local energy = math.floor(baseEnergy * (energyFactor ^ (tier - 1)))
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Module slots: base + 1 every 2 tiers
     local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)

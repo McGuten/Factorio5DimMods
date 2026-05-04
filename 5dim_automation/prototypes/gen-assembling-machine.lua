@@ -14,7 +14,9 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseCraftingSpeed = 0.5
+local baseModuleSlots = 4
 local baseEnergy = 75
+local baseEmissions = 4
 local baseTechCount = 150
 
 -------------------------------------------------------------------------------
@@ -124,9 +126,16 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + config.speedBonus
+    local moduleSlots = 0
+    if tier == 2 then
+        moduleSlots = 2
+    elseif tier >= 3 then
+        moduleSlots = baseModuleSlots + math.floor((tier - 2) / 2)
+    end
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     -- This makes higher tier machines less energy-efficient per craft
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.0)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.assemblingMachine[tier]
@@ -165,10 +174,12 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "assembling-machine",
         craftingSpeed = craftingSpeed,
+        moduleSlots = moduleSlots,
         energyUsage = energy,
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,
+        pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
         tech = tech,
         copy = config.copy

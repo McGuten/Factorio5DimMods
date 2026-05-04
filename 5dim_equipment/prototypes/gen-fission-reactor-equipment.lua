@@ -6,9 +6,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    basePowerProduction = 2500,
-    -- REBALANCED: Reduced power multiplier from 1.75 to 1.45
-    -- T10 now produces ~72MW (was ~385MW), still powerful but not game-breaking
     powerMultiplier = 1.45,
     baseTechCount = 800,
     subgroup = "armor-fission-reactor"
@@ -18,9 +15,10 @@ local config = {
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
 local tiers = {
-    { number = "01", new = false, order = "a", tech = nil },
+    { number = "01", new = false, order = "a", power = 1500, tech = nil },
     {
         number = "02", new = true, order = "b",
+        power = 2500,
         tech = {
             number = 2,
             countMultiplier = 2,
@@ -36,6 +34,7 @@ local tiers = {
     },
     {
         number = "03", new = true, order = "c",
+        power = 4000,
         tech = {
             number = 3,
             countMultiplier = 3,
@@ -51,6 +50,7 @@ local tiers = {
     },
     {
         number = "04", new = true, order = "d",
+        power = 6000,
         tech = {
             number = 4,
             countMultiplier = 4,
@@ -66,6 +66,7 @@ local tiers = {
     },
     {
         number = "05", new = true, order = "e",
+        power = 9000,
         tech = {
             number = 5,
             countMultiplier = 5,
@@ -81,6 +82,7 @@ local tiers = {
     },
     {
         number = "06", new = true, order = "f",
+        power = 12500,
         tech = {
             number = 6,
             countMultiplier = 6,
@@ -97,6 +99,7 @@ local tiers = {
     },
     {
         number = "07", new = true, order = "g",
+        power = 16500,
         tech = {
             number = 7,
             countMultiplier = 7,
@@ -113,6 +116,7 @@ local tiers = {
     },
     {
         number = "08", new = true, order = "h",
+        power = 21000,
         tech = {
             number = 8,
             countMultiplier = 8,
@@ -129,6 +133,7 @@ local tiers = {
     },
     {
         number = "09", new = true, order = "i",
+        power = 26000,
         tech = {
             number = 9,
             countMultiplier = 9,
@@ -145,6 +150,7 @@ local tiers = {
     },
     {
         number = "10", new = true, order = "j",
+        power = 32000,
         tech = {
             number = 10,
             countMultiplier = 10,
@@ -164,28 +170,25 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local powerProduction = config.basePowerProduction
-
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 
     genFissionReactors {
         number = tier.number,
         subgroup = config.subgroup,
-        power = powerProduction,
+        power = tier.power,
         new = tier.new,
         order = tier.order,
         ingredients = RecipeTemplates.fissionReactorEquipment[i],
         tech = techData
     }
-
-    powerProduction = powerProduction * config.powerMultiplier
 end

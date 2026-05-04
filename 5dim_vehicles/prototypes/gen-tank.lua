@@ -13,11 +13,21 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- max_health = 2000
 -- consumption = 600kW
 -- braking_power = 800kW
--- Scale: HP x5 (2000 → 10000)
+-- Scale: HP 2000 -> 20000
 -------------------------------------------------------------------------------
 
-local baseHealth = 2000
-local healthIncrement = 889           -- +889 HP per tier → 2000 → 10000 (x5)
+local healthByTier = {
+    [1] = 2000,
+    [2] = 3000,
+    [3] = 4200,
+    [4] = 5600,
+    [5] = 7500,
+    [6] = 9800,
+    [7] = 12400,
+    [8] = 15200,
+    [9] = 18000,
+    [10] = 20000
+}
 local baseConsumption = 600           -- kW
 local consumptionIncrement = 100      -- +100 kW per tier
 local baseBrakingPower = 800          -- kW
@@ -30,13 +40,15 @@ local baseTechCount = 200
 -------------------------------------------------------------------------------
 
 local function getResistances(tier)
-    local bonus = (tier - 1) * 2  -- +2% per tier
+    local bonus = (tier - 1) * 3  -- +3% per tier
     return {
-        { type = "fire", decrease = 15 + (tier - 1) * 2, percent = math.min(60 + bonus, 90) },
-        { type = "physical", decrease = 15 + (tier - 1) * 2, percent = math.min(60 + bonus, 90) },
-        { type = "impact", decrease = 50 + (tier - 1) * 5, percent = math.min(80 + bonus, 95) },
-        { type = "explosion", decrease = 15 + (tier - 1) * 2, percent = math.min(70 + bonus, 90) },
-        { type = "acid", decrease = (tier - 1) * 2, percent = math.min(70 + bonus, 90) }
+        { type = "fire", decrease = 15 + (tier - 1) * 3, percent = math.min(60 + bonus, 96) },
+        { type = "physical", decrease = 15 + (tier - 1) * 3, percent = math.min(60 + bonus, 96) },
+        { type = "impact", decrease = 50 + (tier - 1) * 6, percent = math.min(80 + bonus, 98) },
+        { type = "explosion", decrease = 15 + (tier - 1) * 3, percent = math.min(70 + bonus, 96) },
+        { type = "acid", decrease = 5 + (tier - 1) * 3, percent = math.min(70 + bonus, 96) },
+        { type = "electric", decrease = 5 + (tier - 1) * 2, percent = math.min(60 + bonus, 94) },
+        { type = "poison", decrease = 8 + (tier - 1) * 3, percent = math.min(70 + bonus, 97) }
     }
 end
 
@@ -44,17 +56,28 @@ end
 -- EQUIPMENT GRID DEFINITIONS
 -------------------------------------------------------------------------------
 
+local tankGridSizes = {
+    [2] = { width = 6, height = 9 },
+    [3] = { width = 7, height = 9 },
+    [4] = { width = 7, height = 10 },
+    [5] = { width = 8, height = 10 },
+    [6] = { width = 8, height = 11 },
+    [7] = { width = 9, height = 11 },
+    [8] = { width = 9, height = 12 },
+    [9] = { width = 10, height = 12 },
+    [10] = { width = 10, height = 13 }
+}
+
 -- Create equipment grids for each tier
 for tier = 2, 10 do
-    local gridWidth = 5 + math.floor((tier - 1) / 2)   -- 5, 5, 6, 6, 7, 7, 8, 8, 9
-    local gridHeight = 6 + math.floor((tier - 1) / 2)  -- 6, 6, 7, 7, 8, 8, 9, 9, 10
+    local gridSize = tankGridSizes[tier]
     
     data:extend({
         {
             type = "equipment-grid",
             name = "5d-tank-equipment-grid-" .. tier,
-            width = gridWidth,
-            height = gridHeight,
+            width = gridSize.width,
+            height = gridSize.height,
             equipment_categories = {"armor"}
         }
     })
@@ -189,7 +212,7 @@ for tier, config in pairs(tierConfig) do
     local tierTech = techConfig[tier]
 
     -- Calculate stats for this tier
-    local health = baseHealth + (tier - 1) * healthIncrement
+    local health = healthByTier[tier]
     local consumption = baseConsumption + (tier - 1) * consumptionIncrement
     local brakingPower = baseBrakingPower + (tier - 1) * brakingPowerIncrement
     local equipmentGrid = tier == 1 and "medium-equipment-grid" or "5d-tank-equipment-grid-" .. tier

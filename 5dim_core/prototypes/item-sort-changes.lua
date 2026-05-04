@@ -84,7 +84,7 @@ data.raw.item["artillery-turret"].order = "a"
 data.raw.ammo["artillery-shell"].subgroup = "defense-ammo-artillery"
 data.raw.ammo["artillery-shell"].order = "a"
 data.raw.capsule["artillery-targeting-remote"].subgroup = "defense-artillery"
-data.raw.capsule["artillery-targeting-remote"].order = "c"
+data.raw.capsule["artillery-targeting-remote"].order = "z"
 data.raw.item["stone-wall"].subgroup = "defense-wall"
 data.raw.item["stone-wall"].order = "a"
 data.raw.item["gate"].subgroup = "defense-gate"
@@ -147,10 +147,14 @@ data.raw.gun["submachine-gun"].subgroup = "equipment-bullet"
 data.raw.gun["submachine-gun"].order = "b"
 data.raw.gun["pistol"].subgroup = "equipment-bullet"
 data.raw.gun["pistol"].order = "a"
+if data.raw.gun["5d-sniper-rifle"] then
+    data.raw.gun["5d-sniper-rifle"].subgroup = "equipment-sniper"
+    data.raw.gun["5d-sniper-rifle"].order = "a"
+end
 data.raw.ammo["piercing-rounds-magazine"].subgroup = "equipment-bullet"
-data.raw.ammo["piercing-rounds-magazine"].order = "d"
+data.raw.ammo["piercing-rounds-magazine"].order = "e"
 data.raw.ammo["firearm-magazine"].subgroup = "equipment-bullet"
-data.raw.ammo["firearm-magazine"].order = "c"
+data.raw.ammo["firearm-magazine"].order = "d"
 data.raw.ammo["flamethrower-ammo"].subgroup = "equipment-flame"
 data.raw.ammo["flamethrower-ammo"].order = "b"
 data.raw.ammo["explosive-rocket"].subgroup = "equipment-rocket"
@@ -176,7 +180,55 @@ data.raw.capsule["distractor-capsule"].order = "a"
 data.raw.capsule["destroyer-capsule"].subgroup = "equipment-destroyer"
 data.raw.capsule["destroyer-capsule"].order = "a"
 data.raw.ammo["uranium-rounds-magazine"].subgroup = "equipment-bullet"
-data.raw.ammo["uranium-rounds-magazine"].order = "e"
+data.raw.ammo["uranium-rounds-magazine"].order = "f"
+if data.raw.ammo["5d-sniper-magazine"] then
+    data.raw.ammo["5d-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.ammo["5d-sniper-magazine"].order = "b"
+end
+if data.raw.ammo["5d-piercing-sniper-magazine"] then
+    data.raw.ammo["5d-piercing-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.ammo["5d-piercing-sniper-magazine"].order = "c"
+end
+if data.raw.ammo["5d-uranium-sniper-magazine"] then
+    data.raw.ammo["5d-uranium-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.ammo["5d-uranium-sniper-magazine"].order = "d"
+end
+if data.raw.recipe["pistol"] then
+    data.raw.recipe["pistol"].subgroup = "equipment-bullet"
+    data.raw.recipe["pistol"].order = "a"
+end
+if data.raw.recipe["submachine-gun"] then
+    data.raw.recipe["submachine-gun"].subgroup = "equipment-bullet"
+    data.raw.recipe["submachine-gun"].order = "b"
+end
+if data.raw.recipe["5d-sniper-rifle"] then
+    data.raw.recipe["5d-sniper-rifle"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-sniper-rifle"].order = "a"
+end
+if data.raw.recipe["firearm-magazine"] then
+    data.raw.recipe["firearm-magazine"].subgroup = "equipment-bullet"
+    data.raw.recipe["firearm-magazine"].order = "d"
+end
+if data.raw.recipe["piercing-rounds-magazine"] then
+    data.raw.recipe["piercing-rounds-magazine"].subgroup = "equipment-bullet"
+    data.raw.recipe["piercing-rounds-magazine"].order = "e"
+end
+if data.raw.recipe["uranium-rounds-magazine"] then
+    data.raw.recipe["uranium-rounds-magazine"].subgroup = "equipment-bullet"
+    data.raw.recipe["uranium-rounds-magazine"].order = "f"
+end
+if data.raw.recipe["5d-sniper-magazine"] then
+    data.raw.recipe["5d-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-sniper-magazine"].order = "b"
+end
+if data.raw.recipe["5d-piercing-sniper-magazine"] then
+    data.raw.recipe["5d-piercing-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-piercing-sniper-magazine"].order = "c"
+end
+if data.raw.recipe["5d-uranium-sniper-magazine"] then
+    data.raw.recipe["5d-uranium-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-uranium-sniper-magazine"].order = "d"
+end
 data.raw.ammo["atomic-bomb"].subgroup = "equipment-rocket"
 data.raw.ammo["atomic-bomb"].order = "d"
 

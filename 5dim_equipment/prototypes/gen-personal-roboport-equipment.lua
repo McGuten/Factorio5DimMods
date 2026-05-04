@@ -6,16 +6,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    baseBufferCapacity = 10,
-    bufferMultiplier = 1.5,
-    baseRobotLimit = 10,
-    robotIncrement = 10,
-    baseConstructionRadius = 15,
-    radiusIncrement = 1,
-    baseInputFlow = 2000,
-    inputMultiplier = 2,
-    baseChargingEnergy = 1000,
-    chargingIncrement = 500,
     baseTechCount = 200,
     subgroup = "armor-roboport"
 }
@@ -24,10 +14,31 @@ local config = {
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
 local tiers = {
-    { number = "01", new = false, order = "a", tech = nil },
-    { number = "02", new = false, order = "b", tech = nil },
+    {
+        number = "01", new = false, order = "a",
+        capacity = 35,
+        inputFlow = 3500,
+        robotLimit = 10,
+        constructionRadius = 15,
+        charging = 1000,
+        tech = nil
+    },
+    {
+        number = "02", new = false, order = "b",
+        capacity = 35,
+        inputFlow = 22500,
+        robotLimit = 25,
+        constructionRadius = 20,
+        charging = 1000,
+        tech = nil
+    },
     {
         number = "03", new = true, order = "c",
+        capacity = 45,
+        inputFlow = 25000,
+        robotLimit = 35,
+        constructionRadius = 22,
+        charging = 1500,
         tech = {
             number = 1,
             countMultiplier = 2,
@@ -43,6 +54,11 @@ local tiers = {
     },
     {
         number = "04", new = true, order = "d",
+        capacity = 55,
+        inputFlow = 28000,
+        robotLimit = 45,
+        constructionRadius = 24,
+        charging = 2000,
         tech = {
             number = 2,
             countMultiplier = 3,
@@ -58,6 +74,11 @@ local tiers = {
     },
     {
         number = "05", new = true, order = "e",
+        capacity = 70,
+        inputFlow = 32000,
+        robotLimit = 55,
+        constructionRadius = 26,
+        charging = 2500,
         tech = {
             number = 3,
             countMultiplier = 4,
@@ -73,6 +94,11 @@ local tiers = {
     },
     {
         number = "06", new = true, order = "f",
+        capacity = 85,
+        inputFlow = 36000,
+        robotLimit = 65,
+        constructionRadius = 28,
+        charging = 3000,
         tech = {
             number = 4,
             countMultiplier = 5,
@@ -89,6 +115,11 @@ local tiers = {
     },
     {
         number = "07", new = true, order = "g",
+        capacity = 100,
+        inputFlow = 40000,
+        robotLimit = 75,
+        constructionRadius = 30,
+        charging = 3500,
         tech = {
             number = 5,
             countMultiplier = 6,
@@ -105,6 +136,11 @@ local tiers = {
     },
     {
         number = "08", new = true, order = "h",
+        capacity = 120,
+        inputFlow = 45000,
+        robotLimit = 85,
+        constructionRadius = 32,
+        charging = 4000,
         tech = {
             number = 6,
             countMultiplier = 7,
@@ -121,6 +157,11 @@ local tiers = {
     },
     {
         number = "09", new = true, order = "i",
+        capacity = 145,
+        inputFlow = 50000,
+        robotLimit = 95,
+        constructionRadius = 34,
+        charging = 4500,
         tech = {
             number = 7,
             countMultiplier = 8,
@@ -137,6 +178,11 @@ local tiers = {
     },
     {
         number = "10", new = true, order = "j",
+        capacity = 170,
+        inputFlow = 56000,
+        robotLimit = 110,
+        constructionRadius = 36,
+        charging = 5000,
         tech = {
             number = 8,
             countMultiplier = 9,
@@ -156,40 +202,29 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local bufferCapacity = config.baseBufferCapacity
-local robotLimit = config.baseRobotLimit
-local constructionRadius = config.baseConstructionRadius
-local inputFlow = config.baseInputFlow
-local chargingEnergy = config.baseChargingEnergy
-
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 
     genPersonalRoboports {
         number = tier.number,
         subgroup = config.subgroup,
-        capacity = bufferCapacity,
-        inputFlow = inputFlow,
-        robotLimit = robotLimit,
-        constructionRadius = constructionRadius,
-        charging = chargingEnergy,
+        capacity = tier.capacity,
+        inputFlow = tier.inputFlow,
+        robotLimit = tier.robotLimit,
+        constructionRadius = tier.constructionRadius,
+        charging = tier.charging,
         new = tier.new,
         order = tier.order,
         ingredients = RecipeTemplates.personalRoboportEquipment[i],
         tech = techData
     }
-
-    bufferCapacity = bufferCapacity * config.bufferMultiplier
-    robotLimit = robotLimit + config.robotIncrement
-    constructionRadius = constructionRadius + config.radiusIncrement
-    inputFlow = inputFlow * config.inputMultiplier
-    chargingEnergy = chargingEnergy + config.chargingIncrement
 end

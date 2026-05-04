@@ -1,46 +1,78 @@
 require("tint-laser-turret")
 
-function string:split(delimiter)
-    local result = {}
-    local from = 1
-    local delim_from, delim_to = string.find(self, delimiter, from)
-    while delim_from do
-        table.insert(result, string.sub(self, from, delim_from - 1))
-        from = delim_to + 1
-        delim_from, delim_to = string.find(self, delimiter, from)
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
+local function setPrototypeIcon(prototype, iconPath, iconSize, icons)
+    if icons then
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = icons
+        return
     end
-    table.insert(result, string.sub(self, from))
-    return result
+
+    prototype.icon = iconPath
+    prototype.icon_size = iconSize
+    prototype.icons = nil
+end
+
+local function applyLaserTurretTints(entity, baseTint, turretTint)
+    if not entity or not baseTint or not turretTint then
+        return
+    end
+
+    entity.folded_animation.layers[3] =
+        dim_laser_turret_extension_mask {
+            frame_count = 1,
+            line_length = 1,
+            tint = turretTint
+        }
+    entity.preparing_animation.layers[3] = dim_laser_turret_extension_mask { tint = turretTint }
+    entity.prepared_animation.layers[3] = dim_laser_turret_shooting_mask { tint = turretTint }
+    entity.folding_animation.layers[3] =
+        dim_laser_turret_extension_mask {
+            run_mode = "backward",
+            tint = turretTint
+        }
+    entity.graphics_set.base_visualisation.animation.layers[1].tint = baseTint
 end
 
 function genLaserTurrets(inputs)
-    local split = inputs.number:split("-")
+    local split = {}
+    local separator = string.find(inputs.number, "-", 1, true)
+    if separator then
+        split[1] = string.sub(inputs.number, 1, separator - 1)
+        split[2] = string.sub(inputs.number, separator + 1)
+    else
+        split[1] = inputs.number
+    end
+    local tierNumber = tonumber(split[2] or split[1]) or 1
     local multiplier = 1
     
-    -- Determine icon path and multiplier based on variant type
+    -- Only the standard and sniper branches remain.
     local iconPath
-    if string.find(inputs.number, "small") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/small/laser-turret-small-" .. split[2] .. ".png"
-        multiplier = 0.5
-    elseif string.find(inputs.number, "big") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/big/laser-turret-big-" .. split[2] .. ".png"
-        multiplier = 2
-    elseif string.find(inputs.number, "sniper") ~= nil then
+    if string.find(inputs.number, "sniper") ~= nil then
         iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/sniper/laser-turret-sniper-" .. split[2] .. ".png"
         multiplier = 4
     else
         iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/normal/laser-turret-normal-" .. split[1] .. ".png"
         multiplier = 1
     end
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, 64)
+    local baseTint = inputs.baseTint or inputs.tint
+    local turretTint = inputs.turretTint or inputs.tint
     
     -- For vanilla tier (new = false), only update icon of base entity
     if not inputs.new then
-        data.raw.item["laser-turret"].icon = iconPath
-        data.raw.item["laser-turret"].icon_size = 64
-        data.raw.recipe["laser-turret"].icon = iconPath
-        data.raw.recipe["laser-turret"].icon_size = 64
-        data.raw["electric-turret"]["laser-turret"].icon = iconPath
-        data.raw["electric-turret"]["laser-turret"].icon_size = 64
+        if string.find(inputs.number, "sniper") ~= nil then
+            return
+        end
+
+        setPrototypeIcon(data.raw.item["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.recipe["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw["electric-turret"]["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.technology["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
+        applyLaserTurretTints(data.raw["electric-turret"]["laser-turret"], baseTint, turretTint)
         return
     end
     
@@ -50,11 +82,9 @@ function genLaserTurrets(inputs)
     local entity = table.deepcopy(data.raw["electric-turret"]["laser-turret"])
     local tech = table.deepcopy(data.raw.technology["laser-turret"])
 
-    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
-
     --Item
     item.name = "5d-laser-turret-" .. inputs.number
-    item.icon = iconPath
+    setPrototypeIcon(item, iconPath, 64, table.deepcopy(tieredIcons))
 
     item.subgroup = inputs.subgroup
     item.order = inputs.order
@@ -62,8 +92,7 @@ function genLaserTurrets(inputs)
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcon(recipe, iconPath, 64, table.deepcopy(tieredIcons))
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
@@ -71,7 +100,7 @@ function genLaserTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcon(entity, iconPath, 64, table.deepcopy(tieredIcons))
     entity.minable.result = item.name
     
     -- Modify attack_parameters - keep original structure, just update values
@@ -96,24 +125,10 @@ function genLaserTurrets(inputs)
         end
     end
     
-    entity.folded_animation.layers[3] =
-        dim_laser_turret_extension_mask {
-            frame_count = 1,
-            line_length = 1,
-            tint = inputs.turretTint or inputs.tint
-        }
-    entity.preparing_animation.layers[3] = dim_laser_turret_extension_mask { tint = inputs.turretTint or inputs.tint }
-    entity.prepared_animation.layers[3] = dim_laser_turret_shooting_mask { tint = inputs.turretTint or inputs.tint }
-    entity.folding_animation.layers[3] =
-        dim_laser_turret_extension_mask {
-            run_mode = "backward",
-            tint = inputs.turretTint or inputs.tint
-        }
-    
-    -- Apply tint to base visualization (tier color)
-    entity.graphics_set.base_visualisation.animation.layers[1].tint = inputs.baseTint or inputs.tint
+    applyLaserTurretTints(entity, baseTint, turretTint)
     
     entity.max_health = inputs.health or 1000
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 1000, entity.max_health)
     entity.fast_replaceable_group = "laser-turret"
     entity.resistances = inputs.resistances or nil
     entity.energy_source.buffer_capacity = 801 * multiplier .. "kJ"
@@ -125,8 +140,7 @@ function genLaserTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcon(tech, iconPath, 64, table.deepcopy(tieredIcons))
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

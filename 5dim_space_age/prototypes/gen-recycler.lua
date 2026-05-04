@@ -16,6 +16,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseCraftingSpeed = 0.5
 local baseModuleSlots = 4
 local baseEnergy = 180
+local baseEmissions = 2
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -146,6 +147,7 @@ for tier = 1, 10 do
     local moduleSlots = baseModuleSlots + config.moduleBonus
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.0)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.recycler[tier]
@@ -175,6 +177,7 @@ for tier = 1, 10 do
         craftingSpeed = craftingSpeed,
         moduleSlots = moduleSlots,
         energyUsage = energy,
+        pollution = { pollution = emissions },
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

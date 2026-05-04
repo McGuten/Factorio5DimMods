@@ -1,5 +1,7 @@
 require("tint-tesla-turret")
 
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
 function genTeslaTurrets(inputs)
     -- Skip vanilla tier (when new = false) - don't modify base game prototypes
     if not inputs.new then
@@ -76,6 +78,7 @@ function genTeslaTurrets(inputs)
         end
     end
     entity.max_health = inputs.health or 1500
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 1200, entity.max_health)
     entity.fast_replaceable_group = "tesla-turret"
     entity.resistances = inputs.resistances or nil
     entity.energy_source.buffer_capacity = 801 * 6 .. "kJ"

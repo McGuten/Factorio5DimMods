@@ -138,8 +138,7 @@ for tier = 1, 10 do
     local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Module slots: base + 1 every 2 tiers
     local moduleSlots = baseModuleSlots + math.floor((tier - 1) / 2)

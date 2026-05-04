@@ -25,7 +25,7 @@ recipe.ingredients = {
 
 -- Equipment
 equipment.name = item.name
-equipment.energy_input = 20 .. "kW"
+equipment.energy_input = 10 .. "kW"
 equipment.sprite.filename = "__5dim_equipment__/graphics/equipment/night-vision/night-vision-equipment-02.png"
 equipment.color_lookup = {
     { 0.5, "__core__/graphics/color_luts/identity-lut.png" }

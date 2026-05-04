@@ -6,6 +6,8 @@
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local TierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -296,6 +298,14 @@ for tier = 1, 10 do
     local entityName = baseName .. "-" .. tier
     local tierColor = TierColors[tier]
     local order = tierConfig[tier].order
+    local itemIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
+        { icon = "__base__/graphics/icons/small-lamp.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
+    local techIcons = TierBadgeIcons.buildTieredIconsFromIcons({
+        { icon = "__base__/graphics/technology/gun-turret.png", icon_size = 256 },
+        { icon = "__base__/graphics/icons/small-lamp.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
+    }, tier)
     
     -- Calculate tier values
     local range = baseRange + (tier - 1) * rangeIncrement
@@ -314,11 +324,11 @@ for tier = 1, 10 do
     local entity = {
         type = "ammo-turret",
         name = entityName,
-        icon = "__base__/graphics/icons/gun-turret.png",
-        icon_size = 64,
+        icons = table.deepcopy(itemIcons),
         flags = { "placeable-player", "player-creation" },
         minable = { mining_time = 0.5, result = entityName },
         max_health = health,
+        repair_speed_modifier = RepairSpeedScaling.linear(baseHealth, health),
         corpse = "gun-turret-remnants",
         collision_box = {{ -0.7, -0.7 }, { 0.7, 0.7 }},
         selection_box = {{ -1, -1 }, { 1, 1 }},
@@ -524,10 +534,7 @@ for tier = 1, 10 do
     local item = {
         type = "item",
         name = entityName,
-        icons = {
-            { icon = "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
-            { icon = "__base__/graphics/icons/small-lamp.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-        },
+        icons = table.deepcopy(itemIcons),
         subgroup = "defense-flare-turret",
         order = order .. "[" .. entityName .. "]",
         place_result = entityName,
@@ -535,20 +542,14 @@ for tier = 1, 10 do
     }
     
     -- Recipe
-    local ingredients = {}
-    for _, ing in ipairs(RecipeTemplates.gunTurret[tier]) do
-        table.insert(ingredients, { type = ing.type, name = ing.name, amount = ing.amount })
-    end
-    -- Add electronic circuit (for flare control system)
-    table.insert(ingredients, { type = "item", name = "electronic-circuit", amount = 3 + tier })
-    
     local recipe = {
         type = "recipe",
         name = entityName,
         enabled = false,
         energy_required = 8 + tier * 2,
-        ingredients = ingredients,
-        results = { { type = "item", name = entityName, amount = 1 } }
+        ingredients = RecipeTemplates.flareTurret[tier],
+        results = { { type = "item", name = entityName, amount = 1 } },
+        icons = table.deepcopy(itemIcons)
     }
     
     -- Technology
@@ -573,8 +574,7 @@ for tier = 1, 10 do
         tech = {
             type = "technology",
             name = tc.techName,
-            icon = "__base__/graphics/technology/gun-turret.png",
-            icon_size = 256,
+            icons = table.deepcopy(techIcons),
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,

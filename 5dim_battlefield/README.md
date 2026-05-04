@@ -1,48 +1,36 @@
 # 5Dim's Mod - Battlefield
 
 ![Factorio 2.0](https://img.shields.io/badge/Factorio-2.0-orange)
-![Version](https://img.shields.io/badge/Version-2.0.5-blue)
+![Version](https://img.shields.io/badge/Version-2.0.7-blue)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
 
 ## Overview
 
-5Dim's Battlefield expands your defensive capabilities with multiple tiers and variants of turrets, walls, and detection systems. Build the ultimate defense against the biter menace!
+5Dim's Battlefield expands your defensive capabilities with multiple tiers of turrets, walls, and detection systems. Gun and laser defenses now follow a cleaner standard plus sniper split, with a dedicated sniper rifle and custom sniper ammunition for the late-game branch.
 
 ## Features
 
 ### 🔫 Gun Turrets
 
-10 tiers with 4 variants each:
+10 tiers with 2 variants each:
 
 | Variant | Description |
 |---------|-------------|
 | **Standard** | Balanced damage and fire rate |
-| **Big** | Higher damage, slower fire rate |
-| **Small** | Lower damage, faster fire rate |
-| **Sniper** | Very high damage, very slow fire rate, long range |
+| **Sniper** | Long-range upgrade branch with dedicated sniper magazines |
 
-| Tier | Damage Multiplier | Range |
-|------|------------------|-------|
-| T1 | 1.0x | 18 |
-| T5 | 2.5x | 22 |
-| T10 | 5.0x | 28 |
+Sniper progression now unlocks in three steps: sniper rifle, sniper turret, then piercing sniper rounds.
 
 ### ⚡ Laser Turrets
 
-10 tiers with 4 variants:
+10 tiers with 2 variants:
 
 | Variant | Description |
 |---------|-------------|
 | **Standard** | Balanced power consumption |
-| **Big** | Higher damage per shot |
-| **Small** | Lower damage, more efficient |
-| **Sniper** | Extreme range, high damage |
+| **Sniper** | Longer-range branch built from the standard tier-5 turret onward |
 
-| Tier | Damage | Range | Energy |
-|------|--------|-------|--------|
-| T1 | 20 | 24 | 800 kW |
-| T5 | 50 | 30 | 1.5 MW |
-| T10 | 100 | 40 | 3 MW |
+Laser sniper turrets keep the simpler two-branch structure without the removed small and big variants.
 
 ### ⚡ Tesla Turrets
 

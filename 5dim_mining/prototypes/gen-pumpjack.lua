@@ -136,8 +136,7 @@ for tier = 1, 10 do
     -- Energy scaling by speed (consistent with mining drill)
     -- Uses exponent 1.5 for superlinear scaling
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
-    -- Pollution decreases with efficiency (vanilla pattern)
-    local emissions = CostCalculator.scalePollution(baseEmissions, tier)
+    local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed, 0.6)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.pumpjack[tier]

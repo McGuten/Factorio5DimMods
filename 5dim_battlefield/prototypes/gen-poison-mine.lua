@@ -4,6 +4,7 @@
 -------------------------------------------------------------------------------
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -11,8 +12,8 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: x10 damage (1250 → 12500 at T10)
 -------------------------------------------------------------------------------
 
-local baseDamage = 500                    -- Impact damage
-local damageIncrement = 500               -- 500 → 5000 (x10)
+local baseExplosionPoisonDamage = 250      -- Instant poison damage on detonation
+local explosionPoisonIncrement = 250       -- 250 → 2500 (x10)
 local basePoisonDamage = 15               -- Poison cloud damage/tick
 local poisonDamageIncrement = 15          -- 15 → 150 (x10)
 local baseTriggerRadius = 2.5
@@ -139,6 +140,26 @@ local techConfig = {
     }
 }
 
+local function getNormalMineName(tier)
+    if tier == 1 then
+        return "land-mine"
+    end
+
+    return "5d-land-mine-" .. tier
+end
+
+local function getPoisonMineIcons()
+    return {
+        { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
+        { icon = "__base__/graphics/icons/explosion.png", icon_size = 64, scale = 0.28, shift = {-10, -10} },
+        { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.28, shift = {10, -10} }
+    }
+end
+
+local function getPoisonMineTieredIcons(tier)
+    return TierBadgeIcons.buildTieredIconsFromIcons(getPoisonMineIcons(), tier)
+end
+
 -------------------------------------------------------------------------------
 -- SUBGROUP (defined in 5dim_core: defense-poison-mine)
 -------------------------------------------------------------------------------
@@ -149,15 +170,18 @@ local techConfig = {
 
 for tier, config in pairs(tierConfig) do
     local tierTech = techConfig[tier]
-    local impactDamage = baseDamage + (tier - 1) * damageIncrement
+    local normalMineName = getNormalMineName(tier)
+    local cloudName = "5d-poison-mine-cloud-" .. tier
+    local explosionPoisonDamage = baseExplosionPoisonDamage + (tier - 1) * explosionPoisonIncrement
     local poisonTick = basePoisonDamage + (tier - 1) * poisonDamageIncrement
     local triggerRadius = baseTriggerRadius + (tier - 1) * triggerRadiusIncrement
     local tierColor = tierColors[tier]
+    local tieredIcons = getPoisonMineTieredIcons(tier)
     
-    -- Copy land mine as base
+    -- Copy the matching normal mine tier as the base so damage stacks logically.
     local item = table.deepcopy(data.raw.item["land-mine"])
     local recipe = table.deepcopy(data.raw.recipe["land-mine"])
-    local entity = table.deepcopy(data.raw["land-mine"]["land-mine"])
+    local entity = table.deepcopy(data.raw["land-mine"][normalMineName])
     
     local name = "5d-poison-mine-" .. tier
     
@@ -168,14 +192,16 @@ for tier, config in pairs(tierConfig) do
     item.place_result = name
     item.icon = nil
     item.icon_size = nil
-    item.icons = {
-        { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
-        { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-    }
+    item.icon_mipmaps = nil
+    item.icons = table.deepcopy(tieredIcons)
     
     -- Recipe
     recipe.name = name
     recipe.enabled = false
+    recipe.icon = nil
+    recipe.icon_size = nil
+    recipe.icon_mipmaps = nil
+    recipe.icons = table.deepcopy(tieredIcons)
     recipe.results = { { type = "item", name = name, amount = 1 } }
     if tier == 1 then
         recipe.ingredients = {
@@ -185,6 +211,7 @@ for tier, config in pairs(tierConfig) do
     else
         recipe.ingredients = {
             { type = "item", name = "5d-poison-mine-" .. (tier - 1), amount = 1 },
+            { type = "item", name = normalMineName, amount = 1 },
             { type = "item", name = "poison-capsule", amount = 1 },
             { type = "item", name = "steel-plate", amount = 1 }
         }
@@ -194,30 +221,32 @@ for tier, config in pairs(tierConfig) do
     entity.name = name
     entity.minable.result = name
     entity.trigger_radius = triggerRadius
+    entity.is_military_target = false
+    entity.icon = nil
+    entity.icon_size = nil
+    entity.icon_mipmaps = nil
+    entity.icons = table.deepcopy(tieredIcons)
+
+    local cloud = table.deepcopy(data.raw["smoke-with-trigger"]["poison-cloud"])
+    cloud.name = cloudName
+    cloud.localised_name = nil
+    cloud.action.action_delivery.target_effects.action.action_delivery.target_effects.damage.amount = poisonTick
     
-    -- Change damage type to poison
-    entity.action = {
-        type = "direct",
-        action_delivery = {
-            type = "instant",
-            source_effects = {
-                {
-                    type = "create-entity",
-                    entity_name = "poison-cloud"
-                },
-                {
-                    type = "damage",
-                    damage = { amount = impactDamage, type = "explosion" }
-                },
-                {
-                    type = "damage",
-                    damage = { amount = impactDamage, type = "poison" }
-                }
-            }
+    -- Keep the normal mine tier damage and add poison burst + scaled poison cloud.
+    entity.action.action_delivery.target_effects = {
+        {
+            type = "damage",
+            damage = { amount = explosionPoisonDamage, type = "poison" }
+        },
+        {
+            type = "create-smoke",
+            show_in_tooltip = true,
+            entity_name = cloudName,
+            initial_height = 0
         }
     }
     
-    data:extend({ entity, recipe, item })
+    data:extend({ cloud, entity, recipe, item })
     
     -- Technology
     if tierTech then
@@ -225,10 +254,8 @@ for tier, config in pairs(tierConfig) do
         tech.name = "5d-poison-mine-" .. tier
         tech.icon = nil
         tech.icon_size = nil
-        tech.icons = {
-            { icon = "__base__/graphics/icons/land-mine.png", icon_size = 64 },
-            { icon = "__base__/graphics/icons/poison-capsule.png", icon_size = 64, scale = 0.3, shift = {-10, -10} }
-        }
+        tech.icon_mipmaps = nil
+        tech.icons = table.deepcopy(tieredIcons)
         tech.unit.count = baseTechCount * tier
         tech.unit.ingredients = tierTech.basePacks
         tech.prerequisites = tierTech.prerequisites

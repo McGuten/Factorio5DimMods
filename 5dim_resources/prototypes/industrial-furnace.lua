@@ -42,7 +42,7 @@ entity.graphics_set.animation = {
     frame_count = 1,
     shift = {0, 0}
 }
-entity.energy_source.emissions_per_minute = { pollution = 0.5 }
+entity.energy_source.emissions_per_minute = { pollution = 5.77 }
 entity.collision_box = { { -2.2, -2.2 }, { 2.2, 2.2 } }
 entity.selection_box = { { -2.5, -2.5 }, { 2.5, 2.5 } }
 entity.crafting_categories = { "industrial-furnace" }

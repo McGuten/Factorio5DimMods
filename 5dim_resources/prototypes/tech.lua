@@ -40,3 +40,22 @@ data:extend(
         }
     }
 )
+
+local function add_unlocks(technology_name, recipe_names)
+    local technology = data.raw.technology[technology_name]
+
+    if technology == nil or technology.effects == nil then
+        return
+    end
+
+    for _, recipe_name in pairs(recipe_names) do
+        table.insert(technology.effects, {
+            type = "unlock-recipe",
+            recipe = recipe_name
+        })
+    end
+end
+
+add_unlocks("concrete", {"5d-stone-dust", "5d-stone-brick"})
+add_unlocks("sulfur-processing", {"5d-coal-dust", "5d-refined-coal"})
+add_unlocks("uranium-processing", {"5d-uranium-dust", "5d-uranium-processing"})

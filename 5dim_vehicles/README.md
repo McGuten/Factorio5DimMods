@@ -17,15 +17,15 @@ Heavy armored combat vehicles with progressive improvements:
 | Tier | Health | Consumption | Equipment Grid | Resistances |
 |------|--------|-------------|----------------|-------------|
 | T1 | 2,000 | 600 kW | 5x6 (30) | 60-80% |
-| T2 | 2,500 | 700 kW | 5x6 (30) | 62-82% |
-| T3 | 3,000 | 800 kW | 6x7 (42) | 64-84% |
-| T4 | 3,500 | 900 kW | 6x7 (42) | 66-86% |
-| T5 | 4,000 | 1,000 kW | 7x8 (56) | 68-88% |
-| T6 | 4,500 | 1,100 kW | 7x8 (56) | 70-90% |
-| T7 | 5,000 | 1,200 kW | 8x9 (72) | 72-90% |
-| T8 | 5,500 | 1,300 kW | 8x9 (72) | 74-90% |
-| T9 | 6,000 | 1,400 kW | 9x10 (90) | 76-90% |
-| T10 | 6,500 | 1,500 kW | 9x10 (90) | 78-95% |
+| T2 | 3,000 | 700 kW | 6x9 (54) | 62-82% |
+| T3 | 4,200 | 800 kW | 7x9 (63) | 64-84% |
+| T4 | 5,600 | 900 kW | 7x10 (70) | 66-86% |
+| T5 | 7,500 | 1,000 kW | 8x10 (80) | 68-88% |
+| T6 | 9,800 | 1,100 kW | 8x11 (88) | 70-90% |
+| T7 | 12,400 | 1,200 kW | 9x11 (99) | 72-90% |
+| T8 | 15,200 | 1,300 kW | 9x12 (108) | 74-90% |
+| T9 | 18,000 | 1,400 kW | 10x12 (120) | 76-90% |
+| T10 | 20,000 | 1,500 kW | 10x13 (130) | 87-99% |
 
 ### 🕷️ Spidertrons T1-T10
 
@@ -34,15 +34,17 @@ Spider-legged vehicles with expanded capabilities:
 | Tier | Health | Movement Energy | Inventory | Equipment Grid |
 |------|--------|-----------------|-----------|----------------|
 | T1 | 3,000 | 250 kW | 80 slots | 10x6 (60) |
-| T2 | 3,750 | 300 kW | 100 slots | 11x6 (66) |
-| T3 | 4,500 | 350 kW | 120 slots | 12x7 (84) |
-| T4 | 5,250 | 400 kW | 140 slots | 13x7 (91) |
-| T5 | 6,000 | 450 kW | 160 slots | 14x8 (112) |
-| T6 | 6,750 | 500 kW | 180 slots | 15x8 (120) |
-| T7 | 7,500 | 550 kW | 200 slots | 16x9 (144) |
-| T8 | 8,250 | 600 kW | 220 slots | 17x9 (153) |
-| T9 | 9,000 | 650 kW | 240 slots | 18x10 (180) |
-| T10 | 9,750 | 700 kW | 260 slots | 18x10 (180) |
+| T2 | 4,500 | 300 kW | 100 slots | 10x7 (70) |
+| T3 | 6,300 | 350 kW | 120 slots | 11x7 (77) |
+| T4 | 8,400 | 400 kW | 140 slots | 11x8 (88) |
+| T5 | 11,100 | 450 kW | 160 slots | 12x8 (96) |
+| T6 | 14,400 | 500 kW | 180 slots | 12x9 (108) |
+| T7 | 18,300 | 550 kW | 200 slots | 13x9 (117) |
+| T8 | 22,500 | 600 kW | 220 slots | 13x10 (130) |
+| T9 | 26,700 | 650 kW | 240 slots | 14x10 (140) |
+| T10 | 30,000 | 700 kW | 260 slots | 14x11 (154) |
+
+Spidertron resistances now explicitly cover acid, electric, and poison as well, to better match the special damage mix from 5dim_enemies.
 
 ## Progression
 

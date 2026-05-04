@@ -1,5 +1,7 @@
 -- require("tint-laser-turret")
 
+local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+
 function genFlamethrowerTurrets(inputs)
     -- Determine icon path
     local iconPath = "__5dim_battlefield__/graphics/icon/flamethrower-turret/flamethrower-turret-icon-" .. inputs.number .. ".png"
@@ -55,6 +57,7 @@ function genFlamethrowerTurrets(inputs)
     end
     entity.prepare_range = inputs.range + 5
     entity.max_health = inputs.health or 1400
+    entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 1400, entity.max_health)
     entity.fast_replaceable_group = "flamethrower-turret"
     
     -- Apply tint to base masks for all directions

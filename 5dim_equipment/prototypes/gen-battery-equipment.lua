@@ -6,8 +6,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    baseBatteryCapacity = 20,
-    capacityMultiplier = 2,
     baseTechCount = 200,
     subgroup = "armor-battery"
 }
@@ -21,13 +19,15 @@ local tier03Config
 if mods["space-age"] then
     -- When Space Age is active, tier 03 uses battery-mk3-equipment as vanilla
     tier03Config = { 
-        number = "03", new = false, order = "c", 
+        number = "03", new = false, order = "c",
+        capacity = 250,
         tech = nil -- battery-mk3-equipment tech already exists in Space Age
     }
 else
     -- Without Space Age, tier 03 is a new item
     tier03Config = {
         number = "03", new = true, order = "c",
+        capacity = 250,
         tech = {
             number = 1,
             countMultiplier = 2,
@@ -41,11 +41,12 @@ else
 end
 
 local tiers = {
-    { number = "01", new = false, order = "a", tech = nil },
-    { number = "02", new = false, order = "b", tech = nil },
+    { number = "01", new = false, order = "a", capacity = 20, tech = nil },
+    { number = "02", new = false, order = "b", capacity = 100, tech = nil },
     tier03Config,
     {
         number = "04", new = true, order = "d",
+        capacity = 400,
         tech = {
             number = 2,
             countMultiplier = 3,
@@ -61,6 +62,7 @@ local tiers = {
     },
     {
         number = "05", new = true, order = "e",
+        capacity = 600,
         tech = {
             number = 3,
             countMultiplier = 4,
@@ -76,6 +78,7 @@ local tiers = {
     },
     {
         number = "06", new = true, order = "f",
+        capacity = 850,
         tech = {
             number = 4,
             countMultiplier = 5,
@@ -92,6 +95,7 @@ local tiers = {
     },
     {
         number = "07", new = true, order = "g",
+        capacity = 1150,
         tech = {
             number = 5,
             countMultiplier = 6,
@@ -108,6 +112,7 @@ local tiers = {
     },
     {
         number = "08", new = true, order = "h",
+        capacity = 1500,
         tech = {
             number = 6,
             countMultiplier = 7,
@@ -124,6 +129,7 @@ local tiers = {
     },
     {
         number = "09", new = true, order = "i",
+        capacity = 1900,
         tech = {
             number = 7,
             countMultiplier = 8,
@@ -140,6 +146,7 @@ local tiers = {
     },
     {
         number = "10", new = true, order = "j",
+        capacity = 2400,
         tech = {
             number = 8,
             countMultiplier = 9,
@@ -159,28 +166,25 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local batteryCapacity = config.baseBatteryCapacity
-
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 
     genBatterys {
         number = tier.number,
         subgroup = config.subgroup,
-        capacity = batteryCapacity,
+        capacity = tier.capacity,
         new = tier.new,
         order = tier.order,
         ingredients = RecipeTemplates.batteryEquipment[i],
         tech = techData
     }
-
-    batteryCapacity = batteryCapacity * config.capacityMultiplier
 end

@@ -23,6 +23,8 @@ local rangeIncrement = 3
 local damageScalePerTier = 0.05
 local healthIncrement = 400               -- 900 → 4500 (x5)
 local baseTechCount = 200
+local sniperIconPath = "__5dim_battlefield__/graphics/icon/gun-turret/sniper/gun-turret-sniper-base.png"
+local sniperTechIconPath = "__5dim_battlefield__/graphics/icon/gun-turret/sniper/gun-turret-sniper-tech-base.png"
 
 -- Type color: Sniper = Cyan/Teal
 local typeColor = { r = 0.1, g = 0.8, b = 0.8, a = 1 }
@@ -213,6 +215,9 @@ for tier = 1, 10 do
         subgroup = "defense-gun-turret-sniper",
         order = config.order,
         new = true,
+        iconPath = sniperIconPath,
+        techIconPath = sniperTechIconPath,
+        techIconSize = 256,
         ammoCategory = "5d-sniper-rounds",
         ammoCount = baseAmmo,
         attackSpeed = baseShootingSpeed,

@@ -19,10 +19,14 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 local baseRange = 35                      -- Reduced from 50 (closer to laser T5)
 local baseDamage = 35                     -- Reduced from 50
 local baseHealth = 1200                   -- Reduced from 1500
+local baseEnergyPerShot = 3200
+local baseDrain = 96
 local rangeIncrement = 5
 local damageScalePerTier = 0.05
 local healthIncrement = 600               -- 1200 → 6600 (x5.5)
 local baseTechCount = 400                 -- Increased from 300
+local teslaIconPath = "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-base.png"
+local teslaTechIconPath = "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-tech-base.png"
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -182,6 +186,18 @@ local function getResistances(tier)
     }
 end
 
+local function getEnergyStats(damage, range)
+    local energyPerShot = CostCalculator.scaleEnergyBySpeed(baseEnergyPerShot, baseDamage, damage, 1.15)
+    local energyDrain = CostCalculator.scaleEnergyBySpeed(baseDrain, baseRange, range, 0.9)
+
+    return {
+        energyPerShot = energyPerShot,
+        bufferCapacity = energyPerShot + 1,
+        inputFlowLimit = energyPerShot * 12,
+        drain = math.max(baseDrain, energyDrain)
+    }
+end
+
 -------------------------------------------------------------------------------
 -- TYPE COLOR (Tesla = Purple)
 -------------------------------------------------------------------------------
@@ -200,6 +216,7 @@ for tier = 1, 10 do
     local range = baseRange + (tier - 1) * rangeIncrement
     local damage = baseDamage * (1 + (tier - 1) * damageScalePerTier)
     local health = baseHealth + (tier - 1) * healthIncrement
+    local energy = getEnergyStats(damage, range)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.teslaTurret[tier]
@@ -228,9 +245,16 @@ for tier = 1, 10 do
         subgroup = "defense-tesla",
         order = config.order,
         new = true,
+        iconPath = teslaIconPath,
+        techIconPath = teslaTechIconPath,
+        techIconSize = 256,
         range = range,
         damage = damage,
         health = health,
+        energyPerShot = energy.energyPerShot,
+        bufferCapacity = energy.bufferCapacity,
+        inputFlowLimit = energy.inputFlowLimit,
+        energyDrain = energy.drain,
         baseTint = tierColors[tier],
         turretTint = typeColor,
         ingredients = ingredients,

@@ -8,14 +8,17 @@ require("__5dim_core__.lib.space-age.generation-railgun-turret")
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local baseEntity = data.raw["ammo-turret"] and data.raw["ammo-turret"]["railgun-turret"] or {}
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseRange = 40
-local rangeIncrement = 3
+local baseRange = baseEntity.attack_parameters and baseEntity.attack_parameters.range or 40
+local rangeIncrement = 2
 local baseRotationSpeed = 0.004
+local baseHealth = baseEntity.max_health or 1000
+local healthIncrement = math.floor(((baseHealth * 4) / 9) + 0.5)
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -175,6 +178,7 @@ local currentRotationSpeed = baseRotationSpeed
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
+    local currentHealth = baseHealth + ((tier - 1) * healthIncrement)
     
     local techData = nil
     if techConfig[tier] then
@@ -193,6 +197,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         range = currentRange,
         rotationSpeed = currentRotationSpeed,
+        health = currentHealth,
         tint = tierColors[tier],
         ingredients = RecipeTemplates.railgunTurret[tier],
         nextUpdate = tier < 10 and ("5d-railgun-turret-" .. string.format("%02d", tier + 1)) or nil,
@@ -200,7 +205,5 @@ for tier = 1, 10 do
     })
 
     currentRotationSpeed = currentRotationSpeed * 1.15
-    if tier % 2 == 0 then
-        currentRange = currentRange + rangeIncrement
-    end
+    currentRange = currentRange + rangeIncrement
 end

@@ -15,13 +15,13 @@ local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun[
 -------------------------------------------------------------------------------
 
 local baseAutomaticRange = baseGun.attack_parameters and baseGun.attack_parameters.range or (7 * 32)
-local automaticRangeIncrement = 32 -- 1 chunk per tier
+local automaticRangeScalePerTier = 0.05
 local baseAmmoSlots = baseEntity.inventory_size or 3
 local baseMaxSpeed = baseEntity.max_speed or 1.5
 local baseRotationSpeed = baseEntity.turret_rotation_speed or 0.001
 local baseManualRangeModifier = baseEntity.manual_range_modifier or 2.5
 local automatedAmmoCountPerSlot = (baseEntity.automated_ammo_count or baseAmmoSlots) / baseAmmoSlots
-local damageScalePerTier = 0.05
+local damageScalePerTier = 0.03
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -157,7 +157,6 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentAutomaticRange = baseAutomaticRange
 local currentAmmoSlots = baseAmmoSlots
 local currentMaxSpeed = baseMaxSpeed
 local currentRotationSpeed = baseRotationSpeed
@@ -165,6 +164,7 @@ local currentRotationSpeed = baseRotationSpeed
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
+    local currentAutomaticRange = math.floor((baseAutomaticRange * (1 + ((tier - 1) * automaticRangeScalePerTier))) + 0.5)
     
     local techData = nil
     if techConfig[tier] then
@@ -193,7 +193,6 @@ for tier = 1, 10 do
         tech = techData
     })
 
-    currentAutomaticRange = currentAutomaticRange + automaticRangeIncrement
     currentMaxSpeed = currentMaxSpeed * 1.08
     currentRotationSpeed = currentRotationSpeed * 1.1
     if tier % 2 == 0 and currentAmmoSlots < 6 then

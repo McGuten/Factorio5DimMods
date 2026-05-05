@@ -16,7 +16,7 @@ local baseScan = 14
 local baseReveal = 3
 local baseEnergy = 300
 local scanIncrement = 2
-local revealIncrement = 2
+local revealStepTiers = 2
 local energyIncrement = 300
 local baseTechCount = 150
 
@@ -141,10 +141,10 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential scaling like vanilla)
+    -- Calculate stats for this tier
     local scan = baseScan + (tier - 1) * scanIncrement
-    local reveal = baseReveal + (tier - 1) * revealIncrement
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    local reveal = baseReveal + math.floor((tier - 1) / revealStepTiers)
+    local energy = baseEnergy + (tier - 1) * energyIncrement
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.radar[tier]

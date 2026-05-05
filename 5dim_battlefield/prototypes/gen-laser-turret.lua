@@ -17,10 +17,13 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 local baseRange = 26
 local baseDamage = 20
 local baseHealth = 1000
+local baseEnergyPerShot = 800
+local baseDrain = 24
 local rangeIncrement = 3
 local damageScalePerTier = 0.05
 local healthIncrement = 444               -- 1000 → 5000 (x5)
 local baseTechCount = 150
+local vanillaRange = 24
 
 -- Type color: Medium/Normal = Red
 local typeColor = { r = 1, g = 0.1, b = 0.1, a = 1 }
@@ -166,6 +169,18 @@ local function getResistances(tier)
     }
 end
 
+local function getEnergyStats(damage, range)
+    local energyPerShot = CostCalculator.scaleEnergyBySpeed(baseEnergyPerShot, baseDamage, damage, 1.15)
+    local energyDrain = CostCalculator.scaleEnergyBySpeed(baseDrain, vanillaRange, range, 0.9)
+
+    return {
+        energyPerShot = energyPerShot,
+        bufferCapacity = energyPerShot + 1,
+        inputFlowLimit = energyPerShot * 12,
+        drain = math.max(baseDrain, energyDrain)
+    }
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -178,6 +193,7 @@ for tier = 1, 10 do
     local range = baseRange + (tier - 1) * rangeIncrement
     local damage = baseDamage * (1 + (tier - 1) * damageScalePerTier)
     local health = baseHealth + (tier - 1) * healthIncrement
+    local energy = getEnergyStats(damage, range)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.laserTurret[tier]
@@ -209,6 +225,10 @@ for tier = 1, 10 do
         range = range,
         damage = damage,
         health = health,
+        energyPerShot = energy.energyPerShot,
+        bufferCapacity = energy.bufferCapacity,
+        inputFlowLimit = energy.inputFlowLimit,
+        energyDrain = energy.drain,
         baseTint = tierColors[tier],
         turretTint = typeColor,
         ingredients = ingredients,

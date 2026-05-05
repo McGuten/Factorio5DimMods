@@ -17,10 +17,14 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 local baseRange = 40
 local baseDamage = 26
 local baseHealth = 1400
+local baseEnergyPerShot = 2400
+local baseDrain = 72
 local rangeIncrement = 3
 local damageScalePerTier = 0.05
 local healthIncrement = 622               -- 1400 → 7000 (x5)
 local baseTechCount = 200
+local sniperIconPath = "__5dim_battlefield__/graphics/icon/laser-turret/sniper/laser-turret-sniper-base.png"
+local sniperTechIconPath = "__5dim_battlefield__/graphics/icon/laser-turret/sniper/laser-turret-sniper-tech-base.png"
 
 -- Type color: Sniper = Cyan/Teal
 local typeColor = { r = 0.1, g = 0.8, b = 0.8, a = 1 }
@@ -177,6 +181,18 @@ local function getResistances(tier)
     }
 end
 
+local function getEnergyStats(damage, range)
+    local energyPerShot = CostCalculator.scaleEnergyBySpeed(baseEnergyPerShot, baseDamage, damage, 1.15)
+    local energyDrain = CostCalculator.scaleEnergyBySpeed(baseDrain, baseRange, range, 0.9)
+
+    return {
+        energyPerShot = energyPerShot,
+        bufferCapacity = energyPerShot + 1,
+        inputFlowLimit = energyPerShot * 12,
+        drain = math.max(baseDrain, energyDrain)
+    }
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -189,6 +205,7 @@ for tier = 1, 10 do
     local range = baseRange + (tier - 1) * rangeIncrement
     local damage = baseDamage * (1 + (tier - 1) * damageScalePerTier)
     local health = baseHealth + (tier - 1) * healthIncrement
+    local energy = getEnergyStats(damage, range)
     
     -- Get ingredients from template
     local ingredients = RecipeTemplates.laserTurretSniper[tier]
@@ -217,9 +234,16 @@ for tier = 1, 10 do
         subgroup = "defense-laser-turret-sniper",
         order = config.order,
         new = true,
+        iconPath = sniperIconPath,
+        techIconPath = sniperTechIconPath,
+        techIconSize = 256,
         range = range,
         damage = damage,
         health = health,
+        energyPerShot = energy.energyPerShot,
+        bufferCapacity = energy.bufferCapacity,
+        inputFlowLimit = energy.inputFlowLimit,
+        energyDrain = energy.drain,
         repairBaseHealth = baseHealth,
         baseTint = tierColors[tier],
         turretTint = typeColor,

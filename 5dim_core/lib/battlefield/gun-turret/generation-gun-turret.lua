@@ -55,12 +55,16 @@ function genGunTurrets(inputs)
     local isSniper = string.find(inputs.number, "sniper") ~= nil
     local tierNumber = tonumber(split[2] or split[1])
 
-    local iconPath = "__base__/graphics/icons/gun-turret.png"
+    local iconPath = inputs.iconPath or "__base__/graphics/icons/gun-turret.png"
+    local techIconPath = inputs.techIconPath or iconPath
+    local techIconSize = inputs.techIconSize or iconSize
     local tieredIcons = nil
+    local tieredTechIcons = nil
     local baseTint = inputs.baseTint or inputs.tint
     local turretTint = inputs.turretTint or inputs.tint
     if tierNumber then
-        tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, 64)
+        tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, iconSize)
+        tieredTechIcons = TierBadgeIcons.buildTieredIcons(techIconPath, tierNumber, techIconSize)
     end
     
     -- For vanilla tier (new = false), only update icon of base entity
@@ -72,7 +76,7 @@ function genGunTurrets(inputs)
         setPrototypeIcon(data.raw.item["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
         setPrototypeIcon(data.raw.recipe["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
         setPrototypeIcon(data.raw["ammo-turret"]["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
-        setPrototypeIcon(data.raw.technology["gun-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.technology["gun-turret"], techIconPath, techIconSize, table.deepcopy(tieredTechIcons or tieredIcons))
         applyGunTurretTints(data.raw["ammo-turret"]["gun-turret"], baseTint, turretTint)
         return
     end
@@ -141,7 +145,7 @@ function genGunTurrets(inputs)
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        setPrototypeIcon(tech, iconPath, iconSize, tieredIcons)
+        setPrototypeIcon(tech, techIconPath, techIconSize, tieredTechIcons or tieredIcons)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

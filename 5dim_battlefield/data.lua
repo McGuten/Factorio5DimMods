@@ -32,8 +32,10 @@ end
 
 -- Mines
 require("prototypes.gen-land-mine")
-require("prototypes.gen-poison-mine")
-require("prototypes.gen-acid-mine")
+if settings.startup["5d-special-mines"].value then
+    require("prototypes.gen-poison-mine")
+    require("prototypes.gen-acid-mine")
+end
 
 -- Decoy Structure (commented out temporarily)
 -- require("prototypes.gen-decoy")
@@ -43,9 +45,12 @@ require("prototypes.gen-combat-capsules")
 require("prototypes.gen-combat-robots")
 
 -- New turret types
-require("prototypes.gen-poison-turret")
-require("prototypes.gen-acid-turret")
-require("prototypes.gen-mortar-turret")
-require("prototypes.gen-robot-deployer")
-require("prototypes.gen-flare-turret")
+if settings.startup["5d-special-turrets"].value then
+    require("prototypes.gen-poison-turret")
+    require("prototypes.gen-acid-turret")
+    require("prototypes.gen-mortar-turret")
+    require("prototypes.gen-robot-deployer")
+    require("prototypes.gen-flare-turret")
+end
+
 require("prototypes.gen-slow-turret")

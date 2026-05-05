@@ -34,6 +34,7 @@ function genRailgunTurret(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.fast_replaceable_group = "railgun-turret"
+    entity.max_health = inputs.health or entity.max_health
     entity.rotation_speed = inputs.rotationSpeed
     
     -- Update attack parameters

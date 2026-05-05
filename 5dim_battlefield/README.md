@@ -27,8 +27,8 @@ Sniper progression now unlocks in three steps: sniper rifle, sniper turret, then
 
 | Variant | Description |
 |---------|-------------|
-| **Standard** | Balanced power consumption |
-| **Sniper** | Longer-range branch built from the standard tier-5 turret onward |
+| **Standard** | Gentle per-tier power scaling on top of the vanilla laser baseline |
+| **Sniper** | Longer-range branch built from the standard tier-5 turret onward, with a higher energy premium |
 
 Laser sniper turrets keep the simpler two-branch structure without the removed small and big variants.
 
@@ -38,9 +38,11 @@ Electric turrets that fire lightning bolts:
 
 | Tier | Damage | Range | Energy |
 |------|--------|-------|--------|
-| T1 | 30 | 20 | 400 kW |
-| T5 | 75 | 26 | 1 MW |
-| T10 | 150 | 35 | 2 MW |
+| T1 | 35 | 35 | 3.2 MJ/shot |
+| T5 | 42 | 55 | 4.0 MJ/shot |
+| T10 | 50.75 | 80 | 4.9 MJ/shot |
+
+Tesla tiers also scale idle drain and recharge requirements with their higher ranges.
 
 ### 🔥 Flamethrower Turrets
 

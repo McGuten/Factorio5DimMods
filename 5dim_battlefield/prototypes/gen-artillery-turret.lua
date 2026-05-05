@@ -14,10 +14,10 @@ local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun[
 -------------------------------------------------------------------------------
 
 local baseAutomaticRange = baseGun.attack_parameters and baseGun.attack_parameters.range or (7 * 32)
-local automaticRangeIncrement = 32 -- 1 chunk per tier
+local automaticRangeScalePerTier = 0.05
 local baseRotationSpeed = baseEntity.turret_rotation_speed or 0.001
 local baseManualRangeModifier = baseEntity.manual_range_modifier or 2.5
-local damageScalePerTier = 0.05
+local damageScalePerTier = 0.03
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------
@@ -153,12 +153,12 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentAutomaticRange = baseAutomaticRange
 local currentRotationSpeed = baseRotationSpeed
 
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
+    local currentAutomaticRange = math.floor((baseAutomaticRange * (1 + ((tier - 1) * automaticRangeScalePerTier))) + 0.5)
     
     local techData = nil
     if techConfig[tier] then
@@ -184,6 +184,5 @@ for tier = 1, 10 do
         tech = techData
     })
 
-    currentAutomaticRange = currentAutomaticRange + automaticRangeIncrement
     currentRotationSpeed = currentRotationSpeed * 1.1
 end

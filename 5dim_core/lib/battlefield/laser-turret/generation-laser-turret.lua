@@ -47,20 +47,32 @@ function genLaserTurrets(inputs)
         split[1] = inputs.number
     end
     local tierNumber = tonumber(split[2] or split[1]) or 1
+    local iconSize = inputs.iconSize or 64
     local multiplier = 1
     
     -- Only the standard and sniper branches remain.
     local iconPath
+    local techIconPath
+    local techIconSize
     if string.find(inputs.number, "sniper") ~= nil then
-        iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/sniper/laser-turret-sniper-" .. split[2] .. ".png"
+        iconPath = inputs.iconPath or ("__5dim_battlefield__/graphics/icon/laser-turret/sniper/laser-turret-sniper-" .. split[2] .. ".png")
+        techIconPath = inputs.techIconPath or iconPath
+        techIconSize = inputs.techIconSize or iconSize
         multiplier = 4
     else
-        iconPath = "__5dim_battlefield__/graphics/icon/laser-turret/normal/laser-turret-normal-" .. split[1] .. ".png"
+        iconPath = inputs.iconPath or "__base__/graphics/icons/laser-turret.png"
+        techIconPath = inputs.techIconPath or "__base__/graphics/technology/laser-turret.png"
+        techIconSize = inputs.techIconSize or 256
         multiplier = 1
     end
-    local tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, 64)
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(iconPath, tierNumber, iconSize)
+    local tieredTechIcons = TierBadgeIcons.buildTieredIcons(techIconPath, tierNumber, techIconSize)
     local baseTint = inputs.baseTint or inputs.tint
     local turretTint = inputs.turretTint or inputs.tint
+    local energyPerShot = inputs.energyPerShot or (800 * multiplier)
+    local bufferCapacity = inputs.bufferCapacity or (801 * multiplier)
+    local inputFlowLimit = inputs.inputFlowLimit or (9600 * multiplier)
+    local energyDrain = inputs.energyDrain or (24 * multiplier)
     
     -- For vanilla tier (new = false), only update icon of base entity
     if not inputs.new then
@@ -68,10 +80,10 @@ function genLaserTurrets(inputs)
             return
         end
 
-        setPrototypeIcon(data.raw.item["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
-        setPrototypeIcon(data.raw.recipe["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
-        setPrototypeIcon(data.raw["electric-turret"]["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
-        setPrototypeIcon(data.raw.technology["laser-turret"], iconPath, 64, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.item["laser-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.recipe["laser-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw["electric-turret"]["laser-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
+        setPrototypeIcon(data.raw.technology["laser-turret"], techIconPath, techIconSize, table.deepcopy(tieredTechIcons))
         applyLaserTurretTints(data.raw["electric-turret"]["laser-turret"], baseTint, turretTint)
         return
     end
@@ -84,7 +96,7 @@ function genLaserTurrets(inputs)
 
     --Item
     item.name = "5d-laser-turret-" .. inputs.number
-    setPrototypeIcon(item, iconPath, 64, table.deepcopy(tieredIcons))
+    setPrototypeIcon(item, iconPath, iconSize, table.deepcopy(tieredIcons))
 
     item.subgroup = inputs.subgroup
     item.order = inputs.order
@@ -92,7 +104,7 @@ function genLaserTurrets(inputs)
 
     --Recipe
     recipe.name = item.name
-    setPrototypeIcon(recipe, iconPath, 64, table.deepcopy(tieredIcons))
+    setPrototypeIcon(recipe, iconPath, iconSize, table.deepcopy(tieredIcons))
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
@@ -100,7 +112,7 @@ function genLaserTurrets(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    setPrototypeIcon(entity, iconPath, 64, table.deepcopy(tieredIcons))
+    setPrototypeIcon(entity, iconPath, iconSize, table.deepcopy(tieredIcons))
     entity.minable.result = item.name
     
     -- Modify attack_parameters - keep original structure, just update values
@@ -117,7 +129,7 @@ function genLaserTurrets(inputs)
         end
         -- Update ammo_type if it exists
         if entity.attack_parameters.ammo_type then
-            entity.attack_parameters.ammo_type.energy_consumption = tostring(800 * multiplier) .. "kJ"
+            entity.attack_parameters.ammo_type.energy_consumption = tostring(energyPerShot) .. "kJ"
             if entity.attack_parameters.ammo_type.action and 
                entity.attack_parameters.ammo_type.action.action_delivery then
                 entity.attack_parameters.ammo_type.action.action_delivery.max_length = inputs.range + 1
@@ -131,16 +143,16 @@ function genLaserTurrets(inputs)
     entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 1000, entity.max_health)
     entity.fast_replaceable_group = "laser-turret"
     entity.resistances = inputs.resistances or nil
-    entity.energy_source.buffer_capacity = 801 * multiplier .. "kJ"
-    entity.energy_source.input_flow_limit = 9600 * multiplier .. "kW"
-    entity.energy_source.drain = 24 * multiplier .. "kW"
+    entity.energy_source.buffer_capacity = bufferCapacity .. "kJ"
+    entity.energy_source.input_flow_limit = inputFlowLimit .. "kW"
+    entity.energy_source.drain = energyDrain .. "kW"
 
     data:extend({ entity, recipe, item })
 
     -- Technology
     if inputs.tech then
         tech.name = inputs.tech.number
-        setPrototypeIcon(tech, iconPath, 64, table.deepcopy(tieredIcons))
+        setPrototypeIcon(tech, techIconPath, techIconSize, table.deepcopy(tieredTechIcons))
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

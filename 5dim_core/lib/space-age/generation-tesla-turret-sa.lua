@@ -35,10 +35,26 @@ function genTeslaTurretSA(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.fast_replaceable_group = "tesla-turret"
+    entity.max_health = inputs.health or entity.max_health
     
     -- Update attack parameters
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
+        if entity.attack_parameters.ammo_type and inputs.energyPerShot then
+            entity.attack_parameters.ammo_type.energy_consumption = inputs.energyPerShot .. "kJ"
+        end
+    end
+
+    if entity.energy_source then
+        if inputs.bufferCapacity then
+            entity.energy_source.buffer_capacity = inputs.bufferCapacity .. "kJ"
+        end
+        if inputs.inputFlowLimit then
+            entity.energy_source.input_flow_limit = inputs.inputFlowLimit .. "kW"
+        end
+        if inputs.energyDrain then
+            entity.energy_source.drain = inputs.energyDrain .. "kW"
+        end
     end
     
     -- Apply tint to base mask and animations

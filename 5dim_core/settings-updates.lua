@@ -172,6 +172,29 @@ if not mods["Rampant"] then
     )
 end
 
+if mods["5dim_battlefield"] then
+    data:extend(
+        {
+            {
+                type = "bool-setting",
+                name = "5d-special-turrets",
+                order = "cac",
+                setting_type = "startup",
+                default_value = false,
+                per_user = false
+            },
+            {
+                type = "bool-setting",
+                name = "5d-special-mines",
+                order = "cad",
+                setting_type = "startup",
+                default_value = false,
+                per_user = false
+            }
+        }
+    )
+end
+
 if mods["5dim_infiniteresearch"] then
     --order e for infinite research
     data:extend(

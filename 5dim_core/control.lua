@@ -1,7 +1,8 @@
 local TierColors = require("__5dim_core__.lib.tier-colors")
 local TierMarkerConfig = require("__5dim_core__.lib.tier-marker-config")
 
-local TIER_OVERLAY_SCHEMA_VERSION = 1
+local TIER_OVERLAY_SCHEMA_VERSION = 2
+local ENTITY_TIER_OVERLAY_SCALE = 1.25
 
 local runtimeTierFamilies = TierMarkerConfig.runtime_families
 local tierOverlayTypeFilters = TierMarkerConfig.runtime_type_filters
@@ -49,6 +50,28 @@ local function ensureTierOverlaySchemaVersion()
 
     rebuildEntityTierOverlays()
     storage.tier_overlay_schema_version = TIER_OVERLAY_SCHEMA_VERSION
+end
+
+local function isEntityTierOverlayEnabled()
+    return settings.startup["5d-entity-tier-overlay"] == nil
+        or settings.startup["5d-entity-tier-overlay"].value
+end
+
+local function useBlackEntityTierOverlayBackground()
+    return settings.startup["5d-entity-tier-overlay-black-background"] == nil
+        or settings.startup["5d-entity-tier-overlay-black-background"].value
+end
+
+local function scaleTierOverlayLayout(layout)
+    return {
+        background_center = layout.background_center,
+        background_half_height = layout.background_half_height * ENTITY_TIER_OVERLAY_SCALE,
+        background_half_width = layout.background_half_width * ENTITY_TIER_OVERLAY_SCALE,
+        background_extra_width_per_digit = layout.background_extra_width_per_digit * ENTITY_TIER_OVERLAY_SCALE,
+        shadow_target = layout.shadow_target,
+        text_target = layout.text_target,
+        text_scale = layout.text_scale * ENTITY_TIER_OVERLAY_SCALE
+    }
 end
 
 local function getTierOverlayLayout(entity)
@@ -156,7 +179,7 @@ local function getEntityTierOverlayConfig(entity)
     if configuredTier then
         return {
             tier = configuredTier,
-            layout = getTierOverlayLayout(entity)
+            layout = scaleTierOverlayLayout(getTierOverlayLayout(entity))
         }
     end
 
@@ -198,6 +221,10 @@ local function destroyTierOverlay(overlay)
 end
 
 local function createEntityTierOverlay(entity)
+    if not isEntityTierOverlayEnabled() then
+        return
+    end
+
     local overlayConfig = getEntityTierOverlayConfig(entity)
     if not overlayConfig or not entity.unit_number then
         return
@@ -223,27 +250,30 @@ local function createEntityTierOverlay(entity)
     local visibilityForce = { entity.force.name }
     local backgroundHalfWidth = layout.background_half_width
         + math.max(#tierText - 1, 0) * layout.background_extra_width_per_digit
+    local background
 
-    local background = rendering.draw_rectangle({
-        color = { r = 0, g = 0, b = 0, a = 0.45 },
-        filled = true,
-        surface = entity.surface,
-        left_top = {
-            entity = entity,
-            offset = {
-                layout.background_center[1] - backgroundHalfWidth,
-                layout.background_center[2] - layout.background_half_height
-            }
-        },
-        right_bottom = {
-            entity = entity,
-            offset = {
-                layout.background_center[1] + backgroundHalfWidth,
-                layout.background_center[2] + layout.background_half_height
-            }
-        },
-        forces = visibilityForce
-    })
+    if useBlackEntityTierOverlayBackground() then
+        background = rendering.draw_rectangle({
+            color = { r = 0, g = 0, b = 0, a = 0.45 },
+            filled = true,
+            surface = entity.surface,
+            left_top = {
+                entity = entity,
+                offset = {
+                    layout.background_center[1] - backgroundHalfWidth,
+                    layout.background_center[2] - layout.background_half_height
+                }
+            },
+            right_bottom = {
+                entity = entity,
+                offset = {
+                    layout.background_center[1] + backgroundHalfWidth,
+                    layout.background_center[2] + layout.background_half_height
+                }
+            },
+            forces = visibilityForce
+        })
+    end
 
     local shadow = rendering.draw_text({
         text = tierText,
@@ -271,7 +301,7 @@ local function createEntityTierOverlay(entity)
 
     local registrationNumber = script.register_on_object_destroyed(entity)
     storage.entity_tier_overlays[entity.unit_number] = {
-        background_id = background.id,
+        background_id = background and background.id or nil,
         shadow_id = shadow.id,
         text_id = text.id,
         registration_number = registrationNumber

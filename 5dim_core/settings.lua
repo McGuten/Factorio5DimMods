@@ -22,6 +22,34 @@ data:extend({
         default_value = true,
         hidden = not mods["space-age"]
     },
+    {
+        type = "bool-setting",
+        name = "5d-icon-tier-overlay",
+        order = "a-ac",
+        setting_type = "startup",
+        default_value = true
+    },
+    {
+        type = "bool-setting",
+        name = "5d-icon-tier-overlay-black-background",
+        order = "a-ad",
+        setting_type = "startup",
+        default_value = true
+    },
+    {
+        type = "bool-setting",
+        name = "5d-entity-tier-overlay",
+        order = "a-ae",
+        setting_type = "startup",
+        default_value = true
+    },
+    {
+        type = "bool-setting",
+        name = "5d-entity-tier-overlay-black-background",
+        order = "a-af",
+        setting_type = "startup",
+        default_value = true
+    },
     -- Technology Cost Multiplier
     {
         type = "double-setting",

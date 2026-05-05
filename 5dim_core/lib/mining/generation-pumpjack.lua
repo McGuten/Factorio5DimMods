@@ -4,13 +4,13 @@ function genPumpjacks(inputs)
     local recipe = table.deepcopy(data.raw.recipe["pumpjack"])
     local entity = table.deepcopy(data.raw["mining-drill"]["pumpjack"])
     local tech = table.deepcopy(data.raw.technology["advanced-oil-processing"])
+    local pumpjackIcon = "__5dim_mining__/graphics/icon/pumpjack/pumpjack-icon-" .. inputs.number .. ".png"
 
     --Item
     if inputs.new then
         item.name = "5d-pumpjack-" .. inputs.number
     end
-    item.icon =
-        "__5dim_mining__/graphics/icon/pumpjack/pumpjack-icon-" .. inputs.number .. ".png"
+    item.icon = pumpjackIcon
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
@@ -48,7 +48,8 @@ function genPumpjacks(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-pumpjack-" .. inputs.tech.number
-        --tech.icon = "__base__/graphics/technology/mining-productivity.png"
+        tech.icon = pumpjackIcon
+        tech.icon_size = 64
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

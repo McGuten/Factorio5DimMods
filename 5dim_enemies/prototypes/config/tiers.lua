@@ -13,6 +13,24 @@ local SharedConfig = require("shared-config")
 
 local Tiers = {}
 
+local function appendSpawnPoint(curve, evolutionFactor, weight)
+    local lastPoint = curve[#curve]
+
+    if not lastPoint then
+        table.insert(curve, {evolutionFactor, weight})
+        return
+    end
+
+    if evolutionFactor > lastPoint[1] then
+        table.insert(curve, {evolutionFactor, weight})
+        return
+    end
+
+    if evolutionFactor == lastPoint[1] then
+        lastPoint[2] = weight
+    end
+end
+
 -- Number of tiers in the system (excluding boss)
 Tiers.COUNT = 10
 
@@ -123,30 +141,30 @@ function Tiers.getSpawnCurve(typeName, tier, category)
     
     if tier == 1 then
         -- Tier 1 starts with weight at evolution_min, then declines
-        table.insert(curve, {tierEvo, 0.3})
-        table.insert(curve, {nextEvo, 0.3})
-        table.insert(curve, {nextNextEvo, 0.1})
+        appendSpawnPoint(curve, tierEvo, 0.3)
+        appendSpawnPoint(curve, nextEvo, 0.3)
+        appendSpawnPoint(curve, nextNextEvo, 0.1)
         if tier + 3 <= 11 then
-            table.insert(curve, {nextNextNextEvo, 0.0})
+            appendSpawnPoint(curve, nextNextNextEvo, 0.0)
         end
     elseif tier == 11 then
         -- Boss (tier 11) only spawns at very end
         local prevEvo = evolution[tier - 1] or evolution[10]
-        table.insert(curve, {prevEvo, 0.0})
-        table.insert(curve, {tierEvo, 0.3})
+        appendSpawnPoint(curve, prevEvo, 0.0)
+        appendSpawnPoint(curve, tierEvo, 0.3)
     else
         -- Normal tiers: ramp up, peak, ramp down
         local prevEvo = evolution[tier - 1] or 0
-        table.insert(curve, {prevEvo, 0.0})
-        table.insert(curve, {tierEvo, 0.3})
+        appendSpawnPoint(curve, prevEvo, 0.0)
+        appendSpawnPoint(curve, tierEvo, 0.3)
         if tier + 1 <= 11 then
-            table.insert(curve, {nextEvo, 0.3})
+            appendSpawnPoint(curve, nextEvo, 0.3)
         end
         if tier + 2 <= 11 then
-            table.insert(curve, {nextNextEvo, 0.1})
+            appendSpawnPoint(curve, nextNextEvo, 0.1)
         end
         if tier + 3 <= 11 then
-            table.insert(curve, {nextNextNextEvo, 0.0})
+            appendSpawnPoint(curve, nextNextNextEvo, 0.0)
         end
     end
     
@@ -173,11 +191,11 @@ function Tiers.getNormalFillerCurve(typeName, category)
     end
     
     -- Spawn normal T1 from 0.0 to evolution_min, then fade out
-    return {
-        {0.0, 0.3},
-        {evMin, 0.3},
-        {evMin + 0.05, 0.0}  -- Quick fade out once the type's own tiers start
-    }
+    local curve = {}
+    appendSpawnPoint(curve, 0.0, 0.3)
+    appendSpawnPoint(curve, evMin, 0.3)
+    appendSpawnPoint(curve, math.min(1.0, evMin + 0.05), 0.0)  -- Quick fade out once the type's own tiers start
+    return curve
 end
 
 -- =============================================================================

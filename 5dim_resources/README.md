@@ -6,7 +6,7 @@
 
 ## Overview
 
-5Dim's Resources expands smelting and ore processing with tiered furnaces, mashers (ore grinders), and a dust system for bonus yield!
+5Dim's Resources expands smelting and ore processing with tiered furnaces, mashers and a dust system for bonus yield. The current balance keeps the throughput branch strong, but flattens the late furnace and masher spike so the top tiers stay within the same industrial frame as Mining and Energy.
 
 ## Features
 
@@ -15,8 +15,8 @@
 | Tier | Smelting Speed | Energy | Module Slots |
 |------|---------------|--------|--------------|
 | T1 | 2.0x | 180 kW | 2 |
-| T5 | 5.0x | 450 kW | 4 |
-| T10 | 10.0x | 900 kW | 6 |
+| T5 | 9.5x | 1.86 MW | 4 |
+| T10 | 17.0x | 4.46 MW | 6 |
 
 ### ⚙️ Mashers (Ore Grinders)
 
@@ -24,16 +24,9 @@ Convert ore into dust for bonus yield:
 
 | Tier | Processing Speed | Energy Usage | Module Slots |
 |------|-----------------|--------------|-------------|
-| T1 | 1.0x | 100 kW | 2 |
-| T2 | 1.5x | 200 kW | 2 |
-| T3 | 2.0x | 300 kW | 3 |
-| T4 | 2.5x | 400 kW | 3 |
-| T5 | 3.0x | 500 kW | 4 |
-| T6 | 3.5x | 600 kW | 4 |
-| T7 | 4.0x | 700 kW | 5 |
-| T8 | 4.5x | 800 kW | 5 |
-| T9 | 5.0x | 900 kW | 6 |
-| T10 | 6.0x | 1000 kW | 6 |
+| T1 | 2.0x | 360 kW | 2 |
+| T5 | 9.5x | 3.73 MW | 4 |
+| T10 | 17.0x | 8.92 MW | 6 |
 
 ### 💎 Dust Processing System
 
@@ -79,8 +72,20 @@ The dust system requires:
 
 1. **Module priority** - Put productivity in furnaces, speed in mashers
 2. **Dust batching** - Process ore to dust in bulk, then smelt as needed
-3. **Electric furnaces** - Always better than stone/steel furnaces
-4. **T10 furnaces** - One T10 replaces 5 T1 furnaces!
+3. **Electric furnaces** - High tiers are strong throughput tools, but their power cost rises fast enough that they need real grid support
+4. **Dust lines pay off later** - Mashers are worth the extra logistics when ore pressure or mining footprint starts to matter
+5. **Industrial furnace is separate** - The industrial furnace remains the dedicated bulk-processing endpoint rather than being replaced by raw tier inflation alone
+
+## Balance Notes
+
+- The main numerical pass was on electric furnaces and mashers: the late throughput curve was flattened while keeping the branch decisively stronger than vanilla.
+- Tech pacing stayed largely intact because the main problem was stat runaway, not access timing.
+- README values now reflect the real prototype formulas instead of old placeholder numbers.
+
+## Cross-Module Notes
+
+- With 5dim_nuclear installed, Resources already intersects the nuclear branch through uranium-processing: uranium dust and the dust-based uranium processing recipe are unlocked from that same technology gate.
+- That means the centrifuge line in Nuclear already scales a real Resources-side throughput option without needing extra recipe inflation or forced prerequisites in this review.
 
 ## Dependencies
 
@@ -92,17 +97,27 @@ The dust system requires:
 2. Download from [Factorio Mod Portal](https://mods.factorio.com/user/McGuten)
 3. Enable in the mod menu
 
+## Compatibility
+
+Works with:
+- `5dim_nuclear` - Uranium dust processing plugs directly into the centrifuge branch through uranium-processing.
+- All other 5Dim modules
+
 ## File Structure
 
 ```
 5dim_resources/
+├── README.md
 ├── data.lua
+├── data-updates.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── electric-furnaces/
-│   ├── mashers/
-│   ├── dust-items/
-│   └── recipes/
+│   ├── gen-electric-furnace.lua
+│   ├── gen-masher.lua
+│   ├── industrial-furnace.lua
+│   ├── industrial-recipes.lua
+│   └── dust-*.lua / tech*.lua / resource-*.lua helpers
 └── graphics/
 ```
 

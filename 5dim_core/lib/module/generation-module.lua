@@ -27,9 +27,9 @@ function genModules(inputs)
     }
 
     -- Copy Speed module
-    local itemSpeed = ""
-    local recipeSpeed = ""
-    local techSpeed = ""
+    local itemSpeed
+    local recipeSpeed
+    local techSpeed
     if inputs.tier == 2 or inputs.tier == 3 then
         itemSpeed = table.deepcopy(data.raw.module["speed-module-" .. inputs.tier])
         recipeSpeed = table.deepcopy(data.raw.recipe["speed-module-" .. inputs.tier])
@@ -84,9 +84,9 @@ function genModules(inputs)
         data:extend({ techSpeed })
     end
     -- Copy effectivity module
-    local itemEffectivity = ""
-    local recipeEffectivity = ""
-    local techEffectivity = ""
+    local itemEffectivity
+    local recipeEffectivity
+    local techEffectivity
     if inputs.tier == 2 or inputs.tier == 3 then
         itemEffectivity = table.deepcopy(data.raw.module["efficiency-module-" .. inputs.tier])
         recipeEffectivity = table.deepcopy(data.raw.recipe["efficiency-module-" .. inputs.tier])
@@ -142,9 +142,9 @@ function genModules(inputs)
         data:extend({ techEffectivity })
     end
     -- Copy productivity module
-    local itemProductivity = ""
-    local recipeProductivity = ""
-    local techProductivity = ""
+    local itemProductivity
+    local recipeProductivity
+    local techProductivity
     if inputs.tier == 2 or inputs.tier == 3 then
         itemProductivity = table.deepcopy(data.raw.module["productivity-module-" .. inputs.tier])
         recipeProductivity = table.deepcopy(data.raw.recipe["productivity-module-" .. inputs.tier])
@@ -200,9 +200,9 @@ function genModules(inputs)
         data:extend({ techProductivity })
     end
     -- Copy pollution module
-    local itemPollution = ""
-    local recipePollution = ""
-    local techPollution = ""
+    local itemPollution
+    local recipePollution
+    local techPollution
     if inputs.tier == 2 or inputs.tier == 3 then
         itemPollution = table.deepcopy(data.raw.module["speed-module-" .. inputs.tier])
         recipePollution = table.deepcopy(data.raw.recipe["speed-module-" .. inputs.tier])
@@ -256,9 +256,9 @@ function genModules(inputs)
 
     if mods['quality'] then
         -- Copy Quality module
-        local itemQuality = ""
-        local recipeQuality = ""
-        local techQuality = ""
+        local itemQuality
+        local recipeQuality
+        local techQuality
         if inputs.tier == 2 or inputs.tier == 3 then
             itemQuality = table.deepcopy(data.raw.module["quality-module-" .. inputs.tier])
             recipeQuality = table.deepcopy(data.raw.recipe["quality-module-" .. inputs.tier])
@@ -316,9 +316,9 @@ function genModules(inputs)
     end
 
     -- Copy merged module
-    local itemMerged = ""
-    local recipeMerged = ""
-    local techMerged = ""
+    local itemMerged
+    local recipeMerged
+    local techMerged
     if inputs.tier == 2 or inputs.tier == 3 then
         itemMerged = table.deepcopy(data.raw.module["productivity-module-" .. inputs.tier])
         recipeMerged = table.deepcopy(data.raw.recipe["productivity-module-" .. inputs.tier])
@@ -338,11 +338,14 @@ function genModules(inputs)
     local consump = inputs.effects.effectivity
     local speed = inputs.effects.speed
     local pollu = inputs.effects.pollution
+    local mergedSpeed = (speed.speed or 0) + (product.speed or 0)
+    local mergedConsumption = (speed.consumption or 0) + (product.consumption or 0) + (consump.consumption or 0)
+    local mergedPollution = (pollu.pollution or 0) + (product.pollution or 0)
     itemMerged.effect = {
         productivity = product.productivity,
-        consumption = consump.consumption,
-        pollution = pollu.pollution,
-        speed = speed.speed,
+        consumption = mergedConsumption,
+        pollution = mergedPollution,
+        speed = mergedSpeed,
     }
     itemMerged.tier = inputs.tier
     itemMerged.localised_description = nil

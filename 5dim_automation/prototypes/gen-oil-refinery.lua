@@ -17,7 +17,7 @@ local baseSpeed = 1
 local baseModules = 3
 local baseEnergy = 420
 local baseEmissions = 6
-local baseTechCount = 200
+local baseTechCount = RecipeTemplates.baseTechCounts.oilRefinery
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -26,15 +26,15 @@ local baseTechCount = 200
 
 local tierConfig = {
     [1]  = { speedBonus = 0, moduleBonus = 0, order = "a", isVanilla = true },
-    [2]  = { speedBonus = 1, moduleBonus = 1, order = "b" },
-    [3]  = { speedBonus = 2, moduleBonus = 1, order = "c" },
-    [4]  = { speedBonus = 3, moduleBonus = 2, order = "d" },
-    [5]  = { speedBonus = 4, moduleBonus = 2, order = "e" },
-    [6]  = { speedBonus = 5, moduleBonus = 3, order = "f" },
-    [7]  = { speedBonus = 6, moduleBonus = 3, order = "g" },
-    [8]  = { speedBonus = 7, moduleBonus = 4, order = "h" },
-    [9]  = { speedBonus = 8, moduleBonus = 4, order = "i" },
-    [10] = { speedBonus = 9, moduleBonus = 5, order = "j" }
+    [2]  = { speedBonus = 0.4, moduleBonus = 0, order = "b" },
+    [3]  = { speedBonus = 0.8, moduleBonus = 0, order = "c" },
+    [4]  = { speedBonus = 1.2, moduleBonus = 1, order = "d" },
+    [5]  = { speedBonus = 1.7, moduleBonus = 1, order = "e" },
+    [6]  = { speedBonus = 2.3, moduleBonus = 2, order = "f" },
+    [7]  = { speedBonus = 3.0, moduleBonus = 2, order = "g" },
+    [8]  = { speedBonus = 3.8, moduleBonus = 3, order = "h" },
+    [9]  = { speedBonus = 4.7, moduleBonus = 3, order = "i" },
+    [10] = { speedBonus = 5.7, moduleBonus = 4, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -45,14 +45,16 @@ local techConfig = {
     [2] = {
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = { "oil-processing", "logistic-science-pack" }
+        prerequisites = { "advanced-oil-processing" }
     },
     [3] = {
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-oil-refinery-1" }
     },
@@ -62,15 +64,16 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 }
         },
-        prerequisites = { "5d-oil-refinery-2", "chemical-science-pack" }
+        prerequisites = { "5d-oil-refinery-2" }
     },
     [5] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-oil-refinery-3" }
+        prerequisites = { "5d-oil-refinery-3", "production-science-pack" }
     },
     [6] = {
         basePacks = {

@@ -15,7 +15,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseInventorySize = 48
-local baseTechCount = 200
+local baseTechCount = 125
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -42,7 +42,7 @@ local logisticChestTypes = {
     {
         name = "passive-provider",
         template = "passiveProviderChest",
-        techPrerequisiteBase = "logistic-system",
+        techPrerequisiteBase = "logistic-robotics",
         techPrefix = "logistic-chest-passive-provider"
     },
     {
@@ -54,7 +54,7 @@ local logisticChestTypes = {
     {
         name = "storage",
         template = "storageChest",
-        techPrerequisiteBase = "logistic-system",
+        techPrerequisiteBase = "logistic-robotics",
         techPrefix = "logistic-chest-storage"
     },
     {

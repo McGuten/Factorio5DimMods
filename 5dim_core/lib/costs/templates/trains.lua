@@ -5,6 +5,30 @@
 
 local Templates = {}
 
+local function storageTankIngredientName(tier)
+    if mods and mods["5dim_storage"] and tier >= 5 then
+        return "5d-storage-tank-" .. string.format("%02d", tier)
+    end
+
+    return "storage-tank"
+end
+
+local function steelChestIngredientName(tier)
+    if mods and mods["5dim_storage"] and tier >= 5 then
+        return "5d-steel-chest-" .. string.format("%02d", tier)
+    end
+
+    return "steel-chest"
+end
+
+local function pumpIngredientName(tier)
+    if mods and mods["5dim_transport"] and tier >= 5 then
+        return "5d-pump-" .. string.format("%02d", tier)
+    end
+
+    return "pump"
+end
+
 -- Locomotive templates
 Templates.locomotive = {
     [1] = {
@@ -106,36 +130,42 @@ Templates.cargoWagon = {
         { type = "item", name = "5d-cargo-wagon-04", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 10 },
         { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = steelChestIngredientName(5), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     },
     [6] = {
         { type = "item", name = "5d-cargo-wagon-05", amount = 1 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "electronic-circuit", amount = 5 },
+        { type = "item", name = steelChestIngredientName(6), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     },
     [7] = {
         { type = "item", name = "5d-cargo-wagon-06", amount = 1 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = steelChestIngredientName(7), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     },
     [8] = {
         { type = "item", name = "5d-cargo-wagon-07", amount = 1 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = steelChestIngredientName(8), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     },
     [9] = {
         { type = "item", name = "5d-cargo-wagon-08", amount = 1 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = steelChestIngredientName(9), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     },
     [10] = {
         { type = "item", name = "5d-cargo-wagon-09", amount = 1 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "processing-unit", amount = 3 },
+        { type = "item", name = steelChestIngredientName(10), amount = 1 },
         { type = "item", name = "steel-plate", amount = 20 }
     }
 }
@@ -174,42 +204,48 @@ Templates.fluidWagon = {
         { type = "item", name = "electronic-circuit", amount = 10 },
         { type = "item", name = "steel-plate", amount = 16 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(5), amount = 1 },
+        { type = "item", name = pumpIngredientName(5), amount = 1 }
     },
     [6] = {
         { type = "item", name = "5d-fluid-wagon-05", amount = 1 },
         { type = "item", name = "advanced-circuit", amount = 10 },
         { type = "item", name = "steel-plate", amount = 16 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(6), amount = 1 },
+        { type = "item", name = pumpIngredientName(6), amount = 1 }
     },
     [7] = {
         { type = "item", name = "5d-fluid-wagon-06", amount = 1 },
         { type = "item", name = "advanced-circuit", amount = 10 },
         { type = "item", name = "steel-plate", amount = 16 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(7), amount = 1 },
+        { type = "item", name = pumpIngredientName(7), amount = 1 }
     },
     [8] = {
         { type = "item", name = "5d-fluid-wagon-07", amount = 1 },
         { type = "item", name = "advanced-circuit", amount = 10 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(8), amount = 1 },
+        { type = "item", name = pumpIngredientName(8), amount = 1 }
     },
     [9] = {
         { type = "item", name = "5d-fluid-wagon-08", amount = 1 },
         { type = "item", name = "advanced-circuit", amount = 10 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(9), amount = 1 },
+        { type = "item", name = pumpIngredientName(9), amount = 1 }
     },
     [10] = {
         { type = "item", name = "5d-fluid-wagon-09", amount = 1 },
         { type = "item", name = "processing-unit", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "pipe", amount = 8 },
-        { type = "item", name = "storage-tank", amount = 1 }
+        { type = "item", name = storageTankIngredientName(10), amount = 1 },
+        { type = "item", name = pumpIngredientName(10), amount = 1 }
     }
 }
 

@@ -18,7 +18,7 @@ local baseModuleSlots = 2
 local baseEnergy = 10
 local baseMaxTemperature = 1000  -- Temperature scales UP (better = higher temp)
 local baseEmissions = 30         -- Actual pollution value for emissions
-local baseTechCount = 500
+local baseTechCount = 300
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

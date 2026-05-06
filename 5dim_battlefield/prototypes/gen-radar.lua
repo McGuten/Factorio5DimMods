@@ -18,7 +18,7 @@ local baseEnergy = 300
 local scanIncrement = 2
 local revealStepTiers = 2
 local energyIncrement = 300
-local baseTechCount = 150
+local baseTechCount = 125
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

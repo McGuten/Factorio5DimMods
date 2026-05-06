@@ -8,24 +8,17 @@
 
 ## Overview
 
-5Dim's Transport expands item transportation with faster belts, longer underground belts, and more capable inserters. The ultimate logistics expansion!
+5Dim's Transport expands item transportation with faster belts, longer underground belts, more capable inserters and stronger pumps. The current balance keeps base logistics throughput high, but no longer lets late inserter tiers stay almost free compared with the rest of the transport stack.
 
 ## Features
 
 ### 🛤️ Transport Belts
 
-| Tier | Speed | Items/s |
-|------|-------|---------|
-| T1 | 15 | 7.5 |
-| T2 | 30 | 15 |
-| T3 | 45 | 22.5 |
-| T4 | 60 | 30 |
-| T5 | 75 | 37.5 |
-| T6 | 90 | 45 |
-| T7 | 105 | 52.5 |
-| T8 | 120 | 60 |
-| T9 | 135 | 67.5 |
-| T10 | 150 | 75 |
+| Tier | Total Throughput | Per Lane |
+|------|------------------|----------|
+| T1 | 15 items/s | 7.5 items/s |
+| T5 | 75 items/s | 37.5 items/s |
+| T10 | 150 items/s | 75 items/s |
 
 ### 🕳️ Underground Belts
 
@@ -47,9 +40,9 @@ Three range variants for each tier:
 
 10 tiers of belt loaders:
 
-| Tier | Speed | Matches Belt |
-|------|-------|--------------|
-| T1-T10 | Variable | Yes |
+| Tier | Throughput |
+|------|------------|
+| T1-T10 | Matches the paired belt tier |
 
 ### 🤖 Inserters (Requires Bob's Inserters)
 
@@ -59,29 +52,24 @@ Three range variants for each tier:
 |------|-------------|
 | **Standard** | Basic item movement |
 | **Filter** | Filtered item selection |
-| **Stack** | Moves multiple items |
-| **Stack Filter** | Stack with filtering |
+| **Bulk** | High-throughput inserter line |
+| **Stack / Stack Filter** | Space Age stack tier line |
 
-| Tier | Stack Size (Regular) | Stack Size (Stack) |
-|------|---------------------|-------------------|
-| T1 | 1 | 2 |
-| T5 | 3 | 6 |
-| T10 | 6 | 12 |
+| Tier | Extension Speed | Rotation Speed | Movement Energy | Drain |
+|------|-----------------|----------------|-----------------|-------|
+| T1 | 0.03 | 0.014 | 5 kJ | 0.4 kW |
+| T5 | 0.11 | 0.094 | 31 kJ | 0.48 kW |
+| T10 | 0.21 | 0.194 | 306 kJ | 0.58 kW |
+
+Bulk and stack inserters share the same movement profile, but use 4x movement and rotation energy.
 
 ### 💧 Pumps
 
-| Tier | Flow Rate |
-|------|----------|
-| T1 | 200/s |
-| T2 | 400/s |
-| T3 | 600/s |
-| T4 | 800/s |
-| T5 | 1000/s |
-| T6 | 1200/s |
-| T7 | 1400/s |
-| T8 | 1600/s |
-| T9 | 1800/s |
-| T10 | 2000/s |
+| Tier | Pumping Speed | Module Slots | Energy |
+|------|---------------|--------------|--------|
+| T1 | 200 | 2 | 29 kW |
+| T5 | 400 | 4 | 82 kW |
+| T10 | 1100 | 7 | 374 kW |
 
 ### 🔧 Underground Pipes
 
@@ -106,6 +94,13 @@ Extended underground pipe variants:
 2. **Extended underground** - Save resources on long runs
 3. **Stack inserters** - Essential for high-throughput builds
 4. **Loader efficiency** - Loaders fill belts perfectly without gaps
+5. **Late inserters now cost real materials** - High-tier inserter upgrades are still strong, but they now belong to the same economy as the rest of the transport branch
+
+## Balance Notes
+
+- The main balance pass was on inserter recipes: late standard, bulk and stack inserters were too cheap relative to the throughput they unlocked.
+- Belt, splitter and loader progression remains the baseline throughput ladder for the module.
+- Pumps were audited as the fluid-side support line and kept on their current curve.
 
 ## Dependencies
 
@@ -124,16 +119,19 @@ Extended underground pipe variants:
 
 ```
 5dim_transport/
+├── README.md
 ├── data.lua
+├── data-updates.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── transport-belts/
-│   ├── underground-belts/
-│   ├── splitters/
-│   ├── loaders/
-│   ├── inserters/
-│   ├── pumps/
-│   └── underground-pipes/
+│   ├── gen-inserter.lua
+│   ├── gen-pump.lua
+│   ├── gen-stack-inserter.lua
+│   ├── gen-transport-belt.lua
+│   ├── pipe-ground-1-30.lua
+│   ├── pipe-ground-1-50.lua
+│   └── tech.lua
 └── graphics/
 ```
 

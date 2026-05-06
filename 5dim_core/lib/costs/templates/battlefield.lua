@@ -212,37 +212,47 @@ Templates.gunTurret = {
         { type = "item", name = "5d-gun-turret-04", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 9 },
+        { type = "item", name = "steel-plate", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-gun-turret-05", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 9 },
+        { type = "item", name = "steel-plate", amount = 4 }
     },
     [7] = {
         { type = "item", name = "5d-gun-turret-06", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 8 },
+        { type = "item", name = "steel-plate", amount = 6 },
+        { type = "item", name = "electronic-circuit", amount = 4 }
     },
     [8] = {
         { type = "item", name = "5d-gun-turret-07", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 8 },
+        { type = "item", name = "steel-plate", amount = 8 },
+        { type = "item", name = "electronic-circuit", amount = 6 }
     },
     [9] = {
         { type = "item", name = "5d-gun-turret-08", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 6 },
+        { type = "item", name = "steel-plate", amount = 10 },
+        { type = "item", name = "advanced-circuit", amount = 4 }
     },
     [10] = {
         { type = "item", name = "5d-gun-turret-09", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 4 },
         { type = "item", name = "copper-plate", amount = 4 },
-        { type = "item", name = "iron-plate", amount = 7 }
+        { type = "item", name = "iron-plate", amount = 6 },
+        { type = "item", name = "steel-plate", amount = 12 },
+        { type = "item", name = "advanced-circuit", amount = 6 }
     }
 }
 
@@ -426,39 +436,44 @@ Templates.laserTurret = {
     },
     [5] = {
         { type = "item", name = "5d-laser-turret-04", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 6 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 6 }
     },
     [6] = {
         { type = "item", name = "5d-laser-turret-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 6 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 8 },
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     [7] = {
         { type = "item", name = "5d-laser-turret-06", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 7 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 8 },
+        { type = "item", name = "advanced-circuit", amount = 4 }
     },
     [8] = {
         { type = "item", name = "5d-laser-turret-07", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 8 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 10 },
+        { type = "item", name = "processing-unit", amount = 2 }
     },
     [9] = {
         { type = "item", name = "5d-laser-turret-08", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 8 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 10 },
+        { type = "item", name = "processing-unit", amount = 4 }
     },
     [10] = {
         { type = "item", name = "5d-laser-turret-09", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 5 },
-        { type = "item", name = "electronic-circuit", amount = 5 },
-        { type = "item", name = "battery", amount = 4 }
+        { type = "item", name = "steel-plate", amount = 10 },
+        { type = "item", name = "electronic-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 12 },
+        { type = "item", name = "processing-unit", amount = 6 }
     }
 }
 
@@ -526,6 +541,14 @@ Templates.laserTurretSniper = {
     }
 }
 
+local function accumulatorIngredientName(tier)
+    if mods and mods["5dim_energy"] and tier >= 2 then
+        return "5d-accumulator-" .. string.format("%02d", tier)
+    end
+
+    return "accumulator"
+end
+
 -- Tesla Turret templates
 Templates.teslaTurret = {
     [1] = {
@@ -537,55 +560,64 @@ Templates.teslaTurret = {
         { type = "item", name = "5d-tesla-turret-01", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "battery", amount = 10 },
+        { type = "item", name = accumulatorIngredientName(2), amount = 1 }
     },
     [3] = {
         { type = "item", name = "5d-tesla-turret-02", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "battery", amount = 12 },
+        { type = "item", name = accumulatorIngredientName(3), amount = 1 }
     },
     [4] = {
         { type = "item", name = "5d-tesla-turret-03", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "steel-plate", amount = 12 },
+        { type = "item", name = "advanced-circuit", amount = 6 },
+        { type = "item", name = "battery", amount = 12 },
+        { type = "item", name = accumulatorIngredientName(4), amount = 1 }
     },
     [5] = {
         { type = "item", name = "5d-tesla-turret-04", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "steel-plate", amount = 12 },
+        { type = "item", name = "advanced-circuit", amount = 10 },
+        { type = "item", name = "battery", amount = 14 },
+        { type = "item", name = accumulatorIngredientName(5), amount = 1 }
     },
     [6] = {
         { type = "item", name = "5d-tesla-turret-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "steel-plate", amount = 14 },
+        { type = "item", name = "advanced-circuit", amount = 12 },
+        { type = "item", name = "battery", amount = 16 },
+        { type = "item", name = accumulatorIngredientName(6), amount = 1 }
     },
     [7] = {
         { type = "item", name = "5d-tesla-turret-06", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "low-density-structure", amount = 6 },
+        { type = "item", name = "processing-unit", amount = 6 },
+        { type = "item", name = "battery", amount = 18 },
+        { type = "item", name = accumulatorIngredientName(7), amount = 1 }
     },
     [8] = {
         { type = "item", name = "5d-tesla-turret-07", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "low-density-structure", amount = 8 },
+        { type = "item", name = "processing-unit", amount = 8 },
+        { type = "item", name = "battery", amount = 20 },
+        { type = "item", name = accumulatorIngredientName(8), amount = 2 }
     },
     [9] = {
         { type = "item", name = "5d-tesla-turret-08", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "low-density-structure", amount = 10 },
+        { type = "item", name = "processing-unit", amount = 10 },
+        { type = "item", name = "battery", amount = 24 },
+        { type = "item", name = accumulatorIngredientName(9), amount = 2 }
     },
     [10] = {
         { type = "item", name = "5d-tesla-turret-09", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 10 },
-        { type = "item", name = "electronic-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 10 }
+        { type = "item", name = "low-density-structure", amount = 12 },
+        { type = "item", name = "processing-unit", amount = 12 },
+        { type = "item", name = "battery", amount = 28 },
+        { type = "item", name = accumulatorIngredientName(10), amount = 3 }
     }
 }
 
@@ -620,49 +652,49 @@ Templates.flamethrowerTurret = {
     },
     [5] = {
         { type = "item", name = "5d-flamethrower-turret-04", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 30 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = "steel-plate", amount = 34 },
+        { type = "item", name = "iron-gear-wheel", amount = 16 },
+        { type = "item", name = "advanced-circuit", amount = 6 },
+        { type = "item", name = "pipe", amount = 12 },
         { type = "item", name = "electric-engine-unit", amount = 5 }
     },
     [6] = {
         { type = "item", name = "5d-flamethrower-turret-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 30 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
-        { type = "item", name = "electric-engine-unit", amount = 5 }
+        { type = "item", name = "steel-plate", amount = 36 },
+        { type = "item", name = "iron-gear-wheel", amount = 18 },
+        { type = "item", name = "advanced-circuit", amount = 8 },
+        { type = "item", name = "pipe", amount = 12 },
+        { type = "item", name = "electric-engine-unit", amount = 6 }
     },
     [7] = {
         { type = "item", name = "5d-flamethrower-turret-06", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 30 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
-        { type = "item", name = "electric-engine-unit", amount = 5 }
+        { type = "item", name = "steel-plate", amount = 40 },
+        { type = "item", name = "iron-gear-wheel", amount = 18 },
+        { type = "item", name = "advanced-circuit", amount = 10 },
+        { type = "item", name = "pipe", amount = 14 },
+        { type = "item", name = "electric-engine-unit", amount = 6 }
     },
     [8] = {
         { type = "item", name = "5d-flamethrower-turret-07", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
-        { type = "item", name = "electric-engine-unit", amount = 5 }
+        { type = "item", name = "low-density-structure", amount = 6 },
+        { type = "item", name = "iron-gear-wheel", amount = 18 },
+        { type = "item", name = "advanced-circuit", amount = 10 },
+        { type = "item", name = "pipe", amount = 14 },
+        { type = "item", name = "electric-engine-unit", amount = 6 }
     },
     [9] = {
         { type = "item", name = "5d-flamethrower-turret-08", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
-        { type = "item", name = "electric-engine-unit", amount = 5 }
+        { type = "item", name = "low-density-structure", amount = 8 },
+        { type = "item", name = "processing-unit", amount = 6 },
+        { type = "item", name = "pipe", amount = 16 },
+        { type = "item", name = "electric-engine-unit", amount = 8 }
     },
     [10] = {
         { type = "item", name = "5d-flamethrower-turret-09", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "processing-unit", amount = 4 },
-        { type = "item", name = "pipe", amount = 10 },
-        { type = "item", name = "electric-engine-unit", amount = 5 }
+        { type = "item", name = "low-density-structure", amount = 10 },
+        { type = "item", name = "processing-unit", amount = 8 },
+        { type = "item", name = "pipe", amount = 18 },
+        { type = "item", name = "electric-engine-unit", amount = 8 }
     }
 }
 

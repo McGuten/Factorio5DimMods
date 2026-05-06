@@ -17,7 +17,7 @@ local baseCraftingSpeed = 1
 local baseModuleSlots = 2
 local baseEnergy = 1
 local baseEmissions = 30
-local baseTechCount = 500
+local baseTechCount = 300
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

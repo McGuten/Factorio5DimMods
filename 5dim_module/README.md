@@ -6,7 +6,7 @@
 
 ## Overview
 
-5Dim's Modules expands the module system with 10 tiers of all module types, new pollution modules, merged modules that combine all effects, and upgraded beacons!
+5Dim's Modules expands the module system with 10 tiers of all module types, pollution modules, merged modules and upgraded beacons. The current balance keeps the branch intentionally powerful, but merged modules now inherit the real tradeoffs of the component lines instead of cherry-picking only the upside.
 
 ## Features
 
@@ -14,33 +14,33 @@
 
 | Tier | Speed Bonus | Energy Penalty |
 |------|------------|----------------|
-| T1 | +20% | +50% |
-| T5 | +60% | +100% |
-| T10 | +120% | +150% |
+| T1 | +12% | +12% |
+| T5 | +60% | +60% |
+| T10 | +120% | +120% |
 
 ### 🏭 Productivity Modules
 
 | Tier | Productivity | Speed Penalty | Energy Penalty |
 |------|-------------|---------------|----------------|
-| T1 | +4% | -5% | +40% |
-| T5 | +12% | -10% | +80% |
-| T10 | +20% | -15% | +120% |
+| T1 | +2.5% | -5% | +25% |
+| T5 | +12.5% | -25% | +125% |
+| T10 | +25% | -50% | +250% |
 
 ### 💚 Efficiency Modules
 
 | Tier | Energy Reduction | Max Effect |
 |------|-----------------|------------|
-| T1 | -30% | -80% |
-| T5 | -50% | -80% |
-| T10 | -80% | -80% |
+| T1 | -16% | -80% |
+| T5 | -80% | -80% |
+| T10 | -160% | -80% cap |
 
 ### ⭐ Quality Modules (Requires Quality DLC)
 
 | Tier | Quality Chance |
 |------|---------------|
-| T1 | +1% |
-| T5 | +3% |
-| T10 | +5% |
+| T1 | +8% |
+| T5 | +40% |
+| T10 | +80% |
 
 ### 🌿 Pollution Modules (NEW!)
 
@@ -48,35 +48,42 @@ Reduce pollution output from machines:
 
 | Tier | Pollution Reduction |
 |------|-------------------|
-| T1 | -30% |
-| T5 | -60% |
-| T10 | -90% |
+| T1 | -8% |
+| T5 | -40% |
+| T10 | -80% |
 
 ### 🔮 Merged Modules (NEW!)
 
-Combines Speed + Productivity + Efficiency in one module:
+Combines Speed + Productivity + Efficiency + Pollution in one module, but now keeps the combined penalties instead of inheriting only the best upside:
 
-| Tier | Speed | Productivity | Efficiency |
-|------|-------|-------------|------------|
-| T1 | +10% | +2% | -15% |
-| T5 | +30% | +6% | -25% |
-| T10 | +60% | +10% | -40% |
+| Tier | Speed | Productivity | Consumption | Pollution |
+|------|-------|-------------|-------------|-----------|
+| T1 | +7% | +2.5% | +21% | -5% |
+| T5 | +35% | +12.5% | +105% | -25% |
+| T10 | +70% | +25% | +210% | -50% |
 
 ### 📡 Beacons
 
 | Tier | Module Slots | Transmission | Supply Area |
 |------|-------------|--------------|-------------|
-| T1 | 2 | 50% | 3x3 |
-| T5 | 4 | 75% | 5x5 |
-| T10 | 8 | 100% | 9x9 |
+| T1 | 2 | 150% | 3 |
+| T5 | 5 | 160% | 4 |
+| T10 | 8 | 170% | 6 |
 
 ## Module Strategy
 
 1. **Speed vs Productivity** - Speed for throughput, productivity for resource efficiency
 2. **Efficiency first** - Reduces power costs dramatically
-3. **Merged modules** - Great for machines with limited module slots
+3. **Merged modules** - Good for cramped builds, but they are no longer a free lunch on energy
 4. **Pollution modules** - Essential for peaceful coexistence with biters
 5. **Beacon placement** - Higher tier beacons affect more machines
+
+## Balance Notes
+
+- The main balance fix was on merged modules: they now combine both the upsides and the penalties of the component module lines.
+- The rest of the module branch still uses large numbers and high leverage, so beacons and top-tier modules remain extremely impactful.
+- README values now reflect the real prototype formulas instead of older placeholder progression.
+- Cross-review with Equipment gives late speed and efficiency modules a real external sink through the higher power armor tiers instead of leaving that branch capped on vanilla module ingredients.
 
 ## Dependencies
 
@@ -94,16 +101,14 @@ Combines Speed + Productivity + Efficiency in one module:
 
 ```
 5dim_module/
+├── README.md
 ├── data.lua
+├── data-updates.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── speed-modules/
-│   ├── productivity-modules/
-│   ├── efficiency-modules/
-│   ├── quality-modules/
-│   ├── pollution-modules/
-│   ├── merged-modules/
-│   └── beacons/
+│   ├── gen-beacon.lua
+│   └── gen-modules.lua
 └── graphics/
 ```
 

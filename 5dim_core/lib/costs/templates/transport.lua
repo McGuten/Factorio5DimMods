@@ -97,45 +97,51 @@ Templates.inserter = {
     },
     [4] = {
         { type = "item", name = "5d-inserter-03", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "iron-gear-wheel", amount = 2 },
+        { type = "item", name = "iron-plate", amount = 2 }
     },
     [5] = {
         { type = "item", name = "5d-inserter-04", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "advanced-circuit", amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 2 },
+        { type = "item", name = "iron-plate", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-inserter-05", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "electronic-circuit", amount = 2 },
+        { type = "item", name = "advanced-circuit", amount = 2 },
+        { type = "item", name = "iron-gear-wheel", amount = 3 },
+        { type = "item", name = "steel-plate", amount = 1 }
     },
     [7] = {
         { type = "item", name = "5d-inserter-06", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 2 },
+        { type = "item", name = "processing-unit", amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 3 },
+        { type = "item", name = "steel-plate", amount = 2 }
     },
     [8] = {
         { type = "item", name = "5d-inserter-07", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "processing-unit", amount = 1 },
+        { type = "item", name = "iron-gear-wheel", amount = 4 },
+        { type = "item", name = "steel-plate", amount = 2 }
     },
     [9] = {
         { type = "item", name = "5d-inserter-08", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 2 },
+        { type = "item", name = "iron-gear-wheel", amount = 4 },
+        { type = "item", name = "steel-plate", amount = 3 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     },
     [10] = {
         { type = "item", name = "5d-inserter-09", amount = 1 },
-        { type = "item", name = "electronic-circuit", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 1 },
-        { type = "item", name = "iron-plate", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 3 },
+        { type = "item", name = "iron-gear-wheel", amount = 5 },
+        { type = "item", name = "steel-plate", amount = 3 },
+        { type = "item", name = "low-density-structure", amount = 1 }
     }
 }
 
@@ -165,49 +171,54 @@ Templates.bulkInserter = {
         { type = "item", name = "5d-bulk-inserter-03", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 15 },
         { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     [5] = {
         { type = "item", name = "5d-inserter-05", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
         { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-inserter-06", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "steel-plate", amount = 2 },
+        { type = "item", name = "electronic-circuit", amount = 10 }
     },
     [7] = {
         { type = "item", name = "5d-inserter-07", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
+        { type = "item", name = "advanced-circuit", amount = 4 },
+        { type = "item", name = "processing-unit", amount = 1 },
+        { type = "item", name = "steel-plate", amount = 2 }
     },
     [8] = {
         { type = "item", name = "5d-inserter-08", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
+        { type = "item", name = "advanced-circuit", amount = 5 },
+        { type = "item", name = "processing-unit", amount = 1 },
+        { type = "item", name = "steel-plate", amount = 3 }
     },
     [9] = {
         { type = "item", name = "5d-inserter-09", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 25 },
+        { type = "item", name = "processing-unit", amount = 2 },
+        { type = "item", name = "steel-plate", amount = 3 },
+        { type = "item", name = "advanced-circuit", amount = 4 }
     },
     [10] = {
         { type = "item", name = "5d-inserter-10", amount = 1 },
         { type = "item", name = "5d-bulk-inserter-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 25 },
+        { type = "item", name = "processing-unit", amount = 3 },
+        { type = "item", name = "low-density-structure", amount = 1 },
+        { type = "item", name = "advanced-circuit", amount = 4 }
     }
 }
 
@@ -235,43 +246,49 @@ Templates.stackInserter = {
         { type = "item", name = "5d-stack-inserter-03", amount = 1 },
         { type = "item", name = "iron-gear-wheel", amount = 15 },
         { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 2 }
     },
     [5] = {
         { type = "item", name = "5d-stack-inserter-04", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
         { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 2 },
+        { type = "item", name = "carbon-fiber", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-stack-inserter-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
         { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "advanced-circuit", amount = 3 },
+        { type = "item", name = "carbon-fiber", amount = 4 }
     },
     [7] = {
         { type = "item", name = "5d-stack-inserter-06", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
+        { type = "item", name = "processing-unit", amount = 1 },
+        { type = "item", name = "carbon-fiber", amount = 4 },
+        { type = "item", name = "jelly", amount = 10 }
     },
     [8] = {
         { type = "item", name = "5d-stack-inserter-07", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 20 },
+        { type = "item", name = "processing-unit", amount = 2 },
+        { type = "item", name = "carbon-fiber", amount = 4 },
+        { type = "item", name = "jelly", amount = 15 }
     },
     [9] = {
         { type = "item", name = "5d-stack-inserter-08", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 25 },
+        { type = "item", name = "processing-unit", amount = 3 },
+        { type = "item", name = "carbon-fiber", amount = 6 },
+        { type = "item", name = "jelly", amount = 20 }
     },
     [10] = {
         { type = "item", name = "5d-stack-inserter-09", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 15 },
-        { type = "item", name = "electronic-circuit", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 1 }
+        { type = "item", name = "iron-gear-wheel", amount = 25 },
+        { type = "item", name = "processing-unit", amount = 4 },
+        { type = "item", name = "carbon-fiber", amount = 8 },
+        { type = "item", name = "jelly", amount = 20 }
     }
 }
 

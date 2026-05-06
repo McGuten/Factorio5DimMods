@@ -39,42 +39,42 @@ Templates.storageTank = {
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "concrete", amount = 5 },
-        { type = "item", name = "speed-module", amount = 1 }
+        { type = "item", name = "battery", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-storage-tank-05", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module", amount = 1 }
+        { type = "item", name = "battery", amount = 4 }
     },
     [7] = {
         { type = "item", name = "5d-storage-tank-06", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "speed-module-2", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 1 }
     },
     [8] = {
         { type = "item", name = "5d-storage-tank-07", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 2 }
     },
     [9] = {
         { type = "item", name = "5d-storage-tank-08", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "speed-module-3", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 3 }
     },
     [10] = {
         { type = "item", name = "5d-storage-tank-09", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module-3", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 4 }
     }
 }
 
@@ -107,42 +107,42 @@ Templates.storageTankMulti = {
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "concrete", amount = 5 },
-        { type = "item", name = "speed-module", amount = 1 }
+        { type = "item", name = "battery", amount = 2 }
     },
     [6] = {
         { type = "item", name = "5d-storage-tank-multi-05", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module", amount = 1 }
+        { type = "item", name = "battery", amount = 4 }
     },
     [7] = {
         { type = "item", name = "5d-storage-tank-multi-06", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "advanced-circuit", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "speed-module-2", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 1 }
     },
     [8] = {
         { type = "item", name = "5d-storage-tank-multi-07", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module-2", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 2 }
     },
     [9] = {
         { type = "item", name = "5d-storage-tank-multi-08", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "speed-module-3", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 3 }
     },
     [10] = {
         { type = "item", name = "5d-storage-tank-multi-09", amount = 1 },
         { type = "item", name = "steel-plate", amount = 5 },
         { type = "item", name = "low-density-structure", amount = 3 },
         { type = "item", name = "refined-concrete", amount = 5 },
-        { type = "item", name = "productivity-module-3", amount = 1 }
+        { type = "item", name = "processing-unit", amount = 4 }
     }
 }
 

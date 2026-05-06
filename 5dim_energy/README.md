@@ -6,7 +6,7 @@
 
 ## Overview
 
-5Dim's Energy expands power generation and distribution options with 10 tiers of all power-related buildings. Scale your power grid from early steam engines to massive late-game solar farms.
+5Dim's Energy expands power generation and distribution options with 10 tiers of power-related buildings. The current balance keeps steam relevant as a transitional branch, normalizes the pacing of electric distribution, and restores internal coherence between solar panels and accumulators instead of letting one outscale the other.
 
 ## Features
 
@@ -35,16 +35,16 @@
 | Tier | Power Output | Size |
 |------|-------------|------|
 | T1 | 60 kW | 3x3 |
-| T5 | 180 kW | 3x3 |
-| T10 | 600 kW | 3x3 |
+| T5 | 199 kW | 3x3 |
+| T10 | 893 kW | 3x3 |
 
 #### Accumulators
 
 | Tier | Capacity | I/O Rate |
 |------|----------|----------|
 | T1 | 5 MJ | 300 kW |
-| T5 | 15 MJ | 900 kW |
-| T10 | 50 MJ | 3 MW |
+| T5 | 16.6 MJ | 996 kW |
+| T10 | 74.4 MJ | 4.47 MW |
 
 ### ⚡ Power Distribution
 
@@ -92,7 +92,7 @@ For continuous power with accumulators:
 | T5 | 21 : 25 |
 | T10 | 21 : 25 |
 
-*Ratio stays the same, but higher tiers produce more power per tile.*
+Ratio stays effectively constant because solar panel output and accumulator storage now use the same exponential scaling curve.
 
 ### Steam Ratios
 
@@ -103,6 +103,19 @@ Optimal boiler to engine ratios:
 | T1 | 1 : 2 |
 | T5 | 1 : 2 |
 | T10 | 1 : 2 |
+
+## Balance Notes
+
+- Steam was rebalanced to be less overtaxed in research for a dirty, transitional power branch.
+- Medium poles, big poles and substations now enter chemical, production and utility science in a more coherent order.
+- Solar panels and accumulators now scale on the same curve, so the branch keeps its planning ratio instead of drifting as tiers rise.
+- Late solar is still powerful, but it no longer jumps ahead of storage at a faster rate than the rest of the branch can support.
+- Second cross-review with Logistic did not require more numeric changes in poles or substations. The actual mismatch was on the Logistic side, where roboport buffering was too low to support its own charging thresholds.
+
+## Cross-Module Notes
+
+- With 5dim_nuclear installed, late boilers and steam engines now remain relevant even after the player moves into nuclear infrastructure, because higher nuclear heat exchangers and steam turbines consume tiered Energy hardware in their recipes.
+- That crossover is conditional. Energy still works as a standalone conventional power branch, but inside the full stack it also becomes part of the build cost of the late nuclear chain instead of being discarded the moment reactors take over.
 
 ## Dependencies
 
@@ -117,7 +130,8 @@ Optimal boiler to engine ratios:
 ## Compatibility
 
 Works with:
-- `5dim_nuclear` - For nuclear power options
+- `5dim_nuclear` - Recommended pair; the late nuclear thermal chain now consumes tiered boilers and steam engines from Energy.
+- `5dim_logistic` - High-tier roboports become substantial burst loads, so stronger distribution coverage matters more in large bot networks
 - All other 5Dim modules
 - Most power-related mods
 
@@ -125,16 +139,19 @@ Works with:
 
 ```
 5dim_energy/
+├── changelog.txt
 ├── data.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── boilers/
-│   ├── steam-engines/
-│   ├── solar-panels/
-│   ├── accumulators/
-│   ├── electric-poles/
-│   ├── substations/
-│   └── lamps/
+│   ├── gen-boiler.lua
+│   ├── gen-steam-engine.lua
+│   ├── gen-solar-panel.lua
+│   ├── gen-accumulator.lua
+│   ├── gen-medium-pole.lua
+│   ├── gen-big-pole.lua
+│   ├── gen-substation.lua
+│   └── gen-lamp.lua
 └── graphics/
 ```
 

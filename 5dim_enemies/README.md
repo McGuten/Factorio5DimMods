@@ -8,11 +8,11 @@
 
 ## Overview
 
-5Dim's Enemies is a comprehensive enemy overhaul mod that adds **17 unique enemy types** with distinct behaviors, resistances, and visual appearances. Each enemy type requires different strategies to counter effectively, adding strategic depth to base defense.
+5Dim's Enemies is a comprehensive enemy overhaul mod that adds multiple unique enemy types with distinct behaviors, resistances, and visual appearances. The current balance is intended to be read together with 5dim_battlefield: more variants can pressure you from nearer distances than before, suicide is delayed so it stops front-loading explosive punishment, and tank remains a durable all-round attrition enemy without completely blanking every damage type.
 
 ## Features
 
-### 🎯 17 Enemy Types
+### 🎯 Enemy Types
 
 Each enemy type has unique characteristics, resistances, and visual colors:
 
@@ -28,7 +28,7 @@ Each enemy type has unique characteristics, resistances, and visual colors:
 | **Swarm** | 🟡 Gold (`#FFD700`) | 25% | 150% | 50% | 2x spawn rate, 70% size |
 | **Regenerator** | 🟢 Lime (`#00FF00`) | 75% | 90% | 80% | 5x healing, weak to fire |
 | **Berserker** | 🔴 Red (`#CC0000`) | 50% | 130% | 200% | Glass cannon, no healing |
-| **Tank** | 🫒 Olive (`#808000`) | 200% | 80% | 35% | 50% resistance to ALL |
+| **Tank** | 🫒 Olive (`#808000`) | 200% | 80% | 35% | 35% resistance to ALL |
 
 #### Spitters (Ranged Units)
 
@@ -37,10 +37,10 @@ Each enemy type has unique characteristics, resistances, and visual colors:
 | **Normal** | Default | 100% | 100% | Acid projectile |
 | **Fire** | 🟠 Orange (`#FF6600`) | 75% | 100% | Fire DoT, burning ground |
 | **Rocket** | 🟡 Yellow (`#FFFF66`) | 75% | 100% | Explosive splash damage |
-| **Suicide** | 🟣 Purple (`#9900CC`) | 50% | 500% | Explodes on death |
+| **Suicide** | 🟣 Purple (`#9900CC`) | 50% | 500% | Explodes on death, delayed to later evolution |
 | **Poison** | 🟢 Dark Green (`#006600`) | 90% | 100% | Poison DoT, stacking |
 | **Electric** | 🔵 Cyan (`#00FFFF`) | 100% | 100% | Chain lightning |
-| **Tank** | 🫒 Olive (`#808000`) | 200% | 35% | 50% resistance to ALL |
+| **Tank** | 🫒 Olive (`#808000`) | 200% | 35% | 35% resistance to ALL |
 
 #### Worms (Stationary Defense)
 
@@ -51,7 +51,7 @@ Each enemy type has unique characteristics, resistances, and visual colors:
 | **Electric** | Cyan | Lightning attacks |
 | **Acid** | Lime | Enhanced corrosive |
 | **Explosion** | Purple | Explosive projectiles |
-| **Tank** | Olive | 50% all resistance |
+| **Tank** | Olive | 35% all resistance |
 
 #### Space Age Types (Requires Space Age DLC)
 
@@ -77,15 +77,16 @@ All enemy types scale across **10 tiers** based on evolution:
 | T10 | 90% - 100% | | 20x |
 | **Boss** | 90% - 100% | 2x Size | 3x HP/DMG, 40% slower |
 
-### 🗺️ Distance-Based Spawning
+### 🗺️ Spawn Pressure Model
 
-Stronger enemies spawn farther from your starting location:
+The current version relies more on evolution timing than on keeping special enemies far away from the player start.
 
-| Distance | Enemy Types |
-|----------|-------------|
-| **Near** (0) | Normal, Swarm |
-| **Medium** (1) | Laser, Physical, Fire, Poison, Tank, Regenerator, Acid |
-| **Far** (2) | Impact, Railgun, Rocket, Suicide, Electric, Broodmother, Berserker, Explosion |
+| Pressure Gate | What It Means |
+|---------------|---------------|
+| **Near-start pressure** | Many special variants can now appear without a large distance gate, so mixed defenses matter earlier |
+| **Evolution gate** | Evolution is now the main limiter for the nastier spikes |
+| **Delayed suicide** | Suicide variants start later at 50% evolution instead of arriving in the earlier midgame |
+| **Tank persistence** | Tank variants appear from 15% evolution but now resist 35% instead of 50%, so focused mixed fire is more reliable |
 
 ### 🖥️ In-Game GUI
 
@@ -152,17 +153,24 @@ All enemy types can be individually enabled/disabled in **Mod Settings → Start
 | **Swarm** | Single-target | AoE, Flamethrowers, Grenades |
 | **Regenerator** | Low DPS | Fire damage, Focus fire |
 | **Berserker** | Slow response | High burst, Walls |
-| **Tank** | Nothing special | High DPS (no counter) |
-| **Suicide** | Close combat | Long-range, Priority targeting |
+| **Tank** | Single-damage spam | Mixed gun/laser fire, Flamethrowers, sustained focus fire |
+| **Suicide** | Close combat, overextended walls | Long-range, Priority targeting, radar-supported early warning |
 | **Electric** | Dense turrets | Spread defenses |
 
 ### Defense Tips
 
-1. **Mixed defenses** - Use both gun and laser turrets to counter resistant types
+1. **Mixed defenses** - Use both gun and laser turrets to counter resistant types; the pairing is now more important than pure range stacking.
 2. **Flamethrowers** - Effective against most types, especially regenerators
-3. **Walls** - Essential against berserkers and suicide spitters
+3. **Walls** - Essential against berserkers and still valuable against suicide, but suicide now arrives later instead of punishing the early midgame
 4. **Spacing** - Spread turrets to minimize chain lightning damage
 5. **Artillery** - Great for thinning distant swarms before they reach your walls
+
+### Battlefield Synergy
+
+- Standard gun turrets are the core answer into laser-resistant enemies.
+- Standard laser turrets are the core answer into physical-resistant enemies.
+- Tesla turrets are a later anti-swarm branch, not the first tool you should rely on to stabilize pressure.
+- Higher-tier radars matter because more enemy variants can pressure you without needing a large distance gate.
 
 ## Dependencies
 

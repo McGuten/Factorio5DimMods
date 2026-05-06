@@ -17,7 +17,7 @@ local baseMaxTemperature = 1000  -- Max heat temperature (scales UP)
 local baseModuleSlots = 2
 local baseMaxTransfer = 1        -- Heat transfer in GW
 local baseEmissions = 30         -- Pollution emissions
-local baseTechCount = 500
+local baseTechCount = 300
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

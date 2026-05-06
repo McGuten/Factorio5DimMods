@@ -6,7 +6,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    baseTechCount = 200,
+    baseTechCount = 150,
     subgroup = "armor-roboport"
 }
 
@@ -46,7 +46,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "personal-roboport-mk2-equipment" }
@@ -66,7 +65,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "5d-personal-roboport-equipment-1" }
@@ -86,7 +84,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "5d-personal-roboport-equipment-2" }
@@ -106,9 +103,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "5d-personal-roboport-equipment-3" }
         }
@@ -127,9 +122,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "5d-personal-roboport-equipment-4" }
         }
@@ -148,7 +141,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -169,7 +161,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -190,7 +181,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },

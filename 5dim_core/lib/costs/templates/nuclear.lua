@@ -7,6 +7,22 @@
 
 local Templates = {}
 
+local function boilerIngredientName(tier)
+    if mods and mods["5dim_energy"] and tier >= 2 then
+        return "5d-boiler-" .. string.format("%02d", tier)
+    end
+
+    return "pipe"
+end
+
+local function steamEngineIngredientName(tier)
+    if mods and mods["5dim_energy"] and tier >= 2 then
+        return "5d-steam-engine-" .. string.format("%02d", tier)
+    end
+
+    return "pipe"
+end
+
 -------------------------------------------------------------------------------
 -- URANIUM PROCESSING TEMPLATES
 -------------------------------------------------------------------------------
@@ -124,7 +140,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-04", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(5), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module", amount = 1 }
     },
@@ -132,7 +148,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-05", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(6), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module", amount = 1 }
     },
@@ -140,7 +156,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-06", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(7), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module-2", amount = 1 }
     },
@@ -148,7 +164,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-07", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(8), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module-2", amount = 1 }
     },
@@ -156,7 +172,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-08", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(9), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module-3", amount = 1 }
     },
@@ -164,7 +180,7 @@ Templates.heatExchanger = {
         { type = "item", name = "5d-heat-exchanger-09", amount = 1 },
         { type = "item", name = "steel-plate", amount = 10 },
         { type = "item", name = "copper-plate", amount = 100 },
-        { type = "item", name = "pipe", amount = 10 },
+        { type = "item", name = boilerIngredientName(10), amount = mods and mods["5dim_energy"] and 1 or 10 },
         { type = "item", name = "low-density-structure", amount = 1 },
         { type = "item", name = "efficiency-module-3", amount = 1 }
     }
@@ -366,7 +382,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(5), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "speed-module", amount = 1 }
     },
     [6] = {
@@ -374,7 +390,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(6), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "productivity-module", amount = 1 }
     },
     [7] = {
@@ -382,7 +398,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(7), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "speed-module-2", amount = 1 }
     },
     [8] = {
@@ -390,7 +406,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(8), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "productivity-module-2", amount = 1 }
     },
     [9] = {
@@ -398,7 +414,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(9), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "speed-module-3", amount = 1 }
     },
     [10] = {
@@ -406,7 +422,7 @@ Templates.steamTurbine = {
         { type = "item", name = "steel-plate", amount = 15 },
         { type = "item", name = "copper-plate", amount = 50 },
         { type = "item", name = "advanced-circuit", amount = 20 },
-        { type = "item", name = "pipe", amount = 20 },
+        { type = "item", name = steamEngineIngredientName(10), amount = mods and mods["5dim_energy"] and 1 or 20 },
         { type = "item", name = "productivity-module-3", amount = 1 }
     }
 }

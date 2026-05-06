@@ -29,12 +29,12 @@ local tierConfig = {
     [2]  = { speedBonus = 0.5, moduleBonus = 1, order = "b" },
     [3]  = { speedBonus = 1.0, moduleBonus = 1, order = "c" },
     [4]  = { speedBonus = 1.5, moduleBonus = 2, order = "d" },
-    [5]  = { speedBonus = 2.5, moduleBonus = 2, order = "e" },
-    [6]  = { speedBonus = 3.5, moduleBonus = 3, order = "f" },
-    [7]  = { speedBonus = 4.5, moduleBonus = 3, order = "g" },
-    [8]  = { speedBonus = 6.5, moduleBonus = 4, order = "h" },
-    [9]  = { speedBonus = 8.0, moduleBonus = 4, order = "i" },
-    [10] = { speedBonus = 9.5, moduleBonus = 5, order = "j" }
+    [5]  = { speedBonus = 2.0, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 2.8, moduleBonus = 2, order = "f" },
+    [7]  = { speedBonus = 3.7, moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 4.7, moduleBonus = 3, order = "h" },
+    [9]  = { speedBonus = 5.8, moduleBonus = 4, order = "i" },
+    [10] = { speedBonus = 7.0, moduleBonus = 4, order = "j" }
 }
 
 -------------------------------------------------------------------------------

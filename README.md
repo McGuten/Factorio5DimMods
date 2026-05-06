@@ -1,4 +1,4 @@
-# **5Dim's mod**
+# **5Dim's Mod**
 ![logo](logo.png)
 
 ## **Global Links**
@@ -6,74 +6,73 @@
 - [Patreon](https://www.patreon.com/5Dim)
 - [Download from ModPortal](https://mods.factorio.com/mods/McGuten)
 - [Issues](https://github.com/McGuten/Factorio5DimMods/issues)
-- [Discord comunity](https://discord.gg/CTEMFd9)
+- [Discord community](https://discord.gg/CTEMFd9)
 - [Crowdin translation](https://crowdin.com/project/5dims-mod)
 
 ## Description
 
-This mod is a **total conversion** and it has **tons of modules** and we recommend use all in your game.
+This mod is a **total conversion** with **many modules**, and we recommend using the full set in your game.
 
 ## Mod list
 ### Core module
   - **Core**.
-    - Core, library and settings of 5Dim's mod.
-    - You can install our modules in your current saved game without any problem.
-    -  **REQUIRED for any other module**
+    - Core library and settings for 5Dim's Mod.
+    - You can install the modules in an existing save without problems.
+    - **REQUIRED for any other module**
 
 ### Optional modules
   - **Automation**.
-    - Add a lot of new tiers oil refineries, new tiers of assembling machine, chemical plants and laboratories.
+    - Add higher tiers of assembling machines, chemical plants, oil refineries and laboratories.
   - **Battlefield**.
-    - Add 2 new laser turret, 2 new gun turret, new tesla turret, new tiers of walls, gates and new radars.
+    - Add higher tiers of gun, laser, tesla and support defenses, plus stronger walls, gates and radars.
   - **Decoration**.
-    - Add some new items to decorate your base like numbers and letters.
+    - Adds decorative items such as numbers and letters for base organization.
   - **Enemies**.
-    - Add a lot of new biters, spitter and spawners, recommended for experimented players, be carefull.
+    - Adds many new biters, spitters and spawners; recommended for experienced players, so be careful.
   - **Energy**.
-    - Add more divertidity for electric stuffs.
+    - Add more variety for power generation, storage and electric distribution.
   - **Equipment**.
-    - Improve your character with a new bundle of objects for your power armor.
+    - Improves your character with a new bundle of equipment for power armor.
   - **Infinite Research**.
-    - Include some of infinity technologies and other new technolgies.
+    - Includes infinite technologies and other late-game research upgrades.
   - **Logistics**.
-    - Logistics network enhanced with tiers of worker robots and powerfull beacons.
+    - Logistics network enhanced with higher tiers of construction robots, logistic robots and roboports.
   - **Mining**.
-    - Extracts all kind of resources at high productivity also obtain water from everywhere.
+    - Extracts all kinds of resources at high productivity and also obtains water from almost anywhere.
   - **Module**.
-    - Adds a brand new merged modules and 10 tiers of the rest of the modules.
+    - Adds higher tiers of modules, pollution and merged modules, plus stronger beacons for dense factory scaling.
   - **Nuclear**.
-    - If you are a mad of nuclear power with this mod you can upgrade all your blueprints to a new level.
-  - **Ores**.
-    - Add a lot of new ores to make factorio more fun **(Require [Bob Library](https://mods.factorio.com/mod/boblibrary))**.
-    - **Coming soon**
+    - Add higher tiers of reactors, heat hardware, turbines and centrifuges for dense late-game nuclear builds.
   - **Resources**.
-    - Add a new intermediate to improve your basic resources from ores.
+    - Add tiered furnaces, mashers and dust processing to push ore refining and smelting throughput.
+  - **Space Age**.
+    - Add higher tiers for Space Age DLC buildings, equipment and planetary infrastructure.
   - **Storage**.
-    - If you hate limitated capacity of storage tanks, this mod extends its by new tiers.
+    - If you hate limited capacity of storage tanks, this mod extends it with new tiers.
   - **Trains**.
-    - We know that you loves trains so we are created more tiers of locomotives and wagons.
+    - Add higher tiers of locomotives, cargo wagons and fluid wagons for heavier rail logistics.
   - **Transport**.
-    - You can move all of your stuff along your base efficiently with a new bundle of transport belt, loaders and inserters **(Require [Bob Inserters](https://mods.factorio.com/mod/bobinserters))**.
+    - Add higher tiers of belts, loaders, inserters, pumps and long underground transport **(Require [Bob Inserters](https://mods.factorio.com/mod/bobinserters))**.
 
 ### Utility modules
   - **Automated Fuel and Ammo**.
-    - Automatically fills vehicles and building when you place it on the floor.
-  - **Bot Recaller**.
-    - Utility mod to help recall/collect bots within a network.
+    - Automatically fills vehicles and buildings when you place them.
+  - **Development Tools**.
+    - Debug and inspection helpers for balancing, validation and enemy generation work.
   - **Locales**.
-    - Add translates for 5dim's mod.
+    - Adds translations for 5Dim's Mod.
   - **Compatibility**.
-    - Add compatibility for 5dim's mod with other mods.
+    - Adds compatibility between 5Dim's Mod and other mods.
 
 ## Translations
-1. If you want to translate the mod to other lang you should use the follow template or help me in [Crowdin translation](https://crowdin.com/project/5dims-mod)
+1. If you want to translate the mod into another language, use the following template or contribute through [Crowdin translation](https://crowdin.com/project/5dims-mod)
 2. [5Dim's Locale > locale > en.example](5dim_locale/locale/en.example)
-3. You should use this template to translate the mod and upload it with [Pull Request](https://github.com/McGuten/Factorio5DimMods/pulls)
+3. Use this template to translate the mod and submit it in a [Pull Request](https://github.com/McGuten/Factorio5DimMods/pulls)
 
 ## Errors
 
 ### **If you have problems with missing items or you add the mod in mid game you should use this command**
-You also should **empty your inventory**, sometimes your inventory would lost.
+You should also **empty your inventory**, because some items may disappear from it.
 
 This command will refresh all your technologies.
 ```lua

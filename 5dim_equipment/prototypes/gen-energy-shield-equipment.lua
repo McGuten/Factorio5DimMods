@@ -50,7 +50,7 @@ local tiers = {
         number = "04", new = true, order = "d",
         shieldCapacity = 2100,
         bufferCapacity = 4320,
-        inputFlow = 4320,
+        inputFlow = 3600,
         tech = {
             number = 2,
             countMultiplier = 3,
@@ -68,7 +68,7 @@ local tiers = {
         number = "05", new = true, order = "e",
         shieldCapacity = 4125,
         bufferCapacity = 8100,
-        inputFlow = 8100,
+        inputFlow = 6000,
         tech = {
             number = 3,
             countMultiplier = 4,
@@ -86,7 +86,7 @@ local tiers = {
         number = "06", new = true, order = "f",
         shieldCapacity = 7500,
         bufferCapacity = 13500,
-        inputFlow = 13500,
+        inputFlow = 9000,
         tech = {
             number = 4,
             countMultiplier = 5,
@@ -105,7 +105,7 @@ local tiers = {
         number = "07", new = true, order = "g",
         shieldCapacity = 12950,
         bufferCapacity = 22050,
-        inputFlow = 22050,
+        inputFlow = 13500,
         tech = {
             number = 5,
             countMultiplier = 6,
@@ -124,7 +124,7 @@ local tiers = {
         number = "08", new = true, order = "h",
         shieldCapacity = 21600,
         bufferCapacity = 36000,
-        inputFlow = 36000,
+        inputFlow = 19500,
         tech = {
             number = 6,
             countMultiplier = 7,
@@ -143,7 +143,7 @@ local tiers = {
         number = "09", new = true, order = "i",
         shieldCapacity = 35100,
         bufferCapacity = 56700,
-        inputFlow = 56700,
+        inputFlow = 27000,
         tech = {
             number = 7,
             countMultiplier = 8,
@@ -162,7 +162,7 @@ local tiers = {
         number = "10", new = true, order = "j",
         shieldCapacity = 56000,
         bufferCapacity = 90000,
-        inputFlow = 90000,
+        inputFlow = 36000,
         tech = {
             number = 8,
             countMultiplier = 9,

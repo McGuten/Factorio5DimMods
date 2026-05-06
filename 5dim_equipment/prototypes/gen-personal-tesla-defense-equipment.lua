@@ -220,11 +220,20 @@ for i, tier in ipairs(tiers) do
     local techData = nil
     local tierTech = tier.tech
     if tierTech then
+        local prerequisites = {}
+        for _, prerequisite in ipairs(tierTech.prerequisites) do
+            table.insert(prerequisites, prerequisite)
+        end
+
+        if tierTech.number == 1 and mods["5dim_battlefield"] then
+            table.insert(prerequisites, "5d-tesla-turrets-1")
+        end
+
         techData = {
             number = tierTech.number,
             count = config.baseTechCount * tierTech.countMultiplier,
             packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            prerequisites = prerequisites
         }
     end
 

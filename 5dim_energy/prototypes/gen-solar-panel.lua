@@ -130,9 +130,9 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential scaling for better late-game value)
-    -- Factor 1.4: T1=60, T5=230, T10=1160 kW (instead of linear 60-330)
-    local powerFactor = 1.4
+    -- Calculate stats for this tier.
+    -- Keep the same exponential factor as accumulators so the solar ratio stays coherent tier to tier.
+    local powerFactor = 1.35
     local power = math.floor(basePower * (powerFactor ^ (tier - 1)))
     
     -- Get ingredients from template and process them

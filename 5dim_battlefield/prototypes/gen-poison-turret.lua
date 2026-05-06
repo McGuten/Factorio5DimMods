@@ -21,7 +21,7 @@ local baseCooldown = 45  -- ticks between shots
 local rangeIncrement = 3
 local healthIncrement = 178               -- 400 → 2000 (x5)
 local damageScalePerTier = 0.05
-local baseTechCount = 200
+local baseTechCount = 150
 
 -- Type color: Poison = Green
 local typeColor = { r = 0.2, g = 0.8, b = 0.2, a = 1 }
@@ -158,10 +158,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-poison-turret-8", "space-science-pack" }
+        prerequisites = { "5d-poison-turret-8" }
     },
     [10] = {
         techName = "5d-poison-turret-10",
@@ -171,8 +170,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-poison-turret-9" }
     }

@@ -14,7 +14,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseChargingEnergy = 1000
-local baseBufferCapacity = 5
+local baseBufferCapacity = 100
 local baseEnergy = 50
 local baseInputFlowLimit = 100
 -- REBALANCED: Reduced coverage scaling to prevent T10 from trivializing logistics
@@ -28,7 +28,7 @@ local baseRecharge = 40
 -- Increased recharge slots increment for better bot support
 local baseSlots = 4
 local slotsIncrement = 3         -- Increased from 2 (better ratio)
-local baseTechCount = 500
+local baseTechCount = 250
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -143,11 +143,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier (using rebalanced increments)
     local chargingEnergy = baseChargingEnergy + (tier - 1) * 500
-    local bufferCapacity = baseBufferCapacity + (tier - 1) * 13
-    -- Adjust for odd tiers 3, 5, 7, 9 (had +1 in original)
-    if tier % 2 == 1 and tier > 1 then
-        bufferCapacity = bufferCapacity + 1
-    end
+    local bufferCapacity = baseBufferCapacity + (tier - 1) * 50
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
     local inputFlowLimit = baseInputFlowLimit + (tier - 1) * 50
     -- Use rebalanced coverage increments

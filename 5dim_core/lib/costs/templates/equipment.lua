@@ -304,65 +304,73 @@ Templates.personalLaserDefenseEquipment = {
 }
 
 -- Personal Tesla Defense Equipment templates
+local function teslaTurretIngredientName(tier)
+    if mods and mods["5dim_battlefield"] then
+        return "5d-tesla-turret-" .. string.format("%02d", tier)
+    end
+
+    return "laser-turret"
+end
+
 Templates.personalTeslaDefenseEquipment = {
     [1] = {
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(1), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [2] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-01", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(2), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [3] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-02", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(3), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [4] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-03", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(4), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [5] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-04", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(5), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [6] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-05", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(6), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [7] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-06", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(7), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [8] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-07", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(8), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [9] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-08", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(9), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     },
     [10] = {
         { type = "item", name = "5d-personal-tesla-defense-equipment-09", amount = 1 },
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = "laser-turret", amount = 5 }
+        { type = "item", name = teslaTurretIngredientName(10), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
     }
 }
 
@@ -526,48 +534,48 @@ Templates.powerArmor = {
     },
     [5] = {
         { type = "item", name = "5d-power-armor-04", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-05", amount = 2 },
+        { type = "item", name = "5d-speed-module-05", amount = 2 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }
     },
     [6] = {
         { type = "item", name = "5d-power-armor-05", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-06", amount = 2 },
+        { type = "item", name = "5d-speed-module-06", amount = 2 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }
     },
     [7] = {
         { type = "item", name = "5d-power-armor-06", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-07", amount = 2 },
+        { type = "item", name = "5d-speed-module-07", amount = 2 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }
     },
     [8] = {
         { type = "item", name = "5d-power-armor-07", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-08", amount = 3 },
+        { type = "item", name = "5d-speed-module-08", amount = 3 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }
     },
     [9] = {
         { type = "item", name = "5d-power-armor-08", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-09", amount = 3 },
+        { type = "item", name = "5d-speed-module-09", amount = 3 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }
     },
     [10] = {
         { type = "item", name = "5d-power-armor-09", amount = 1 },
-        { type = "item", name = "efficiency-module-3", amount = 10 },
-        { type = "item", name = "speed-module-3", amount = 10 },
+        { type = "item", name = "5d-efficiency-module-10", amount = 4 },
+        { type = "item", name = "5d-speed-module-10", amount = 4 },
         { type = "item", name = "processing-unit", amount = 60 },
         { type = "item", name = "electric-engine-unit", amount = 40 },
         { type = "item", name = "low-density-structure", amount = 30 }

@@ -153,11 +153,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = {}
+        for _, prerequisite in ipairs(tc.prerequisites) do
+            table.insert(prerequisites, prerequisite)
+        end
+        if mods["5dim_storage"] and tier >= 5 then
+            table.insert(prerequisites, "steel-chest-" .. tier)
+        end
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            prerequisites = prerequisites
         }
     end
 

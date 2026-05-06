@@ -8,7 +8,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local config = {
     basePowerProduction = 30,
     powerMultiplier = 1.25,
-    baseTechCount = 400,
+    baseTechCount = 250,
     subgroup = "armor-solar"
 }
 
@@ -50,7 +50,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "solar-panel-equipment-3" }
@@ -65,7 +64,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "solar-panel-equipment-4" }
@@ -80,9 +78,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "solar-panel-equipment-5" }
         }
@@ -96,9 +92,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "solar-panel-equipment-6" }
         }
@@ -112,7 +106,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -128,7 +121,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -144,7 +136,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -160,12 +151,13 @@ local powerProduction = config.basePowerProduction
 
 for i, tier in ipairs(tiers) do
     local techData = nil
-    if tier.tech then
+    local tierTech = tier.tech
+    if tierTech then
         techData = {
-            number = tier.tech.number,
-            count = config.baseTechCount * tier.tech.countMultiplier,
-            packs = tier.tech.packs,
-            prerequisites = tier.tech.prerequisites
+            number = tierTech.number,
+            count = config.baseTechCount * tierTech.countMultiplier,
+            packs = tierTech.packs,
+            prerequisites = tierTech.prerequisites
         }
     end
 

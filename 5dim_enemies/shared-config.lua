@@ -278,7 +278,7 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     suicide = {
         health = 0.5, healing = 0.5, speed = 1.5, damage = 5.0,
-        evolution_min = 0.3, evolution_max = 1.0,
+        evolution_min = 0.5, evolution_max = 1.0,
         distance_factor = 0,  -- Was 2
         display_name = "Suicide",
         display_color = "purple",
@@ -484,7 +484,7 @@ SharedConfig.TypeDefinitions = {
     },
 
     -- =========================================================================
-    -- TANK (50% resistance to ALL damage types, very tanky but low damage)
+    -- TANK (high resistance to ALL damage types, very tanky but low damage)
     -- =========================================================================
     tank = {
         health = 2.0, healing = 1.0, speed = 0.8, damage = 0.35,
@@ -502,44 +502,44 @@ SharedConfig.TypeDefinitions = {
         requires_setting_biter = "5d-tank-biter",
         requires_setting_spitter = "5d-tank-spitter",
         requires_setting_worm = "5d-tank-worm",
-        -- 50% to ALL damage types - NO SCALING
+        -- Flat resistances across all damage types - NO SCALING
         biter_resistances = {
             base = {
-                { type = "physical", decrease = 0, percent = 50 },
-                { type = "explosion", decrease = 0, percent = 50 },
-                { type = "fire", decrease = 0, percent = 50 },
-                { type = "laser", decrease = 0, percent = 50 },
-                { type = "acid", decrease = 0, percent = 50 },
-                { type = "poison", decrease = 0, percent = 50 },
-                { type = "electric", decrease = 0, percent = 50 },
-                { type = "impact", decrease = 0, percent = 50 }
+                { type = "physical", decrease = 0, percent = 35 },
+                { type = "explosion", decrease = 0, percent = 35 },
+                { type = "fire", decrease = 0, percent = 35 },
+                { type = "laser", decrease = 0, percent = 35 },
+                { type = "acid", decrease = 0, percent = 35 },
+                { type = "poison", decrease = 0, percent = 35 },
+                { type = "electric", decrease = 0, percent = 35 },
+                { type = "impact", decrease = 0, percent = 35 }
             },
             per_tier = {},  -- No scaling
-            max_percent = 50
+            max_percent = 35
         },
         spitter_resistances = {
             base = {
-                { type = "physical", decrease = 0, percent = 50 },
-                { type = "explosion", decrease = 0, percent = 50 },
-                { type = "fire", decrease = 0, percent = 50 },
-                { type = "laser", decrease = 0, percent = 50 },
-                { type = "acid", decrease = 0, percent = 50 },
-                { type = "poison", decrease = 0, percent = 50 },
-                { type = "electric", decrease = 0, percent = 50 },
-                { type = "impact", decrease = 0, percent = 50 }
+                { type = "physical", decrease = 0, percent = 35 },
+                { type = "explosion", decrease = 0, percent = 35 },
+                { type = "fire", decrease = 0, percent = 35 },
+                { type = "laser", decrease = 0, percent = 35 },
+                { type = "acid", decrease = 0, percent = 35 },
+                { type = "poison", decrease = 0, percent = 35 },
+                { type = "electric", decrease = 0, percent = 35 },
+                { type = "impact", decrease = 0, percent = 35 }
             },
             per_tier = {},
-            max_percent = 50
+            max_percent = 35
         },
         worm_resistances = {
-            { type = "physical", decrease = 0, percent = 50 },
-            { type = "explosion", decrease = 0, percent = 50 },
-            { type = "fire", decrease = 0, percent = 50 },
-            { type = "laser", decrease = 0, percent = 50 },
-            { type = "acid", decrease = 0, percent = 50 },
-            { type = "poison", decrease = 0, percent = 50 },
-            { type = "electric", decrease = 0, percent = 50 },
-            { type = "impact", decrease = 0, percent = 50 }
+            { type = "physical", decrease = 0, percent = 35 },
+            { type = "explosion", decrease = 0, percent = 35 },
+            { type = "fire", decrease = 0, percent = 35 },
+            { type = "laser", decrease = 0, percent = 35 },
+            { type = "acid", decrease = 0, percent = 35 },
+            { type = "poison", decrease = 0, percent = 35 },
+            { type = "electric", decrease = 0, percent = 35 },
+            { type = "impact", decrease = 0, percent = 35 }
         },
         worm_damage_multiplier = 0.35,
         worm_health_multiplier = 2.0

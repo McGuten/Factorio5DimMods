@@ -17,7 +17,7 @@ local baseSpeed = 1
 local baseModules = 3
 local baseEnergy = 210
 local baseEmissions = 4
-local baseTechCount = 200
+local baseTechCount = RecipeTemplates.baseTechCounts.chemicalPlant
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -26,15 +26,15 @@ local baseTechCount = 200
 
 local tierConfig = {
     [1]  = { speedBonus = 0, moduleBonus = 0, order = "a", isVanilla = true },
-    [2]  = { speedBonus = 1, moduleBonus = 1, order = "b" },
-    [3]  = { speedBonus = 2, moduleBonus = 1, order = "c" },
-    [4]  = { speedBonus = 3, moduleBonus = 2, order = "d" },
-    [5]  = { speedBonus = 4, moduleBonus = 2, order = "e" },
-    [6]  = { speedBonus = 5, moduleBonus = 3, order = "f" },
-    [7]  = { speedBonus = 6, moduleBonus = 3, order = "g" },
-    [8]  = { speedBonus = 7, moduleBonus = 4, order = "h" },
-    [9]  = { speedBonus = 8, moduleBonus = 4, order = "i" },
-    [10] = { speedBonus = 9, moduleBonus = 5, order = "j" }
+    [2]  = { speedBonus = 0.5, moduleBonus = 0, order = "b" },
+    [3]  = { speedBonus = 1.0, moduleBonus = 1, order = "c" },
+    [4]  = { speedBonus = 1.6, moduleBonus = 1, order = "d" },
+    [5]  = { speedBonus = 2.3, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 3.1, moduleBonus = 2, order = "f" },
+    [7]  = { speedBonus = 4.0, moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 5.0, moduleBonus = 3, order = "h" },
+    [9]  = { speedBonus = 6.1, moduleBonus = 4, order = "i" },
+    [10] = { speedBonus = 7.3, moduleBonus = 5, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -52,9 +52,10 @@ local techConfig = {
     [3] = {
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = { "5d-chemical-plant-1" }
+        prerequisites = { "5d-chemical-plant-1", "chemical-science-pack" }
     },
     [4] = {
         basePacks = {
@@ -62,15 +63,16 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 }
         },
-        prerequisites = { "5d-chemical-plant-2", "chemical-science-pack" }
+        prerequisites = { "5d-chemical-plant-2", "advanced-oil-processing" }
     },
     [5] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-chemical-plant-3" }
+        prerequisites = { "5d-chemical-plant-3", "production-science-pack" }
     },
     [6] = {
         basePacks = {

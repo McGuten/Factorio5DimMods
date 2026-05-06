@@ -6,7 +6,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- CONFIGURATION
 -------------------------------------------------------------------------------
 local config = {
-    baseTechCount = 400,
+    baseTechCount = 250,
     subgroup = "armor-exoskeleton"
 }
 
@@ -59,7 +59,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "exoskeleton-equipment-3" }
@@ -76,7 +75,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "exoskeleton-equipment-4" }
@@ -93,9 +91,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "exoskeleton-equipment-5" }
         }
@@ -111,9 +107,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "exoskeleton-equipment-6" }
         }
@@ -129,7 +123,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -147,7 +140,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -165,7 +157,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },

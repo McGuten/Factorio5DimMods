@@ -58,8 +58,7 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-substation-2", "5d-medium-electric-pole-2", "5d-big-electric-pole-2" }
     },
@@ -67,7 +66,8 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-substation-3", "5d-medium-electric-pole-3", "5d-big-electric-pole-3", "production-science-pack" }
     },

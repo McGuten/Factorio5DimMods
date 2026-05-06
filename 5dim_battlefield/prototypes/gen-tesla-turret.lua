@@ -24,7 +24,7 @@ local baseDrain = 96
 local rangeIncrement = 5
 local damageScalePerTier = 0.05
 local healthIncrement = 600               -- 1200 → 6600 (x5.5)
-local baseTechCount = 400                 -- Increased from 300
+local baseTechCount = 250
 local teslaIconPath = "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-base.png"
 local teslaTechIconPath = "__5dim_battlefield__/graphics/icon/tesla-turret/tesla-turret-tech-base.png"
 
@@ -60,8 +60,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        -- Increased prerequisite from laser-turret-5 to laser-turret-8 for better balance
-        prerequisites = { "laser-turret-8", "utility-science-pack" }
+        prerequisites = { "laser-turret-6", "utility-science-pack" }
     },
     [2] = {
         techName = 2,

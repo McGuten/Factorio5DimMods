@@ -6,40 +6,52 @@
 
 ## Overview
 
-5Dim's Logistic enhances the logistics network with upgraded robots and roboports. Build a faster, more efficient automated logistics system!
+5Dim's Logistic enhances the logistics network with upgraded robots and roboports. The current balance keeps the three infrastructure branches synchronized without making early network upgrades excessively expensive.
 
 ## Features
 
 ### 🤖 Construction Robots
 
-| Tier | Speed | Cargo | Energy |
-|------|-------|-------|--------|
-| T1 | 3 m/s | 1 | 1.5 kJ/m |
-| T5 | 6 m/s | 2 | 1.2 kJ/m |
-| T10 | 12 m/s | 4 | 0.8 kJ/m |
+| Tier | Speed | Cargo | Max Energy |
+|------|-------|-------|------------|
+| T1 | 3.6 m/s | 1 | 1.5 MJ |
+| T5 | 10.8 m/s | 1 | 4.5 MJ |
+| T10 | 19.8 m/s | 1 | 8.25 MJ |
 
 ### 📦 Logistic Robots
 
-| Tier | Speed | Cargo | Energy |
-|------|-------|-------|--------|
-| T1 | 3 m/s | 1 | 1.5 kJ/m |
-| T5 | 6 m/s | 2 | 1.2 kJ/m |
-| T10 | 12 m/s | 4 | 0.8 kJ/m |
+| Tier | Speed | Cargo | Max Energy |
+|------|-------|-------|------------|
+| T1 | 3.0 m/s | 1 | 1.5 MJ |
+| T5 | 9.0 m/s | 1 | 4.5 MJ |
+| T10 | 16.5 m/s | 1 | 8.25 MJ |
 
 ### 🏗️ Roboports
 
-| Tier | Robot Slots | Material Slots | Charging Slots | Range |
-|------|-------------|---------------|----------------|-------|
-| T1 | 10 | 7 | 4 | 50 |
-| T5 | 30 | 15 | 8 | 75 |
-| T10 | 80 | 30 | 16 | 100 |
+| Tier | Robot Slots | Charging Slots | Logistic Radius | Construction Radius | Buffer | Input Flow |
+|------|-------------|----------------|-----------------|---------------------|--------|------------|
+| T1 | 7 | 4 | 25 | 55 | 100 MJ | 100 MW |
+| T5 | 35 | 16 | 57 | 123 | 300 MJ | 300 MW |
+| T10 | 70 | 31 | 97 | 208 | 550 MJ | 550 MW |
 
 ## Tips
 
-1. **Upgrade strategically** - Replace robots gradually to avoid logistics gaps
-2. **Roboport spacing** - Higher tier roboports cover more area
-3. **Mix tiers** - Use T10 robots with T1 roboports for cost efficiency
-4. **Construction vs Logistic** - Prioritize construction robot upgrades for building projects
+1. **Upgrade as a network** - Robot tiers and roboport tiers are designed to progress together, so partial upgrades give less value than coordinated ones.
+2. **Construction outruns hauling** - Construction robots scale slightly faster than logistic robots, which fits burst building better than steady hauling.
+3. **Coverage stays meaningful** - High-tier roboports cover much more area, but they no longer trivialize the network footprint.
+4. **Cargo does not scale** - Throughput gains come from speed, energy headroom and network coverage, not from larger per-trip payloads.
+
+## Balance Notes
+
+- Research pacing was eased for construction robots, logistic robots and roboports so infrastructure upgrades stop lagging behind the rest of the factory.
+- The three branches still depend on one another tier by tier, which preserves bundle progression across the logistics network.
+- Roboport coverage remains strong late game, but the range curve stays below the old runaway values.
+- Cross-review with Energy exposed a broken roboport energy curve: buffer capacity had fallen below recharge_minimum. Roboports now keep enough internal buffer to actually sustain the faster robot branch instead of stalling their own charging logic.
+
+## Cross-Module Notes
+
+- Logistic did not need more robot speed or more coverage in this pass; the real mismatch was the roboport energy buffer.
+- Higher-tier roboports are still meaningful electrical loads, but they now behave like burst logistics infrastructure rather than like permanently energy-starved shells.
 
 ## Dependencies
 
@@ -59,12 +71,15 @@
 
 ```
 5dim_logistic/
+├── README.md
 ├── data.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── construction-robots/
-│   ├── logistic-robots/
-│   └── roboports/
+│   ├── changes.lua
+│   ├── gen-construction-robot.lua
+│   ├── gen-logistic-robot.lua
+│   └── gen-roboport.lua
 └── graphics/
 ```
 

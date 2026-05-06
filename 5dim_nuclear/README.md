@@ -6,80 +6,75 @@
 
 ## Overview
 
-5Dim's Nuclear expands nuclear power generation with 10 tiers of all nuclear components. Build massive, efficient nuclear power plants!
+5Dim's Nuclear expands nuclear power generation with 10 tiers of all major nuclear components. The current balance keeps the numbers intentionally large, but reduces the duplicated research tax across the reactor, heat and turbine lines so late-game nuclear progression is still buildable.
 
 ## Features
 
 ### ☢️ Nuclear Reactors
 
-| Tier | Power Output | Neighbor Bonus |
-|------|-------------|----------------|
-| T1 | 40 MW | 100% |
-| T5 | 120 MW | 100% |
-| T10 | 400 MW | 100% |
+| Tier | Approx. Output | Consumption | Module Slots |
+|------|----------------|-------------|--------------|
+| T1 | 40 MW | 40 MW | 2 |
+| T5 | 396 MW | 132 MW | 5 |
+| T10 | 3.27 GW | 595 MW | 6 |
 
-*Neighbor bonus applies when reactors are placed adjacent!*
+Approximate output is based on reactor consumption multiplied by the tiered reactor effectivity. Neighbor bonus still applies on top when reactors are placed adjacent.
 
 ### 🔥 Heat Exchangers
 
-| Tier | Energy Consumption | Steam Output |
-|------|-------------------|--------------|
-| T1 | 10 MW | 103/s |
-| T5 | 30 MW | 309/s |
-| T10 | 100 MW | 1030/s |
+| Tier | Heat Transfer | Consumption | Max Temperature |
+|------|---------------|-------------|-----------------|
+| T1 | 2 GW | 10 MW | 1000 |
+| T5 | 6 GW | 62 MW | 1400 |
+| T10 | 11 GW | 613 MW | 1900 |
 
 ### 🔴 Heat Pipes
 
-| Tier | Heat Capacity | Conductivity |
-|------|--------------|--------------|
-| T1 | 1 MJ | 1 kW/m |
-| T5 | 3 MJ | 3 kW/m |
-| T10 | 10 MJ | 10 kW/m |
+| Tier | Max Transfer | Max Temperature |
+|------|--------------|-----------------|
+| T1 | 1 GW | 1000 |
+| T5 | 3 GW | 1400 |
+| T10 | 5.5 GW | 1900 |
 
 ### 💨 Steam Turbines
 
-| Tier | Power Output | Consumption |
-|------|-------------|-------------|
-| T1 | 5.82 MW | 60/s |
-| T5 | 17.5 MW | 120/s |
-| T10 | 58.2 MW | 180/s |
+| Tier | Effectivity | Steam per Tick |
+|------|-------------|----------------|
+| T1 | 1.00 | 1.00 |
+| T5 | 1.60 | 6.23 |
+| T10 | 2.35 | 61.36 |
 
 ### ⚗️ Centrifuges
 
 | Tier | Crafting Speed | Module Slots |
 |------|---------------|--------------|
 | T1 | 1.0x | 2 |
-| T5 | 2.5x | 4 |
-| T10 | 5.0x | 6 |
+| T5 | 3.0x | 5 |
+| T10 | 5.5x | 6 |
 
-## Nuclear Power Plant Ratios
+## Scaling Notes
 
-### Basic 2x2 Reactor Setup
-
-For a standard 2x2 reactor configuration:
-
-| Tier | Reactors | Heat Exchangers | Turbines |
-|------|----------|-----------------|----------|
-| T1 | 4 | 48 | 83 |
-| T5 | 4 | 48 | 83 |
-| T10 | 4 | 48 | 83 |
-
-*Higher tiers produce more power with the same ratios!*
-
-### Fuel Efficiency
-
-| Setup | Power Output | Fuel Consumption |
-|-------|-------------|------------------|
-| 2x2 T1 | 480 MW | 1 cell/200s |
-| 2x2 T5 | 1.44 GW | 1 cell/200s |
-| 2x2 T10 | 4.8 GW | 1 cell/200s |
+- Nuclear tiers are not simple copy-paste ratio upgrades. Reactor effectivity, exchanger transfer, heat pipe transfer and turbine steam usage all scale differently.
+- Treat higher tiers as denser nuclear blocks rather than assuming vanilla 2x2 ratios remain exact at every tier.
+- The main progression cost is still in building the full thermal chain, not just placing a stronger reactor.
 
 ## Tips
 
 1. **Neighbor bonus** - Always place reactors adjacent for 100% bonus
 2. **Heat pipes** - Upgrade to reduce heat loss over distance
-3. **Turbines** - Higher tiers handle more steam per unit
-4. **Centrifuges** - Essential for Kovarex enrichment process
+3. **Turbines** - Higher tiers combine more steam throughput with higher effectivity, so they compress the backend footprint hard
+4. **Centrifuges** - Essential for Kovarex enrichment process and for keeping uranium handling aligned with the rest of the nuclear branch
+
+## Balance Notes
+
+- The main balance pass was on research pacing: reactor, exchanger, heat pipe and turbine tiers were charging a duplicated research tax across four linked lines.
+- Nuclear remains intentionally large-number late-game infrastructure; the change was about access pacing, not shrinking the power fantasy.
+- README values now reflect the real prototype formulas instead of older placeholder ratios.
+
+## Cross-Module Notes
+
+- With 5dim_energy installed, late heat exchanger tiers now consume tiered boilers and late steam turbine tiers consume tiered steam engines, so the conventional steam branch remains a real industrial input instead of staying completely separate from nuclear hardware.
+- With 5dim_resources installed, the uranium dust path already crosses naturally through uranium-processing. Higher centrifuge tiers speed up that branch without needing extra numeric changes in this review.
 
 ## Dependencies
 
@@ -88,6 +83,7 @@ For a standard 2x2 reactor configuration:
 ## Related Modules
 
 - `5dim_energy` - For steam engines and conventional power
+- `5dim_resources` - Adds uranium dust processing that naturally scales with the centrifuge branch
 
 ## Installation
 
@@ -99,14 +95,18 @@ For a standard 2x2 reactor configuration:
 
 ```
 5dim_nuclear/
+├── README.md
 ├── data.lua
+├── data-updates.lua
 ├── info.json
+├── locale/
 ├── prototypes/
-│   ├── nuclear-reactors/
-│   ├── heat-exchangers/
-│   ├── heat-pipes/
-│   ├── steam-turbines/
-│   └── centrifuges/
+│   ├── changes.lua
+│   ├── gen-centrifuge.lua
+│   ├── gen-heat-exchanger.lua
+│   ├── gen-heat-pipe.lua
+│   ├── gen-nuclear-reactor.lua
+│   └── gen-steam-turbine.lua
 └── graphics/
 ```
 

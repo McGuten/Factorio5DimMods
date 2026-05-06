@@ -15,7 +15,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseSpeed = 0.06
 local baseMaxEnergy = 1.5
-local baseTechCount = 400
+local baseTechCount = 200
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

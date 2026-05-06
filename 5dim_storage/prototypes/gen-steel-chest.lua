@@ -14,7 +14,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseInventorySize = 48
-local baseTechCount = 150
+local baseTechCount = 100
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS

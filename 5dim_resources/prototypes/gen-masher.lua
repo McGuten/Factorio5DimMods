@@ -24,16 +24,16 @@ local baseTechCount = 250
 -------------------------------------------------------------------------------
 
 local tierConfig = {
-    [1]  = { order = "a" },
-    [2]  = { order = "b" },
-    [3]  = { order = "c" },
-    [4]  = { order = "d" },
-    [5]  = { order = "e" },
-    [6]  = { order = "f" },
-    [7]  = { order = "g" },
-    [8]  = { order = "h" },
-    [9]  = { order = "i" },
-    [10] = { order = "j" }
+    [1]  = { order = "a", craftingSpeed = 2.0 },
+    [2]  = { order = "b", craftingSpeed = 4.0 },
+    [3]  = { order = "c", craftingSpeed = 6.0 },
+    [4]  = { order = "d", craftingSpeed = 8.0 },
+    [5]  = { order = "e", craftingSpeed = 9.5 },
+    [6]  = { order = "f", craftingSpeed = 11.0 },
+    [7]  = { order = "g", craftingSpeed = 12.5 },
+    [8]  = { order = "h", craftingSpeed = 14.0 },
+    [9]  = { order = "i", craftingSpeed = 15.5 },
+    [10] = { order = "j", craftingSpeed = 17.0 }
 }
 
 -------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 2
+    local craftingSpeed = config.craftingSpeed
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)

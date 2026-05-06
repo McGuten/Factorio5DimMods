@@ -20,10 +20,10 @@ local baseHealth = 1000
 local baseTechCount = 100
 
 -- Increments per tier
--- REBALANCED: Increased energy increment for better power/weight ratio
--- T10 now has 1950kW (was 1500kW) for better acceleration with heavy loads
+-- REBALANCED: Increase power faster than weight so late locomotives actually
+-- pull high-tier wagons better instead of just preserving roughly the same ratio.
 local speedIncrement = 0.15
-local energyIncrement = 150    -- Increased from 100
+local energyIncrement = 250
 local weightIncrement = 500
 local healthIncrement = 250
 

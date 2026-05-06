@@ -14,7 +14,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseHealth = 350
-local healthIncrement = 156               -- 350 → 1750 (x5)
+local healthIncrement = 220               -- 350 → 2330 (~x6.7)
 local baseTechCount = 500
 
 -------------------------------------------------------------------------------

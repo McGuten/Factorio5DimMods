@@ -6,7 +6,7 @@
 
 ## Overview
 
-5Dim's Autofill automatically fills turrets with ammo and vehicles with fuel when you place them. No more manually loading each turret!
+5Dim's Autofill automatically fills supported turrets with ammo and supported vehicles with fuel when you place them. No more manually loading each turret!
 
 > Based on the original Autofill mod by folk
 
@@ -14,13 +14,11 @@
 
 ### 🔫 Turret Auto-Fill
 
-When you place a turret, it automatically receives ammo from your inventory:
+When you place a supported ammo turret, it automatically receives ammo from your inventory:
 
 | Turret Type | Auto-Filled With |
 |-------------|-----------------|
-| Gun Turret | Best available magazine |
-| Flamethrower | Flamethrower ammo |
-| Artillery | Artillery shells |
+| Ammo Turret | Best available magazine |
 
 **Priority order for magazines:**
 1. Uranium rounds magazine
@@ -29,14 +27,12 @@ When you place a turret, it automatically receives ammo from your inventory:
 
 ### 🚗 Vehicle Auto-Fill
 
-When you enter a vehicle, it receives fuel:
+When you place a supported vehicle, it receives fuel:
 
 | Vehicle | Auto-Filled With |
 |---------|-----------------|
-| Car | Best fuel |
-| Tank | Best fuel + shells |
+| Car-type vehicles | Best fuel and available car ammo |
 | Locomotive | Best fuel |
-| Spidertron | Best fuel |
 
 **Fuel priority:**
 1. Nuclear fuel
@@ -49,7 +45,8 @@ When you enter a vehicle, it receives fuel:
 - Only fills from your inventory (not logistics)
 - Fills appropriate amounts (not all your ammo)
 - Respects filter settings
-- Works with 5Dim tiered turrets
+- Works with 5Dim tiered ammo turrets
+- Does not currently auto-fill fluid, electric or artillery turret inventories
 
 ## Configuration
 

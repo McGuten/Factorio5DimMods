@@ -17,7 +17,7 @@ local baseSpeed = 1
 local baseModules = 2
 local baseEnergy = 60
 local baseEmissions = 1
-local baseTechCount = 200
+local baseTechCount = RecipeTemplates.baseTechCounts.lab
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -25,18 +25,16 @@ local baseTechCount = 200
 -------------------------------------------------------------------------------
 
 local tierConfig = {
-    -- REBALANCED: Increased speed bonus from +0.2 to +0.35 per tier
-    -- T10 now reaches 4.15x speed (vs 2.8x before), better value for investment
     [1]  = { speedBonus = 0,    moduleBonus = 0, order = "a", isVanilla = true },
-    [2]  = { speedBonus = 0.35, moduleBonus = 1, order = "b" },
-    [3]  = { speedBonus = 0.7,  moduleBonus = 1, order = "c" },
-    [4]  = { speedBonus = 1.05, moduleBonus = 2, order = "d" },
-    [5]  = { speedBonus = 1.4,  moduleBonus = 2, order = "e" },
-    [6]  = { speedBonus = 1.75, moduleBonus = 3, order = "f" },
-    [7]  = { speedBonus = 2.1,  moduleBonus = 3, order = "g" },
-    [8]  = { speedBonus = 2.45, moduleBonus = 4, order = "h" },
-    [9]  = { speedBonus = 2.8,  moduleBonus = 4, order = "i" },
-    [10] = { speedBonus = 3.15, moduleBonus = 5, order = "j" }
+    [2]  = { speedBonus = 0.15, moduleBonus = 0, order = "b" },
+    [3]  = { speedBonus = 0.3,  moduleBonus = 1, order = "c" },
+    [4]  = { speedBonus = 0.5,  moduleBonus = 1, order = "d" },
+    [5]  = { speedBonus = 0.75, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 1.05, moduleBonus = 2, order = "f" },
+    [7]  = { speedBonus = 1.4,  moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 1.8,  moduleBonus = 3, order = "h" },
+    [9]  = { speedBonus = 2.25, moduleBonus = 4, order = "i" },
+    [10] = { speedBonus = 2.75, moduleBonus = 5, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -49,7 +47,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 }
         },
-        prerequisites = { "engine", "logistic-science-pack" }
+        prerequisites = { "engine", "logistic-science-pack", "research-speed-1" }
     },
     [3] = {
         basePacks = {
@@ -64,7 +62,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 }
         },
-        prerequisites = { "5d-lab-2", "chemical-science-pack" }
+        prerequisites = { "5d-lab-2", "chemical-science-pack", "research-speed-3" }
     },
     [5] = {
         basePacks = {
@@ -81,7 +79,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-lab-4", "production-science-pack" }
+        prerequisites = { "5d-lab-4", "production-science-pack", "research-speed-5" }
     },
     [7] = {
         basePacks = {
@@ -100,7 +98,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-lab-6", "utility-science-pack" }
+        prerequisites = { "5d-lab-6", "utility-science-pack", "research-speed-6" }
     },
     [9] = {
         basePacks = {

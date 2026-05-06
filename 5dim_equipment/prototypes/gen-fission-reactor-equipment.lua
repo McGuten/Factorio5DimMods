@@ -7,7 +7,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 local config = {
     powerMultiplier = 1.45,
-    baseTechCount = 800,
+    baseTechCount = 500,
     subgroup = "armor-fission-reactor"
 }
 
@@ -26,7 +26,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment" }
@@ -42,7 +41,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment-2" }
@@ -58,7 +56,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment-3" }
@@ -74,7 +71,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment-4" }
@@ -90,9 +86,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment-5" }
         }
@@ -107,9 +101,7 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
             prerequisites = { "fission-reactor-equipment-6" }
         }
@@ -124,7 +116,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -141,7 +132,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },
@@ -158,7 +148,6 @@ local tiers = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "military-science-pack", 1 },
                 { "utility-science-pack", 1 },
                 { "space-science-pack", 1 }
             },

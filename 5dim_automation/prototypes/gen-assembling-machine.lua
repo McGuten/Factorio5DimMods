@@ -24,16 +24,16 @@ local baseTechCount = 150
 -------------------------------------------------------------------------------
 
 local tierConfig = {
-    [1]  = { speedBonus = 0,   order = "a", isVanilla = true,  copy = { name = "assembling-machine", postName = "-1" } },
-    [2]  = { speedBonus = 0.5, order = "b", isVanilla = true,  copy = { name = "assembling-machine", postName = "-2" } },
-    [3]  = { speedBonus = 1.0, order = "c", isVanilla = true,  copy = nil },
-    [4]  = { speedBonus = 1.5, order = "d" },
-    [5]  = { speedBonus = 2.0, order = "e" },
-    [6]  = { speedBonus = 2.5, order = "f" },
-    [7]  = { speedBonus = 3.0, order = "g" },
-    [8]  = { speedBonus = 3.5, order = "h" },
-    [9]  = { speedBonus = 4.0, order = "i" },
-    [10] = { speedBonus = 4.5, order = "j" }
+    [1]  = { speedBonus = 0.0,  moduleSlots = 0, order = "a", isVanilla = true,  copy = { name = "assembling-machine", postName = "-1" } },
+    [2]  = { speedBonus = 0.25, moduleSlots = 2, order = "b", isVanilla = true,  copy = { name = "assembling-machine", postName = "-2" } },
+    [3]  = { speedBonus = 0.75, moduleSlots = 4, order = "c", isVanilla = true,  copy = nil },
+    [4]  = { speedBonus = 1.0,  moduleSlots = 4, order = "d" },
+    [5]  = { speedBonus = 1.3,  moduleSlots = 5, order = "e" },
+    [6]  = { speedBonus = 1.7,  moduleSlots = 5, order = "f" },
+    [7]  = { speedBonus = 2.3,  moduleSlots = 6, order = "g" },
+    [8]  = { speedBonus = 3.0,  moduleSlots = 6, order = "h" },
+    [9]  = { speedBonus = 3.7,  moduleSlots = 7, order = "i" },
+    [10] = { speedBonus = 4.5,  moduleSlots = 8, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -126,12 +126,7 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + config.speedBonus
-    local moduleSlots = 0
-    if tier == 2 then
-        moduleSlots = 2
-    elseif tier >= 3 then
-        moduleSlots = baseModuleSlots + math.floor((tier - 2) / 2)
-    end
+    local moduleSlots = config.moduleSlots
     -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
     -- This makes higher tier machines less energy-efficient per craft
     local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
@@ -141,8 +136,7 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.assemblingMachine[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true,
-        skipSpaceAgeMaterials = true
+        skipTierScaling = true
     })
     
     -- Determine next upgrade

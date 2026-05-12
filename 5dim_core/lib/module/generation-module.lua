@@ -26,6 +26,34 @@ function genModules(inputs)
         }
     }
 
+    local function recipeCategory(moduleType)
+        if inputs.recipeCategories and inputs.recipeCategories[moduleType] then
+            return inputs.recipeCategories[moduleType]
+        end
+
+        if mods["space-age"] then
+            return "electronics"
+        end
+
+        return nil
+    end
+
+    local function techPacks(moduleType)
+        if inputs.tech.packsByType and inputs.tech.packsByType[moduleType] then
+            return inputs.tech.packsByType[moduleType]
+        end
+
+        return inputs.tech.packs
+    end
+
+    local function techCount(moduleType)
+        if inputs.tech.countsByType and inputs.tech.countsByType[moduleType] then
+            return inputs.tech.countsByType[moduleType]
+        end
+
+        return inputs.tech.count
+    end
+
     -- Copy Speed module
     local itemSpeed
     local recipeSpeed
@@ -53,8 +81,8 @@ function genModules(inputs)
     --Recipe
     recipeSpeed.name = itemSpeed.name
     recipeSpeed.icon = itemSpeed.icon
-    if mods["space-age"] then
-        recipeSpeed.category = "electronics"
+    if recipeCategory("speed") then
+        recipeSpeed.category = recipeCategory("speed")
     end
     recipeSpeed.results = { { type = "item", name = itemSpeed.name, amount = 1 } }
     recipeSpeed.icon_size = 64
@@ -72,8 +100,8 @@ function genModules(inputs)
         techSpeed.icon = technologyIcons.speed.icon
         techSpeed.icon_size = technologyIcons.speed.icon_size
         techSpeed.icons = nil
-        techSpeed.unit.count = inputs.tech.count
-        techSpeed.unit.ingredients = inputs.tech.packs
+            techSpeed.unit.count = techCount("speed")
+        techSpeed.unit.ingredients = techPacks("speed")
         techSpeed.prerequisites = inputs.tech.prerequisites.speed
         techSpeed.effects = {
             {
@@ -111,8 +139,8 @@ function genModules(inputs)
     --Recipe
     recipeEffectivity.name = itemEffectivity.name
     recipeEffectivity.icon = itemEffectivity.icon
-    if mods["space-age"] then
-        recipeEffectivity.category = "electronics"
+    if recipeCategory("effectivity") then
+        recipeEffectivity.category = recipeCategory("effectivity")
     end
     recipeEffectivity.results = { { type = "item", name = itemEffectivity.name, amount = 1 } }
     recipeEffectivity.icon_size = 64
@@ -130,8 +158,8 @@ function genModules(inputs)
         techEffectivity.icon = technologyIcons.effectivity.icon
         techEffectivity.icon_size = technologyIcons.effectivity.icon_size
         techEffectivity.icons = nil
-        techEffectivity.unit.count = inputs.tech.count
-        techEffectivity.unit.ingredients = inputs.tech.packs
+        techEffectivity.unit.count = techCount("effectivity")
+        techEffectivity.unit.ingredients = techPacks("effectivity")
         techEffectivity.prerequisites = inputs.tech.prerequisites.effectivity
         techEffectivity.effects = {
             {
@@ -169,8 +197,8 @@ function genModules(inputs)
     --Recipe
     recipeProductivity.name = itemProductivity.name
     recipeProductivity.icon = itemProductivity.icon
-    if mods["space-age"] then
-        recipeProductivity.category = "electronics"
+    if recipeCategory("productivity") then
+        recipeProductivity.category = recipeCategory("productivity")
     end
     recipeProductivity.results = { { type = "item", name = recipeProductivity.name, amount = 1 } }
     recipeProductivity.icon_size = 64
@@ -188,8 +216,8 @@ function genModules(inputs)
         techProductivity.icon = technologyIcons.productivity.icon
         techProductivity.icon_size = technologyIcons.productivity.icon_size
         techProductivity.icons = nil
-        techProductivity.unit.count = inputs.tech.count
-        techProductivity.unit.ingredients = inputs.tech.packs
+        techProductivity.unit.count = techCount("productivity")
+        techProductivity.unit.ingredients = techPacks("productivity")
         techProductivity.prerequisites = inputs.tech.prerequisites.productivity
         techProductivity.effects = {
             {
@@ -225,8 +253,8 @@ function genModules(inputs)
     --Recipe
     recipePollution.name = itemPollution.name
     recipePollution.icon = itemPollution.icon
-    if mods["space-age"] then
-        recipePollution.category = "electronics"
+    if recipeCategory("pollution") then
+        recipePollution.category = recipeCategory("pollution")
     end
     recipePollution.results = { { type = "item", name = recipePollution.name, amount = 1 } }
     recipePollution.icon_size = 64
@@ -243,8 +271,8 @@ function genModules(inputs)
     techPollution.icon = technologyIcons.pollution.icon
     techPollution.icon_size = technologyIcons.pollution.icon_size
     techPollution.icons = nil
-    techPollution.unit.count = inputs.tech.count
-    techPollution.unit.ingredients = inputs.tech.packs
+    techPollution.unit.count = techCount("pollution")
+    techPollution.unit.ingredients = techPacks("pollution")
     techPollution.prerequisites = inputs.tech.prerequisites.pollution
     techPollution.effects = {
         {
@@ -283,8 +311,8 @@ function genModules(inputs)
         --Recipe
         recipeQuality.name = itemQuality.name
         recipeQuality.icon = itemQuality.icon
-        if mods["space-age"] then
-            recipeQuality.category = "electronics"
+        if recipeCategory("quality") then
+            recipeQuality.category = recipeCategory("quality")
         end
         recipeQuality.results = { { type = "item", name = recipeQuality.name, amount = 1 } }
         recipeQuality.icon_size = 64
@@ -302,8 +330,8 @@ function genModules(inputs)
             techQuality.icon = technologyIcons.quality.icon
             techQuality.icon_size = technologyIcons.quality.icon_size
             techQuality.icons = nil
-            techQuality.unit.count = inputs.tech.count
-            techQuality.unit.ingredients = inputs.tech.packs
+            techQuality.unit.count = techCount("quality")
+            techQuality.unit.ingredients = techPacks("quality")
             techQuality.prerequisites = inputs.tech.prerequisites.quality
             techQuality.effects = {
                 {
@@ -338,9 +366,17 @@ function genModules(inputs)
     local consump = inputs.effects.effectivity
     local speed = inputs.effects.speed
     local pollu = inputs.effects.pollution
-    local mergedSpeed = (speed.speed or 0) + (product.speed or 0)
-    local mergedConsumption = (speed.consumption or 0) + (product.consumption or 0) + (consump.consumption or 0)
-    local mergedPollution = (pollu.pollution or 0) + (product.pollution or 0)
+    local mergedWeights = inputs.mergedEffectWeights or {
+        speedBonus = 0.4,
+        speedConsumption = 0.6,
+        effectivityConsumption = 0.4,
+        pollution = 0.5
+    }
+    local mergedSpeed = ((speed.speed or 0) * mergedWeights.speedBonus) + (product.speed or 0)
+    local mergedConsumption = ((speed.consumption or 0) * mergedWeights.speedConsumption)
+        + (product.consumption or 0)
+        + ((consump.consumption or 0) * mergedWeights.effectivityConsumption)
+    local mergedPollution = ((pollu.pollution or 0) * mergedWeights.pollution) + (product.pollution or 0)
     itemMerged.effect = {
         productivity = product.productivity,
         consumption = mergedConsumption,
@@ -353,8 +389,8 @@ function genModules(inputs)
     --Recipe
     recipeMerged.name = itemMerged.name
     recipeMerged.icon = itemMerged.icon
-    if mods["space-age"] then
-        recipeMerged.category = "electronics"
+    if recipeCategory("merged") then
+        recipeMerged.category = recipeCategory("merged")
     end
     recipeMerged.results = { { type = "item", name = recipeMerged.name, amount = 1 } }
     recipeMerged.icon_size = 64
@@ -371,8 +407,8 @@ function genModules(inputs)
     techMerged.icon = technologyIcons.merged.icon
     techMerged.icon_size = technologyIcons.merged.icon_size
     techMerged.icons = nil
-    techMerged.unit.count = inputs.tech.count
-    techMerged.unit.ingredients = inputs.tech.packs
+    techMerged.unit.count = techCount("merged")
+    techMerged.unit.ingredients = techPacks("merged")
     techMerged.prerequisites = inputs.tech.prerequisites.merged
     techMerged.effects = {
         {

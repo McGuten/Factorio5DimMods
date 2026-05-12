@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.battlefield.gun-turret.generation-gun-turret")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local TierColors = require("__5dim_core__.lib.tier-colors")
@@ -53,15 +54,19 @@ local techConfig = {
         techName = "gun-turret-2",
         countMultiplier = 1,
         basePacks = {
-            { "automation-science-pack", 1 }
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = { "gun-turret" }
+        prerequisites = { "gun-turret", "military" }
     },
     [3] = {
         techName = "gun-turret-3",
         countMultiplier = 2,
         basePacks = {
-            { "automation-science-pack", 1 }
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
         prerequisites = { "gun-turret-2" }
     },
@@ -70,18 +75,23 @@ local techConfig = {
         countMultiplier = 3,
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 }
         },
-        prerequisites = { "gun-turret-3", "logistic-science-pack" }
+        prerequisites = { "gun-turret-3", "chemical-science-pack" }
     },
     [5] = {
         techName = "gun-turret-5",
         countMultiplier = 4,
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "gun-turret-4" }
+        prerequisites = { "gun-turret-4", "production-science-pack" }
     },
     [6] = {
         techName = "gun-turret-6",
@@ -89,9 +99,11 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "military-science-pack", 1 }
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "gun-turret-5", "military-science-pack" }
+        prerequisites = { "gun-turret-5" }
     },
     [7] = {
         techName = "gun-turret-7",
@@ -99,7 +111,9 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "military-science-pack", 1 }
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
         prerequisites = { "gun-turret-6" }
     },
@@ -109,9 +123,12 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "military-science-pack", 1 }
+            { "military-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "gun-turret-7" }
+        prerequisites = { "gun-turret-7", "utility-science-pack" }
     },
     [9] = {
         techName = "gun-turret-9",
@@ -120,9 +137,11 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "gun-turret-8", "chemical-science-pack" }
+        prerequisites = { "gun-turret-8" }
     },
     [10] = {
         techName = "gun-turret-10",
@@ -131,12 +150,84 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "gun-turret-9" }
     }
 }
 
+local gunTurretSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 12, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 120, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 12, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
+}
+
+local gunTurretSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local gunTurretSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
+}
+
+local gunTurretDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "advanced-circuit",
+    [5] = "battery",
+    [6] = "engine",
+    [7] = "electric-engine",
+    [8] = "processing-unit",
+    [9] = "low-density-structure",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getGunTurretDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and gunTurretSpaceAgeDeltaPrerequisites[tier] then
+        return gunTurretSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return gunTurretDeltaPrerequisites[tier]
+end
 -------------------------------------------------------------------------------
 -- RESISTANCES BY TIER
 -------------------------------------------------------------------------------
@@ -164,7 +255,11 @@ for tier = 1, 10 do
     local health = baseHealth + (tier - 1) * healthIncrement
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.gunTurret[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.gunTurret[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = gunTurretSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -176,11 +271,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getGunTurretDeltaPrerequisite(tier))
+
         tech = {
             number = tc.techName,
             count = baseTechCount * tc.countMultiplier,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = gunTurretSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -200,6 +302,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         resistances = getResistances(tier),
         nextUpdate = nextUpgrade,
-        tech = tech
+        tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, gunTurretSpaceAgeMaterials)
     }
 end

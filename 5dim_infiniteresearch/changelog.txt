@@ -1,7 +1,16 @@
 ---------------------------------------------------------------------------------------------------
-Version: 2.0.3
-Date: ????
+Version: 2.0.5
+Date: 2026-05-12
   Changes:
+    - Add staged Space Age science progression for infinite research instead of a fixed metallurgic-only extension.
+    - Gate late infinite military, lab, logistics and train upgrades behind full planetary science progression.
+---------------------------------------------------------------------------------------------------
+Version: 2.0.4
+Date: 2026-05-12
+  Changes:
+    - Fix worker robot storage infinite research so it no longer depends on 5dim_logistic.
+    - Rename the internal research productivity technology to avoid collisions with Space Age.
+    - Make Space Age science-pack extension respect the global 5d-space-age-materials setting.
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.2
 Date: 2024-12-12

@@ -19,7 +19,9 @@ function genBeacons(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     recipe.enabled = false
-    if mods['space-age'] then
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    elseif mods['space-age'] then
         recipe.category = "electronics"
     end
     if inputs.new then

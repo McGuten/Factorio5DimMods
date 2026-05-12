@@ -25,6 +25,49 @@ local baseBufferCapacity = 500       -- MJ
 local baseOutputFlowLimit = 500      -- MJ
 local baseTechCount = 400
 
+local lightningRodSpaceAgeSciencePacks = {
+    [7] = { "cryogenic-science-pack" },
+    [8] = { "cryogenic-science-pack" },
+    [9] = { "cryogenic-science-pack" },
+    [10] = { "cryogenic-science-pack" }
+}
+
+local lightningRodDeltaPrerequisites = {
+    [2] = "holmium-processing",
+    [3] = "holmium-processing",
+    [4] = "electromagnetic-plant",
+    [5] = "electromagnetic-plant",
+    [6] = "electromagnetic-plant",
+    [7] = "lithium-processing",
+    [8] = "cryogenic-plant",
+    [9] = "cryogenic-plant",
+    [10] = "quantum-processor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -52,6 +95,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "planet-discovery-fulgora" }
@@ -61,6 +105,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-2" }
@@ -70,6 +115,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-3" }
@@ -79,18 +125,18 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-lightning-rod-4", "utility-science-pack" }
+        prerequisites = { "5d-lightning-rod-4" }
     },
     [6] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-5" }
     },
@@ -99,20 +145,18 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
-        prerequisites = { "5d-lightning-rod-6", "space-science-pack" }
+        prerequisites = { "5d-lightning-rod-6" }
     },
     [8] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-7" }
     },
@@ -121,9 +165,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-8" }
     },
@@ -132,9 +175,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-rod-9" }
     }
@@ -165,11 +207,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, lightningRodDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = lightningRodSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -185,6 +234,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = tier < 10 and ("5d-lightning-rod-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = tier >= 4 and "electromagnetics" or "electronics",
         tech = tech
     }
 end

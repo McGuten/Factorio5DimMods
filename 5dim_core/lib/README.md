@@ -98,13 +98,13 @@ end
 
 ### 3.1 `CostConfig` — `lib/costs/config.lua`
 
-User-tunable settings + Space Age integration toggles + scaling curves.
+User-tunable settings + Space Age integration toggle + scaling curves.
 
 | Member                                   | Description |
 |------------------------------------------|-------------|
 | `CostConfig.hasSpaceAge`                 | `mods["space-age"] ~= nil` (computed once) |
 | `CostConfig.spaceAgeMaterials_enabled`   | Setting `5d-space-age-materials` |
-| `CostConfig.spaceAgeSciencePacks_enabled`| Setting `5d-space-age-science-packs` |
+| `CostConfig.spaceAgeSciencePacks_enabled`| Setting `5d-space-age-materials` |
 | `CostConfig.techMultiplier`              | Setting `5d-tech-cost-multiplier` |
 | `CostConfig.recipeMultiplier`            | Setting `5d-recipe-cost-multiplier` |
 | `CostConfig.craftingTimeMultiplier`      | Setting `5d-crafting-time-multiplier` |
@@ -120,10 +120,10 @@ User-tunable settings + Space Age integration toggles + scaling curves.
 
 | Function                                                          | Returns |
 |-------------------------------------------------------------------|---------|
-| `scaleIngredientAmount(baseAmount, tier, isBulk)`                 | `math.ceil` scaled amount |
+| `scaleIngredientAmount(baseAmount, tier, isBulk)`                 | `math.ceil` scaled amount with recipe mode plus moderated tier scaling |
 | `scaleIngredients(ingredients, tier, isBulk)`                     | New ingredient table |
 | `addSpaceAgeMaterials(ingredients, tier, isBulk)`                 | Ingredients + planetary material (if SA enabled) |
-| `processIngredients(baseIngredients, tier, options)`              | One-shot: scale + add SA material. `options = { isBulkItem, skipTierScaling, skipSpaceAgeMaterials }` |
+| `processIngredients(baseIngredients, tier, options)`              | One-shot: scale + add SA material. `skipTierScaling` now means "apply only recipe mode scaling to pre-tiered templates"; repeated ingredients are merged instead of duplicated. |
 | `getTechPacks(basePacks, tier, options)`                          | Base packs + `spaceAgeSciencePacks[tier]` (when applicable) |
 
 ### 3.3 `RecipeTemplates` — `lib/recipe-templates.lua`

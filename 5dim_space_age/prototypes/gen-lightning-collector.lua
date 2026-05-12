@@ -5,7 +5,6 @@
 
 require("__5dim_core__.lib.space-age.generation-lightning-collector")
 
-local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -24,6 +23,53 @@ local baseRangeElongation = 25.0
 local baseBufferCapacity = 1000      -- MJ
 local baseOutputFlowLimit = 1000     -- MJ
 local baseTechCount = 500
+
+local lightningCollectorSpaceAgeSciencePacks = {
+    [3] = { "cryogenic-science-pack" },
+    [4] = { "cryogenic-science-pack" },
+    [5] = { "cryogenic-science-pack" },
+    [6] = { "cryogenic-science-pack" },
+    [7] = { "cryogenic-science-pack" },
+    [8] = { "cryogenic-science-pack" },
+    [9] = { "cryogenic-science-pack" },
+    [10] = { "cryogenic-science-pack" }
+}
+
+local lightningCollectorDeltaPrerequisites = {
+    [2] = "electromagnetic-plant",
+    [3] = "lithium-processing",
+    [4] = "lithium-processing",
+    [5] = "cryogenic-plant",
+    [6] = "cryogenic-plant",
+    [7] = "cryogenic-plant",
+    [8] = "cryogenic-plant",
+    [9] = "quantum-processor",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -52,6 +98,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "lightning-collector" }
@@ -61,6 +108,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-2" }
@@ -70,6 +118,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-3" }
@@ -79,18 +128,18 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-lightning-collector-4", "utility-science-pack" }
+        prerequisites = { "5d-lightning-collector-4" }
     },
     [6] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-5" }
     },
@@ -99,20 +148,18 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
-        prerequisites = { "5d-lightning-collector-6", "space-science-pack" }
+        prerequisites = { "5d-lightning-collector-6" }
     },
     [8] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-7" }
     },
@@ -121,9 +168,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-8" }
     },
@@ -132,9 +178,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
+            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
         },
         prerequisites = { "5d-lightning-collector-9" }
     }
@@ -165,11 +210,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, lightningCollectorDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = lightningCollectorSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
     

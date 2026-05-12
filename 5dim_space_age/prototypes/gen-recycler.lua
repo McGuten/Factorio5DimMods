@@ -5,7 +5,6 @@
 
 require("__5dim_core__.lib.space-age.generation-recycler")
 
-local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -18,6 +17,49 @@ local baseModuleSlots = 4
 local baseEnergy = 180
 local baseEmissions = 2
 local baseTechCount = 500
+
+local recyclerSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "cryogenic-science-pack" },
+    [8] = { "space-science-pack", "cryogenic-science-pack" },
+    [9] = { "space-science-pack", "cryogenic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local recyclerDeltaPrerequisites = {
+    [2] = "holmium-processing",
+    [3] = "holmium-processing",
+    [4] = "electromagnetic-plant",
+    [5] = "electromagnetic-plant",
+    [6] = "electromagnetic-plant",
+    [7] = "lithium-processing",
+    [8] = "cryogenic-plant",
+    [9] = "cryogenic-plant",
+    [10] = "quantum-processor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -73,18 +115,16 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
-        prerequisites = { "5d-recycler-4", "utility-science-pack" }
+        prerequisites = { "5d-recycler-4" }
     },
     [6] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-recycler-5" }
     },
@@ -93,20 +133,16 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
-        prerequisites = { "5d-recycler-6", "space-science-pack" }
+        prerequisites = { "5d-recycler-6" }
     },
     [8] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-recycler-7" }
     },
@@ -115,9 +151,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-recycler-8" }
     },
@@ -126,9 +160,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-recycler-9" }
     }
@@ -150,7 +182,10 @@ for tier = 1, 10 do
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.0)
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.recycler[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.recycler[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -162,11 +197,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, recyclerDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = baseTechCount * (tier - 1),
-            packs = tc.basePacks,
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = recyclerSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -182,6 +224,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
+        recipeCategory = "electromagnetics",
         tech = tech
     }
 end

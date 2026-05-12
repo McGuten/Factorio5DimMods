@@ -16,6 +16,77 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseTankCapacity = 25000
 local baseTechCount = 200
 
+local storageTankSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 12, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 160, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 10, category = "metallurgy" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 120, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 120, category = "cryogenics" }
+}
+
+local storageTankSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local storageTankSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local storageTankDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "fluid-handling",
+    [4] = "concrete",
+    [5] = "concrete",
+    [6] = "battery",
+    [7] = "electric-engine",
+    [8] = "processing-unit",
+    [9] = "low-density-structure",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getStorageTankDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and storageTankSpaceAgeDeltaPrerequisites[tier] then
+        return storageTankSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return storageTankDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -138,7 +209,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.storageTank[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = storageTankSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade
@@ -151,11 +224,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getStorageTankDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = baseTechCount * (tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = storageTankSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -168,6 +248,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
-        tech = tech
+        tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, storageTankSpaceAgeMaterials)
     }
 end

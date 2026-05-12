@@ -1,7 +1,7 @@
 # 5Dim's Mod - Infinite Research
 
 ![Factorio 2.0](https://img.shields.io/badge/Factorio-2.0-orange)
-![Version](https://img.shields.io/badge/Version-2.0.3-blue)
+![Version](https://img.shields.io/badge/Version-2.0.5-blue)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
 
 ## Overview
@@ -24,7 +24,7 @@ All research can be repeated infinitely for stacking bonuses:
 | **Worker Robot Storage** | +1 slot | Robot cargo |
 | **Braking Force** | +5% | Train braking |
 | **Stack Size** | +1 | Inventory stacks |
-| **Tech Productivity** | +1% | Lab productivity |
+| **Research Productivity** | +1% | Lab productivity |
 | **Tech Speed** | +5% | Research speed |
 
 ### 📈 Research Scaling
@@ -41,10 +41,20 @@ Research cost increases with each level:
 
 ### 🪐 Space Age Integration
 
-When `space-age` is active, every infinite tech that already required
-`space-science-pack` is automatically extended with `metallurgic-science-pack`,
-keeping mid-late game research aligned with the Space Age science progression.
-This is applied via `data-updates.lua`; no additional setting is needed.
+When `space-age` is active and `5d-space-age-materials` is enabled, this module
+adds a staged planetary science progression instead of a single fixed pack:
+
+- Manual crafting speed and mining speed switch to metallurgic, then
+	electromagnetic, then cryogenic science in their late tiers.
+- Infinite robot battery and storage upgrades align with the electromagnetic
+	stage of Space Age robotics.
+- The late infinite military, logistics, train and lab upgrades are pushed to a
+	full planetary endgame using metallurgic, electromagnetic and cryogenic
+	science packs together.
+
+The DLC-owned `research-productivity` technology is not replaced. In non-Space
+Age games this module keeps its own research productivity technology under the
+internal key `5d-research-productivity`.
 
 ### 🎯 Strategic Research
 
@@ -63,7 +73,7 @@ Which infinite research to prioritize:
 For mega-bases, prioritize:
 1. **Crafting Speed** - Fewer machines needed
 2. **Mining Speed** - Extend ore patch life
-3. **Tech Productivity** - More science per pack
+3. **Research Productivity** - More science per pack
 
 ## Dependencies
 
@@ -82,7 +92,9 @@ For mega-bases, prioritize:
 ├── data.lua
 ├── info.json
 ├── prototypes/
-│   └── technologies/
+│   ├── braking.lua
+│   ├── crafting-speed.lua
+│   └── ...
 └── locale/
 ```
 

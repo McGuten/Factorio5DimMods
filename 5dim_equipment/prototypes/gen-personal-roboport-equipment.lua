@@ -1,5 +1,7 @@
 require("__5dim_core__.lib.equipment.generation-personal-roboport-equipment")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -8,6 +10,153 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local config = {
     baseTechCount = 150,
     subgroup = "armor-roboport"
+}
+
+local personalRoboportEquipmentSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 60, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 2, category = "cryogenics" }
+}
+
+local personalRoboportEquipmentSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local personalRoboportEquipmentSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local personalRoboportEquipmentDeltaPrerequisites = {
+    [3] = "advanced-electronics",
+    [4] = "electric-engine",
+    [5] = "advanced-electronics-2",
+    [6] = "low-density-structure",
+    [7] = "speed-module",
+    [8] = "speed-module-2",
+    [9] = "productivity-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getPersonalRoboportEquipmentDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and personalRoboportEquipmentSpaceAgeDeltaPrerequisites[tier] then
+        return personalRoboportEquipmentSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return personalRoboportEquipmentDeltaPrerequisites[tier]
+end
+
+local techConfig = {
+    [3] = {
+        number = 1,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "personal-roboport-mk2-equipment", "production-science-pack" }
+    },
+    [4] = {
+        number = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-1" }
+    },
+    [5] = {
+        number = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-2", "utility-science-pack" }
+    },
+    [6] = {
+        number = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-3" }
+    },
+    [7] = {
+        number = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-4" }
+    },
+    [8] = {
+        number = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-5" }
+    },
+    [9] = {
+        number = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-6" }
+    },
+    [10] = {
+        number = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-personal-roboport-equipment-7" }
+    }
 }
 
 -------------------------------------------------------------------------------
@@ -193,14 +342,27 @@ local tiers = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.personalRoboportEquipment[i], i, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = personalRoboportEquipmentSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+
     local techData = nil
-    local tierTech = tier.tech
-    if tierTech then
+    local tc = techConfig[i]
+    if tc then
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getPersonalRoboportEquipmentDeltaPrerequisite(i))
+
         techData = {
-            number = tierTech.number,
-            count = config.baseTechCount * tierTech.countMultiplier,
-            packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            number = tc.number,
+            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, i, {
+                spaceAgePackOverrides = personalRoboportEquipmentSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -214,7 +376,8 @@ for i, tier in ipairs(tiers) do
         charging = tier.charging,
         new = tier.new,
         order = tier.order,
-        ingredients = RecipeTemplates.personalRoboportEquipment[i],
+        ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, personalRoboportEquipmentSpaceAgeMaterials),
         tech = techData
     }
 end

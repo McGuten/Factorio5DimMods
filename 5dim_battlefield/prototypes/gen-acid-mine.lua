@@ -5,6 +5,8 @@
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -133,12 +135,106 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-acid-mine-9" }
     }
 }
+
+local acidMineMaterials = {
+    [2] = { type = "item", name = "steel-plate", amount = 1 },
+    [3] = { type = "item", name = "pipe-to-ground", amount = 1 },
+    [4] = { type = "item", name = "sulfur", amount = 2 },
+    [5] = { type = "item", name = "plastic-bar", amount = 2 },
+    [6] = { type = "fluid", name = "sulfuric-acid", amount = 40 },
+    [7] = { type = "item", name = "explosives", amount = 2 },
+    [8] = { type = "item", name = "battery", amount = 2 },
+    [9] = { type = "item", name = "processing-unit", amount = 1 },
+    [10] = { type = "item", name = "low-density-structure", amount = 1 }
+}
+
+local acidMineSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 6, category = "metallurgy" },
+    [7] = { name = "carbon-fiber", amount = 4, category = "organic" },
+    [8] = { type = "fluid", name = "holmium-solution", amount = 60, category = "chemistry" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 60, category = "cryogenics" }
+}
+
+local acidMineSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local acidMineSpaceAgePrerequisites = {
+    [6] = "foundry",
+    [7] = "carbon-fiber",
+    [8] = "holmium-processing",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function getAcidMineDeltaMaterial(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and acidMineSpaceAgeMaterials[tier] then
+        local override = acidMineSpaceAgeMaterials[tier]
+        return {
+            type = override.type or "item",
+            name = override.name,
+            amount = override.amount
+        }
+    end
+
+    return acidMineMaterials[tier]
+end
+
+local function getAcidMineRecipeCategory(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and acidMineSpaceAgeMaterials[tier] then
+        return acidMineSpaceAgeMaterials[tier].category
+    end
+
+    local material = acidMineMaterials[tier]
+    if material and material.type == "fluid" then
+        return "crafting-with-fluid"
+    end
+end
+
+local function getAcidMineIngredients(tier, normalMineName)
+    if tier == 1 then
+        return {
+            { type = "item", name = "land-mine", amount = 1 },
+            { type = "fluid", name = "sulfuric-acid", amount = 50 }
+        }
+    end
+
+    return {
+        { type = "item", name = "5d-acid-mine-" .. (tier - 1), amount = 1 },
+        { type = "item", name = normalMineName, amount = 1 },
+        getAcidMineDeltaMaterial(tier)
+    }
+end
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function getAcidMinePrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() and acidMineSpaceAgePrerequisites[tier] then
+        table.insert(prerequisites, acidMineSpaceAgePrerequisites[tier])
+    end
+
+    return prerequisites
+end
 
 local function getNormalMineName(tier)
     if tier == 1 then
@@ -204,19 +300,8 @@ for tier, config in pairs(tierConfig) do
     recipe.icon_mipmaps = nil
     recipe.icons = table.deepcopy(tieredIcons)
     recipe.results = { { type = "item", name = name, amount = 1 } }
-    if tier == 1 then
-        recipe.ingredients = {
-            { type = "item", name = "land-mine", amount = 1 },
-            { type = "fluid", name = "sulfuric-acid", amount = 50 }
-        }
-    else
-        recipe.ingredients = {
-            { type = "item", name = "5d-acid-mine-" .. (tier - 1), amount = 1 },
-            { type = "item", name = normalMineName, amount = 1 },
-            { type = "fluid", name = "sulfuric-acid", amount = 50 },
-            { type = "item", name = "steel-plate", amount = 1 }
-        }
-    end
+    recipe.ingredients = getAcidMineIngredients(tier, normalMineName)
+    recipe.category = getAcidMineRecipeCategory(tier)
     
     -- Entity
     entity.name = name
@@ -257,8 +342,11 @@ for tier, config in pairs(tierConfig) do
         tech.icon_mipmaps = nil
         tech.icons = table.deepcopy(tieredIcons)
         tech.unit.count = baseTechCount * tier
-        tech.unit.ingredients = tierTech.basePacks
-        tech.prerequisites = tierTech.prerequisites
+        tech.unit.ingredients = CostCalculator.getTechPacks(tierTech.basePacks, tier, {
+            spaceAgePackOverrides = acidMineSpaceAgeSciencePacks,
+            forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+        })
+        tech.prerequisites = getAcidMinePrerequisites(tier, tierTech.prerequisites)
         tech.effects = {
             {
                 type = "unlock-recipe",

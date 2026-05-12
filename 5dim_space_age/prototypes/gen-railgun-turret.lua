@@ -6,6 +6,7 @@
 
 require("__5dim_core__.lib.space-age.generation-railgun-turret")
 
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local tierColors = require("__5dim_core__.lib.tier-colors")
 local baseEntity = data.raw["ammo-turret"] and data.raw["ammo-turret"]["railgun-turret"] or {}
@@ -20,6 +21,55 @@ local baseRotationSpeed = 0.004
 local baseHealth = baseEntity.max_health or 1000
 local healthIncrement = math.floor(((baseHealth * 4) / 9) + 0.5)
 local baseTechCount = 500
+
+local railgunBasePacks = {
+    { "automation-science-pack", 1 },
+    { "logistic-science-pack", 1 },
+    { "chemical-science-pack", 1 },
+    { "military-science-pack", 1 },
+    { "utility-science-pack", 1 },
+    { "space-science-pack", 1 },
+    { "metallurgic-science-pack", 1 },
+    { "agricultural-science-pack", 1 },
+    { "electromagnetic-science-pack", 1 },
+    { "cryogenic-science-pack", 1 }
+}
+
+local railgunTurretDeltaPrerequisites = {
+    [2] = "tungsten-carbide",
+    [3] = "electromagnetic-plant",
+    [4] = "holmium-processing",
+    [5] = "planet-discovery-aquilo",
+    [6] = "planet-discovery-aquilo",
+    [7] = "cryogenic-plant",
+    [8] = "lithium-processing",
+    [9] = "fusion-reactor",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -44,126 +94,39 @@ local tierConfig = {
 
 local techConfig = {
     [2] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "railgun" }
     },
     [3] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-2" }
     },
     [4] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-3" }
     },
     [5] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
-        prerequisites = { "5d-railgun-turret-4", "cryogenic-science-pack" }
+        basePacks = railgunBasePacks,
+        prerequisites = { "5d-railgun-turret-4" }
     },
     [6] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-5" }
     },
     [7] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-6" }
     },
     [8] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-7" }
     },
     [9] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-8" }
     },
     [10] = {
-        basePacks = {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
-            { "electromagnetic-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
-        },
+        basePacks = railgunBasePacks,
         prerequisites = { "5d-railgun-turret-9" }
     }
 }
@@ -182,11 +145,15 @@ for tier = 1, 10 do
     
     local techData = nil
     if techConfig[tier] then
+        local prerequisites = copyPrerequisites(techConfig[tier].prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, railgunTurretDeltaPrerequisites[tier])
+
         techData = {
             number = tier,
             count = baseTechCount * tier,
             packs = techConfig[tier].basePacks,
-            prerequisites = techConfig[tier].prerequisites
+            prerequisites = prerequisites
         }
     end
 
@@ -199,7 +166,10 @@ for tier = 1, 10 do
         rotationSpeed = currentRotationSpeed,
         health = currentHealth,
         tint = tierColors[tier],
-        ingredients = RecipeTemplates.railgunTurret[tier],
+        ingredients = CostCalculator.processIngredients(RecipeTemplates.railgunTurret[tier], tier, {
+            skipTierScaling = true,
+            skipSpaceAgeMaterials = true
+        }),
         nextUpdate = tier < 10 and ("5d-railgun-turret-" .. string.format("%02d", tier + 1)) or nil,
         tech = techData
     })

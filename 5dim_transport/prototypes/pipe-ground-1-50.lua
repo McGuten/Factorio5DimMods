@@ -6,8 +6,8 @@ data:extend({
     icon = "__5dim_transport__/graphics/icon/pipe/icon_5d_pipe-to-underground_1_50_.png",
     -- flags = {"goes-to-quickbar"},
     icon_size = 32,
-    subgroup = "transport-pipe-ground-50",
-    order = "a[basic-pipe-ground]",
+    subgroup = "transport-pipe",
+    order = "d[basic-pipe-ground-50]",
     place_result = "5d-pipe-to-ground-mk1-50",
     stack_size = 50
   },
@@ -17,6 +17,8 @@ data:extend({
     type = "recipe",
     name = "5d-pipe-to-ground-mk1-50",
     enabled = false,
+    subgroup = "transport-pipe",
+    order = "d[basic-pipe-ground-50]",
     ingredients = {
       { type = "item", name = "pipe",       amount = 50 },
       { type = "item", name = "iron-plate", amount = 5 }

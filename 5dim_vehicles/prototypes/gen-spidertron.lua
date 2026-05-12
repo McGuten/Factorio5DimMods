@@ -5,6 +5,8 @@
 
 require("__5dim_core__.lib.vehicles.generation-spidertron")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
@@ -19,21 +21,134 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 
 local healthByTier = {
     [1] = 3000,
-    [2] = 4500,
-    [3] = 6300,
-    [4] = 8400,
-    [5] = 11100,
-    [6] = 14400,
-    [7] = 18300,
-    [8] = 22500,
-    [9] = 26700,
-    [10] = 30000
+    [2] = 4200,
+    [3] = 5600,
+    [4] = 7200,
+    [5] = 9000,
+    [6] = 11200,
+    [7] = 13600,
+    [8] = 16200,
+    [9] = 19000,
+    [10] = 22000
 }
 local baseMovementEnergy = 250        -- kW
 local movementEnergyIncrement = 50    -- +50 kW per tier
 local baseInventory = 80
-local inventoryIncrement = 20         -- +20 slots per tier
+local inventoryIncrement = 12         -- +12 slots per tier
 local baseTechCount = 500
+
+local spidertronTechCounts = {
+    [2] = 900,
+    [3] = 1300,
+    [4] = 1800,
+    [5] = 2400,
+    [6] = 3200,
+    [7] = 4200,
+    [8] = 5400,
+    [9] = 6800,
+    [10] = 8500
+}
+
+local spidertronSpaceAgeMaterials = {
+    [8] = { name = "holmium-plate", amount = 25 },
+    [9] = { name = "supercapacitor", amount = 12 },
+    [10] = { name = "quantum-processor", amount = 15 }
+}
+
+local spidertronSpaceAgeSciencePacks = {
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local spidertronSpaceAgeDeltaPrerequisites = {
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local spidertronRecipeTemplates = {
+    [2] = {
+        { type = "item", name = "spidertron", amount = 1 },
+        { type = "item", name = "battery-mk2-equipment", amount = 2 }
+    },
+    [3] = {
+        { type = "item", name = "5d-spidertron-2", amount = 1 },
+        { type = "item", name = "energy-shield-mk2-equipment", amount = 2 }
+    },
+    [4] = {
+        { type = "item", name = "5d-spidertron-3", amount = 1 },
+        { type = "item", name = "personal-laser-defense-equipment", amount = 2 }
+    },
+    [5] = {
+        { type = "item", name = "5d-spidertron-4", amount = 1 },
+        { type = "item", name = "discharge-defense-equipment", amount = 2 }
+    },
+    [6] = {
+        { type = "item", name = "5d-spidertron-5", amount = 1 },
+        { type = "item", name = "personal-roboport-mk2-equipment", amount = 2 }
+    },
+    [7] = {
+        { type = "item", name = "5d-spidertron-6", amount = 1 },
+        { type = "item", name = "power-armor-mk2", amount = 1 }
+    },
+    [8] = {
+        { type = "item", name = "5d-spidertron-7", amount = 1 },
+        { type = "item", name = "speed-module-3", amount = 4 }
+    },
+    [9] = {
+        { type = "item", name = "5d-spidertron-8", amount = 1 },
+        { type = "item", name = "productivity-module-3", amount = 4 }
+    },
+    [10] = {
+        { type = "item", name = "5d-spidertron-9", amount = 1 },
+        { type = "item", name = "atomic-bomb", amount = 1 }
+    }
+}
+
+local spidertronDeltaPrerequisites = {
+    [2] = "battery-mk2-equipment",
+    [3] = "energy-shield-mk2-equipment",
+    [4] = "personal-laser-defense-equipment",
+    [5] = "discharge-defense-equipment",
+    [6] = "personal-roboport-mk2-equipment",
+    [7] = "power-armor-mk2",
+    [8] = "speed-module-3",
+    [9] = "productivity-module-3",
+    [10] = "atomic-bomb"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getSpidertronDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and spidertronSpaceAgeDeltaPrerequisites[tier] then
+        return spidertronSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return spidertronDeltaPrerequisites[tier]
+end
 
 -------------------------------------------------------------------------------
 -- RESISTANCE SCALING
@@ -41,18 +156,18 @@ local baseTechCount = 500
 -------------------------------------------------------------------------------
 
 local function getResistances(tier)
-    local bonus = (tier - 1) * 3
-    local decreaseBonus = (tier - 1) * 2
+    local bonus = (tier - 1) * 2
+    local decreaseBonus = tier - 1
 
     return {
-        { type = "fire", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 97) },
-        { type = "physical", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 97) },
-        { type = "impact", decrease = 50 + (tier - 1) * 6, percent = math.min(80 + bonus, 99) },
-        { type = "explosion", decrease = 20 + decreaseBonus, percent = math.min(75 + bonus, 98) },
-        { type = "acid", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 97) },
-        { type = "laser", decrease = 8 + decreaseBonus, percent = math.min(70 + bonus, 96) },
-        { type = "electric", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 97) },
-        { type = "poison", decrease = 15 + decreaseBonus, percent = math.min(85 + bonus, 99) }
+        { type = "fire", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 85) },
+        { type = "physical", decrease = 15 + decreaseBonus, percent = math.min(60 + bonus, 85) },
+        { type = "impact", decrease = 50 + (tier - 1) * 4, percent = math.min(80 + math.floor((tier - 1) * 1.5), 94) },
+        { type = "explosion", decrease = 20 + decreaseBonus, percent = math.min(75 + bonus, 91) },
+        { type = "acid", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 91) },
+        { type = "laser", decrease = 8 + decreaseBonus, percent = math.min(70 + bonus, 88) },
+        { type = "electric", decrease = 10 + decreaseBonus, percent = math.min(75 + bonus, 91) },
+        { type = "poison", decrease = 15 + decreaseBonus, percent = math.min(85 + (tier - 1), 94) }
     }
 end
 
@@ -61,7 +176,7 @@ local function getLegResistances(tier)
 
     for index, resistance in ipairs(resistances) do
         if resistance.type == "explosion" then
-            resistances[index] = { type = "explosion", percent = 100 }
+            resistances[index] = { type = "explosion", percent = 90 }
             break
         end
     end
@@ -77,14 +192,14 @@ end
 
 local spidertronGridSizes = {
     [2] = { width = 10, height = 7 },
-    [3] = { width = 11, height = 7 },
-    [4] = { width = 11, height = 8 },
-    [5] = { width = 12, height = 8 },
-    [6] = { width = 12, height = 9 },
-    [7] = { width = 13, height = 9 },
-    [8] = { width = 13, height = 10 },
-    [9] = { width = 14, height = 10 },
-    [10] = { width = 14, height = 11 }
+    [3] = { width = 10, height = 7 },
+    [4] = { width = 11, height = 7 },
+    [5] = { width = 11, height = 8 },
+    [6] = { width = 12, height = 8 },
+    [7] = { width = 12, height = 9 },
+    [8] = { width = 13, height = 9 },
+    [9] = { width = 13, height = 10 },
+    [10] = { width = 14, height = 10 }
 }
 
 for tier = 2, 10 do
@@ -152,8 +267,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-3" }
     },
@@ -164,8 +278,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-4" }
     },
@@ -176,8 +289,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-5" }
     },
@@ -188,8 +300,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-6" }
     },
@@ -200,8 +311,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-7" }
     },
@@ -212,8 +322,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-8" }
     },
@@ -224,8 +333,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-spidertron-9" }
     }
@@ -235,7 +343,8 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-for tier, config in pairs(tierConfig) do
+for tier = 1, 10 do
+    local config = tierConfig[tier]
     local isVanilla = config.isVanilla or false
     local tierTech = techConfig[tier]
 
@@ -253,30 +362,28 @@ for tier, config in pairs(tierConfig) do
     local ingredients
     if tier == 1 then
         ingredients = nil  -- Vanilla recipe
-    elseif tier == 2 then
-        ingredients = {
-            { type = "item", name = "spidertron", amount = 1 },
-            { type = "item", name = "low-density-structure", amount = 50 },
-            { type = "item", name = "processing-unit", amount = 32 },
-            { type = "item", name = "rocket-launcher", amount = 2 }
-        }
     else
-        ingredients = {
-            { type = "item", name = "5d-spidertron-" .. (tier - 1), amount = 1 },
-            { type = "item", name = "low-density-structure", amount = 50 + (tier - 2) * 25 },
-            { type = "item", name = "processing-unit", amount = 32 + (tier - 2) * 16 },
-            { type = "item", name = "rocket-launcher", amount = 2 + (tier - 2) }
-        }
+        ingredients = CostCalculator.processIngredients(spidertronRecipeTemplates[tier], tier, {
+            skipTierScaling = true,
+            spaceAgeMaterialOverrides = spidertronSpaceAgeMaterials
+        })
     end
 
     -- Technology configuration
     local tech = nil
     if tierTech then
+        local prerequisites = copyPrerequisites(tierTech.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getSpidertronDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
-            count = baseTechCount * tier,
-            packs = tierTech.basePacks,
-            prerequisites = tierTech.prerequisites
+            count = CostCalculator.scaleAbsoluteTechCount(spidertronTechCounts[tier]),
+            packs = CostCalculator.getTechPacks(tierTech.basePacks, tier, {
+                spaceAgePackOverrides = spidertronSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 

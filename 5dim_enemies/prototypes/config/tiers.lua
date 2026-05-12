@@ -88,8 +88,8 @@ Tiers.boss = SharedConfig.BossConfig
 -- EVOLUTION CALCULATION FUNCTIONS
 -- =============================================================================
 
--- Evolution offset for spitters (they appear +5% later than biters)
-Tiers.SPITTER_EVOLUTION_OFFSET = 0.05
+-- Evolution offset for spitters (they appear slightly later than biters)
+Tiers.SPITTER_EVOLUTION_OFFSET = 0.02
 
 -- Calculate evolution values for a specific type
 -- Returns a table with evolution values for each tier (1-10) and boss (11)

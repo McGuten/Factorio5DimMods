@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.module.generation-beacon")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -16,7 +17,82 @@ local baseModules = 2
 local baseEnergy = 480
 local baseAreaEffect = 3
 local baseEfficiency = 1.5
-local baseTechCount = 400
+
+local beaconTechCounts = {
+    [2] = 400,
+    [3] = 900,
+    [4] = 1500,
+    [5] = 2200,
+    [6] = 3000,
+    [7] = 3900,
+    [8] = 4900,
+    [9] = 6100,
+    [10] = 7500
+}
+
+local beaconSpaceAgeMaterials = {
+    [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 5, category = "cryogenics" }
+}
+
+local beaconSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local beaconSpaceAgeDeltaPrerequisites = {
+    [7] = "space-science-pack",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local beaconDeltaPrerequisites = {
+    [2] = "advanced-circuit",
+    [3] = "battery",
+    [4] = "processing-unit",
+    [5] = "low-density-structure",
+    [6] = "speed-module-2",
+    [7] = "productivity-module-2",
+    [8] = "speed-module-3",
+    [9] = "productivity-module-3",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function addBeaconDeltaPrerequisites(prerequisites, tier)
+    addPrerequisiteIfMissing(prerequisites, beaconDeltaPrerequisites[tier])
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        addPrerequisiteIfMissing(prerequisites, beaconSpaceAgeDeltaPrerequisites[tier])
+    end
+end
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -26,14 +102,14 @@ local baseTechCount = 400
 local tierConfig = {
     [1]  = { moduleBonus = 0, areaBonus = 0, efficiencyBonus = 0,    order = "a", isVanilla = true },
     [2]  = { moduleBonus = 1, areaBonus = 0, efficiencyBonus = 0,    order = "b" },
-    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.05, order = "c" },
-    [4]  = { moduleBonus = 3, areaBonus = 0, efficiencyBonus = 0.05, order = "d" },
-    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.10, order = "e" },
-    [6]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.10, order = "f" },
-    [7]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.15, order = "g" },
-    [8]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.15, order = "h" },
-    [9]  = { moduleBonus = 5, areaBonus = 3, efficiencyBonus = 0.20, order = "i" },
-    [10] = { moduleBonus = 6, areaBonus = 3, efficiencyBonus = 0.20, order = "j" }
+    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.02, order = "c" },
+    [4]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.04, order = "d" },
+    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.06, order = "e" },
+    [6]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.08, order = "f" },
+    [7]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.10, order = "g" },
+    [8]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.11, order = "h" },
+    [9]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.12, order = "i" },
+    [10] = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.14, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -145,7 +221,11 @@ for tier = 1, 10 do
     local efficiency = baseEfficiency + config.efficiencyBonus
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.beacon[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.beacon[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = beaconSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -157,11 +237,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addBeaconDeltaPrerequisites(prerequisites, tier)
+
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            count = CostCalculator.scaleAbsoluteTechCount(beaconTechCounts[tier]),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = beaconSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -177,6 +264,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, beaconSpaceAgeMaterials),
         tech = tech
     }
 end

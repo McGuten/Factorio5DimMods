@@ -23,6 +23,9 @@ function genExoskeletons(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
 
     -- Equipment
     equipment.name = item.name
@@ -39,8 +42,21 @@ function genExoskeletons(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "exoskeleton-equipment-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        if tech.icons and tech.icons[2] then
+            tech.icons[1] = {
+                icon = item.icon,
+                icon_size = 64
+            }
+        else
+            tech.icons = {
+                {
+                    icon = item.icon,
+                    icon_size = 64
+                }
+            }
+        end
+        tech.icon = nil
+        tech.icon_size = nil
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

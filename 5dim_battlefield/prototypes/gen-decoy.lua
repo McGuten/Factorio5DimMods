@@ -5,6 +5,8 @@
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -128,12 +130,106 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-decoy-9" }
     }
 }
+
+local decoyMaterials = {
+    [2] = { type = "item", name = "steel-plate", amount = 2 },
+    [3] = { type = "item", name = "pipe-to-ground", amount = 1 },
+    [4] = { type = "item", name = "sulfur", amount = 2 },
+    [5] = { type = "item", name = "plastic-bar", amount = 2 },
+    [6] = { type = "fluid", name = "sulfuric-acid", amount = 20 },
+    [7] = { type = "item", name = "explosives", amount = 2 },
+    [8] = { type = "item", name = "battery", amount = 2 },
+    [9] = { type = "item", name = "processing-unit", amount = 1 },
+    [10] = { type = "item", name = "low-density-structure", amount = 1 }
+}
+
+local decoySpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 6, category = "metallurgy" },
+    [7] = { name = "jelly", amount = 8, category = "organic" },
+    [8] = { type = "fluid", name = "holmium-solution", amount = 60, category = "chemistry" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 60, category = "cryogenics" }
+}
+
+local decoySpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local decoySpaceAgePrerequisites = {
+    [6] = "foundry",
+    [7] = "bioflux",
+    [8] = "holmium-processing",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function getDecoyDeltaMaterial(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and decoySpaceAgeMaterials[tier] then
+        local override = decoySpaceAgeMaterials[tier]
+        return {
+            type = override.type or "item",
+            name = override.name,
+            amount = override.amount
+        }
+    end
+
+    return decoyMaterials[tier]
+end
+
+local function getDecoyRecipeCategory(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and decoySpaceAgeMaterials[tier] then
+        return decoySpaceAgeMaterials[tier].category
+    end
+
+    local material = decoyMaterials[tier]
+    if material and material.type == "fluid" then
+        return "crafting-with-fluid"
+    end
+end
+
+local function getDecoyIngredients(tier)
+    if tier == 1 then
+        return {
+            { type = "item", name = "stone-wall", amount = 2 },
+            { type = "item", name = "iron-plate", amount = 5 },
+            { type = "item", name = "electronic-circuit", amount = 2 }
+        }
+    end
+
+    return {
+        { type = "item", name = "5d-decoy-" .. (tier - 1), amount = 1 },
+        getDecoyDeltaMaterial(tier)
+    }
+end
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function getDecoyPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() and decoySpaceAgePrerequisites[tier] then
+        table.insert(prerequisites, decoySpaceAgePrerequisites[tier])
+    end
+
+    return prerequisites
+end
 
 -------------------------------------------------------------------------------
 -- SUBGROUP (defined in 5dim_core: defense-decoy)
@@ -170,23 +266,10 @@ for tier, config in pairs(tierConfig) do
         type = "recipe",
         name = name,
         enabled = false,
-        ingredients = {},
+        ingredients = getDecoyIngredients(tier),
         results = { { type = "item", name = name, amount = 1 } }
     }
-    
-    if tier == 1 then
-        recipe.ingredients = {
-            { type = "item", name = "stone-wall", amount = 2 },
-            { type = "item", name = "iron-plate", amount = 5 },
-            { type = "item", name = "electronic-circuit", amount = 2 }
-        }
-    else
-        recipe.ingredients = {
-            { type = "item", name = "5d-decoy-" .. (tier - 1), amount = 1 },
-            { type = "item", name = "steel-plate", amount = 2 },
-            { type = "item", name = "electronic-circuit", amount = 2 }
-        }
-    end
+    recipe.category = getDecoyRecipeCategory(tier)
     
     -- Entity (simple-entity-with-owner for military target)
     local entity = {
@@ -254,10 +337,13 @@ for tier, config in pairs(tierConfig) do
             icon_size = 64,
             unit = {
                 count = baseTechCount * tier,
-                ingredients = tierTech.basePacks,
+                ingredients = CostCalculator.getTechPacks(tierTech.basePacks, tier, {
+                    spaceAgePackOverrides = decoySpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             },
-            prerequisites = tierTech.prerequisites,
+            prerequisites = getDecoyPrerequisites(tier, tierTech.prerequisites),
             effects = {
                 {
                     type = "unlock-recipe",

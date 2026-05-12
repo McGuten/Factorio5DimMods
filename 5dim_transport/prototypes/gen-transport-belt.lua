@@ -8,6 +8,7 @@
 
 require("__5dim_core__.lib.transport.generation-transport-belt")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 
 -------------------------------------------------------------------------------
@@ -16,6 +17,159 @@ local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 
 local transportBeltSpeed = 0.03125
 local baseTechCount = 200
+
+local transportBeltTechCounts = {
+    [4] = 450,
+    [5] = 800,
+    [6] = 1200,
+    [7] = 1700,
+    [8] = 2400,
+    [9] = 3200,
+    [10] = 4200
+}
+
+local transportBeltDeltaAmountMultipliers = {
+    [4] = 1,
+    [5] = 1,
+    [6] = 1,
+    [7] = 2,
+    [8] = 2,
+    [9] = 3,
+    [10] = 3
+}
+
+local transportBeltVanillaMaterials = {
+    [4] = { name = "advanced-circuit", amount = 1 },
+    [5] = { name = "electric-engine-unit", amount = 1 },
+    [6] = { name = "processing-unit", amount = 1 },
+    [7] = { name = "low-density-structure", amount = 1 },
+    [8] = { name = "speed-module", amount = 1 },
+    [9] = { name = "speed-module-2", amount = 1 },
+    [10] = { name = "speed-module-3", amount = 1 }
+}
+
+local transportBeltSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 1, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 40, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 1, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 1, category = "cryogenics" }
+}
+
+local transportBeltSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local transportBeltSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
+}
+
+local transportBeltDeltaPrerequisites = {
+    [4] = "advanced-circuit",
+    [5] = "electric-engine",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getLogisticsTechLevel(tier)
+    if mods["space-age"] and tier >= 5 then
+        return tier - 1
+    end
+
+    return tier
+end
+
+local function getLogisticsTechName(tier)
+    return "logistics-" .. getLogisticsTechLevel(tier)
+end
+
+local function getTransportBeltDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and transportBeltSpaceAgeDeltaPrerequisites[tier] then
+        return transportBeltSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return transportBeltDeltaPrerequisites[tier]
+end
+
+local function getDeltaIngredient(tier, amountMultiplier)
+    local source = transportBeltVanillaMaterials[tier]
+
+    if CostConfig.shouldUseSpaceAgeMaterials() and transportBeltSpaceAgeMaterials[tier] then
+        source = transportBeltSpaceAgeMaterials[tier]
+    end
+
+    return {
+        type = source.type or "item",
+        name = source.name,
+        amount = source.amount * (amountMultiplier or 1) * (transportBeltDeltaAmountMultipliers[tier] or 1)
+    }
+end
+
+local function buildGeneratedTierIngredients(prevBelt, prevUnderground, prevUnderground30, prevUnderground50, prevSplitter,
+    prevLoader, prevLoader1, currentBelt, tier)
+    return {
+        transportBelt = {
+            { type = "item", name = prevBelt, amount = 1 },
+            getDeltaIngredient(tier)
+        },
+        groundBelt = {
+            { type = "item", name = prevUnderground, amount = 2 },
+            getDeltaIngredient(tier, 2)
+        },
+        groundBelt30 = {
+            { type = "item", name = prevUnderground30, amount = 2 },
+            getDeltaIngredient(tier, 2)
+        },
+        groundBelt50 = {
+            { type = "item", name = prevUnderground50, amount = 2 },
+            getDeltaIngredient(tier, 2)
+        },
+        splitter = {
+            { type = "item", name = prevSplitter, amount = 1 },
+            getDeltaIngredient(tier, 2)
+        },
+        loader = {
+            { type = "item", name = currentBelt, amount = 5 },
+            { type = "item", name = prevLoader, amount = 1 }
+        },
+        loader1 = {
+            { type = "item", name = currentBelt, amount = 5 },
+            { type = "item", name = prevLoader1, amount = 1 }
+        }
+    }
+end
 
 -------------------------------------------------------------------------------
 -- HELPER FUNCTION: Get belt name for previous tier
@@ -115,7 +269,7 @@ local function getTierConfig(tier)
                 name = { preName = "" },
                 speed = transportBeltSpeed * 4,
                 new = true,
-                liquids = true,
+                liquids = false,
                 order = orders[tier],
                 isVanilla = false
             }
@@ -126,7 +280,7 @@ local function getTierConfig(tier)
             name = { preName = "" },
             speed = transportBeltSpeed * 5,
             new = true,
-            liquids = true,
+            liquids = false,
             order = orders[tier],
             isVanilla = false
         }
@@ -136,7 +290,7 @@ local function getTierConfig(tier)
             name = { preName = "" },
             speed = transportBeltSpeed * tier,
             new = true,
-            liquids = true,
+            liquids = false,
             order = orders[tier],
             isVanilla = false
         }
@@ -331,6 +485,20 @@ local function getIngredients(tier)
         }
     -- Tier 4 - Turbo (Space Age) or 5d-04 (vanilla)
     elseif tier == 4 then
+        if not mods["space-age"] then
+            return buildGeneratedTierIngredients(
+                "express-transport-belt",
+                "express-underground-belt",
+                "5d-express-underground-belt-30-03",
+                "5d-express-underground-belt-50-03",
+                "express-splitter",
+                "express-loader",
+                "5d-loader-1x1-03",
+                "5d-transport-belt-04",
+                tier
+            )
+        end
+
         local prevBelt = "express-transport-belt"
         local prevUnderground = "express-underground-belt"
         local prevUnderground30 = "5d-express-underground-belt-30-03"
@@ -410,43 +578,18 @@ local function getIngredients(tier)
             prevLoader = "5d-loader-" .. prevTierNum
             prevLoader1 = "5d-loader-1x1-" .. prevTierNum
         end
-        
-        return {
-            transportBelt = {
-                { type = "item", name = "iron-gear-wheel", amount = 15 },
-                { type = "item", name = prevBelt, amount = 1 },
-                { type = "fluid", name = "lubricant", amount = 20 }
-            },
-            groundBelt = {
-                { type = "item", name = "iron-gear-wheel", amount = 80 },
-                { type = "item", name = prevUnderground, amount = 2 },
-                { type = "fluid", name = "lubricant", amount = 40 }
-            },
-            groundBelt30 = {
-                { type = "item", name = "iron-gear-wheel", amount = 80 },
-                { type = "item", name = prevUnderground30, amount = 2 },
-                { type = "fluid", name = "lubricant", amount = 40 }
-            },
-            groundBelt50 = {
-                { type = "item", name = "iron-gear-wheel", amount = 80 },
-                { type = "item", name = prevUnderground50, amount = 2 },
-                { type = "fluid", name = "lubricant", amount = 40 }
-            },
-            splitter = {
-                { type = "item", name = prevSplitter, amount = 1 },
-                { type = "item", name = "iron-gear-wheel", amount = 10 },
-                { type = "item", name = "advanced-circuit", amount = 10 },
-                { type = "fluid", name = "lubricant", amount = 80 }
-            },
-            loader = {
-                { type = "item", name = currentBelt, amount = 5 },
-                { type = "item", name = prevLoader, amount = 1 }
-            },
-            loader1 = {
-                { type = "item", name = currentBelt, amount = 5 },
-                { type = "item", name = prevLoader1, amount = 1 }
-            }
-        }
+
+        return buildGeneratedTierIngredients(
+            prevBelt,
+            prevUnderground,
+            prevUnderground30,
+            prevUnderground50,
+            prevSplitter,
+            prevLoader,
+            prevLoader1,
+            currentBelt,
+            tier
+        )
     end
 end
 
@@ -457,26 +600,11 @@ end
 local function getTech(tier)
     -- Vanilla tiers don't need tech (1-3)
     if tier <= 3 then return nil end
-    
-    -- With Space Age, tier 4 needs a bridge technology that depends on turbo-transport-belt
-    -- This ensures logistics-4 exists so logistics-5 can have it as prerequisite
+
     if tier == 4 and mods["space-age"] then
-        return {
-            number = 4,
-            count = baseTechCount,
-            packs = {
-                { "automation-science-pack", 1 },
-                { "logistic-science-pack", 1 },
-                { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "space-science-pack", 1 },
-                { "metallurgic-science-pack", 1 }
-            },
-            prerequisites = { "turbo-transport-belt" },
-            noRecipes = true  -- Flag to indicate no recipes should be unlocked
-        }
+        return nil
     end
-    
+
     local techConfigs = {
         [4] = {
             number = 4,
@@ -484,11 +612,9 @@ local function getTech(tier)
             packs = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
-                { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "utility-science-pack", 1 }
+                { "chemical-science-pack", 1 }
             },
-            prerequisites = { "logistics-3", "utility-science-pack" }
+            prerequisites = { "logistics-3", "chemical-science-pack" }
         },
         [5] = {
             number = 5,
@@ -497,10 +623,9 @@ local function getTech(tier)
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "utility-science-pack", 1 }
+                { "production-science-pack", 1 }
             },
-            prerequisites = { "logistics-4" }
+            prerequisites = mods["space-age"] and { "turbo-transport-belt", "production-science-pack" } or { getLogisticsTechName(4), "production-science-pack" }
         },
         [6] = {
             number = 6,
@@ -509,10 +634,9 @@ local function getTech(tier)
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "utility-science-pack", 1 }
+                { "production-science-pack", 1 }
             },
-            prerequisites = { "logistics-5" }
+            prerequisites = { getLogisticsTechName(5) }
         },
         [7] = {
             number = 7,
@@ -521,10 +645,9 @@ local function getTech(tier)
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "utility-science-pack", 1 }
+                { "production-science-pack", 1 }
             },
-            prerequisites = { "logistics-6" }
+            prerequisites = { getLogisticsTechName(6) }
         },
         [8] = {
             number = 8,
@@ -536,7 +659,7 @@ local function getTech(tier)
                 { "production-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
-            prerequisites = { "logistics-7" }
+            prerequisites = { getLogisticsTechName(7), "utility-science-pack" }
         },
         [9] = {
             number = 9,
@@ -548,7 +671,7 @@ local function getTech(tier)
                 { "production-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
-            prerequisites = { "logistics-8" }
+            prerequisites = { getLogisticsTechName(8) }
         },
         [10] = {
             number = 10,
@@ -560,15 +683,26 @@ local function getTech(tier)
                 { "production-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
-            prerequisites = { "logistics-9" }
+            prerequisites = { getLogisticsTechName(9) }
         }
     }
 
     local cfg = techConfigs[tier]
     if cfg then
-        -- Inject Space Age planet science packs (metallurgic / electromagnetic / cryogenic)
-        -- following the project-wide progression in CostConfig.spaceAgeSciencePacks.
-        cfg.packs = CostCalculator.getTechPacks(cfg.packs, tier)
+        local prerequisites = copyPrerequisites(cfg.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getTransportBeltDeltaPrerequisite(tier))
+
+        cfg = {
+            number = getLogisticsTechLevel(tier),
+            count = CostCalculator.scaleAbsoluteTechCount(transportBeltTechCounts[tier]),
+            packs = CostCalculator.getTechPacks(cfg.packs, tier, {
+                spaceAgePackOverrides = transportBeltSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites,
+            noRecipes = cfg.noRecipes
+        }
     end
     return cfg
 end
@@ -591,6 +725,7 @@ for tier = 1, 10 do
         nextUpdate = getNextUpdate(tier),
         order = config.order,
         ingredients = getIngredients(tier),
-        tech = getTech(tier)
+        tech = getTech(tier),
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, transportBeltSpaceAgeMaterials)
     }
 end

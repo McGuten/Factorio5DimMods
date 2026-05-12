@@ -19,6 +19,84 @@ local baseEnergy = 420
 local baseEmissions = 6
 local baseTechCount = RecipeTemplates.baseTechCounts.oilRefinery
 
+local oilRefinerySpaceAgeMaterials = {
+    [4] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [5] = { type = "fluid", name = "molten-iron", amount = 180, category = "metallurgy" },
+    [6] = { name = "tungsten-plate", amount = 24, category = "metallurgy" },
+    [7] = { type = "fluid", name = "electrolyte", amount = 180, category = "electromagnetics" },
+    [8] = { name = "supercapacitor", amount = 12, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 10, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 160, category = "cryogenics" }
+}
+
+local oilRefinerySpaceAgeSciencePacks = {
+    [4] = { "space-science-pack", "metallurgic-science-pack" },
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local oilRefinerySpaceAgeDeltaPrerequisites = {
+    [4] = "foundry",
+    [5] = "foundry",
+    [6] = "tungsten-steel",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local oilRefineryBaseRecipeCategories = {
+    [4] = "crafting-with-fluid"
+}
+
+local oilRefineryDeltaPrerequisites = {
+    [2] = "concrete",
+    [3] = "sulfur-processing",
+    [4] = "lubricant",
+    [5] = "concrete",
+    [6] = "plastics",
+    [7] = "battery",
+    [8] = "processing-unit",
+    [9] = "low-density-structure",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getOilRefineryDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and oilRefinerySpaceAgeDeltaPrerequisites[tier] then
+        return oilRefinerySpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return oilRefineryDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: speed bonus, module bonus, order, vanilla flag
@@ -144,7 +222,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.oilRefinery[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = oilRefinerySpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade (nil for tier 10)
@@ -157,13 +237,23 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getOilRefineryDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = oilRefinerySpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
+
+    local recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, oilRefinerySpaceAgeMaterials)
+        or oilRefineryBaseRecipeCategories[tier]
     
     -- Generate the oil refinery
     genOilRefinery {
@@ -177,6 +267,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
+        recipeCategory = recipeCategory,
         tech = tech
     }
 end

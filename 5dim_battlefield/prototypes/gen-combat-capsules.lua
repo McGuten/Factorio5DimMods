@@ -6,6 +6,8 @@
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 
 local function setTieredIcons(prototype, baseIcon, tier)
     prototype.icon = nil
@@ -51,41 +53,101 @@ local function getTechPacks(tier)
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         }
-    elseif tier <= 5 then
-        return {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 }
-        }
     elseif tier <= 7 then
         return {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 }
-        }
-    elseif tier <= 9 then
-        return {
-            { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "military-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
         }
     else
         return {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         }
     end
+end
+
+local combatSupportMaterials = {
+    [2] = { type = "item", name = "flying-robot-frame", amount = 1 },
+    [3] = { type = "item", name = "battery", amount = 2 },
+    [4] = { type = "item", name = "advanced-circuit", amount = 2 },
+    [5] = { type = "item", name = "electric-engine-unit", amount = 1 },
+    [6] = { type = "item", name = "processing-unit", amount = 1 },
+    [7] = { type = "item", name = "low-density-structure", amount = 1 },
+    [8] = { type = "item", name = "speed-module-2", amount = 1 },
+    [9] = { type = "item", name = "productivity-module-2", amount = 1 },
+    [10] = { type = "item", name = "speed-module-3", amount = 1 }
+}
+
+local combatSupportSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 2, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 40, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 1, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
+}
+
+local combatSupportSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local combatSupportSpaceAgePrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local function getCombatSupportDeltaMaterial(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and combatSupportSpaceAgeMaterials[tier] then
+        local override = combatSupportSpaceAgeMaterials[tier]
+        return {
+            type = override.type or "item",
+            name = override.name,
+            amount = override.amount
+        }
+    end
+
+    return combatSupportMaterials[tier]
+end
+
+local function getCombatSupportRecipeCategory(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and combatSupportSpaceAgeMaterials[tier] then
+        return combatSupportSpaceAgeMaterials[tier].category
+    end
+end
+
+local function getCombatSupportIngredients(tier, baseName, previousPrefix)
+    return {
+        { type = "item", name = tier == 2 and baseName or (previousPrefix .. (tier - 1)), amount = 1 },
+        getCombatSupportDeltaMaterial(tier)
+    }
+end
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function getCombatSupportPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() and combatSupportSpaceAgePrerequisites[tier] then
+        table.insert(prerequisites, combatSupportSpaceAgePrerequisites[tier])
+    end
+
+    return prerequisites
 end
 
 -------------------------------------------------------------------------------
@@ -137,15 +199,10 @@ for tier, config in pairs(tierConfig) do
             name = name,
             enabled = false,
             energy_required = 8,
-            ingredients = tier == 2 and {
-                { type = "item", name = "grenade", amount = 2 },
-                { type = "item", name = "explosives", amount = 5 }
-            } or {
-                { type = "item", name = "5d-grenade-" .. (tier - 1), amount = 1 },
-                { type = "item", name = "explosives", amount = 5 }
-            },
+            ingredients = getCombatSupportIngredients(tier, "grenade", "5d-grenade-"),
             results = { { type = "item", name = name, amount = 1 } }
         }
+        recipe.category = getCombatSupportRecipeCategory(tier)
         setTieredIcons(recipe, "__base__/graphics/icons/grenade.png", tier)
         
         -- Create technology
@@ -155,10 +212,13 @@ for tier, config in pairs(tierConfig) do
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },
-            prerequisites = tier == 2 and { "military-2" } or { "5d-grenade-" .. (tier - 1) },
+            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-2" } or { "5d-grenade-" .. (tier - 1) }),
             unit = {
                 count = 100 * tier,
-                ingredients = getTechPacks(tier),
+                ingredients = CostCalculator.getTechPacks(getTechPacks(tier), tier, {
+                    spaceAgePackOverrides = combatSupportSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             }
         }
@@ -209,15 +269,10 @@ for tier, config in pairs(tierConfig) do
             name = name,
             enabled = false,
             energy_required = 8,
-            ingredients = tier == 2 and {
-                { type = "item", name = "cluster-grenade", amount = 2 },
-                { type = "item", name = "explosives", amount = 10 }
-            } or {
-                { type = "item", name = "5d-cluster-grenade-" .. (tier - 1), amount = 1 },
-                { type = "item", name = "explosives", amount = 10 }
-            },
+            ingredients = getCombatSupportIngredients(tier, "cluster-grenade", "5d-cluster-grenade-"),
             results = { { type = "item", name = name, amount = 1 } }
         }
+        recipe.category = getCombatSupportRecipeCategory(tier)
         setTieredIcons(recipe, "__base__/graphics/icons/cluster-grenade.png", tier)
         
         -- Create technology
@@ -227,10 +282,13 @@ for tier, config in pairs(tierConfig) do
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },
-            prerequisites = tier == 2 and { "military-3" } or { "5d-cluster-grenade-" .. (tier - 1) },
+            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-3" } or { "5d-cluster-grenade-" .. (tier - 1) }),
             unit = {
                 count = 150 * tier,
-                ingredients = getTechPacks(tier),
+                ingredients = CostCalculator.getTechPacks(getTechPacks(tier), tier, {
+                    spaceAgePackOverrides = combatSupportSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             }
         }
@@ -295,15 +353,10 @@ for tier, config in pairs(tierConfig) do
             name = capsuleName,
             enabled = false,
             energy_required = 8,
-            ingredients = tier == 2 and {
-                { type = "item", name = "poison-capsule", amount = 2 },
-                { type = "item", name = "coal", amount = 10 }
-            } or {
-                { type = "item", name = "5d-poison-capsule-" .. (tier - 1), amount = 1 },
-                { type = "item", name = "coal", amount = 10 }
-            },
+            ingredients = getCombatSupportIngredients(tier, "poison-capsule", "5d-poison-capsule-"),
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
+        recipe.category = getCombatSupportRecipeCategory(tier)
         setTieredIcons(recipe, "__base__/graphics/icons/poison-capsule.png", tier)
         
         -- Create technology
@@ -313,10 +366,13 @@ for tier, config in pairs(tierConfig) do
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
-            prerequisites = tier == 2 and { "military-3" } or { "5d-poison-capsule-" .. (tier - 1) },
+            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-3" } or { "5d-poison-capsule-" .. (tier - 1) }),
             unit = {
                 count = 100 * tier,
-                ingredients = getTechPacks(tier),
+                ingredients = CostCalculator.getTechPacks(getTechPacks(tier), tier, {
+                    spaceAgePackOverrides = combatSupportSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             }
         }
@@ -379,15 +435,10 @@ for tier, config in pairs(tierConfig) do
             name = capsuleName,
             enabled = false,
             energy_required = 8,
-            ingredients = tier == 2 and {
-                { type = "item", name = "slowdown-capsule", amount = 2 },
-                { type = "item", name = "coal", amount = 10 }
-            } or {
-                { type = "item", name = "5d-slowdown-capsule-" .. (tier - 1), amount = 1 },
-                { type = "item", name = "coal", amount = 10 }
-            },
+            ingredients = getCombatSupportIngredients(tier, "slowdown-capsule", "5d-slowdown-capsule-"),
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
+        recipe.category = getCombatSupportRecipeCategory(tier)
         setTieredIcons(recipe, "__base__/graphics/icons/slowdown-capsule.png", tier)
         
         -- Create technology
@@ -397,10 +448,13 @@ for tier, config in pairs(tierConfig) do
             effects = {
                 { type = "unlock-recipe", recipe = capsuleName }
             },
-            prerequisites = tier == 2 and { "military-3" } or { "5d-slowdown-capsule-" .. (tier - 1) },
+            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-3" } or { "5d-slowdown-capsule-" .. (tier - 1) }),
             unit = {
                 count = 100 * tier,
-                ingredients = getTechPacks(tier),
+                ingredients = CostCalculator.getTechPacks(getTechPacks(tier), tier, {
+                    spaceAgePackOverrides = combatSupportSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             }
         }

@@ -27,7 +27,20 @@ if mods["space-age"] then
     
     local batteryTech = data.raw.technology["battery-mk3-equipment"]
     if batteryTech then
-        batteryTech.icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-03.png"
-        batteryTech.icon_size = 64
+        if batteryTech.icons and batteryTech.icons[2] then
+            batteryTech.icons[1] = {
+                icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-03.png",
+                icon_size = 64
+            }
+        else
+            batteryTech.icons = {
+                {
+                    icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-03.png",
+                    icon_size = 64
+                }
+            }
+        end
+        batteryTech.icon = nil
+        batteryTech.icon_size = nil
     end
 end

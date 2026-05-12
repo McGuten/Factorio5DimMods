@@ -1,5 +1,7 @@
 require("__5dim_core__.lib.equipment.generation-power-armor")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -8,6 +10,156 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local config = {
     baseTechCount = 250,
     subgroup = "armor-power-armor"
+}
+
+local powerArmorSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 16, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 2, category = "cryogenics" }
+}
+
+local powerArmorSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local powerArmorSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local powerArmorDeltaPrerequisites = {
+    [3] = "steel-processing",
+    [4] = "battery",
+    [5] = "advanced-electronics-2",
+    [6] = "low-density-structure",
+    [7] = "speed-module-2",
+    [8] = "productivity-module-2",
+    [9] = "speed-module-3",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getPowerArmorDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and powerArmorSpaceAgeDeltaPrerequisites[tier] then
+        return powerArmorSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return powerArmorDeltaPrerequisites[tier]
+end
+
+local techConfig = {
+    [3] = {
+        number = 1,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "power-armor-mk2", "production-science-pack" }
+    },
+    [4] = {
+        number = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-1" }
+    },
+    [5] = {
+        number = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-2", "utility-science-pack" }
+    },
+    [6] = {
+        number = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-3" }
+    },
+    [7] = {
+        number = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-4" }
+    },
+    [8] = {
+        number = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-5" }
+    },
+    [9] = {
+        number = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-6" }
+    },
+    [10] = {
+        number = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-power-armor-7" }
+    }
 }
 
 -------------------------------------------------------------------------------
@@ -175,14 +327,27 @@ local tiers = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.powerArmor[i], i, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = powerArmorSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+
     local techData = nil
-    local tierTech = tier.tech
-    if tierTech then
+    local tc = techConfig[i]
+    if tc then
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getPowerArmorDeltaPrerequisite(i))
+
         techData = {
-            number = tierTech.number,
-            count = config.baseTechCount * tierTech.countMultiplier,
-            packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            number = tc.number,
+            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, i, {
+                spaceAgePackOverrides = powerArmorSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -194,7 +359,8 @@ for i, tier in ipairs(tiers) do
         height = tier.height,
         new = tier.new,
         order = tier.order,
-        ingredients = RecipeTemplates.powerArmor[i],
+        ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, powerArmorSpaceAgeMaterials),
         tech = techData
     }
 end

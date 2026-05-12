@@ -17,6 +17,68 @@ local baseLightSize = 40
 local baseEnergy = 5               -- kW
 local baseTechCount = 100
 
+local lampSpaceAgeMaterials = {
+    [8] = { name = "holmium-plate", amount = 4, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
+}
+
+local lampSpaceAgeSciencePacks = {
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local lampSpaceAgeDeltaPrerequisites = {
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local lampDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "electronics",
+    [4] = "battery",
+    [5] = "advanced-circuit",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getLampDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and lampSpaceAgeDeltaPrerequisites[tier] then
+        return lampSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return lampDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -86,10 +148,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "lamp-6", "utility-science-pack" }
+        prerequisites = { "lamp-6" }
     },
     [8] = {
         basePacks = {
@@ -140,18 +201,27 @@ for tier = 1, 10 do
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.lamp[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = lampSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getLampDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = lampSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -165,6 +235,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = tier < 10 and ("5d-lamp-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, lampSpaceAgeMaterials),
         tech = tech
     }
 end

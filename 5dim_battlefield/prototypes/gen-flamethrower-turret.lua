@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.battlefield.flamethrower-turret.generation-flamethrower-turret")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local tierColors = require("__5dim_core__.lib.tier-colors")
@@ -92,6 +93,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 }
+            ,{ "production-science-pack", 1 }
         },
         prerequisites = { "flamethrower-5" }
     },
@@ -103,6 +105,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 }
+            ,{ "production-science-pack", 1 }
         },
         prerequisites = { "flamethrower-6" }
     },
@@ -144,6 +147,64 @@ local techConfig = {
     }
 }
 
+local flamethrowerTurretSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 14, category = "metallurgy" },
+    [7] = { name = "carbon-fiber", amount = 10, category = "organic" },
+    [8] = { type = "fluid", name = "holmium-solution", amount = 140, category = "chemistry" },
+    [9] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 140, category = "cryogenics" }
+}
+
+local flamethrowerTurretSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local flamethrowerTurretSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "carbon-fiber",
+    [8] = "holmium-processing",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getFlamethrowerTurretPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        addPrerequisiteIfMissing(prerequisites, flamethrowerTurretSpaceAgeDeltaPrerequisites[tier])
+    end
+
+    return prerequisites
+end
+
 -------------------------------------------------------------------------------
 -- RESISTANCES BY TIER
 -------------------------------------------------------------------------------
@@ -171,7 +232,11 @@ for tier = 1, 10 do
     local health = baseHealth + (tier - 1) * healthIncrement
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.flamethrowerTurret[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.flamethrowerTurret[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = flamethrowerTurretSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -186,8 +251,11 @@ for tier = 1, 10 do
         tech = {
             number = tc.techName,
             count = baseTechCount * tc.countMultiplier,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = flamethrowerTurretSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = getFlamethrowerTurretPrerequisites(tier, tc.prerequisites)
         }
     end
     
@@ -204,6 +272,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         resistances = getResistances(tier),
         nextUpdate = nextUpgrade,
-        tech = tech
+        tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, flamethrowerTurretSpaceAgeMaterials)
     }
 end

@@ -16,6 +16,74 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local basePower = 60               -- kW power output
 local baseTechCount = 450
 
+local solarPanelSpaceAgeMaterials = {
+    [6] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [7] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [8] = { name = "superconductor", amount = 6, category = "electromagnetics" },
+    [9] = { name = "lithium-plate", amount = 10, category = "cryogenics" },
+    [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
+}
+
+local solarPanelSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "electromagnetic-science-pack" },
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "cryogenic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local solarPanelSpaceAgeDeltaPrerequisites = {
+    [6] = "electromagnetic-plant",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "lithium-processing",
+    [10] = "quantum-processor"
+}
+
+local solarPanelDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "battery",
+    [4] = "advanced-circuit",
+    [5] = "processing-unit",
+    [6] = "low-density-structure",
+    [7] = "speed-module",
+    [8] = "speed-module-2",
+    [9] = "efficiency-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getSolarPanelDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and solarPanelSpaceAgeDeltaPrerequisites[tier] then
+        return solarPanelSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return solarPanelDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -85,10 +153,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "solar-energy-6", "utility-science-pack" }
+        prerequisites = { "solar-energy-6" }
     },
     [8] = {
         basePacks = {
@@ -138,18 +205,27 @@ for tier = 1, 10 do
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.solarPanel[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = solarPanelSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getSolarPanelDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = solarPanelSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -162,6 +238,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = tier < 10 and ("5d-solar-panel-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, solarPanelSpaceAgeMaterials),
         tech = tech
     }
 end

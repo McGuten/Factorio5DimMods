@@ -19,8 +19,14 @@ function genCargoBay(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     if inputs.new then
         recipe.enabled = false
+    end
+    if inputs.new and inputs.surfaceConditions then
+        recipe.surface_conditions = inputs.surfaceConditions
     end
     if inputs.new then
         recipe.ingredients = inputs.ingredients

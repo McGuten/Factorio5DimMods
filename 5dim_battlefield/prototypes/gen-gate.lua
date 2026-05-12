@@ -43,9 +43,10 @@ local techConfig = {
         countMultiplier = 1,
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = { "gate", "stone-wall-2", "logistic-science-pack" }
+        prerequisites = { "gate", "stone-wall-2" }
     },
     [3] = {
         countMultiplier = 2,
@@ -54,7 +55,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "gate-2", "stone-wall-3", "military-science-pack" }
+        prerequisites = { "gate-2", "stone-wall-3" }
     },
     [4] = {
         countMultiplier = 3,
@@ -70,9 +71,10 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "military-science-pack", 1 }
+            { "military-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "gate-4", "stone-wall-5" }
+        prerequisites = { "gate-4", "stone-wall-5", "production-science-pack" }
     },
     [6] = {
         countMultiplier = 5,
@@ -80,9 +82,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "gate-5", "stone-wall-6", "chemical-science-pack" }
+        prerequisites = { "gate-5", "stone-wall-6" }
     },
     [7] = {
         countMultiplier = 6,
@@ -90,7 +92,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "gate-6", "stone-wall-7" }
     },
@@ -100,7 +102,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "gate-7", "stone-wall-8", "utility-science-pack" }
@@ -111,7 +113,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "gate-8", "stone-wall-9" }
@@ -122,12 +124,47 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "gate-9", "stone-wall-10" }
     }
 }
+
+local gateDeltaPrerequisites = {
+    [3] = "concrete",
+    [4] = "refined-concrete",
+    [5] = "steel-processing",
+    [6] = "battery",
+    [7] = "advanced-circuit",
+    [8] = "low-density-structure",
+    [9] = "speed-module",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
 
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
@@ -136,31 +173,40 @@ local techConfig = {
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
-    
+
     -- Calculate stats for this tier
     local health = baseHealth + (tier - 1) * healthIncrement
-    
+
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.gate[tier]
-    
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.gate[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
+
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
     if tier < 10 then
         nextUpgrade = "5d-gate-" .. string.format("%02d", tier + 1)
     end
-    
+
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, gateDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = baseTechCount * tc.countMultiplier,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                skipSpaceAgePacks = true
+            }),
+            prerequisites = prerequisites
         }
     end
-    
+
     -- Generate the gate
     genGates {
         number = tierNum,

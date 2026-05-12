@@ -27,7 +27,7 @@ if mods["space-age"] then
 end
 
 --Tech
--- require("prototypes.tech")
+-- Extra toolbelt techs were removed from the active load order.
 
 -- Changes
 require("prototypes.changes")

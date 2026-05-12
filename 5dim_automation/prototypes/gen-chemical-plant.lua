@@ -19,6 +19,79 @@ local baseEnergy = 210
 local baseEmissions = 4
 local baseTechCount = RecipeTemplates.baseTechCounts.chemicalPlant
 
+local chemicalPlantSpaceAgeMaterials = {
+    [6] = { type = "fluid", name = "holmium-solution", amount = 160, category = "chemistry" },
+    [7] = { name = "holmium-plate", amount = 16, category = "electromagnetics" },
+    [8] = { name = "superconductor", amount = 10, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 12, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 160, category = "cryogenics" }
+}
+
+local chemicalPlantSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "electromagnetic-science-pack" },
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local chemicalPlantSpaceAgeDeltaPrerequisites = {
+    [6] = "holmium-processing",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local chemicalPlantBaseRecipeCategories = {
+    [4] = "crafting-with-fluid",
+    [5] = "crafting-with-fluid"
+}
+
+local chemicalPlantDeltaPrerequisites = {
+    [2] = "sulfur-processing",
+    [3] = "plastics",
+    [4] = "sulfur-processing",
+    [5] = "lubricant",
+    [6] = "concrete",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "productivity-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getChemicalPlantDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and chemicalPlantSpaceAgeDeltaPrerequisites[tier] then
+        return chemicalPlantSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return chemicalPlantDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: speed bonus, module bonus, order, vanilla flag
@@ -143,7 +216,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.chemicalPlant[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = chemicalPlantSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade (nil for tier 10)
@@ -156,13 +231,23 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getChemicalPlantDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = chemicalPlantSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
+
+    local recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, chemicalPlantSpaceAgeMaterials)
+        or chemicalPlantBaseRecipeCategories[tier]
     
     -- Generate the chemical plant
     genChemicalPlants {
@@ -176,6 +261,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
+        recipeCategory = recipeCategory,
         tech = tech
     }
 end

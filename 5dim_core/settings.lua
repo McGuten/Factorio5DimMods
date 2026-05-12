@@ -2,22 +2,13 @@
 -- This file defines the startup settings for cost multipliers and Space Age integration
 
 data:extend({
-    -- Space Age Materials Integration (adds planetary materials to high-tier recipes)
+    -- Space Age planetary integration (adds planetary materials to high-tier recipes
+    -- and planetary science packs to high-tier technologies)
     -- Only visible when Space Age DLC is installed
     {
         type = "bool-setting",
         name = "5d-space-age-materials",
         order = "a-aa",
-        setting_type = "startup",
-        default_value = true,
-        hidden = not mods["space-age"]
-    },
-    -- Space Age Science Packs Integration (adds planetary science packs to high-tier technologies)
-    -- Only visible when Space Age DLC is installed
-    {
-        type = "bool-setting",
-        name = "5d-space-age-science-packs",
-        order = "a-ab",
         setting_type = "startup",
         default_value = true,
         hidden = not mods["space-age"]

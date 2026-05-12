@@ -4,9 +4,9 @@ function genBatterys(inputs)
         return
     end
 
-    local item = ""
-    local equipment = ""
-    local recipe = ""
+    local item
+    local equipment
+    local recipe
     
     -- Copy base prototypes
     if inputs.number == "01" then
@@ -33,6 +33,9 @@ function genBatterys(inputs)
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
 
     -- Equipment
     equipment.name = item.name
@@ -49,8 +52,21 @@ function genBatterys(inputs)
     if inputs.tech then
         local tech = table.deepcopy(data.raw.technology["battery-mk2-equipment"])
         tech.name = "5d-battery-equipment-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        if tech.icons and tech.icons[2] then
+            tech.icons[1] = {
+                icon = item.icon,
+                icon_size = 64
+            }
+        else
+            tech.icons = {
+                {
+                    icon = item.icon,
+                    icon_size = 64
+                }
+            }
+        end
+        tech.icon = nil
+        tech.icon_size = nil
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

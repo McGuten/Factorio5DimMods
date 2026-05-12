@@ -49,15 +49,13 @@ Spidertron resistances now explicitly cover acid, electric, and poison as well, 
 ## Progression
 
 ### Tank Progression
-- **T1-T3**: Early-mid game, requires military science
-- **T4-T5**: Mid game, requires production science
-- **T6-T7**: Late game, requires utility science
-- **T8-T10**: End game, requires space science
+- **T1-T4**: Early-mid game, extends the vanilla tank with chemical and military science
+- **T5-T6**: Mid-late game, requires production science
+- **T7-T10**: End game, requires utility science
 
 ### Spidertron Progression
 - **T1**: Requires spidertron research (vanilla)
-- **T2-T3**: Requires utility science
-- **T4-T10**: Requires space science
+- **T2-T10**: Requires late vanilla combat and equipment techs up through utility science
 
 ## Dependencies
 

@@ -30,6 +30,9 @@ function genAssemblingMachines(inputs)
         recipe.ingredients = inputs.ingredients
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
     end
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
 
     --Entity
     entity.name = item.name

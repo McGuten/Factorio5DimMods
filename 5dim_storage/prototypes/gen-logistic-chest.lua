@@ -17,6 +17,71 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseInventorySize = 48
 local baseTechCount = 125
 
+local logisticChestSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 4, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 80, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
+}
+
+local logisticChestSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local logisticChestSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local logisticChestDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "advanced-circuit",
+    [4] = "battery",
+    [5] = "processing-unit",
+    [6] = "low-density-structure",
+    [7] = "speed-module",
+    [8] = "speed-module-2",
+    [9] = "productivity-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getLogisticChestDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and logisticChestSpaceAgeDeltaPrerequisites[tier] then
+        return logisticChestSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return logisticChestDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -94,8 +159,7 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         }
     },
     [5] = {
@@ -119,8 +183,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         }
     },
     [8] = {
@@ -168,7 +231,9 @@ for _, chestTypeConfig in ipairs(logisticChestTypes) do
         local baseIngredients = RecipeTemplates[chestTypeConfig.template][tier]
         local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
             isBulkItem = false,
-            skipTierScaling = true
+            skipTierScaling = true,
+            spaceAgeMaterialOverrides = logisticChestSpaceAgeMaterials,
+            replaceSpaceAgeDelta = true
         })
         
         -- Determine next upgrade
@@ -186,11 +251,26 @@ for _, chestTypeConfig in ipairs(logisticChestTypes) do
             else
                 prerequisites = { chestTypeConfig.techPrefix .. "-" .. (tier - 1) }
             end
+
+            addPrerequisiteIfMissing(prerequisites, getLogisticChestDeltaPrerequisite(tier))
+
+            if tier == 2 then
+                addPrerequisiteIfMissing(prerequisites, "chemical-science-pack")
+            end
+            if tier == 5 then
+                addPrerequisiteIfMissing(prerequisites, "production-science-pack")
+            end
+            if tier == 8 then
+                addPrerequisiteIfMissing(prerequisites, "utility-science-pack")
+            end
             
             techSettings = {
                 number = tier,
                 count = baseTechCount * tier,
-                packs = techConfig[tier].basePacks,
+                packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
+                    spaceAgePackOverrides = logisticChestSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 prerequisites = prerequisites
             }
         end
@@ -203,7 +283,8 @@ for _, chestTypeConfig in ipairs(logisticChestTypes) do
             inventorySize = inventorySize,
             ingredients = ingredients,
             nextUpdate = nextUpgrade,
-            tech = techSettings
+            tech = techSettings,
+            recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, logisticChestSpaceAgeMaterials)
         }
     end
 end

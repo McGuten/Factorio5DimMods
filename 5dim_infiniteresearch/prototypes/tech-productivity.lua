@@ -1,8 +1,10 @@
+if mods["space-age"] then return end
+
 data:extend(
     {
         {
             type = "technology",
-            name = "research-productivity",
+            name = "5d-research-productivity",
             icons = util.technology_icon_constant_productivity("__base__/graphics/technology/research-speed.png"),
             icon_size = 256,
             effects = {

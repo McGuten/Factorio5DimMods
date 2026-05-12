@@ -595,8 +595,8 @@ data.raw.item["express-underground-belt"].subgroup = "transport-ground"
 data.raw.item["express-underground-belt"].order = "c"
 data.raw.item["pipe"].subgroup = "transport-pipe"
 data.raw.item["pipe"].order = "a"
-data.raw.item["pipe-to-ground"].subgroup = "transport-pipe-ground"
-data.raw.item["pipe-to-ground"].order = "a"
+data.raw.item["pipe-to-ground"].subgroup = "transport-pipe"
+data.raw.item["pipe-to-ground"].order = "b"
 data.raw.item["wooden-chest"].subgroup = "store-solid"
 data.raw.item["wooden-chest"].order = "a"
 data.raw.item["iron-chest"].subgroup = "store-solid"
@@ -625,9 +625,9 @@ if mods["space-age"] then
         data.raw.item["turbo-underground-belt"].order = "d"
     end
     data.raw.recipe["casting-pipe"].subgroup = "transport-pipe"
-    data.raw.recipe["casting-pipe"].order = "b"
-    data.raw.recipe["casting-pipe-to-ground"].subgroup = "transport-pipe-ground"
-    data.raw.recipe["casting-pipe-to-ground"].order = "b"
+    data.raw.recipe["casting-pipe"].order = "e"
+    data.raw.recipe["casting-pipe-to-ground"].subgroup = "transport-pipe"
+    data.raw.recipe["casting-pipe-to-ground"].order = "f"
 end
 
 --Vehicles

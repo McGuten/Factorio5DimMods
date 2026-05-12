@@ -16,7 +16,7 @@ local DEV_MODE = script.active_mods["5dim_dev"] ~= nil
 -- =============================================================================
 local GUI_NAME = "5dim_enemies_info_gui"
 local BUTTON_NAME = "5dim_enemies_toggle_button"
-local SPITTER_EVOLUTION_OFFSET = 0.05
+local SPITTER_EVOLUTION_OFFSET = 0.02
 
 -- Category display names
 local CategoryDisplay = {

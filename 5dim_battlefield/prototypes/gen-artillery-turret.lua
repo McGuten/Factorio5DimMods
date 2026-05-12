@@ -5,6 +5,8 @@
 
 require("__5dim_core__.lib.battlefield.generation-artillery-turret")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseEntity = data.raw["artillery-turret"] and data.raw["artillery-turret"]["artillery-turret"] or {}
 local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun["artillery-wagon-cannon"] or {}
@@ -149,6 +151,77 @@ local techConfig = {
     }
 }
 
+local artilleryTurretSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 40, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 240, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 30, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 20, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 12, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 6, category = "cryogenics" }
+}
+
+local artilleryTurretSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local artilleryTurretSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local artilleryTurretDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "explosives",
+    [5] = "engine",
+    [6] = "electric-engine",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "speed-module-2",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getArtilleryTurretDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and artilleryTurretSpaceAgeDeltaPrerequisites[tier] then
+        return artilleryTurretSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return artilleryTurretDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -162,12 +235,19 @@ for tier = 1, 10 do
     
     local techData = nil
     if techConfig[tier] then
+        local prerequisites = copyPrerequisites(techConfig[tier].prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getArtilleryTurretDeltaPrerequisite(tier))
+
         techData = {
             number = tier,
             count = baseTechCount * tier,
             attackModifier = (tier - 1) * damageScalePerTier,
-            packs = techConfig[tier].basePacks,
-            prerequisites = techConfig[tier].prerequisites
+            packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
+                spaceAgePackOverrides = artilleryTurretSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -179,9 +259,14 @@ for tier = 1, 10 do
         automaticRange = currentAutomaticRange,
         rotationSpeed = currentRotationSpeed,
         manualRangeModifier = baseManualRangeModifier,
-        ingredients = RecipeTemplates.artilleryTurret[tier],
+        ingredients = CostCalculator.processIngredients(RecipeTemplates.artilleryTurret[tier], tier, {
+            skipTierScaling = true,
+            spaceAgeMaterialOverrides = artilleryTurretSpaceAgeMaterials,
+            replaceSpaceAgeDelta = true
+        }),
         nextUpdate = tier < 10 and ("5d-artillery-turret-" .. string.format("%02d", tier + 1)) or nil,
-        tech = techData
+        tech = techData,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, artilleryTurretSpaceAgeMaterials)
     })
 
     currentRotationSpeed = currentRotationSpeed * 1.1

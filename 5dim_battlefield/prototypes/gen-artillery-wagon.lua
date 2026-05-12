@@ -6,6 +6,8 @@
 
 require("__5dim_core__.lib.battlefield.generation-artillery-wagon")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseEntity = data.raw["artillery-wagon"] and data.raw["artillery-wagon"]["artillery-wagon"] or {}
 local baseGun = baseEntity.gun and data.raw.gun[baseEntity.gun] or data.raw.gun["artillery-wagon-cannon"] or {}
@@ -86,10 +88,9 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-artillery-wagon-4", "space-science-pack" }
+        prerequisites = { "5d-artillery-wagon-4" }
     },
     [6] = {
         basePacks = {
@@ -98,8 +99,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-artillery-wagon-5" }
     },
@@ -110,8 +110,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-artillery-wagon-6" }
     },
@@ -122,8 +121,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-artillery-wagon-7" }
     },
@@ -134,8 +132,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-artillery-wagon-8" }
     },
@@ -146,12 +143,82 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "military-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-artillery-wagon-9" }
     }
 }
+
+local artilleryWagonSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 24, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 180, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 20, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 8, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 4, category = "cryogenics" }
+}
+
+local artilleryWagonSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local artilleryWagonSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local artilleryWagonDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "explosives",
+    [5] = "engine",
+    [6] = "electric-engine",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "speed-module-2",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getArtilleryWagonDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and artilleryWagonSpaceAgeDeltaPrerequisites[tier] then
+        return artilleryWagonSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return artilleryWagonDeltaPrerequisites[tier]
+end
 
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
@@ -168,12 +235,19 @@ for tier = 1, 10 do
     
     local techData = nil
     if techConfig[tier] then
+        local prerequisites = copyPrerequisites(techConfig[tier].prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getArtilleryWagonDeltaPrerequisite(tier))
+
         techData = {
             number = tier,
             count = baseTechCount * tier,
             attackModifier = (tier - 1) * damageScalePerTier,
-            packs = techConfig[tier].basePacks,
-            prerequisites = techConfig[tier].prerequisites
+            packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
+                spaceAgePackOverrides = artilleryWagonSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -188,9 +262,14 @@ for tier = 1, 10 do
         automatedAmmoCount = math.max(1, math.floor((currentAmmoSlots * automatedAmmoCountPerSlot) + 0.5)),
         rotationSpeed = currentRotationSpeed,
         manualRangeModifier = baseManualRangeModifier,
-        ingredients = RecipeTemplates.artilleryWagon[tier],
+        ingredients = CostCalculator.processIngredients(RecipeTemplates.artilleryWagon[tier], tier, {
+            skipTierScaling = true,
+            spaceAgeMaterialOverrides = artilleryWagonSpaceAgeMaterials,
+            replaceSpaceAgeDelta = true
+        }),
         nextUpdate = tier < 10 and ("5d-artillery-wagon-" .. string.format("%02d", tier + 1)) or nil,
-        tech = techData
+        tech = techData,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, artilleryWagonSpaceAgeMaterials)
     })
 
     currentMaxSpeed = currentMaxSpeed * 1.08

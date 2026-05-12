@@ -70,6 +70,9 @@ function genTeslaTurrets(inputs)
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.enabled = false
     recipe.ingredients = inputs.ingredients
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
 
     --Entity
     entity.name = item.name

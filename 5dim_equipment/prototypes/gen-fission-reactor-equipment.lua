@@ -1,5 +1,7 @@
 require("__5dim_core__.lib.equipment.generation-fission-reactor-equipment")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -9,6 +11,158 @@ local config = {
     powerMultiplier = 1.45,
     baseTechCount = 500,
     subgroup = "armor-fission-reactor"
+}
+
+local fissionReactorEquipmentSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 24, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 20, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 16, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 10, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 4, category = "cryogenics" }
+}
+
+local fissionReactorEquipmentSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local fissionReactorEquipmentSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local fissionReactorEquipmentDeltaPrerequisites = {
+    [2] = "battery",
+    [3] = "advanced-electronics",
+    [4] = "advanced-electronics-2",
+    [5] = "low-density-structure",
+    [6] = "productivity-module-2",
+    [7] = "speed-module-2",
+    [8] = "speed-module-3",
+    [9] = "productivity-module-3",
+    [10] = "efficiency-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getFissionReactorEquipmentDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and fissionReactorEquipmentSpaceAgeDeltaPrerequisites[tier] then
+        return fissionReactorEquipmentSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return fissionReactorEquipmentDeltaPrerequisites[tier]
+end
+
+local techConfig = {
+    [2] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment", "production-science-pack" }
+    },
+    [3] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-2" }
+    },
+    [4] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-3" }
+    },
+    [5] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-4", "utility-science-pack" }
+    },
+    [6] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-5" }
+    },
+    [7] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-6" }
+    },
+    [8] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-7" }
+    },
+    [9] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-8" }
+    },
+    [10] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "fission-reactor-equipment-9" }
+    }
 }
 
 -------------------------------------------------------------------------------
@@ -160,14 +314,27 @@ local tiers = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.fissionReactorEquipment[i], i, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = fissionReactorEquipmentSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+
     local techData = nil
-    local tierTech = tier.tech
-    if tierTech then
+    local tc = techConfig[i]
+    if tc then
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getFissionReactorEquipmentDeltaPrerequisite(i))
+
         techData = {
-            number = tierTech.number,
-            count = config.baseTechCount * tierTech.countMultiplier,
-            packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            number = i,
+            count = CostCalculator.calculateTechCount(config.baseTechCount, i),
+            packs = CostCalculator.getTechPacks(tc.basePacks, i, {
+                spaceAgePackOverrides = fissionReactorEquipmentSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -177,7 +344,8 @@ for i, tier in ipairs(tiers) do
         power = tier.power,
         new = tier.new,
         order = tier.order,
-        ingredients = RecipeTemplates.fissionReactorEquipment[i],
+        ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, fissionReactorEquipmentSpaceAgeMaterials),
         tech = techData
     }
 end

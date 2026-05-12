@@ -18,6 +18,90 @@ local baseCargo = 25000
 local baseWeight = 2000
 local baseTechCount = 100
 
+local fluidWagonSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-copper", amount = 200, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 20, category = "metallurgy" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 160, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 8, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 120, category = "cryogenics" }
+}
+
+local fluidWagonSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local fluidWagonSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local fluidWagonDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "fluid-handling",
+    [4] = "concrete",
+    [5] = "engine",
+    [6] = "lubricant",
+    [7] = "electric-engine",
+    [8] = "low-density-structure",
+    [9] = "processing-unit",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getFluidWagonDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and fluidWagonSpaceAgeDeltaPrerequisites[tier] then
+        return fluidWagonSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return fluidWagonDeltaPrerequisites[tier]
+end
+
+local function getFluidWagonRecipeCategory(tier)
+    local spaceAgeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, fluidWagonSpaceAgeMaterials)
+    if spaceAgeCategory then
+        return spaceAgeCategory
+    end
+
+    if tier == 6 then
+        return "crafting-with-fluid"
+    end
+
+    return nil
+end
+
 -- Increments per tier
 local speedIncrement = 0.17
 local cargoIncrement = 25000
@@ -146,27 +230,26 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.fluidWagon[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = fluidWagonSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
 
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
-        local prerequisites = {}
-        for _, prerequisite in ipairs(tc.prerequisites) do
-            table.insert(prerequisites, prerequisite)
-        end
-        if mods["5dim_storage"] and tier >= 5 then
-            table.insert(prerequisites, "fluid-handling-" .. tier)
-        end
-        if mods["5dim_transport"] and tier >= 5 then
-            table.insert(prerequisites, "5d-pump-" .. tier)
-        end
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getFluidWagonDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = fluidWagonSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
             prerequisites = prerequisites
         }
     end
@@ -181,6 +264,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,
-        tech = tech
+        tech = tech,
+        recipeCategory = getFluidWagonRecipeCategory(tier)
     }
 end

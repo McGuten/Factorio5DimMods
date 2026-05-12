@@ -19,6 +19,76 @@ local baseMaxTransfer = 1        -- Heat transfer in GW
 local baseEmissions = 30         -- Pollution emissions
 local baseTechCount = 300
 
+local heatPipeSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 8, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 120, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 6, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 4, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-hot", amount = 80, category = "cryogenics" }
+}
+
+local heatPipeSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local heatPipeSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local heatPipeDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [4] = "concrete",
+    [5] = "concrete",
+    [6] = "electric-engine",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "battery",
+    [10] = "speed-module"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getHeatPipeDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and heatPipeSpaceAgeDeltaPrerequisites[tier] then
+        return heatPipeSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return heatPipeDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -45,9 +115,7 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "nuclear-power" }
     },
@@ -55,9 +123,7 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "chemical-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-1", "5d-steam-turbine-1", "5d-heat-pipe-1", "5d-heat-exchanger-1" }
     },
@@ -66,20 +132,16 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-nuclear-reactor-2", "5d-steam-turbine-2", "5d-heat-pipe-2", "5d-heat-exchanger-2", "space-science-pack" }
+        prerequisites = { "5d-nuclear-reactor-2", "5d-steam-turbine-2", "5d-heat-pipe-2", "5d-heat-exchanger-2", "production-science-pack" }
     },
     [5] = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-3", "5d-steam-turbine-3", "5d-heat-pipe-3", "5d-heat-exchanger-3" }
     },
@@ -88,9 +150,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-4", "5d-steam-turbine-4", "5d-heat-pipe-4", "5d-heat-exchanger-4" }
     },
@@ -99,9 +159,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-5", "5d-steam-turbine-5", "5d-heat-pipe-5", "5d-heat-exchanger-5" }
     },
@@ -111,10 +169,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-nuclear-reactor-6", "5d-steam-turbine-6", "5d-heat-pipe-6", "5d-heat-exchanger-6" }
+        prerequisites = { "5d-nuclear-reactor-6", "5d-steam-turbine-6", "5d-heat-pipe-6", "5d-heat-exchanger-6", "utility-science-pack" }
     },
     [9] = {
         basePacks = {
@@ -122,8 +179,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-7", "5d-steam-turbine-7", "5d-heat-pipe-7", "5d-heat-exchanger-7" }
     },
@@ -133,17 +189,10 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-nuclear-reactor-8", "5d-steam-turbine-8", "5d-heat-pipe-8", "5d-heat-exchanger-8" }
     }
-}
-
-local nuclearSpaceAgePackThresholds = {
-    { tier = 6, pack = "metallurgic-science-pack" },
-    { tier = 8, pack = "electromagnetic-science-pack" },
-    { tier = 10, pack = "cryogenic-science-pack" }
 }
 
 -------------------------------------------------------------------------------
@@ -169,7 +218,12 @@ for tier = 1, 10 do
     end
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.heatPipe[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.heatPipe[tier], tier, {
+        isBulkItem = false,
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = heatPipeSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade
     local nextUpgrade = nil
@@ -181,13 +235,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getHeatPipeDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = baseTechCount * (tier - 1),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
-                spaceAgePackThresholds = nuclearSpaceAgePackThresholds
+                spaceAgePackOverrides = heatPipeSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
             }),
-            prerequisites = tc.prerequisites
+            prerequisites = prerequisites
         }
     end
     
@@ -201,6 +260,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, heatPipeSpaceAgeMaterials),
         pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
         tech = tech

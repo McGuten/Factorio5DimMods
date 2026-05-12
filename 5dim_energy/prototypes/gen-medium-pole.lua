@@ -17,6 +17,71 @@ local baseWireDistance = 9
 local baseSupplyArea = 3.5
 local baseTechCount = 150
 
+local mediumPoleSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 6, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 100, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 6, category = "cryogenics" }
+}
+
+local mediumPoleSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local mediumPoleSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
+}
+
+local mediumPoleDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "advanced-circuit",
+    [5] = "battery",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getMediumPoleDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and mediumPoleSpaceAgeDeltaPrerequisites[tier] then
+        return mediumPoleSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return mediumPoleDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -85,10 +150,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "production-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-substation-5", "5d-medium-electric-pole-5", "5d-big-electric-pole-5", "utility-science-pack" }
+        prerequisites = { "5d-substation-5", "5d-medium-electric-pole-5", "5d-big-electric-pole-5" }
     },
     [8] = {
         basePacks = {
@@ -137,18 +201,27 @@ for tier = 1, 10 do
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.mediumElectricPole[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = mediumPoleSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getMediumPoleDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = mediumPoleSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -162,6 +235,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = tier < 10 and ("5d-medium-electric-pole-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, mediumPoleSpaceAgeMaterials),
         tech = tech
     }
 end

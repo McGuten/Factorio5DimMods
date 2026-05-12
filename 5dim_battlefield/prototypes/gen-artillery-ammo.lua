@@ -132,7 +132,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-poison" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "military-3" },
         unit = {
             count = 500,
             ingredients = {
@@ -243,7 +243,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-incendiary" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "flamethrower", "rocket-fuel" },
         unit = {
             count = 500,
             ingredients = {
@@ -352,7 +352,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-cluster" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "military-3" },
         unit = {
             count = 500,
             ingredients = {
@@ -458,7 +458,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-acid" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "sulfur-processing" },
         unit = {
             count = 500,
             ingredients = {
@@ -563,7 +563,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-fragmentation" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "military-4" },
         unit = {
             count = 500,
             ingredients = {
@@ -769,7 +769,7 @@ data:extend({
         effects = {
             { type = "unlock-recipe", recipe = "5d-artillery-shell-shockwave" }
         },
-        prerequisites = { "artillery" },
+        prerequisites = { "artillery", "explosives" },
         unit = {
             count = 500,
             ingredients = {

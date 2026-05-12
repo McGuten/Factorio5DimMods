@@ -18,6 +18,51 @@ local baseEnergy = 1500
 local baseEmissions = 4
 local baseTechCount = 500
 
+local electromagneticPlantSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "cryogenic-science-pack" },
+    [6] = { "space-science-pack", "cryogenic-science-pack" },
+    [7] = { "space-science-pack", "cryogenic-science-pack" },
+    [8] = { "space-science-pack", "cryogenic-science-pack" },
+    [9] = { "space-science-pack", "cryogenic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local electromagneticPlantDeltaPrerequisites = {
+    [2] = "electromagnetic-plant",
+    [3] = "electromagnetic-plant",
+    [4] = "electromagnetic-plant",
+    [5] = "lithium-processing",
+    [6] = "cryogenic-plant",
+    [7] = "cryogenic-plant",
+    [8] = "cryogenic-plant",
+    [9] = "cryogenic-plant",
+    [10] = "quantum-processor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -76,10 +121,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
-        prerequisites = { "5d-electromagnetic-plant-4", "utility-science-pack" }
+        prerequisites = { "5d-electromagnetic-plant-4" }
     },
     [6] = {
         basePacks = {
@@ -87,7 +131,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-electromagnetic-plant-5" }
@@ -98,11 +141,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
-        prerequisites = { "5d-electromagnetic-plant-6", "space-science-pack" }
+        prerequisites = { "5d-electromagnetic-plant-6" }
     },
     [8] = {
         basePacks = {
@@ -110,8 +151,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-electromagnetic-plant-7" }
@@ -122,8 +161,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-electromagnetic-plant-8" }
@@ -134,8 +171,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "production-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 },
             { "electromagnetic-science-pack", 1 }
         },
         prerequisites = { "5d-electromagnetic-plant-9" }
@@ -157,7 +192,10 @@ for tier = 1, 10 do
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.electromagneticPlant[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.electromagneticPlant[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -169,11 +207,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, electromagneticPlantDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = baseTechCount * (tier - 1),
-            packs = tc.basePacks,
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = electromagneticPlantSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
     

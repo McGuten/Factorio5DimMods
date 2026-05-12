@@ -1,4 +1,13 @@
 function genTransportBelts(inputs)
+    local recipeCategory = inputs.recipeCategory
+    if not recipeCategory and inputs.liquids then
+        if mods['space-age'] then
+            recipeCategory = "crafting-with-fluid-or-metallurgy"
+        else
+            recipeCategory = "crafting-with-fluid"
+        end
+    end
+
     --Set name
     local transportBeltName = inputs.copy.name.preName .. "transport-belt" .. inputs.copy.name.postName
     local undergroundName = inputs.copy.name.preName .. "underground-belt" .. inputs.copy.name.postName
@@ -40,12 +49,8 @@ function genTransportBelts(inputs)
     else
         recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
     end
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeTransportBelt.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeTransportBelt.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeTransportBelt.category = recipeCategory
     end
     recipeTransportBelt.icon_size = 64
 
@@ -99,12 +104,8 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt.icon = itemUndergroundBelt.icon
     recipeUndergroundBelt.subgroup = "transport-ground"
     recipeUndergroundBelt.icon_size = 64
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeUndergroundBelt.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeUndergroundBelt.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeUndergroundBelt.category = recipeCategory
     end
     if inputs.new then
         recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
@@ -163,12 +164,8 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt30.subgroup = "transport-ground-30"
     recipeUndergroundBelt30.icon_size = 64
     recipeUndergroundBelt30.enabled = false
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeUndergroundBelt30.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeUndergroundBelt30.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeUndergroundBelt30.category = recipeCategory
     end
     recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
     recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
@@ -225,12 +222,8 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt50.icon = itemUndergroundBelt50.icon
     recipeUndergroundBelt50.subgroup = "transport-ground-50"
     recipeUndergroundBelt50.icon_size = 64
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeUndergroundBelt50.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeUndergroundBelt50.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeUndergroundBelt50.category = recipeCategory
     end
     recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
     recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
@@ -283,12 +276,8 @@ function genTransportBelts(inputs)
     recipeSplitter.icon = itemSplitter.icon
     recipeSplitter.subgroup = "transport-splitters"
     recipeSplitter.icon_size = 64
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeSplitter.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeSplitter.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeSplitter.category = recipeCategory
     end
     if inputs.new then
         recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
@@ -356,12 +345,8 @@ function genTransportBelts(inputs)
     recipeLoader.subgroup = "transport-loader"
     recipeLoader.icon_size = 64
     recipeLoader.hidden = false
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeLoader.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeLoader.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeLoader.category = recipeCategory
     end
     if inputs.new then
         recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
@@ -416,12 +401,8 @@ function genTransportBelts(inputs)
     recipeLoader1.subgroup = "transport-loader-1x1"
     recipeLoader1.icon_size = 64
     recipeLoader1.hidden = false
-    if inputs.liquids then
-        if mods['space-age'] then
-            recipeLoader1.category = "crafting-with-fluid-or-metallurgy"
-        else
-            recipeLoader1.category = "crafting-with-fluid"
-        end
+    if recipeCategory then
+        recipeLoader1.category = recipeCategory
     end
     recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
     recipeLoader1.ingredients = inputs.ingredients.loader1

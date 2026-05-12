@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.battlefield.generation-radar")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -46,9 +47,10 @@ local techConfig = {
         countMultiplier = 1,
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = { "radar" }
+        prerequisites = { "radar", "military" }
     },
     [3] = {
         countMultiplier = 2,
@@ -57,7 +59,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "radar-2", "military-science-pack" }
+        prerequisites = { "radar-2" }
     },
     [4] = {
         countMultiplier = 3,
@@ -74,9 +76,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "radar-4", "chemical-science-pack" }
+        prerequisites = { "radar-4", "production-science-pack" }
     },
     [6] = {
         countMultiplier = 5,
@@ -84,7 +86,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "radar-5" }
     },
@@ -94,7 +96,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "radar-6" }
     },
@@ -104,7 +106,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "radar-7", "utility-science-pack" }
@@ -133,6 +135,71 @@ local techConfig = {
     }
 }
 
+local radarSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 140, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
+}
+
+local radarSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local radarSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local radarDeltaPrerequisites = {
+    [2] = "advanced-circuit",
+    [3] = "battery",
+    [4] = "processing-unit",
+    [5] = "low-density-structure",
+    [6] = "speed-module",
+    [7] = "speed-module-2",
+    [8] = "productivity-module-2",
+    [9] = "speed-module-3",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getRadarDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and radarSpaceAgeDeltaPrerequisites[tier] then
+        return radarSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return radarDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -147,7 +214,11 @@ for tier = 1, 10 do
     local energy = baseEnergy + (tier - 1) * energyIncrement
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.radar[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.radar[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = radarSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -159,11 +230,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getRadarDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = baseTechCount * tc.countMultiplier,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = radarSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -178,6 +256,7 @@ for tier = 1, 10 do
         energy = energy,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
-        tech = tech
+        tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, radarSpaceAgeMaterials)
     }
 end

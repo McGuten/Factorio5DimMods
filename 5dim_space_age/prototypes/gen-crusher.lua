@@ -18,6 +18,49 @@ local baseEnergy = 540
 local baseEmissions = 1
 local baseTechCount = 500
 
+local crusherSpaceAgeSciencePacks = {
+    [7] = { "electromagnetic-science-pack" },
+    [8] = { "electromagnetic-science-pack" },
+    [9] = { "cryogenic-science-pack" },
+    [10] = { "cryogenic-science-pack" }
+}
+
+local crusherDeltaPrerequisites = {
+    [2] = "calcite-processing",
+    [3] = "foundry",
+    [4] = "foundry",
+    [5] = "tungsten-steel",
+    [6] = "tungsten-carbide",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "cryogenic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -45,7 +88,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "space-science-pack", 1 },
+            { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "space-platform" }
     },
@@ -54,7 +98,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "space-science-pack", 1 },
+            { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-2" }
     },
@@ -63,7 +108,8 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "space-science-pack", 1 },
+            { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-3" }
     },
@@ -73,9 +119,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "metallurgic-science-pack", 1 }
         },
-        prerequisites = { "5d-crusher-4", "utility-science-pack" }
+        prerequisites = { "5d-crusher-4" }
     },
     [6] = {
         basePacks = {
@@ -83,7 +129,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-5" }
     },
@@ -93,10 +139,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "metallurgic-science-pack", 1 }
         },
-        prerequisites = { "5d-crusher-6", "metallurgic-science-pack" }
+        prerequisites = { "5d-crusher-6" }
     },
     [8] = {
         basePacks = {
@@ -104,7 +149,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-7" }
@@ -115,7 +159,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-8" }
@@ -126,7 +169,6 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "chemical-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "utility-science-pack", 1 },
             { "metallurgic-science-pack", 1 }
         },
         prerequisites = { "5d-crusher-9" }
@@ -148,7 +190,10 @@ for tier = 1, 10 do
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.crusher[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.crusher[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -160,11 +205,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, crusherDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = baseTechCount * (tier - 1),
-            packs = tc.basePacks,
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = crusherSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -180,6 +232,7 @@ for tier = 1, 10 do
         order = config.order,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
+        recipeCategory = "metallurgy",
         tech = tech
     }
 end

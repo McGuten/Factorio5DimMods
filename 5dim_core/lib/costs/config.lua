@@ -9,9 +9,10 @@ local CostConfig = {}
 -- SETTINGS
 -------------------------------------------------------------------------------
 
--- Space Age integration toggles (separate for materials and science packs)
-CostConfig.spaceAgeMaterials_enabled = settings.startup["5d-space-age-materials"].value
-CostConfig.spaceAgeSciencePacks_enabled = settings.startup["5d-space-age-science-packs"].value
+-- Space Age integration toggle (single option for planetary materials and science packs)
+CostConfig.spaceAgeIntegration_enabled = settings.startup["5d-space-age-materials"].value
+CostConfig.spaceAgeMaterials_enabled = CostConfig.spaceAgeIntegration_enabled
+CostConfig.spaceAgeSciencePacks_enabled = CostConfig.spaceAgeIntegration_enabled
 
 -- Custom multipliers from settings
 CostConfig.techMultiplier = settings.startup["5d-tech-cost-multiplier"].value
@@ -133,14 +134,12 @@ CostConfig.spaceAgeSciencePacks = {
 -- HELPER FUNCTIONS
 -------------------------------------------------------------------------------
 
--- Check if Space Age materials should be used in recipes
--- Requires: Space Age mod installed AND materials integration setting enabled
+-- Check if Space Age planetary integration should add materials to recipes
 function CostConfig.shouldUseSpaceAgeMaterials()
     return CostConfig.hasSpaceAge and CostConfig.spaceAgeMaterials_enabled
 end
 
--- Check if Space Age science packs should be used in technologies
--- Requires: Space Age mod installed AND science packs integration setting enabled
+-- Check if Space Age planetary integration should add science packs to technologies
 function CostConfig.shouldUseSpaceAgeSciencePacks()
     return CostConfig.hasSpaceAge and CostConfig.spaceAgeSciencePacks_enabled
 end
@@ -188,8 +187,7 @@ end
 function CostConfig.printDebugInfo()
     log("5Dim's Cost Config:")
     log("  Has Space Age: " .. tostring(CostConfig.hasSpaceAge))
-    log("  Space Age Materials: " .. tostring(CostConfig.spaceAgeMaterials_enabled))
-    log("  Space Age Science Packs: " .. tostring(CostConfig.spaceAgeSciencePacks_enabled))
+    log("  Space Age Planetary Integration: " .. tostring(CostConfig.spaceAgeIntegration_enabled))
     log("  Recipe Multiplier: " .. CostConfig.getRecipeMultiplier())
     log("  Tech Multiplier: " .. CostConfig.getTechMultiplier())
     log("  Crafting Time Multiplier: " .. CostConfig.getCraftingTimeMultiplier())

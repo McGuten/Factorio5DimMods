@@ -53,6 +53,9 @@ function genArtilleryWagon(inputs)
     recipe.icon_size = nil
     recipe.icons = table.deepcopy(tieredIcons)
     recipe.enabled = false
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     recipe.ingredients = inputs.ingredients
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
 

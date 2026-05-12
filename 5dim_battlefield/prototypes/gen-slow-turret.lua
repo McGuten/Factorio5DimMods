@@ -6,6 +6,7 @@
 -------------------------------------------------------------------------------
 
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 local tierColors = require("__5dim_core__.lib.tier-colors")
@@ -125,9 +126,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-slow-turret-4", "utility-science-pack" }
+        prerequisites = { "5d-slow-turret-4", "production-science-pack" }
     },
     [6] = {
         techName = "5d-slow-turret-6",
@@ -137,7 +138,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-slow-turret-5" }
     },
@@ -149,7 +150,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-slow-turret-6" }
     },
@@ -163,7 +164,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-slow-turret-7" }
+        prerequisites = { "5d-slow-turret-7", "utility-science-pack" }
     },
     [9] = {
         techName = "5d-slow-turret-9",
@@ -190,6 +191,64 @@ local techConfig = {
         prerequisites = { "5d-slow-turret-9" }
     }
 }
+
+local slowTurretSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 8, category = "metallurgy" },
+    [7] = { name = "jelly", amount = 10, category = "organic" },
+    [8] = { type = "fluid", name = "holmium-solution", amount = 100, category = "chemistry" },
+    [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 100, category = "cryogenics" }
+}
+
+local slowTurretSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local slowTurretSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "bioflux",
+    [8] = "holmium-processing",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getSlowTurretPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        addPrerequisiteIfMissing(prerequisites, slowTurretSpaceAgeDeltaPrerequisites[tier])
+    end
+
+    return prerequisites
+end
 
 -------------------------------------------------------------------------------
 -- RESISTANCES BY TIER (matches laser-turret pattern)
@@ -296,7 +355,12 @@ for tier = 1, 10 do
     recipe.name        = entityName
     recipe.enabled     = false
     recipe.results     = { { type = "item", name = entityName, amount = 1 } }
-    recipe.ingredients = RecipeTemplates.slowTurret[tier]
+    recipe.ingredients = CostCalculator.processIngredients(RecipeTemplates.slowTurret[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = slowTurretSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, slowTurretSpaceAgeMaterials)
     recipe.icon        = nil
     recipe.icon_size   = nil
     recipe.icons       = makeSlowItemIcons(tier)
@@ -354,8 +418,11 @@ for tier = 1, 10 do
         local tech = table.deepcopy(data.raw.technology["laser-turret"])
         tech.name          = tc.techName
         tech.unit.count    = baseTechCount * tc.countMultiplier
-        tech.unit.ingredients = CostCalculator.getTechPacks(tc.basePacks, tier)
-        tech.prerequisites = tc.prerequisites
+        tech.unit.ingredients = CostCalculator.getTechPacks(tc.basePacks, tier, {
+            spaceAgePackOverrides = slowTurretSpaceAgeSciencePacks,
+            forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+        })
+        tech.prerequisites = getSlowTurretPrerequisites(tier, tc.prerequisites)
         tech.icon = nil
         tech.icon_size = nil
         tech.icons = makeSlowTechIcons()

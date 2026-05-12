@@ -17,6 +17,73 @@ local baseSpeed = 0.05
 local baseMaxEnergy = 1.5
 local baseTechCount = 200
 
+local logisticRobotSpaceAgeMaterials = {
+    [6] = { name = "holmium-plate", amount = 2, category = "electromagnetics" },
+    [7] = { name = "supercapacitor", amount = 1, category = "electromagnetics" },
+    [8] = { name = "superconductor", amount = 1, category = "electromagnetics" },
+    [9] = { name = "lithium-plate", amount = 1, category = "cryogenics" },
+    [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
+}
+
+local logisticRobotSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "electromagnetic-science-pack" },
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "cryogenic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local logisticRobotSpaceAgeDeltaPrerequisites = {
+    [6] = "electromagnetic-plant",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "lithium-processing",
+    [10] = "quantum-processor"
+}
+
+local logisticRobotDeltaPrerequisites = {
+    [3] = "battery",
+    [4] = "advanced-circuit",
+    [5] = "electric-engine",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getLogisticRobotDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and logisticRobotSpaceAgeDeltaPrerequisites[tier] then
+        return logisticRobotSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return logisticRobotDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: order, vanilla flag
@@ -136,18 +203,27 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.logisticRobot[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = true,  -- Robots are bulk items
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = logisticRobotSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getLogisticRobotDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = logisticRobotSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -160,6 +236,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, logisticRobotSpaceAgeMaterials),
         tech = tech
     }
 end

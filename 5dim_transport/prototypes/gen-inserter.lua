@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.transport.generation-inserter")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -17,6 +18,94 @@ local baseRotation = 0.014
 local baseEnergy = 5
 local baseDrain = 0.4
 local baseTechCount = 200
+
+local inserterTechCounts = {
+    [2] = 320,
+    [3] = 520,
+    [4] = 780,
+    [5] = 1100,
+    [6] = 1500,
+    [7] = 1950,
+    [8] = 2500,
+    [9] = 3150,
+    [10] = 3900
+}
+
+local inserterSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 2, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 40, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 1, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
+}
+
+local inserterSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local inserterSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local inserterDeltaPrerequisites = {
+    [3] = "advanced-circuit",
+    [4] = "battery",
+    [5] = "electric-engine",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getTransportLogisticsPrerequisite(tier)
+    if tier == 4 and mods["space-age"] then
+        return "turbo-transport-belt"
+    end
+
+    if mods["space-age"] and tier >= 5 then
+        return "logistics-" .. (tier - 1)
+    end
+
+    return "logistics-" .. tier
+end
+
+local function getInserterDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and inserterSpaceAgeDeltaPrerequisites[tier] then
+        return inserterSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return inserterDeltaPrerequisites[tier]
+end
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -47,7 +136,7 @@ local function getTechConfig(tier)
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter", "logistics-2", "chemical-science-pack" }
+            prerequisites = { "bulk-inserter", getTransportLogisticsPrerequisite(2), "chemical-science-pack" }
         },
         [3] = {
             basePacks = {
@@ -55,16 +144,15 @@ local function getTechConfig(tier)
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-2", "logistics-3" }
+            prerequisites = { "bulk-inserter-2", getTransportLogisticsPrerequisite(3) }
         },
         [4] = {
             basePacks = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
-                { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 }
+                { "chemical-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-3", "production-science-pack", "logistics-4" }
+            prerequisites = { "bulk-inserter-3", getTransportLogisticsPrerequisite(4) }
         },
         [5] = {
             basePacks = {
@@ -73,7 +161,7 @@ local function getTechConfig(tier)
                 { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-4", "logistics-5" }
+            prerequisites = { "bulk-inserter-4", "production-science-pack", getTransportLogisticsPrerequisite(5) }
         },
         [6] = {
             basePacks = {
@@ -82,17 +170,16 @@ local function getTechConfig(tier)
                 { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-5", "logistics-6" }
+            prerequisites = { "bulk-inserter-5", getTransportLogisticsPrerequisite(6) }
         },
         [7] = {
             basePacks = {
                 { "automation-science-pack", 1 },
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
-                { "production-science-pack", 1 },
-                { "utility-science-pack", 1 }
+                { "production-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-6", "utility-science-pack", "logistics-7" }
+            prerequisites = { "bulk-inserter-6", getTransportLogisticsPrerequisite(7) }
         },
         [8] = {
             basePacks = {
@@ -102,7 +189,7 @@ local function getTechConfig(tier)
                 { "production-science-pack", 1 },
                 { "utility-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-7", "logistics-8" }
+            prerequisites = { "bulk-inserter-7", "utility-science-pack", getTransportLogisticsPrerequisite(8) }
         },
         [9] = {
             basePacks = {
@@ -110,10 +197,9 @@ local function getTechConfig(tier)
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-8", "space-science-pack", "logistics-9" }
+            prerequisites = { "bulk-inserter-8", getTransportLogisticsPrerequisite(9) }
         },
         [10] = {
             basePacks = {
@@ -121,10 +207,9 @@ local function getTechConfig(tier)
                 { "logistic-science-pack", 1 },
                 { "chemical-science-pack", 1 },
                 { "production-science-pack", 1 },
-                { "utility-science-pack", 1 },
-                { "space-science-pack", 1 }
+                { "utility-science-pack", 1 }
             },
-            prerequisites = { "bulk-inserter-9", "logistics-10" }
+            prerequisites = { "bulk-inserter-9", getTransportLogisticsPrerequisite(10) }
         }
     }
     return configs[tier]
@@ -139,7 +224,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats with incremental bonuses
-    local tierBonus = (tier - 1) * 0.02
+    local tierBonus = (tier - 1) * 0.015
     local extension = baseExtension + tierBonus
     local rotation = baseRotation + tierBonus
     -- Non-linear energy scaling (vanilla pattern: 5->7 kJ for inserter->fast-inserter)
@@ -147,8 +232,18 @@ for tier = 1, 10 do
     local drain = baseDrain + tierBonus
     
     -- Get ingredients from templates
-    local inserterIngredients = RecipeTemplates.inserter[tier]
-    local bulkIngredients = RecipeTemplates.bulkInserter[tier]
+    local inserterIngredients = CostCalculator.processIngredients(RecipeTemplates.inserter[tier], tier, {
+        isBulkItem = false,
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = inserterSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+    local bulkIngredients = CostCalculator.processIngredients(RecipeTemplates.bulkInserter[tier], tier, {
+        isBulkItem = false,
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = inserterSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrades (nil for tier 10)
     local nextUpdate = {}
@@ -171,11 +266,18 @@ for tier = 1, 10 do
     if tier > 1 then
         local tc = getTechConfig(tier)
         if tc then
+            local prerequisites = copyPrerequisites(tc.prerequisites)
+
+            addPrerequisiteIfMissing(prerequisites, getInserterDeltaPrerequisite(tier))
+
             tech = {
                 number = tier,
-                count = baseTechCount * tier,
-                packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-                prerequisites = tc.prerequisites
+                count = CostCalculator.scaleAbsoluteTechCount(inserterTechCounts[tier]),
+                packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                    spaceAgePackOverrides = inserterSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
+                prerequisites = prerequisites
             }
         end
     end
@@ -196,6 +298,7 @@ for tier = 1, 10 do
         },
         nextUpdate = nextUpdate,
         tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, inserterSpaceAgeMaterials),
         copyName = config.copyName
     }
 end

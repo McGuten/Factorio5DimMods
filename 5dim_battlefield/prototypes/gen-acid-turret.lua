@@ -5,6 +5,8 @@
 -------------------------------------------------------------------------------
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local TierColors = require("__5dim_core__.lib.tier-colors")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
@@ -122,9 +124,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-acid-turret-5", "utility-science-pack" }
+        prerequisites = { "5d-acid-turret-5", "production-science-pack" }
     },
     [7] = {
         techName = "5d-acid-turret-7",
@@ -134,7 +136,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-acid-turret-6" }
     },
@@ -148,7 +150,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-acid-turret-7" }
+        prerequisites = { "5d-acid-turret-7", "utility-science-pack" }
     },
     [9] = {
         techName = "5d-acid-turret-9",
@@ -175,6 +177,92 @@ local techConfig = {
         prerequisites = { "5d-acid-turret-9" }
     }
 }
+
+local acidTurretSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 10, category = "metallurgy" },
+    [7] = { name = "carbon-fiber", amount = 8, category = "organic" },
+    [8] = { type = "fluid", name = "holmium-solution", amount = 120, category = "chemistry" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 120, category = "cryogenics" }
+}
+
+local acidTurretSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local acidTurretSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "carbon-fiber",
+    [8] = "holmium-processing",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function replaceSharedGunTurretDelta(ingredients, tier, overrides)
+    local override = overrides[tier]
+
+    if not (CostConfig.shouldUseSpaceAgeMaterials() and override and #ingredients >= 2) then
+        return ingredients
+    end
+
+    local updated = table.deepcopy(ingredients)
+    updated[#updated - 1] = {
+        type = override.type or "item",
+        name = override.name,
+        amount = override.amount
+    }
+
+    return updated
+end
+
+local function getAcidTurretIngredients(tier)
+    return replaceSharedGunTurretDelta(
+        CostCalculator.processIngredients(RecipeTemplates.acidTurret[tier], tier, {
+            skipTierScaling = true,
+            skipSpaceAgeMaterials = true
+        }),
+        tier,
+        acidTurretSpaceAgeMaterials
+    )
+end
+
+local function getAcidTurretPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        addPrerequisiteIfMissing(prerequisites, acidTurretSpaceAgeDeltaPrerequisites[tier])
+    end
+
+    return prerequisites
+end
 
 -------------------------------------------------------------------------------
 -- ACID ROUNDS AMMO
@@ -511,10 +599,11 @@ for tier = 1, 10 do
         name = entityName,
         enabled = false,
         energy_required = 10 + tier * 2,
-        ingredients = RecipeTemplates.acidTurret[tier],
+        ingredients = getAcidTurretIngredients(tier),
         results = { { type = "item", name = entityName, amount = 1 } },
         icons = table.deepcopy(itemIcons)
     }
+    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, acidTurretSpaceAgeMaterials)
     
     -- Technology
     local tech = nil
@@ -542,10 +631,13 @@ for tier = 1, 10 do
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,
-                ingredients = tc.basePacks,
+                ingredients = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                    spaceAgePackOverrides = acidTurretSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             },
-            prerequisites = tc.prerequisites
+            prerequisites = getAcidTurretPrerequisites(tier, tc.prerequisites)
         }
     end
     

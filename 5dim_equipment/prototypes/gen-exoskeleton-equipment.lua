@@ -1,5 +1,7 @@
 require("__5dim_core__.lib.equipment.generation-exoskeleton-equipment")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -8,6 +10,164 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local config = {
     baseTechCount = 250,
     subgroup = "armor-exoskeleton"
+}
+
+local exoskeletonSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 16, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
+}
+
+local exoskeletonSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local exoskeletonSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local exoskeletonDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "battery",
+    [4] = "engine",
+    [5] = "electric-engine",
+    [6] = "low-density-structure",
+    [7] = "speed-module",
+    [8] = "speed-module-2",
+    [9] = "speed-module-3",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getExoskeletonDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and exoskeletonSpaceAgeDeltaPrerequisites[tier] then
+        return exoskeletonSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return exoskeletonDeltaPrerequisites[tier]
+end
+
+local techConfig = {
+    [2] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment", "production-science-pack" }
+    },
+    [3] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-2" }
+    },
+    [4] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-3" }
+    },
+    [5] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-4", "utility-science-pack" }
+    },
+    [6] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-5" }
+    },
+    [7] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-6" }
+    },
+    [8] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-7" }
+    },
+    [9] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-8" }
+    },
+    [10] = {
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "exoskeleton-equipment-9" }
+    }
 }
 
 -------------------------------------------------------------------------------
@@ -169,14 +329,27 @@ local tiers = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.exoskeletonEquipment[i], i, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = exoskeletonSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+
     local techData = nil
-    local tierTech = tier.tech
-    if tierTech then
+    local tc = techConfig[i]
+    if tc then
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getExoskeletonDeltaPrerequisite(i))
+
         techData = {
-            number = tierTech.number,
-            count = config.baseTechCount * tierTech.countMultiplier,
-            packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            number = i,
+            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, i, {
+                spaceAgePackOverrides = exoskeletonSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -187,7 +360,8 @@ for i, tier in ipairs(tiers) do
         movementSpeed = tier.movementSpeed,
         new = tier.new,
         order = tier.order,
-        ingredients = RecipeTemplates.exoskeletonEquipment[i],
+        ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, exoskeletonSpaceAgeMaterials),
         tech = techData
     }
 end

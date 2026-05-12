@@ -29,8 +29,14 @@ function genCargoLandingPad(inputs)
     --Recipe
     recipe.name = item.name
     setPrototypeIcons(recipe)
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     if inputs.new then
         recipe.enabled = false
+    end
+    if inputs.new and inputs.surfaceConditions then
+        recipe.surface_conditions = inputs.surfaceConditions
     end
     if inputs.new then
         recipe.ingredients = inputs.ingredients

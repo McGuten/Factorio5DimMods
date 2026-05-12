@@ -19,6 +19,9 @@ function genRecycler(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     if inputs.new then
         recipe.enabled = false
     end

@@ -73,8 +73,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     laser = {
         health = 1.0, healing = 1.0, speed = 1.0, damage = 1.0,
-        evolution_min = 0.1, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.15, evolution_max = 1.0,
+        distance_factor = 1,
         order = "b",
         display_name = "Laser",
         display_color = "blue",
@@ -110,8 +110,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     physical = {
         health = 1.0, healing = 1.0, speed = 1.0, damage = 1.0,
-        evolution_min = 0.1, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.15, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Armored",
         display_color = "gray",
         colors = {
@@ -146,8 +146,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     impact = {
         health = 1.3, healing = 1.0, speed = 0.85, damage = 1.5,
-        evolution_min = 0.1, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2, now spawns near start
+        evolution_min = 0.18, evolution_max = 1.0,
+        distance_factor = 2,
         order = "d",
         display_name = "Impact",
         display_color = "orange",
@@ -178,8 +178,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     railgun = {
         health = 0.9, healing = 1.0, speed = 1.15, damage = 1.4,
-        evolution_min = 0.2, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2, slightly farther for space-age content
+        evolution_min = 0.28, evolution_max = 1.0,
+        distance_factor = 2,
         order = "e",
         display_name = "Railgun",
         display_color = "cyan",
@@ -221,8 +221,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     fire = {
         health = 0.75, healing = 0.75, speed = 1.0, damage = 1.0,
-        evolution_min = 0.2, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.25, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Fire",
         display_color = "red",
         colors = {
@@ -254,8 +254,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     rocket = {
         health = 0.75, healing = 0.75, speed = 1.0, damage = 1.0,
-        evolution_min = 0.3, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.35, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Rocket",
         display_color = "yellow",
         colors = {
@@ -278,8 +278,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     suicide = {
         health = 0.5, healing = 0.5, speed = 1.5, damage = 5.0,
-        evolution_min = 0.5, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.6, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Suicide",
         display_color = "purple",
         colors = {
@@ -303,8 +303,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     poison = {
         health = 0.9, healing = 0.9, speed = 1.0, damage = 1.0,
-        evolution_min = 0.2, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.25, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Poison",
         display_color = "green",
         colors = {
@@ -336,8 +336,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     electric = {
         health = 1.0, healing = 1.0, speed = 1.0, damage = 1.0,
-        evolution_min = 0.3, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.35, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Electric",
         display_color = "cyan",
         colors = {
@@ -369,8 +369,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     broodmother = {
         health = 1.5, healing = 0.8, speed = 0.7, damage = 0.8,
-        evolution_min = 0.25, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.3, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Broodmother",
         display_color = "purple",
         colors = {
@@ -434,8 +434,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     regenerator = {
         health = 0.75, healing = 5.0, speed = 0.9, damage = 0.8,
-        evolution_min = 0.2, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.25, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Regenerator",
         display_color = "green",
         colors = {
@@ -464,8 +464,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     berserker = {
         health = 0.5, healing = 0.0, speed = 1.3, damage = 2.0,
-        evolution_min = 0.25, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.35, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Berserker",
         display_color = "red",
         colors = {
@@ -488,8 +488,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     tank = {
         health = 2.0, healing = 1.0, speed = 0.8, damage = 0.35,
-        evolution_min = 0.15, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.25, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Tank",
         display_color = "olive",
         colors = {
@@ -550,8 +550,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     acid = {
         health = 1.0, healing = 1.0, speed = 1.0, damage = 1.0,
-        evolution_min = 0.2, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 1, now spawns near start
+        evolution_min = 0.25, evolution_max = 1.0,
+        distance_factor = 1,
         display_name = "Acid",
         display_color = "green",
         colors = {
@@ -574,8 +574,8 @@ SharedConfig.TypeDefinitions = {
     -- =========================================================================
     explosion = {
         health = 1.0, healing = 1.0, speed = 1.0, damage = 1.3,
-        evolution_min = 0.3, evolution_max = 1.0,
-        distance_factor = 0,  -- Was 2
+        evolution_min = 0.35, evolution_max = 1.0,
+        distance_factor = 2,
         display_name = "Bomber",
         display_color = "purple",
         colors = {

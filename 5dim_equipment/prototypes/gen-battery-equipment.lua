@@ -1,5 +1,7 @@
 require("__5dim_core__.lib.equipment.generation-battery-equipment")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -8,6 +10,150 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local config = {
     baseTechCount = 150,
     subgroup = "armor-battery"
+}
+
+local batteryEquipmentSpaceAgeMaterials = {
+    [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 2, category = "cryogenics" }
+}
+
+local batteryEquipmentSpaceAgeSciencePacks = {
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local batteryEquipmentSpaceAgeDeltaPrerequisites = {
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local batteryEquipmentDeltaPrerequisites = {
+    [3] = "advanced-electronics",
+    [4] = "advanced-electronics-2",
+    [5] = "low-density-structure",
+    [6] = "speed-module",
+    [7] = "speed-module-2",
+    [8] = "efficiency-module-2",
+    [9] = "speed-module-3",
+    [10] = "efficiency-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getBatteryEquipmentDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and batteryEquipmentSpaceAgeDeltaPrerequisites[tier] then
+        return batteryEquipmentSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return batteryEquipmentDeltaPrerequisites[tier]
+end
+
+local techConfig = {
+    [3] = {
+        number = 1,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = { "battery-mk2-equipment", "production-science-pack" }
+    },
+    [4] = {
+        number = 2,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
+        },
+        prerequisites = mods["space-age"] and { "battery-mk3-equipment", "production-science-pack" } or { "5d-battery-equipment-1" }
+    },
+    [5] = {
+        number = 3,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-2", "utility-science-pack" }
+    },
+    [6] = {
+        number = 4,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-3" }
+    },
+    [7] = {
+        number = 5,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-4" }
+    },
+    [8] = {
+        number = 6,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-5" }
+    },
+    [9] = {
+        number = 7,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-6" }
+    },
+    [10] = {
+        number = 8,
+        basePacks = {
+            { "automation-science-pack", 1 },
+            { "logistic-science-pack", 1 },
+            { "chemical-science-pack", 1 },
+            { "utility-science-pack", 1 }
+        },
+        prerequisites = { "5d-battery-equipment-7" }
+    }
 }
 
 -------------------------------------------------------------------------------
@@ -158,14 +304,27 @@ local tiers = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.batteryEquipment[i], i, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = batteryEquipmentSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
+
     local techData = nil
-    local tierTech = tier.tech
-    if tierTech then
+    local tc = techConfig[i]
+    if tc then
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getBatteryEquipmentDeltaPrerequisite(i))
+
         techData = {
-            number = tierTech.number,
-            count = config.baseTechCount * tierTech.countMultiplier,
-            packs = tierTech.packs,
-            prerequisites = tierTech.prerequisites
+            number = tc.number,
+            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            packs = CostCalculator.getTechPacks(tc.basePacks, i, {
+                spaceAgePackOverrides = batteryEquipmentSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -175,7 +334,8 @@ for i, tier in ipairs(tiers) do
         capacity = tier.capacity,
         new = tier.new,
         order = tier.order,
-        ingredients = RecipeTemplates.batteryEquipment[i],
+        ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, batteryEquipmentSpaceAgeMaterials),
         tech = techData
     }
 end

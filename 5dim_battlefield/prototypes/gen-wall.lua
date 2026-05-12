@@ -15,7 +15,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseHealth = 350
 local healthIncrement = 200               -- 350 → 2150 (~x6.1)
-local baseTechCount = 500
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -43,9 +42,10 @@ local techConfig = {
         count = 500,
         basePacks = {
             { "automation-science-pack", 1 },
-            { "logistic-science-pack", 1 }
+            { "logistic-science-pack", 1 },
+            { "military-science-pack", 1 }
         },
-        prerequisites = { "stone-wall", "logistic-science-pack" }
+        prerequisites = { "stone-wall" }
     },
     [3] = {
         count = 750,
@@ -54,7 +54,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "stone-wall-2", "military-science-pack" }
+        prerequisites = { "stone-wall-2" }
     },
     [4] = {
         count = 1000,
@@ -70,9 +70,10 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "military-science-pack", 1 }
+            { "military-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "stone-wall-4" }
+        prerequisites = { "stone-wall-4", "production-science-pack" }
     },
     [6] = {
         count = 1500,
@@ -80,9 +81,9 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "stone-wall-5", "chemical-science-pack" }
+        prerequisites = { "stone-wall-5" }
     },
     [7] = {
         count = 1750,
@@ -90,7 +91,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "stone-wall-6" }
     },
@@ -100,7 +101,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "stone-wall-7", "utility-science-pack" }
@@ -111,7 +112,7 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "stone-wall-8" }
@@ -122,12 +123,47 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
         prerequisites = { "stone-wall-9" }
     }
 }
+
+local wallDeltaPrerequisites = {
+    [3] = "concrete",
+    [4] = "refined-concrete",
+    [5] = "steel-processing",
+    [6] = "battery",
+    [7] = "advanced-circuit",
+    [8] = "low-density-structure",
+    [9] = "speed-module",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
 
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
@@ -136,31 +172,40 @@ local techConfig = {
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
-    
+
     -- Calculate stats for this tier
     local health = baseHealth + (tier - 1) * healthIncrement
-    
+
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.wall[tier]
-    
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.wall[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
+
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
     if tier < 10 then
         nextUpgrade = "5d-stone-wall-" .. string.format("%02d", tier + 1)
     end
-    
+
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, wallDeltaPrerequisites[tier])
+
         tech = {
             number = tier,
             count = tc.count,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                skipSpaceAgePacks = true
+            }),
+            prerequisites = prerequisites
         }
     end
-    
+
     -- Generate the wall
     genStoneWalls {
         number = tierNum,

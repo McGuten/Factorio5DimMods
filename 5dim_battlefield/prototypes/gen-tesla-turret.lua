@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.battlefield.tesla-turret.generation-tesla-turret")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local tierColors = require("__5dim_core__.lib.tier-colors")
@@ -172,6 +173,72 @@ local techConfig = {
     }
 }
 
+local teslaTurretSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 160, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 10, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 6, category = "cryogenics" }
+}
+
+local teslaTurretSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local teslaTurretSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local teslaTurretDeltaPrerequisites = {
+    [1] = "battery",
+    [2] = "battery",
+    [3] = "advanced-circuit",
+    [4] = "processing-unit",
+    [5] = "low-density-structure",
+    [6] = "speed-module",
+    [7] = "speed-module-2",
+    [8] = "productivity-module-2",
+    [9] = "speed-module-3",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getTeslaTurretDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and teslaTurretSpaceAgeDeltaPrerequisites[tier] then
+        return teslaTurretSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return teslaTurretDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- RESISTANCES BY TIER
 -------------------------------------------------------------------------------
@@ -218,7 +285,11 @@ for tier = 1, 10 do
     local energy = getEnergyStats(damage, range)
     
     -- Get ingredients from template
-    local ingredients = RecipeTemplates.teslaTurret[tier]
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.teslaTurret[tier], tier, {
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = teslaTurretSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
+    })
     
     -- Determine next upgrade (nil for tier 10)
     local nextUpgrade = nil
@@ -230,11 +301,18 @@ for tier = 1, 10 do
     local tech = nil
     if techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getTeslaTurretDeltaPrerequisite(tier))
+
         tech = {
             number = tc.techName,
             count = baseTechCount * tc.countMultiplier,
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = teslaTurretSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -259,6 +337,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         resistances = getResistances(tier),
         nextUpdate = nextUpgrade,
-        tech = tech
+        tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, teslaTurretSpaceAgeMaterials)
     }
 end

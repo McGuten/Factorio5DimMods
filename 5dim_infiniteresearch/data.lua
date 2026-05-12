@@ -1,5 +1,5 @@
 -- Robots cargo size
-if mods["5dim_logistic"] and settings.startup["5d-storage"].value then
+if settings.startup["5d-storage"].value then
     require("prototypes.worker-robots-storage")
 end
 
@@ -11,7 +11,9 @@ end
 -- Laboratoy speed
 if settings.startup["5d-speed"].value then
     require("prototypes.tech-speed")
-    require("prototypes.tech-productivity")
+    if not mods["space-age"] then
+        require("prototypes.tech-productivity")
+    end
 end
 
 --Speed research for ammo and turrets

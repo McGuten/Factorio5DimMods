@@ -21,8 +21,16 @@ function genAccumulators(inputs)
     recipe.icon_size = 64
     if inputs.new then
         recipe.enabled = false
+        recipe.normal = nil
+        recipe.expensive = nil
+        recipe.result = nil
+        recipe.result_count = nil
+        recipe.main_product = nil
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
-        recipe.ingredients = inputs.ingredients
+        recipe.ingredients = table.deepcopy(inputs.ingredients)
+    end
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
     end
 
     --Entity

@@ -92,6 +92,12 @@ for _, tech_name in pairs(tech) do
 end
 ```
 
+## Validation
+
+The local validation runner lives in [mods/validate-factorio-profiles.ps1](validate-factorio-profiles.ps1). It executes reusable smoke-test profiles for the 5Dim suite without mutating the tracked mod list or config files.
+
+Command examples and profile details are documented in [mods/comandos.md](comandos.md) and [mods/docs/factorio-smoke-tests.md](docs/factorio-smoke-tests.md).
+
 
 ## Images
 

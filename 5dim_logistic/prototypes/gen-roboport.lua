@@ -30,6 +30,71 @@ local baseSlots = 4
 local slotsIncrement = 3         -- Increased from 2 (better ratio)
 local baseTechCount = 250
 
+local roboportSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 120, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 4, category = "cryogenics" }
+}
+
+local roboportSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local roboportSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local roboportDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "battery",
+    [4] = "advanced-circuit",
+    [5] = "electric-engine",
+    [6] = "processing-unit",
+    [7] = "low-density-structure",
+    [8] = "speed-module-2",
+    [9] = "productivity-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getRoboportDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and roboportSpaceAgeDeltaPrerequisites[tier] then
+        return roboportSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return roboportDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: order, vanilla flag, and stat bonuses
@@ -157,7 +222,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.roboport[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = roboportSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade (nil for tier 10)
@@ -170,11 +237,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getRoboportDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = roboportSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -195,6 +269,7 @@ for tier = 1, 10 do
         botSlots = botSlot,
         recharge = recharge,
         nextUpdate = nextUpgrade,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, roboportSpaceAgeMaterials),
         tech = tech
     }
 end

@@ -512,7 +512,7 @@ function setStartItems(event)
         atStart["tech"] = {
             { "oil-processing" },
             { "plastics" },
-            { "advanced-electronics" },
+                { "advanced-circuit" },
             { "sulfur-processing" },
             { "battery" },
             { "electronics" },

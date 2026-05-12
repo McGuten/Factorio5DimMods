@@ -7,6 +7,51 @@ local CostConfig = require("__5dim_core__.lib.costs.config")
 
 local CostCalculator = {}
 
+local function getModeIngredientMultiplier(isBulkItem)
+    local modeMultiplier = CostConfig.getRecipeMultiplier()
+
+    if isBulkItem and modeMultiplier > 1 then
+        return 1 + ((modeMultiplier - 1) * 0.5)
+    end
+
+    return modeMultiplier
+end
+
+local function getTierIngredientMultiplier(tier, isBulkItem)
+    local tierMultiplier = 1 + ((CostConfig.getTierMultiplier(tier) - 1) * 0.3)
+
+    if isBulkItem and tierMultiplier > 1 then
+        return 1 + ((tierMultiplier - 1) * 0.5)
+    end
+
+    return tierMultiplier
+end
+
+local function findIngredient(ingredients, ingredientType, ingredientName)
+    for _, ingredient in ipairs(ingredients) do
+        if ingredient.type == ingredientType and ingredient.name == ingredientName then
+            return ingredient
+        end
+    end
+
+    return nil
+end
+
+local function addOrMergeIngredient(ingredients, ingredientType, ingredientName, amount)
+    local existing = findIngredient(ingredients, ingredientType, ingredientName)
+
+    if existing then
+        existing.amount = existing.amount + amount
+        return
+    end
+
+    table.insert(ingredients, {
+        type = ingredientType,
+        name = ingredientName,
+        amount = amount
+    })
+end
+
 -------------------------------------------------------------------------------
 -- INGREDIENT SCALING
 -------------------------------------------------------------------------------
@@ -17,16 +62,8 @@ local CostCalculator = {}
 -- @param isBulkItem: If true, uses smaller scaling for bulk-produced items
 -- @return: The scaled amount (rounded up)
 function CostCalculator.scaleIngredientAmount(baseAmount, tier, isBulkItem)
-    local modeMultiplier = CostConfig.getRecipeMultiplier()
-    local tierMultiplier = CostConfig.getTierMultiplier(tier)
-    
-    local scaled = baseAmount * modeMultiplier
-    
-    -- For bulk items (robots, ammo), use gentler scaling
-    if isBulkItem then
-        scaled = baseAmount * modeMultiplier * 0.5
-    end
-    
+    local scaled = baseAmount * getModeIngredientMultiplier(isBulkItem) * getTierIngredientMultiplier(tier, isBulkItem)
+
     return math.ceil(scaled)
 end
 
@@ -67,43 +104,113 @@ function CostCalculator.addSpaceAgeMaterials(ingredients, tier, isBulkItem)
     if spaceAgeMaterial then
         -- Scale the Space Age material amount based on recipe multiplier
         local scaledAmount = math.ceil(spaceAgeMaterial.amount * CostConfig.getRecipeMultiplier())
-        
-        table.insert(ingredients, {
-            type = "item",
-            name = spaceAgeMaterial.material,
-            amount = scaledAmount
-        })
+
+        addOrMergeIngredient(ingredients, "item", spaceAgeMaterial.material, scaledAmount)
     end
     
     return ingredients
 end
 
+local function replaceLastDirectDelta(ingredients)
+    if #ingredients <= 1 then
+        return ingredients
+    end
+
+    table.remove(ingredients, #ingredients)
+    return ingredients
+end
+
+local function addIngredientWithRecipeScaling(ingredients, ingredient)
+    addOrMergeIngredient(
+        ingredients,
+        ingredient.type or "item",
+        ingredient.name,
+        math.ceil((ingredient.amount or 1) * CostConfig.getRecipeMultiplier())
+    )
+end
+
+-- Add family-specific Space Age materials if applicable.
+-- Overrides intentionally replace the old global tier mapping for that recipe family.
+-- @param ingredients: Table of ingredients
+-- @param tier: The tier number (1-10)
+-- @param overrides: Table keyed by tier; each value can be one ingredient or a list
+-- @param replaceDelta: When true, replace the last direct delta before adding the override
+-- @return: Ingredients with family-specific Space Age materials added
+function CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, overrides, replaceDelta)
+    if not CostConfig.shouldUseSpaceAgeMaterials() or not overrides then
+        return ingredients
+    end
+
+    local override = overrides[tier]
+    if not override then
+        return ingredients
+    end
+
+    if replaceDelta then
+        ingredients = replaceLastDirectDelta(ingredients)
+    end
+
+    if override.name then
+        addIngredientWithRecipeScaling(ingredients, override)
+        return ingredients
+    end
+
+    for _, ingredient in ipairs(override) do
+        addIngredientWithRecipeScaling(ingredients, ingredient)
+    end
+
+    return ingredients
+end
+
+function CostCalculator.getSpaceAgeRecipeCategory(tier, overrides)
+    if not CostConfig.shouldUseSpaceAgeMaterials() or not overrides then
+        return nil
+    end
+
+    local override = overrides[tier]
+    if not override then
+        return nil
+    end
+
+    if override.name then
+        return override.category
+    end
+
+    for _, ingredient in ipairs(override) do
+        if ingredient.category then
+            return ingredient.category
+        end
+    end
+
+    return nil
+end
+
 -- Complete ingredient processing: scale and add Space Age materials
 -- @param baseIngredients: Original ingredients
 -- @param tier: Tier number (1-10)
--- @param options: Table with options { isBulkItem = false, skipTierScaling = false, skipSpaceAgeMaterials = false }
+-- @param options: Table with options { isBulkItem = false, skipTierScaling = false, skipSpaceAgeMaterials = false, spaceAgeMaterialOverrides = nil, replaceSpaceAgeDelta = false }
 -- @return: Processed ingredients
 function CostCalculator.processIngredients(baseIngredients, tier, options)
     options = options or {}
     local isBulkItem = options.isBulkItem or false
     local skipTierScaling = options.skipTierScaling or false
     local skipSpaceAgeMaterials = options.skipSpaceAgeMaterials or false
+    local spaceAgeMaterialOverrides = options.spaceAgeMaterialOverrides
+    local replaceSpaceAgeDelta = options.replaceSpaceAgeDelta or false
     
     local ingredients = {}
-    
+    local modeMultiplier = getModeIngredientMultiplier(isBulkItem)
+
     -- Deep copy and scale ingredients
-    for i, ing in ipairs(baseIngredients) do
-        local amount = ing.amount
-        
-        -- Apply mode multiplier (expensive = x3)
-        local modeMultiplier = CostConfig.getRecipeMultiplier()
-        amount = math.ceil(amount * modeMultiplier)
-        
-        -- For bulk items, reduce the multiplier effect
-        if isBulkItem and modeMultiplier > 1 then
-            amount = math.ceil(ing.amount * (1 + (modeMultiplier - 1) * 0.5))
+    for _, ing in ipairs(baseIngredients) do
+        local amount
+
+        if skipTierScaling then
+            amount = math.ceil(ing.amount * modeMultiplier)
+        else
+            amount = CostCalculator.scaleIngredientAmount(ing.amount, tier, isBulkItem)
         end
-        
+
         table.insert(ingredients, {
             type = ing.type,
             name = ing.name,
@@ -111,8 +218,12 @@ function CostCalculator.processIngredients(baseIngredients, tier, options)
         })
     end
     
-    -- Add Space Age materials (unless explicitly skipped)
-    if not skipSpaceAgeMaterials then
+    -- Add Space Age materials. Family-specific overrides take precedence over
+    -- the legacy global tier mapping.
+    if spaceAgeMaterialOverrides then
+        ingredients = CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, spaceAgeMaterialOverrides,
+            replaceSpaceAgeDelta)
+    elseif not skipSpaceAgeMaterials then
         ingredients = CostCalculator.addSpaceAgeMaterials(ingredients, tier, isBulkItem)
     end
     
@@ -132,6 +243,10 @@ function CostCalculator.calculateTechCount(baseCount, tier)
     local tierMultiplier = CostConfig.getTechCountMultiplier(tier)
     
     return math.ceil(baseCount * tierMultiplier * modeMultiplier)
+end
+
+function CostCalculator.scaleAbsoluteTechCount(baseCount)
+    return math.ceil(baseCount * CostConfig.getTechMultiplier())
 end
 
 local function copyTechPacks(basePacks)
@@ -157,13 +272,39 @@ end
 -- Get science packs for a given tier, including Space Age packs if applicable
 -- @param basePacks: Table of base science packs
 -- @param tier: The tier number (1-10)
--- @param options: Optional table. Use spaceAgePackThresholds to override the
--- default Space Age science progression for specific infrastructure families.
+-- @param options: Optional table. Use skipSpaceAgePacks to keep the base packs
+-- unchanged, spaceAgePackOverrides for exact per-tier additions, or
+-- spaceAgePackThresholds for cumulative Space Age science progression.
 -- @return: Science packs with Space Age additions
 function CostCalculator.getTechPacks(basePacks, tier, options)
     options = options or {}
 
     local packs = copyTechPacks(basePacks)
+
+    if options.skipSpaceAgePacks then
+        return packs
+    end
+
+    if options.spaceAgePackOverrides then
+        if CostConfig.shouldUseSpaceAgeSciencePacks() or options.forceSpaceAgePackOverrides then
+            local override = options.spaceAgePackOverrides[tier]
+            if override then
+                if type(override) == "string" then
+                    addPackIfMissing(packs, override, 1)
+                else
+                    for _, pack in ipairs(override) do
+                        if type(pack) == "string" then
+                            addPackIfMissing(packs, pack, 1)
+                        else
+                            addPackIfMissing(packs, pack.name or pack[1], pack.amount or pack[2] or 1)
+                        end
+                    end
+                end
+            end
+        end
+
+        return packs
+    end
 
     if options.spaceAgePackThresholds then
         if CostConfig.shouldUseSpaceAgeSciencePacks() then

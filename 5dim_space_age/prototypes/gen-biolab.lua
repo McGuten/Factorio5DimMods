@@ -19,6 +19,52 @@ local baseEnergyUsage = 300
 local baseEmissions = 8
 local baseTechCount = 500
 
+local biolabSpaceAgeSciencePacks = {
+    [4] = { "electromagnetic-science-pack" },
+    [5] = { "electromagnetic-science-pack" },
+    [6] = { "electromagnetic-science-pack" },
+    [7] = { "cryogenic-science-pack" },
+    [8] = { "cryogenic-science-pack" },
+    [9] = { "cryogenic-science-pack" },
+    [10] = { "cryogenic-science-pack" }
+}
+
+local biolabDeltaPrerequisites = {
+    [2] = "bioflux",
+    [3] = "carbon-fiber",
+    [4] = "holmium-processing",
+    [5] = "electromagnetic-plant",
+    [6] = "electromagnetic-plant",
+    [7] = "lithium-processing",
+    [8] = "cryogenic-plant",
+    [9] = "cryogenic-plant",
+    [10] = "quantum-processor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -85,10 +131,9 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
-        prerequisites = { "5d-biolab-4", "cryogenic-science-pack" }
+        prerequisites = { "5d-biolab-4" }
     },
     [6] = {
         basePacks = {
@@ -98,8 +143,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
         prerequisites = { "5d-biolab-5" }
     },
@@ -111,8 +155,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
         prerequisites = { "5d-biolab-6" }
     },
@@ -124,8 +167,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
         prerequisites = { "5d-biolab-7" }
     },
@@ -137,8 +179,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
         prerequisites = { "5d-biolab-8" }
     },
@@ -150,8 +191,7 @@ local techConfig = {
             { "production-science-pack", 1 },
             { "utility-science-pack", 1 },
             { "space-science-pack", 1 },
-            { "agricultural-science-pack", 1 },
-            { "cryogenic-science-pack", 1 }
+            { "agricultural-science-pack", 1 }
         },
         prerequisites = { "5d-biolab-9" }
     }
@@ -169,14 +209,25 @@ for tier = 1, 10 do
     local number = string.format("%02d", tier)
     local currentEnergy = CostCalculator.scaleEnergyBySpeed(baseEnergyUsage, baseResearchSpeed, currentSpeed, 1.5)
     local currentEmissions = CostCalculator.scalePollution(baseEmissions, baseResearchSpeed, currentSpeed)
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.biolab[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
     
     local techData = nil
     if techConfig[tier] then
+        local prerequisites = copyPrerequisites(techConfig[tier].prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, biolabDeltaPrerequisites[tier])
+
         techData = {
             number = tier,
             count = baseTechCount * tier,
-            packs = techConfig[tier].basePacks,
-            prerequisites = techConfig[tier].prerequisites
+            packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
+                spaceAgePackOverrides = biolabSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = true
+            }),
+            prerequisites = prerequisites
         }
     end
 
@@ -189,8 +240,9 @@ for tier = 1, 10 do
         moduleSlots = currentModules,
         energyUsage = currentEnergy,
         pollution = { pollution = currentEmissions },
-        ingredients = RecipeTemplates.biolab[tier],
+        ingredients = ingredients,
         nextUpdate = tier < 10 and ("5d-biolab-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = "organic-or-assembling",
         tech = techData
     })
 

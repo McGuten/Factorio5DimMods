@@ -19,6 +19,102 @@ local baseEnergy = 90
 local baseEmissions = 10
 local baseTechCount = 200
 
+local pumpjackTechCounts = {
+    [2] = 400,
+    [3] = 650,
+    [4] = 1000,
+    [5] = 1450,
+    [6] = 2000,
+    [7] = 2650,
+    [8] = 3400,
+    [9] = 4250,
+    [10] = 5200
+}
+
+local pumpjackSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 12, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 160, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 10, category = "metallurgy" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 120, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 6, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-cold", amount = 120, category = "cryogenics" }
+}
+
+local pumpjackSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local pumpjackSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local pumpjackDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "fluid-handling",
+    [4] = "engine",
+    [5] = "lubricant",
+    [6] = "electric-engine",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "productivity-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getPumpjackDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and pumpjackSpaceAgeDeltaPrerequisites[tier] then
+        return pumpjackSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return pumpjackDeltaPrerequisites[tier]
+end
+
+local function getPumpjackRecipeCategory(tier)
+    local spaceAgeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, pumpjackSpaceAgeMaterials)
+    if spaceAgeCategory then
+        return spaceAgeCategory
+    end
+
+    if tier == 5 then
+        return "crafting-with-fluid"
+    end
+
+    return nil
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: speed bonus, module bonus, order, vanilla flag
@@ -26,15 +122,15 @@ local baseTechCount = 200
 
 local tierConfig = {
     [1]  = { speedBonus = 0,   moduleBonus = 0, order = "a", isVanilla = true },
-    [2]  = { speedBonus = 0.5, moduleBonus = 1, order = "b" },
-    [3]  = { speedBonus = 1.0, moduleBonus = 2, order = "c" },
-    [4]  = { speedBonus = 1.5, moduleBonus = 2, order = "d" },
-    [5]  = { speedBonus = 2.0, moduleBonus = 3, order = "e" },
-    [6]  = { speedBonus = 2.5, moduleBonus = 3, order = "f" },
-    [7]  = { speedBonus = 3.0, moduleBonus = 4, order = "g" },
-    [8]  = { speedBonus = 3.5, moduleBonus = 4, order = "h" },
-    [9]  = { speedBonus = 4.0, moduleBonus = 5, order = "i" },
-    [10] = { speedBonus = 4.5, moduleBonus = 6, order = "j" }
+    [2]  = { speedBonus = 0.4, moduleBonus = 1, order = "b" },
+    [3]  = { speedBonus = 0.8, moduleBonus = 1, order = "c" },
+    [4]  = { speedBonus = 1.2, moduleBonus = 2, order = "d" },
+    [5]  = { speedBonus = 1.6, moduleBonus = 2, order = "e" },
+    [6]  = { speedBonus = 2.0, moduleBonus = 2, order = "f" },
+    [7]  = { speedBonus = 2.4, moduleBonus = 3, order = "g" },
+    [8]  = { speedBonus = 2.8, moduleBonus = 3, order = "h" },
+    [9]  = { speedBonus = 3.1, moduleBonus = 3, order = "i" },
+    [10] = { speedBonus = 3.4, moduleBonus = 3, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -68,9 +164,10 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-pumpjack-3" }
+        prerequisites = { "5d-pumpjack-3", "production-science-pack" }
     },
     [6] = {
         basePacks = {
@@ -142,7 +239,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.pumpjack[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true  -- Templates already have tier-appropriate amounts
+        skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        spaceAgeMaterialOverrides = pumpjackSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade (nil for tier 10)
@@ -155,11 +254,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getPumpjackDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            count = CostCalculator.scaleAbsoluteTechCount(pumpjackTechCounts[tier]),
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = pumpjackSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -175,6 +281,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
+        recipeCategory = getPumpjackRecipeCategory(tier),
         tech = tech
     }
 end

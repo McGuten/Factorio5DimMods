@@ -4,6 +4,8 @@
 -- Uses gun-turret graphics as base with yellow tint
 -------------------------------------------------------------------------------
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local TierColors = require("__5dim_core__.lib.tier-colors")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
@@ -142,9 +144,10 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-flare-turret-4" }
+        prerequisites = { "5d-flare-turret-4", "production-science-pack" }
     },
     [6] = {
         techName = "5d-flare-turret-6",
@@ -154,9 +157,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-flare-turret-5", "utility-science-pack" }
+        prerequisites = { "5d-flare-turret-5" }
     },
     [7] = {
         techName = "5d-flare-turret-7",
@@ -166,7 +169,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-flare-turret-6" }
     },
@@ -180,7 +183,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-flare-turret-7" }
+        prerequisites = { "5d-flare-turret-7", "utility-science-pack" }
     },
     [9] = {
         techName = "5d-flare-turret-9",
@@ -190,10 +193,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-flare-turret-8", "space-science-pack" }
+        prerequisites = { "5d-flare-turret-8" }
     },
     [10] = {
         techName = "5d-flare-turret-10",
@@ -203,12 +205,113 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-flare-turret-9" }
     }
 }
+
+local flareTurretSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 12, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 120, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 12, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
+}
+
+local flareTurretSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local flareTurretSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
+}
+
+local flareTurretDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "advanced-circuit",
+    [5] = "battery",
+    [6] = "engine",
+    [7] = "electric-engine",
+    [8] = "processing-unit",
+    [9] = "low-density-structure",
+    [10] = "speed-module-2"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getFlareTurretDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and flareTurretSpaceAgeDeltaPrerequisites[tier] then
+        return flareTurretSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return flareTurretDeltaPrerequisites[tier]
+end
+
+-- Flare templates append a theme ingredient after the shared gun-turret delta.
+local function replaceSharedGunTurretDelta(ingredients, replacement)
+    if #ingredients < 2 then
+        return ingredients
+    end
+
+    ingredients[#ingredients - 1] = {
+        type = replacement.type or "item",
+        name = replacement.name,
+        amount = math.ceil((replacement.amount or 1) * CostConfig.getRecipeMultiplier())
+    }
+
+    return ingredients
+end
+
+local function getFlareTurretIngredients(tier)
+    local ingredients = CostCalculator.processIngredients(RecipeTemplates.flareTurret[tier], tier, {
+        skipTierScaling = true,
+        skipSpaceAgeMaterials = true
+    })
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        local override = flareTurretSpaceAgeMaterials[tier]
+        if override then
+            return replaceSharedGunTurretDelta(ingredients, override)
+        end
+    end
+
+    return ingredients
+end
 
 -------------------------------------------------------------------------------
 -- FLARE ROUNDS AMMO
@@ -298,6 +401,8 @@ for tier = 1, 10 do
     local entityName = baseName .. "-" .. tier
     local tierColor = TierColors[tier]
     local order = tierConfig[tier].order
+    local ingredients = getFlareTurretIngredients(tier)
+    local recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, flareTurretSpaceAgeMaterials)
     local itemIcons = TierBadgeIcons.buildTieredIconsFromIcons({
         { icon = "__base__/graphics/icons/gun-turret.png", icon_size = 64, tint = tierColor },
         { icon = "__base__/graphics/icons/small-lamp.png", icon_size = 64, scale = 0.3, shift = {10, -10} }
@@ -547,15 +652,17 @@ for tier = 1, 10 do
         name = entityName,
         enabled = false,
         energy_required = 8 + tier * 2,
-        ingredients = RecipeTemplates.flareTurret[tier],
+        ingredients = ingredients,
         results = { { type = "item", name = entityName, amount = 1 } },
-        icons = table.deepcopy(itemIcons)
+        icons = table.deepcopy(itemIcons),
+        category = recipeCategory
     }
     
     -- Technology
     local tech = nil
     if techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
         local effects = {
             {
                 type = "unlock-recipe",
@@ -570,6 +677,8 @@ for tier = 1, 10 do
                 recipe = "5d-flare-rounds"
             })
         end
+
+        addPrerequisiteIfMissing(prerequisites, getFlareTurretDeltaPrerequisite(tier))
         
         tech = {
             type = "technology",
@@ -578,10 +687,13 @@ for tier = 1, 10 do
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,
-                ingredients = tc.basePacks,
+                ingredients = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                    spaceAgePackOverrides = flareTurretSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             },
-            prerequisites = tc.prerequisites
+            prerequisites = prerequisites
         }
     end
     

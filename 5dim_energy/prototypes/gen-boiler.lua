@@ -19,6 +19,77 @@ local baseEnergy = 1              -- MW
 local baseEmissions = 30
 local baseTechCount = 350
 
+local boilerSpaceAgeMaterials = {
+    [5] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [6] = { type = "fluid", name = "molten-iron", amount = 180, category = "metallurgy" },
+    [7] = { name = "tungsten-plate", amount = 12, category = "metallurgy" },
+    [8] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 6, category = "electromagnetics" },
+    [10] = { type = "fluid", name = "fluoroketone-hot", amount = 120, category = "cryogenics" }
+}
+
+local boilerSpaceAgeSciencePacks = {
+    [5] = { "space-science-pack", "metallurgic-science-pack" },
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local boilerSpaceAgeDeltaPrerequisites = {
+    [5] = "foundry",
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "cryogenic-plant"
+}
+
+local boilerDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "fluid-handling",
+    [4] = "engine",
+    [5] = "concrete",
+    [6] = "concrete",
+    [7] = "electric-engine",
+    [8] = "processing-unit",
+    [9] = "low-density-structure",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getBoilerDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and boilerSpaceAgeDeltaPrerequisites[tier] then
+        return boilerSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return boilerDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -137,18 +208,27 @@ for tier = 1, 10 do
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.boiler[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = boilerSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Build tech configuration if not vanilla (tier 1)
     local tech = nil
     if tier > 1 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getBoilerDeltaPrerequisite(tier))
+
         tech = {
             number = tier - 1,
             count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
-            packs = CostCalculator.getTechPacks(tc.basePacks, tier),
-            prerequisites = tc.prerequisites
+            packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                spaceAgePackOverrides = boilerSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -164,6 +244,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         pollution = { pollution = emissions },
         nextUpdate = tier < 10 and ("5d-boiler-" .. string.format("%02d", tier + 1)) or nil,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, boilerSpaceAgeMaterials),
         tech = tech
     }
 end

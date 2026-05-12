@@ -10,6 +10,69 @@ function table.contains(table, element)
     return false
 end
 
+local prerequisiteAliases = {
+    ["advanced-electronics"] = "advanced-circuit",
+    ["refined-concrete"] = "concrete"
+}
+
+local recipeToTechnologyCache = {}
+
+local function getTechnologyForRecipe(recipeName)
+    if recipeToTechnologyCache[recipeName] ~= nil then
+        return recipeToTechnologyCache[recipeName]
+    end
+
+    for technologyName, technology in pairs(data.raw.technology) do
+        if technology.effects then
+            for _, effect in ipairs(technology.effects) do
+                if effect.type == "unlock-recipe" and effect.recipe == recipeName then
+                    recipeToTechnologyCache[recipeName] = technologyName
+                    return technologyName
+                end
+            end
+        end
+    end
+
+    recipeToTechnologyCache[recipeName] = false
+    return nil
+end
+
+local function resolveTechnologyPrerequisite(prerequisite)
+    if data.raw.technology[prerequisite] then
+        return prerequisite
+    end
+
+    local alias = prerequisiteAliases[prerequisite]
+    if alias and data.raw.technology[alias] then
+        return alias
+    end
+
+    if data.raw.recipe[prerequisite] then
+        return getTechnologyForRecipe(prerequisite)
+    end
+
+    return nil
+end
+
+for technologyName, technology in pairs(data.raw.technology) do
+    if technology.prerequisites then
+        local normalizedPrerequisites = {}
+
+        for _, prerequisite in ipairs(technology.prerequisites) do
+            local resolvedPrerequisite = resolveTechnologyPrerequisite(prerequisite)
+
+            if resolvedPrerequisite and resolvedPrerequisite ~= technologyName and
+                not table.contains(normalizedPrerequisites, resolvedPrerequisite) then
+                table.insert(normalizedPrerequisites, resolvedPrerequisite)
+            elseif not resolvedPrerequisite then
+                log("5dim_core: dropping unknown technology prerequisite '" .. prerequisite .. "' from '" .. technologyName .. "'")
+            end
+        end
+
+        technology.prerequisites = normalizedPrerequisites
+    end
+end
+
 --Stack changes
 if settings.startup["5d-change-stack"].value then
     for _, item in pairs(data.raw.item) do
@@ -78,7 +141,7 @@ end
 
 --Health
 if settings.startup["5d-hp"].value then
-    data.raw.character["character"].health = settings.startup["5d-hp"].value
+    data.raw.character["character"].max_health = settings.startup["5d-hp"].value
 end
 
 --Healing per tick

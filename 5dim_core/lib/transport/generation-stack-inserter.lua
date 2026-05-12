@@ -25,6 +25,9 @@ function genStackInserters(inputs)
             recipe.results = { { type = "item", name = item.name, amount = 1 } }
             recipe.ingredients = inputs.ingredients
         end
+        if inputs.recipeCategory then
+            recipe.category = inputs.recipeCategory
+        end
 
         --Entity
         entity.name = item.name

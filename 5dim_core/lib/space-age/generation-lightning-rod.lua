@@ -29,6 +29,9 @@ function genLightningRod(inputs)
     --Recipe
     recipe.name = item.name
     setPrototypeIcons(recipe)
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     if inputs.new then
         recipe.enabled = false
     end

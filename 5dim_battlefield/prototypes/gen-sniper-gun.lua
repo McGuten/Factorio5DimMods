@@ -58,7 +58,7 @@ data:extend({
                 recipe = "5d-sniper-magazine"
             }
         },
-        prerequisites = { "military-2", "steel-processing" },
+        prerequisites = { "military-2", "steel-processing", "advanced-electronics" },
         unit = {
             count = 80,
             ingredients = {

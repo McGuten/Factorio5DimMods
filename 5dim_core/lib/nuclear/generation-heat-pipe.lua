@@ -28,6 +28,9 @@ function genHeatPipes(inputs)
     --Recipe
     recipe.name = item.name
     setPrototypeIcons(recipe)
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
     if inputs.new then
         recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }

@@ -5,6 +5,8 @@
 -------------------------------------------------------------------------------
 
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local CostConfig = require("__5dim_core__.lib.costs.config")
+local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local TierColors = require("__5dim_core__.lib.tier-colors")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
@@ -320,9 +322,10 @@ local techConfig = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-robot-deployer-4" }
+        prerequisites = { "5d-robot-deployer-4", "production-science-pack" }
     },
     [6] = {
         techName = "5d-robot-deployer-6",
@@ -332,9 +335,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "5d-robot-deployer-5", "utility-science-pack" }
+        prerequisites = { "5d-robot-deployer-5" }
     },
     [7] = {
         techName = "5d-robot-deployer-7",
@@ -344,7 +347,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 }
+            { "production-science-pack", 1 }
         },
         prerequisites = { "5d-robot-deployer-6" }
     },
@@ -358,7 +361,7 @@ local techConfig = {
             { "chemical-science-pack", 1 },
             { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-robot-deployer-7" }
+        prerequisites = { "5d-robot-deployer-7", "utility-science-pack" }
     },
     [9] = {
         techName = "5d-robot-deployer-9",
@@ -368,10 +371,9 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
-        prerequisites = { "5d-robot-deployer-8", "space-science-pack" }
+        prerequisites = { "5d-robot-deployer-8" }
     },
     [10] = {
         techName = "5d-robot-deployer-10",
@@ -381,12 +383,94 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 },
             { "chemical-science-pack", 1 },
-            { "utility-science-pack", 1 },
-            { "space-science-pack", 1 }
+            { "utility-science-pack", 1 }
         },
         prerequisites = { "5d-robot-deployer-9" }
     }
 }
+
+local robotDeployerSpaceAgeMaterials = {
+    [7] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 120, category = "electromagnetics" },
+    [9] = { name = "superconductor", amount = 6, category = "electromagnetics" },
+    [10] = { name = "quantum-processor", amount = 3, category = "cryogenics" }
+}
+
+local robotDeployerSpaceAgeSciencePacks = {
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local robotDeployerSpaceAgeDeltaPrerequisites = {
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "quantum-processor"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function replaceSharedGunTurretDelta(ingredients, tier, overrides)
+    local override = overrides[tier]
+
+    if not (CostConfig.shouldUseSpaceAgeMaterials() and override and #ingredients >= 2) then
+        return ingredients
+    end
+
+    local updated = table.deepcopy(ingredients)
+    updated[#updated - 1] = {
+        type = override.type or "item",
+        name = override.name,
+        amount = override.amount
+    }
+
+    return updated
+end
+
+local function getRobotDeployerIngredients(tier)
+    return replaceSharedGunTurretDelta(
+        CostCalculator.processIngredients(RecipeTemplates.robotDeployer[tier], tier, {
+            skipTierScaling = true,
+            skipSpaceAgeMaterials = true
+        }),
+        tier,
+        robotDeployerSpaceAgeMaterials
+    )
+end
+
+local function getRobotDeployerPrerequisites(tier, basePrerequisites)
+    local prerequisites = copyPrerequisites(basePrerequisites)
+
+    if CostConfig.shouldUseSpaceAgeMaterials() then
+        addPrerequisiteIfMissing(prerequisites, robotDeployerSpaceAgeDeltaPrerequisites[tier])
+    end
+
+    return prerequisites
+end
 
 -------------------------------------------------------------------------------
 -- GENERATION
@@ -645,10 +729,11 @@ for tier = 1, 10 do
         name = entityName,
         enabled = false,
         energy_required = 10 + tier * 2,
-        ingredients = RecipeTemplates.robotDeployer[tier],
+        ingredients = getRobotDeployerIngredients(tier),
         results = { { type = "item", name = entityName, amount = 1 } },
         icons = table.deepcopy(itemIcons)
     }
+    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, robotDeployerSpaceAgeMaterials)
     
     -- Technology
     local tech = nil
@@ -675,10 +760,13 @@ for tier = 1, 10 do
             effects = effects,
             unit = {
                 count = baseTechCount * tc.countMultiplier,
-                ingredients = tc.basePacks,
+                ingredients = CostCalculator.getTechPacks(tc.basePacks, tier, {
+                    spaceAgePackOverrides = robotDeployerSpaceAgeSciencePacks,
+                    forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+                }),
                 time = 30
             },
-            prerequisites = tc.prerequisites
+            prerequisites = getRobotDeployerPrerequisites(tier, tc.prerequisites)
         }
     end
     

@@ -110,11 +110,71 @@ local techConfig = {
     }
 }
 
-local infrastructureSpaceAgePackThresholds = {
-    { tier = 8, pack = "metallurgic-science-pack" },
-    { tier = 9, pack = "electromagnetic-science-pack" },
-    { tier = 10, pack = "cryogenic-science-pack" }
+local assemblingMachineSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 20, category = "metallurgy" },
+    [7] = { name = "holmium-plate", amount = 16, category = "electromagnetics" },
+    [8] = { type = "fluid", name = "electrolyte", amount = 140, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 12, category = "electromagnetics" },
+    [10] = { name = "fusion-power-cell", amount = 6, category = "cryogenics" }
 }
+
+local assemblingMachineSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local assemblingMachineSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "electromagnetic-plant",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "fusion-reactor"
+}
+
+local assemblingMachineDeltaPrerequisites = {
+    [4] = "concrete",
+    [5] = "battery",
+    [6] = "electric-engine",
+    [7] = "processing-unit",
+    [8] = "low-density-structure",
+    [9] = "productivity-module-2",
+    [10] = "productivity-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getAssemblingMachineDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and assemblingMachineSpaceAgeDeltaPrerequisites[tier] then
+        return assemblingMachineSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return assemblingMachineDeltaPrerequisites[tier]
+end
 
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
@@ -136,7 +196,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.assemblingMachine[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = assemblingMachineSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade
@@ -153,13 +215,18 @@ for tier = 1, 10 do
     local tech = nil
     if tier > 3 and techConfig[tier] then
         local tc = techConfig[tier]
+        local prerequisites = copyPrerequisites(tc.prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getAssemblingMachineDeltaPrerequisite(tier))
+
         tech = {
             number = tier,
             count = CostCalculator.calculateTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
-                spaceAgePackThresholds = infrastructureSpaceAgePackThresholds
+                spaceAgePackOverrides = assemblingMachineSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
             }),
-            prerequisites = tc.prerequisites
+            prerequisites = prerequisites
         }
     end
     
@@ -176,6 +243,7 @@ for tier = 1, 10 do
         pollution = { pollution = emissions },
         nextUpdate = nextUpgrade,
         tech = tech,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, assemblingMachineSpaceAgeMaterials),
         copy = config.copy
     }
 end

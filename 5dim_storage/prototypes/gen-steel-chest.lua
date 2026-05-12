@@ -16,6 +16,68 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseInventorySize = 48
 local baseTechCount = 100
 
+local steelChestSpaceAgeMaterials = {
+    [8] = { name = "holmium-plate", amount = 4, category = "electromagnetics" },
+    [9] = { name = "supercapacitor", amount = 2, category = "electromagnetics" },
+    [10] = { name = "lithium-plate", amount = 2, category = "cryogenics" }
+}
+
+local steelChestSpaceAgeSciencePacks = {
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local steelChestSpaceAgeDeltaPrerequisites = {
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
+}
+
+local steelChestDeltaPrerequisites = {
+    [2] = "steel-processing",
+    [3] = "concrete",
+    [4] = "concrete",
+    [5] = "battery",
+    [6] = "advanced-circuit",
+    [7] = "low-density-structure",
+    [8] = "speed-module",
+    [9] = "speed-module-2",
+    [10] = "speed-module-3"
+}
+
+local function copyPrerequisites(values)
+    local result = {}
+
+    for _, value in ipairs(values) do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
+local function addPrerequisiteIfMissing(prerequisites, prerequisite)
+    if not prerequisite then
+        return
+    end
+
+    for _, current in ipairs(prerequisites) do
+        if current == prerequisite then
+            return
+        end
+    end
+
+    table.insert(prerequisites, prerequisite)
+end
+
+local function getSteelChestDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and steelChestSpaceAgeDeltaPrerequisites[tier] then
+        return steelChestSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return steelChestDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -64,9 +126,10 @@ local techConfig = {
         basePacks = {
             { "automation-science-pack", 1 },
             { "logistic-science-pack", 1 },
-            { "chemical-science-pack", 1 }
+            { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }
         },
-        prerequisites = { "steel-chest-4" }
+        prerequisites = { "steel-chest-4", "production-science-pack" }
     },
     [6] = {
         basePacks = {
@@ -133,7 +196,9 @@ for tier = 1, 10 do
     local baseIngredients = RecipeTemplates.steelChest[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
-        skipTierScaling = true
+        skipTierScaling = true,
+        spaceAgeMaterialOverrides = steelChestSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
     
     -- Determine next upgrade
@@ -145,11 +210,18 @@ for tier = 1, 10 do
     -- Build tech configuration (tier 1 is vanilla)
     local techSettings = nil
     if tier > 1 and techConfig[tier] then
+        local prerequisites = copyPrerequisites(techConfig[tier].prerequisites)
+
+        addPrerequisiteIfMissing(prerequisites, getSteelChestDeltaPrerequisite(tier))
+
         techSettings = {
             number = tier,
             count = baseTechCount * tier,
-            packs = techConfig[tier].basePacks,
-            prerequisites = techConfig[tier].prerequisites
+            packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
+                spaceAgePackOverrides = steelChestSpaceAgeSciencePacks,
+                forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
+            }),
+            prerequisites = prerequisites
         }
     end
     
@@ -161,6 +233,7 @@ for tier = 1, 10 do
         inventorySize = inventorySize,
         ingredients = ingredients,
         nextUpdate = nextUpgrade,
-        tech = techSettings
+        tech = techSettings,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, steelChestSpaceAgeMaterials)
     }
 end

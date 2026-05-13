@@ -300,12 +300,41 @@ local tiers = {
     }
 }
 
+local function getBatteryLastVanillaTier()
+    if mods["space-age"] then
+        return 3
+    end
+
+    return 2
+end
+
+local function getBatteryProgressionTier(tier)
+    local lastVanillaTier = getBatteryLastVanillaTier()
+
+    if tier <= lastVanillaTier then
+        return 1
+    end
+
+    return (tier - lastVanillaTier) + 1
+end
+
+local function getBatteryProgressionTotalTiers()
+    return 10 - getBatteryLastVanillaTier() + 1
+end
+
+local function getBatteryBaselineCapacity()
+    return tiers[getBatteryLastVanillaTier()].capacity
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local progressionTier = getBatteryProgressionTier(i)
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.batteryEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
+        progressionTier = progressionTier,
         spaceAgeMaterialOverrides = batteryEquipmentSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -319,7 +348,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = tc.number,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, progressionTier),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = batteryEquipmentSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -331,7 +360,9 @@ for i, tier in ipairs(tiers) do
     genBatterys {
         number = tier.number,
         subgroup = config.subgroup,
-        capacity = tier.capacity,
+        capacity = i <= getBatteryLastVanillaTier()
+            and tier.capacity
+            or CostCalculator.calculateMachineWorkValue(getBatteryBaselineCapacity(), progressionTier, getBatteryProgressionTotalTiers(), 0),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

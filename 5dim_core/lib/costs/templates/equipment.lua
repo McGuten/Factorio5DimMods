@@ -10,6 +10,88 @@ local Templates = {}
 -- Helper: Get battery tier 3 name based on Space Age availability
 local batteryTier3Name = (mods and mods["space-age"]) and "battery-mk3-equipment" or "5d-battery-equipment-03"
 
+local function copyTemplateIngredient(ingredient)
+    return {
+        type = ingredient.type,
+        name = ingredient.name,
+        amount = ingredient.amount,
+        fixedAmount = ingredient.fixedAmount
+    }
+end
+
+local function buildMkFamilyName(vanillaName, prefix, tier)
+    if tier == 1 then
+        return vanillaName
+    end
+
+    return prefix .. string.format("%02d", tier)
+end
+
+local function buildUpgradeTemplates(upgradeNameFn, baseNameFn, deltaIngredientsByTier)
+    local templates = {}
+
+    for tier, deltaIngredients in ipairs(deltaIngredientsByTier) do
+        local ingredients = {}
+
+        if tier > 1 then
+            table.insert(ingredients, {
+                type = "item",
+                name = upgradeNameFn(tier - 1),
+                amount = 1,
+                fixedAmount = true
+            })
+        end
+
+        table.insert(ingredients, {
+            type = "item",
+            name = baseNameFn(tier),
+            amount = 1,
+            fixedAmount = true
+        })
+
+        for _, ingredient in ipairs(deltaIngredients) do
+            table.insert(ingredients, copyTemplateIngredient(ingredient))
+        end
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
+local function buildBaseRecipeUpgradeTemplates(baseRecipeIngredients, upgradeNameFn, baseNameFn, deltaIngredientsByTier, maxTier)
+    local templates = { [1] = {} }
+
+    for _, ingredient in ipairs(baseRecipeIngredients) do
+        table.insert(templates[1], copyTemplateIngredient(ingredient))
+    end
+
+    for tier = 2, maxTier or 10 do
+        local ingredients = {
+            {
+                type = "item",
+                name = upgradeNameFn(tier - 1),
+                amount = 1,
+                fixedAmount = true
+            },
+            {
+                type = "item",
+                name = baseNameFn(tier),
+                amount = 1,
+                fixedAmount = true
+            }
+        }
+
+        for _, ingredient in ipairs(deltaIngredientsByTier[tier]) do
+            table.insert(ingredients, copyTemplateIngredient(ingredient))
+        end
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
 -------------------------------------------------------------------------------
 -- POWER EQUIPMENT TEMPLATES
 -------------------------------------------------------------------------------
@@ -196,49 +278,60 @@ Templates.energyShieldEquipment = {
 }
 
 -- Personal Laser Defense Equipment templates
-Templates.personalLaserDefenseEquipment = {
-    [1] = {
+local function personalLaserTurretIngredientName(tier)
+    if mods and mods["5dim_battlefield"] then
+        return buildMkFamilyName("laser-turret", "5d-laser-turret-", tier)
+    end
+
+    return "laser-turret"
+end
+
+local function personalLaserDefenseEquipmentName(tier)
+    if tier == 1 then
+        return "personal-laser-defense-equipment"
+    end
+
+    return "5d-personal-laser-defense-equipment-" .. string.format("%02d", tier)
+end
+
+Templates.personalLaserDefenseEquipment = buildBaseRecipeUpgradeTemplates(
+    {
         { type = "item", name = "processing-unit", amount = 20 },
         { type = "item", name = "low-density-structure", amount = 5 },
         { type = "item", name = "laser-turret", amount = 5 }
     },
-    [2] = {
-        { type = "item", name = "personal-laser-defense-equipment", amount = 1 },
-        { type = "item", name = "battery", amount = 20 }
-    },
-    [3] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-02", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 20 }
-    },
-    [4] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-03", amount = 1 },
-        { type = "item", name = "processing-unit", amount = 20 }
-    },
-    [5] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-04", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 8 }
-    },
-    [6] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-05", amount = 1 },
-        { type = "item", name = "speed-module", amount = 4 }
-    },
-    [7] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-06", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 4 }
-    },
-    [8] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-07", amount = 1 },
-        { type = "item", name = "productivity-module-2", amount = 4 }
-    },
-    [9] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-08", amount = 1 },
-        { type = "item", name = "speed-module-3", amount = 4 }
-    },
-    [10] = {
-        { type = "item", name = "5d-personal-laser-defense-equipment-09", amount = 1 },
-        { type = "item", name = "productivity-module-3", amount = 4 }
+    personalLaserDefenseEquipmentName,
+    personalLaserTurretIngredientName,
+    {
+        [2] = {
+            { type = "item", name = "battery", amount = 20 }
+        },
+        [3] = {
+            { type = "item", name = "advanced-circuit", amount = 20 }
+        },
+        [4] = {
+            { type = "item", name = "processing-unit", amount = 20 }
+        },
+        [5] = {
+            { type = "item", name = "low-density-structure", amount = 8 }
+        },
+        [6] = {
+            { type = "item", name = "speed-module", amount = 4 }
+        },
+        [7] = {
+            { type = "item", name = "speed-module-2", amount = 4 }
+        },
+        [8] = {
+            { type = "item", name = "productivity-module-2", amount = 4 }
+        },
+        [9] = {
+            { type = "item", name = "speed-module-3", amount = 4 }
+        },
+        [10] = {
+            { type = "item", name = "productivity-module-3", amount = 4 }
+        }
     }
-}
+)
 
 -- Personal Tesla Defense Equipment templates
 local function teslaTurretIngredientName(tier)
@@ -246,52 +339,48 @@ local function teslaTurretIngredientName(tier)
         return "5d-tesla-turret-" .. string.format("%02d", tier)
     end
 
-    return "laser-turret"
+    return personalLaserTurretIngredientName(tier)
 end
 
-Templates.personalTeslaDefenseEquipment = {
-    [1] = {
-        { type = "item", name = "processing-unit", amount = 20 },
-        { type = "item", name = "low-density-structure", amount = 5 },
-        { type = "item", name = teslaTurretIngredientName(1), amount = mods and mods["5dim_battlefield"] and 2 or 5 }
-    },
-    [2] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-01", amount = 1 },
-        { type = "item", name = "battery", amount = 20 }
-    },
-    [3] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-02", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 20 }
-    },
-    [4] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-03", amount = 1 },
-        { type = "item", name = "processing-unit", amount = 20 }
-    },
-    [5] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-04", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 8 }
-    },
-    [6] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-05", amount = 1 },
-        { type = "item", name = "speed-module", amount = 4 }
-    },
-    [7] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-06", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 4 }
-    },
-    [8] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-07", amount = 1 },
-        { type = "item", name = "productivity-module-2", amount = 4 }
-    },
-    [9] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-08", amount = 1 },
-        { type = "item", name = "speed-module-3", amount = 4 }
-    },
-    [10] = {
-        { type = "item", name = "5d-personal-tesla-defense-equipment-09", amount = 1 },
-        { type = "item", name = "productivity-module-3", amount = 4 }
+Templates.personalTeslaDefenseEquipment = buildUpgradeTemplates(
+    function(tier)
+        return "5d-personal-tesla-defense-equipment-" .. string.format("%02d", tier)
+    end,
+    teslaTurretIngredientName,
+    {
+        [1] = {
+            { type = "item", name = "processing-unit", amount = 20 },
+            { type = "item", name = "low-density-structure", amount = 5 }
+        },
+        [2] = {
+            { type = "item", name = "battery", amount = 20 }
+        },
+        [3] = {
+            { type = "item", name = "advanced-circuit", amount = 20 }
+        },
+        [4] = {
+            { type = "item", name = "processing-unit", amount = 20 }
+        },
+        [5] = {
+            { type = "item", name = "low-density-structure", amount = 8 }
+        },
+        [6] = {
+            { type = "item", name = "speed-module", amount = 4 }
+        },
+        [7] = {
+            { type = "item", name = "speed-module-2", amount = 4 }
+        },
+        [8] = {
+            { type = "item", name = "productivity-module-2", amount = 4 }
+        },
+        [9] = {
+            { type = "item", name = "speed-module-3", amount = 4 }
+        },
+        [10] = {
+            { type = "item", name = "productivity-module-3", amount = 4 }
+        }
     }
-}
+)
 
 -------------------------------------------------------------------------------
 -- MOBILITY EQUIPMENT TEMPLATES

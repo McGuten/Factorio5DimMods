@@ -92,11 +92,22 @@ for _, tech_name in pairs(tech) do
 end
 ```
 
+## Documentation
+
+The documentation entry point lives in [mods/docs/README.md](docs/README.md).
+
+Useful starting points:
+
+- [mods/docs/design-guide.md](docs/design-guide.md): general design rules and repo reading order.
+- [mods/docs/design-modules.md](docs/design-modules.md): per-module summary, routes and canonical exceptions.
+- [mods/docs/design-planets.md](docs/design-planets.md): planetary overview of Space Age progression.
+- [mods/docs/design-resources.md](docs/design-resources.md): resource catalog, affinities and delta rules.
+
 ## Validation
 
-The local validation runner lives in [mods/validate-factorio-profiles.ps1](validate-factorio-profiles.ps1). It executes reusable smoke-test profiles for the 5Dim suite without mutating the tracked mod list or config files.
+The local validation runner lives in [mods/scripts/validate-factorio-profiles.ps1](scripts/validate-factorio-profiles.ps1). It executes reusable smoke-test profiles for the 5Dim suite without mutating the tracked mod list or config files.
 
-Command examples and profile details are documented in [mods/comandos.md](comandos.md) and [mods/docs/factorio-smoke-tests.md](docs/factorio-smoke-tests.md).
+Command examples and profile details are documented in [mods/comandos.md](comandos.md) and [mods/docs/validation-smoke-tests.md](docs/validation-smoke-tests.md).
 
 
 ## Images

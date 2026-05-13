@@ -213,16 +213,17 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
 
     -- Calculate stats for this tier
-    local speed = baseSpeed + (tier - 1) * speedIncrement
-    local energy = baseEnergy + (tier - 1) * energyIncrement
-    local weight = baseWeight + (tier - 1) * weightIncrement
-    local health = baseHealth + (tier - 1) * healthIncrement
+    local speed = CostCalculator.calculateMachineWorkValue(baseSpeed, tier, 10, 2)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
+    local weight = CostCalculator.calculateMachineWorkValue(baseWeight, tier, 10, 0)
+    local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
 
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.locomotive[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
         skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = locomotiveSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -237,7 +238,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = locomotiveSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

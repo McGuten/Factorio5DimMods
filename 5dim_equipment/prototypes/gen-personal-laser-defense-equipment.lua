@@ -75,6 +75,14 @@ local function getPersonalLaserDefenseDeltaPrerequisite(tier)
     return personalLaserDefenseDeltaPrerequisites[tier]
 end
 
+local function getPersonalLaserDefenseBasePrerequisite(tier)
+    if mods["5dim_battlefield"] then
+        return tier == 2 and "laser-turret-2" or ("laser-turret-" .. tier)
+    end
+
+    return "laser-turret"
+end
+
 local techConfig = {
     [2] = {
         basePacks = {
@@ -347,12 +355,17 @@ local tiers = {
     }
 }
 
+local function calculateCooldown(baseCooldown, tier)
+    return math.max(1, math.floor((baseCooldown / CostCalculator.getMachineWorkMultiplier(tier)) + 0.5))
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.personalLaserDefenseEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = personalLaserDefenseSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -362,11 +375,12 @@ for i, tier in ipairs(tiers) do
     if tc then
         local prerequisites = copyPrerequisites(tc.prerequisites)
 
+        addPrerequisiteIfMissing(prerequisites, getPersonalLaserDefenseBasePrerequisite(i))
         addPrerequisiteIfMissing(prerequisites, getPersonalLaserDefenseDeltaPrerequisite(i))
 
         techData = {
             number = i,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = personalLaserDefenseSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -378,10 +392,10 @@ for i, tier in ipairs(tiers) do
     genPersonalLaserDefenses {
         number = tier.number,
         subgroup = config.subgroup,
-        energyConsumption = tier.energyConsumption,
-        cooldown = tier.cooldown,
-        range = tier.range,
-        damage = tier.damage,
+        energyConsumption = CostCalculator.scaleMachineEnergy(tiers[1].energyConsumption, i),
+        cooldown = calculateCooldown(tiers[1].cooldown, i),
+        range = CostCalculator.calculateMachineWorkValue(tiers[1].range, i, 10, 0),
+        damage = CostCalculator.calculateMachineWorkValue(tiers[1].damage, i, 10, 2),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

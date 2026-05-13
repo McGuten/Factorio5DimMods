@@ -78,6 +78,14 @@ local function getPersonalTeslaDefenseDeltaPrerequisite(tier)
     return personalTeslaDefenseDeltaPrerequisites[tier]
 end
 
+local function getPersonalTeslaDefenseBasePrerequisite(tier)
+    if mods["5dim_battlefield"] then
+        return "5d-tesla-turrets-" .. tier
+    end
+
+    return "laser-turret"
+end
+
 local techConfig = {
     [1] = {
         number = 1,
@@ -383,12 +391,17 @@ local tiers = {
     }
 }
 
+local function calculateCooldown(baseCooldown, tier)
+    return math.max(1, math.floor((baseCooldown / CostCalculator.getMachineWorkMultiplier(tier)) + 0.5))
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.personalTeslaDefenseEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = personalTeslaDefenseSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -398,15 +411,12 @@ for i, tier in ipairs(tiers) do
     if tc then
         local prerequisites = copyPrerequisites(tc.prerequisites)
 
-        if tc.number == 1 and mods["5dim_battlefield"] then
-            table.insert(prerequisites, "5d-tesla-turrets-1")
-        end
-
+        addPrerequisiteIfMissing(prerequisites, getPersonalTeslaDefenseBasePrerequisite(i))
         addPrerequisiteIfMissing(prerequisites, getPersonalTeslaDefenseDeltaPrerequisite(i))
 
         techData = {
             number = tc.number,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = personalTeslaDefenseSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -418,10 +428,10 @@ for i, tier in ipairs(tiers) do
     genPersonalLaserDefenses {
         number = tier.number,
         subgroup = config.subgroup,
-        energyConsumption = tier.energyConsumption,
-        cooldown = tier.cooldown,
-        range = tier.range,
-        damage = tier.damage,
+        energyConsumption = CostCalculator.scaleMachineEnergy(tiers[1].energyConsumption, i),
+        cooldown = calculateCooldown(tiers[1].cooldown, i),
+        range = CostCalculator.calculateMachineWorkValue(tiers[1].range, i, 10, 0),
+        damage = CostCalculator.calculateMachineWorkValue(tiers[1].damage, i, 10, 2),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

@@ -224,18 +224,16 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats with incremental bonuses
-    local tierBonus = (tier - 1) * 0.015
-    local extension = baseExtension + tierBonus
-    local rotation = baseRotation + tierBonus
-    -- Non-linear energy scaling (vanilla pattern)
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    local drain = baseDrain + tierBonus
+    local extension = CostCalculator.calculateMachineWorkValue(baseExtension, tier, 10, 3)
+    local rotation = CostCalculator.calculateMachineWorkValue(baseRotation, tier, 10, 3)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
+    local drain = CostCalculator.scaleMachineEnergy(baseDrain, tier, 3)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.stackInserter[tier], tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = stackInserterSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -257,7 +255,7 @@ for tier = 1, 10 do
 
             tech = {
                 number = tier,
-                count = CostCalculator.scaleAbsoluteTechCount(stackInserterTechCounts[tier]),
+                count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
                 packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                     spaceAgePackOverrides = stackInserterSpaceAgeSciencePacks,
                     forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

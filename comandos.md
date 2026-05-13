@@ -6,13 +6,13 @@ Ejecutar desde la carpeta mods:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\package-5dim-mods.ps1 -Force
+.\scripts\package-5dim-mods.ps1 -Force
 ```
 
 En una sola linea:
 
 ```powershell
-Set-Location "d:\factorioDev\mods"; Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass; .\package-5dim-mods.ps1 -Force
+Set-Location "d:\factorioDev\mods"; Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass; .\scripts\package-5dim-mods.ps1 -Force
 ```
 
 El bundle se genera como:
@@ -27,16 +27,16 @@ Ejecutar desde la carpeta mods:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\validate-factorio-profiles.ps1 -ListProfiles
-.\validate-factorio-profiles.ps1 -TestSet Smoke
+.\scripts\validate-factorio-profiles.ps1 -ListProfiles
+.\scripts\validate-factorio-profiles.ps1 -TestSet Smoke
 ```
 
 Variantes utiles:
 
 ```powershell
-.\validate-factorio-profiles.ps1 -TestSet Module
-.\validate-factorio-profiles.ps1 -TestSet All -RunLocaleValidation
-.\validate-factorio-profiles.ps1 -Profiles suite-no-space-age,module-5dim_transport
+.\scripts\validate-factorio-profiles.ps1 -TestSet Module
+.\scripts\validate-factorio-profiles.ps1 -TestSet All -RunLocaleValidation
+.\scripts\validate-factorio-profiles.ps1 -Profiles suite-no-space-age,module-5dim_transport
 ```
 
 Notas:
@@ -45,4 +45,4 @@ Notas:
 - Los `mod-list.json` y `write-data` temporales se generan fuera del workspace.
 - Al terminar, el runner deja un `summary.json` y un `report.txt` en la carpeta temporal de la corrida.
 - Las combinaciones invalidas se reportan como omitidas.
-- La guia de perfiles y comportamiento esta en [mods/docs/factorio-smoke-tests.md](docs/factorio-smoke-tests.md).
+- La guia de perfiles y comportamiento esta en [mods/docs/validation-smoke-tests.md](docs/validation-smoke-tests.md).

@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Automation module for 5Dim's mod\n\rExpands production capabilities with multiple tiers of crafting machines\n\rThis mod includes:\n\r- 10 tiers of assembling machines\n\r- 10 tiers of chemical plants\n\r- 10 tiers of oil refineries\n\r- 10 tiers of laboratories",
+    "description": "Scale production without outgrowing your machines.\n\rAdds 10 tiers of assemblers, chemical plants, refineries and labs for larger factories and heavier science demand.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

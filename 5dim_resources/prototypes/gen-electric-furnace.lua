@@ -217,19 +217,26 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local craftingSpeed = config.craftingSpeed
-    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.0)
     
     -- Module slots: base + 1 every 2 tiers (3-4, 5-6, 7-8, 9-10 share each step)
     local moduleSlots = baseModuleSlots + math.floor(tier / 3)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = baseModuleSlots + math.floor((tier - 1) / 3)
+    end
+
+    moduleSlots = CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, 10, previousModuleSlots)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.electricFurnace[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = electricFurnaceSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -250,7 +257,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier + 1,  -- Tech number offset
-            count = CostCalculator.scaleAbsoluteTechCount(electricFurnaceTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = electricFurnaceSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

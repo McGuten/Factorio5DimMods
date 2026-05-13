@@ -325,12 +325,23 @@ local tiers = {
     }
 }
 
+local function getEnergyShieldProgressionTier(tier)
+    if tier <= 2 then
+        return 1
+    end
+
+    return tier - 1
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local progressionTier = getEnergyShieldProgressionTier(i)
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.energyShieldEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
+        progressionTier = progressionTier,
         spaceAgeMaterialOverrides = energyShieldEquipmentSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -344,7 +355,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = tc.number,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, progressionTier),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = energyShieldEquipmentSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -356,9 +367,9 @@ for i, tier in ipairs(tiers) do
     genEnergyShields {
         number = tier.number,
         subgroup = config.subgroup,
-        capacity = tier.bufferCapacity,
-        shieldCapacity = tier.shieldCapacity,
-        inputFlow = tier.inputFlow,
+        capacity = i <= 2 and tier.bufferCapacity or CostCalculator.calculateMachineWorkValue(tiers[2].bufferCapacity, progressionTier, 9, 0),
+        shieldCapacity = i <= 2 and tier.shieldCapacity or CostCalculator.calculateMachineWorkValue(tiers[2].shieldCapacity, progressionTier, 9, 0),
+        inputFlow = i <= 2 and tier.inputFlow or CostCalculator.calculateMachineWorkValue(tiers[2].inputFlow, progressionTier, 9, 0),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

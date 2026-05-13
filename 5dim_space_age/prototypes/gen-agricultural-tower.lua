@@ -175,12 +175,13 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local radius = baseRadius + config.radiusBonus
-    local energyUsage = CostCalculator.scaleEnergyBySpeed(baseEnergyUsage, baseRadius, radius, 1.5)
+    local radius = CostCalculator.calculateMachineWorkValue(baseRadius, tier, 10, 2)
+    local energyUsage = CostCalculator.scaleMachineEnergy(baseEnergyUsage, tier)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.agriculturalTower[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -200,7 +201,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = baseTechCount * (tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = agriculturalTowerSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = true

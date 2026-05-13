@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Logistic module for 5Dim's mod\n\rEnhances the logistics network with upgraded robots and roboports\n\rThis mod includes:\n\r- 10 tiers of construction robots\n\r- 10 tiers of logistic robots\n\r- 10 tiers of roboports",
+    "description": "Make your robot network faster, wider and more capable.\n\rAdds stronger construction bots, logistic bots and roboports for larger automated bases.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

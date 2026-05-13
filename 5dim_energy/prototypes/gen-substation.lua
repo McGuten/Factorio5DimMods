@@ -82,6 +82,10 @@ local function getSubstationDeltaPrerequisite(tier)
     return substationDeltaPrerequisites[tier]
 end
 
+local function clampPoleDistance(value)
+    return math.min(value, 64)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -195,13 +199,14 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local wireDistance = baseWireDistance + (tier - 1) * 4
-    local supplyArea = baseSupplyArea + (tier - 1) * 2
+    local wireDistance = clampPoleDistance(CostCalculator.calculateMachineWorkValue(baseWireDistance, tier, 10, 0))
+    local supplyArea = clampPoleDistance(CostCalculator.calculateMachineWorkValue(baseSupplyArea, tier, 10, 0))
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.substation[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = substationSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -216,7 +221,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = substationSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

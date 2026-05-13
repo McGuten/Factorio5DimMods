@@ -5,6 +5,55 @@
 
 local Templates = {}
 
+local function copyTemplateIngredient(ingredient)
+    return {
+        type = ingredient.type,
+        name = ingredient.name,
+        amount = ingredient.amount,
+        fixedAmount = ingredient.fixedAmount
+    }
+end
+
+local function buildMkFamilyName(vanillaName, prefix, tier)
+    if tier == 1 then
+        return vanillaName
+    end
+
+    return prefix .. string.format("%02d", tier)
+end
+
+local function buildUpgradeTemplates(upgradeNameFn, baseNameFn, deltaIngredientsByTier)
+    local templates = {}
+
+    for tier, deltaIngredients in ipairs(deltaIngredientsByTier) do
+        local ingredients = {}
+
+        if tier > 1 then
+            table.insert(ingredients, {
+                type = "item",
+                name = upgradeNameFn(tier - 1),
+                amount = 1,
+                fixedAmount = true
+            })
+        end
+
+        table.insert(ingredients, {
+            type = "item",
+            name = baseNameFn(tier),
+            amount = 1,
+            fixedAmount = true
+        })
+
+        for _, ingredient in ipairs(deltaIngredients) do
+            table.insert(ingredients, copyTemplateIngredient(ingredient))
+        end
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
 -- Wall templates
 Templates.wall = {
     [1] = {
@@ -12,7 +61,7 @@ Templates.wall = {
     },
     [2] = {
         { type = "item", name = "stone-wall", amount = 1 },
-        { type = "item", name = "stone-brick", amount = 5 }
+        { type = "item", name = "stone", amount = 10 }
     },
     [3] = {
         { type = "item", name = "5d-stone-wall-02", amount = 1 },
@@ -28,23 +77,23 @@ Templates.wall = {
     },
     [6] = {
         { type = "item", name = "5d-stone-wall-05", amount = 1 },
-        { type = "item", name = "battery", amount = 5 }
+        { type = "item", name = "iron-stick", amount = 10 }
     },
     [7] = {
         { type = "item", name = "5d-stone-wall-06", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 5 }
+        { type = "item", name = "hazard-concrete", amount = 10 }
     },
     [8] = {
         { type = "item", name = "5d-stone-wall-07", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 2 }
+        { type = "item", name = "refined-hazard-concrete", amount = 10 }
     },
     [9] = {
         { type = "item", name = "5d-stone-wall-08", amount = 1 },
-        { type = "item", name = "speed-module", amount = 2 }
+        { type = "item", name = "repair-pack", amount = 6 }
     },
     [10] = {
         { type = "item", name = "5d-stone-wall-09", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 2 }
+        { type = "item", name = "low-density-structure", amount = 4 }
     }
 }
 
@@ -58,7 +107,7 @@ Templates.gate = {
     [2] = {
         { type = "item", name = "5d-stone-wall-02", amount = 1 },
         { type = "item", name = "gate", amount = 1 },
-        { type = "item", name = "stone-brick", amount = 5 }
+        { type = "item", name = "stone", amount = 10 }
     },
     [3] = {
         { type = "item", name = "5d-stone-wall-03", amount = 1 },
@@ -78,27 +127,27 @@ Templates.gate = {
     [6] = {
         { type = "item", name = "5d-stone-wall-06", amount = 1 },
         { type = "item", name = "5d-gate-05", amount = 1 },
-        { type = "item", name = "battery", amount = 5 }
+        { type = "item", name = "iron-stick", amount = 10 }
     },
     [7] = {
         { type = "item", name = "5d-stone-wall-07", amount = 1 },
         { type = "item", name = "5d-gate-06", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 5 }
+        { type = "item", name = "hazard-concrete", amount = 10 }
     },
     [8] = {
         { type = "item", name = "5d-stone-wall-08", amount = 1 },
         { type = "item", name = "5d-gate-07", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 2 }
+        { type = "item", name = "refined-hazard-concrete", amount = 10 }
     },
     [9] = {
         { type = "item", name = "5d-stone-wall-09", amount = 1 },
         { type = "item", name = "5d-gate-08", amount = 1 },
-        { type = "item", name = "speed-module", amount = 2 }
+        { type = "item", name = "repair-pack", amount = 6 }
     },
     [10] = {
         { type = "item", name = "5d-stone-wall-10", amount = 1 },
         { type = "item", name = "5d-gate-09", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 2 }
+        { type = "item", name = "low-density-structure", amount = 4 }
     }
 }
 
@@ -281,51 +330,48 @@ Templates.robotDeployer = buildDerivedGunTurretTemplates(
     end
 )
 
--- Gun Turret Sniper templates
-Templates.gunTurretSniper = {
-    [1] = {
-        { type = "item", name = "5d-gun-turret-05", amount = 1 },
-        { type = "item", name = "iron-gear-wheel", amount = 10 },
-        { type = "item", name = "advanced-circuit", amount = 8 },
-        { type = "item", name = "steel-plate", amount = 12 }
-    },
-    [2] = {
-        { type = "item", name = "5d-gun-turret-sniper-01", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 6 }
-    },
-    [3] = {
-        { type = "item", name = "5d-gun-turret-sniper-02", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 6 }
-    },
-    [4] = {
-        { type = "item", name = "5d-gun-turret-sniper-03", amount = 1 },
-        { type = "item", name = "battery", amount = 6 }
-    },
-    [5] = {
-        { type = "item", name = "5d-gun-turret-sniper-04", amount = 1 },
-        { type = "item", name = "processing-unit", amount = 4 }
-    },
-    [6] = {
-        { type = "item", name = "5d-gun-turret-sniper-05", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 4 }
-    },
-    [7] = {
-        { type = "item", name = "5d-gun-turret-sniper-06", amount = 1 },
-        { type = "item", name = "speed-module", amount = 4 }
-    },
-    [8] = {
-        { type = "item", name = "5d-gun-turret-sniper-07", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 4 }
-    },
-    [9] = {
-        { type = "item", name = "5d-gun-turret-sniper-08", amount = 1 },
-        { type = "item", name = "speed-module-3", amount = 4 }
-    },
-    [10] = {
-        { type = "item", name = "5d-gun-turret-sniper-09", amount = 1 },
-        { type = "item", name = "productivity-module-3", amount = 4 }
+Templates.gunTurretSniper = buildUpgradeTemplates(
+    function(tier)
+        return "5d-gun-turret-sniper-" .. string.format("%02d", tier)
+    end,
+    function(tier)
+        return buildMkFamilyName("gun-turret", "5d-gun-turret-", tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "iron-gear-wheel", amount = 10 },
+            { type = "item", name = "advanced-circuit", amount = 8 },
+            { type = "item", name = "steel-plate", amount = 12 }
+        },
+        [2] = {
+            { type = "item", name = "steel-plate", amount = 6 }
+        },
+        [3] = {
+            { type = "item", name = "advanced-circuit", amount = 6 }
+        },
+        [4] = {
+            { type = "item", name = "battery", amount = 6 }
+        },
+        [5] = {
+            { type = "item", name = "processing-unit", amount = 4 }
+        },
+        [6] = {
+            { type = "item", name = "low-density-structure", amount = 4 }
+        },
+        [7] = {
+            { type = "item", name = "speed-module", amount = 4 }
+        },
+        [8] = {
+            { type = "item", name = "speed-module-2", amount = 4 }
+        },
+        [9] = {
+            { type = "item", name = "speed-module-3", amount = 4 }
+        },
+        [10] = {
+            { type = "item", name = "productivity-module-3", amount = 4 }
+        }
     }
-}
+)
 
 -- Laser Turret templates (standard)
 Templates.laserTurret = {
@@ -372,51 +418,48 @@ Templates.laserTurret = {
     }
 }
 
--- Laser Turret Sniper templates
-Templates.laserTurretSniper = {
-    [1] = {
-        { type = "item", name = "5d-laser-turret-05", amount = 1 },
-        { type = "item", name = "steel-plate", amount = 15 },
-        { type = "item", name = "advanced-circuit", amount = 10 },
-        { type = "item", name = "battery", amount = 12 }
-    },
-    [2] = {
-        { type = "item", name = "5d-laser-turret-sniper-01", amount = 1 },
-        { type = "item", name = "battery", amount = 6 }
-    },
-    [3] = {
-        { type = "item", name = "5d-laser-turret-sniper-02", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 6 }
-    },
-    [4] = {
-        { type = "item", name = "5d-laser-turret-sniper-03", amount = 1 },
-        { type = "item", name = "processing-unit", amount = 4 }
-    },
-    [5] = {
-        { type = "item", name = "5d-laser-turret-sniper-04", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 4 }
-    },
-    [6] = {
-        { type = "item", name = "5d-laser-turret-sniper-05", amount = 1 },
-        { type = "item", name = "speed-module", amount = 4 }
-    },
-    [7] = {
-        { type = "item", name = "5d-laser-turret-sniper-06", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 4 }
-    },
-    [8] = {
-        { type = "item", name = "5d-laser-turret-sniper-07", amount = 1 },
-        { type = "item", name = "productivity-module-2", amount = 4 }
-    },
-    [9] = {
-        { type = "item", name = "5d-laser-turret-sniper-08", amount = 1 },
-        { type = "item", name = "speed-module-3", amount = 4 }
-    },
-    [10] = {
-        { type = "item", name = "5d-laser-turret-sniper-09", amount = 1 },
-        { type = "item", name = "productivity-module-3", amount = 4 }
+Templates.laserTurretSniper = buildUpgradeTemplates(
+    function(tier)
+        return "5d-laser-turret-sniper-" .. string.format("%02d", tier)
+    end,
+    function(tier)
+        return buildMkFamilyName("laser-turret", "5d-laser-turret-", tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "steel-plate", amount = 15 },
+            { type = "item", name = "advanced-circuit", amount = 10 },
+            { type = "item", name = "battery", amount = 12 }
+        },
+        [2] = {
+            { type = "item", name = "battery", amount = 6 }
+        },
+        [3] = {
+            { type = "item", name = "advanced-circuit", amount = 6 }
+        },
+        [4] = {
+            { type = "item", name = "processing-unit", amount = 4 }
+        },
+        [5] = {
+            { type = "item", name = "low-density-structure", amount = 4 }
+        },
+        [6] = {
+            { type = "item", name = "speed-module", amount = 4 }
+        },
+        [7] = {
+            { type = "item", name = "speed-module-2", amount = 4 }
+        },
+        [8] = {
+            { type = "item", name = "productivity-module-2", amount = 4 }
+        },
+        [9] = {
+            { type = "item", name = "speed-module-3", amount = 4 }
+        },
+        [10] = {
+            { type = "item", name = "productivity-module-3", amount = 4 }
+        }
     }
-}
+)
 
 local function accumulatorIngredientName(tier)
     if mods and mods["5dim_energy"] and tier >= 2 then
@@ -427,49 +470,48 @@ local function accumulatorIngredientName(tier)
 end
 
 -- Tesla Turret templates
-Templates.teslaTurret = {
-    [1] = {
-        { type = "item", name = "steel-plate", amount = 50 },
-        { type = "item", name = "electronic-circuit", amount = 50 },
-        { type = "item", name = "battery", amount = 40 }
-    },
-    [2] = {
-        { type = "item", name = "5d-tesla-turret-01", amount = 1 },
-        { type = "item", name = "battery", amount = 10 }
-    },
-    [3] = {
-        { type = "item", name = "5d-tesla-turret-02", amount = 1 },
-        { type = "item", name = "advanced-circuit", amount = 8 }
-    },
-    [4] = {
-        { type = "item", name = "5d-tesla-turret-03", amount = 1 },
-        { type = "item", name = "processing-unit", amount = 4 }
-    },
-    [5] = {
-        { type = "item", name = "5d-tesla-turret-04", amount = 1 },
-        { type = "item", name = "low-density-structure", amount = 4 }
-    },
-    [6] = {
-        { type = "item", name = "5d-tesla-turret-05", amount = 1 },
-        { type = "item", name = "speed-module", amount = 4 }
-    },
-    [7] = {
-        { type = "item", name = "5d-tesla-turret-06", amount = 1 },
-        { type = "item", name = "speed-module-2", amount = 4 }
-    },
-    [8] = {
-        { type = "item", name = "5d-tesla-turret-07", amount = 1 },
-        { type = "item", name = "productivity-module-2", amount = 4 }
-    },
-    [9] = {
-        { type = "item", name = "5d-tesla-turret-08", amount = 1 },
-        { type = "item", name = "speed-module-3", amount = 4 }
-    },
-    [10] = {
-        { type = "item", name = "5d-tesla-turret-09", amount = 1 },
-        { type = "item", name = "productivity-module-3", amount = 4 }
+Templates.teslaTurret = buildUpgradeTemplates(
+    function(tier)
+        return "5d-tesla-turret-" .. string.format("%02d", tier)
+    end,
+    function(tier)
+        return "5d-laser-turret-sniper-" .. string.format("%02d", tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "steel-plate", amount = 50 },
+            { type = "item", name = "electronic-circuit", amount = 50 },
+            { type = "item", name = "battery", amount = 40 }
+        },
+        [2] = {
+            { type = "item", name = "battery", amount = 10 }
+        },
+        [3] = {
+            { type = "item", name = "advanced-circuit", amount = 8 }
+        },
+        [4] = {
+            { type = "item", name = "processing-unit", amount = 4 }
+        },
+        [5] = {
+            { type = "item", name = "low-density-structure", amount = 4 }
+        },
+        [6] = {
+            { type = "item", name = "speed-module", amount = 4 }
+        },
+        [7] = {
+            { type = "item", name = "speed-module-2", amount = 4 }
+        },
+        [8] = {
+            { type = "item", name = "productivity-module-2", amount = 4 }
+        },
+        [9] = {
+            { type = "item", name = "speed-module-3", amount = 4 }
+        },
+        [10] = {
+            { type = "item", name = "productivity-module-3", amount = 4 }
+        }
     }
-}
+)
 
 -- Flamethrower Turret templates
 Templates.flamethrowerTurret = {

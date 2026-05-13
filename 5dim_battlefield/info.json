@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Defense module for 5Dim's mod\n\rExpands your defensive capabilities with new turrets, walls and detection systems\n\rThis mod includes:\n\r- 10 tiers of gun turrets (standard and sniper variants)\n\r- 10 tiers of laser turrets (standard and sniper variants)\n\r- Sniper rifle and dedicated sniper ammunition\n\r- 10 tiers of tesla turrets\n\r- 10 tiers of flamethrower turrets\n\r- 10 tiers of walls and gates\n\r- 10 tiers of radars",
+    "description": "Build defenses that keep up with a more dangerous world.\n\rAdds more tiers of turrets, walls, gates and radar support for a longer military progression.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

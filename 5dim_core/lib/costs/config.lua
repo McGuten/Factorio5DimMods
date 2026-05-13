@@ -14,13 +14,71 @@ CostConfig.spaceAgeIntegration_enabled = settings.startup["5d-space-age-material
 CostConfig.spaceAgeMaterials_enabled = CostConfig.spaceAgeIntegration_enabled
 CostConfig.spaceAgeSciencePacks_enabled = CostConfig.spaceAgeIntegration_enabled
 
--- Custom multipliers from settings
-CostConfig.techMultiplier = settings.startup["5d-tech-cost-multiplier"].value
-CostConfig.recipeMultiplier = settings.startup["5d-recipe-cost-multiplier"].value
+-- Machine progression settings
+CostConfig.machineWorkFactor = settings.startup["5d-machine-work-factor"].value
+CostConfig.machineEnergyFactor = settings.startup["5d-machine-energy-factor"].value
+CostConfig.machineRecipeFactor = settings.startup["5d-machine-recipe-factor"].value
+CostConfig.machineTechFactor = settings.startup["5d-machine-tech-factor"].value
+CostConfig.machineT10NextTierWork = settings.startup["5d-machine-t10-next-tier-work"].value
+CostConfig.machineT10ExtraModuleSlots = settings.startup["5d-machine-t10-extra-module-slots"].value
+
+-- Legacy global multipliers retained as neutral compatibility values while
+-- machine generators migrate to the new progression settings.
+CostConfig.techMultiplier = 1.0
+CostConfig.recipeMultiplier = 1.0
 CostConfig.craftingTimeMultiplier = settings.startup["5d-crafting-time-multiplier"].value
 
 -- Check if Space Age is installed
 CostConfig.hasSpaceAge = mods["space-age"] ~= nil
+
+-------------------------------------------------------------------------------
+-- INTERNAL RECIPE RARITY POLICY
+-- One global player-facing recipe factor, with fixed internal rarity weights to
+-- keep exotic deltas from exploding in quantity.
+-------------------------------------------------------------------------------
+
+CostConfig.recipeRarityWeights = {
+    common = 1.0,
+    processed = 0.75,
+    advanced = 0.55,
+    exotic = 0.25,
+    fluid = 0.45
+}
+
+CostConfig.recipeRarityByName = {
+    ["advanced-circuit"] = "processed",
+    ["battery"] = "processed",
+    ["concrete"] = "processed",
+    ["electric-engine-unit"] = "processed",
+    ["engine-unit"] = "processed",
+    ["molten-iron"] = "processed",
+    ["molten-copper"] = "processed",
+
+    ["bioflux"] = "advanced",
+    ["carbon-fiber"] = "advanced",
+    ["electrolyte"] = "advanced",
+    ["holmium-plate"] = "advanced",
+    ["lithium-plate"] = "advanced",
+    ["low-density-structure"] = "advanced",
+    ["processing-unit"] = "advanced",
+    ["refined-concrete"] = "advanced",
+    ["speed-module-2"] = "advanced",
+    ["productivity-module-2"] = "advanced",
+    ["tungsten-carbide"] = "advanced",
+    ["tungsten-plate"] = "advanced",
+    ["uranium-235"] = "advanced",
+    ["fluorine"] = "advanced",
+
+    ["capture-robot-rocket"] = "exotic",
+    ["fluoroketone-cold"] = "exotic",
+    ["fluoroketone-hot"] = "exotic",
+    ["fusion-power-cell"] = "exotic",
+    ["productivity-module-3"] = "exotic",
+    ["quantum-processor"] = "exotic",
+    ["speed-module-3"] = "exotic",
+    ["supercapacitor"] = "exotic",
+    ["superconductor"] = "exotic"
+}
 
 -------------------------------------------------------------------------------
 -- TIER SCALING
@@ -159,6 +217,44 @@ function CostConfig.getCraftingTimeMultiplier()
     return CostConfig.craftingTimeMultiplier
 end
 
+function CostConfig.getMachineWorkFactor()
+    return CostConfig.machineWorkFactor
+end
+
+function CostConfig.getMachineEnergyFactor()
+    return CostConfig.machineEnergyFactor
+end
+
+function CostConfig.getMachineRecipeFactor()
+    return CostConfig.machineRecipeFactor
+end
+
+function CostConfig.getMachineTechFactor()
+    return CostConfig.machineTechFactor
+end
+
+function CostConfig.shouldUseT10NextTierWork()
+    return CostConfig.machineT10NextTierWork
+end
+
+function CostConfig.getT10ExtraModuleSlots()
+    return CostConfig.machineT10ExtraModuleSlots
+end
+
+function CostConfig.getRecipeRarityWeight(ingredientType, ingredientName)
+    local rarityKey = CostConfig.recipeRarityByName[ingredientName]
+
+    if rarityKey then
+        return CostConfig.recipeRarityWeights[rarityKey]
+    end
+
+    if ingredientType == "fluid" then
+        return CostConfig.recipeRarityWeights.fluid
+    end
+
+    return CostConfig.recipeRarityWeights.common
+end
+
 -- Get Space Age material for a tier (returns nil if not applicable)
 function CostConfig.getSpaceAgeMaterial(tier, isBulk)
     if not CostConfig.shouldUseSpaceAgeMaterials() then
@@ -188,8 +284,12 @@ function CostConfig.printDebugInfo()
     log("5Dim's Cost Config:")
     log("  Has Space Age: " .. tostring(CostConfig.hasSpaceAge))
     log("  Space Age Planetary Integration: " .. tostring(CostConfig.spaceAgeIntegration_enabled))
-    log("  Recipe Multiplier: " .. CostConfig.getRecipeMultiplier())
-    log("  Tech Multiplier: " .. CostConfig.getTechMultiplier())
+    log("  Machine Work Factor: " .. CostConfig.getMachineWorkFactor())
+    log("  Machine Energy Factor: " .. CostConfig.getMachineEnergyFactor())
+    log("  Machine Recipe Factor: " .. CostConfig.getMachineRecipeFactor())
+    log("  Machine Tech Factor: " .. CostConfig.getMachineTechFactor())
+    log("  T10 Uses Next Tier Work: " .. tostring(CostConfig.shouldUseT10NextTierWork()))
+    log("  T10 Extra Module Slots: " .. CostConfig.getT10ExtraModuleSlots())
     log("  Crafting Time Multiplier: " .. CostConfig.getCraftingTimeMultiplier())
     log("  Use Space Age Materials: " .. tostring(CostConfig.shouldUseSpaceAgeMaterials()))
     log("  Use Space Age Science Packs: " .. tostring(CostConfig.shouldUseSpaceAgeSciencePacks()))

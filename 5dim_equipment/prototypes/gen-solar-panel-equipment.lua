@@ -301,11 +301,10 @@ local tiers = {
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
-local powerProduction = config.basePowerProduction
-
 for i, tier in ipairs(tiers) do
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.solarPanelEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = solarPanelEquipmentSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -319,7 +318,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = i,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = solarPanelEquipmentSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -331,13 +330,11 @@ for i, tier in ipairs(tiers) do
     genSolarPanels {
         number = tier.number,
         subgroup = config.subgroup,
-        power = powerProduction,
+        power = CostCalculator.calculateMachineWorkValue(config.basePowerProduction, i, 10, 0),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,
         recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(i, solarPanelEquipmentSpaceAgeMaterials),
         tech = techData
     }
-
-    powerProduction = powerProduction * config.powerMultiplier
 end

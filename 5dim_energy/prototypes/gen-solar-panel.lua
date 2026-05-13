@@ -197,15 +197,13 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier.
-    -- Keep the same exponential factor as accumulators so the solar ratio stays coherent tier to tier.
-    local powerFactor = 1.35
-    local power = math.floor(basePower * (powerFactor ^ (tier - 1)))
+    local power = CostCalculator.calculateMachineWorkValue(basePower, tier, 10, 0)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.solarPanel[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = solarPanelSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -220,7 +218,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = solarPanelSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

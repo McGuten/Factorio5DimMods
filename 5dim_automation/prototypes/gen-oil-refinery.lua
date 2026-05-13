@@ -212,10 +212,16 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local speed = baseSpeed + config.speedBonus
+    local speed = CostCalculator.calculateMachineWorkValue(baseSpeed, tier, 10, 2)
     local modules = baseModules + config.moduleBonus
-    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    local previousModules = nil
+
+    if tier > 1 then
+        previousModules = baseModules + tierConfig[tier - 1].moduleBonus
+    end
+
+    modules = CostCalculator.applyT10CapstoneModuleBonus(modules, tier, 10, previousModules)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template and process them
@@ -223,6 +229,7 @@ for tier = 1, 10 do
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
         skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = oilRefinerySpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -243,7 +250,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = oilRefinerySpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

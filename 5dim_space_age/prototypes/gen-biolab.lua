@@ -13,7 +13,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -------------------------------------------------------------------------------
 
 local baseResearchSpeed = 2
-local speedMultiplier = 1.5
 local baseModuleSlots = 4
 local baseEnergyUsage = 300
 local baseEmissions = 8
@@ -201,16 +200,24 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentSpeed = baseResearchSpeed
-local currentModules = baseModuleSlots
-
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
-    local currentEnergy = CostCalculator.scaleEnergyBySpeed(baseEnergyUsage, baseResearchSpeed, currentSpeed, 1.5)
+    local currentSpeed = CostCalculator.calculateMachineWorkValue(baseResearchSpeed, tier, 10, 2)
+    local currentModules = math.min(baseModuleSlots + math.floor((tier - 1) / 2), 8)
+    local previousModules = nil
+
+    if tier > 1 then
+        previousModules = math.min(baseModuleSlots + math.floor((tier - 2) / 2), 8)
+    end
+
+    currentModules = CostCalculator.applyT10CapstoneModuleBonus(currentModules, tier, 10, previousModules)
+
+    local currentEnergy = CostCalculator.scaleMachineEnergy(baseEnergyUsage, tier)
     local currentEmissions = CostCalculator.scalePollution(baseEmissions, baseResearchSpeed, currentSpeed)
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.biolab[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -222,7 +229,7 @@ for tier = 1, 10 do
 
         techData = {
             number = tier,
-            count = baseTechCount * tier,
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(techConfig[tier].basePacks, tier, {
                 spaceAgePackOverrides = biolabSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = true
@@ -245,9 +252,4 @@ for tier = 1, 10 do
         recipeCategory = "organic-or-assembling",
         tech = techData
     })
-
-    currentSpeed = currentSpeed * speedMultiplier
-    if tier % 2 == 0 and currentModules < 8 then
-        currentModules = currentModules + 1
-    end
 end

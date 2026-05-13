@@ -19,24 +19,24 @@ local baseTechCount = 200
 
 local logisticRobotSpaceAgeMaterials = {
     [6] = { name = "holmium-plate", amount = 2, category = "electromagnetics" },
-    [7] = { name = "supercapacitor", amount = 1, category = "electromagnetics" },
-    [8] = { name = "superconductor", amount = 1, category = "electromagnetics" },
+    [7] = { name = "carbon-fiber", amount = 2 },
+    [8] = { name = "metallic-asteroid-chunk", amount = 1 },
     [9] = { name = "lithium-plate", amount = 1, category = "cryogenics" },
     [10] = { name = "quantum-processor", amount = 1, category = "cryogenics" }
 }
 
 local logisticRobotSpaceAgeSciencePacks = {
     [6] = { "space-science-pack", "electromagnetic-science-pack" },
-    [7] = { "space-science-pack", "electromagnetic-science-pack" },
-    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [7] = { "space-science-pack", "agricultural-science-pack" },
+    [8] = { "space-science-pack" },
     [9] = { "space-science-pack", "cryogenic-science-pack" },
     [10] = { "space-science-pack", "cryogenic-science-pack" }
 }
 
 local logisticRobotSpaceAgeDeltaPrerequisites = {
     [6] = "electromagnetic-plant",
-    [7] = "electromagnetic-plant",
-    [8] = "electromagnetic-plant",
+    [7] = "carbon-fiber",
+    [8] = "space-platform",
     [9] = "lithium-processing",
     [10] = "quantum-processor"
 }
@@ -196,14 +196,15 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local speed = baseSpeed + (tier - 1) * 0.025
-    local maxEnergy = baseMaxEnergy + (tier - 1) * 0.75
+    local speed = CostCalculator.calculateMachineWorkValue(baseSpeed, tier, 10, 3)
+    local maxEnergy = CostCalculator.scaleMachineEnergy(baseMaxEnergy, tier, 2)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.logisticRobot[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = true,  -- Robots are bulk items
         skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = logisticRobotSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -218,7 +219,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = logisticRobotSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

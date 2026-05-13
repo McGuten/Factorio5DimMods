@@ -5,7 +5,7 @@
     "author": "5Dim",
     "contact": "",
     "homepage": "",
-    "description": "Development and debugging tools for 5Dim's mods. Shows useful information in console for testing enemies, spawners, and other mod features.",
+    "description": "Internal testing tools for 5Dim development.\n\rDevelopment-only module for debugging, inspection and balance checks while working on the suite.\n\rNot intended for normal gameplay.",
     "factorio_version": "2.0",
     "dependencies": [
         "base >= 2.0.0",

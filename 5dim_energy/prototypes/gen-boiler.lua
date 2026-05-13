@@ -200,15 +200,22 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential energy, superlinear pollution)
-    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier, 2)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = tierConfig[tier - 1].moduleSlots
+    end
+
+    local moduleSlots = CostCalculator.applyT10CapstoneModuleBonus(config.moduleSlots, tier, 10, previousModuleSlots)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.boiler[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = boilerSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -223,7 +230,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = boilerSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -237,7 +244,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "energy-boiler",
         craftingSpeed = craftingSpeed,
-        moduleSlots = config.moduleSlots,
+        moduleSlots = moduleSlots,
         energyUsage = energy,
         new = not config.isVanilla,
         order = config.order,

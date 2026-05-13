@@ -32,13 +32,13 @@
     Keeps heavy dump artifacts under the temporary run directory.
 
 .EXAMPLE
-    .\validate-factorio-profiles.ps1 -ListProfiles
+    .\scripts\validate-factorio-profiles.ps1 -ListProfiles
 
 .EXAMPLE
-    .\validate-factorio-profiles.ps1 -TestSet Smoke
+    .\scripts\validate-factorio-profiles.ps1 -TestSet Smoke
 
 .EXAMPLE
-    .\validate-factorio-profiles.ps1 -TestSet Module -Profiles module-5dim_transport,module-5dim_space_age
+    .\scripts\validate-factorio-profiles.ps1 -TestSet Module -Profiles module-5dim_transport,module-5dim_space_age
 #>
 
 [CmdletBinding()]
@@ -68,6 +68,10 @@ $OfficialMods = @('base', 'elevated-rails', 'quality', 'space-age')
 $ExcludedSuiteMods = @('5dim_compatibility', '5dim_decoration')
 
 function Resolve-DefaultWorkspaceRoot {
+    return (Resolve-Path -LiteralPath (Join-Path -Path $PSScriptRoot -ChildPath '..\..')).Path
+}
+
+function Resolve-DefaultModsRoot {
     return (Resolve-Path -LiteralPath (Join-Path -Path $PSScriptRoot -ChildPath '..')).Path
 }
 
@@ -493,7 +497,7 @@ function Write-ProfileList {
 function Invoke-LocaleValidation {
     param([string]$ResolvedModsRoot)
 
-    $validatorPath = Join-Path -Path $ResolvedModsRoot -ChildPath 'validate-locales.ps1'
+    $validatorPath = Join-Path -Path $PSScriptRoot -ChildPath 'validate-locales.ps1'
     if (-not (Test-Path -LiteralPath $validatorPath)) {
         throw "Locale validator not found at $validatorPath."
     }
@@ -823,7 +827,7 @@ if ([string]::IsNullOrWhiteSpace($WorkspaceRoot)) {
 }
 
 if ([string]::IsNullOrWhiteSpace($ModsRoot)) {
-    $ModsRoot = $PSScriptRoot
+    $ModsRoot = Resolve-DefaultModsRoot
 }
 
 $WorkspaceRoot = (Resolve-Path -LiteralPath $WorkspaceRoot).Path

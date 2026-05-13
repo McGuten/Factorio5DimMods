@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Nuclear module for 5Dim's mod\n\rExpands nuclear power generation with tiered components\n\rThis mod includes:\n\r- 10 tiers of nuclear reactors\n\r- 10 tiers of heat exchangers\n\r- 10 tiers of heat pipes\n\r- 10 tiers of steam turbines\n\r- 10 tiers of centrifuges",
+    "description": "Scale nuclear power far beyond vanilla.\n\rAdds stronger reactors, heat systems, turbines and centrifuges for much larger power blocks.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

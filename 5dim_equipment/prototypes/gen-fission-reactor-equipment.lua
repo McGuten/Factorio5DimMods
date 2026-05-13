@@ -316,6 +316,7 @@ local tiers = {
 for i, tier in ipairs(tiers) do
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.fissionReactorEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = fissionReactorEquipmentSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -329,7 +330,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = i,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = fissionReactorEquipmentSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -341,7 +342,7 @@ for i, tier in ipairs(tiers) do
     genFissionReactors {
         number = tier.number,
         subgroup = config.subgroup,
-        power = tier.power,
+        power = CostCalculator.calculateMachineWorkValue(tiers[1].power, i, 10, 0),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

@@ -150,14 +150,22 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local craftingSpeed = baseCraftingSpeed + config.speedBonus
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
     local moduleSlots = baseModuleSlots + config.moduleBonus
-    local energyUsage = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = baseModuleSlots + tierConfig[tier - 1].moduleBonus
+    end
+
+    local adjustedModuleSlots = CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, 10, previousModuleSlots)
+    local energyUsage = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.cryogenicPlant[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -177,7 +185,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = baseTechCount * (tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = tc.basePacks,
             prerequisites = prerequisites
         }
@@ -188,7 +196,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "aquilo-cryogenic",
         craftingSpeed = craftingSpeed,
-        moduleSlots = moduleSlots,
+        moduleSlots = adjustedModuleSlots,
         energyUsage = energyUsage,
         pollution = { pollution = emissions },
         new = not config.isVanilla,

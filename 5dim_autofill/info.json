@@ -5,6 +5,6 @@
     "title": "5Dim's mod - New Automated Fuel & Ammo",
     "author": "Original: folk and updated: 5Dim",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Most likely automatically fills in things properly, probably. Preferrably both fuel and ammunition, if possible.",
+    "description": "Place turrets and vehicles ready to use.\n\rAutomatically fills supported turrets with ammo and vehicles with fuel when you place them.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.0"]
 }

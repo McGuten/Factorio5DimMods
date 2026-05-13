@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Core module for 5Dim's mod suite\n\rThis is the REQUIRED core library for all 5Dim's modules. It provides:\n\r- Organized item groups and subgroups for all categories\n\r- Core settings and configuration options\n\r- Shared functions and utilities\n\r- Support for Space Age DLC",
+    "description": "Start every 5Dim setup on a clean, organized foundation.\n\rRequired base module for the whole 5Dim suite, with shared systems and cleaner item organization.\n\rInstall this first before any other 5Dim module.",
     "dependencies": ["base >= 2.0.0", "? space-age >= 2.0.0"]
 }

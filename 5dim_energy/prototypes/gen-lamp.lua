@@ -192,16 +192,14 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier
-    -- REBALANCED: Linear energy scaling instead of exponential
-    -- T10: 50 kW (was ~300 kW) for 220 light (5.5x light, 10x energy vs 60x energy)
-    local lightSize = baseLightSize + (tier - 1) * 20
-    local energy = baseEnergy + (tier - 1) * 5  -- Linear: 5, 10, 15... 50 kW
+    local lightSize = CostCalculator.calculateMachineWorkValue(baseLightSize, tier, 10, 0)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.lamp[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = lampSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -216,7 +214,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = lampSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

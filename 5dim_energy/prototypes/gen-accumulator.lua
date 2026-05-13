@@ -198,17 +198,14 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential scaling for better late-game value)
-    -- Factor 1.35: T1=5MJ, T5=11.6MJ, T10=47MJ (instead of linear 5-27.5)
-    local capacityFactor = 1.35
-    local capacityMJ = math.floor(baseCapacityMJ * (capacityFactor ^ (tier - 1)) * 10) / 10
-    -- Flow scales with capacity
-    local energyKJ = math.floor(baseEnergyKJ * (capacityFactor ^ (tier - 1)))
+    local capacityMJ = CostCalculator.calculateMachineWorkValue(baseCapacityMJ, tier, 10, 1)
+    local energyKJ = CostCalculator.calculateMachineWorkValue(baseEnergyKJ, tier, 10, 0)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.accumulator[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = accumulatorSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -223,7 +220,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = accumulatorSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

@@ -200,16 +200,22 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential energy, superlinear pollution)
-    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
-    -- Steam engine uses fluid_usage_per_tick which must preserve decimals
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier, true)
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier, 2)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = tierConfig[tier - 1].moduleSlots
+    end
+
+    local moduleSlots = CostCalculator.applyT10CapstoneModuleBonus(config.moduleSlots, tier, 10, previousModuleSlots)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.steamEngine[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = steamEngineSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -224,7 +230,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = steamEngineSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -238,7 +244,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "energy-engine-1",
         craftingSpeed = craftingSpeed,
-        moduleSlots = config.moduleSlots,
+        moduleSlots = moduleSlots,
         energyUsage = energy,
         new = not config.isVanilla,
         order = config.order,

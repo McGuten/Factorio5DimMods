@@ -5,6 +5,7 @@
 
 require("__5dim_core__.lib.battlefield.generation-gate")
 
+local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
@@ -135,11 +136,31 @@ local gateDeltaPrerequisites = {
     [3] = "concrete",
     [4] = "refined-concrete",
     [5] = "steel-processing",
-    [6] = "battery",
-    [7] = "advanced-circuit",
-    [8] = "low-density-structure",
-    [9] = "speed-module",
-    [10] = "speed-module-2"
+    [10] = "low-density-structure"
+}
+
+local gateSpaceAgeMaterials = {
+    [6] = { name = "calcite", amount = 12 },
+    [7] = { name = "tungsten-plate", amount = 12 },
+    [8] = { name = "holmium-plate", amount = 10 },
+    [9] = { name = "supercapacitor", amount = 6 },
+    [10] = { name = "lithium-plate", amount = 10 }
+}
+
+local gateSpaceAgeSciencePacks = {
+    [6] = { "space-science-pack", "metallurgic-science-pack" },
+    [7] = { "space-science-pack", "metallurgic-science-pack" },
+    [8] = { "space-science-pack", "electromagnetic-science-pack" },
+    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [10] = { "space-science-pack", "cryogenic-science-pack" }
+}
+
+local gateSpaceAgeDeltaPrerequisites = {
+    [6] = "foundry",
+    [7] = "tungsten-steel",
+    [8] = "electromagnetic-plant",
+    [9] = "electromagnetic-plant",
+    [10] = "lithium-processing"
 }
 
 local function copyPrerequisites(values)
@@ -166,6 +187,14 @@ local function addPrerequisiteIfMissing(prerequisites, prerequisite)
     table.insert(prerequisites, prerequisite)
 end
 
+local function getGateDeltaPrerequisite(tier)
+    if CostConfig.shouldUseSpaceAgeMaterials() and gateSpaceAgeDeltaPrerequisites[tier] then
+        return gateSpaceAgeDeltaPrerequisites[tier]
+    end
+
+    return gateDeltaPrerequisites[tier]
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -180,7 +209,8 @@ for tier = 1, 10 do
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.gate[tier], tier, {
         skipTierScaling = true,
-        skipSpaceAgeMaterials = true
+        spaceAgeMaterialOverrides = gateSpaceAgeMaterials,
+        replaceSpaceAgeDelta = true
     })
 
     -- Determine next upgrade (nil for tier 10)
@@ -195,13 +225,13 @@ for tier = 1, 10 do
         local tc = techConfig[tier]
         local prerequisites = copyPrerequisites(tc.prerequisites)
 
-        addPrerequisiteIfMissing(prerequisites, gateDeltaPrerequisites[tier])
+        addPrerequisiteIfMissing(prerequisites, getGateDeltaPrerequisite(tier))
 
         tech = {
             number = tier,
             count = baseTechCount * tc.countMultiplier,
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
-                skipSpaceAgePacks = true
+                spaceAgePackOverrides = gateSpaceAgeSciencePacks
             }),
             prerequisites = prerequisites
         }

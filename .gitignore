@@ -11,3 +11,6 @@
 *.zip
 to-do.txt
 .git
+/scripts/
+*.md
+!5dim_*/README.md

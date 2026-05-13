@@ -1,98 +1,29 @@
 # 5Dim's Mod - Development Tools
 
-![Factorio 2.0](https://img.shields.io/badge/Factorio-2.0-orange)
-![Version](https://img.shields.io/badge/Version-2.0.0-blue)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
+Internal testing tools for 5Dim development.
 
-> ⚠️ **For Developers Only**: This mod is intended for testing and debugging 5Dim's mods.
+5Dim Development Tools is a development-only module for testing, debugging and inspecting 5Dim content while working on the suite.
 
-## Overview
+## What This Mod Adds
 
-5Dim's Development Tools provides debugging utilities and testing features for developing and testing 5Dim's mods.
+- Debug-focused console output.
+- Test helpers for development and balancing work.
+- Extra inspection tools for internal use.
+- Optional support features when testing enemy content.
 
-## Features
+## Good Fit If You Want
 
-### 🔍 Debug Console Output
+- To test or debug 5Dim mods.
+- To inspect behavior while developing add-ons or balance changes.
 
-Shows detailed information in the console:
-- Entity spawning events
-- Evolution factor changes
-- Spawner behavior
-- Enemy type distribution
+## Requirements
 
-### 🎮 Testing Tools
+- Requires 5dim_core.
+- Some testing features are more useful with 5dim_enemies installed.
 
-When installed with `5dim_enemies`:
-- Evolution slider control
-- Enemy type listing
-- Spawn testing commands
-- Resistance verification
+## Notes
 
-### 📊 Data Inspection
+- Not recommended for normal saves.
+- This is a development-only module, not a player-facing content pack.
 
-- View internal mod data
-- Check configuration values
-- Monitor runtime changes
-
-## Usage
-
-### Console Commands
-
-```lua
-/5dim-debug           -- Toggle debug mode
-/5dim-evolution 0.5   -- Set evolution to 50%
-/5dim-spawn laser 5   -- Spawn laser biter T5
-/5dim-info            -- Show mod info
-```
-
-### GUI Features
-
-When `5dim_enemies` is installed, adds to the enemy GUI:
-- Evolution slider
-- Enemy type buttons
-- Spawn probability display
-
-## Dependencies
-
-- **Required**: `base >= 2.0.0`
-- **Required**: `5dim_core`
-- **Optional**: `5dim_enemies` (for enemy testing tools)
-
-## Installation
-
-1. Install `5dim_core` first
-2. Download from source (not on Mod Portal)
-3. Enable in the mod menu
-
-## Warning
-
-⚠️ **Do not use in normal gameplay!**
-
-This mod:
-- May cause performance issues
-- Outputs lots of console spam
-- Can modify game state unexpectedly
-- Is intended for development only
-
-## File Structure
-
-```
-5dim_developing/
-├── control.lua
-├── info.json
-└── locale/
-```
-
-## Contributing
-
-This is an internal development tool. For issues with other 5Dim mods:
-- **GitHub**: https://github.com/McGuten/Factorio5DimMods/issues
-- **Mod Portal**: https://mods.factorio.com/user/McGuten
-
-## License
-
-See [LICENSE](../LICENSE) for details.
-
----
-
-*Part of the [5Dim's Mod](https://mods.factorio.com/user/McGuten) collection for Factorio*
+Part of the 5Dim mod collection for Factorio.

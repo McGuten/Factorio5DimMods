@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Enemies module for 5Dim's mod\n\rIncreases game difficulty with new enemy types. Recommended for experienced players!\n\rThis mod includes:\n\r- New biter variants (stronger and faster)\n\r- New spitter variants (more damage and range)\n\r- New spawner types\n\r- Experimental enemies (huge and powerful boss-like creatures)\n\rWarning: This mod significantly increases game difficulty!",
+    "description": "Turn biters into a real long-term threat.\n\rAdds stronger enemy variants and heavier combat pressure across the whole game.\n\rRecommended for experienced players.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

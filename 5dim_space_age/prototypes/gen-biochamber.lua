@@ -177,15 +177,22 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local craftingSpeed = baseCraftingSpeed + config.speedBonus
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
     local moduleSlots = baseModuleSlots + config.moduleBonus
-    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = baseModuleSlots + tierConfig[tier - 1].moduleBonus
+    end
+
+    local adjustedModuleSlots = CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, 10, previousModuleSlots)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.biochamber[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -205,7 +212,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = baseTechCount * (tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = biochamberSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = true
@@ -219,7 +226,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "gleba-biochamber",
         craftingSpeed = craftingSpeed,
-        moduleSlots = moduleSlots,
+        moduleSlots = adjustedModuleSlots,
         energyUsage = energy,
         pollution = { pollution = emissions },
         new = not config.isVanilla,

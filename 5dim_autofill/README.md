@@ -1,103 +1,30 @@
 # 5Dim's Mod - Autofill
 
-![Factorio 2.0](https://img.shields.io/badge/Factorio-2.0-orange)
-![Version](https://img.shields.io/badge/Version-2.0.0-blue)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE)
+Place turrets and vehicles ready to use.
+5Dim Autofill automatically loads supported turrets with ammo and vehicles with fuel when you place them, so you can build, defend and expand with less micromanagement.
 
-## Overview
+## What This Mod Adds
 
-5Dim's Autofill automatically fills supported turrets with ammo and supported vehicles with fuel when you place them. No more manually loading each turret!
+- Automatic ammo loading for supported gun turrets when placed.
+- Automatic fuel loading for supported vehicles and locomotives.
+- Smart priority selection, so higher-tier ammo and fuel are used first.
+- Configurable behavior through mod settings.
+- Support for 5Dim tiered defenses without extra micromanagement.
 
-> Based on the original Autofill mod by folk
+## Good Fit If You Want
 
-## Features
+- Faster early and mid-game base setup.
+- Less manual inventory clicking during combat.
+- A cleaner building flow when placing turrets, cars or trains.
 
-### 🔫 Turret Auto-Fill
+## Requirements
 
-When you place a supported ammo turret, it automatically receives ammo from your inventory:
+- Requires 5dim_core.
 
-| Turret Type | Auto-Filled With |
-|-------------|-----------------|
-| Ammo Turret | Best available magazine |
+## Notes
 
-**Priority order for magazines:**
-1. Uranium rounds magazine
-2. Piercing rounds magazine
-3. Firearm magazine
+- Uses items from your own inventory only.
+- It does not empty all your ammo or fuel at once.
+- Especially useful if you play with several 5Dim combat or vehicle modules together.
 
-### 🚗 Vehicle Auto-Fill
-
-When you place a supported vehicle, it receives fuel:
-
-| Vehicle | Auto-Filled With |
-|---------|-----------------|
-| Car-type vehicles | Best fuel and available car ammo |
-| Locomotive | Best fuel |
-
-**Fuel priority:**
-1. Nuclear fuel
-2. Rocket fuel
-3. Solid fuel
-4. Coal
-
-### ⚙️ Smart Behavior
-
-- Only fills from your inventory (not logistics)
-- Fills appropriate amounts (not all your ammo)
-- Respects filter settings
-- Works with 5Dim tiered ammo turrets
-- Does not currently auto-fill fluid, electric or artillery turret inventories
-
-## Configuration
-
-Settings available in Mod Settings:
-- Enable/disable turret autofill
-- Enable/disable vehicle autofill
-- Set fill amounts
-- Exclude specific ammo types
-
-## Tips
-
-1. **Keep ammo stocked** - Autofill only works if you have ammo
-2. **Best ammo used** - Always fills with highest-tier available
-3. **Partial fills** - Won't empty your inventory completely
-4. **Quick defense** - Place turrets rapidly during attacks
-
-## Dependencies
-
-- **Required**: `5dim_core >= 2.0.0`
-
-## Installation
-
-1. Install `5dim_core` first
-2. Download from [Factorio Mod Portal](https://mods.factorio.com/user/McGuten)
-3. Enable in the mod menu
-
-## Credits
-
-- **Original Author**: folk
-- **Updated by**: 5Dim
-
-## File Structure
-
-```
-5dim_autofill/
-├── control.lua
-├── info.json
-├── settings.lua
-└── locale/
-```
-
-## Contributing
-
-Issues and suggestions welcome at:
-- **GitHub**: https://github.com/McGuten/Factorio5DimMods/issues
-- **Mod Portal**: https://mods.factorio.com/user/McGuten
-
-## License
-
-See [LICENSE](../LICENSE) for details.
-
----
-
-*Part of the [5Dim's Mod](https://mods.factorio.com/user/McGuten) collection for Factorio*
+Part of the 5Dim mod collection for Factorio.

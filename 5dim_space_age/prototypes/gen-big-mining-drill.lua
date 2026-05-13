@@ -186,15 +186,22 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local miningSpeed = baseMiningSpeed + config.speedBonus
+    local miningSpeed = CostCalculator.calculateMachineWorkValue(baseMiningSpeed, tier, 10, 2)
     local moduleSlots = baseModuleSlots + config.moduleBonus
-    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseMiningSpeed, miningSpeed, 1.5)
+    local previousModuleSlots = nil
+
+    if tier > 1 then
+        previousModuleSlots = baseModuleSlots + tierConfig[tier - 1].moduleBonus
+    end
+
+    local adjustedModuleSlots = CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, 10, previousModuleSlots)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseMiningSpeed, miningSpeed, 0.6)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.bigMiningDrill[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -214,7 +221,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = baseTechCount * (tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = bigMiningDrillSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = true
@@ -228,7 +235,7 @@ for tier = 1, 10 do
         number = tierNum,
         subgroup = "vulcanus-mining-big",
         miningSpeed = miningSpeed,
-        moduleSlots = moduleSlots,
+        moduleSlots = adjustedModuleSlots,
         energyUsage = energy,
         new = not config.isVanilla,
         order = config.order,

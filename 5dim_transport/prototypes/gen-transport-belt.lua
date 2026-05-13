@@ -115,6 +115,38 @@ local function getLogisticsTechName(tier)
     return "logistics-" .. getLogisticsTechLevel(tier)
 end
 
+local function getTransportBeltProgressionTier(tier)
+    if mods["space-age"] then
+        if tier <= 4 then
+            return 1
+        end
+
+        return tier - 3
+    end
+
+    if tier <= 3 then
+        return 1
+    end
+
+    return tier - 2
+end
+
+local function getTransportBeltProgressionTotalTiers()
+    if mods["space-age"] then
+        return 7
+    end
+
+    return 8
+end
+
+local function getTransportBeltBaselineSpeed()
+    if mods["space-age"] then
+        return transportBeltSpeed * 4
+    end
+
+    return transportBeltSpeed * 3
+end
+
 local function getTransportBeltDeltaPrerequisite(tier)
     if CostConfig.shouldUseSpaceAgeMaterials() and transportBeltSpaceAgeDeltaPrerequisites[tier] then
         return transportBeltSpaceAgeDeltaPrerequisites[tier]
@@ -125,15 +157,18 @@ end
 
 local function getDeltaIngredient(tier, amountMultiplier)
     local source = transportBeltVanillaMaterials[tier]
+    local progressionTier = getTransportBeltProgressionTier(tier)
+    local baseAmount = source.amount * (amountMultiplier or 1) * (transportBeltDeltaAmountMultipliers[tier] or 1)
 
     if CostConfig.shouldUseSpaceAgeMaterials() and transportBeltSpaceAgeMaterials[tier] then
         source = transportBeltSpaceAgeMaterials[tier]
+        baseAmount = source.amount * (amountMultiplier or 1) * (transportBeltDeltaAmountMultipliers[tier] or 1)
     end
 
     return {
         type = source.type or "item",
         name = source.name,
-        amount = source.amount * (amountMultiplier or 1) * (transportBeltDeltaAmountMultipliers[tier] or 1)
+        amount = CostCalculator.calculateMachineRecipeAmount(baseAmount, progressionTier, source.type or "item", source.name)
     }
 end
 
@@ -695,7 +730,7 @@ local function getTech(tier)
 
         cfg = {
             number = getLogisticsTechLevel(tier),
-            count = CostCalculator.scaleAbsoluteTechCount(transportBeltTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, getTransportBeltProgressionTier(tier)),
             packs = CostCalculator.getTechPacks(cfg.packs, tier, {
                 spaceAgePackOverrides = transportBeltSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -714,6 +749,24 @@ end
 for tier = 1, 10 do
     local config = getTierConfig(tier)
     local tierNum = string.format("%02d", tier)
+    local progressionTier = getTransportBeltProgressionTier(tier)
+
+    if config.new then
+        config = {
+            copy = config.copy,
+            name = config.name,
+            speed = CostCalculator.calculateMachineWorkValue(
+                getTransportBeltBaselineSpeed(),
+                progressionTier,
+                getTransportBeltProgressionTotalTiers(),
+                6
+            ),
+            new = config.new,
+            liquids = config.liquids,
+            order = config.order,
+            isVanilla = config.isVanilla
+        }
+    end
     
     genTransportBelts {
         copy = config.copy,

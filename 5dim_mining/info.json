@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Mining module for 5Dim's mod\n\rExpands resource extraction capabilities\n\rThis mod includes:\n\r- 10 tiers of electric mining drills\n\r- 10 tiers of pumpjacks\n\r- 10 tiers of water pumpjacks (extract water anywhere on land)\n\r- 10 tiers of offshore pumps",
+    "description": "Pull more resources out of the map with stronger extraction tools.\n\rAdds more tiers of drills, pumpjacks and pumps so ore, oil and water keep pace with bigger factories.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

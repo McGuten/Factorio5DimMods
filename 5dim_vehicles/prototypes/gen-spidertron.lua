@@ -50,20 +50,20 @@ local spidertronTechCounts = {
 }
 
 local spidertronSpaceAgeMaterials = {
-    [8] = { name = "holmium-plate", amount = 25 },
-    [9] = { name = "supercapacitor", amount = 12 },
+    [8] = { name = "carbon-fiber", amount = 25 },
+    [9] = { name = "space-platform-foundation", amount = 12 },
     [10] = { name = "quantum-processor", amount = 15 }
 }
 
 local spidertronSpaceAgeSciencePacks = {
-    [8] = { "space-science-pack", "electromagnetic-science-pack" },
-    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "agricultural-science-pack" },
+    [9] = { "space-science-pack" },
     [10] = { "space-science-pack", "cryogenic-science-pack" }
 }
 
 local spidertronSpaceAgeDeltaPrerequisites = {
-    [8] = "electromagnetic-plant",
-    [9] = "electromagnetic-plant",
+    [8] = "carbon-fiber",
+    [9] = "space-science-pack",
     [10] = "fusion-reactor"
 }
 
@@ -365,6 +365,7 @@ for tier = 1, 10 do
     else
         ingredients = CostCalculator.processIngredients(spidertronRecipeTemplates[tier], tier, {
             skipTierScaling = true,
+            applyMachineRecipeProgression = true,
             spaceAgeMaterialOverrides = spidertronSpaceAgeMaterials
         })
     end
@@ -378,7 +379,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.scaleAbsoluteTechCount(spidertronTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tierTech.basePacks, tier, {
                 spaceAgePackOverrides = spidertronSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -399,10 +400,10 @@ for tier = 1, 10 do
         new = not isVanilla,
         subgroup = "vehicles-spider",
         order = config.order,
-        health = health,
-        movementEnergy = movementEnergy .. "kW",
-        inventorySize = inventorySize,
-        trashInventorySize = trashSize,
+        health = CostCalculator.calculateMachineWorkValue(healthByTier[1], tier, 10, 0),
+        movementEnergy = CostCalculator.scaleMachineEnergy(baseMovementEnergy, tier) .. "kW",
+        inventorySize = CostCalculator.calculateMachineWorkValue(baseInventory, tier, 10, 0),
+        trashInventorySize = CostCalculator.calculateMachineWorkValue(20, tier, 10, 0),
         resistances = getResistances(tier),
         legResistances = getLegResistances(tier),
         equipmentGrid = equipmentGrid,

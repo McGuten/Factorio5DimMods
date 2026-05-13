@@ -7,6 +7,24 @@ local CostConfig = require("__5dim_core__.lib.costs.config")
 
 local CostCalculator = {}
 
+local function roundNearest(value)
+    return math.floor(value + 0.5)
+end
+
+local function roundToMultiple(value, multiple)
+    if multiple <= 1 then
+        return math.max(1, roundNearest(value))
+    end
+
+    local rounded = multiple * math.floor((value / multiple) + 0.5)
+    return math.max(multiple, rounded)
+end
+
+local function roundToDecimals(value, decimals)
+    local factor = 10 ^ (decimals or 0)
+    return math.floor((value * factor) + 0.5) / factor
+end
+
 local function getModeIngredientMultiplier(isBulkItem)
     local modeMultiplier = CostConfig.getRecipeMultiplier()
 
@@ -50,6 +68,49 @@ local function addOrMergeIngredient(ingredients, ingredientType, ingredientName,
         name = ingredientName,
         amount = amount
     })
+end
+
+local function isCarryIngredient(index, tier, ingredient)
+    return tier > 1 and index == 1 and ingredient.type == "item" and ingredient.amount == 1
+end
+
+local function moveIngredientToFront(ingredients, ingredientType, ingredientName)
+    for index, ingredient in ipairs(ingredients) do
+        if ingredient.type == ingredientType and ingredient.name == ingredientName then
+            if index > 1 then
+                table.remove(ingredients, index)
+                table.insert(ingredients, 1, ingredient)
+            end
+
+            return ingredients
+        end
+    end
+
+    return ingredients
+end
+
+local function prioritizeLeadingCarryIngredient(ingredients, baseIngredients, tier)
+    if tier <= 1 or not baseIngredients or not baseIngredients[1] then
+        return ingredients
+    end
+
+    local carryIngredient = baseIngredients[1]
+
+    if not isCarryIngredient(1, tier, carryIngredient) then
+        return ingredients
+    end
+
+    return moveIngredientToFront(ingredients, carryIngredient.type, carryIngredient.name)
+end
+
+local function getWorkTierExponent(tier, totalTiers)
+    totalTiers = totalTiers or 10
+
+    if tier == totalTiers and CostConfig.shouldUseT10NextTierWork() then
+        return tier
+    end
+
+    return tier - 1
 end
 
 -------------------------------------------------------------------------------
@@ -129,6 +190,23 @@ local function addIngredientWithRecipeScaling(ingredients, ingredient)
     )
 end
 
+local function addIngredientWithProgressionScaling(ingredients, ingredient, tier, applyMachineRecipeProgression)
+    local amount = ingredient.amount or 1
+
+    if applyMachineRecipeProgression then
+        amount = CostCalculator.calculateMachineRecipeAmount(amount, tier, ingredient.type or "item", ingredient.name)
+    else
+        amount = math.ceil(amount * CostConfig.getRecipeMultiplier())
+    end
+
+    addOrMergeIngredient(
+        ingredients,
+        ingredient.type or "item",
+        ingredient.name,
+        amount
+    )
+end
+
 -- Add family-specific Space Age materials if applicable.
 -- Overrides intentionally replace the old global tier mapping for that recipe family.
 -- @param ingredients: Table of ingredients
@@ -136,7 +214,7 @@ end
 -- @param overrides: Table keyed by tier; each value can be one ingredient or a list
 -- @param replaceDelta: When true, replace the last direct delta before adding the override
 -- @return: Ingredients with family-specific Space Age materials added
-function CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, overrides, replaceDelta)
+function CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, overrides, replaceDelta, applyMachineRecipeProgression, progressionTier)
     if not CostConfig.shouldUseSpaceAgeMaterials() or not overrides then
         return ingredients
     end
@@ -150,16 +228,86 @@ function CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, override
         ingredients = replaceLastDirectDelta(ingredients)
     end
 
+    progressionTier = progressionTier or tier
+
     if override.name then
-        addIngredientWithRecipeScaling(ingredients, override)
+        addIngredientWithProgressionScaling(ingredients, override, progressionTier, applyMachineRecipeProgression)
         return ingredients
     end
 
     for _, ingredient in ipairs(override) do
-        addIngredientWithRecipeScaling(ingredients, ingredient)
+        addIngredientWithProgressionScaling(ingredients, ingredient, progressionTier, applyMachineRecipeProgression)
     end
 
     return ingredients
+end
+
+-------------------------------------------------------------------------------
+-- MACHINE PROGRESSION
+-------------------------------------------------------------------------------
+
+function CostCalculator.getMachineWorkMultiplier(tier, totalTiers)
+    if tier <= 1 then
+        return 1.0
+    end
+
+    return CostConfig.getMachineWorkFactor() ^ getWorkTierExponent(tier, totalTiers)
+end
+
+function CostCalculator.calculateMachineWorkValue(baseValue, tier, totalTiers, decimals)
+    local value = baseValue * CostCalculator.getMachineWorkMultiplier(tier, totalTiers)
+
+    if decimals then
+        return roundToDecimals(value, decimals)
+    end
+
+    return value
+end
+
+function CostCalculator.scaleMachineEnergy(baseEnergy, tier, decimals)
+    local scaled = baseEnergy
+
+    if tier > 1 then
+        scaled = baseEnergy * (CostConfig.getMachineEnergyFactor() ^ (tier - 1))
+    end
+
+    if decimals then
+        return roundToDecimals(scaled, decimals)
+    end
+
+    return roundNearest(scaled)
+end
+
+function CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, totalTiers, previousTierModuleSlots)
+    totalTiers = totalTiers or 10
+
+    if tier == totalTiers then
+        if previousTierModuleSlots then
+            return math.max(moduleSlots, previousTierModuleSlots + CostConfig.getT10ExtraModuleSlots())
+        end
+
+        return moduleSlots + CostConfig.getT10ExtraModuleSlots()
+    end
+
+    return moduleSlots
+end
+
+function CostCalculator.getMachineRecipeMultiplierForIngredient(tier, ingredientType, ingredientName)
+    if tier <= 1 then
+        return 1.0
+    end
+
+    local rarityWeight = CostConfig.getRecipeRarityWeight(ingredientType, ingredientName)
+    return CostConfig.getMachineRecipeFactor() ^ ((tier - 1) * rarityWeight)
+end
+
+function CostCalculator.calculateMachineRecipeAmount(baseAmount, tier, ingredientType, ingredientName)
+    return math.ceil(baseAmount * CostCalculator.getMachineRecipeMultiplierForIngredient(tier, ingredientType, ingredientName))
+end
+
+function CostCalculator.calculateMachineTechCount(baseCount, tier, roundTo)
+    local scaled = baseCount * (CostConfig.getMachineTechFactor() ^ (tier - 1))
+    return roundToMultiple(scaled, roundTo or 5)
 end
 
 function CostCalculator.getSpaceAgeRecipeCategory(tier, overrides)
@@ -197,15 +345,27 @@ function CostCalculator.processIngredients(baseIngredients, tier, options)
     local skipSpaceAgeMaterials = options.skipSpaceAgeMaterials or false
     local spaceAgeMaterialOverrides = options.spaceAgeMaterialOverrides
     local replaceSpaceAgeDelta = options.replaceSpaceAgeDelta or false
+    local applyMachineRecipeProgression = options.applyMachineRecipeProgression
+    local progressionTier = options.progressionTier or tier
+
+    if applyMachineRecipeProgression == nil then
+        applyMachineRecipeProgression = skipTierScaling
+    end
     
     local ingredients = {}
     local modeMultiplier = getModeIngredientMultiplier(isBulkItem)
 
     -- Deep copy and scale ingredients
-    for _, ing in ipairs(baseIngredients) do
+    for index, ing in ipairs(baseIngredients) do
         local amount
 
-        if skipTierScaling then
+        if applyMachineRecipeProgression then
+            if ing.fixedAmount or isCarryIngredient(index, tier, ing) then
+                amount = ing.amount
+            else
+                amount = CostCalculator.calculateMachineRecipeAmount(ing.amount, progressionTier, ing.type, ing.name)
+            end
+        elseif skipTierScaling then
             amount = math.ceil(ing.amount * modeMultiplier)
         else
             amount = CostCalculator.scaleIngredientAmount(ing.amount, tier, isBulkItem)
@@ -222,11 +382,13 @@ function CostCalculator.processIngredients(baseIngredients, tier, options)
     -- the legacy global tier mapping.
     if spaceAgeMaterialOverrides then
         ingredients = CostCalculator.addSpaceAgeMaterialOverrides(ingredients, tier, spaceAgeMaterialOverrides,
-            replaceSpaceAgeDelta)
+            replaceSpaceAgeDelta, applyMachineRecipeProgression, progressionTier)
     elseif not skipSpaceAgeMaterials then
         ingredients = CostCalculator.addSpaceAgeMaterials(ingredients, tier, isBulkItem)
     end
-    
+
+    ingredients = prioritizeLeadingCarryIngredient(ingredients, baseIngredients, tier)
+
     return ingredients
 end
 
@@ -239,14 +401,15 @@ end
 -- @param tier: The tier number (1-10)
 -- @return: Scaled research count
 function CostCalculator.calculateTechCount(baseCount, tier)
-    local modeMultiplier = CostConfig.getTechMultiplier()
-    local tierMultiplier = CostConfig.getTechCountMultiplier(tier)
-    
-    return math.ceil(baseCount * tierMultiplier * modeMultiplier)
+    if tier <= 1 then
+        return roundToMultiple(baseCount, 5)
+    end
+
+    return CostCalculator.calculateMachineTechCount(baseCount, tier)
 end
 
 function CostCalculator.scaleAbsoluteTechCount(baseCount)
-    return math.ceil(baseCount * CostConfig.getTechMultiplier())
+    return roundToMultiple(baseCount, 5)
 end
 
 local function copyTechPacks(basePacks)
@@ -383,17 +546,13 @@ function CostCalculator.scaleEnergy(baseEnergy, tier, preserveDecimals)
         if preserveDecimals then
             return baseEnergy
         end
-        return math.floor(baseEnergy)
+        return roundNearest(baseEnergy)
     end
-    -- Exponential scaling based on vanilla pattern
-    -- Factor ~1.58 gives: T1=1x, T2=1.58x, T3=2.5x, T4=3.95x, T5=6.25x...
-    -- This closely matches vanilla: 75 -> 150 -> 375 (ratios: 2x, 2.5x)
-    local factor = 1.58
-    local scaled = baseEnergy * (factor ^ (tier - 1))
+    local scaled = baseEnergy * (CostConfig.getMachineEnergyFactor() ^ (tier - 1))
     if preserveDecimals then
         return math.floor(scaled * 100) / 100  -- Round to 2 decimal places
     end
-    return math.floor(scaled)
+    return roundNearest(scaled)
 end
 
 -- Scale energy with a custom exponential factor
@@ -490,8 +649,10 @@ end
 -- Log current cost configuration (for debugging)
 function CostCalculator.logConfig()
     log("=== 5Dim's Cost Calculator Config ===")
-    log("Recipe Multiplier: " .. CostConfig.getRecipeMultiplier())
-    log("Tech Multiplier: " .. CostConfig.getTechMultiplier())
+    log("Machine Work Factor: " .. CostConfig.getMachineWorkFactor())
+    log("Machine Energy Factor: " .. CostConfig.getMachineEnergyFactor())
+    log("Machine Recipe Factor: " .. CostConfig.getMachineRecipeFactor())
+    log("Machine Tech Factor: " .. CostConfig.getMachineTechFactor())
     log("Time Multiplier: " .. CostConfig.getCraftingTimeMultiplier())
     log("Space Age Materials: " .. tostring(CostConfig.shouldUseSpaceAgeMaterials()))
     log("Space Age Science Packs: " .. tostring(CostConfig.shouldUseSpaceAgeSciencePacks()))

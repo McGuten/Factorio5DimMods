@@ -205,7 +205,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local speed = baseSpeed + config.speedBonus
+    local speed = CostCalculator.calculateMachineWorkValue(baseSpeed, tier, 10, 2)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template and process them
@@ -213,6 +213,7 @@ for tier = 1, 10 do
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
         skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = offshorePumpSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -233,7 +234,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.scaleAbsoluteTechCount(offshorePumpTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = offshorePumpSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

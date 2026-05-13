@@ -194,15 +194,16 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local efficiency = baseEfficiency + config.efficiencyBonus
-    local rangeElongation = baseRangeElongation + config.rangeBonus
-    local bufferCapacity = baseBufferCapacity + config.bufferBonus
-    local outputFlowLimit = baseOutputFlowLimit + config.bufferBonus
+    local efficiency = CostCalculator.calculateMachineWorkValue(baseEfficiency, tier, 10, 3)
+    local rangeElongation = CostCalculator.calculateMachineWorkValue(baseRangeElongation, tier, 10, 1)
+    local bufferCapacity = CostCalculator.calculateMachineWorkValue(baseBufferCapacity, tier, 10, 0)
+    local outputFlowLimit = CostCalculator.calculateMachineWorkValue(baseOutputFlowLimit, tier, 10, 0)
     
     -- Get ingredients from template
     local baseIngredients = RecipeTemplates.lightningCollector[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         skipSpaceAgeMaterials = true
     })
     
@@ -216,7 +217,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = lightningCollectorSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = true

@@ -12,6 +12,67 @@
 
 local Templates = {}
 
+local function copyTemplateIngredient(ingredient)
+    return {
+        type = ingredient.type,
+        name = ingredient.name,
+        amount = ingredient.amount,
+        fixedAmount = ingredient.fixedAmount
+    }
+end
+
+local function buildMkFamilyName(vanillaName, prefix, tier)
+    if tier == 1 then
+        return vanillaName
+    end
+
+    return prefix .. string.format("%02d", tier)
+end
+
+local function buildPowerArmorFamilyName(tier)
+    if tier == 1 then
+        return "power-armor"
+    end
+
+    if tier == 2 then
+        return "power-armor-mk2"
+    end
+
+    return "5d-power-armor-" .. string.format("%02d", tier)
+end
+
+local function buildUpgradeTemplates(upgradeNameFn, baseNameFn, deltaIngredientsByTier)
+    local templates = {}
+
+    for tier, deltaIngredients in ipairs(deltaIngredientsByTier) do
+        local ingredients = {}
+
+        if tier > 1 then
+            table.insert(ingredients, {
+                type = "item",
+                name = upgradeNameFn(tier - 1),
+                amount = 1,
+                fixedAmount = true
+            })
+        end
+
+        table.insert(ingredients, {
+            type = "item",
+            name = baseNameFn(tier),
+            amount = 1,
+            fixedAmount = true
+        })
+
+        for _, ingredient in ipairs(deltaIngredients) do
+            table.insert(ingredients, copyTemplateIngredient(ingredient))
+        end
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
 -------------------------------------------------------------------------------
 -- VULCANUS TEMPLATES
 -------------------------------------------------------------------------------
@@ -63,52 +124,49 @@ Templates.foundry = {
     }
 }
 
--- Big Mining Drill templates (Vulcanus)
-Templates.bigMiningDrill = {
-    [1] = {
-        { type = "item", name = "electric-mining-drill", amount = 1 },
-        { type = "fluid", name = "molten-iron", amount = 200 },
-        { type = "item", name = "tungsten-carbide", amount = 20 },
-        { type = "item", name = "electric-engine-unit", amount = 10 },
-        { type = "item", name = "advanced-circuit", amount = 10 }
-    },
-    [2] = {
-        { type = "item", name = "big-mining-drill", amount = 1 },
-        { type = "item", name = "calcite", amount = 40 }
-    },
-    [3] = {
-        { type = "item", name = "5d-big-mining-drill-02", amount = 1 },
-        { type = "fluid", name = "molten-copper", amount = 300 }
-    },
-    [4] = {
-        { type = "item", name = "5d-big-mining-drill-03", amount = 1 },
-        { type = "item", name = "tungsten-plate", amount = 30 }
-    },
-    [5] = {
-        { type = "item", name = "5d-big-mining-drill-04", amount = 1 },
-        { type = "item", name = "holmium-plate", amount = 30 }
-    },
-    [6] = {
-        { type = "item", name = "5d-big-mining-drill-05", amount = 1 },
-        { type = "fluid", name = "electrolyte", amount = 200 }
-    },
-    [7] = {
-        { type = "item", name = "5d-big-mining-drill-06", amount = 1 },
-        { type = "item", name = "supercapacitor", amount = 15 }
-    },
-    [8] = {
-        { type = "item", name = "5d-big-mining-drill-07", amount = 1 },
-        { type = "item", name = "lithium-plate", amount = 30 }
-    },
-    [9] = {
-        { type = "item", name = "5d-big-mining-drill-08", amount = 1 },
-        { type = "fluid", name = "fluoroketone-hot", amount = 150 }
-    },
-    [10] = {
-        { type = "item", name = "5d-big-mining-drill-09", amount = 1 },
-        { type = "item", name = "fusion-power-cell", amount = 15 }
+Templates.bigMiningDrill = buildUpgradeTemplates(
+    function(tier)
+        return buildMkFamilyName("big-mining-drill", "5d-big-mining-drill-", tier)
+    end,
+    function(tier)
+        return buildMkFamilyName("electric-mining-drill", "5d-electric-mining-drill-", tier)
+    end,
+    {
+        [1] = {
+            { type = "fluid", name = "molten-iron", amount = 200 },
+            { type = "item", name = "tungsten-carbide", amount = 20 },
+            { type = "item", name = "electric-engine-unit", amount = 10 },
+            { type = "item", name = "advanced-circuit", amount = 10 }
+        },
+        [2] = {
+            { type = "item", name = "calcite", amount = 40 }
+        },
+        [3] = {
+            { type = "fluid", name = "molten-copper", amount = 300 }
+        },
+        [4] = {
+            { type = "item", name = "tungsten-plate", amount = 30 }
+        },
+        [5] = {
+            { type = "item", name = "holmium-plate", amount = 30 }
+        },
+        [6] = {
+            { type = "fluid", name = "electrolyte", amount = 200 }
+        },
+        [7] = {
+            { type = "item", name = "supercapacitor", amount = 15 }
+        },
+        [8] = {
+            { type = "item", name = "lithium-plate", amount = 30 }
+        },
+        [9] = {
+            { type = "fluid", name = "fluoroketone-hot", amount = 150 }
+        },
+        [10] = {
+            { type = "item", name = "fusion-power-cell", amount = 15 }
+        }
     }
-}
+)
 
 -------------------------------------------------------------------------------
 -- FULGORA TEMPLATES
@@ -251,51 +309,48 @@ Templates.lightningRod = {
     }
 }
 
--- Lightning Collector templates (Fulgora)
-Templates.lightningCollector = {
-    [1] = {
-        { type = "item", name = "lightning-rod", amount = 1 },
-        { type = "item", name = "supercapacitor", amount = 8 },
-        { type = "item", name = "accumulator", amount = 1 },
-        { type = "fluid", name = "electrolyte", amount = 80 }
-    },
-    [2] = {
-        { type = "item", name = "lightning-collector", amount = 1 },
-        { type = "item", name = "superconductor", amount = 8 }
-    },
-    [3] = {
-        { type = "item", name = "5d-lightning-collector-02", amount = 1 },
-        { type = "item", name = "lithium", amount = 20 }
-    },
-    [4] = {
-        { type = "item", name = "5d-lightning-collector-03", amount = 1 },
-        { type = "item", name = "lithium-plate", amount = 20 }
-    },
-    [5] = {
-        { type = "item", name = "5d-lightning-collector-04", amount = 1 },
-        { type = "fluid", name = "ammoniacal-solution", amount = 100 }
-    },
-    [6] = {
-        { type = "item", name = "5d-lightning-collector-05", amount = 1 },
-        { type = "fluid", name = "fluorine", amount = 100 }
-    },
-    [7] = {
-        { type = "item", name = "5d-lightning-collector-06", amount = 1 },
-        { type = "fluid", name = "fluoroketone-hot", amount = 100 }
-    },
-    [8] = {
-        { type = "item", name = "5d-lightning-collector-07", amount = 1 },
-        { type = "fluid", name = "fluoroketone-cold", amount = 100 }
-    },
-    [9] = {
-        { type = "item", name = "5d-lightning-collector-08", amount = 1 },
-        { type = "item", name = "quantum-processor", amount = 10 }
-    },
-    [10] = {
-        { type = "item", name = "5d-lightning-collector-09", amount = 1 },
-        { type = "item", name = "fusion-power-cell", amount = 10 }
+Templates.lightningCollector = buildUpgradeTemplates(
+    function(tier)
+        return buildMkFamilyName("lightning-collector", "5d-lightning-collector-", tier)
+    end,
+    function(tier)
+        return buildMkFamilyName("lightning-rod", "5d-lightning-rod-", tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "supercapacitor", amount = 8 },
+            { type = "item", name = "accumulator", amount = 1 },
+            { type = "fluid", name = "electrolyte", amount = 80 }
+        },
+        [2] = {
+            { type = "item", name = "superconductor", amount = 8 }
+        },
+        [3] = {
+            { type = "item", name = "lithium", amount = 20 }
+        },
+        [4] = {
+            { type = "item", name = "lithium-plate", amount = 20 }
+        },
+        [5] = {
+            { type = "fluid", name = "ammoniacal-solution", amount = 100 }
+        },
+        [6] = {
+            { type = "fluid", name = "fluorine", amount = 100 }
+        },
+        [7] = {
+            { type = "fluid", name = "fluoroketone-hot", amount = 100 }
+        },
+        [8] = {
+            { type = "fluid", name = "fluoroketone-cold", amount = 100 }
+        },
+        [9] = {
+            { type = "item", name = "quantum-processor", amount = 10 }
+        },
+        [10] = {
+            { type = "item", name = "fusion-power-cell", amount = 10 }
+        }
     }
-}
+)
 
 -------------------------------------------------------------------------------
 -- GLEBA TEMPLATES
@@ -768,52 +823,49 @@ Templates.asteroidCollector = {
 -- AQUILO ADDITIONAL TEMPLATES
 -------------------------------------------------------------------------------
 
--- Biolab templates (Gleba/Aquilo research)
-Templates.biolab = {
-    [1] = {
-        { type = "item", name = "lab", amount = 1 },
-        { type = "item", name = "biter-egg", amount = 10 },
-        { type = "item", name = "refined-concrete", amount = 25 },
-        { type = "item", name = "capture-robot-rocket", amount = 2 },
-        { type = "item", name = "uranium-235", amount = 3 }
-    },
-    [2] = {
-        { type = "item", name = "biolab", amount = 1 },
-        { type = "item", name = "bioflux", amount = 20 }
-    },
-    [3] = {
-        { type = "item", name = "5d-biolab-02", amount = 1 },
-        { type = "item", name = "carbon-fiber", amount = 20 }
-    },
-    [4] = {
-        { type = "item", name = "5d-biolab-03", amount = 1 },
-        { type = "item", name = "holmium-plate", amount = 20 }
-    },
-    [5] = {
-        { type = "item", name = "5d-biolab-04", amount = 1 },
-        { type = "item", name = "supercapacitor", amount = 10 }
-    },
-    [6] = {
-        { type = "item", name = "5d-biolab-05", amount = 1 },
-        { type = "item", name = "superconductor", amount = 10 }
-    },
-    [7] = {
-        { type = "item", name = "5d-biolab-06", amount = 1 },
-        { type = "item", name = "lithium-plate", amount = 20 }
-    },
-    [8] = {
-        { type = "item", name = "5d-biolab-07", amount = 1 },
-        { type = "fluid", name = "fluorine", amount = 100 }
-    },
-    [9] = {
-        { type = "item", name = "5d-biolab-08", amount = 1 },
-        { type = "fluid", name = "fluoroketone-cold", amount = 100 }
-    },
-    [10] = {
-        { type = "item", name = "5d-biolab-09", amount = 1 },
-        { type = "item", name = "quantum-processor", amount = 20 }
+Templates.biolab = buildUpgradeTemplates(
+    function(tier)
+        return buildMkFamilyName("biolab", "5d-biolab-", tier)
+    end,
+    function(tier)
+        return buildMkFamilyName("lab", "5d-lab-", tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "biter-egg", amount = 10 },
+            { type = "item", name = "refined-concrete", amount = 25 },
+            { type = "item", name = "capture-robot-rocket", amount = 2 },
+            { type = "item", name = "uranium-235", amount = 3 }
+        },
+        [2] = {
+            { type = "item", name = "bioflux", amount = 20 }
+        },
+        [3] = {
+            { type = "item", name = "carbon-fiber", amount = 20 }
+        },
+        [4] = {
+            { type = "item", name = "holmium-plate", amount = 20 }
+        },
+        [5] = {
+            { type = "item", name = "supercapacitor", amount = 10 }
+        },
+        [6] = {
+            { type = "item", name = "superconductor", amount = 10 }
+        },
+        [7] = {
+            { type = "item", name = "lithium-plate", amount = 20 }
+        },
+        [8] = {
+            { type = "fluid", name = "fluorine", amount = 100 }
+        },
+        [9] = {
+            { type = "fluid", name = "fluoroketone-cold", amount = 100 }
+        },
+        [10] = {
+            { type = "item", name = "quantum-processor", amount = 20 }
+        }
     }
-}
+)
 
 -- Fusion Reactor (building) templates (Aquilo)
 Templates.fusionReactor = {
@@ -905,52 +957,49 @@ Templates.fusionGenerator = {
     }
 }
 
--- Mech Armor templates (Fulgora)
-Templates.mechArmor = {
-    [1] = {
-        { type = "item", name = "power-armor-mk2", amount = 1 },
-        { type = "item", name = "holmium-plate", amount = 200 },
-        { type = "item", name = "processing-unit", amount = 100 },
-        { type = "item", name = "superconductor", amount = 50 },
-        { type = "item", name = "supercapacitor", amount = 50 }
-    },
-    [2] = {
-        { type = "item", name = "mech-armor", amount = 1 },
-        { type = "fluid", name = "electrolyte", amount = 100 }
-    },
-    [3] = {
-        { type = "item", name = "5d-mech-armor-02", amount = 1 },
-        { type = "fluid", name = "holmium-solution", amount = 100 }
-    },
-    [4] = {
-        { type = "item", name = "5d-mech-armor-03", amount = 1 },
-        { type = "item", name = "quantum-processor", amount = 20 }
-    },
-    [5] = {
-        { type = "item", name = "5d-mech-armor-04", amount = 1 },
-        { type = "item", name = "carbon-fiber", amount = 50 }
-    },
-    [6] = {
-        { type = "item", name = "5d-mech-armor-05", amount = 1 },
-        { type = "item", name = "lithium-plate", amount = 50 }
-    },
-    [7] = {
-        { type = "item", name = "5d-mech-armor-06", amount = 1 },
-        { type = "fluid", name = "ammoniacal-solution", amount = 100 }
-    },
-    [8] = {
-        { type = "item", name = "5d-mech-armor-07", amount = 1 },
-        { type = "fluid", name = "fluorine", amount = 100 }
-    },
-    [9] = {
-        { type = "item", name = "5d-mech-armor-08", amount = 1 },
-        { type = "fluid", name = "fluoroketone-cold", amount = 100 }
-    },
-    [10] = {
-        { type = "item", name = "5d-mech-armor-09", amount = 1 },
-        { type = "item", name = "fusion-power-cell", amount = 10 }
+Templates.mechArmor = buildUpgradeTemplates(
+    function(tier)
+        return buildMkFamilyName("mech-armor", "5d-mech-armor-", tier)
+    end,
+    function(tier)
+        return buildPowerArmorFamilyName(tier)
+    end,
+    {
+        [1] = {
+            { type = "item", name = "holmium-plate", amount = 200 },
+            { type = "item", name = "processing-unit", amount = 100 },
+            { type = "item", name = "superconductor", amount = 50 },
+            { type = "item", name = "supercapacitor", amount = 50 }
+        },
+        [2] = {
+            { type = "fluid", name = "electrolyte", amount = 100 }
+        },
+        [3] = {
+            { type = "fluid", name = "holmium-solution", amount = 100 }
+        },
+        [4] = {
+            { type = "item", name = "quantum-processor", amount = 20 }
+        },
+        [5] = {
+            { type = "item", name = "carbon-fiber", amount = 50 }
+        },
+        [6] = {
+            { type = "item", name = "lithium-plate", amount = 50 }
+        },
+        [7] = {
+            { type = "fluid", name = "ammoniacal-solution", amount = 100 }
+        },
+        [8] = {
+            { type = "fluid", name = "fluorine", amount = 100 }
+        },
+        [9] = {
+            { type = "fluid", name = "fluoroketone-cold", amount = 100 }
+        },
+        [10] = {
+            { type = "item", name = "fusion-power-cell", amount = 10 }
+        }
     }
-}
+)
 
 -------------------------------------------------------------------------------
 -- SPACE AGE TURRETS TEMPLATES

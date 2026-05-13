@@ -231,16 +231,23 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local speed = baseSpeed + config.speedBonus
+    local speed = CostCalculator.calculateMachineWorkValue(baseSpeed, tier, 10, 2)
     local modules = baseModules + config.moduleBonus
-    -- Energy scales faster than throughput so higher tiers need meaningfully larger power infrastructure.
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseSpeed, speed, 1.5)
+    local previousModules = nil
+
+    if tier > 1 then
+        previousModules = baseModules + tierConfig[tier - 1].moduleBonus
+    end
+
+    modules = CostCalculator.applyT10CapstoneModuleBonus(modules, tier, 10, previousModules)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseSpeed, speed)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.pump[tier], tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = pumpSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -261,7 +268,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.scaleAbsoluteTechCount(pumpTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = pumpSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

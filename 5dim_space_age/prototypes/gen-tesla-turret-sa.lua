@@ -148,14 +148,13 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentDamage = baseDamage
-local currentRange = baseRange
-local currentEnergy = baseEnergyPerShot
-
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
-    local currentHealth = baseHealth + ((tier - 1) * healthIncrement)
+    local currentDamage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
+    local currentRange = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local currentEnergy = CostCalculator.scaleMachineEnergy(baseEnergyPerShot, tier)
+    local currentHealth = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
     
     local techData = nil
     if techConfig[tier] then
@@ -165,15 +164,15 @@ for tier = 1, 10 do
 
         techData = {
             number = tier,
-            count = baseTechCount * tier,
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = techConfig[tier].basePacks,
             prerequisites = prerequisites
         }
     end
 
-    local inputFlowLimit = CostCalculator.scaleEnergyBySpeed(baseInputFlowLimit, baseEnergyPerShot, currentEnergy, 1)
-    local bufferCapacity = CostCalculator.scaleEnergyBySpeed(baseBufferCapacity, baseEnergyPerShot, currentEnergy, 1)
-    local energyDrain = CostCalculator.scaleEnergyBySpeed(baseDrain, baseEnergyPerShot, currentEnergy, 0.5)
+    local inputFlowLimit = CostCalculator.scaleMachineEnergy(baseInputFlowLimit, tier)
+    local bufferCapacity = CostCalculator.scaleMachineEnergy(baseBufferCapacity, tier)
+    local energyDrain = CostCalculator.scaleMachineEnergy(baseDrain, tier)
 
     genTeslaTurretSA({
         number = number,
@@ -190,14 +189,11 @@ for tier = 1, 10 do
         tint = tierColors[tier],
         ingredients = CostCalculator.processIngredients(RecipeTemplates.teslaTurretSA[tier], tier, {
             skipTierScaling = true,
+            applyMachineRecipeProgression = true,
             skipSpaceAgeMaterials = true
         }),
         nextUpdate = tier < 10 and ("5d-tesla-turret-sa-" .. string.format("%02d", tier + 1)) or nil,
         recipeCategory = tier >= 6 and "cryogenics-or-assembling" or nil,
         tech = techData
     })
-
-    currentDamage = currentDamage * damageMultiplier
-    currentEnergy = currentEnergy * 1.2
-    currentRange = currentRange + rangeIncrement
 end

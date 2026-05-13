@@ -211,7 +211,9 @@ local function setPrototypeIcons(prototype, tier)
     prototype.icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/night-vision-equipment.png", tier, 64)
 end
 
-for i = 2, 10 do
+-- Night vision only needs one meaningful 5Dim upgrade. Higher tiers added no
+-- new viewing benefit, so MK2 is the cap and tiers 3-10 are no longer emitted.
+for i = 2, 2 do
     local tier = tiers[i]
     local item = table.deepcopy(data.raw.item["night-vision-equipment"])
     local recipe = table.deepcopy(data.raw.recipe["night-vision-equipment"])
@@ -227,6 +229,7 @@ for i = 2, 10 do
 
     local ingredients = CostCalculator.processIngredients(baseIngredients[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = nightVisionSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -251,7 +254,7 @@ for i = 2, 10 do
     addPrerequisiteIfMissing(prerequisites, getNightVisionDeltaPrerequisite(i))
 
     tech.name = "night-vision-equipment-" .. i
-    tech.unit.count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1)
+    tech.unit.count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i)
     tech.unit.ingredients = CostCalculator.getTechPacks(tc.basePacks, i, {
         spaceAgePackOverrides = nightVisionSpaceAgeSciencePacks,
         forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

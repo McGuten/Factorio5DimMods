@@ -340,6 +340,7 @@ for tier = 1, 10 do
     else
         ingredients = CostCalculator.processIngredients(tankRecipeTemplates[tier], tier, {
             skipTierScaling = true,
+            applyMachineRecipeProgression = true,
             spaceAgeMaterialOverrides = tankSpaceAgeMaterials
         })
     end
@@ -353,7 +354,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.scaleAbsoluteTechCount(tankTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tierTech.basePacks, tier, {
                 spaceAgePackOverrides = tankSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -374,9 +375,9 @@ for tier = 1, 10 do
         new = not isVanilla,
         subgroup = "vehicles-tank",
         order = config.order,
-        health = health,
-        consumption = consumption .. "kW",
-        brakingPower = brakingPower .. "kW",
+        health = CostCalculator.calculateMachineWorkValue(healthByTier[1], tier, 10, 0),
+        consumption = CostCalculator.scaleMachineEnergy(baseConsumption, tier) .. "kW",
+        brakingPower = CostCalculator.calculateMachineWorkValue(baseBrakingPower, tier, 10, 0) .. "kW",
         resistances = getResistances(tier),
         equipmentGrid = equipmentGrid,
         ingredients = ingredients,

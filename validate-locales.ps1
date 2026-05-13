@@ -13,19 +13,19 @@
     CRITICAL issue (inline localised_*) is found.
 
 .PARAMETER ModsRoot
-    Path to mods/ directory. Defaults to script location.
+    Path to mods/ directory. Defaults to the parent of the script directory.
 
 .PARAMETER ExcludeMods
     Mod folder names to skip.
 
 .EXAMPLE
-    .\validate-locales.ps1
-    .\validate-locales.ps1 -ExcludeMods @('5dim_decoration','5dim_dev','5dim_locale','5dim_compatibility')
+    .\scripts\validate-locales.ps1
+    .\scripts\validate-locales.ps1 -ExcludeMods @('5dim_decoration','5dim_dev','5dim_locale','5dim_compatibility')
 #>
 
 [CmdletBinding()]
 param(
-    [string]$ModsRoot = $PSScriptRoot,
+    [string]$ModsRoot = (Join-Path -Path $PSScriptRoot -ChildPath '..'),
     [string[]]$ExcludeMods = @('5dim_decoration', '5dim_dev', '5dim_locale')
 )
 

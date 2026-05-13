@@ -108,7 +108,7 @@ data:extend({
         name = "5d-aquilo-resources",
         icon = "__space-age__/graphics/technology/lithium-processing.png",
         icon_size = 256,
-        prerequisites = { "lithium-processing" },
+        prerequisites = { "lithium-processing", "cryogenic-plant" },
         effects = {
             { type = "unlock-recipe", recipe = "5d-ammoniacal-solution-separation" },
             { type = "unlock-recipe", recipe = "5d-lithium" }

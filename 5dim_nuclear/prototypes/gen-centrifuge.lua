@@ -205,9 +205,8 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.5
-    -- Energy scales FASTER than speed (superlinear: 2x speed = 2.83x energy)
-    local energy = CostCalculator.scaleEnergyBySpeed(baseEnergy, baseCraftingSpeed, craftingSpeed, 1.5)
+    local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)
     
     -- Module slots: base + 1 every 2 tiers
@@ -216,11 +215,22 @@ for tier = 1, 10 do
     if tier >= 3 and tier % 2 == 1 then
         moduleSlots = moduleSlots + 1
     end
+
+    local previousModuleSlots = nil
+    if tier > 1 then
+        previousModuleSlots = baseModuleSlots + math.floor((tier - 2) / 2)
+        if tier >= 4 and (tier - 1) % 2 == 1 then
+            previousModuleSlots = previousModuleSlots + 1
+        end
+    end
+
+    moduleSlots = CostCalculator.applyT10CapstoneModuleBonus(moduleSlots, tier, 10, previousModuleSlots)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.centrifuge[tier], tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = centrifugeSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -241,7 +251,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = baseTechCount * (tier - 1),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = centrifugeSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

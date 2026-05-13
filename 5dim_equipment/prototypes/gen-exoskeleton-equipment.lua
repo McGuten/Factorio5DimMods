@@ -15,24 +15,24 @@ local config = {
 local exoskeletonSpaceAgeMaterials = {
     [6] = { name = "calcite", amount = 20, category = "metallurgy" },
     [7] = { name = "tungsten-plate", amount = 16, category = "metallurgy" },
-    [8] = { name = "holmium-plate", amount = 12, category = "electromagnetics" },
-    [9] = { name = "supercapacitor", amount = 8, category = "electromagnetics" },
+    [8] = { name = "carbon-fiber", amount = 12 },
+    [9] = { name = "metallic-asteroid-chunk", amount = 8 },
     [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
 }
 
 local exoskeletonSpaceAgeSciencePacks = {
     [6] = { "space-science-pack", "metallurgic-science-pack" },
     [7] = { "space-science-pack", "metallurgic-science-pack" },
-    [8] = { "space-science-pack", "electromagnetic-science-pack" },
-    [9] = { "space-science-pack", "electromagnetic-science-pack" },
+    [8] = { "space-science-pack", "agricultural-science-pack" },
+    [9] = { "space-science-pack" },
     [10] = { "space-science-pack", "cryogenic-science-pack" }
 }
 
 local exoskeletonSpaceAgeDeltaPrerequisites = {
     [6] = "foundry",
     [7] = "tungsten-steel",
-    [8] = "electromagnetic-plant",
-    [9] = "electromagnetic-plant",
+    [8] = "carbon-fiber",
+    [9] = "space-platform",
     [10] = "cryogenic-plant"
 }
 
@@ -325,12 +325,17 @@ local tiers = {
     }
 }
 
+local function calculateCooldown(baseCooldown, tier)
+    return math.max(1, math.floor((baseCooldown / CostCalculator.getMachineWorkMultiplier(tier)) + 0.5))
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.exoskeletonEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = exoskeletonSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -344,7 +349,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = i,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, i),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = exoskeletonSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -356,8 +361,8 @@ for i, tier in ipairs(tiers) do
     genExoskeletons {
         number = tier.number,
         subgroup = config.subgroup,
-        energyConsumption = tier.energyConsumption,
-        movementSpeed = tier.movementSpeed,
+        energyConsumption = CostCalculator.scaleMachineEnergy(tiers[1].energyConsumption, i),
+        movementSpeed = CostCalculator.calculateMachineWorkValue(tiers[1].movementSpeed, i, 10, 2),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

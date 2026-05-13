@@ -6,7 +6,7 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Modules module for 5Dim's mod\n\rExpands module system with new types and tiers\n\rThis mod includes:\n\r- 10 tiers of speed modules\n\r- 10 tiers of productivity modules\n\r- 10 tiers of efficiency modules\n\r- 10 tiers of quality modules (requires Quality DLC)\n\r- New pollution modules\n\r- New merged modules (combines all effects)\n\r- 10 tiers of beacons",
+    "description": "Push your machines further with stronger module and beacon progression.\n\rAdds more tiers of modules and beacons for faster, cleaner and more productive factory builds.\n\rRequires 5dim_core.",
     "dependencies": [
         "5dim_core >= 2.0.42",
         "? quality",

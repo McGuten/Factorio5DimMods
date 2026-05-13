@@ -124,6 +124,19 @@ local tierConfig = {
     [10] = { order = "j", copyName = "fast-inserter" }
 }
 
+local fastInserterExtension = baseExtension + 0.015
+local fastInserterRotation = baseRotation + 0.015
+local fastInserterEnergy = CostCalculator.scaleEnergy(baseEnergy, 2)
+local fastInserterDrain = baseDrain + 0.015
+
+local function getInserterProgressionTier(tier)
+    if tier <= 2 then
+        return 1
+    end
+
+    return tier - 1
+end
+
 -------------------------------------------------------------------------------
 -- TECHNOLOGY CONFIGURATION BY TIER
 -------------------------------------------------------------------------------
@@ -222,25 +235,40 @@ end
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
+    local progressionTier = getInserterProgressionTier(tier)
     
-    -- Calculate stats with incremental bonuses
-    local tierBonus = (tier - 1) * 0.015
-    local extension = baseExtension + tierBonus
-    local rotation = baseRotation + tierBonus
-    -- Non-linear energy scaling (vanilla pattern: 5->7 kJ for inserter->fast-inserter)
+    -- Preserve vanilla tiers and start geometric progression from fast inserter.
+    local extension = baseExtension
+    local rotation = baseRotation
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    local drain = baseDrain + tierBonus
+    local drain = baseDrain
+
+    if tier == 2 then
+        extension = fastInserterExtension
+        rotation = fastInserterRotation
+        energy = fastInserterEnergy
+        drain = fastInserterDrain
+    elseif tier > 2 then
+        extension = CostCalculator.calculateMachineWorkValue(fastInserterExtension, progressionTier, 9, 3)
+        rotation = CostCalculator.calculateMachineWorkValue(fastInserterRotation, progressionTier, 9, 3)
+        energy = CostCalculator.scaleMachineEnergy(fastInserterEnergy, progressionTier)
+        drain = CostCalculator.scaleMachineEnergy(fastInserterDrain, progressionTier, 3)
+    end
     
     -- Get ingredients from templates
     local inserterIngredients = CostCalculator.processIngredients(RecipeTemplates.inserter[tier], tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
+        progressionTier = progressionTier,
         spaceAgeMaterialOverrides = inserterSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
     local bulkIngredients = CostCalculator.processIngredients(RecipeTemplates.bulkInserter[tier], tier, {
         isBulkItem = false,
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
+        progressionTier = progressionTier,
         spaceAgeMaterialOverrides = inserterSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -272,7 +300,7 @@ for tier = 1, 10 do
 
             tech = {
                 number = tier,
-                count = CostCalculator.scaleAbsoluteTechCount(inserterTechCounts[tier]),
+                count = CostCalculator.calculateMachineTechCount(baseTechCount, progressionTier),
                 packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                     spaceAgePackOverrides = inserterSpaceAgeSciencePacks,
                     forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

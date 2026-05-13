@@ -239,6 +239,10 @@ local function getTeslaTurretDeltaPrerequisite(tier)
     return teslaTurretDeltaPrerequisites[tier]
 end
 
+local function getTeslaTurretBasePrerequisite(tier)
+    return "5d-laser-turret-sniper-" .. tier
+end
+
 -------------------------------------------------------------------------------
 -- RESISTANCES BY TIER
 -------------------------------------------------------------------------------
@@ -252,15 +256,15 @@ local function getResistances(tier)
     }
 end
 
-local function getEnergyStats(damage, range)
-    local energyPerShot = CostCalculator.scaleEnergyBySpeed(baseEnergyPerShot, baseDamage, damage, 1.15)
-    local energyDrain = CostCalculator.scaleEnergyBySpeed(baseDrain, baseRange, range, 0.9)
+local function getEnergyStats(tier)
+    local energyPerShot = CostCalculator.scaleMachineEnergy(baseEnergyPerShot, tier)
+    local energyDrain = CostCalculator.scaleMachineEnergy(baseDrain, tier)
 
     return {
         energyPerShot = energyPerShot,
-        bufferCapacity = energyPerShot + 1,
+        bufferCapacity = CostCalculator.scaleMachineEnergy(baseEnergyPerShot + 1, tier),
         inputFlowLimit = energyPerShot * 12,
-        drain = math.max(baseDrain, energyDrain)
+        drain = energyDrain
     }
 end
 
@@ -279,10 +283,10 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local range = baseRange + (tier - 1) * rangeIncrement
-    local damage = baseDamage * (1 + (tier - 1) * damageScalePerTier)
-    local health = baseHealth + (tier - 1) * healthIncrement
-    local energy = getEnergyStats(damage, range)
+    local range = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local damage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
+    local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
+    local energy = getEnergyStats(tier)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.teslaTurret[tier], tier, {
@@ -303,11 +307,12 @@ for tier = 1, 10 do
         local tc = techConfig[tier]
         local prerequisites = copyPrerequisites(tc.prerequisites)
 
+        addPrerequisiteIfMissing(prerequisites, getTeslaTurretBasePrerequisite(tier))
         addPrerequisiteIfMissing(prerequisites, getTeslaTurretDeltaPrerequisite(tier))
 
         tech = {
             number = tc.techName,
-            count = baseTechCount * tc.countMultiplier,
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = teslaTurretSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

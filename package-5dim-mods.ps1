@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$ModsRoot = $PSScriptRoot,
-    [string]$OutputDirectory = $PSScriptRoot,
+    [string]$ModsRoot = (Join-Path -Path $PSScriptRoot -ChildPath '..'),
+    [string]$OutputDirectory = (Join-Path -Path $PSScriptRoot -ChildPath '..'),
     [string]$BundleName = '5dim_mods_bundle.zip',
     [string[]]$ExcludeMods = @('5dim_decoration', '5dim_dev'),
     [switch]$Force

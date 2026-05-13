@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Transport module for 5Dim's mod (Requires Bob's Inserters)\n\rExpands item transportation with faster belts and more capable inserters\n\rThis mod includes:\n\r- 10 tiers of transport belts\n\r- 10 tiers of underground belts (plus x30 and x50 extended range variants)\n\r- 10 tiers of splitters\n\r- 8 tiers of loaders\n\r- 10 tiers of inserters (standard, filter, stack and stack filter)\n\r- 10 tiers of pumps\n\r- 30-tile and 50-tile underground pipe variants",
+    "description": "Push more items and fluids through your factory.\n\rAdds faster belts, inserters, loaders, pumps and long-range pipe options for high-throughput builds.\n\rRequires Bob's Inserters and 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42", "bobinserters >= 1.3.2", "? space-age >= 2.0.0"]
 }

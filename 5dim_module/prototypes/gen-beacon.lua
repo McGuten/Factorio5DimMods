@@ -94,6 +94,10 @@ local function addBeaconDeltaPrerequisites(prerequisites, tier)
     end
 end
 
+local function clampBeaconDistance(value)
+    return math.min(value, 64)
+end
+
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: module slots bonus, area bonus, efficiency bonus, order, vanilla flag
@@ -214,15 +218,16 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (exponential scaling like vanilla)
-    local modules = baseModules + config.moduleBonus
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    local areaEffect = baseAreaEffect + config.areaBonus
-    local efficiency = baseEfficiency + config.efficiencyBonus
+    -- Calculate stats for this tier from the shared balance policy.
+    local modules = CostCalculator.calculateMachineWorkValue(baseModules, tier, 10, 0)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
+    local areaEffect = clampBeaconDistance(CostCalculator.calculateMachineWorkValue(baseAreaEffect, tier, 10, 0))
+    local efficiency = CostCalculator.calculateMachineWorkValue(baseEfficiency, tier, 10, 2)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.beacon[tier], tier, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = beaconSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -243,7 +248,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier,
-            count = CostCalculator.scaleAbsoluteTechCount(beaconTechCounts[tier]),
+            count = CostCalculator.calculateMachineTechCount(beaconTechCounts[2], tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = beaconSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

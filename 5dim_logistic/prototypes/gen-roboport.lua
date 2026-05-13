@@ -206,23 +206,23 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier (using rebalanced increments)
-    local chargingEnergy = baseChargingEnergy + (tier - 1) * 500
-    local bufferCapacity = baseBufferCapacity + (tier - 1) * 50
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
-    local inputFlowLimit = baseInputFlowLimit + (tier - 1) * 50
-    -- Use rebalanced coverage increments
-    local logistic = baseLogistic + (tier - 1) * logisticIncrement
-    local construction = baseConstruction + (tier - 1) * constructionIncrement
-    local botSlot = baseBotSlot + (tier - 1) * 7
-    local recharge = baseRecharge + (tier - 1) * 20
-    local slots = baseSlots + (tier - 1) * slotsIncrement
+    -- Every improving utility stat follows the shared work factor; energy usage keeps its own factor.
+    local chargingEnergy = CostCalculator.calculateMachineWorkValue(baseChargingEnergy, tier, 10, 0)
+    local bufferCapacity = CostCalculator.calculateMachineWorkValue(baseBufferCapacity, tier, 10, 0)
+    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
+    local inputFlowLimit = CostCalculator.calculateMachineWorkValue(baseInputFlowLimit, tier, 10, 0)
+    local logistic = CostCalculator.calculateMachineWorkValue(baseLogistic, tier, 10, 0)
+    local construction = CostCalculator.calculateMachineWorkValue(baseConstruction, tier, 10, 0)
+    local botSlot = CostCalculator.calculateMachineWorkValue(baseBotSlot, tier, 10, 0)
+    local recharge = CostCalculator.calculateMachineWorkValue(baseRecharge, tier, 10, 0)
+    local slots = CostCalculator.calculateMachineWorkValue(baseSlots, tier, 10, 0)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.roboport[tier]
     local ingredients = CostCalculator.processIngredients(baseIngredients, tier, {
         isBulkItem = false,
         skipTierScaling = true,  -- Templates already have tier-appropriate amounts
+        applyMachineRecipeProgression = true,
         spaceAgeMaterialOverrides = roboportSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -243,7 +243,7 @@ for tier = 1, 10 do
 
         tech = {
             number = tier - 1,
-            count = CostCalculator.calculateTechCount(baseTechCount, tier),
+            count = CostCalculator.calculateMachineTechCount(baseTechCount, tier),
             packs = CostCalculator.getTechPacks(tc.basePacks, tier, {
                 spaceAgePackOverrides = roboportSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()

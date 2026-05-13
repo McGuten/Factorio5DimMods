@@ -338,12 +338,23 @@ local tiers = {
     }
 }
 
+local function getPersonalRoboportProgressionTier(tier)
+    if tier <= 2 then
+        return 1
+    end
+
+    return tier - 1
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
+    local progressionTier = getPersonalRoboportProgressionTier(i)
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.personalRoboportEquipment[i], i, {
         skipTierScaling = true,
+        applyMachineRecipeProgression = true,
+        progressionTier = progressionTier,
         spaceAgeMaterialOverrides = personalRoboportEquipmentSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
@@ -357,7 +368,7 @@ for i, tier in ipairs(tiers) do
 
         techData = {
             number = tc.number,
-            count = CostCalculator.calculateTechCount(config.baseTechCount, i - 1),
+            count = CostCalculator.calculateMachineTechCount(config.baseTechCount, progressionTier),
             packs = CostCalculator.getTechPacks(tc.basePacks, i, {
                 spaceAgePackOverrides = personalRoboportEquipmentSpaceAgeSciencePacks,
                 forceSpaceAgePackOverrides = CostConfig.shouldUseSpaceAgeMaterials()
@@ -369,11 +380,11 @@ for i, tier in ipairs(tiers) do
     genPersonalRoboports {
         number = tier.number,
         subgroup = config.subgroup,
-        capacity = tier.capacity,
-        inputFlow = tier.inputFlow,
-        robotLimit = tier.robotLimit,
-        constructionRadius = tier.constructionRadius,
-        charging = tier.charging,
+        capacity = i <= 2 and tier.capacity or CostCalculator.calculateMachineWorkValue(tiers[2].capacity, progressionTier, 9, 0),
+        inputFlow = i <= 2 and tier.inputFlow or CostCalculator.calculateMachineWorkValue(tiers[2].inputFlow, progressionTier, 9, 0),
+        robotLimit = i <= 2 and tier.robotLimit or CostCalculator.calculateMachineWorkValue(tiers[2].robotLimit, progressionTier, 9, 0),
+        constructionRadius = i <= 2 and tier.constructionRadius or CostCalculator.calculateMachineWorkValue(tiers[2].constructionRadius, progressionTier, 9, 0),
+        charging = i <= 2 and tier.charging or CostCalculator.calculateMachineWorkValue(tiers[2].charging, progressionTier, 9, 0),
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

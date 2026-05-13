@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Localization module for 5Dim's mod\n\rProvides translations for all 5Dim's modules\n\rSupported languages:\n\r- Afrikaans, Arabic, Catalan, Czech, Danish\n\r- German, Greek, English, Spanish, Finnish\n\r- French, Hebrew, Hungarian, Italian, Japanese\n\r- Korean, Dutch, Norwegian, Polish, Portuguese\n\r- Romanian, Russian, Serbian, Swedish, Turkish\n\r- Ukrainian, Vietnamese, Chinese\n\rContribute translations via Crowdin!",
+    "description": "Play the 5Dim suite in your language.\n\rAdds translation support across the 5Dim collection for items, technologies and menus.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

@@ -6,6 +6,6 @@
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Trains module for 5Dim's mod\n\rExpands the railway system with faster and more capable trains\n\rThis mod includes:\n\r- 10 tiers of locomotives (increased speed and power)\n\r- 10 tiers of cargo wagons (increased capacity)\n\r- 10 tiers of fluid wagons (increased capacity)",
+    "description": "Move bigger loads faster with stronger rail logistics.\n\rAdds more tiers of locomotives and wagons so rail networks can carry more cargo and fluids.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

@@ -58,7 +58,7 @@ local techConfig = {
             { "logistic-science-pack", 1 },
             { "military-science-pack", 1 }
         },
-        prerequisites = { "gun-turret", "military" }
+        prerequisites = { "gun-turret", "military-science-pack" }
     },
     [3] = {
         techName = "gun-turret-3",

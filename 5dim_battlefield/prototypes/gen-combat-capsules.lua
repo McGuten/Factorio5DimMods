@@ -104,9 +104,41 @@ local combatSupportSpaceAgePrerequisites = {
     [10] = "quantum-processor"
 }
 
-local function getCombatSupportDeltaMaterial(tier)
-    if CostConfig.shouldUseSpaceAgeMaterials() and combatSupportSpaceAgeMaterials[tier] then
-        local override = combatSupportSpaceAgeMaterials[tier]
+local grenadeRecipeOverrides = {
+    materials = {
+        [2] = { type = "item", name = "sulfur", amount = 2 },
+        [3] = { type = "item", name = "explosives", amount = 2 },
+        [4] = { type = "item", name = "plastic-bar", amount = 2 }
+    },
+    vanillaPrerequisites = {
+        [2] = "sulfur-processing",
+        [3] = "explosives",
+        [4] = "plastics"
+    },
+    spaceAgeMaterials = {
+        [5] = { name = "calcite", amount = 2 },
+        [6] = { name = "tungsten-plate", amount = 2 },
+        [7] = { name = "holmium-plate", amount = 2 },
+        [8] = { type = "fluid", name = "electrolyte", amount = 40 },
+        [9] = { name = "carbon-fiber", amount = 2 },
+        [10] = { type = "fluid", name = "fluorine", amount = 40 }
+    },
+    spaceAgePrerequisites = {
+        [5] = "foundry",
+        [6] = "tungsten-steel",
+        [7] = "electromagnetic-plant",
+        [8] = "electromagnetic-plant",
+        [9] = "carbon-fiber",
+        [10] = "cryogenic-plant"
+    }
+}
+
+local function getCombatSupportDeltaMaterial(tier, overrides)
+    local materials = overrides and overrides.materials
+    local spaceAgeMaterials = overrides and overrides.spaceAgeMaterials or combatSupportSpaceAgeMaterials
+
+    if CostConfig.shouldUseSpaceAgeMaterials() and spaceAgeMaterials[tier] then
+        local override = spaceAgeMaterials[tier]
         return {
             type = override.type or "item",
             name = override.name,
@@ -114,7 +146,7 @@ local function getCombatSupportDeltaMaterial(tier)
         }
     end
 
-    return combatSupportMaterials[tier]
+    return (materials and materials[tier]) or combatSupportMaterials[tier]
 end
 
 local function getCombatSupportRecipeCategory(tier)
@@ -123,10 +155,10 @@ local function getCombatSupportRecipeCategory(tier)
     end
 end
 
-local function getCombatSupportIngredients(tier, baseName, previousPrefix)
+local function getCombatSupportIngredients(tier, baseName, previousPrefix, overrides)
     return {
         { type = "item", name = tier == 2 and baseName or (previousPrefix .. (tier - 1)), amount = 1 },
-        getCombatSupportDeltaMaterial(tier)
+        getCombatSupportDeltaMaterial(tier, overrides)
     }
 end
 
@@ -140,11 +172,20 @@ local function copyPrerequisites(values)
     return result
 end
 
-local function getCombatSupportPrerequisites(tier, basePrerequisites)
+local function getCombatSupportPrerequisites(tier, basePrerequisites, overrides)
     local prerequisites = copyPrerequisites(basePrerequisites)
+    local vanillaPrerequisites = overrides and overrides.vanillaPrerequisites
+    local spaceAgePrerequisites = overrides and overrides.spaceAgePrerequisites or combatSupportSpaceAgePrerequisites
+    local deltaPrerequisite
 
-    if CostConfig.shouldUseSpaceAgeMaterials() and combatSupportSpaceAgePrerequisites[tier] then
-        table.insert(prerequisites, combatSupportSpaceAgePrerequisites[tier])
+    if CostConfig.shouldUseSpaceAgeMaterials() and spaceAgePrerequisites[tier] then
+        deltaPrerequisite = spaceAgePrerequisites[tier]
+    elseif vanillaPrerequisites and vanillaPrerequisites[tier] then
+        deltaPrerequisite = vanillaPrerequisites[tier]
+    end
+
+    if deltaPrerequisite then
+        table.insert(prerequisites, deltaPrerequisite)
     end
 
     return prerequisites
@@ -199,7 +240,7 @@ for tier, config in pairs(tierConfig) do
             name = name,
             enabled = false,
             energy_required = 8,
-            ingredients = getCombatSupportIngredients(tier, "grenade", "5d-grenade-"),
+            ingredients = getCombatSupportIngredients(tier, "grenade", "5d-grenade-", grenadeRecipeOverrides),
             results = { { type = "item", name = name, amount = 1 } }
         }
         recipe.category = getCombatSupportRecipeCategory(tier)
@@ -212,7 +253,7 @@ for tier, config in pairs(tierConfig) do
             effects = {
                 { type = "unlock-recipe", recipe = name }
             },
-            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-2" } or { "5d-grenade-" .. (tier - 1) }),
+            prerequisites = getCombatSupportPrerequisites(tier, tier == 2 and { "military-2" } or { "5d-grenade-" .. (tier - 1) }, grenadeRecipeOverrides),
             unit = {
                 count = 100 * tier,
                 ingredients = CostCalculator.getTechPacks(getTechPacks(tier), tier, {

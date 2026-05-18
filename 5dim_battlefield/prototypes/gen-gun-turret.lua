@@ -15,7 +15,7 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: HP x5 (480 → 2400 at T10), Damage +45% at T10
 -------------------------------------------------------------------------------
 
-local baseRange = 22
+local baseRange = 18
 local baseAmmo = 10
 local baseShootingSpeed = 6
 local baseDamageModif = 1
@@ -24,6 +24,11 @@ local rangeIncrement = 3
 local damageScalePerTier = 0.05
 local healthIncrement = 213               -- 480 → 2400 (x5)
 local baseTechCount = 100
+local lateTierHealthBonus = {
+    [8] = 500,
+    [9] = 900,
+    [10] = 1300
+}
 
 -- Type color: Medium/Normal = Red
 local typeColor = { r = 1, g = 0.1, b = 0.1, a = 1 }
@@ -235,10 +240,23 @@ end
 local function getResistances(tier)
     local firePercent = 5 + (tier - 1) * 5
     local explosionPercent = 2.5 + (tier - 1) * 2.5
-    return {
+    local resistances = {
         { type = "fire", percent = firePercent },
         { type = "explosion", percent = explosionPercent }
     }
+
+    if tier >= 8 then
+        local lateStep = tier - 8
+        table.insert(resistances, { type = "physical", decrease = 3 + lateStep, percent = 20 + (lateStep * 5) })
+        table.insert(resistances, { type = "acid", percent = 10 + (lateStep * 5) })
+        table.insert(resistances, { type = "laser", percent = 10 + (lateStep * 5) })
+    end
+
+    return resistances
+end
+
+local function getHealth(tier)
+    return baseHealth + ((tier - 1) * healthIncrement) + (lateTierHealthBonus[tier] or 0)
 end
 
 -------------------------------------------------------------------------------
@@ -252,7 +270,7 @@ for tier = 1, 10 do
     -- Calculate stats for this tier
     local range = baseRange + (tier - 1) * rangeIncrement
     local damageModifier = baseDamageModif * (1 + (tier - 1) * damageScalePerTier)
-    local health = baseHealth + (tier - 1) * healthIncrement
+    local health = getHealth(tier)
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.gunTurret[tier], tier, {

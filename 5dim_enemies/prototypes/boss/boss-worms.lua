@@ -3,7 +3,7 @@
 -- =============================================================================
 -- This file creates boss worms (tier 11) for all worm types.
 -- These are extremely powerful worms that appear at max evolution.
--- Boss = x3 health and damage from base T10 stats with type multipliers.
+-- Boss = x2 health and damage from base T10 stats with type multipliers.
 -- =============================================================================
 
 local Tiers = require("prototypes.config.tiers")
@@ -20,7 +20,7 @@ require("__base__/prototypes/entity/worm-animations")
 
 local sounds = require("__base__/prototypes/entity/sounds")
 local hit_effects = require("__base__/prototypes/entity/hit-effects")
-local enemy_autoplace = require("__base__/prototypes/entity/enemy-autoplace-utils")
+local enemy_autoplace = require("__base__.prototypes.entity.enemy-autoplace-utils")
 
 -- =============================================================================
 -- BOSS WORM GENERATOR
@@ -119,7 +119,7 @@ local function generateBossWorm(wormType)
         allow_turning_when_starting_attack = true,
         attack_parameters = {
             type = "stream",
-            cooldown = 3,
+            cooldown = 4,
             range = stats.range,
             damage_modifier = stats.damage * damageMultiplier,
             min_range = 0,

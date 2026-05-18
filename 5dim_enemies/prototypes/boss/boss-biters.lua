@@ -3,7 +3,7 @@
 -- =============================================================================
 -- Generates boss biters (tier 11) for each biter type.
 -- These are massive, powerful enemies that spawn at very high evolution.
--- Boss = x3 health and damage from base T10 stats with type multipliers.
+-- Boss = x2 health and damage from base T10 stats with type multipliers.
 -- =============================================================================
 
 local Tiers = require("prototypes.config.tiers")
@@ -63,6 +63,7 @@ local function createBossBiter(typeConfig)
     -- Massive animations
     biter.run_animation = biterrunanimation(stats.scale, typeConfig.colors.primary, typeConfig.colors.secondary)
     biter.water_reflection = biter_water_reflection(stats.scale)
+    TierUtils.scaleUnitDistancePerFrame(biter, "behemoth-biter", stats.scale)
     
     -- Enhanced AI behavior
     biter.vision_distance = 60

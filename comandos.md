@@ -12,7 +12,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 En una sola linea:
 
 ```powershell
-Set-Location "d:\factorioDev\mods"; Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass; .\scripts\package-5dim-mods.ps1 -Force
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass; .\mods\scripts\package-5dim-mods.ps1 -Force
 ```
 
 El bundle se genera como:
@@ -20,7 +20,7 @@ El bundle se genera como:
 ```text
 5dim_mods_bundle.zip
 ```
-
+haz el punto 1
 ## Validar perfiles locales de Factorio
 
 Ejecutar desde la carpeta mods:

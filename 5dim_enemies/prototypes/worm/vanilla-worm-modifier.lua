@@ -11,7 +11,7 @@ require("__base__/prototypes/entity/worm-animations")
 
 local sounds = require("__base__/prototypes/entity/sounds")
 local hit_effects = require("__base__/prototypes/entity/hit-effects")
-local enemy_autoplace = require("__base__/prototypes/entity/enemy-autoplace-utils")
+local enemy_autoplace = require("__base__.prototypes.entity.enemy-autoplace-utils")
 
 -- =============================================================================
 -- WORM TINTS (Normal/Acid type)

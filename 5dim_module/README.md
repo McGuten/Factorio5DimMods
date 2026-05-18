@@ -10,7 +10,7 @@ Push your machines further with stronger module and beacon progression.
 - 10 tiers of productivity modules.
 - 10 tiers of efficiency modules.
 - 10 tiers of quality modules when the right content is available.
-- Pollution and merged module options.
+- Merged module options built from speed, efficiency and productivity.
 - 10 tiers of beacons.
 
 ## Good Fit If You Want

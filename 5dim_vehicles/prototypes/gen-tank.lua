@@ -51,7 +51,7 @@ local tankTechCounts = {
 local tankSpaceAgeMaterials = {
     [8] = { name = "holmium-plate", amount = 20 },
     [9] = { name = "supercapacitor", amount = 10 },
-    [10] = { name = "fusion-power-cell", amount = 6 }
+    [10] = { name = "fusion-power-cell", amount = 6, category = "cryogenics" }
 }
 
 local tankSpaceAgeSciencePacks = {
@@ -383,6 +383,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         tint = tierColor,
         nextUpdate = nextUpgrade,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, tankSpaceAgeMaterials),
         tech = tech
     })
 end

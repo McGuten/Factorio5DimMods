@@ -16,7 +16,9 @@ local baseEntity = data.raw["ammo-turret"] and data.raw["ammo-turret"]["railgun-
 -------------------------------------------------------------------------------
 
 local baseRange = baseEntity.attack_parameters and baseEntity.attack_parameters.range or 40
-local rangeIncrement = 2
+local rangeIncrement = 3
+local baseCooldown = baseEntity.attack_parameters and baseEntity.attack_parameters.cooldown or 170
+local cooldownReductionPerTier = 4
 local baseRotationSpeed = 0.004
 local baseHealth = baseEntity.max_health or 1000
 local healthIncrement = math.floor(((baseHealth * 4) / 9) + 0.5)
@@ -142,6 +144,7 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
     local currentHealth = baseHealth + ((tier - 1) * healthIncrement)
+    local currentCooldown = math.max(134, baseCooldown - ((tier - 1) * cooldownReductionPerTier))
     
     local techData = nil
     if techConfig[tier] then
@@ -163,6 +166,7 @@ for tier = 1, 10 do
         order = config.order,
         new = not config.isVanilla,
         range = currentRange,
+        cooldown = currentCooldown,
         rotationSpeed = currentRotationSpeed,
         health = currentHealth,
         tint = tierColors[tier],

@@ -15,12 +15,12 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: HP x5 (1000 → 5000), Damage +45% (20 → 29)
 -------------------------------------------------------------------------------
 
-local baseRange = 26
+local baseRange = 24
 local baseDamage = 20
 local baseHealth = 1000
 local baseEnergyPerShot = 800
 local baseDrain = 24
-local rangeIncrement = 3
+local rangeIncrement = 3               -- 24 -> 51
 local damageScalePerTier = 0.05
 local healthIncrement = 444               -- 1000 → 5000 (x5)
 local baseTechCount = 150
@@ -233,10 +233,19 @@ end
 local function getResistances(tier)
     local firePercent = 5 + (tier - 1) * 5
     local explosionPercent = 2.5 + (tier - 1) * 2.5
-    return {
+    local resistances = {
         { type = "fire", percent = firePercent },
         { type = "explosion", percent = explosionPercent }
     }
+
+    if tier >= 8 then
+        local lateStep = tier - 8
+        table.insert(resistances, { type = "physical", decrease = 2 + lateStep, percent = 10 + (lateStep * 5) })
+        table.insert(resistances, { type = "acid", percent = 15 + (lateStep * 5) })
+        table.insert(resistances, { type = "laser", percent = 10 + (lateStep * 5) })
+    end
+
+    return resistances
 end
 
 local function getEnergyStats(tier)
@@ -260,7 +269,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local range = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local range = baseRange + ((tier - 1) * rangeIncrement)
     local damage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
     local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
     local energy = getEnergyStats(tier)

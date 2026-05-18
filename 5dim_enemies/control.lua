@@ -7,6 +7,7 @@
 
 -- Load shared configuration (same file used by data stage)
 local SharedConfig = require("shared-config")
+local Tiers = require("prototypes.config.tiers")
 
 -- Check if 5dim_dev is installed (for dev tools)
 local DEV_MODE = script.active_mods["5dim_dev"] ~= nil
@@ -182,10 +183,260 @@ local function getPlayerSettings(player_index)
     if not storage.player_settings[player_index] then
         storage.player_settings[player_index] = {
             selected_type = "normal",
-            selected_category = "biter"
+            selected_category = "biter",
+            show_all_tiers = false
         }
     end
     return storage.player_settings[player_index]
+end
+
+local function safe_read(getter)
+    local ok, value = pcall(getter)
+    if ok then
+        return value
+    end
+    return nil
+end
+
+local function get_enemy_prototype_name(typeName, category, tier)
+    if category == "worm" then
+        if tier == 11 then
+            return string.format("5d-%s-worm-boss", typeName)
+        end
+        return string.format("5d-%s-worm-t%d", typeName, tier)
+    end
+
+    if tier == 11 then
+        return string.format("5d-%s-%s-boss", typeName, category)
+    end
+
+    return string.format("5d-%s-%s-t%d", typeName, category, tier)
+end
+
+local function is_boss_enabled()
+    local setting = settings.startup["5d-boss"]
+    return setting == nil or setting.value ~= false
+end
+
+local function to_array(value)
+    if type(value) ~= "table" then
+        return {}
+    end
+
+    if value[1] ~= nil then
+        return value
+    end
+
+    return {value}
+end
+
+local sum_trigger_item_damage
+local sum_delivery_damage
+local get_referenced_prototype_damage
+
+local function sum_trigger_effect_damage(effectItems)
+    local total = 0
+    local found = false
+
+    for _, effect in pairs(to_array(effectItems)) do
+        local effectType = safe_read(function() return effect.type end)
+        if effectType == "damage" then
+            local damage = safe_read(function() return effect.damage end)
+            local amount = damage and safe_read(function() return damage.amount end)
+            if type(amount) == "number" then
+                total = total + amount
+                found = true
+            end
+        end
+    end
+
+    if found then
+        return total
+    end
+
+    return nil
+end
+
+get_referenced_prototype_damage = function(prototypeName)
+    local prototype = safe_read(function() return prototypes.entity[prototypeName] end)
+    if not prototype then
+        return nil
+    end
+
+    local total = 0
+    local found = false
+
+    for _, resultName in ipairs({"attack_result", "final_attack_result"}) do
+        local result = safe_read(function() return prototype[resultName] end)
+        local damage = sum_trigger_item_damage(result, nil)
+        if type(damage) == "number" then
+            total = total + damage
+            found = true
+        end
+    end
+
+    if found then
+        return total
+    end
+
+    return nil
+end
+
+sum_delivery_damage = function(deliveries, attackParameters)
+    local total = 0
+    local found = false
+
+    for _, delivery in pairs(to_array(deliveries)) do
+        local damage = sum_trigger_effect_damage(safe_read(function() return delivery.target_effects end))
+        if type(damage) == "number" then
+            total = total + damage
+            found = true
+        end
+
+        local deliveryType = safe_read(function() return delivery.type end)
+        local referencedName
+        if deliveryType == "projectile" then
+            referencedName = safe_read(function() return delivery.projectile end)
+        elseif deliveryType == "stream" then
+            referencedName = safe_read(function() return delivery.stream end)
+        elseif deliveryType == "beam" then
+            referencedName = safe_read(function() return delivery.beam end)
+        end
+
+        if referencedName then
+            local referencedDamage = get_referenced_prototype_damage(referencedName)
+            if type(referencedDamage) == "number" then
+                local modifier = attackParameters and safe_read(function() return attackParameters.damage_modifier end) or 1
+                if type(modifier) ~= "number" or modifier <= 0 then
+                    modifier = 1
+                end
+                total = total + (referencedDamage * modifier)
+                found = true
+            end
+        end
+    end
+
+    if found then
+        return total
+    end
+
+    return nil
+end
+
+sum_trigger_item_damage = function(triggerItems, attackParameters)
+    local total = 0
+    local found = false
+
+    for _, triggerItem in pairs(to_array(triggerItems)) do
+        local damage = sum_delivery_damage(safe_read(function() return triggerItem.action_delivery end), attackParameters)
+        if type(damage) == "number" then
+            total = total + damage
+            found = true
+        end
+    end
+
+    if found then
+        return total
+    end
+
+    return nil
+end
+
+local function get_runtime_tier_stats(typeName, category, tier)
+    local prototypeName = get_enemy_prototype_name(typeName, category, tier)
+    local prototype = safe_read(function() return prototypes.entity[prototypeName] end)
+    local fallbackStats
+
+    if prototype or not (tier == 11 and not is_boss_enabled()) then
+        fallbackStats = safe_read(function() return Tiers.getStats(category, typeName, tier) end)
+    end
+
+    if not prototype and not fallbackStats then
+        return {
+            prototype_name = prototypeName,
+            prototype_loaded = false,
+            health = nil,
+            damage = nil,
+            speed = nil,
+            healing = nil,
+            range = nil
+        }
+    end
+
+    local attackParameters = prototype and safe_read(function() return prototype.attack_parameters end) or nil
+    local ammoType = attackParameters and safe_read(function() return attackParameters.ammo_type end) or nil
+    local ammoActions = ammoType and safe_read(function() return ammoType.action end) or nil
+
+    local health = prototype and safe_read(function() return prototype.get_max_health() end) or nil
+    if type(health) ~= "number" then
+        health = prototype and safe_read(function() return prototype.max_health end) or nil
+    end
+    if type(health) ~= "number" and fallbackStats then
+        health = fallbackStats.health
+    end
+
+    local damage = attackParameters and sum_trigger_item_damage(ammoActions, attackParameters) or nil
+    if type(damage) ~= "number" and attackParameters then
+        local damageModifier = safe_read(function() return attackParameters.damage_modifier end)
+        if type(damageModifier) == "number" and damageModifier > 0 then
+            damage = damageModifier
+        end
+    end
+    if type(damage) ~= "number" and fallbackStats then
+        damage = fallbackStats.damage
+    end
+
+    local speed
+    if prototype then
+        for _, getter in ipairs({
+            function() return prototype.movement_speed end,
+            function() return prototype.speed end,
+            function() return prototype.max_speed end
+        }) do
+            local value = safe_read(getter)
+            if type(value) == "number" then
+                speed = value
+                break
+            end
+        end
+    end
+    if type(speed) ~= "number" and fallbackStats then
+        speed = fallbackStats.speed
+    end
+
+    local healing = prototype and safe_read(function() return prototype.healing_per_tick end) or nil
+    if type(healing) ~= "number" and fallbackStats then
+        healing = fallbackStats.healing
+    end
+
+    local range
+    if category == "worm" and prototype then
+        range = safe_read(function() return prototype.turret_range end)
+    end
+    if category ~= "biter" and type(range) ~= "number" and attackParameters then
+        range = safe_read(function() return attackParameters.range end)
+    end
+    if category ~= "biter" and type(range) ~= "number" and fallbackStats then
+        range = fallbackStats.range
+    end
+
+    return {
+        prototype_name = prototypeName,
+        prototype_loaded = prototype ~= nil,
+        health = health,
+        damage = damage,
+        speed = speed,
+        healing = healing,
+        range = range
+    }
+end
+
+local function format_tier_stat(value, decimals, color)
+    if type(value) ~= "number" then
+        return "[color=gray]-[/color]"
+    end
+
+    return string.format("[color=%s]%." .. tostring(decimals or 0) .. "f[/color]", color or "white", value)
 end
 
 -- =============================================================================
@@ -204,6 +455,7 @@ local function create_gui(player)
     local settings = getPlayerSettings(player.index)
     local selectedType = settings.selected_type
     local selectedCategory = settings.selected_category
+    local showAllTiers = settings.show_all_tiers == true
     
     local surface = player.surface
     local evolution = game.forces["enemy"].get_evolution_factor(surface)
@@ -216,6 +468,8 @@ local function create_gui(player)
         caption = "5Dim Enemies Info"
     }
     frame.auto_center = true
+    frame.style.minimal_width = 980
+    frame.style.maximal_width = 1180
     
     -- Header with close button
     local header = frame.add{type = "flow", direction = "horizontal"}
@@ -230,9 +484,18 @@ local function create_gui(player)
         style = "frame_action_button",
         tooltip = "Close"
     }
+
+    local content = frame.add{
+        type = "scroll-pane",
+        direction = "vertical",
+        vertical_scroll_policy = "auto",
+        horizontal_scroll_policy = "auto"
+    }
+    content.style.minimal_width = 940
+    content.style.maximal_height = 720
     
     -- Evolution info frame
-    local evo_frame = frame.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
+    local evo_frame = content.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
     evo_frame.style.bottom_margin = 8
     
     -- Get evolution factors
@@ -282,7 +545,7 @@ local function create_gui(player)
     bar_kills.style.color = {r = 1, g = 0.6, b = 0.2}
     
     -- Type selector frame
-    local selector_frame = frame.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
+    local selector_frame = content.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
     selector_frame.style.bottom_margin = 8
     selector_frame.add{type = "label", caption = "Enemy Type Selection", style = "heading_2_label"}
     
@@ -350,11 +613,24 @@ local function create_gui(player)
     -- Type stats
     local typeDisplayName = TypeDisplay[selectedType] and TypeDisplay[selectedType].name or selectedType
     local typeColor = TypeDisplay[selectedType] and TypeDisplay[selectedType].color or "white"
+    local catDisplayName = CategoryDisplay[selectedCategory] and CategoryDisplay[selectedCategory].name or selectedCategory
     
     info_frame.add{type = "label", caption = string.format("[color=%s][font=default-bold]%s[/font][/color]", typeColor, typeDisplayName)}
+    local description_label = info_frame.add{type = "label", caption = {"enemy-info-description." .. selectedType}}
+    description_label.style.maximal_width = 860
+    description_label.style.top_margin = 4
+    description_label.style.bottom_margin = 6
+
+    local overview_table = info_frame.add{type = "table", column_count = 2}
+    overview_table.style.cell_padding = 2
+    overview_table.add{type = "label", caption = {"enemy-info-ui.category"}}
+    overview_table.add{type = "label", caption = string.format("[color=%s]%s[/color]", CategoryDisplay[selectedCategory] and CategoryDisplay[selectedCategory].color or "white", catDisplayName)}
+    overview_table.add{type = "label", caption = {"enemy-info-ui.data-source"}}
+    overview_table.add{type = "label", caption = {"enemy-info-ui.data-source-runtime"}}
     
     local stats_table = info_frame.add{type = "table", column_count = 2}
     stats_table.style.cell_padding = 2
+    stats_table.style.top_margin = 6
     
     stats_table.add{type = "label", caption = "Health Multiplier:"}
     stats_table.add{type = "label", caption = string.format("[color=green]%.2fx[/color]", mult.health or 1)}
@@ -395,65 +671,115 @@ local function create_gui(player)
     -- ==========================================================================
     -- SPAWN DISTRIBUTION TABLE (Main feature!)
     -- ==========================================================================
-    local spawn_frame = frame.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
+    local spawn_frame = content.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
     spawn_frame.style.top_margin = 8
-    
-    local catDisplayName = CategoryDisplay[selectedCategory] and CategoryDisplay[selectedCategory].name or selectedCategory
-    spawn_frame.add{type = "label", caption = "Active Tiers at Current Evolution", style = "heading_2_label"}
-    
-    -- Calculate all spawn probabilities
+
+    spawn_frame.add{type = "label", caption = {"enemy-info-ui.tier-breakdown", typeDisplayName, catDisplayName}, style = "heading_2_label"}
+    local visibility_flow = spawn_frame.add{type = "flow", direction = "horizontal"}
+    visibility_flow.style.top_margin = 4
+    visibility_flow.add{
+        type = "checkbox",
+        name = "5dim_enemies_show_all_tiers",
+        state = showAllTiers,
+        caption = {"enemy-info-ui.show-all-tiers"}
+    }
+    local spawn_help = spawn_frame.add{type = "label", caption = {"enemy-info-ui.tier-help"}}
+    spawn_help.style.maximal_width = 860
+    spawn_help.style.bottom_margin = 6
+
+    -- Calculate all spawn probabilities and read current prototype stats
     local totalProb = 0
-    local tierProbs = {}
+    local tierRows = {}
     local tierEvos = calculateEvolution(selectedType, selectedCategory)
+    local showRangeColumn = false
     
     for tier = 1, 11 do
+        local tierStats = get_runtime_tier_stats(selectedType, selectedCategory, tier)
         local curve = getSpawnCurve(selectedType, tier, selectedCategory)
-        local prob = calculateSpawnProbability(evolution, curve)
-        tierProbs[tier] = prob
+        local prob = tierStats.prototype_loaded and calculateSpawnProbability(evolution, curve) or 0
+        tierRows[tier] = {
+            stats = tierStats,
+            probability = prob,
+            evolution = tierEvos[tier]
+        }
+        if type(tierStats.range) == "number" then
+            showRangeColumn = true
+        end
         totalProb = totalProb + prob
     end
     
     -- Spawn table
-    local spawn_table = spawn_frame.add{type = "table", column_count = 5}
+    local spawn_table = spawn_frame.add{type = "table", column_count = showRangeColumn and 8 or 7}
     spawn_table.style.cell_padding = 2
     
     spawn_table.add{type = "label", caption = "[font=default-bold]Tier[/font]"}
     spawn_table.add{type = "label", caption = "[font=default-bold]Evo[/font]"}
+    spawn_table.add{type = "label", caption = "[font=default-bold]Health[/font]"}
+    spawn_table.add{type = "label", caption = "[font=default-bold]Damage[/font]"}
+    if showRangeColumn then
+        spawn_table.add{type = "label", caption = {"", "[font=default-bold]", {"enemy-info-ui.range"}, "[/font]"}}
+    end
+    spawn_table.add{type = "label", caption = "[font=default-bold]Speed[/font]"}
+    spawn_table.add{type = "label", caption = "[font=default-bold]Healing[/font]"}
     spawn_table.add{type = "label", caption = "[font=default-bold]Spawn%[/font]"}
-    spawn_table.add{type = "label", caption = "[font=default-bold]Distribution[/font]"}
-    spawn_table.add{type = "label", caption = ""}
     
     local activeTiers = 0
+    local visibleTiers = 0
     for tier = 1, 11 do
-        local prob = tierProbs[tier]
+        local row = tierRows[tier]
+        local stats = row.stats
+        local prob = row.probability
         local normalizedProb = totalProb > 0 and (prob / totalProb) or 0
-        
-        -- Only show tiers with probability
+
         if prob > 0.001 then
             activeTiers = activeTiers + 1
-            local tierLabel = tier == 11 and "[color=purple]BOSS[/color]" or "T" .. tier
-            local evoStr = string.format("%.0f%%", tierEvos[tier] * 100)
-            local probStr = string.format("%.1f%%", normalizedProb * 100)
-            
-            spawn_table.add{type = "label", caption = tierLabel}
-            spawn_table.add{type = "label", caption = evoStr}
-            spawn_table.add{type = "label", caption = probStr}
-            
-            local bar = spawn_table.add{type = "progressbar", value = normalizedProb}
-            bar.style.width = 120
-            bar.style.height = 10
-            bar.style.bar_width = 10
-            if tier == 11 then
-                bar.style.color = {r = 0.6, g = 0.1, b = 0.8}
-            else
-                bar.style.color = {r = 0.9, g = 0.2, b = 0.2}
+        end
+
+        if showAllTiers or prob > 0.001 then
+            visibleTiers = visibleTiers + 1
+
+            local tierColor = stats.prototype_loaded and (prob > 0.001 and (tier == 11 and "purple" or "white") or "gray") or "gray"
+            local tierText = tier == 11 and "BOSS" or ("T" .. tier)
+            if prob > 0.001 then
+                tierText = "[font=default-bold]" .. tierText .. "[/font]"
             end
-            
-            spawn_table.add{type = "label", caption = ""}
+            local tierLabel = spawn_table.add{
+                type = "label",
+                caption = string.format("[color=%s]%s[/color]", tierColor, tierText),
+                tooltip = stats.prototype_name
+            }
+
+            if not stats.prototype_loaded then
+                tierLabel.tooltip = stats.prototype_name .. " (prototype not loaded)"
+            end
+
+            local evoColor = prob > 0.001 and "orange" or "gray"
+            local spawnColor = prob > 0.001 and (tier == 11 and "purple" or "red") or "gray"
+            local spawnBarColor = prob > 0.001 and (tier == 11 and {r = 0.7, g = 0.35, b = 1} or {r = 1, g = 0.25, b = 0.25}) or {r = 0.4, g = 0.4, b = 0.4}
+            local evoStr = string.format("[color=%s]%.0f%%[/color]", evoColor, row.evolution * 100)
+            local probStr = string.format("[color=%s]%.1f%%[/color]", spawnColor, normalizedProb * 100)
+
+            spawn_table.add{type = "label", caption = evoStr}
+            spawn_table.add{type = "label", caption = format_tier_stat(stats.health, 0, "green")}
+            spawn_table.add{type = "label", caption = format_tier_stat(stats.damage, 1, "red")}
+            if showRangeColumn then
+                spawn_table.add{type = "label", caption = format_tier_stat(stats.range, 1, "white")}
+            end
+            spawn_table.add{type = "label", caption = format_tier_stat(stats.speed, 3, "yellow")}
+            spawn_table.add{type = "label", caption = format_tier_stat(stats.healing, 3, "cyan")}
+
+            local spawn_flow = spawn_table.add{type = "flow", direction = "horizontal"}
+            spawn_flow.style.vertical_align = "center"
+            local spawn_label = spawn_flow.add{type = "label", caption = probStr}
+            spawn_label.style.width = 52
+            local spawn_bar = spawn_flow.add{type = "progressbar", value = normalizedProb}
+            spawn_bar.style.width = 80
+            spawn_bar.style.height = 8
+            spawn_bar.style.color = spawnBarColor
         end
     end
     
-    if activeTiers == 0 then
+    if visibleTiers == 0 or activeTiers == 0 then
         spawn_frame.add{type = "label", caption = "[color=gray]No tiers active at this evolution[/color]"}
     end
     
@@ -462,7 +788,7 @@ local function create_gui(player)
     -- ==========================================================================
     if DEV_MODE then
         -- Evolution control frame
-        local dev_frame = frame.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
+        local dev_frame = content.add{type = "frame", direction = "vertical", style = "inside_shallow_frame_with_padding"}
         dev_frame.style.top_margin = 8
         dev_frame.add{type = "label", caption = "[color=yellow]Developer Tools[/color]", style = "heading_2_label"}
         
@@ -691,6 +1017,20 @@ script.on_event(defines.events.on_gui_selection_state_changed, function(event)
         if availableCats[element.selected_index] then
             settings.selected_category = availableCats[element.selected_index]
         end
+        create_gui(player)
+    end
+end)
+
+script.on_event(defines.events.on_gui_checked_state_changed, function(event)
+    local element = event.element
+    if not element or not element.valid then return end
+
+    local player = game.get_player(event.player_index)
+    if not player then return end
+
+    if element.name == "5dim_enemies_show_all_tiers" then
+        local settings = getPlayerSettings(player.index)
+        settings.show_all_tiers = element.state == true
         create_gui(player)
     end
 end)

@@ -75,6 +75,7 @@ local function createTieredSpitter(typeConfig, tier)
     -- Animations (using scaled size)
     spitter.run_animation = spitterrunanimation(tierData.scale, typeConfig.colors.primary, typeConfig.colors.secondary)
     spitter.water_reflection = spitter_water_reflection(tierData.scale)
+    TierUtils.scaleUnitDistancePerFrame(spitter, baseSpitter, tierData.scale)
     
     -- AI behavior (scales with tier)
     spitter.vision_distance = TierUtils.getVisionDistance(tier)

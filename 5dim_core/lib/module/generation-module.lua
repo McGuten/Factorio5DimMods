@@ -12,10 +12,6 @@ function genModules(inputs)
             icon = "__base__/graphics/technology/productivity-module-3.png",
             icon_size = 256
         },
-        pollution = {
-            icon = "__5dim_module__/graphics/icons/pollution-module/pollution-module-03.png",
-            icon_size = 64
-        },
         quality = {
             icon = "__quality__/graphics/technology/quality-module-3.png",
             icon_size = 256
@@ -227,61 +223,6 @@ function genModules(inputs)
         }
         data:extend({ techProductivity })
     end
-    -- Copy pollution module
-    local itemPollution
-    local recipePollution
-    local techPollution
-    if inputs.tier == 2 or inputs.tier == 3 then
-        itemPollution = table.deepcopy(data.raw.module["speed-module-" .. inputs.tier])
-        recipePollution = table.deepcopy(data.raw.recipe["speed-module-" .. inputs.tier])
-        techPollution = table.deepcopy(data.raw.technology["speed-module-" .. inputs.tier])
-    else
-        itemPollution = table.deepcopy(data.raw.module["speed-module"])
-        recipePollution = table.deepcopy(data.raw.recipe["speed-module"])
-        techPollution = table.deepcopy(data.raw.technology["speed-module"])
-    end
-    --Item
-    itemPollution.name = "5d-pollution-module-" .. inputs.number
-    itemPollution.icon =
-        "__5dim_module__/graphics/icons/pollution-module/pollution-module-" .. inputs.number .. ".png"
-    itemPollution.subgroup = "pollution"
-    itemPollution.order = inputs.order
-    itemPollution.effect = inputs.effects.pollution
-    itemPollution.tier = inputs.tier
-    itemPollution.localised_description = nil
-
-    --Recipe
-    recipePollution.name = itemPollution.name
-    recipePollution.icon = itemPollution.icon
-    if recipeCategory("pollution") then
-        recipePollution.category = recipeCategory("pollution")
-    end
-    recipePollution.results = { { type = "item", name = recipePollution.name, amount = 1 } }
-    recipePollution.icon_size = 64
-    if inputs.new then
-        recipePollution.enabled = false
-    end
-    recipePollution.ingredients = inputs.ingredients.pollution
-    recipePollution.energy_required = inputs.timeCraft
-
-    data:extend({ recipePollution, itemPollution })
-
-    -- Technology
-    techPollution.name = "5d-pollution-module-" .. inputs.tech.number
-    techPollution.icon = technologyIcons.pollution.icon
-    techPollution.icon_size = technologyIcons.pollution.icon_size
-    techPollution.icons = nil
-    techPollution.unit.count = techCount("pollution")
-    techPollution.unit.ingredients = techPacks("pollution")
-    techPollution.prerequisites = inputs.tech.prerequisites.pollution
-    techPollution.effects = {
-        {
-            type = "unlock-recipe",
-            recipe = itemPollution.name
-        }
-    }
-    data:extend({ techPollution })
-
     if mods['quality'] then
         -- Copy Quality module
         local itemQuality
@@ -365,18 +306,11 @@ function genModules(inputs)
     local product = inputs.effects.productivity
     local consump = inputs.effects.effectivity
     local speed = inputs.effects.speed
-    local pollu = inputs.effects.pollution
-    local mergedWeights = inputs.mergedEffectWeights or {
-        speedBonus = 0.4,
-        speedConsumption = 0.6,
-        effectivityConsumption = 0.4,
-        pollution = 0.5
-    }
-    local mergedSpeed = ((speed.speed or 0) * mergedWeights.speedBonus) + (product.speed or 0)
-    local mergedConsumption = ((speed.consumption or 0) * mergedWeights.speedConsumption)
+    local mergedSpeed = (speed.speed or 0) + (product.speed or 0)
+    local mergedConsumption = (speed.consumption or 0)
         + (product.consumption or 0)
-        + ((consump.consumption or 0) * mergedWeights.effectivityConsumption)
-    local mergedPollution = ((pollu.pollution or 0) * mergedWeights.pollution) + (product.pollution or 0)
+        + (consump.consumption or 0)
+    local mergedPollution = product.pollution or 0
     itemMerged.effect = {
         productivity = product.productivity,
         consumption = mergedConsumption,

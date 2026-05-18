@@ -29,6 +29,9 @@ function genStoneWalls(inputs)
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
+    if inputs.recipeCategory then
+        recipe.category = inputs.recipeCategory
+    end
 
     --Entity
     entity.name = item.name
@@ -38,6 +41,7 @@ function genStoneWalls(inputs)
     entity.max_health = inputs.health
     entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 350, entity.max_health)
     entity.fast_replaceable_group = "wall"
+    entity.resistances = inputs.resistances or entity.resistances
 
     -- Base
     -- entity.picture.layers[1].hr_version.filename =

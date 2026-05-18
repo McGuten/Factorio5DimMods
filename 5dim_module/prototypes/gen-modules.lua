@@ -16,24 +16,21 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 local baseTime = 5
 local baseTechCount = 50
 
-local moduleTypes = { "speed", "effectivity", "productivity", "pollution", "quality", "merged" }
+local moduleTypes = { "speed", "effectivity", "productivity", "quality", "merged" }
 
 local moduleEffectCurves = {
     speed = {
-        speed = { 0.20, 0.35, 0.50, 0.60, 0.70, 0.80, 0.90, 1.00, 1.10, 1.20 },
-        consumption = { 0.50, 0.60, 0.70, 0.85, 1.00, 1.15, 1.30, 1.45, 1.60, 1.75 }
+        speed = { 0.15, 0.30, 0.45, 0.60, 0.75, 0.90, 1.05, 1.20, 1.35, 1.50 },
+        consumption = { 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50 }
     },
     effectivity = {
-        consumption = { -0.30, -0.40, -0.50, -0.58, -0.64, -0.70, -0.75, -0.80, -0.80, -0.80 }
+        consumption = { -0.15, -0.30, -0.45, -0.60, -0.75, -0.90, -1.05, -1.20, -1.35, -1.50 }
     },
     productivity = {
-        productivity = { 0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22 },
-        consumption = { 0.40, 0.60, 0.80, 1.00, 1.20, 1.40, 1.65, 1.90, 2.15, 2.40 },
-        pollution = { 0.05, 0.07, 0.09, 0.11, 0.13, 0.15, 0.17, 0.19, 0.21, 0.23 },
-        speed = { -0.05, -0.10, -0.15, -0.18, -0.22, -0.26, -0.30, -0.34, -0.38, -0.42 }
-    },
-    pollution = {
-        pollution = { -0.10, -0.16, -0.22, -0.28, -0.34, -0.40, -0.46, -0.52, -0.58, -0.64 }
+        productivity = { 0.02, 0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20 },
+        consumption = { 0.18, 0.36, 0.54, 0.72, 0.90, 1.08, 1.26, 1.44, 1.62, 1.80 },
+        pollution = { 0.02, 0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20 },
+        speed = { -0.03, -0.06, -0.09, -0.12, -0.15, -0.18, -0.21, -0.24, -0.27, -0.30 }
     },
     quality = {
         quality = { 0.08, 0.16, 0.25, 0.30, 0.34, 0.38, 0.42, 0.46, 0.50, 0.54 }
@@ -66,43 +63,34 @@ local mergedModuleTechCounts = {
     [10] = 8500
 }
 
-local mergedEffectWeights = {
-    speedBonus = 0.4,
-    speedConsumption = 0.6,
-    effectivityConsumption = 0.4,
-    pollution = 0.5
-}
-
 local moduleSpaceAgeMaterials = {
     speed = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "quantum-processor", amount = 10, category = "cryogenics" }
+        [6] = { name = "calcite", amount = 8 },
+        [7] = { name = "tungsten-plate", amount = 6 },
+        [8] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+        [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+        [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
     },
     effectivity = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
+        [6] = { name = "calcite", amount = 8 },
+        [7] = { name = "tungsten-plate", amount = 6 },
+        [8] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+        [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+        [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
     },
     productivity = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "quantum-processor", amount = 10, category = "cryogenics" }
-    },
-    pollution = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
+        [6] = { name = "calcite", amount = 8 },
+        [7] = { name = "tungsten-plate", amount = 6 },
+        [8] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+        [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+        [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
     },
     quality = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "quantum-processor", amount = 10, category = "cryogenics" }
-    },
-    merged = {
-        [8] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
-        [9] = { name = "supercapacitor", amount = 5, category = "electromagnetics" },
-        [10] = { name = "quantum-processor", amount = 10, category = "cryogenics" }
+        [6] = { name = "calcite", amount = 8 },
+        [7] = { name = "tungsten-plate", amount = 6 },
+        [8] = { name = "holmium-plate", amount = 8, category = "electromagnetics" },
+        [9] = { name = "supercapacitor", amount = 4, category = "electromagnetics" },
+        [10] = { name = "quantum-processor", amount = 4, category = "cryogenics" }
     }
 }
 
@@ -122,11 +110,6 @@ local moduleSpaceAgeSciencePacks = {
         [9] = { "space-science-pack", "electromagnetic-science-pack" },
         [10] = { "space-science-pack", "cryogenic-science-pack" }
     },
-    pollution = {
-        [8] = { "space-science-pack", "electromagnetic-science-pack" },
-        [9] = { "space-science-pack", "electromagnetic-science-pack" },
-        [10] = { "space-science-pack", "cryogenic-science-pack" }
-    },
     quality = {
         [8] = { "space-science-pack", "electromagnetic-science-pack" },
         [9] = { "space-science-pack", "electromagnetic-science-pack" },
@@ -141,120 +124,80 @@ local moduleSpaceAgeSciencePacks = {
 
 local moduleDeltaPrerequisites = {
     speed = {
-        [4] = "processing-unit",
-        [5] = "battery",
-        [6] = "low-density-structure",
-        [7] = "speed-module-3",
-        [8] = "speed-module-4",
-        [9] = "speed-module-5",
-        [10] = "speed-module-6"
+        [4] = "battery",
+        [5] = "low-density-structure",
+        [6] = "electric-engine",
+        [7] = "robotics",
+        [8] = "rocket-fuel",
+        [9] = "nuclear-power",
+        [10] = "rocket-silo"
     },
     effectivity = {
-        [4] = "processing-unit",
-        [5] = "battery",
-        [6] = "low-density-structure",
-        [7] = "efficiency-module-3",
-        [8] = "efficiency-module-4",
-        [9] = "efficiency-module-5",
-        [10] = "efficiency-module-6"
+        [4] = "battery",
+        [5] = "low-density-structure",
+        [6] = "electric-engine",
+        [7] = "robotics",
+        [8] = "rocket-fuel",
+        [9] = "nuclear-power",
+        [10] = "rocket-silo"
     },
     productivity = {
-        [4] = "processing-unit",
-        [5] = "battery",
-        [6] = "low-density-structure",
-        [7] = "productivity-module-3",
-        [8] = "productivity-module-4",
-        [9] = "productivity-module-5",
-        [10] = "productivity-module-6"
-    },
-    pollution = {
-        [1] = "electronics",
-        [2] = "advanced-circuit",
-        [3] = "battery",
-        [4] = "processing-unit",
+        [4] = "battery",
         [5] = "low-density-structure",
-        [6] = "efficiency-module-2",
-        [7] = "efficiency-module-3",
-        [8] = "5d-pollution-module-7",
-        [9] = "5d-pollution-module-8",
-        [10] = "5d-pollution-module-9"
+        [6] = "electric-engine",
+        [7] = "robotics",
+        [8] = "rocket-fuel",
+        [9] = "nuclear-power",
+        [10] = "rocket-silo"
     },
     quality = {
-        [4] = "processing-unit",
-        [5] = "battery",
-        [6] = "low-density-structure",
-        [7] = "quality-module-3",
-        [8] = "quality-module-4",
-        [9] = "quality-module-5",
-        [10] = "quality-module-6"
+        [4] = "battery",
+        [5] = "low-density-structure",
+        [6] = "electric-engine",
+        [7] = "robotics",
+        [8] = "rocket-fuel",
+        [9] = "nuclear-power",
+        [10] = "rocket-silo"
     },
     merged = {
-        [1] = "advanced-circuit",
-        [2] = "processing-unit",
-        [3] = "battery",
-        [4] = "low-density-structure",
-        [5] = "speed-module-3",
-        [6] = "efficiency-module-3",
-        [7] = "productivity-module-3",
-        [8] = "5d-merged-module-7",
-        [9] = "5d-merged-module-8",
-        [10] = "5d-merged-module-9"
+        [4] = "battery",
+        [5] = "low-density-structure",
+        [6] = "electric-engine",
+        [7] = "robotics",
+        [8] = "rocket-fuel",
+        [9] = "nuclear-power",
+        [10] = "rocket-silo"
     }
 }
 
 local moduleSpaceAgeDeltaPrerequisites = {
     speed = {
-        [8] = "electromagnetic-plant",
+        [6] = "calcite-processing",
+        [7] = "tungsten-steel",
+        [8] = "holmium-processing",
         [9] = "electromagnetic-plant",
         [10] = "quantum-processor"
     },
     effectivity = {
-        [8] = "electromagnetic-plant",
+        [6] = "calcite-processing",
+        [7] = "tungsten-steel",
+        [8] = "holmium-processing",
         [9] = "electromagnetic-plant",
-        [10] = "lithium-processing"
+        [10] = "quantum-processor"
     },
     productivity = {
-        [8] = "electromagnetic-plant",
+        [6] = "calcite-processing",
+        [7] = "tungsten-steel",
+        [8] = "holmium-processing",
         [9] = "electromagnetic-plant",
         [10] = "quantum-processor"
-    },
-    pollution = {
-        [8] = "electromagnetic-plant",
-        [9] = "electromagnetic-plant",
-        [10] = "lithium-processing"
     },
     quality = {
-        [8] = "electromagnetic-plant",
+        [6] = "calcite-processing",
+        [7] = "tungsten-steel",
+        [8] = "holmium-processing",
         [9] = "electromagnetic-plant",
         [10] = "quantum-processor"
-    },
-    merged = {
-        [8] = "electromagnetic-plant",
-        [9] = "electromagnetic-plant",
-        [10] = "quantum-processor"
-    }
-}
-
-local vanillaModuleRecipeNames = {
-    speed = {
-        [1] = "speed-module",
-        [2] = "speed-module-2",
-        [3] = "speed-module-3"
-    },
-    effectivity = {
-        [1] = "efficiency-module",
-        [2] = "efficiency-module-2",
-        [3] = "efficiency-module-3"
-    },
-    productivity = {
-        [1] = "productivity-module",
-        [2] = "productivity-module-2",
-        [3] = "productivity-module-3"
-    },
-    quality = {
-        [1] = "quality-module",
-        [2] = "quality-module-2",
-        [3] = "quality-module-3"
     }
 }
 
@@ -262,7 +205,6 @@ local moduleReplaceableDeltaTypes = {
     speed = true,
     effectivity = true,
     productivity = true,
-    pollution = true,
     quality = true,
     merged = false
 }
@@ -307,30 +249,6 @@ local function getModuleDeltaPrerequisite(moduleType, tier)
     return nil
 end
 
-local function getVanillaModuleIngredients(moduleType, tier)
-    local recipeMap = vanillaModuleRecipeNames[moduleType]
-    if not recipeMap then
-        return nil
-    end
-
-    local recipeName = recipeMap[tier]
-    local recipe = recipeName and data.raw.recipe[recipeName]
-    if not recipe then
-        return nil
-    end
-
-    if recipe.ingredients then
-        return table.deepcopy(recipe.ingredients)
-    end
-
-    local normalRecipe = rawget(recipe, "normal")
-    if normalRecipe and normalRecipe.ingredients then
-        return table.deepcopy(normalRecipe.ingredients)
-    end
-
-    return nil
-end
-
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -- Each tier defines: order, vanilla flag, time craft
@@ -361,8 +279,7 @@ local techConfig = {
             { "logistic-science-pack", 1 }
         },
         prerequisites = {
-            pollution = { "modules" },
-            merged = { "speed-module", "efficiency-module", "productivity-module", "5d-pollution-module-1" }
+            merged = { "speed-module", "efficiency-module", "productivity-module" }
         }
     },
     [2] = {
@@ -373,8 +290,7 @@ local techConfig = {
             { "chemical-science-pack", 1 }
         },
         prerequisites = {
-            pollution = { "5d-pollution-module-1" },
-            merged = { "5d-merged-module-1", "speed-module-2", "efficiency-module-2", "productivity-module-2", "5d-pollution-module-2" }
+            merged = { "5d-merged-module-1", "speed-module-2", "efficiency-module-2", "productivity-module-2" }
         }
     },
     [3] = {
@@ -386,8 +302,7 @@ local techConfig = {
             { "production-science-pack", 1 }
         },
         prerequisites = {
-            pollution = { "5d-pollution-module-2" },
-            merged = { "5d-merged-module-2", "speed-module-3", "efficiency-module-3", "productivity-module-3", "5d-pollution-module-3" }
+            merged = { "5d-merged-module-2", "speed-module-3", "efficiency-module-3", "productivity-module-3" }
         }
     },
     [4] = {
@@ -402,9 +317,8 @@ local techConfig = {
             speed = { "speed-module-3" },
             effectivity = { "efficiency-module-3" },
             productivity = { "productivity-module-3" },
-            pollution = { "5d-pollution-module-3" },
             quality = { "quality-module-3" },
-            merged = { "5d-merged-module-3", "speed-module-4", "efficiency-module-4", "productivity-module-4", "5d-pollution-module-4" }
+            merged = { "5d-merged-module-3", "speed-module-4", "efficiency-module-4", "productivity-module-4" }
         }
     },
     [5] = {
@@ -420,9 +334,8 @@ local techConfig = {
             speed = { "speed-module-4" },
             effectivity = { "efficiency-module-4" },
             productivity = { "productivity-module-4" },
-            pollution = { "5d-pollution-module-4" },
             quality = { "quality-module-4" },
-            merged = { "5d-merged-module-4", "speed-module-5", "efficiency-module-5", "productivity-module-5", "5d-pollution-module-5" }
+            merged = { "5d-merged-module-4", "speed-module-5", "efficiency-module-5", "productivity-module-5" }
         }
     },
     [6] = {
@@ -438,9 +351,8 @@ local techConfig = {
             speed = { "speed-module-5" },
             effectivity = { "efficiency-module-5" },
             productivity = { "productivity-module-5" },
-            pollution = { "5d-pollution-module-5" },
             quality = { "quality-module-5" },
-            merged = { "5d-merged-module-5", "speed-module-6", "efficiency-module-6", "productivity-module-6", "5d-pollution-module-6" }
+            merged = { "5d-merged-module-5", "speed-module-6", "efficiency-module-6", "productivity-module-6" }
         }
     },
     [7] = {
@@ -456,9 +368,8 @@ local techConfig = {
             speed = { "speed-module-6" },
             effectivity = { "efficiency-module-6" },
             productivity = { "productivity-module-6" },
-            pollution = { "5d-pollution-module-6" },
             quality = { "quality-module-6" },
-            merged = { "5d-merged-module-6", "speed-module-7", "efficiency-module-7", "productivity-module-7", "5d-pollution-module-7" }
+            merged = { "5d-merged-module-6", "speed-module-7", "efficiency-module-7", "productivity-module-7" }
         }
     },
     [8] = {
@@ -475,9 +386,8 @@ local techConfig = {
             speed = { "speed-module-7" },
             effectivity = { "efficiency-module-7" },
             productivity = { "productivity-module-7" },
-            pollution = { "5d-pollution-module-7" },
             quality = { "quality-module-7" },
-            merged = { "5d-merged-module-7", "speed-module-8", "efficiency-module-8", "productivity-module-8", "5d-pollution-module-8" }
+            merged = { "5d-merged-module-7", "speed-module-8", "efficiency-module-8", "productivity-module-8" }
         }
     },
     [9] = {
@@ -494,9 +404,8 @@ local techConfig = {
             speed = { "speed-module-8" },
             effectivity = { "efficiency-module-8" },
             productivity = { "productivity-module-8" },
-            pollution = { "5d-pollution-module-8" },
             quality = { "quality-module-8" },
-            merged = { "5d-merged-module-8", "speed-module-9", "efficiency-module-9", "productivity-module-9", "5d-pollution-module-9" }
+            merged = { "5d-merged-module-8", "speed-module-9", "efficiency-module-9", "productivity-module-9" }
         }
     },
     [10] = {
@@ -513,9 +422,8 @@ local techConfig = {
             speed = { "speed-module-9" },
             effectivity = { "efficiency-module-9" },
             productivity = { "productivity-module-9" },
-            pollution = { "5d-pollution-module-9" },
             quality = { "quality-module-9" },
-            merged = { "5d-merged-module-9", "speed-module-10", "efficiency-module-10", "productivity-module-10", "5d-pollution-module-10" }
+            merged = { "5d-merged-module-9", "speed-module-10", "efficiency-module-10", "productivity-module-10" }
         }
     }
 }
@@ -529,7 +437,6 @@ local function buildModuleIngredients(tier)
         speed = {},
         effectivity = {},
         productivity = {},
-        pollution = {},
         quality = {},
         merged = {}
     }
@@ -541,8 +448,6 @@ local function buildModuleIngredients(tier)
             baseIngredients = {}
         elseif moduleType == "merged" then
             baseIngredients = RecipeTemplates.getMergedModuleIngredients(tier)
-        elseif tier <= 3 and moduleType ~= "pollution" and moduleType ~= "merged" then
-            baseIngredients = getVanillaModuleIngredients(moduleType, tier) or RecipeTemplates.getModuleIngredients(moduleType, tier)
         else
             baseIngredients = RecipeTemplates.getModuleIngredients(moduleType, tier)
         end
@@ -632,9 +537,6 @@ for tier = 1, 10 do
             pollution = moduleEffectCurves.productivity.pollution[tier],
             speed = moduleEffectCurves.productivity.speed[tier]
         },
-        pollution = {
-            pollution = moduleEffectCurves.pollution.pollution[tier]
-        },
         quality = {
             quality = moduleEffectCurves.quality.quality[tier]
         }
@@ -660,7 +562,6 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         ingredients = ingredients,
         recipeCategories = buildRecipeCategories(tier),
-        mergedEffectWeights = mergedEffectWeights,
         tech = tech
     }
 end

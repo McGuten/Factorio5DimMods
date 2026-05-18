@@ -40,6 +40,9 @@ function genRailgunTurret(inputs)
     -- Update attack parameters
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
+        if inputs.cooldown then
+            entity.attack_parameters.cooldown = inputs.cooldown
+        end
     end
     
     -- Apply tint to all mask layers

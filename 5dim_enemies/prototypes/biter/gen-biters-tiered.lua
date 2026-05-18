@@ -72,6 +72,7 @@ local function createTieredBiter(typeConfig, tier)
     -- Animations (using scaled size)
     biter.run_animation = biterrunanimation(tierData.scale, typeConfig.colors.primary, typeConfig.colors.secondary)
     biter.water_reflection = biter_water_reflection(tierData.scale)
+    TierUtils.scaleUnitDistancePerFrame(biter, baseBiter, tierData.scale)
     
     -- AI behavior (scales with tier)
     biter.vision_distance = TierUtils.getVisionDistance(tier)

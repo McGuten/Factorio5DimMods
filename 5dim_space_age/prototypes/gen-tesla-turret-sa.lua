@@ -15,10 +15,20 @@ local baseEntity = data.raw["electric-turret"] and data.raw["electric-turret"]["
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseDamage = 50
-local damageMultiplier = 1.4
 local baseRange = baseEntity.attack_parameters and baseEntity.attack_parameters.range or 30
-local rangeIncrement = 2
+local rangeIncrement = 3
+local teslaCooldownByTier = {
+    [1] = baseEntity.attack_parameters and baseEntity.attack_parameters.cooldown or 120,
+    [2] = 104,
+    [3] = 96,
+    [4] = 88,
+    [5] = 82,
+    [6] = 76,
+    [7] = 72,
+    [8] = 68,
+    [9] = 64,
+    [10] = 60
+}
 local baseEnergyPerShot = 12000 -- kJ, matches vanilla tesla-turret
 local baseInputFlowLimit = 7000 -- kW
 local baseBufferCapacity = 15000 -- kJ
@@ -82,6 +92,19 @@ local function addPrerequisiteIfMissing(prerequisites, prerequisite)
     end
 
     table.insert(prerequisites, prerequisite)
+end
+
+local function getTeslaInputFlowLimit(energyPerShot, cooldown, tier)
+    local scaledBaseInputFlowLimit = CostCalculator.scaleMachineEnergy(baseInputFlowLimit, tier)
+    local requiredSustainedFlow = math.ceil((energyPerShot * 60) / cooldown)
+
+    return math.max(scaledBaseInputFlowLimit, requiredSustainedFlow)
+end
+
+local function getTeslaBufferCapacity(energyPerShot, tier)
+    local scaledBaseBufferCapacity = CostCalculator.scaleMachineEnergy(baseBufferCapacity, tier)
+
+    return math.max(scaledBaseBufferCapacity, energyPerShot + 1)
 end
 
 -------------------------------------------------------------------------------
@@ -151,8 +174,8 @@ local techConfig = {
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
-    local currentDamage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
-    local currentRange = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local currentRange = baseRange + ((tier - 1) * rangeIncrement)
+    local currentCooldown = teslaCooldownByTier[tier]
     local currentEnergy = CostCalculator.scaleMachineEnergy(baseEnergyPerShot, tier)
     local currentHealth = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
     
@@ -170,8 +193,8 @@ for tier = 1, 10 do
         }
     end
 
-    local inputFlowLimit = CostCalculator.scaleMachineEnergy(baseInputFlowLimit, tier)
-    local bufferCapacity = CostCalculator.scaleMachineEnergy(baseBufferCapacity, tier)
+    local inputFlowLimit = getTeslaInputFlowLimit(currentEnergy, currentCooldown, tier)
+    local bufferCapacity = getTeslaBufferCapacity(currentEnergy, tier)
     local energyDrain = CostCalculator.scaleMachineEnergy(baseDrain, tier)
 
     genTeslaTurretSA({
@@ -179,8 +202,8 @@ for tier = 1, 10 do
         subgroup = "turrets-tesla-sa",
         order = config.order,
         new = not config.isVanilla,
-        damage = currentDamage,
         range = currentRange,
+        cooldown = currentCooldown,
         health = currentHealth,
         energyPerShot = currentEnergy,
         inputFlowLimit = inputFlowLimit,

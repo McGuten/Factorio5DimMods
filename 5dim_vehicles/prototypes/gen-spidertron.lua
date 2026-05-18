@@ -52,7 +52,7 @@ local spidertronTechCounts = {
 local spidertronSpaceAgeMaterials = {
     [8] = { name = "carbon-fiber", amount = 25 },
     [9] = { name = "space-platform-foundation", amount = 12 },
-    [10] = { name = "quantum-processor", amount = 15 }
+    [10] = { name = "quantum-processor", amount = 15, category = "cryogenics" }
 }
 
 local spidertronSpaceAgeSciencePacks = {
@@ -410,6 +410,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         tint = tierColor,
         nextUpdate = nextUpgrade,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, spidertronSpaceAgeMaterials),
         tech = tech
     })
 end

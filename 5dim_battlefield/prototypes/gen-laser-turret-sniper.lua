@@ -15,12 +15,12 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: HP x5 (1400 → 7000), moderate damage boost and long range
 -------------------------------------------------------------------------------
 
-local baseRange = 40
+local baseRange = 36
 local baseDamage = 26
 local baseHealth = 1400
 local baseEnergyPerShot = 2400
 local baseDrain = 72
-local rangeIncrement = 3
+local rangeIncrement = 3                  -- 36 -> 63
 local damageScalePerTier = 0.05
 local healthIncrement = 622               -- 1400 → 7000 (x5)
 local baseTechCount = 200
@@ -269,7 +269,7 @@ for tier = 1, 10 do
     local tierNum = "sniper-" .. string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local range = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local range = baseRange + ((tier - 1) * rangeIncrement)
     local damage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
     local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
     local energy = getEnergyStats(tier)

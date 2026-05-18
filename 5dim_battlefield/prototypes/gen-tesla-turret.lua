@@ -15,14 +15,14 @@ local tierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: HP x5 (1500 → 7500), Damage +45% (35 → 50.75)
 -------------------------------------------------------------------------------
 
--- Rebalanced: reduced base stats to be more in line with laser turrets
+-- Rebalanced: keep tesla ahead of sniper laser as a later progression step
 -- Original: range 50, damage 50 (too powerful for tier position)
-local baseRange = 35                      -- Reduced from 50 (closer to laser T5)
+local baseRange = 40                      -- Reduced from 50 while staying above laser sniper T1
 local baseDamage = 35                     -- Reduced from 50
 local baseHealth = 1200                   -- Reduced from 1500
 local baseEnergyPerShot = 3200
 local baseDrain = 96
-local rangeIncrement = 5
+local rangeIncrement = 3                  -- 40 -> 67
 local damageScalePerTier = 0.05
 local healthIncrement = 600               -- 1200 → 6600 (x5.5)
 local baseTechCount = 250
@@ -250,10 +250,20 @@ end
 local function getResistances(tier)
     local firePercent = 10 + (tier - 1) * 5
     local explosionPercent = 5 + (tier - 1) * 5
-    return {
+    local resistances = {
         { type = "fire", percent = firePercent },
         { type = "explosion", percent = explosionPercent }
     }
+
+    if tier >= 8 then
+        local lateStep = tier - 8
+        table.insert(resistances, { type = "physical", decrease = 3 + lateStep, percent = 15 + (lateStep * 5) })
+        table.insert(resistances, { type = "acid", percent = 20 + (lateStep * 5) })
+        table.insert(resistances, { type = "laser", percent = 15 + (lateStep * 5) })
+        table.insert(resistances, { type = "electric", percent = 20 + (lateStep * 10) })
+    end
+
+    return resistances
 end
 
 local function getEnergyStats(tier)
@@ -283,7 +293,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local range = CostCalculator.calculateMachineWorkValue(baseRange, tier, 10, 0)
+    local range = baseRange + ((tier - 1) * rangeIncrement)
     local damage = CostCalculator.calculateMachineWorkValue(baseDamage, tier, 10, 2)
     local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
     local energy = getEnergyStats(tier)

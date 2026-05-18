@@ -95,7 +95,7 @@ end
 -- =============================================================================
 
 function SpitterAttack.fire(tier, data)
-    local cooldown = math.max(2, 5 - math.floor(tier / 3))
+    local cooldown = math.max(40, 70 - (tier * 3))
     local minRange = 4 + math.floor(tier / 2)
     
     return {
@@ -130,6 +130,9 @@ end
 function SpitterAttack.rocket(tier, data)
     local cooldown = math.max(100, 180 - (tier * 8))
     local projectileType = tier >= 7 and "explosive-rocket" or "rocket"
+    local startingSpeed = math.min(0.1 + (tier * 0.015), 0.22)
+    local maxRange = data.range + 1
+    local damageModifier = data.damage / 32
     
     return {
         type = "projectile",
@@ -137,7 +140,7 @@ function SpitterAttack.rocket(tier, data)
         cooldown = cooldown,
         range = data.range,
         projectile_creation_parameters = spitter_shoot_shiftings(data.scale, data.scale * scale_spitter_stream),
-        damage_modifier = data.damage / 10,  -- Rockets already do base damage
+        damage_modifier = damageModifier,
         warmup = 30,
         ammo_type = {
             action = {
@@ -145,7 +148,8 @@ function SpitterAttack.rocket(tier, data)
                 action_delivery = {
                     type = "projectile",
                     projectile = projectileType,
-                    starting_speed = 0.1 + (tier * 0.02),
+                    starting_speed = startingSpeed,
+                    max_range = maxRange,
                     source_effects = {
                         type = "create-entity",
                         entity_name = "explosion-hit"
@@ -324,6 +328,8 @@ end
 
 function SpitterAttack.physical(tier, data)
     local cooldown = math.max(60, 100 - (tier * 4))
+    local startingSpeed = math.min(0.12 + (tier * 0.008), 0.2)
+    local maxRange = data.range + 1
     
     return {
         type = "projectile",
@@ -338,8 +344,9 @@ function SpitterAttack.physical(tier, data)
                 type = "direct",
                 action_delivery = {
                     type = "projectile",
-                    projectile = "cannon-projectile",
-                    starting_speed = 0.15 + (tier * 0.015),
+                    projectile = "5d-physical-spitter-projectile",
+                    starting_speed = startingSpeed,
+                    max_range = maxRange,
                     source_effects = {
                         type = "create-entity",
                         entity_name = "explosion-hit"
@@ -358,19 +365,19 @@ end
 
 function SpitterAttack.railgun(tier, data)
     local cooldown = math.max(120, 180 - (tier * 6))  -- Slow but powerful
-    local baseDamage = 100 + (tier * 80)  -- 180 to 900 damage scaling with tier
+    local attackRange = data.range + 2
+    local baseDamage = math.floor(data.damage * 2.5)
     
     return {
         type = "beam",
         ammo_category = "biological",
         cooldown = cooldown,
-        range = data.range + 8,  -- Extended range like real railgun
-        damage_modifier = data.damage,
+        range = attackRange,
         warmup = 30,  -- Longer charge-up like railgun turret
         ammo_type = {
             action = {
                 type = "line",
-                range = data.range + 8,
+                range = attackRange,
                 width = 0.5,
                 range_effects = {
                     type = "create-explosion",
@@ -417,7 +424,7 @@ end
 function SpitterAttack.boss_fire(data)
     return {
         type = "stream",
-        cooldown = 2,
+        cooldown = 40,
         range = data.range,
         min_range = 8,
         turn_range = 1.0 / 3.0,
@@ -440,13 +447,16 @@ function SpitterAttack.boss_fire(data)
 end
 
 function SpitterAttack.boss_rocket(data)
+    local maxRange = data.range + 1
+    local damageModifier = data.damage / 64
+
     return {
         type = "projectile",
         ammo_category = "rocket",
         cooldown = 80,
         range = data.range,
         projectile_creation_parameters = spitter_shoot_shiftings(data.scale, data.scale * scale_spitter_stream),
-        damage_modifier = data.damage / 8,
+        damage_modifier = damageModifier,
         warmup = 30,
         ammo_type = {
             action = {
@@ -454,7 +464,8 @@ function SpitterAttack.boss_rocket(data)
                 action_delivery = {
                     type = "projectile",
                     projectile = "explosive-rocket",
-                    starting_speed = 0.3,
+                    starting_speed = 0.22,
+                    max_range = maxRange,
                     source_effects = {
                         type = "create-entity",
                         entity_name = "big-explosion"
@@ -482,8 +493,13 @@ function SpitterAttack.get(attackType, tier, data)
             return SpitterAttack.boss_fire(data)
         elseif attackType == "rocket" then
             return SpitterAttack.boss_rocket(data)
-        else
+        elseif attackType == "acid" or attackType == nil then
             return SpitterAttack.boss_acid(data)
+        else
+            -- Boss stats already come scaled from Tiers.getStats(..., 11), so
+            -- unsupported boss-specific variants should reuse their normal
+            -- attack family instead of silently becoming acid attacks.
+            return SpitterAttack.get(attackType, 10, data)
         end
     end
     

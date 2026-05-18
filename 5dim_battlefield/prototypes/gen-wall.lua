@@ -16,6 +16,11 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseHealth = 350
 local healthIncrement = 200               -- 350 → 2150 (~x6.1)
+local lateTierHealthBonus = {
+    [8] = 450,
+    [9] = 850,
+    [10] = 1250
+}
 
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
@@ -143,7 +148,7 @@ local wallSpaceAgeMaterials = {
     [7] = { name = "tungsten-plate", amount = 12 },
     [8] = { name = "holmium-plate", amount = 10 },
     [9] = { name = "supercapacitor", amount = 6 },
-    [10] = { name = "lithium-plate", amount = 10 }
+    [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
 }
 
 local wallSpaceAgeSciencePacks = {
@@ -194,6 +199,38 @@ local function getWallDeltaPrerequisite(tier)
     return wallDeltaPrerequisites[tier]
 end
 
+local function getWallHealth(tier)
+    return baseHealth + ((tier - 1) * healthIncrement) + (lateTierHealthBonus[tier] or 0)
+end
+
+local function getWallResistances(tier)
+    local physicalDecrease = 3
+    local physicalPercent = 20
+    local explosionDecrease = 10
+    local explosionPercent = 30
+    local acidPercent = 80
+    local laserPercent = 70
+
+    if tier >= 8 then
+        local lateStep = tier - 7
+        physicalDecrease = physicalDecrease + lateStep
+        physicalPercent = physicalPercent + (lateStep * 5)
+        explosionDecrease = explosionDecrease + (lateStep * 2)
+        explosionPercent = explosionPercent + (lateStep * 5)
+        acidPercent = acidPercent + (lateStep * 3)
+        laserPercent = laserPercent + (lateStep * 5)
+    end
+
+    return {
+        { type = "physical", decrease = physicalDecrease, percent = physicalPercent },
+        { type = "impact", decrease = 45, percent = 60 },
+        { type = "explosion", decrease = explosionDecrease, percent = explosionPercent },
+        { type = "fire", percent = 100 },
+        { type = "acid", percent = acidPercent },
+        { type = "laser", percent = laserPercent }
+    }
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
@@ -203,7 +240,7 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
 
     -- Calculate stats for this tier
-    local health = baseHealth + (tier - 1) * healthIncrement
+    local health = getWallHealth(tier)
 
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.wall[tier], tier, {
@@ -243,7 +280,9 @@ for tier = 1, 10 do
         order = config.order,
         new = not config.isVanilla,
         health = health,
+        resistances = getWallResistances(tier),
         ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, wallSpaceAgeMaterials),
         nextUpdate = nextUpgrade,
         tech = tech
     }

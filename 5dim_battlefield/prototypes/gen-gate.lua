@@ -144,7 +144,7 @@ local gateSpaceAgeMaterials = {
     [7] = { name = "tungsten-plate", amount = 12 },
     [8] = { name = "holmium-plate", amount = 10 },
     [9] = { name = "supercapacitor", amount = 6 },
-    [10] = { name = "lithium-plate", amount = 10 }
+    [10] = { name = "lithium-plate", amount = 10, category = "cryogenics" }
 }
 
 local gateSpaceAgeSciencePacks = {
@@ -245,6 +245,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         health = health,
         ingredients = ingredients,
+        recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, gateSpaceAgeMaterials),
         nextUpdate = nextUpgrade,
         tech = tech
     }

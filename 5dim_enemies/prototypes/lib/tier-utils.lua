@@ -34,6 +34,30 @@ function TierUtils.getSpawnerName(typeName, category)
     return string.format("5d-%s-%s-spawner", typeName, category)
 end
 
+local BaseUnitAnimationScale = {
+    ["small-biter"] = 0.5,
+    ["medium-biter"] = 0.7,
+    ["big-biter"] = 1.0,
+    ["behemoth-biter"] = 1.2,
+    ["small-spitter"] = 0.5,
+    ["medium-spitter"] = 0.7,
+    ["big-spitter"] = 1.0,
+    ["behemoth-spitter"] = 1.2
+}
+
+function TierUtils.scaleUnitDistancePerFrame(unit, basePrototypeName, targetScale)
+    if not unit or type(unit.distance_per_frame) ~= "number" then
+        return
+    end
+
+    local baseScale = BaseUnitAnimationScale[basePrototypeName]
+    if type(baseScale) ~= "number" or baseScale <= 0 or type(targetScale) ~= "number" then
+        return
+    end
+
+    unit.distance_per_frame = unit.distance_per_frame * (targetScale / baseScale)
+end
+
 -- =============================================================================
 -- RESISTANCE CALCULATION
 -- =============================================================================
@@ -303,7 +327,7 @@ function TierUtils.createCorpseBase(entityName, scale, order)
         selectable_in_game = false,
         selection_box = {{-1 * scale, -1 * scale}, {1 * scale, 1 * scale}},
         subgroup = "corpses",
-        order = order or "c[corpse]-a[biter]-t" .. string.format("%02d", 1),
+        order = order or "c[corpse]-a[biter]-t01",
         flags = {"placeable-neutral", "placeable-off-grid", "building-direction-8-way", "not-on-map"}
     }
 end

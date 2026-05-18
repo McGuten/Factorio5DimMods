@@ -3,7 +3,7 @@
 -- =============================================================================
 -- Generates boss spitters (tier 11) for each spitter type.
 -- These are massive, powerful enemies that spawn at very high evolution.
--- Boss = x3 health and damage from base T10 stats with type multipliers.
+-- Boss = x2 health and damage from base T10 stats with type multipliers.
 -- =============================================================================
 
 local Tiers = require("prototypes.config.tiers")
@@ -65,6 +65,7 @@ local function createBossSpitter(typeConfig)
     -- Massive animations
     spitter.run_animation = spitterrunanimation(stats.scale, typeConfig.colors.primary, typeConfig.colors.secondary)
     spitter.water_reflection = spitter_water_reflection(stats.scale)
+    TierUtils.scaleUnitDistancePerFrame(spitter, "behemoth-spitter", stats.scale)
     
     -- Enhanced AI behavior
     spitter.vision_distance = 50

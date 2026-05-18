@@ -15,7 +15,7 @@ local TierColors = require("__5dim_core__.lib.tier-colors")
 -- Scale: HP x5 (900 → 4500), Platform DPS +10% over standard gun turret
 -------------------------------------------------------------------------------
 
-local baseRange = 40
+local baseRange = 27
 local baseAmmo = 5
 local baseShootingSpeed = 18
 local baseDamageModif = 3.3

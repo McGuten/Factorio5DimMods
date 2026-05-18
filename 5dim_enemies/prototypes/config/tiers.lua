@@ -58,17 +58,17 @@ Tiers.base = {
     biter = SharedConfig.BaseStats.biter,
     spitter = SharedConfig.BaseStats.spitter,
     worm = {
-        -- Worms need prepare_range which isn't in shared config
+        -- Worms scale above vanilla, but should stay within a readable envelope.
         [1]  = { scale = 0.55, health = 200,  damage = 25,  range = 22, prepare_range = 6,  speed = 0, healing = 0.044 },
-        [2]  = { scale = 0.62, health = 300,  damage = 35,  range = 24, prepare_range = 8,  speed = 0, healing = 0.056 },
-        [3]  = { scale = 0.70, health = 450,  damage = 49,  range = 26, prepare_range = 10, speed = 0, healing = 0.075 },
-        [4]  = { scale = 0.78, health = 675,  damage = 69,  range = 28, prepare_range = 12, speed = 0, healing = 0.102 },
-        [5]  = { scale = 0.88, health = 1013, damage = 96,  range = 30, prepare_range = 14, speed = 0, healing = 0.141 },
-        [6]  = { scale = 0.98, health = 1519, damage = 135, range = 33, prepare_range = 18, speed = 0, healing = 0.195 },
-        [7]  = { scale = 1.10, health = 2278, damage = 189, range = 36, prepare_range = 22, speed = 0, healing = 0.271 },
-        [8]  = { scale = 1.25, health = 3418, damage = 264, range = 40, prepare_range = 28, speed = 0, healing = 0.380 },
-        [9]  = { scale = 1.45, health = 5127, damage = 370, range = 45, prepare_range = 34, speed = 0, healing = 0.534 },
-        [10] = { scale = 1.70, health = 7690, damage = 518, range = 52, prepare_range = 42, speed = 0, healing = 0.754 }
+        [2]  = { scale = 0.62, health = 300,  damage = 32,  range = 24, prepare_range = 8,  speed = 0, healing = 0.056 },
+        [3]  = { scale = 0.70, health = 450,  damage = 40,  range = 26, prepare_range = 10, speed = 0, healing = 0.075 },
+        [4]  = { scale = 0.78, health = 675,  damage = 50,  range = 28, prepare_range = 12, speed = 0, healing = 0.095 },
+        [5]  = { scale = 0.88, health = 1000, damage = 64,  range = 31, prepare_range = 14, speed = 0, healing = 0.125 },
+        [6]  = { scale = 0.98, health = 1500, damage = 80,  range = 34, prepare_range = 16, speed = 0, healing = 0.165 },
+        [7]  = { scale = 1.10, health = 2250, damage = 100, range = 37, prepare_range = 20, speed = 0, healing = 0.220 },
+        [8]  = { scale = 1.25, health = 3375, damage = 125, range = 41, prepare_range = 24, speed = 0, healing = 0.300 },
+        [9]  = { scale = 1.45, health = 4800, damage = 155, range = 45, prepare_range = 27, speed = 0, healing = 0.420 },
+        [10] = { scale = 1.70, health = 6500, damage = 190, range = 50, prepare_range = 30, speed = 0, healing = 0.580 }
     }
 }
 
@@ -254,10 +254,10 @@ function Tiers.getStats(category, typeName, tier)
         
         -- Category-specific stats for boss
         if base.range then 
-            stats.range = base.range * 1.2  -- 20% more range for boss
+            stats.range = math.ceil(base.range * 1.2)  -- 20% more range for boss, rounded up
         end
         if base.prepare_range then 
-            stats.prepare_range = base.prepare_range * 1.2
+            stats.prepare_range = math.ceil(base.prepare_range * 1.2)
         end
     else
         error("Invalid tier: " .. tostring(tier) .. " (must be 1-11)")

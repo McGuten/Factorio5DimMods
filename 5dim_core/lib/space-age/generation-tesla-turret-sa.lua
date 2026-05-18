@@ -43,6 +43,9 @@ function genTeslaTurretSA(inputs)
     -- Update attack parameters
     if entity.attack_parameters then
         entity.attack_parameters.range = inputs.range
+        if inputs.cooldown then
+            entity.attack_parameters.cooldown = inputs.cooldown
+        end
         if entity.attack_parameters.ammo_type and inputs.energyPerShot then
             entity.attack_parameters.ammo_type.energy_consumption = inputs.energyPerShot .. "kJ"
         end

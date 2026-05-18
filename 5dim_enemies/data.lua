@@ -7,6 +7,7 @@
 -- =============================================================================
 require("prototypes.projectiles.poison-clouds")  -- Optimized poison clouds (load first!)
 require("prototypes.projectiles.poison-streams")
+require("prototypes.projectiles.physical-projectiles")
 
 -- =============================================================================
 -- TIERED SYSTEM (10 Tiers per enemy type + Boss)

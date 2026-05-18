@@ -713,8 +713,8 @@ SharedConfig.AutoplaceConfig = {
 -- =============================================================================
 
 SharedConfig.BossConfig = {
-    health_multiplier = 3.0,
-    damage_multiplier = 3.0,
+    health_multiplier = 2.0,
+    damage_multiplier = 2.0,
     scale_multiplier = 2.0,
     speed_multiplier = 0.6,
     healing_time = 125
@@ -739,15 +739,15 @@ SharedConfig.BaseStats = {
     },
     spitter = {
         [1]  = { scale = 0.50, health = 13,   damage = 10,  range = 13, speed = 0.18, healing = 0.009 },
-        [2]  = { scale = 0.60, health = 26,   damage = 15,  range = 14, speed = 0.17, healing = 0.011 },
-        [3]  = { scale = 0.70, health = 52,   damage = 22,  range = 15, speed = 0.16, healing = 0.017 },
-        [4]  = { scale = 0.85, health = 104,  damage = 34,  range = 16, speed = 0.15, healing = 0.028 },
-        [5]  = { scale = 1.00, health = 208,  damage = 50,  range = 17, speed = 0.14, healing = 0.049 },
-        [6]  = { scale = 1.15, health = 416,  damage = 76,  range = 18, speed = 0.13, healing = 0.084 },
-        [7]  = { scale = 1.30, health = 832,  damage = 114, range = 19, speed = 0.12, healing = 0.139 },
-        [8]  = { scale = 1.50, health = 1664, damage = 170, range = 20, speed = 0.11, healing = 0.252 },
-        [9]  = { scale = 1.80, health = 3328, damage = 256, range = 22, speed = 0.10, healing = 0.466 },
-        [10] = { scale = 2.20, health = 6656, damage = 384, range = 25, speed = 0.09, healing = 0.924 }
+        [2]  = { scale = 0.60, health = 26,   damage = 15,  range = 15, speed = 0.17, healing = 0.011 },
+        [3]  = { scale = 0.70, health = 52,   damage = 22,  range = 17, speed = 0.16, healing = 0.017 },
+        [4]  = { scale = 0.85, health = 104,  damage = 34,  range = 19, speed = 0.15, healing = 0.028 },
+        [5]  = { scale = 1.00, health = 208,  damage = 50,  range = 21, speed = 0.14, healing = 0.049 },
+        [6]  = { scale = 1.15, health = 416,  damage = 76,  range = 23, speed = 0.13, healing = 0.084 },
+        [7]  = { scale = 1.30, health = 832,  damage = 114, range = 25, speed = 0.12, healing = 0.139 },
+        [8]  = { scale = 1.50, health = 1664, damage = 170, range = 27, speed = 0.11, healing = 0.252 },
+        [9]  = { scale = 1.80, health = 3328, damage = 256, range = 29, speed = 0.10, healing = 0.466 },
+        [10] = { scale = 2.20, health = 6656, damage = 384, range = 31, speed = 0.09, healing = 0.924 }
     },
     worm = {
         [1]  = { scale = 0.55, health = 200,  damage = 25,  range = 22, speed = 0, healing = 0.044 },

@@ -193,41 +193,29 @@ function SpitterAttack.explosive(tier, data)
 end
 
 -- =============================================================================
--- LASER ATTACK (Laser projectile bursts - discontinuous shots)
+-- LASER ATTACK (Laser beam)
 -- =============================================================================
 
 function SpitterAttack.laser(tier, data)
     local cooldown = math.max(20, 40 - (tier * 2))
+    local beamDuration = 12 + tier
     
     return {
-        type = "projectile",
+        type = "beam",
         ammo_category = "biological",
         cooldown = cooldown,
         range = data.range,
-        projectile_creation_parameters = spitter_shoot_shiftings(data.scale, data.scale * scale_spitter_stream),
         damage_modifier = data.damage / 12,
         warmup = 8,
         ammo_type = {
             action = {
                 type = "direct",
                 action_delivery = {
-                    type = "instant",
-                    source_effects = {
-                        {
-                            type = "create-explosion",
-                            entity_name = "laser-bubble"
-                        }
-                    },
-                    target_effects = {
-                        {
-                            type = "create-entity",
-                            entity_name = "laser-bubble"
-                        },
-                        {
-                            type = "damage",
-                            damage = { amount = 8 + (tier * 2), type = "laser" }
-                        }
-                    }
+                    type = "beam",
+                    beam = "laser-beam",
+                    max_length = data.range,
+                    duration = beamDuration,
+                    source_offset = {0, -0.5}
                 }
             }
         },

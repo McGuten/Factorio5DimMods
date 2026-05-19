@@ -33,15 +33,21 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "pollution",
+            group = "module",
+            order = "h"
+        },
+        {
+            type = "item-subgroup",
             name = "merged",
             group = "module",
-            order = "e"
+            order = "f"
         },
         {
             type = "item-subgroup",
             name = "beacon",
             group = "module",
-            order = "f"
+            order = "g"
         },
     }
 )

@@ -566,3 +566,52 @@ for tier = 1, 10 do
     }
 end
 
+-------------------------------------------------------------------------------
+-- STANDALONE POLLUTION MODULE
+-------------------------------------------------------------------------------
+
+local itemPollution = table.deepcopy(data.raw.module["speed-module"])
+local recipePollution = table.deepcopy(data.raw.recipe["speed-module"])
+local techPollution = table.deepcopy(data.raw.technology["speed-module"])
+
+itemPollution.name = "5d-pollution-module"
+itemPollution.icon = "__5dim_module__/graphics/icons/pollution-module/pollution-module-01.png"
+itemPollution.subgroup = "pollution"
+itemPollution.order = "a"
+itemPollution.effect = {
+    pollution = -0.08
+}
+itemPollution.tier = 1
+itemPollution.localised_description = nil
+
+recipePollution.name = itemPollution.name
+recipePollution.icon = itemPollution.icon
+recipePollution.icon_size = 64
+recipePollution.enabled = false
+recipePollution.ingredients = {
+    { type = "item", name = "electronic-circuit", amount = 5 }
+}
+recipePollution.results = {
+    { type = "item", name = itemPollution.name, amount = 1 }
+}
+recipePollution.energy_required = 5
+recipePollution.category = nil
+
+techPollution.name = "5d-pollution-module"
+techPollution.icon = itemPollution.icon
+techPollution.icon_size = 64
+techPollution.icons = nil
+techPollution.unit.count = 20
+techPollution.unit.ingredients = {
+    { "automation-science-pack", 1 }
+}
+techPollution.prerequisites = { "electronics" }
+techPollution.effects = {
+    {
+        type = "unlock-recipe",
+        recipe = itemPollution.name
+    }
+}
+
+data:extend({ itemPollution, recipePollution, techPollution })
+

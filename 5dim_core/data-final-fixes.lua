@@ -10,6 +10,10 @@ function table.contains(table, element)
     return false
 end
 
+local menu_simulations = data.raw["utility-constants"]["default"].main_menu_simulations
+
+require("prototypes.menu-simulations.apply")(menu_simulations)
+
 local prerequisiteAliases = {
     ["advanced-electronics"] = "advanced-circuit",
     ["refined-concrete"] = "concrete"

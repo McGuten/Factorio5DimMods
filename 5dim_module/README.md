@@ -10,6 +10,7 @@ Push your machines further with stronger module and beacon progression.
 - 10 tiers of productivity modules.
 - 10 tiers of efficiency modules.
 - 10 tiers of quality modules when the right content is available.
+- A standalone pollution module for early emission control.
 - Merged module options built from speed, efficiency and productivity.
 - 10 tiers of beacons.
 

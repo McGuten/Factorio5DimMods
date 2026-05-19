@@ -1,8 +1,40 @@
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 
+local function applyWallTintToSprite(sprite, tint, inheritedShadow)
+    if type(sprite) ~= "table" or not tint then
+        return
+    end
+
+    local isShadow = inheritedShadow or sprite.draw_as_shadow
+    if (sprite.filename or sprite.filenames or sprite.stripes) and not isShadow then
+        sprite.tint = tint
+    end
+
+    for key, value in pairs(sprite) do
+        if key ~= "tint" and type(value) == "table" then
+            applyWallTintToSprite(value, tint, isShadow)
+        end
+    end
+end
+
+local function applyWallTint(entity, tint)
+    if not entity or not entity.pictures or not tint then
+        return
+    end
+
+    applyWallTintToSprite(entity.pictures, tint, false)
+end
+
 function genStoneWalls(inputs)
-    -- Skip vanilla tier (when new = false) - don't modify base game prototypes
     if not inputs.new then
+        local entity = data.raw.wall["stone-wall"]
+        if not entity then
+            return
+        end
+
+        entity.resistances = inputs.resistances or entity.resistances
+        entity.hide_resistances = false
+        applyWallTint(entity, inputs.tint)
         return
     end
     
@@ -11,8 +43,6 @@ function genStoneWalls(inputs)
     local recipe = table.deepcopy(data.raw.recipe["stone-wall"])
     local entity = table.deepcopy(data.raw["wall"]["stone-wall"])
     local tech = table.deepcopy(data.raw.technology["stone-wall"])
-
-    local tint = { r = 1, g = 1, b = 0.1, a = 1 }
 
     --Item
     item.name = "5d-stone-wall-" .. inputs.number
@@ -41,7 +71,11 @@ function genStoneWalls(inputs)
     entity.max_health = inputs.health
     entity.repair_speed_modifier = inputs.repairSpeedModifier or RepairSpeedScaling.linear(inputs.repairBaseHealth or 350, entity.max_health)
     entity.fast_replaceable_group = "wall"
-    entity.resistances = inputs.resistances or entity.resistances
+    if inputs.resistances then
+        entity.resistances = inputs.resistances
+        entity.hide_resistances = false
+    end
+    applyWallTint(entity, inputs.tint)
 
     -- Base
     -- entity.picture.layers[1].hr_version.filename =

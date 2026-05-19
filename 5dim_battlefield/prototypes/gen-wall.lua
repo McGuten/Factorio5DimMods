@@ -8,6 +8,7 @@ require("__5dim_core__.lib.battlefield.generation-wall")
 local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
 -- BASE CONFIGURATION
@@ -210,16 +211,15 @@ local function getWallResistances(tier)
     local explosionPercent = 30
     local acidPercent = 80
     local laserPercent = 70
+    local tierStep = tier - 1
+    local lateStep = math.max(tier - 7, 0)
 
-    if tier >= 8 then
-        local lateStep = tier - 7
-        physicalDecrease = physicalDecrease + lateStep
-        physicalPercent = physicalPercent + (lateStep * 5)
-        explosionDecrease = explosionDecrease + (lateStep * 2)
-        explosionPercent = explosionPercent + (lateStep * 5)
-        acidPercent = acidPercent + (lateStep * 3)
-        laserPercent = laserPercent + (lateStep * 5)
-    end
+    physicalDecrease = physicalDecrease + math.floor(tierStep / 2) + lateStep
+    physicalPercent = physicalPercent + (tierStep * 2) + (lateStep * 3)
+    explosionDecrease = explosionDecrease + tierStep + lateStep
+    explosionPercent = explosionPercent + (tierStep * 2) + (lateStep * 3)
+    acidPercent = math.min(95, acidPercent + tierStep + (lateStep * 2))
+    laserPercent = math.min(95, laserPercent + (tierStep * 2) + (lateStep * 2))
 
     return {
         { type = "physical", decrease = physicalDecrease, percent = physicalPercent },
@@ -281,6 +281,7 @@ for tier = 1, 10 do
         new = not config.isVanilla,
         health = health,
         resistances = getWallResistances(tier),
+        tint = tierColors[tier],
         ingredients = ingredients,
         recipeCategory = CostCalculator.getSpaceAgeRecipeCategory(tier, wallSpaceAgeMaterials),
         nextUpdate = nextUpgrade,

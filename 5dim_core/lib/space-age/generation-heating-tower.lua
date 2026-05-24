@@ -29,7 +29,7 @@ function genHeatingTower(inputs)
     --Recipe
     recipe.name = item.name
     setPrototypeIcons(recipe)
-    if inputs.recipeCategory then
+    if inputs.new and inputs.recipeCategory then
         recipe.category = inputs.recipeCategory
     end
     if inputs.new then

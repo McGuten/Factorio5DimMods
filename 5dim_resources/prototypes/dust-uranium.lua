@@ -36,8 +36,7 @@ data:extend({
         ingredients = {
             { type = "item", name = "5d-uranium-dust", amount = 10 }
         },
-        icon = "__base__/graphics/icons/uranium-processing.png",
-        icon_size = 64,
+        icons = DustCommon.make_dust_icons("__base__/graphics/icons/uranium-processing.png", DustCommon.tints.uranium),
         subgroup = "nuclear-recipe",
         order = "a[uranium-processing]-b[5d-uranium-processing]",
         results = {

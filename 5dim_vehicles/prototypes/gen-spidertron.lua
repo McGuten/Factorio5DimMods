@@ -7,6 +7,7 @@ require("__5dim_core__.lib.vehicles.generation-spidertron")
 
 local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local GridProgression = require("__5dim_core__.lib.equipment.grid-progression")
 local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
@@ -190,17 +191,7 @@ end
 -- Each tier adds more space
 -------------------------------------------------------------------------------
 
-local spidertronGridSizes = {
-    [2] = { width = 10, height = 7 },
-    [3] = { width = 10, height = 7 },
-    [4] = { width = 11, height = 7 },
-    [5] = { width = 11, height = 8 },
-    [6] = { width = 12, height = 8 },
-    [7] = { width = 12, height = 9 },
-    [8] = { width = 13, height = 9 },
-    [9] = { width = 13, height = 10 },
-    [10] = { width = 14, height = 10 }
-}
+local spidertronGridSizes = GridProgression.buildTierMap(10, 6, 2, 10)
 
 for tier = 2, 10 do
     local gridSize = spidertronGridSizes[tier]

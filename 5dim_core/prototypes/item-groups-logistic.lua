@@ -33,9 +33,33 @@ data:extend(
         },
         {
             type = "item-subgroup",
-            name = "logistic-util",
+            name = "logistic-roboport-charging",
             group = "logistic",
             order = "cb"
+        },
+        {
+            type = "item-subgroup",
+            name = "logistic-roboport-logistic",
+            group = "logistic",
+            order = "cc"
+        },
+        {
+            type = "item-subgroup",
+            name = "logistic-roboport-construction",
+            group = "logistic",
+            order = "cd"
+        },
+        {
+            type = "item-subgroup",
+            name = "logistic-roboport-compact",
+            group = "logistic",
+            order = "ce"
+        },
+        {
+            type = "item-subgroup",
+            name = "logistic-util",
+            group = "logistic",
+            order = "cf"
         },
         {
             type = "item-subgroup",

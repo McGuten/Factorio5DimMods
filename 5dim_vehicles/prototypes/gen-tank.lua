@@ -7,6 +7,7 @@ require("__5dim_core__.lib.vehicles.generation-tank")
 
 local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local GridProgression = require("__5dim_core__.lib.equipment.grid-progression")
 local tierColors = require("__5dim_core__.lib.tier-colors")
 
 -------------------------------------------------------------------------------
@@ -171,17 +172,7 @@ end
 -- EQUIPMENT GRID DEFINITIONS
 -------------------------------------------------------------------------------
 
-local tankGridSizes = {
-    [2] = { width = 6, height = 8 },
-    [3] = { width = 7, height = 8 },
-    [4] = { width = 7, height = 9 },
-    [5] = { width = 8, height = 9 },
-    [6] = { width = 8, height = 10 },
-    [7] = { width = 9, height = 10 },
-    [8] = { width = 9, height = 11 },
-    [9] = { width = 10, height = 11 },
-    [10] = { width = 10, height = 12 }
-}
+local tankGridSizes = GridProgression.buildTierMap(6, 8, 2, 10)
 
 -- Create equipment grids for each tier
 for tier = 2, 10 do

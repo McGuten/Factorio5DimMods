@@ -23,7 +23,7 @@ data:extend({
             { type = "item", name = "stone", amount = 1 }
         },
         results = {
-            { type = "item", name = "5d-stone-dust", amount = 2 }
+            { type = "item", name = "5d-stone-dust", amount = 1 }
         }
     },
     {

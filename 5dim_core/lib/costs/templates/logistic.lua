@@ -138,4 +138,52 @@ Templates.roboport = {
     }
 }
 
+local function appendIngredients(target, source)
+    for _, ingredient in ipairs(source) do
+        table.insert(target, table.deepcopy(ingredient))
+    end
+end
+
+local function buildHalfRoboportIngredients(source, startIndex)
+    local result = {}
+
+    for index = startIndex or 1, #source do
+        local ingredient = table.deepcopy(source[index])
+        ingredient.amount = ingredient.amount * 0.5
+        table.insert(result, ingredient)
+    end
+
+    return result
+end
+
+local function buildSpecializedRoboportTemplates(namePrefix)
+    local templates = {}
+
+    for tier = 1, 10 do
+        local ingredients
+
+        if tier == 1 then
+            ingredients = buildHalfRoboportIngredients(Templates.roboport[tier])
+        else
+            ingredients = {
+                { type = "item", name = namePrefix .. string.format("%02d", tier - 1), amount = 1 }
+            }
+
+            appendIngredients(ingredients, buildHalfRoboportIngredients(Templates.roboport[tier], 2))
+        end
+
+        templates[tier] = ingredients
+    end
+
+    return templates
+end
+
+Templates.roboportCharging = buildSpecializedRoboportTemplates("5d-roboport-charging-")
+
+Templates.roboportLogistic = buildSpecializedRoboportTemplates("5d-roboport-logistic-")
+
+Templates.roboportConstruction = buildSpecializedRoboportTemplates("5d-roboport-construction-")
+
+Templates.roboportCompact = buildSpecializedRoboportTemplates("5d-roboport-compact-")
+
 return Templates

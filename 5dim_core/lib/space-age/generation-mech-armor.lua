@@ -13,8 +13,8 @@ function genMechArmor(inputs)
         item.name = "5d-mech-armor-" .. inputs.number
     end
     
-    -- Create custom equipment grid if dimensions provided
-    if inputs.gridWidth and inputs.gridHeight then
+    -- Create custom equipment grid only for non-vanilla tiers
+    if inputs.new and inputs.gridWidth and inputs.gridHeight then
         local gridName = "5d-mech-armor-grid-" .. inputs.number
         local baseGrid = table.deepcopy(data.raw["equipment-grid"]["huge-equipment-grid"])
         baseGrid.name = gridName

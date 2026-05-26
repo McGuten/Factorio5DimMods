@@ -19,9 +19,13 @@ function genPowerArmors(inputs)
     -- Grid
     if inputs.new then
         grid.name = "5d-grid-power-armor-" .. inputs.number
+        if inputs.width then
+            grid.width = inputs.width
+        end
+        if inputs.height then
+            grid.height = inputs.height
+        end
     end
-    grid.width = inputs.width or 10
-    grid.height = inputs.height or 10
 
     --Item
     if inputs.new then

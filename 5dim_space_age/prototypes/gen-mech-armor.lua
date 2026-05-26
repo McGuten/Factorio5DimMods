@@ -6,6 +6,7 @@
 require("__5dim_core__.lib.space-age.generation-mech-armor")
 
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local GridProgression = require("__5dim_core__.lib.equipment.grid-progression")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -138,13 +139,16 @@ local techConfig = {
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 
-local currentGridWidth = baseGridWidth
-local currentGridHeight = baseGridHeight
 local currentInventoryBonus = baseInventoryBonus
 
 for tier = 1, 10 do
     local config = tierConfig[tier]
     local number = string.format("%02d", tier)
+    local gridSize = nil
+
+    if tier > 1 then
+        gridSize = GridProgression.sizeFromBase(baseGridWidth, baseGridHeight, tier - 1)
+    end
     
     local techData = nil
     if techConfig[tier] then
@@ -165,8 +169,8 @@ for tier = 1, 10 do
         subgroup = "armor-mech-armor",
         order = config.order,
         new = not config.isVanilla,
-        gridWidth = currentGridWidth,
-        gridHeight = currentGridHeight,
+        gridWidth = gridSize and gridSize.width or nil,
+        gridHeight = gridSize and gridSize.height or nil,
         inventoryBonus = currentInventoryBonus,
         ingredients = CostCalculator.processIngredients(RecipeTemplates.mechArmor[tier], tier, {
             skipTierScaling = true,
@@ -176,12 +180,6 @@ for tier = 1, 10 do
         recipeCategory = tier > 1 and "crafting-with-fluid" or nil,
         tech = techData
     })
-
-    -- Increase grid size every 2 tiers
-    if tier % 2 == 0 then
-        currentGridWidth = currentGridWidth + 1
-        currentGridHeight = currentGridHeight + 1
-    end
     
     -- Increase inventory bonus
     currentInventoryBonus = currentInventoryBonus + 10

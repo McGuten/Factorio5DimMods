@@ -165,6 +165,18 @@ data.raw.ammo["piercing-shotgun-shell"].subgroup = "equipment-shotgun"
 data.raw.ammo["piercing-shotgun-shell"].order = "d"
 data.raw.ammo["shotgun-shell"].subgroup = "equipment-shotgun"
 data.raw.ammo["shotgun-shell"].order = "c"
+if data.raw.ammo["5d-tungsten-shotgun-shell"] then
+    data.raw.ammo["5d-tungsten-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.ammo["5d-tungsten-shotgun-shell"].order = "e"
+end
+if data.raw.ammo["5d-uranium-shotgun-shell"] then
+    data.raw.ammo["5d-uranium-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.ammo["5d-uranium-shotgun-shell"].order = "f"
+end
+if data.raw.ammo["5d-uranium-tungsten-shotgun-shell"] then
+    data.raw.ammo["5d-uranium-tungsten-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.ammo["5d-uranium-tungsten-shotgun-shell"].order = "g"
+end
 data.raw.capsule["grenade"].subgroup = "equipment-grenade"
 data.raw.capsule["grenade"].order = "a"
 data.raw.capsule["cluster-grenade"].subgroup = "equipment-cluster-grenade"
@@ -179,8 +191,16 @@ data.raw.capsule["distractor-capsule"].subgroup = "equipment-distractor"
 data.raw.capsule["distractor-capsule"].order = "a"
 data.raw.capsule["destroyer-capsule"].subgroup = "equipment-destroyer"
 data.raw.capsule["destroyer-capsule"].order = "a"
+if data.raw.ammo["5d-tungsten-rifle-magazine"] then
+    data.raw.ammo["5d-tungsten-rifle-magazine"].subgroup = "equipment-bullet"
+    data.raw.ammo["5d-tungsten-rifle-magazine"].order = "f"
+end
 data.raw.ammo["uranium-rounds-magazine"].subgroup = "equipment-bullet"
-data.raw.ammo["uranium-rounds-magazine"].order = "f"
+data.raw.ammo["uranium-rounds-magazine"].order = "g"
+if data.raw.ammo["5d-uranium-tungsten-rifle-magazine"] then
+    data.raw.ammo["5d-uranium-tungsten-rifle-magazine"].subgroup = "equipment-bullet"
+    data.raw.ammo["5d-uranium-tungsten-rifle-magazine"].order = "h"
+end
 if data.raw.ammo["5d-sniper-magazine"] then
     data.raw.ammo["5d-sniper-magazine"].subgroup = "equipment-sniper"
     data.raw.ammo["5d-sniper-magazine"].order = "b"
@@ -189,9 +209,17 @@ if data.raw.ammo["5d-piercing-sniper-magazine"] then
     data.raw.ammo["5d-piercing-sniper-magazine"].subgroup = "equipment-sniper"
     data.raw.ammo["5d-piercing-sniper-magazine"].order = "c"
 end
+if data.raw.ammo["5d-tungsten-sniper-magazine"] then
+    data.raw.ammo["5d-tungsten-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.ammo["5d-tungsten-sniper-magazine"].order = "d"
+end
 if data.raw.ammo["5d-uranium-sniper-magazine"] then
     data.raw.ammo["5d-uranium-sniper-magazine"].subgroup = "equipment-sniper"
-    data.raw.ammo["5d-uranium-sniper-magazine"].order = "d"
+    data.raw.ammo["5d-uranium-sniper-magazine"].order = "e"
+end
+if data.raw.ammo["5d-uranium-tungsten-sniper-magazine"] then
+    data.raw.ammo["5d-uranium-tungsten-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.ammo["5d-uranium-tungsten-sniper-magazine"].order = "f"
 end
 if data.raw.recipe["pistol"] then
     data.raw.recipe["pistol"].subgroup = "equipment-bullet"
@@ -213,9 +241,17 @@ if data.raw.recipe["piercing-rounds-magazine"] then
     data.raw.recipe["piercing-rounds-magazine"].subgroup = "equipment-bullet"
     data.raw.recipe["piercing-rounds-magazine"].order = "e"
 end
+if data.raw.recipe["5d-tungsten-rifle-magazine"] then
+    data.raw.recipe["5d-tungsten-rifle-magazine"].subgroup = "equipment-bullet"
+    data.raw.recipe["5d-tungsten-rifle-magazine"].order = "f"
+end
 if data.raw.recipe["uranium-rounds-magazine"] then
     data.raw.recipe["uranium-rounds-magazine"].subgroup = "equipment-bullet"
-    data.raw.recipe["uranium-rounds-magazine"].order = "f"
+    data.raw.recipe["uranium-rounds-magazine"].order = "g"
+end
+if data.raw.recipe["5d-uranium-tungsten-rifle-magazine"] then
+    data.raw.recipe["5d-uranium-tungsten-rifle-magazine"].subgroup = "equipment-bullet"
+    data.raw.recipe["5d-uranium-tungsten-rifle-magazine"].order = "h"
 end
 if data.raw.recipe["5d-sniper-magazine"] then
     data.raw.recipe["5d-sniper-magazine"].subgroup = "equipment-sniper"
@@ -225,9 +261,29 @@ if data.raw.recipe["5d-piercing-sniper-magazine"] then
     data.raw.recipe["5d-piercing-sniper-magazine"].subgroup = "equipment-sniper"
     data.raw.recipe["5d-piercing-sniper-magazine"].order = "c"
 end
+if data.raw.recipe["5d-tungsten-sniper-magazine"] then
+    data.raw.recipe["5d-tungsten-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-tungsten-sniper-magazine"].order = "d"
+end
+if data.raw.recipe["5d-tungsten-shotgun-shell"] then
+    data.raw.recipe["5d-tungsten-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.recipe["5d-tungsten-shotgun-shell"].order = "e"
+end
 if data.raw.recipe["5d-uranium-sniper-magazine"] then
     data.raw.recipe["5d-uranium-sniper-magazine"].subgroup = "equipment-sniper"
-    data.raw.recipe["5d-uranium-sniper-magazine"].order = "d"
+    data.raw.recipe["5d-uranium-sniper-magazine"].order = "e"
+end
+if data.raw.recipe["5d-uranium-shotgun-shell"] then
+    data.raw.recipe["5d-uranium-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.recipe["5d-uranium-shotgun-shell"].order = "f"
+end
+if data.raw.recipe["5d-uranium-tungsten-sniper-magazine"] then
+    data.raw.recipe["5d-uranium-tungsten-sniper-magazine"].subgroup = "equipment-sniper"
+    data.raw.recipe["5d-uranium-tungsten-sniper-magazine"].order = "f"
+end
+if data.raw.recipe["5d-uranium-tungsten-shotgun-shell"] then
+    data.raw.recipe["5d-uranium-tungsten-shotgun-shell"].subgroup = "equipment-shotgun"
+    data.raw.recipe["5d-uranium-tungsten-shotgun-shell"].order = "g"
 end
 data.raw.ammo["atomic-bomb"].subgroup = "equipment-rocket"
 data.raw.ammo["atomic-bomb"].order = "d"

@@ -1,6 +1,8 @@
 --Gun turret
 require("prototypes.gen-gun-turret")
 require("prototypes.gen-sniper-ammo")
+require("prototypes.gen-shotgun-ammo")
+require("prototypes.gen-rifle-ammo")
 require("prototypes.gen-sniper-gun")
 require("prototypes.gen-gun-turret-sniper")
 

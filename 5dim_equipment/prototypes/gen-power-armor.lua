@@ -2,6 +2,7 @@ require("__5dim_core__.lib.equipment.generation-power-armor")
 
 local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
+local GridProgression = require("__5dim_core__.lib.equipment.grid-progression")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 -------------------------------------------------------------------------------
@@ -169,22 +170,16 @@ local tiers = {
     {
         number = "01", new = false, order = "a",
         inventoryBonus = 20,
-        width = 10,
-        height = 10,
         tech = nil
     },
     {
         number = "02", new = false, order = "b",
         inventoryBonus = 30,
-        width = 10,
-        height = 10,
         tech = nil
     },
     {
         number = "03", new = true, order = "c",
         inventoryBonus = 40,
-        width = 10,
-        height = 12,
         tech = {
             number = 1,
             countMultiplier = 2,
@@ -200,8 +195,6 @@ local tiers = {
     {
         number = "04", new = true, order = "d",
         inventoryBonus = 50,
-        width = 11,
-        height = 12,
         tech = {
             number = 2,
             countMultiplier = 3,
@@ -217,8 +210,6 @@ local tiers = {
     {
         number = "05", new = true, order = "e",
         inventoryBonus = 60,
-        width = 11,
-        height = 14,
         tech = {
             number = 3,
             countMultiplier = 4,
@@ -234,8 +225,6 @@ local tiers = {
     {
         number = "06", new = true, order = "f",
         inventoryBonus = 70,
-        width = 11,
-        height = 16,
         tech = {
             number = 4,
             countMultiplier = 5,
@@ -252,8 +241,6 @@ local tiers = {
     {
         number = "07", new = true, order = "g",
         inventoryBonus = 80,
-        width = 12,
-        height = 18,
         tech = {
             number = 5,
             countMultiplier = 6,
@@ -270,8 +257,6 @@ local tiers = {
     {
         number = "08", new = true, order = "h",
         inventoryBonus = 90,
-        width = 12,
-        height = 20,
         tech = {
             number = 6,
             countMultiplier = 7,
@@ -288,8 +273,6 @@ local tiers = {
     {
         number = "09", new = true, order = "i",
         inventoryBonus = 100,
-        width = 12,
-        height = 22,
         tech = {
             number = 7,
             countMultiplier = 8,
@@ -306,8 +289,6 @@ local tiers = {
     {
         number = "10", new = true, order = "j",
         inventoryBonus = 110,
-        width = 12,
-        height = 24,
         tech = {
             number = 8,
             countMultiplier = 9,
@@ -331,11 +312,20 @@ local function getPowerArmorProgressionTier(tier)
     return tier - 1
 end
 
+local function getPowerArmorGridSize(tier)
+    if tier <= 2 then
+        return nil
+    end
+
+    return GridProgression.sizeFromBase(10, 10, tier - 2)
+end
+
 -------------------------------------------------------------------------------
 -- GENERATION LOOP
 -------------------------------------------------------------------------------
 for i, tier in ipairs(tiers) do
     local progressionTier = getPowerArmorProgressionTier(i)
+    local gridSize = getPowerArmorGridSize(i)
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.powerArmor[i], i, {
         skipTierScaling = true,
         applyMachineRecipeProgression = true,
@@ -366,8 +356,8 @@ for i, tier in ipairs(tiers) do
         number = tier.number,
         subgroup = config.subgroup,
         inventoryBonus = i <= 2 and tier.inventoryBonus or CostCalculator.calculateMachineWorkValue(tiers[2].inventoryBonus, progressionTier, 9, 0),
-        width = tier.width,
-        height = tier.height,
+        width = gridSize and gridSize.width or nil,
+        height = gridSize and gridSize.height or nil,
         new = tier.new,
         order = tier.order,
         ingredients = ingredients,

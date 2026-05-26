@@ -76,7 +76,7 @@ data:extend({
             { type = "item", name = "metallic-asteroid-chunk", amount = 1 }
         },
         results = {
-            { type = "item", name = "5d-metallic-asteroid-dust", amount = 1 }
+            { type = "item", name = "5d-metallic-asteroid-dust", amount = 2 }
         }
     },
     {
@@ -94,7 +94,7 @@ data:extend({
             { type = "item", name = "carbonic-asteroid-chunk", amount = 1 }
         },
         results = {
-            { type = "item", name = "5d-carbonic-asteroid-dust", amount = 1 }
+            { type = "item", name = "5d-carbonic-asteroid-dust", amount = 2 }
         }
     },
     {
@@ -112,7 +112,7 @@ data:extend({
             { type = "item", name = "oxide-asteroid-chunk", amount = 1 }
         },
         results = {
-            { type = "item", name = "5d-oxide-asteroid-dust", amount = 1 }
+            { type = "item", name = "5d-oxide-asteroid-dust", amount = 2 }
         }
     },
     {
@@ -132,7 +132,8 @@ data:extend({
             { type = "item", name = "5d-metallic-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "iron-ore", amount = 40 }
+            { type = "item", name = "iron-ore", amount = 20 },
+            { type = "item", name = "5d-metallic-asteroid-dust", amount = 1, probability = 0.2 }
         }
     },
     {
@@ -152,7 +153,8 @@ data:extend({
             { type = "item", name = "5d-carbonic-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "carbon", amount = 20 }
+            { type = "item", name = "carbon", amount = 10 },
+            { type = "item", name = "5d-carbonic-asteroid-dust", amount = 1, probability = 0.2 }
         }
     },
     {
@@ -172,7 +174,8 @@ data:extend({
             { type = "item", name = "5d-oxide-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "ice", amount = 10 }
+            { type = "item", name = "ice", amount = 5 },
+            { type = "item", name = "5d-oxide-asteroid-dust", amount = 1, probability = 0.2 }
         }
     },
     {
@@ -192,8 +195,9 @@ data:extend({
             { type = "item", name = "5d-metallic-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "iron-ore", amount = 20 },
-            { type = "item", name = "copper-ore", amount = 8 }
+            { type = "item", name = "iron-ore", amount = 10 },
+            { type = "item", name = "copper-ore", amount = 4 },
+            { type = "item", name = "5d-metallic-asteroid-dust", amount = 1, probability = 0.05 }
         }
     },
     {
@@ -213,8 +217,9 @@ data:extend({
             { type = "item", name = "5d-carbonic-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "carbon", amount = 10 },
-            { type = "item", name = "sulfur", amount = 4 }
+            { type = "item", name = "carbon", amount = 5 },
+            { type = "item", name = "sulfur", amount = 2 },
+            { type = "item", name = "5d-carbonic-asteroid-dust", amount = 1, probability = 0.05 }
         }
     },
     {
@@ -234,8 +239,9 @@ data:extend({
             { type = "item", name = "5d-oxide-asteroid-dust", amount = 1 }
         },
         results = {
-            { type = "item", name = "ice", amount = 6 },
-            { type = "item", name = "calcite", amount = 4 }
+            { type = "item", name = "ice", amount = 3 },
+            { type = "item", name = "calcite", amount = 2 },
+            { type = "item", name = "5d-oxide-asteroid-dust", amount = 1, probability = 0.05 }
         }
     }
 })

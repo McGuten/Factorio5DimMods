@@ -13,6 +13,8 @@
 
 This mod is a **total conversion** with **many modules**, and we recommend using the full set in your game.
 
+If you want the whole suite in one step, install **5dim_modpack**. It depends on every 5Dim module and therefore also requires **Bob's Inserters**, **Space Age** and **Quality**.
+
 ## Mod list
 ### Core module
   - **Core**.

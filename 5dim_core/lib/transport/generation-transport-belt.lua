@@ -118,6 +118,7 @@ function genTransportBelts(inputs)
     entityUndergroundBelt.icon = itemUndergroundBelt.icon
     entityUndergroundBelt.minable.result = itemUndergroundBelt.name
     entityUndergroundBelt.speed = inputs.speed
+    entityUndergroundBelt.max_distance = 3 + tonumber(inputs.number) * 2
 
     if inputs.number ~= "01" then
         entityUndergroundBelt.belt_animation_set.animation_set.filename =

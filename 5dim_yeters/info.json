@@ -1,0 +1,11 @@
+{
+    "name": "5dim_yeters",
+    "version": "2.0.0",
+    "factorio_version": "2.0",
+    "title": "5Dim's mod - Yeters",
+    "author": "5Dim",
+    "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
+    "homepage": "https://mods.factorio.com/user/McGuten",
+    "description": "Adds Yeters, a post-edge endgame planet for Space Age.\n\rYeters is unlocked with initial Promethium science and concentrates late Space Age resources in a harsh hybrid surface.\n\rRequires Space Age and 5dim_core.",
+    "dependencies": ["5dim_core >= 2.0.42", "space-age >= 2.0.0"]
+}

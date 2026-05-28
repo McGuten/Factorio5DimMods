@@ -1,0 +1,8 @@
+---------------------------------------------------------------------------------------------------
+Version: 2.0.0
+Date: 2026-05-27
+  Features:
+    - Initial Yeters MVP module for Space Age.
+    - Added Yeters as a post-edge planet unlocked with Promethium science.
+    - Added the solar-system-edge to Yeters space connection.
+    - Added hybrid map generation using late Space Age terrain and resources.

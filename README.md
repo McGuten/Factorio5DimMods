@@ -49,6 +49,8 @@ If you want the whole suite in one step, install **5dim_modpack**. It depends on
     - Add tiered furnaces, mashers and dust processing to push ore refining and smelting throughput.
   - **Space Age**.
     - Add higher tiers for Space Age DLC buildings, equipment and planetary infrastructure.
+  - **Yeters**.
+    - Adds a post-edge endgame planet unlocked with Promethium science, combining harsh Space Age terrain and dense late-game resources.
   - **Storage**.
     - If you hate limited capacity of storage tanks, this mod extends it with new tiers.
   - **Trains**.

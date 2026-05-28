@@ -24,6 +24,10 @@ if mods["space-age"] then
     require("prototypes.item-groups-planet-vulcanus")
     require("prototypes.item-groups-planet-fulgora")
     require("prototypes.item-groups-planet-aquilo")
+
+    if mods["5dim_yeters"] then
+        require("prototypes.item-groups-planet-yeters")
+    end
 end
 
 --Tech

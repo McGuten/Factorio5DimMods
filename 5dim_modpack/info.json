@@ -27,6 +27,7 @@
         "5dim_nuclear >= 2.0.4",
         "5dim_resources >= 2.0.6",
         "5dim_space_age >= 2.0.0",
+        "5dim_yeters >= 2.0.0",
         "5dim_storage >= 2.1.0",
         "5dim_trains >= 2.0.3",
         "5dim_transport >= 2.0.22",

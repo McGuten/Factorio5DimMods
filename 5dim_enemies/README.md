@@ -23,6 +23,7 @@ Turn biters into a real long-term threat.
 
 ## Notes
 
+- Mod settings let you toggle individual enemy variants and death effects.
 - This module significantly increases difficulty.
 - Recommended for experienced players, especially when paired with 5Dim Battlefield.
 

@@ -78,7 +78,7 @@ if mods["space-age"] then
         })
     end
 
-    local function add_coal_dust_variant(source_recipe_name, variant_recipe_name)
+    local function add_coal_dust_variant(source_recipe_name, variant_recipe_name, target_subgroup)
         local source_recipe = data.raw.recipe[source_recipe_name]
 
         if not source_recipe or data.raw.recipe[variant_recipe_name] then
@@ -105,16 +105,51 @@ if mods["space-age"] then
             variant_recipe.order = variant_recipe.order .. "-b[5d]"
         end
 
+        -- Keep the variant in the same crafting menu subgroup as the original
+        -- recipe, which 5dim_core relocates later in data-final-fixes.
+        if target_subgroup then
+            variant_recipe.subgroup = target_subgroup
+        end
+
+        -- Build the variant icon as the original icon plus a coal-dust overlay
+        -- so the menu clearly shows it is the coal-dust based variant.
+        local base_icons
+
+        if variant_recipe.icons then
+            base_icons = variant_recipe.icons
+        elseif variant_recipe.icon then
+            base_icons = {
+                {
+                    icon = variant_recipe.icon,
+                    icon_size = variant_recipe.icon_size or 64
+                }
+            }
+        end
+
+        if base_icons then
+            table.insert(base_icons, {
+                icon = DustCommon.overlay_icon,
+                icon_size = 64,
+                scale = 0.425,
+                shift = { 10, 10 },
+                tint = DustCommon.tints.coal
+            })
+
+            variant_recipe.icons = base_icons
+            variant_recipe.icon = nil
+            variant_recipe.icon_size = nil
+        end
+
         data:extend({ variant_recipe })
 
         return true
     end
 
-    if add_coal_dust_variant("simple-coal-liquefaction", "5d-simple-coal-liquefaction") then
+    if add_coal_dust_variant("simple-coal-liquefaction", "5d-simple-coal-liquefaction", "liquid-recipe") then
         add_unlock("calcite-processing", "5d-simple-coal-liquefaction")
     end
 
-    if add_coal_dust_variant("carbon", "5d-carbon-from-coal-dust") then
+    if add_coal_dust_variant("carbon", "5d-carbon-from-coal-dust", "orbit-resources") then
         add_unlock("tungsten-carbide", "5d-carbon-from-coal-dust")
     end
 end

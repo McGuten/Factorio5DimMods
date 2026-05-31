@@ -8,6 +8,10 @@ data:extend({
             {
                 type = "unlock-space-location",
                 space_location = "yeters"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = "yeters-spoilage"
             }
         },
         prerequisites = { "promethium-science-pack" },

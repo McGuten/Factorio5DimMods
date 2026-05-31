@@ -59,6 +59,8 @@ If you want the whole suite in one step, install **5dim_modpack**. It depends on
     - Add higher tiers of belts, loaders, inserters, pumps and long underground transport **(Require [Bob Inserters](https://mods.factorio.com/mod/bobinserters))**.
 
 ### Utility modules
+  - **Modpack**.
+    - Metapackage that installs the complete 5Dim suite in one step **(Requires Bob's Inserters, Space Age and Quality)**.
   - **Automated Fuel and Ammo**.
     - Automatically fills vehicles and buildings when you place them.
   - **Development Tools**.

@@ -25,6 +25,7 @@ Keep late-game science useful.
 
 ## Notes
 
+- Mod settings let you enable or disable individual infinite research lines.
 - Best suited for long-running factories with strong science throughput.
 - A natural fit alongside Automation, Module and Logistics-heavy setups.
 

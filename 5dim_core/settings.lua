@@ -13,6 +13,17 @@ data:extend({
         default_value = true,
         hidden = not mods["space-age"]
     },
+    -- Spoil time multiplier: scales spoil_ticks of all perishable items (Space Age only)
+    {
+        type = "double-setting",
+        name = "5d-spoil-time-multiplier",
+        order = "a-ab",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 100,
+        hidden = not mods["space-age"]
+    },
     {
         type = "bool-setting",
         name = "5d-icon-tier-overlay",

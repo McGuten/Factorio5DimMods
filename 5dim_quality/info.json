@@ -1,0 +1,15 @@
+{
+    "name": "5dim_quality",
+    "version": "2.0.0",
+    "factorio_version": "2.0",
+    "title": "5Dim's mod - Quality",
+    "author": "5Dim",
+    "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
+    "homepage": "https://mods.factorio.com/user/McGuten",
+    "description": "Extends the quality ladder up to 10 levels to match 5Dim's tiered progression.\n\rAdds Mythic, Ascended, Divine, Cosmic and Eternal qualities on top of the vanilla ones, recoloured with the 5Dim tier palette.\n\rRequires 5dim_core and the Quality system.",
+    "dependencies": [
+        "5dim_core >= 2.0.42",
+        "quality >= 2.0.0",
+        "? space-age"
+    ]
+}

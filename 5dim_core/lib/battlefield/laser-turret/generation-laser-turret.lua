@@ -84,6 +84,8 @@ function genLaserTurrets(inputs)
         setPrototypeIcon(data.raw.recipe["laser-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
         setPrototypeIcon(data.raw["electric-turret"]["laser-turret"], iconPath, iconSize, table.deepcopy(tieredIcons))
         setPrototypeIcon(data.raw.technology["laser-turret"], techIconPath, techIconSize, table.deepcopy(tieredTechIcons))
+        data.raw["electric-turret"]["laser-turret"].next_upgrade = inputs.nextUpdate or nil
+        data.raw["electric-turret"]["laser-turret"].fast_replaceable_group = "laser-turret"
         applyLaserTurretTints(data.raw["electric-turret"]["laser-turret"], baseTint, turretTint)
         return
     end

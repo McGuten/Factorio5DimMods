@@ -2,8 +2,8 @@ data:extend({
     {
         type = "technology",
         name = "yeters-discovery",
-        icon = "__space-age__/graphics/technology/promethium-science-pack.png",
-        icon_size = 256,
+        icon = "__5dim_yeters__/graphics/icons/yeters.png",
+        icon_size = 64,
         effects = {
             {
                 type = "unlock-space-location",

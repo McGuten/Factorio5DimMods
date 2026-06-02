@@ -4,3 +4,4 @@
 -------------------------------------------------------------------------------
 
 require("prototypes.quality")
+require("prototypes.technology")

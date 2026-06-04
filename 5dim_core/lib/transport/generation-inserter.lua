@@ -94,8 +94,8 @@ function genInserters(inputs)
     entity.next_upgrade = inputs.nextUpdate.bulkInserter or nil
     entity.icon = item.icon
     entity.minable.result = item.name
-    entity.extension_speed = inputs.extensionSpeed
-    entity.rotation_speed = inputs.rotationSpeed
+    entity.extension_speed = inputs.bulkExtensionSpeed or inputs.extensionSpeed
+    entity.rotation_speed = inputs.bulkRotationSpeed or inputs.rotationSpeed
     entity.energy_per_movement = inputs.energyMovement * 4 .. "kJ"
     entity.energy_per_rotation = inputs.energyRotation * 4 .. "kJ"
     entity.pickup_position = { 0, -1 }

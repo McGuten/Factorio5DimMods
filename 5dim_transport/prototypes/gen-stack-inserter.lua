@@ -18,6 +18,9 @@ local baseRotation = 0.014
 local baseEnergy = 5
 local baseDrain = 0.4
 local baseTechCount = 200
+local stackInserterBase = data.raw["inserter"]["stack-inserter"]
+local stackInserterExtension = stackInserterBase.extension_speed
+local stackInserterRotation = stackInserterBase.rotation_speed
 
 local stackInserterTechCounts = {
     [2] = 420,
@@ -224,8 +227,8 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    local extension = CostCalculator.calculateMachineWorkValue(baseExtension, tier, 10, 3)
-    local rotation = CostCalculator.calculateMachineWorkValue(baseRotation, tier, 10, 3)
+    local extension = CostCalculator.calculateMachineWorkValue(stackInserterExtension, tier, 10, 3)
+    local rotation = CostCalculator.calculateMachineWorkValue(stackInserterRotation, tier, 10, 3)
     local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local drain = CostCalculator.scaleMachineEnergy(baseDrain, tier, 3)
     

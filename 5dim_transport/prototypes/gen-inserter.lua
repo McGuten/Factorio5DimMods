@@ -128,6 +128,9 @@ local fastInserterExtension = baseExtension + 0.015
 local fastInserterRotation = baseRotation + 0.015
 local fastInserterEnergy = CostCalculator.scaleEnergy(baseEnergy, 2)
 local fastInserterDrain = baseDrain + 0.015
+local bulkInserterBase = data.raw["inserter"]["bulk-inserter"]
+local bulkInserterExtension = bulkInserterBase.extension_speed
+local bulkInserterRotation = bulkInserterBase.rotation_speed
 
 local function getInserterProgressionTier(tier)
     if tier <= 2 then
@@ -237,9 +240,11 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     local progressionTier = getInserterProgressionTier(tier)
     
-    -- Preserve vanilla tiers and start geometric progression from fast inserter.
+    -- Preserve vanilla inserter tiers and start geometric progression from fast inserter.
     local extension = baseExtension
     local rotation = baseRotation
+    local bulkExtension = bulkInserterExtension
+    local bulkRotation = bulkInserterRotation
     local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
     local drain = baseDrain
 
@@ -253,6 +258,11 @@ for tier = 1, 10 do
         rotation = CostCalculator.calculateMachineWorkValue(fastInserterRotation, progressionTier, 9, 3)
         energy = CostCalculator.scaleMachineEnergy(fastInserterEnergy, progressionTier)
         drain = CostCalculator.scaleMachineEnergy(fastInserterDrain, progressionTier, 3)
+    end
+
+    if tier > 1 then
+        bulkExtension = CostCalculator.calculateMachineWorkValue(bulkInserterExtension, tier, 10, 3)
+        bulkRotation = CostCalculator.calculateMachineWorkValue(bulkInserterRotation, tier, 10, 3)
     end
     
     -- Get ingredients from templates
@@ -315,6 +325,8 @@ for tier = 1, 10 do
         number = tierNum,
         extensionSpeed = extension,
         rotationSpeed = rotation,
+        bulkExtensionSpeed = bulkExtension,
+        bulkRotationSpeed = bulkRotation,
         energyMovement = energy,
         energyRotation = energy,
         energyDrain = drain,

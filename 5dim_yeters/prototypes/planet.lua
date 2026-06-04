@@ -27,12 +27,12 @@ yeters.order = "f[yeters]"
 yeters.subgroup = "planets"
 yeters.map_gen_settings = yetersMapGen.yeters()
 yeters.pollutant_type = nil
-yeters.solar_power_in_space = 50
+yeters.solar_power_in_space = 300
 yeters.surface_properties = {
     ["day-night-cycle"] = 10 * minute,
     ["5dim-agriculture"] = 1,
     ["magnetic-field"] = 99,
-    ["solar-power"] = 50,
+    ["solar-power"] = 100,
     pressure = 300,
     gravity = 15
 }

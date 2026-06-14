@@ -44,3 +44,12 @@ if mods["space-age"] then
         batteryTech.icon_size = nil
     end
 end
+
+local character = data.raw.character and data.raw.character.character
+local armorPictureMapping = character and character.armor_picture_mapping
+
+if armorPictureMapping then
+    for tier = 3, 10 do
+        armorPictureMapping["5d-power-armor-" .. string.format("%02d", tier)] = 3
+    end
+end

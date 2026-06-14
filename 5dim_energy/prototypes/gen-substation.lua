@@ -82,10 +82,6 @@ local function getSubstationDeltaPrerequisite(tier)
     return substationDeltaPrerequisites[tier]
 end
 
-local function clampPoleDistance(value)
-    return math.min(value, 64)
-end
-
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
 -------------------------------------------------------------------------------
@@ -199,8 +195,8 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local wireDistance = clampPoleDistance(CostCalculator.calculateMachineWorkValue(baseWireDistance, tier, 10, 0))
-    local supplyArea = clampPoleDistance(CostCalculator.calculateMachineWorkValue(baseSupplyArea, tier, 10, 0))
+    local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, 64, 0)
+    local supplyArea = CostCalculator.calculateCappedMachineWorkValue(baseSupplyArea, tier, 10, 64, 0)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.substation[tier]

@@ -264,6 +264,34 @@ function CostCalculator.calculateMachineWorkValue(baseValue, tier, totalTiers, d
     return value
 end
 
+function CostCalculator.calculateCappedMachineWorkValue(baseValue, tier, totalTiers, maxValue, decimals)
+    totalTiers = totalTiers or 10
+
+    local capstoneValue = CostCalculator.calculateMachineWorkValue(baseValue, totalTiers, totalTiers)
+    local value
+
+    if capstoneValue <= maxValue or baseValue >= maxValue then
+        value = math.min(CostCalculator.calculateMachineWorkValue(baseValue, tier, totalTiers), maxValue)
+    else
+        local currentExponent = getWorkTierExponent(tier, totalTiers)
+        local maxExponent = getWorkTierExponent(totalTiers, totalTiers)
+
+        if maxExponent <= 0 then
+            value = math.min(baseValue, maxValue)
+        else
+            -- Compress capped prototype stats so the whole family stays distinct
+            -- and T10 still lands on the theoretical next-tier capstone value.
+            value = baseValue * ((maxValue / baseValue) ^ (currentExponent / maxExponent))
+        end
+    end
+
+    if decimals then
+        return roundToDecimals(value, decimals)
+    end
+
+    return value
+end
+
 function CostCalculator.scaleMachineEnergy(baseEnergy, tier, decimals)
     local scaled = baseEnergy
 

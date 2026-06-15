@@ -15,7 +15,12 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseWireDistance = 18
 local baseSupplyArea = 9
+local baseHealth = data.raw["electric-pole"]["substation"].max_health
 local baseTechCount = 250
+local wireDistanceMultiplier = 3
+local supplyAreaMultiplier = 5
+local maxWireDistance = math.min(64, baseWireDistance * wireDistanceMultiplier)
+local maxSupplyArea = math.min(64, baseSupplyArea * supplyAreaMultiplier)
 
 local substationSpaceAgeMaterials = {
     [7] = { name = "holmium-plate", amount = 10, category = "electromagnetics" },
@@ -80,6 +85,17 @@ local function getSubstationDeltaPrerequisite(tier)
     end
 
     return substationDeltaPrerequisites[tier]
+end
+
+local function applyTier11Bonus(value, decimals)
+    local boostedValue = math.min(value * CostConfig.getMachineWorkFactor(), 64)
+    local factor = 10 ^ (decimals or 0)
+
+    return math.floor((boostedValue * factor) + 0.5) / factor
+end
+
+local function getSubstationSupplyArea(wireDistance)
+    return wireDistance / 2
 end
 
 -------------------------------------------------------------------------------
@@ -195,8 +211,14 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, 64, 0)
-    local supplyArea = CostCalculator.calculateCappedMachineWorkValue(baseSupplyArea, tier, 10, 64, 0)
+    local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, maxWireDistance, 0)
+    local supplyArea = getSubstationSupplyArea(wireDistance)
+    local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
+
+    if tier == 10 then
+        wireDistance = applyTier11Bonus(wireDistance, 0)
+        supplyArea = getSubstationSupplyArea(wireDistance)
+    end
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.substation[tier]
@@ -232,6 +254,7 @@ for tier = 1, 10 do
         subgroup = "energy-substation",
         craftingSpeed = wireDistance,
         energyUsage = supplyArea,
+        maxHealth = health,
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

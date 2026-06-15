@@ -15,7 +15,12 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseWireDistance = 9
 local baseSupplyArea = 3.5
+local baseHealth = data.raw["electric-pole"]["medium-electric-pole"].max_health
 local baseTechCount = 150
+local wireDistanceMultiplier = 3
+local supplyAreaMultiplier = 5
+local maxWireDistance = math.min(64, baseWireDistance * wireDistanceMultiplier)
+local maxSupplyArea = math.min(64, baseSupplyArea * supplyAreaMultiplier)
 
 local mediumPoleSpaceAgeMaterials = {
     [7] = { name = "holmium-plate", amount = 6, category = "electromagnetics" },
@@ -80,6 +85,13 @@ local function getMediumPoleDeltaPrerequisite(tier)
     end
 
     return mediumPoleDeltaPrerequisites[tier]
+end
+
+local function applyTier11Bonus(value, decimals)
+    local boostedValue = math.min(value * CostConfig.getMachineWorkFactor(), 64)
+    local factor = 10 ^ (decimals or 0)
+
+    return math.floor((boostedValue * factor) + 0.5) / factor
 end
 
 -------------------------------------------------------------------------------
@@ -195,8 +207,14 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     -- Calculate stats for this tier
-    local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, 64, 0)
-    local supplyArea = CostCalculator.calculateCappedMachineWorkValue(baseSupplyArea, tier, 10, 64, 1)
+    local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, maxWireDistance, 0)
+    local supplyArea = CostCalculator.calculateCappedMachineWorkValue(baseSupplyArea, tier, 10, maxSupplyArea, 1)
+    local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
+
+    if tier == 10 then
+        wireDistance = applyTier11Bonus(wireDistance, 0)
+        supplyArea = applyTier11Bonus(supplyArea, 1)
+    end
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.mediumElectricPole[tier]
@@ -232,6 +250,7 @@ for tier = 1, 10 do
         subgroup = "energy-medium",
         craftingSpeed = wireDistance,
         energyUsage = supplyArea,
+        maxHealth = health,
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

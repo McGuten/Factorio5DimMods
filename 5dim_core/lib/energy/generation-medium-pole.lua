@@ -35,6 +35,7 @@ function genMediumPoles(inputs)
     entity.minable.result = item.name
     entity.maximum_wire_distance = inputs.craftingSpeed
     entity.supply_area_distance = inputs.energyUsage
+    entity.max_health = inputs.maxHealth or entity.max_health
 
     -- Base
     entity.pictures.layers[1].filename =

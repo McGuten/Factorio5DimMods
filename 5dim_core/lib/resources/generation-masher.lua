@@ -21,9 +21,7 @@ function genMasher(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     --Entity
     entity.name = item.name
@@ -40,6 +38,11 @@ function genMasher(inputs)
     entity.graphics_set.animation.layers[1].shift = {0, -0.421875}
     entity.graphics_set.animation.layers[1].scale = 1
     entity.crafting_categories = {"mashering"}
+    -- The masher is a deepcopy of the electric furnace, which allows quality.
+    -- Mashing only re-shapes raw ore into dust, so quality here is just noise and
+    -- a cheap way to launder quality from raw mining; block it at the machine
+    -- level (keeps productivity, speed, consumption and pollution).
+    entity.allowed_effects = {"consumption", "speed", "pollution", "productivity"}
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "5d-masher"
 

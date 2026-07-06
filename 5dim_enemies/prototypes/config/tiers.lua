@@ -46,7 +46,7 @@ Tiers.Settings = {
     death_effects_enabled = (settings.startup["5d-death-effects"] and settings.startup["5d-death-effects"].value) ~= false,
     death_effect_scale = (settings.startup["5d-death-effect-scale"] and settings.startup["5d-death-effect-scale"].value) or 1.0,
     typed_damage_enabled = (settings.startup["5d-typed-damage"] and settings.startup["5d-typed-damage"].value) ~= false,
-    attack_stickers_enabled = (settings.startup["5d-attack-stickers "] and settings.startup["5d-attack-stickers"].value) ~= false
+    attack_stickers_enabled = (settings.startup["5d-attack-stickers"] and settings.startup["5d-attack-stickers"].value) ~= false
 }
 
 -- =============================================================================
@@ -59,16 +59,16 @@ Tiers.base = {
     spitter = SharedConfig.BaseStats.spitter,
     worm = {
         -- Worms scale above vanilla, but should stay within a readable envelope.
-        [1]  = { scale = 0.55, health = 200,  damage = 25,  range = 22, prepare_range = 6,  speed = 0, healing = 0.044 },
-        [2]  = { scale = 0.62, health = 300,  damage = 32,  range = 24, prepare_range = 8,  speed = 0, healing = 0.056 },
-        [3]  = { scale = 0.70, health = 450,  damage = 40,  range = 26, prepare_range = 10, speed = 0, healing = 0.075 },
-        [4]  = { scale = 0.78, health = 675,  damage = 50,  range = 28, prepare_range = 12, speed = 0, healing = 0.095 },
-        [5]  = { scale = 0.88, health = 1000, damage = 64,  range = 31, prepare_range = 14, speed = 0, healing = 0.125 },
-        [6]  = { scale = 0.98, health = 1500, damage = 80,  range = 34, prepare_range = 16, speed = 0, healing = 0.165 },
-        [7]  = { scale = 1.10, health = 2250, damage = 100, range = 37, prepare_range = 20, speed = 0, healing = 0.220 },
-        [8]  = { scale = 1.25, health = 3375, damage = 125, range = 41, prepare_range = 24, speed = 0, healing = 0.300 },
-        [9]  = { scale = 1.45, health = 4800, damage = 155, range = 45, prepare_range = 27, speed = 0, healing = 0.420 },
-        [10] = { scale = 1.70, health = 6500, damage = 190, range = 50, prepare_range = 30, speed = 0, healing = 0.580 }
+        [1]  = { scale = 0.55, health = 200,  damage = 25,  range = 22, prepare_range = 6,  speed = 0, healing = 0.022 },
+        [2]  = { scale = 0.62, health = 300,  damage = 32,  range = 24, prepare_range = 8,  speed = 0, healing = 0.028 },
+        [3]  = { scale = 0.70, health = 450,  damage = 40,  range = 26, prepare_range = 10, speed = 0, healing = 0.0375 },
+        [4]  = { scale = 0.78, health = 675,  damage = 50,  range = 28, prepare_range = 12, speed = 0, healing = 0.0475 },
+        [5]  = { scale = 0.88, health = 1000, damage = 64,  range = 31, prepare_range = 14, speed = 0, healing = 0.0625 },
+        [6]  = { scale = 0.98, health = 1500, damage = 80,  range = 34, prepare_range = 16, speed = 0, healing = 0.0825 },
+        [7]  = { scale = 1.10, health = 2250, damage = 100, range = 37, prepare_range = 20, speed = 0, healing = 0.110 },
+        [8]  = { scale = 1.25, health = 3375, damage = 125, range = 41, prepare_range = 24, speed = 0, healing = 0.150 },
+        [9]  = { scale = 1.45, health = 4800, damage = 155, range = 45, prepare_range = 27, speed = 0, healing = 0.210 },
+        [10] = { scale = 1.70, health = 6500, damage = 190, range = 50, prepare_range = 30, speed = 0, healing = 0.290 }
     }
 }
 

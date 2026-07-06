@@ -22,6 +22,11 @@ function genTransportBelts(inputs)
     -- Copy transport belt
     local itemTransportBelt = table.deepcopy(data.raw.item[transportBeltName])
     local recipeTransportBelt = table.deepcopy(data.raw.recipe[transportBeltName])
+    -- T4 with Space Age is named turbo-* (item/recipe come from turbo), but the
+    -- visual entity is cloned from express-*: the 5Dim belt sprite sheets are
+    -- authored for the express/standard belt animation layout, so T4 stays
+    -- visually consistent with the other 5Dim tiers (and with T3). Turbo's
+    -- alternate-animation sheet layout is incompatible with this art.
     local entityTransportBelt = nil
     if inputs.number == "04" and mods["space-age"] then
         entityTransportBelt = table.deepcopy(data.raw["transport-belt"]["express-transport-belt"])
@@ -49,9 +54,7 @@ function genTransportBelts(inputs)
     else
         recipeTransportBelt.results = { { type = "item", name = recipeTransportBelt.name, amount = 1 } }
     end
-    if recipeCategory then
-        recipeTransportBelt.category = recipeCategory
-    end
+    if recipeCategory then recipeTransportBelt.categories = { recipeCategory } end
     recipeTransportBelt.icon_size = 64
 
     if inputs.new then
@@ -104,9 +107,7 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt.icon = itemUndergroundBelt.icon
     recipeUndergroundBelt.subgroup = "transport-ground"
     recipeUndergroundBelt.icon_size = 64
-    if recipeCategory then
-        recipeUndergroundBelt.category = recipeCategory
-    end
+    if recipeCategory then recipeUndergroundBelt.categories = { recipeCategory } end
     if inputs.new then
         recipeUndergroundBelt.results = { { type = "item", name = recipeUndergroundBelt.name, amount = 2 } }
         recipeUndergroundBelt.ingredients = inputs.ingredients.groundBelt
@@ -165,9 +166,7 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt30.subgroup = "transport-ground-30"
     recipeUndergroundBelt30.icon_size = 64
     recipeUndergroundBelt30.enabled = false
-    if recipeCategory then
-        recipeUndergroundBelt30.category = recipeCategory
-    end
+    if recipeCategory then recipeUndergroundBelt30.categories = { recipeCategory } end
     recipeUndergroundBelt30.results = { { type = "item", name = recipeUndergroundBelt30.name, amount = 2 } }
     recipeUndergroundBelt30.ingredients = inputs.ingredients.groundBelt30
 
@@ -223,9 +222,7 @@ function genTransportBelts(inputs)
     recipeUndergroundBelt50.icon = itemUndergroundBelt50.icon
     recipeUndergroundBelt50.subgroup = "transport-ground-50"
     recipeUndergroundBelt50.icon_size = 64
-    if recipeCategory then
-        recipeUndergroundBelt50.category = recipeCategory
-    end
+    if recipeCategory then recipeUndergroundBelt50.categories = { recipeCategory } end
     recipeUndergroundBelt50.results = { { type = "item", name = recipeUndergroundBelt50.name, amount = 2 } }
     recipeUndergroundBelt50.ingredients = inputs.ingredients.groundBelt50
 
@@ -277,9 +274,7 @@ function genTransportBelts(inputs)
     recipeSplitter.icon = itemSplitter.icon
     recipeSplitter.subgroup = "transport-splitters"
     recipeSplitter.icon_size = 64
-    if recipeCategory then
-        recipeSplitter.category = recipeCategory
-    end
+    if recipeCategory then recipeSplitter.categories = { recipeCategory } end
     if inputs.new then
         recipeSplitter.results = { { type = "item", name = recipeSplitter.name, amount = 1 } }
         recipeSplitter.ingredients = inputs.ingredients.splitter
@@ -346,9 +341,7 @@ function genTransportBelts(inputs)
     recipeLoader.subgroup = "transport-loader"
     recipeLoader.icon_size = 64
     recipeLoader.hidden = false
-    if recipeCategory then
-        recipeLoader.category = recipeCategory
-    end
+    if recipeCategory then recipeLoader.categories = { recipeCategory } end
     if inputs.new then
         recipeLoader.results = { { type = "item", name = recipeLoader.name, amount = 1 } }
         recipeLoader.ingredients = inputs.ingredients.loader
@@ -402,9 +395,7 @@ function genTransportBelts(inputs)
     recipeLoader1.subgroup = "transport-loader-1x1"
     recipeLoader1.icon_size = 64
     recipeLoader1.hidden = false
-    if recipeCategory then
-        recipeLoader1.category = recipeCategory
-    end
+    if recipeCategory then recipeLoader1.categories = { recipeCategory } end
     recipeLoader1.results = { { type = "item", name = itemLoader1.name, amount = 1 } }
     recipeLoader1.ingredients = inputs.ingredients.loader1
 

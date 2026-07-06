@@ -4,6 +4,7 @@
 -------------------------------------------------------------------------------
 
 local tierColors = require("__5dim_core__.lib.tier-colors")
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 local RepairSpeedScaling = require("__5dim_core__.lib.repair-speed-scaling")
 local CostConfig = require("__5dim_core__.lib.costs.config")
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
@@ -253,8 +254,7 @@ for tier, config in pairs(tierConfig) do
     local item = {
         type = "item",
         name = name,
-        icon = "__base__/graphics/icons/wall.png",
-        icon_size = 64,
+        icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/wall.png", tier, 64),
         subgroup = "defense-decoy",
         order = config.order,
         place_result = name,
@@ -269,14 +269,13 @@ for tier, config in pairs(tierConfig) do
         ingredients = getDecoyIngredients(tier),
         results = { { type = "item", name = name, amount = 1 } }
     }
-    recipe.category = getDecoyRecipeCategory(tier)
+    if getDecoyRecipeCategory(tier) then recipe.categories = { getDecoyRecipeCategory(tier) } end
     
     -- Entity (simple-entity-with-owner for military target)
     local entity = {
         type = "simple-entity-with-owner",
         name = name,
-        icon = "__base__/graphics/icons/wall.png",
-        icon_size = 64,
+        icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/wall.png", tier, 64),
         flags = { "placeable-neutral", "placeable-player", "player-creation" },
         minable = { mining_time = 0.2, result = name },
         max_health = health,
@@ -333,8 +332,7 @@ for tier, config in pairs(tierConfig) do
         local tech = {
             type = "technology",
             name = "5d-decoy-" .. tier,
-            icon = "__base__/graphics/icons/wall.png",
-            icon_size = 64,
+            icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/wall.png", tier, 64),
             unit = {
                 count = baseTechCount * tier,
                 ingredients = CostCalculator.getTechPacks(tierTech.basePacks, tier, {

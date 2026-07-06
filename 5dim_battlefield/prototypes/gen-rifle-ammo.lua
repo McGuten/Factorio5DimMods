@@ -14,6 +14,24 @@ local tungstenRifleMagazineTechIcon = "__5dim_battlefield__/graphics/icon/rifle/
 local uraniumTungstenRifleMagazineIcon = "__5dim_battlefield__/graphics/icon/rifle/uranium-tungsten-rifle-magazine.png"
 local uraniumTungstenRifleMagazineTechIcon = "__5dim_battlefield__/graphics/icon/rifle/uranium-tungsten-rifle-magazine-tech.png"
 
+local function set_ammo_damage(ammo, damage)
+    if not ammo or not ammo.ammo_type or not ammo.ammo_type.action or not ammo.ammo_type.action.action_delivery then
+        return
+    end
+
+    local target_effects = ammo.ammo_type.action.action_delivery.target_effects
+    if type(target_effects) ~= "table" then
+        return
+    end
+
+    for _, effect in pairs(target_effects) do
+        if type(effect) == "table" and effect.type == "damage" and effect.damage then
+            effect.damage.amount = damage
+            return
+        end
+    end
+end
+
 local function make_ammo(name, icon, order, damage)
     local ammo = table.deepcopy(data.raw.ammo["piercing-rounds-magazine"])
 
@@ -24,7 +42,7 @@ local function make_ammo(name, icon, order, damage)
     ammo.pictures = nil
     ammo.subgroup = "equipment-bullet"
     ammo.order = order
-    ammo.ammo_type.action.action_delivery.target_effects[2].damage.amount = damage
+    set_ammo_damage(ammo, damage)
 
     return ammo
 end

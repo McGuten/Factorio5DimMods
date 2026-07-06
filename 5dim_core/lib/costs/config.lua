@@ -22,10 +22,14 @@ CostConfig.machineTechFactor = settings.startup["5d-machine-tech-factor"].value
 CostConfig.machineT10NextTierWork = settings.startup["5d-machine-t10-next-tier-work"].value
 CostConfig.machineT10ExtraModuleSlots = settings.startup["5d-machine-t10-extra-module-slots"].value
 
--- Legacy global multipliers retained as neutral compatibility values while
--- machine generators migrate to the new progression settings.
+-- techMultiplier retained as a neutral compatibility value: technology cost is
+-- controlled by the 5d-machine-tech-factor progression setting, not a global
+-- tech multiplier (there is no 5d-tech-cost-multiplier setting).
 CostConfig.techMultiplier = 1.0
-CostConfig.recipeMultiplier = 1.0
+-- Global recipe cost multiplier (player-facing). Applies to legacy ingredient
+-- scaling and Space Age material amounts; machine families that use
+-- calculateMachineRecipeAmount are governed by 5d-machine-recipe-factor instead.
+CostConfig.recipeMultiplier = settings.startup["5d-recipe-cost-multiplier"].value
 CostConfig.craftingTimeMultiplier = settings.startup["5d-crafting-time-multiplier"].value
 
 -- Check if Space Age is installed
@@ -133,13 +137,16 @@ CostConfig.spaceAgeMaterials = {
         amount = 10
     },
     -- Tier 9-10: Aquilo materials
+    -- These are among the most expensive items in the game and apply to every
+    -- non-bulk family at t9/t10, so the absolute amounts are kept low to avoid
+    -- a tedious end-game grind.
     [9] = {
         material = "superconductor",
-        amount = 5
+        amount = 2
     },
     [10] = {
         material = "quantum-processor",
-        amount = 10
+        amount = 3
     }
 }
 

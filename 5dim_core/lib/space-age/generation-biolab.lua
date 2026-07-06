@@ -3,27 +3,39 @@
 -- Creates tiered biolab prototypes for Space Age
 -------------------------------------------------------------------------------
 
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genBiolab(inputs)
     -- Copy biolab
     local item = table.deepcopy(data.raw.item["biolab"])
     local recipe = table.deepcopy(data.raw.recipe["biolab"])
     local entity = table.deepcopy(data.raw["lab"]["biolab"])
 
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(
+        "__5dim_space_age__/graphics/icon/biolab/biolab-" ..
+        string.format("%02d", inputs.number) .. ".png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     --Item
     if inputs.new then
         item.name = "5d-biolab-" .. inputs.number
     end
-    item.icon = "__5dim_space_age__/graphics/icon/biolab/biolab-" .. string.format("%02d", inputs.number) .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new and inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
+        if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     end
     if inputs.new then
         recipe.enabled = false
@@ -34,7 +46,7 @@ function genBiolab(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     entity.researching_speed = inputs.researchSpeed
     entity.module_slots = inputs.moduleSlots
@@ -48,8 +60,7 @@ function genBiolab(inputs)
     if inputs.tech then
         local tech = table.deepcopy(data.raw.technology["biolab"])
         tech.name = "5d-biolab-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

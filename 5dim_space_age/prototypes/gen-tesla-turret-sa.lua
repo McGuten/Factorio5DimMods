@@ -33,7 +33,7 @@ local baseEnergyPerShot = 12000 -- kJ, matches vanilla tesla-turret
 local baseInputFlowLimit = 7000 -- kW
 local baseBufferCapacity = 15000 -- kJ
 local baseDrain = 1000 -- kW
-local baseHealth = baseEntity.max_health or 1000
+local baseHealth = baseEntity.max_health or 2000
 local healthIncrement = math.floor(((baseHealth * 4) / 9) + 0.5)
 local baseTechCount = 500
 

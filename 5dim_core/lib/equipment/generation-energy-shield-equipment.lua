@@ -34,9 +34,7 @@ function genEnergyShields(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     -- Equipment
     equipment.name = item.name
@@ -46,6 +44,11 @@ function genEnergyShields(inputs)
     equipment.energy_source.input_flow_limit = inputs.inputFlow .. "kW"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/energy-shield/energy-shield-equipment-" .. inputs.number .. ".png"
+    -- 5Dim sprite is 64x64; match it (vanilla copy declared 128x128 @ scale 0.5).
+    equipment.sprite.width = 64
+    equipment.sprite.height = 64
+    equipment.sprite.size = nil
+    equipment.sprite.scale = 1
 
     data:extend({equipment, recipe, item})
 

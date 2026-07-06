@@ -135,8 +135,7 @@ end
 -- @return: New table with scaled ingredients
 function CostCalculator.scaleIngredients(ingredients, tier, isBulkItem)
     local scaled = {}
-    local modeMultiplier = CostConfig.getRecipeMultiplier()
-    
+
     for i, ingredient in ipairs(ingredients) do
         local newIngredient = {
             type = ingredient.type,

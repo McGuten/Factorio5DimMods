@@ -19,9 +19,7 @@ function genSteamTurbines(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     if inputs.new then
         recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
@@ -39,11 +37,28 @@ function genSteamTurbines(inputs)
     entity.fast_replaceable_group = "steam-turbine"
 
     -- Base
-    entity.horizontal_animation.layers[1].filename =
+    local horizontal_filename =
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-H/steam-turbine-H-" .. inputs.number .. ".png"
-    entity.vertical_animation.layers[1].filename =
+    local vertical_filename =
         "__5dim_nuclear__/graphics/entities/steam-turbine/steam-turbine-V/steam-turbine-V-" .. inputs.number .. ".png"
-    entity.vertical_animation.layers[1].height = 347
+
+    if entity.horizontal_animation and entity.horizontal_animation.layers and entity.horizontal_animation.layers[1] then
+        entity.horizontal_animation.layers[1].filename = horizontal_filename
+    elseif entity.pictures and entity.pictures.east and entity.pictures.east.animation and entity.pictures.east.animation.layers and entity.pictures.east.animation.layers[1] then
+        entity.pictures.east.animation.layers[1].filename = horizontal_filename
+    end
+
+    if entity.vertical_animation and entity.vertical_animation.layers and entity.vertical_animation.layers[1] then
+        entity.vertical_animation.layers[1].filename = vertical_filename
+    elseif entity.pictures and entity.pictures.north and entity.pictures.north.animation and entity.pictures.north.animation.layers and entity.pictures.north.animation.layers[1] then
+        entity.pictures.north.animation.layers[1].filename = vertical_filename
+    end
+
+    if entity.vertical_animation and entity.vertical_animation.layers and entity.vertical_animation.layers[1] then
+        entity.vertical_animation.layers[1].height = 347
+    elseif entity.pictures and entity.pictures.north and entity.pictures.north.animation and entity.pictures.north.animation.layers and entity.pictures.north.animation.layers[1] then
+        entity.pictures.north.animation.layers[1].height = 347
+    end
 
     data:extend({ entity, recipe, item })
 

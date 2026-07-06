@@ -193,11 +193,33 @@ local function mergeNamedAutoplaceSettings(target, source, settingType, names)
     end
 end
 
+-- Raw prototype types backing each autoplace setting type, used to skip names
+-- that don't exist in this mod set (the borrowed planet name lists reference a
+-- few decoratives/entities that aren't present, e.g. "fulgoran-gravewort").
+local autoplaceRawTypes = {
+    decorative = { "optimized-decorative" },
+    entity = {
+        "resource", "simple-entity", "simple-entity-with-owner", "tree", "plant",
+        "unit-spawner", "turret", "fish", "cliff", "fire"
+    }
+}
+
+local function prototypeExists(settingType, name)
+    for _, rawType in ipairs(autoplaceRawTypes[settingType] or {}) do
+        if data.raw[rawType] and data.raw[rawType][name] then
+            return true
+        end
+    end
+    return false
+end
+
 local function addAutoplaceSettings(settings, settingType, names)
     local targetSettings = ensureAutoplaceSettings(settings, settingType)
 
     for _, name in ipairs(names) do
-        targetSettings[name] = targetSettings[name] or {}
+        if prototypeExists(settingType, name) then
+            targetSettings[name] = targetSettings[name] or {}
+        end
     end
 end
 

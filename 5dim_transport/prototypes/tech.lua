@@ -1,4 +1,4 @@
--- NOTE: This file is NOT used. Technologies are generated automatically
+﻿-- NOTE: This file is NOT used. Technologies are generated automatically
 -- by gen-transport-belt.lua. Keeping this as reference only.
 -- If this file is included, it will cause duplicate technology errors.
 
@@ -8,7 +8,7 @@ if mods["space-age"] then
         {
             type = "technology",
             name = "logistics-4",
-            icon = "__base__/graphics/technology/logistics.png",
+            icon = "__base__/graphics/technology/logistics-1.png",
             icon_size = 256,
             effects = {},
             prerequisites = {"logistics-3", "production-science-pack"},

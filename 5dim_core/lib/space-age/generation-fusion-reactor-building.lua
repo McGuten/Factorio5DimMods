@@ -3,25 +3,37 @@
 -- Creates tiered fusion reactor building prototypes for Space Age
 -------------------------------------------------------------------------------
 
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genFusionReactorBuilding(inputs)
     -- Copy fusion reactor
     local item = table.deepcopy(data.raw.item["fusion-reactor"])
     local recipe = table.deepcopy(data.raw.recipe["fusion-reactor"])
     local entity = table.deepcopy(data.raw["fusion-reactor"]["fusion-reactor"])
 
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(
+        "__5dim_space_age__/graphics/icon/fusion-reactor/fusion-reactor-" ..
+        string.format("%02d", inputs.number) .. ".png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     --Item
     if inputs.new then
         item.name = "5d-fusion-reactor-building-" .. inputs.number
     end
-    item.icon = "__5dim_space_age__/graphics/icon/fusion-reactor/fusion-reactor-" .. string.format("%02d", inputs.number) .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new then
         recipe.enabled = false
         recipe.ingredients = inputs.ingredients
@@ -31,7 +43,7 @@ function genFusionReactorBuilding(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     -- Fusion reactor has power_input and max_fluid_usage
     -- Scale max_fluid_usage proportionally to power (base: 4/second at 500MW ~ 0.008/MW)
@@ -45,8 +57,7 @@ function genFusionReactorBuilding(inputs)
     if inputs.tech then
         local tech = table.deepcopy(data.raw.technology["fusion-reactor"])
         tech.name = "5d-fusion-reactor-building-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

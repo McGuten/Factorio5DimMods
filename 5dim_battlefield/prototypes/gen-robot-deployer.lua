@@ -733,7 +733,7 @@ for tier = 1, 10 do
         results = { { type = "item", name = entityName, amount = 1 } },
         icons = table.deepcopy(itemIcons)
     }
-    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, robotDeployerSpaceAgeMaterials)
+    if CostCalculator.getSpaceAgeRecipeCategory(tier, robotDeployerSpaceAgeMaterials) then recipe.categories = { CostCalculator.getSpaceAgeRecipeCategory(tier, robotDeployerSpaceAgeMaterials) } end
     
     -- Technology
     local tech = nil

@@ -1,7 +1,7 @@
 {
     "name": "5dim_modpack",
-    "version": "2.0.0",
-    "factorio_version": "2.0",
+    "version": "2.1.0",
+    "factorio_version": "2.1",
     "title": "5Dim's mod - Modpack",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
@@ -25,6 +25,7 @@
         "5dim_mining >= 2.0.4",
         "5dim_module >= 2.0.10",
         "5dim_nuclear >= 2.0.4",
+        "5dim_quality >= 2.1.0",
         "5dim_resources >= 2.0.6",
         "5dim_space_age >= 2.0.0",
         "5dim_yeters >= 2.0.0",

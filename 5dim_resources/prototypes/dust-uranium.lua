@@ -13,7 +13,7 @@ data:extend({
         type = "recipe",
         name = "5d-uranium-dust",
         enabled = false,
-        category = "mashering",
+        categories = { "mashering" },
         subgroup = "nuclear-recipe",
         order = "a[uranium-processing]-a[5d-uranium-dust]",
         energy_required = 3.2,
@@ -29,10 +29,11 @@ data:extend({
     {
         type = "recipe",
         name = "5d-uranium-processing",
+        allow_quality = false,
         energy_required = 12,
         enabled = false,
         auto_recycle = false,
-        category = "centrifuging",
+        categories = { "centrifuging" },
         ingredients = {
             { type = "item", name = "5d-uranium-dust", amount = 10 }
         },
@@ -43,13 +44,13 @@ data:extend({
             {
                 type = "item",
                 name = "uranium-235",
-                probability = 0.007,
+                independent_probability = 0.007,
                 amount = 1
             },
             {
                 type = "item",
                 name = "uranium-238",
-                probability = 0.993,
+                independent_probability = 0.993,
                 amount = 1
             }
         },

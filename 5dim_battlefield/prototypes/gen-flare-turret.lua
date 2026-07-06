@@ -655,7 +655,7 @@ for tier = 1, 10 do
         ingredients = ingredients,
         results = { { type = "item", name = entityName, amount = 1 } },
         icons = table.deepcopy(itemIcons),
-        category = recipeCategory
+        categories = { recipeCategory }
     }
     
     -- Technology

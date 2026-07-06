@@ -448,7 +448,7 @@ data:extend({
             { type = "fluid", name = "sulfuric-acid", amount = 100 }
         },
         results = { { type = "item", name = "5d-artillery-shell-acid", amount = 1 } },
-        category = "crafting-with-fluid"
+        categories = { "crafting-with-fluid" }
     },
     {
         type = "technology",

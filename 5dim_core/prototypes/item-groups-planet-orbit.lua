@@ -15,9 +15,21 @@ data:extend(
         },
         {
             type = "item-subgroup",
+            name = "orbit-silo",
+            group = "orbit",
+            order = "aa"
+        },
+        {
+            type = "item-subgroup",
             name = "orbit-cargo-bay",
             group = "orbit",
             order = "b"
+        },
+        {
+            type = "item-subgroup",
+            name = "orbit-unloading-bay",
+            group = "orbit",
+            order = "ba"
         },
         {
             type = "item-subgroup",

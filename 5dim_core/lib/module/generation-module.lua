@@ -77,9 +77,7 @@ function genModules(inputs)
     --Recipe
     recipeSpeed.name = itemSpeed.name
     recipeSpeed.icon = itemSpeed.icon
-    if recipeCategory("speed") then
-        recipeSpeed.category = recipeCategory("speed")
-    end
+    if recipeCategory("speed") then recipeSpeed.categories = { recipeCategory("speed") } end
     recipeSpeed.results = { { type = "item", name = itemSpeed.name, amount = 1 } }
     recipeSpeed.icon_size = 64
     if inputs.new then
@@ -135,9 +133,7 @@ function genModules(inputs)
     --Recipe
     recipeEffectivity.name = itemEffectivity.name
     recipeEffectivity.icon = itemEffectivity.icon
-    if recipeCategory("effectivity") then
-        recipeEffectivity.category = recipeCategory("effectivity")
-    end
+    if recipeCategory("effectivity") then recipeEffectivity.categories = { recipeCategory("effectivity") } end
     recipeEffectivity.results = { { type = "item", name = itemEffectivity.name, amount = 1 } }
     recipeEffectivity.icon_size = 64
     if inputs.new then
@@ -193,9 +189,7 @@ function genModules(inputs)
     --Recipe
     recipeProductivity.name = itemProductivity.name
     recipeProductivity.icon = itemProductivity.icon
-    if recipeCategory("productivity") then
-        recipeProductivity.category = recipeCategory("productivity")
-    end
+    if recipeCategory("productivity") then recipeProductivity.categories = { recipeCategory("productivity") } end
     recipeProductivity.results = { { type = "item", name = recipeProductivity.name, amount = 1 } }
     recipeProductivity.icon_size = 64
     if inputs.new then
@@ -252,9 +246,7 @@ function genModules(inputs)
         --Recipe
         recipeQuality.name = itemQuality.name
         recipeQuality.icon = itemQuality.icon
-        if recipeCategory("quality") then
-            recipeQuality.category = recipeCategory("quality")
-        end
+        if recipeCategory("quality") then recipeQuality.categories = { recipeCategory("quality") } end
         recipeQuality.results = { { type = "item", name = recipeQuality.name, amount = 1 } }
         recipeQuality.icon_size = 64
         if inputs.new then
@@ -323,16 +315,14 @@ function genModules(inputs)
     --Recipe
     recipeMerged.name = itemMerged.name
     recipeMerged.icon = itemMerged.icon
-    if recipeCategory("merged") then
-        recipeMerged.category = recipeCategory("merged")
-    end
+    if recipeCategory("merged") then recipeMerged.categories = { recipeCategory("merged") } end
     recipeMerged.results = { { type = "item", name = recipeMerged.name, amount = 1 } }
     recipeMerged.icon_size = 64
     if inputs.new then
         recipeMerged.enabled = false
     end
     recipeMerged.ingredients = inputs.ingredients.merged
-    recipeMerged.energy_required = inputs.timeCraft
+    recipeMerged.energy_required = inputs.timeCraftMerged or inputs.timeCraft
 
     data:extend({ recipeMerged, itemMerged })
 

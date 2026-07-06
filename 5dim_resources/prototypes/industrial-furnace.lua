@@ -33,6 +33,10 @@ entity.icon_size = 32
 entity.minable.result = item.name
 entity.crafting_speed = 7
 entity.module_slots = 4
+-- Deepcopy of the electric furnace (which allows quality). The industrial furnace
+-- is the bulk no-fuss smelter; quality plates should come from the standard
+-- furnace route, so block quality here (keeps productivity/speed/consumption/pollution).
+entity.allowed_effects = {"consumption", "speed", "pollution", "productivity"}
 entity.energy_usage = 7500 .. "kW"
 entity.graphics_set.animation = {
     filename = "__5dim_resources__/graphics/entities/industrial-furnace/industrial-furnace.png",

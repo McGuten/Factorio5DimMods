@@ -1,3 +1,5 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genElectromagneticPlant(inputs)
     -- Copy electromagnetic-plant
     local item = table.deepcopy(data.raw.item["electromagnetic-plant"])
@@ -6,19 +8,29 @@ function genElectromagneticPlant(inputs)
     -- Use a technology with unit field as base (electromagnetic-plant tech uses research_trigger)
     local tech = table.deepcopy(data.raw.technology["production-science-pack"])
 
+    local tierNumber = tonumber(inputs.number) or 1
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(
+        "__5dim_space_age__/graphics/icon/electromagnetic-plant/electromagnetic-plant-" ..
+        string.format("%02d", inputs.number) .. ".png", tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     --Item
     if inputs.new then
         item.name = "5d-electromagnetic-plant-" .. inputs.number
     end
-    item.icon = "__5dim_space_age__/graphics/icon/electromagnetic-plant/electromagnetic-plant-" .. string.format("%02d", inputs.number) .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     if inputs.new then
         recipe.enabled = false
     end
@@ -30,7 +42,7 @@ function genElectromagneticPlant(inputs)
     --Entity
     entity.name = item.name
     entity.next_upgrade = inputs.nextUpdate or nil
-    entity.icon = item.icon
+    setPrototypeIcons(entity)
     entity.minable.result = item.name
     entity.crafting_speed = inputs.craftingSpeed
     entity.module_slots = inputs.moduleSlots
@@ -43,8 +55,7 @@ function genElectromagneticPlant(inputs)
     -- Technology
     if inputs.tech then
         tech.name = "5d-electromagnetic-plant-" .. inputs.tech.number
-        tech.icon = item.icon
-        tech.icon_size = 64
+        setPrototypeIcons(tech)
         tech.unit.count = inputs.tech.count
         tech.unit.ingredients = inputs.tech.packs
         tech.prerequisites = inputs.tech.prerequisites

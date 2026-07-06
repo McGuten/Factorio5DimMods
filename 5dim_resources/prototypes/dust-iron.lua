@@ -16,7 +16,7 @@ data:extend({
         icon_size = 64,
         subgroup = "plates-plates2",
         order = "a",
-        category = "smelting",
+        categories = { "smelting" },
         energy_required = 3.2,
         allow_productivity = true,
         ingredients = {
@@ -30,7 +30,7 @@ data:extend({
         type = "recipe",
         name = "5d-iron-dust",
         enabled = false,
-        category = "mashering",
+        categories = { "mashering" },
         energy_required = 3.2,
         allow_productivity = true,
         icons = DustCommon.make_dust_icons("__base__/graphics/icons/iron-ore.png", DustCommon.tints.iron),

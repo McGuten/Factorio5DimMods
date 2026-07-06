@@ -17,8 +17,8 @@ local baseEntity = data.raw["ammo-turret"] and data.raw["ammo-turret"]["rocket-t
 
 local baseRange = baseEntity.attack_parameters and baseEntity.attack_parameters.range or 36
 local rangeIncrement = 3
-local baseRotationSpeed = 0.006
-local baseHealth = baseEntity.max_health or 1000
+local baseRotationSpeed = baseEntity.rotation_speed or 0.005
+local baseHealth = baseEntity.max_health or 1500
 local healthIncrement = math.floor(((baseHealth * 4) / 9) + 0.5)
 local baseTechCount = 500
 

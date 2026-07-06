@@ -7,7 +7,7 @@ data:extend(
             icon_size = 64,
             subgroup = "plates-industrial-dust",
             order = "aa",
-            category = "industrial-furnace",
+            categories = { "industrial-furnace" },
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
@@ -24,7 +24,7 @@ data:extend(
             icon_size = 64,
             subgroup = "plates-industrial-ore",
             order = "aa",
-            category = "industrial-furnace",
+            categories = { "industrial-furnace" },
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
@@ -41,7 +41,7 @@ data:extend(
             icon_size = 64,
             subgroup = "plates-industrial-dust",
             order = "ab",
-            category = "industrial-furnace",
+            categories = { "industrial-furnace" },
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
@@ -58,7 +58,7 @@ data:extend(
             icon_size = 64,
             subgroup = "plates-industrial-ore",
             order = "ab",
-            category = "industrial-furnace",
+            categories = { "industrial-furnace" },
             energy_required = 65,
             allow_productivity = true,
             ingredients = {
@@ -75,7 +75,7 @@ data:extend(
             icon_size = 64,
             subgroup = "plates-industrial-ore",
             order = "zz",
-            category = "industrial-furnace",
+            categories = { "industrial-furnace" },
             energy_required = 90,
             allow_productivity = true,
             ingredients = {

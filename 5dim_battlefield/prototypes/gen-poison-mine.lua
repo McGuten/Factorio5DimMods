@@ -300,7 +300,7 @@ for tier, config in pairs(tierConfig) do
     recipe.icons = table.deepcopy(tieredIcons)
     recipe.results = { { type = "item", name = name, amount = 1 } }
     recipe.ingredients = getPoisonMineIngredients(tier, normalMineName)
-    recipe.category = getPoisonMineRecipeCategory(tier)
+    if getPoisonMineRecipeCategory(tier) then recipe.categories = { getPoisonMineRecipeCategory(tier) } end
     
     -- Entity
     entity.name = name

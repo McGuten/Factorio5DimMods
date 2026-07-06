@@ -1,3 +1,5 @@
+local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
+
 function genBatterys(inputs)
     -- Skip vanilla tiers (when new = false) - don't modify base game prototypes
     if not inputs.new then
@@ -19,23 +21,30 @@ function genBatterys(inputs)
         equipment = table.deepcopy(data.raw["battery-equipment"]["battery-mk2-equipment"])
     end
 
+    local tierNumber = tonumber(inputs.number) or 1
+    local baseIcon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-" .. inputs.number .. ".png"
+    local tieredIcons = TierBadgeIcons.buildTieredIcons(baseIcon, tierNumber, 64)
+
+    local function setPrototypeIcons(prototype)
+        prototype.icon = nil
+        prototype.icon_size = nil
+        prototype.icons = table.deepcopy(tieredIcons)
+    end
+
     --Item
     item.name = "5d-battery-equipment-" .. inputs.number
-    item.icon = "__5dim_equipment__/graphics/icon/battery/battery-equipment-icon-" .. inputs.number .. ".png"
+    setPrototypeIcons(item)
     item.subgroup = inputs.subgroup
     item.order = inputs.order
     item.place_as_equipment_result = item.name
 
     --Recipe
     recipe.name = item.name
-    recipe.icon = item.icon
-    recipe.icon_size = 64
+    setPrototypeIcons(recipe)
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     -- Equipment
     equipment.name = item.name
@@ -45,6 +54,8 @@ function genBatterys(inputs)
         "__5dim_equipment__/graphics/equipment/battery/battery-equipment-" .. inputs.number .. ".png"
     equipment.sprite.width = 32
     equipment.sprite.height = 64
+    equipment.sprite.size = nil
+    equipment.sprite.scale = 1
 
     data:extend({equipment, recipe, item})
 
@@ -54,16 +65,12 @@ function genBatterys(inputs)
         tech.name = "5d-battery-equipment-" .. inputs.tech.number
         if tech.icons and tech.icons[2] then
             tech.icons[1] = {
-                icon = item.icon,
+                icon = baseIcon,
                 icon_size = 64
             }
+            tech.icons = TierBadgeIcons.buildTieredIconsFromIcons(tech.icons, tierNumber)
         else
-            tech.icons = {
-                {
-                    icon = item.icon,
-                    icon_size = 64
-                }
-            }
+            tech.icons = TierBadgeIcons.buildTieredIcons(baseIcon, tierNumber, 64)
         end
         tech.icon = nil
         tech.icon_size = nil

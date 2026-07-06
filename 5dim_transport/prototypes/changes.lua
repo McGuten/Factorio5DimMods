@@ -1,26 +1,44 @@
+-- Add recipe unlocks to an existing technology, guarding against the tech being
+-- absent (e.g. an overhaul mod that renames or removes vanilla logistics techs),
+-- which would otherwise crash data-stage. Mirrors the helper in
+-- 5dim_resources/prototypes/tech.lua and dust-coal.lua.
+local function add_unlocks(technology_name, recipe_names)
+    local technology = data.raw.technology[technology_name]
+
+    if technology == nil or technology.effects == nil then
+        return
+    end
+
+    for _, recipe_name in pairs(recipe_names) do
+        table.insert(technology.effects, { type = "unlock-recipe", recipe = recipe_name })
+    end
+end
+
 -- Logistics
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "5d-underground-belt-30-01" })
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "5d-underground-belt-50-01" })
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "loader" })
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk1-30" })
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "5d-pipe-to-ground-mk1-50" })
-table.insert(data.raw.technology["logistics"].effects, { type = "unlock-recipe", recipe = "5d-loader-1x1-01" })
+add_unlocks("logistics", {
+    "5d-underground-belt-30-01",
+    "5d-underground-belt-50-01",
+    "loader",
+    "5d-pipe-to-ground-mk1-30",
+    "5d-pipe-to-ground-mk1-50",
+    "5d-loader-1x1-01"
+})
 
 -- Logistics 2
-table.insert(data.raw.technology["logistics-2"].effects,
-    { type = "unlock-recipe", recipe = "5d-fast-underground-belt-30-02" })
-table.insert(data.raw.technology["logistics-2"].effects,
-    { type = "unlock-recipe", recipe = "5d-fast-underground-belt-50-02" })
-table.insert(data.raw.technology["logistics-2"].effects, { type = "unlock-recipe", recipe = "fast-loader" })
-table.insert(data.raw.technology["logistics-2"].effects, { type = "unlock-recipe", recipe = "5d-loader-1x1-02" })
+add_unlocks("logistics-2", {
+    "5d-fast-underground-belt-30-02",
+    "5d-fast-underground-belt-50-02",
+    "fast-loader",
+    "5d-loader-1x1-02"
+})
 
 -- Logistics 3
-table.insert(data.raw.technology["logistics-3"].effects,
-    { type = "unlock-recipe", recipe = "5d-express-underground-belt-30-03" })
-table.insert(data.raw.technology["logistics-3"].effects,
-    { type = "unlock-recipe", recipe = "5d-express-underground-belt-50-03" })
-table.insert(data.raw.technology["logistics-3"].effects, { type = "unlock-recipe", recipe = "express-loader" })
-table.insert(data.raw.technology["logistics-3"].effects, { type = "unlock-recipe", recipe = "5d-loader-1x1-03" })
+add_unlocks("logistics-3", {
+    "5d-express-underground-belt-30-03",
+    "5d-express-underground-belt-50-03",
+    "express-loader",
+    "5d-loader-1x1-03"
+})
 
 -- Tier 4 handling
 -- With Space Age: tier 4 is turbo-transport-belt (vanilla), only extended variants (30, 50, 1x1) are generated
@@ -29,12 +47,12 @@ if mods["space-age"] then
     -- Add extended tier 4 variants to turbo-transport-belt technology
     -- Note: With Space Age, tier 4 uses turbo-loader (vanilla), not 5d-loader-04
     -- Only underground-30, underground-50, and loader-1x1 variants are generated with 5d naming
-    if data.raw.technology["turbo-transport-belt"] then
-        table.insert(data.raw.technology["turbo-transport-belt"].effects, { type = "unlock-recipe", recipe = "turbo-loader" })
-        table.insert(data.raw.technology["turbo-transport-belt"].effects, { type = "unlock-recipe", recipe = "5d-underground-belt-30-04" })
-        table.insert(data.raw.technology["turbo-transport-belt"].effects, { type = "unlock-recipe", recipe = "5d-underground-belt-50-04" })
-        table.insert(data.raw.technology["turbo-transport-belt"].effects, { type = "unlock-recipe", recipe = "5d-loader-1x1-04" })
-    end
+    add_unlocks("turbo-transport-belt", {
+        "turbo-loader",
+        "5d-underground-belt-30-04",
+        "5d-underground-belt-50-04",
+        "5d-loader-1x1-04"
+    })
 end
 
 -- Misc

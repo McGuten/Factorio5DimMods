@@ -20,9 +20,7 @@ function genFusionReactors(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     recipe.enabled = false
     if inputs.new then
         recipe.results = { { type = "item", name = item.name, amount = 1 } }

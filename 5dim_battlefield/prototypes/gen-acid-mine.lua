@@ -294,14 +294,14 @@ for tier, config in pairs(tierConfig) do
     -- Recipe
     recipe.name = name
     recipe.enabled = false
-    recipe.category = "crafting-with-fluid"
+    recipe.categories = { "crafting-with-fluid" }
     recipe.icon = nil
     recipe.icon_size = nil
     recipe.icon_mipmaps = nil
     recipe.icons = table.deepcopy(tieredIcons)
     recipe.results = { { type = "item", name = name, amount = 1 } }
     recipe.ingredients = getAcidMineIngredients(tier, normalMineName)
-    recipe.category = getAcidMineRecipeCategory(tier)
+    if getAcidMineRecipeCategory(tier) then recipe.categories = { getAcidMineRecipeCategory(tier) } end
     
     -- Entity
     entity.name = name

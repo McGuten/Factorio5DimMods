@@ -9,24 +9,111 @@ local tungstenShotgunShellIcon = "__5dim_battlefield__/graphics/icon/shotgun/tun
 local uraniumShotgunShellIcon = "__5dim_battlefield__/graphics/icon/shotgun/uranium-shotgun-shell.png"
 local uraniumTungstenShotgunShellIcon = "__5dim_battlefield__/graphics/icon/shotgun/uranium-tungsten-shotgun-shell.png"
 
-local piercingShotgunPelletDamage = data.raw.projectile["piercing-shotgun-pellet"].action.action_delivery.target_effects.damage.amount
-local piercingShotgunPelletCount = data.raw.ammo["piercing-shotgun-shell"].ammo_type.action[2].repeat_count
+local function get_piercing_shotgun_pellet_damage()
+    local pellet = data.raw.projectile["piercing-shotgun-pellet"]
+    if not pellet or not pellet.action or not pellet.action.action_delivery then
+        return 0
+    end
 
-local function scale_pellet_damage(numerator, denominator)
-    return math.floor((piercingShotgunPelletDamage * numerator / denominator) + 0.5)
+    local target_effects = pellet.action.action_delivery.target_effects
+    if type(target_effects) ~= "table" then
+        return 0
+    end
+
+    for _, effect in pairs(target_effects) do
+        if type(effect) == "table" and effect.type == "damage" and effect.damage and effect.damage.amount then
+            return effect.damage.amount
+        end
+    end
+
+    return 0
 end
 
-local tungstenShotgunPelletDamage = scale_pellet_damage(20, 16)
-local uraniumShotgunPelletDamage = scale_pellet_damage(24, 16)
-local uraniumTungstenShotgunPelletDamage = scale_pellet_damage(32, 16)
+local function get_piercing_shotgun_pellet_count()
+    local ammo = data.raw.ammo["piercing-shotgun-shell"]
+    if not ammo or not ammo.ammo_type or not ammo.ammo_type.action then
+        return 0
+    end
+
+    local action = ammo.ammo_type.action[1]
+    if not action or not action.action_delivery or not action.action_delivery.target_effects then
+        return 0
+    end
+
+    local target_effects = action.action_delivery.target_effects
+    if type(target_effects) ~= "table" then
+        return 0
+    end
+
+    if target_effects.action and target_effects.action.repeat_count then
+        return target_effects.action.repeat_count
+    end
+
+    for _, effect in pairs(target_effects) do
+        if type(effect) == "table" and effect.action and effect.action.repeat_count then
+            return effect.action.repeat_count
+        end
+    end
+
+    return 0
+end
+
+local piercingShotgunPelletDamage = get_piercing_shotgun_pellet_damage()
+local piercingShotgunPelletCount = get_piercing_shotgun_pellet_count()
+
+-- Damage for the tiered shell variants, scaled from the base piercing pellet
+-- so they stay ordered (tungsten < uranium < uranium-tungsten) if the base changes.
+local tungstenShotgunPelletDamage = piercingShotgunPelletDamage * 1.5
+local uraniumShotgunPelletDamage = piercingShotgunPelletDamage * 2
+local uraniumTungstenShotgunPelletDamage = piercingShotgunPelletDamage * 2.5
+
+local function set_pellet_damage(pellet, damage)
+    local target_effects = pellet and pellet.action and pellet.action.action_delivery and pellet.action.action_delivery.target_effects
+    if type(target_effects) ~= "table" then
+        return
+    end
+
+    for _, effect in pairs(target_effects) do
+        if type(effect) == "table" and effect.type == "damage" and effect.damage then
+            effect.damage.amount = damage
+            return
+        end
+    end
+end
 
 local function make_pellet(name, damage)
     local pellet = table.deepcopy(data.raw.projectile["piercing-shotgun-pellet"])
 
     pellet.name = name
-    pellet.action.action_delivery.target_effects.damage.amount = damage
+    set_pellet_damage(pellet, damage)
 
     return pellet
+end
+
+local function set_ammo_projectile(ammo, projectile_name, pellet_count)
+    local action = ammo and ammo.ammo_type and ammo.ammo_type.action and ammo.ammo_type.action[1]
+    if not action or not action.action_delivery or not action.action_delivery.target_effects then
+        return
+    end
+
+    local target_effects = action.action_delivery.target_effects
+    local nested_action = target_effects.action
+
+    if not nested_action then
+        for _, effect in pairs(target_effects) do
+            if type(effect) == "table" and effect.action then
+                nested_action = effect.action
+                break
+            end
+        end
+    end
+
+    if nested_action then
+        nested_action.repeat_count = pellet_count
+        if nested_action.action_delivery then
+            nested_action.action_delivery.projectile = projectile_name
+        end
+    end
 end
 
 local function make_ammo(name, icon, order, projectile_name, pellet_count)
@@ -38,8 +125,7 @@ local function make_ammo(name, icon, order, projectile_name, pellet_count)
     ammo.icons = nil
     ammo.subgroup = "equipment-shotgun"
     ammo.order = order
-    ammo.ammo_type.action[2].repeat_count = pellet_count
-    ammo.ammo_type.action[2].action_delivery.projectile = projectile_name
+    set_ammo_projectile(ammo, projectile_name, pellet_count)
 
     return ammo
 end

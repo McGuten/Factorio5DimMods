@@ -1,11 +1,11 @@
 {
     "name": "5dim_locale",
-    "version": "2.0.2",
-    "factorio_version": "2.0",
+    "version": "2.1.0",
+    "factorio_version": "2.1",
     "title": "5Dim's mod - Locales",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Play the 5Dim suite in your language.\n\rAdds translation support across the 5Dim collection for items, technologies and menus.\n\rRequires 5dim_core.",
+    "description": "Play the 5Dim suite in your language.\n\rAdds translation support across the 5Dim collection for items, technologies, settings and menus.\n\r[font=default-bold]Fully translated languages:[/font]\n• English\n• Español (es-ES)\n• 简体中文 (zh-CN)\n• Deutsch (de)\n• Русский (ru)\n• 한국어 (ko)\n• Français (fr)\n\rOther languages include partial community translations and fall back to English for missing entries.\n\rRequires 5dim_core.",
     "dependencies": ["5dim_core >= 2.0.42"]
 }

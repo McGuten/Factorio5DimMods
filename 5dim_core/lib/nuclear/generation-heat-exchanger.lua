@@ -19,9 +19,7 @@ function genHeatExchangers(inputs)
     recipe.name = item.name
     recipe.icon = item.icon
     recipe.icon_size = 64
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     if inputs.new then
         recipe.enabled = false
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
@@ -39,18 +37,32 @@ function genHeatExchangers(inputs)
     entity.energy_source.max_transfer = inputs.craftingSpeed .. "GW"
     entity.fast_replaceable_group = "heat-exchanger"
 
+    -- Each direction's sprite has its own dimensions; declare them to match the
+    -- actual 5Dim images (the inherited vanilla sizes were off and broke loading).
     -- North
     entity.pictures.north.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-N-idle/heatex-N-idle-" .. inputs.number .. ".png"
+    entity.pictures.north.structure.layers[1].size = nil
+    entity.pictures.north.structure.layers[1].width = 269
+    entity.pictures.north.structure.layers[1].height = 221
     -- East
     entity.pictures.east.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-E-idle/heatex-E-idle-" .. inputs.number .. ".png"
+    entity.pictures.east.structure.layers[1].size = nil
+    entity.pictures.east.structure.layers[1].width = 211
+    entity.pictures.east.structure.layers[1].height = 301
     -- South
     entity.pictures.south.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-S-idle/heatex-S-idle-" .. inputs.number .. ".png"
+    entity.pictures.south.structure.layers[1].size = nil
+    entity.pictures.south.structure.layers[1].width = 260
+    entity.pictures.south.structure.layers[1].height = 201
     -- West
     entity.pictures.west.structure.layers[1].filename =
         "__5dim_nuclear__/graphics/entities/heat-exchanger/heatex-W-idle/heatex-W-idle-" .. inputs.number .. ".png"
+    entity.pictures.west.structure.layers[1].size = nil
+    entity.pictures.west.structure.layers[1].width = 196
+    entity.pictures.west.structure.layers[1].height = 273
 
     data:extend({entity, recipe, item})
 

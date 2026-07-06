@@ -774,6 +774,52 @@ Templates.cargoLandingPad = {
     }
 }
 
+-- Landing Pad Unloading Bay templates (Planet - inserters unload from a cargo landing pad)
+Templates.landingPadUnloadingBay = {
+    [1] = {
+        { type = "item", name = "cargo-bay", amount = 1 },
+        { type = "item", name = "steel-chest", amount = 4 },
+        { type = "item", name = "electric-engine-unit", amount = 15 },
+        { type = "item", name = "processing-unit", amount = 8 }
+    },
+    [2] = {
+        { type = "item", name = "landing-pad-unloading-bay", amount = 1 },
+        { type = "item", name = "space-platform-foundation", amount = 40 }
+    },
+    [3] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-02", amount = 1 },
+        { type = "item", name = "metallic-asteroid-chunk", amount = 30 }
+    },
+    [4] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-03", amount = 1 },
+        { type = "item", name = "oxide-asteroid-chunk", amount = 30 }
+    },
+    [5] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-04", amount = 1 },
+        { type = "item", name = "carbonic-asteroid-chunk", amount = 30 }
+    },
+    [6] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-05", amount = 1 },
+        { type = "item", name = "ice", amount = 50 }
+    },
+    [7] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-06", amount = 1 },
+        { type = "fluid", name = "thruster-fuel", amount = 150 }
+    },
+    [8] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-07", amount = 1 },
+        { type = "fluid", name = "thruster-oxidizer", amount = 150 }
+    },
+    [9] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-08", amount = 1 },
+        { type = "item", name = "fusion-power-cell", amount = 10 }
+    },
+    [10] = {
+        { type = "item", name = "5d-landing-pad-unloading-bay-09", amount = 1 },
+        { type = "item", name = "quantum-processor", amount = 10 }
+    }
+}
+
 -- Asteroid Collector templates (Orbit)
 Templates.asteroidCollector = {
     [1] = {
@@ -1189,6 +1235,56 @@ Templates.fusionReactorEquipment = {
     [10] = {
         { type = "item", name = "5d-fusion-reactor-equipment-09", amount = 1 },
         { type = "fluid", name = "fusion-plasma", amount = 100 }
+    }
+}
+
+-------------------------------------------------------------------------------
+-- ROCKET SILO TEMPLATES (Orbit / endgame)
+-- MK1 keeps the vanilla recipe; MK2+ consume the previous tier silo plus a
+-- planetary delta (Vulcanus -> Fulgora -> Gleba -> Aquilo).
+-------------------------------------------------------------------------------
+
+-- Each tier's delta item matches the science pack of its technology:
+--   MK2 orbit/space | MK3-4 Vulcanus | MK5-6 Fulgora | MK7 Gleba | MK8-10 Aquilo
+Templates.rocketSilo = {
+    [1] = {
+        { type = "item", name = "rocket-silo", amount = 1 }
+    },
+    [2] = {
+        { type = "item", name = "rocket-silo", amount = 1 },
+        { type = "item", name = "low-density-structure", amount = 20 }
+    },
+    [3] = {
+        { type = "item", name = "5d-rocket-silo-02", amount = 1 },
+        { type = "item", name = "tungsten-plate", amount = 40 }
+    },
+    [4] = {
+        { type = "item", name = "5d-rocket-silo-03", amount = 1 },
+        { type = "item", name = "tungsten-carbide", amount = 40 }
+    },
+    [5] = {
+        { type = "item", name = "5d-rocket-silo-04", amount = 1 },
+        { type = "item", name = "holmium-plate", amount = 40 }
+    },
+    [6] = {
+        { type = "item", name = "5d-rocket-silo-05", amount = 1 },
+        { type = "item", name = "supercapacitor", amount = 20 }
+    },
+    [7] = {
+        { type = "item", name = "5d-rocket-silo-06", amount = 1 },
+        { type = "item", name = "carbon-fiber", amount = 40 }
+    },
+    [8] = {
+        { type = "item", name = "5d-rocket-silo-07", amount = 1 },
+        { type = "item", name = "lithium-plate", amount = 40 }
+    },
+    [9] = {
+        { type = "item", name = "5d-rocket-silo-08", amount = 1 },
+        { type = "item", name = "quantum-processor", amount = 20 }
+    },
+    [10] = {
+        { type = "item", name = "5d-rocket-silo-09", amount = 1 },
+        { type = "item", name = "fusion-power-cell", amount = 20 }
     }
 }
 

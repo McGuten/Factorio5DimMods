@@ -59,9 +59,7 @@ function genStoneWalls(inputs)
     recipe.enabled = false
     recipe.results = { { type = "item", name = item.name, amount = 1 } }
     recipe.ingredients = inputs.ingredients
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     --Entity
     entity.name = item.name

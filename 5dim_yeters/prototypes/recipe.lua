@@ -5,7 +5,7 @@ data:extend({
     {
         type = "recipe",
         name = "yeters-spoilage",
-        category = "organic",
+        categories = { "organic" },
         enabled = false,
         energy_required = 1,
         ingredients = {

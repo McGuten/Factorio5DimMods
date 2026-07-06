@@ -1,12 +1,12 @@
 {
     "name": "5dim_dev",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "title": "5Dim's Development Tools",
     "author": "5Dim",
     "contact": "",
     "homepage": "",
     "description": "Internal testing tools for 5Dim development.\n\rDevelopment-only module for debugging, inspection and balance checks while working on the suite.\n\rNot intended for normal gameplay.",
-    "factorio_version": "2.0",
+    "factorio_version": "2.1",
     "dependencies": [
         "base >= 2.0.0",
         "5dim_core",

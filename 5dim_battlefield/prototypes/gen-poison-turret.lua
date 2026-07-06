@@ -605,7 +605,7 @@ for tier = 1, 10 do
         results = { { type = "item", name = entityName, amount = 1 } },
         icons = table.deepcopy(itemIcons)
     }
-    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, poisonTurretSpaceAgeMaterials)
+    if CostCalculator.getSpaceAgeRecipeCategory(tier, poisonTurretSpaceAgeMaterials) then recipe.categories = { CostCalculator.getSpaceAgeRecipeCategory(tier, poisonTurretSpaceAgeMaterials) } end
     
     -- Technology
     local tech = nil

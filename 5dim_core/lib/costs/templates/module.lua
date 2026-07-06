@@ -175,7 +175,28 @@ Templates.moduleVisibleDeltas = {
     quality = standardModuleVisibleDeltas
 }
 
--- Merged module ingredients (combines the 3 standard module families)
+-- Merged module ingredients (combines the 3 standard module families).
+-- Each tier already consumes one of each standard module of that tier plus 2 of
+-- the previous merged module, so it is the most expensive module by construction.
+-- On top of that a fixed premium delta per band is added so the merged module
+-- always reads as a clear premium over crafting the trio separately, even without
+-- Space Age. Only base-game items are used here so the template loads in both SA
+-- and non-SA; in SA the generator still adds the global planetary material on top.
+local mergedPremiumDelta = {
+    [1]  = { type = "item", name = "advanced-circuit", amount = 4 },
+    [2]  = { type = "item", name = "advanced-circuit", amount = 4 },
+    [3]  = { type = "item", name = "advanced-circuit", amount = 4 },
+    [4]  = { type = "item", name = "processing-unit", amount = 4 },
+    [5]  = { type = "item", name = "processing-unit", amount = 4 },
+    [6]  = { type = "item", name = "low-density-structure", amount = 4 },
+    [7]  = { type = "item", name = "low-density-structure", amount = 4 },
+    [8]  = { type = "item", name = "rocket-fuel", amount = 4 },
+    [9]  = { type = "item", name = "nuclear-fuel", amount = 2 },
+    -- satellite is removed by Space Age, so it cannot be used here (this template
+    -- loads in both SA and non-SA). nuclear-fuel exists in both and escalates T9.
+    [10] = { type = "item", name = "nuclear-fuel", amount = 4 }
+}
+
 Templates.moduleMerged = {
     [1] = {
         { type = "item", name = "speed-module", amount = 1 },
@@ -237,6 +258,14 @@ Templates.moduleMerged = {
         { type = "item", name = "5d-productivity-module-10", amount = 1 }
     }
 }
+
+-- Append the premium delta to every merged tier.
+for tier, ingredients in pairs(Templates.moduleMerged) do
+    local premium = mergedPremiumDelta[tier]
+    if premium then
+        table.insert(ingredients, { type = premium.type, name = premium.name, amount = premium.amount })
+    end
+end
 
 -------------------------------------------------------------------------------
 -- HELPER FUNCTIONS

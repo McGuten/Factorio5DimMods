@@ -50,17 +50,19 @@ local defaultModuleTechCounts = {
     [10] = 5000
 }
 
+-- Merged module research is pegged at ~2x the default module count so it always
+-- reads as a clear premium over the three standard modules it combines.
 local mergedModuleTechCounts = {
-    [1] = 140,
-    [2] = 260,
-    [3] = 650,
-    [4] = 1300,
-    [5] = 2000,
-    [6] = 2900,
-    [7] = 3900,
-    [8] = 5200,
-    [9] = 6700,
-    [10] = 8500
+    [1] = 120,
+    [2] = 240,
+    [3] = 640,
+    [4] = 1400,
+    [5] = 2200,
+    [6] = 3200,
+    [7] = 4400,
+    [8] = 6000,
+    [9] = 7800,
+    [10] = 10000
 }
 
 local moduleSpaceAgeMaterials = {
@@ -559,6 +561,9 @@ for tier = 1, 10 do
         effects = effects,
         tier = tier,
         timeCraft = config.timeCraft,
+        -- Merged module takes ~1.5x longer to craft than the standard trio,
+        -- reinforcing it as a premium option rather than a default.
+        timeCraftMerged = config.timeCraft * 1.5,
         new = not config.isVanilla,
         ingredients = ingredients,
         recipeCategories = buildRecipeCategories(tier),
@@ -595,7 +600,6 @@ recipePollution.results = {
     { type = "item", name = itemPollution.name, amount = 1 }
 }
 recipePollution.energy_required = 5
-recipePollution.category = nil
 
 techPollution.name = "5d-pollution-module"
 techPollution.icon = itemPollution.icon

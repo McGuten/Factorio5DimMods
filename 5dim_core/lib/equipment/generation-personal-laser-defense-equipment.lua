@@ -24,9 +24,7 @@ function genPersonalLaserDefenses(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     -- Equipment
     equipment.name = item.name
@@ -41,6 +39,8 @@ function genPersonalLaserDefenses(inputs)
         "__5dim_equipment__/graphics/equipment/personal-laser-defense/personal-laser-defense-equipment-" .. inputs.number .. ".png"
     equipment.sprite.width = 64
     equipment.sprite.height = 64
+    equipment.sprite.size = nil
+    equipment.sprite.scale = 1
 
     data:extend({equipment, recipe, item})
 

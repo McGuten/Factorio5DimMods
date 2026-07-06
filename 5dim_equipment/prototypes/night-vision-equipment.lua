@@ -239,12 +239,17 @@ for i = 2, 2 do
     recipe.enabled = false
     recipe.ingredients = ingredients
     setPrototypeIcons(recipe, i)
-    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(i, nightVisionSpaceAgeMaterials)
+    if CostCalculator.getSpaceAgeRecipeCategory(i, nightVisionSpaceAgeMaterials) then recipe.categories = { CostCalculator.getSpaceAgeRecipeCategory(i, nightVisionSpaceAgeMaterials) } end
 
     equipment.name = item.name
     equipment.take_result = item.name
     equipment.energy_input = tier.energyInput .. "kW"
     equipment.sprite.filename = "__5dim_equipment__/graphics/equipment/night-vision/night-vision-equipment-02.png"
+    -- 5Dim sprite is 64x64; match it (vanilla copy declared 128x128 @ scale 0.5).
+    equipment.sprite.width = 64
+    equipment.sprite.height = 64
+    equipment.sprite.size = nil
+    equipment.sprite.scale = 1
     equipment.color_lookup = {
         { 0.5, "__core__/graphics/color_luts/identity-lut.png" }
     }

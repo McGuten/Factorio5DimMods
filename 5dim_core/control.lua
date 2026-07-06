@@ -1,7 +1,7 @@
 local TierColors = require("__5dim_core__.lib.tier-colors")
 local TierMarkerConfig = require("__5dim_core__.lib.tier-marker-config")
 
-local TIER_OVERLAY_SCHEMA_VERSION = 2
+local TIER_OVERLAY_SCHEMA_VERSION = 3
 local ENTITY_TIER_OVERLAY_SCALE = 1.25
 
 local runtimeTierFamilies = TierMarkerConfig.runtime_families
@@ -20,21 +20,34 @@ local function matchTierFromPatterns(entityName, patterns)
     return nil
 end
 
+-- Memoized name -> tier (or false for "no tier"). Prototypes and active mods
+-- are fixed for the whole session, so this never needs invalidation and keeps
+-- blueprint-sized build events from re-scanning every family pattern.
+local entityTierCache = {}
+
 local function getConfiguredEntityTier(entity)
+    local cachedTier = entityTierCache[entity.name]
+    if cachedTier ~= nil then
+        return cachedTier or nil
+    end
+
     for _, family in ipairs(runtimeTierFamilies) do
         if family.draw_runtime_tier and TierMarkerConfig.is_runtime_family_enabled(family, script.active_mods) then
             local baseTier = family.base_names and family.base_names[entity.name]
             if baseTier then
+                entityTierCache[entity.name] = baseTier
                 return baseTier
             end
 
             local matchedTier = matchTierFromPatterns(entity.name, family.patterns or {})
             if matchedTier then
+                entityTierCache[entity.name] = matchedTier
                 return matchedTier
             end
         end
     end
 
+    entityTierCache[entity.name] = false
     return nil
 end
 
@@ -159,14 +172,25 @@ local function getTierOverlayLayout(entity)
         }
     end
 
+    -- Default: derive the layout from the selection box so the marker lands
+    -- inside the sprite for any footprint (1x1 up to 9x9 silos or rolling
+    -- stock) instead of assuming a ~3x3 machine.
+    local box = entity.selection_box
+    local halfWidth = math.max((box.right_bottom.x - box.left_top.x) / 2, 0.5)
+    local halfHeight = math.max((box.right_bottom.y - box.left_top.y) / 2, 0.5)
+    local halfSize = math.min(halfWidth, halfHeight)
+    local offsetX = -math.min(0.68 * halfWidth, 1.30)
+    local offsetY = math.min(0.68 * halfHeight, 1.30)
+    local textScale = math.min(0.82 + 0.63 * (halfSize - 0.5), 1.45)
+
     return {
-        background_center = { -1.03, 1.02 },
-        background_half_height = 0.15,
-        background_half_width = 0.15,
-        background_extra_width_per_digit = 0.08,
-        shadow_target = { entity = entity, offset = { -1.02, 1.03 } },
-        text_target = { entity = entity, offset = { -1.05, 1.00 } },
-        text_scale = 1.45
+        background_center = { offsetX, offsetY },
+        background_half_height = 0.103 * textScale,
+        background_half_width = 0.103 * textScale,
+        background_extra_width_per_digit = 0.055 * textScale,
+        shadow_target = { entity = entity, offset = { offsetX + 0.01, offsetY + 0.01 } },
+        text_target = { entity = entity, offset = { offsetX - 0.02, offsetY - 0.02 } },
+        text_scale = textScale
     }
 end
 
@@ -371,6 +395,8 @@ script.set_event_filter(defines.events.on_robot_built_entity, tierOverlayTypeFil
 script.on_event(defines.events.script_raised_built, onTierOverlayEntityBuilt)
 script.set_event_filter(defines.events.script_raised_built, tierOverlayTypeFilters)
 
+local setStartItems
+
 script.on_event(
     defines.events.on_player_created,
     function(event)
@@ -384,12 +410,36 @@ script.on_event(
     end
 )
 
-function setStartItems(event)
+setStartItems = function(event)
+    -- Both on_player_created and on_cutscene_cancelled call this, and with the
+    -- intro cutscene enabled both fire for the same player. Guard per player so
+    -- the starting items, tech and equipment are granted exactly once.
+    storage.start_items_given = storage.start_items_given or {}
+    if storage.start_items_given[event.player_index] then
+        return
+    end
+
     local atStart = {}
     atStart["items"] = {}
     atStart["tech"] = {}
     atStart["equip"] = {}
     local player = game.get_player(event.player_index)
+    if not player then
+        return
+    end
+
+    storage.start_items_given[event.player_index] = true
+
+    -- Insert only items whose prototype exists, so a missing or renamed item
+    -- from another mod cannot crash the player spawn.
+    local function giveItems(list)
+        for _, item in pairs(list) do
+            if prototypes.item[item[1]] then
+                player.insert({ name = item[1], count = item[2] })
+            end
+        end
+    end
+
     --Items
     if settings.startup["5d-item-start"].value == "Small amount" then
         atStart["items"] = {
@@ -478,9 +528,7 @@ function setStartItems(event)
             { "steel-plate",            100 }
         }
     end
-    for _, item in pairs(atStart["items"]) do
-        player.insert({ name = item[1], count = item[2] })
-    end
+    giveItems(atStart["items"])
 
     atStart["items"] = {}
     --Tecnologies
@@ -535,44 +583,62 @@ function setStartItems(event)
 
     --Equipment
     if settings.startup["5d-equip-start"].value == "Modular armor" then
+        atStart["armor"] = "modular-armor"
         atStart["equip"] = {
             { "solar-panel-equipment",       15 },
             { "battery-equipment",           1 },
             { "personal-roboport-equipment", 2 }
         }
         atStart["items"] = {
-            { "modular-armor",      1 },
             { "construction-robot", 20 },
         }
     elseif settings.startup["5d-equip-start"].value == "Power armor" then
+        atStart["armor"] = "power-armor"
         atStart["equip"] = {
-            { "fission-reactor-equipment",    1 },
+            { "fission-reactor-equipment",   1 },
             { "battery-equipment",           3 },
             { "personal-roboport-equipment", 5 }
         }
         atStart["items"] = {
-            { "power-armor",            1 },
             { "construction-robot",     50 },
             { "deconstruction-planner", 1 }
         }
     elseif settings.startup["5d-equip-start"].value == "Power armor MK2" then
+        atStart["armor"] = "power-armor-mk2"
         atStart["equip"] = {
-            { "fission-reactor-equipment",    2 },
+            { "fission-reactor-equipment",   2 },
             { "battery-equipment",           4 },
             { "exoskeleton-equipment",       2 },
             { "personal-roboport-equipment", 11 }
         }
         atStart["items"] = {
-            { "power-armor-mk2",    1 },
             { "construction-robot", 110 },
         }
     end
 
-    for _, item in pairs(atStart["items"]) do
-        player.insert({ name = item[1], count = item[2] })
-    end
+    giveItems(atStart["items"])
 
-    for _, equip in pairs(atStart["equip"]) do
-        player.insert({ name = equip[1], count = equip[2] })
+    -- Equip the starting armor and fill its equipment grid directly, so the
+    -- player spawns ready to go instead of with loose equipment to drag in.
+    -- Equipment that does not fit the grid falls back to the inventory so
+    -- nothing is lost.
+    if atStart["armor"] and prototypes.item[atStart["armor"]] then
+        local armorInventory = player.get_inventory(defines.inventory.character_armor)
+        local grid
+
+        if armorInventory then
+            armorInventory[1].set_stack({ name = atStart["armor"], count = 1 })
+            grid = armorInventory[1].grid
+        end
+
+        for _, equip in pairs(atStart["equip"]) do
+            if prototypes.equipment[equip[1]] then
+                for _ = 1, equip[2] do
+                    if not (grid and grid.put({ name = equip[1] })) then
+                        player.insert({ name = equip[1], count = 1 })
+                    end
+                end
+            end
+        end
     end
 end

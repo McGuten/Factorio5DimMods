@@ -328,7 +328,7 @@ for tier, config in pairs(tierConfig) do
             results = { { type = "item", name = capsuleName, amount = 1 } },
             icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/defender-capsule.png", tier, 64)
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         
         local tech = {
             type = "technology",
@@ -502,7 +502,7 @@ for tier, config in pairs(tierConfig) do
             results = { { type = "item", name = capsuleName, amount = 1 } },
             icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/distractor-capsule.png", tier, 64)
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         
         local tech = {
             type = "technology",
@@ -694,7 +694,7 @@ for tier, config in pairs(tierConfig) do
             results = { { type = "item", name = capsuleName, amount = 1 } },
             icons = TierBadgeIcons.buildTieredIcons("__base__/graphics/icons/destroyer-capsule.png", tier, 64)
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         
         local tech = {
             type = "technology",

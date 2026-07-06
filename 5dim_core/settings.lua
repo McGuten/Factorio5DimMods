@@ -119,5 +119,15 @@ data:extend({
         default_value = 1.0,
         minimum_value = 0.1,
         maximum_value = 10.0
+    },
+    -- Global Recipe Cost Multiplier
+    {
+        type = "double-setting",
+        name = "5d-recipe-cost-multiplier",
+        order = "a-bh",
+        setting_type = "startup",
+        default_value = 1.0,
+        minimum_value = 0.1,
+        maximum_value = 10.0
     }
 })

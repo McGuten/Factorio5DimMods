@@ -139,6 +139,7 @@ RecipeTemplates.baseTechCounts = {
     heatExchanger = 300,
     heatPipe = 200,
     nuclearReactor = 500,
+    rocketSilo = 1000,
     steamTurbine = 300,
     equipment = 200,
     beacon = 300,

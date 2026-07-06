@@ -264,7 +264,7 @@ for tier, config in pairs(tierConfig) do
             ingredients = getLandMineIngredients(tier),
             results = { { type = "item", name = name, amount = 1 } }
         }
-        recipe.category = getLandMineRecipeCategory(tier)
+        if getLandMineRecipeCategory(tier) then recipe.categories = { getLandMineRecipeCategory(tier) } end
         recipe.icon = nil
         recipe.icon_size = nil
         recipe.icons = table.deepcopy(tieredIcons)

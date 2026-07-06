@@ -20,7 +20,7 @@ data:extend({
         subgroup = "vulcanus-metallurgy-tungsten",
         order = "a[melting]-b[5d-calcite-dust]",
         icons = DustCommon.make_dust_icons("__space-age__/graphics/icons/calcite.png", DustCommon.tints.calcite),
-        category = "mashering",
+        categories = { "mashering" },
         energy_required = 3.2,
         allow_productivity = true,
         ingredients = {
@@ -33,13 +33,14 @@ data:extend({
     {
         type = "recipe",
         name = "5d-molten-iron-from-lava",
+        allow_quality = false,
         icon = "__space-age__/graphics/icons/fluid/molten-iron-from-lava.png",
         icon_size = 64,
         subgroup = "vulcanus-metallurgy",
         order = "a[melting]-a[lava-a]-b[5d]",
         auto_recycle = false,
         enabled = false,
-        category = "metallurgy",
+        categories = { "metallurgy" },
         energy_required = 16,
         allow_productivity = true,
         ingredients = {
@@ -55,13 +56,14 @@ data:extend({
     {
         type = "recipe",
         name = "5d-molten-copper-from-lava",
+        allow_quality = false,
         icon = "__space-age__/graphics/icons/fluid/molten-copper-from-lava.png",
         icon_size = 64,
         subgroup = "vulcanus-metallurgy",
         order = "a[melting]-a[lava-b]-b[5d]",
         auto_recycle = false,
         enabled = false,
-        category = "metallurgy",
+        categories = { "metallurgy" },
         energy_required = 16,
         allow_productivity = true,
         ingredients = {

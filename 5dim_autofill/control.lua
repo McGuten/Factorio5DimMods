@@ -245,19 +245,15 @@ do
     buildAmmoData = function()
         ammoCategories = {}
         ammoOrder = {}
-        local ammoCount = 0
-        -- En Factorio 2.0, usamos get_item_filtered para obtener solo items de tipo "ammo"
+        -- Factorio 2.0: get_item_filtered returns only "ammo" type items.
         local ammoItems = prototypes.get_item_filtered({{filter = "type", type = "ammo"}})
-        local totalAmmoItems = 0
-        for _ in pairs(ammoItems) do totalAmmoItems = totalAmmoItems + 1 end
-        -- game.print("[Autofill Debug] get_item_filtered returned " .. totalAmmoItems .. " items")
-        
+
         for name, item in pairs(ammoItems) do
-            -- En Factorio 2.0, la categoría está directamente en item.ammo_category, no en get_ammo_type()
+            -- Factorio 2.0: the category is on item.ammo_category (a
+            -- LuaAmmoCategoryPrototype), not via the removed get_ammo_type().
             local ammoCat = item.ammo_category
             if ammoCat then
-                ammoCount = ammoCount + 1
-                local c = ammoCat.name  -- ammo_category es un LuaAmmoCategoryPrototype, necesitamos .name
+                local c = ammoCat.name
                 if not ammoCategories[c] then
                     ammoCategories[c] = {}
                 end
@@ -269,11 +265,6 @@ do
             table.sort(tbl, sortByOrder)
         end
         ammoOrder = nil
-        -- Debug output
-        -- game.print("[Autofill Debug] buildAmmoData: found " .. ammoCount .. " ammo items with categories")
-        for cat, items in pairs(ammoCategories) do
-            -- game.print("[Autofill Debug] Category '" .. cat .. "': " .. #items .. " items - first: " .. items[1])
-        end
     end
 end
 
@@ -347,9 +338,8 @@ local function insertCarAmmo(entity, player, invAmmo)
                 local count = fromInv.get_item_count(ammoItemName)
                 local toInsert = getStackSize(player, ammoItemName)
 
-                -- Do we have enough items on us to insert stack/4 ?
+                -- Enough on us for a full configured insert (quarter stack)?
                 if count >= toInsert then
-                    -- We dont have enough, insert math.ceil(count/4) - minimum 1
                     itemStackCache[ammoItemName] = toInsert
                     if filter then
                         invAmmo.set_filter(slot, ammoItemName)
@@ -364,6 +354,7 @@ local function insertCarAmmo(entity, player, invAmmo)
                     -- Get to next slot
                     break
                 elseif count > 0 then
+                    -- Not enough for a full insert: take what we have (ceil count/4)
                     if filter then
                         invAmmo.set_filter(slot, ammoItemName)
                     end
@@ -392,28 +383,17 @@ local function insertTurretAmmo(entity, player, invAmmo)
         buildAmmoData()
     end
 
-    -- DEBUG: Print ammo categories found
-    -- player.print("[Autofill Debug] Entity: " .. entity.name .. ", invAmmo slots: " .. #invAmmo)
-    local catCount = 0
-    for category, items in pairs(ammoCategories) do
-        catCount = catCount + 1
-    end
-    -- player.print("[Autofill Debug] Total ammo categories found: " .. catCount)
-
     -- Find out which ammo types belong in each slot
     -- This block is only run once per entity entry
     if not slotCategories[entity.name] then
         slotCategories[entity.name] = {}
         local i = 1
         for category, validitems in pairs(ammoCategories) do
-            -- player.print("[Autofill Debug] Checking category: " .. category .. ", first item: " .. validitems[1])
             if invAmmo.can_insert(validitems[1]) then
-                -- player.print("[Autofill Debug] Category " .. category .. " accepted!")
                 slotCategories[entity.name][i] = category
                 i = i + 1
             end
         end
-        -- player.print("[Autofill Debug] Total categories for " .. entity.name .. ": " .. (i - 1))
     end
 
     local fromInv = nil
@@ -550,6 +530,85 @@ do
 end
 
 -------------------------------------------------------------------------------
+-- ROBOT-BUILT AUTOFILL
+--
+-- Optional behavior (startup setting "5d-autofill-robots"). Entities placed by
+-- construction robots have no player inventory to pull from, so ammo and fuel
+-- are sourced from the robot's logistic network instead.
+
+-- Amount inserted per refill: a quarter stack, mirroring the manual default.
+local function quarterStack(itemName)
+    local proto = prototypes.item[itemName]
+    local size = (proto and proto.stack_size) or 10
+    return math.max(1, math.ceil(size / 4))
+end
+
+local function fillAmmoFromNetwork(invAmmo, network)
+    if not (invAmmo and invAmmo.valid and invAmmo.is_empty()) then
+        return
+    end
+    if not ammoCategories then
+        buildAmmoData()
+    end
+
+    for _, items in pairs(ammoCategories) do
+        for _, ammoName in next, items do
+            local available = network.get_item_count(ammoName)
+            if available > 0 and invAmmo.can_insert(ammoName) then
+                local inserted = invAmmo.insert({ name = ammoName, count = math.min(quarterStack(ammoName), available) })
+                if inserted and inserted > 0 then
+                    network.remove_item({ name = ammoName, count = inserted })
+                end
+                return
+            end
+        end
+    end
+end
+
+local function fillFuelFromNetwork(entity, network)
+    local invFuel = entity.get_inventory(defines.inventory.fuel)
+    if not (invFuel and invFuel.valid and invFuel.is_empty()) then
+        return
+    end
+    if not sortedFuels then
+        buildFuelTable()
+    end
+
+    for _, fuel in next, sortedFuels do
+        local available = network.get_item_count(fuel)
+        if available > 0 and invFuel.can_insert(fuel) then
+            local inserted = invFuel.insert({ name = fuel, count = math.min(quarterStack(fuel), available) })
+            if inserted and inserted > 0 then
+                network.remove_item({ name = fuel, count = inserted })
+            end
+            return
+        end
+    end
+end
+
+local function onRobotBuiltEntity(e)
+    local entity = e.entity
+    if not entity or not entity.valid or (not CONFIG_ENABLE[entity.type] and not CONFIG_ENABLE[entity.name]) then
+        return
+    end
+
+    local robot = e.robot
+    local network = robot and robot.valid and robot.logistic_network
+    if not network then
+        return
+    end
+
+    if entity.type == "ammo-turret" then
+        fillAmmoFromNetwork(entity.get_inventory(defines.inventory.turret_ammo), network)
+    elseif entity.type == "car" then
+        fillAmmoFromNetwork(entity.get_inventory(defines.inventory.car_ammo), network)
+        fillFuelFromNetwork(entity, network)
+    else
+        fillFuelFromNetwork(entity, network)
+    end
+end
+
+-------------------------------------------------------------------------------
 -- EVENT HANDLERS
 --
 do
@@ -604,8 +663,28 @@ do
         end
     end
 
-    script.on_event(defines.events.on_built_entity, onBuildEntity)
+    -- Event filter mirroring CONFIG_ENABLE so the engine only delivers builds we
+    -- can act on, instead of waking the handler for every placed entity. Keep this
+    -- list in sync with CONFIG_ENABLE (types: ammo-turret, car, locomotive, boiler;
+    -- names: burner-inserter, stone-furnace, steel-furnace, burner-mining-drill).
+    local buildEventFilters = {
+        { filter = "type", type = "ammo-turret" },
+        { filter = "type", type = "car",                mode = "or" },
+        { filter = "type", type = "locomotive",         mode = "or" },
+        { filter = "type", type = "boiler",             mode = "or" },
+        { filter = "name", name = "burner-inserter",    mode = "or" },
+        { filter = "name", name = "stone-furnace",      mode = "or" },
+        { filter = "name", name = "steel-furnace",      mode = "or" },
+        { filter = "name", name = "burner-mining-drill", mode = "or" }
+    }
 
-    -- It is too imba. No longer works with the above function either.
-    --script.on_event(defines.events.on_robot_built_entity, onBuildEntity)
+    script.on_event(defines.events.on_built_entity, onBuildEntity, buildEventFilters)
+
+    -- Robot-built autofill is opt-in: the manual handler above pulls from the
+    -- player inventory (which does not exist for robot builds), so a dedicated
+    -- network-sourced handler is used instead, only when the setting is on.
+    local autofillRobotsSetting = settings.startup["5d-autofill-robots"]
+    if autofillRobotsSetting and autofillRobotsSetting.value then
+        script.on_event(defines.events.on_robot_built_entity, onRobotBuiltEntity, buildEventFilters)
+    end
 end

@@ -105,15 +105,15 @@ end
 
 local tierConfig = {
     [1]  = { moduleBonus = 0, areaBonus = 0, efficiencyBonus = 0,    order = "a", isVanilla = true },
-    [2]  = { moduleBonus = 1, areaBonus = 0, efficiencyBonus = 0,    order = "b" },
-    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.02, order = "c" },
-    [4]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.04, order = "d" },
-    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.06, order = "e" },
-    [6]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.08, order = "f" },
-    [7]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.10, order = "g" },
-    [8]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.11, order = "h" },
-    [9]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.12, order = "i" },
-    [10] = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.14, order = "j" }
+    [2]  = { moduleBonus = 1, areaBonus = 0, efficiencyBonus = 0.02, order = "b" },
+    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.04, order = "c" },
+    [4]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.06, order = "d" },
+    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.08, order = "e" },
+    [6]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.10, order = "f" },
+    [7]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.12, order = "g" },
+    [8]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.14, order = "h" },
+    [9]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.16, order = "i" },
+    [10] = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.18, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -222,7 +222,7 @@ for tier = 1, 10 do
     local modules = CostCalculator.calculateMachineWorkValue(baseModules, tier, 10, 0)
     local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
     local areaEffect = clampBeaconDistance(CostCalculator.calculateMachineWorkValue(baseAreaEffect, tier, 10, 0))
-    local efficiency = CostCalculator.calculateMachineWorkValue(baseEfficiency, tier, 10, 2)
+    local efficiency = baseEfficiency + config.efficiencyBonus
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.beacon[tier], tier, {

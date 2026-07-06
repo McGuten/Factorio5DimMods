@@ -1,6 +1,9 @@
 -- Order sort
 require("prototypes.item-sort-changes")
 
+-- Register & propagate compound recipe-categories (e.g. "cryogenics-or-assembling")
+require("prototypes.recipe-categories-compat")
+
 function table.contains(table, element)
     for _, value in pairs(table) do
         if value == element then

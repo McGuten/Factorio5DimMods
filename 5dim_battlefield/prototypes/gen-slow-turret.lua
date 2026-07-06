@@ -360,7 +360,7 @@ for tier = 1, 10 do
         spaceAgeMaterialOverrides = slowTurretSpaceAgeMaterials,
         replaceSpaceAgeDelta = true
     })
-    recipe.category = CostCalculator.getSpaceAgeRecipeCategory(tier, slowTurretSpaceAgeMaterials)
+    if CostCalculator.getSpaceAgeRecipeCategory(tier, slowTurretSpaceAgeMaterials) then recipe.categories = { CostCalculator.getSpaceAgeRecipeCategory(tier, slowTurretSpaceAgeMaterials) } end
     recipe.icon        = nil
     recipe.icon_size   = nil
     recipe.icons       = makeSlowItemIcons(tier)

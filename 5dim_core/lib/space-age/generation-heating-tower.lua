@@ -30,7 +30,7 @@ function genHeatingTower(inputs)
     recipe.name = item.name
     setPrototypeIcons(recipe)
     if inputs.new and inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
+        if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     end
     if inputs.new then
         recipe.enabled = false

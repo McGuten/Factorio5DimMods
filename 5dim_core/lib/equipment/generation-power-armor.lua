@@ -48,9 +48,7 @@ function genPowerArmors(inputs)
     if not mods['aai-industry'] and not mods['space-age'] and inputs.number == "02" then
         table.insert(recipe.ingredients, { type = "item", name = "power-armor", amount = 1 })
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     recipe.enabled = false
 
     data:extend({ grid, recipe, item })

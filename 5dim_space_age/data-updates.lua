@@ -3,6 +3,11 @@
 
 if not mods["space-age"] then return end
 
+-- Rocket silo tiers: generated here (not in data.lua) so the base "space-age"
+-- mod has already reshaped the vanilla silo (rocket_parts_required = 50,
+-- launch_to_space_platforms, lift_weight, ...) before we clone it.
+require("prototypes.gen-rocket-silo")
+
 local mult = settings.startup["5d-spoil-time-multiplier"].value
 if mult == 1.0 then return end
 

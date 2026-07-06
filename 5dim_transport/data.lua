@@ -16,5 +16,8 @@ require("prototypes.gen-pump")
 --Changes
 require("prototypes.changes")
 
--- Stack inserters
-require("prototypes.gen-stack-inserter")
+-- Stack inserters (Space Age only: the vanilla "stack-inserter" prototype this
+-- generator extends does not exist without the DLC)
+if mods["space-age"] then
+    require("prototypes.gen-stack-inserter")
+end

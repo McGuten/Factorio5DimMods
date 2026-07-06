@@ -7,8 +7,8 @@ data:extend({
         type = "sprite",
         name = "5dim-dev-icon",
         filename = "__5dim_dev__/thumbnail.png",
-        size = 144,
-        scale = 0.25,  -- Scale down 144px to ~36px for GUI button
+        size = 100,
+        scale = 0.36,  -- Scale down 100px thumbnail to ~36px for GUI button
         flags = {"gui-icon"}
     }
 })

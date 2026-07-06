@@ -12,7 +12,10 @@
 -- character and ground vehicles. Items in transit on belts or held by inserters
 -- are intentionally not covered to keep the per-tick cost bounded.
 
-local INTERVAL = 60
+-- Maximum entities processed per tick. The surface is scanned in bounded
+-- batches across consecutive ticks instead of all at once every INTERVAL ticks,
+-- so the per-tick cost stays flat even on a large Yeters base.
+local ENTITIES_PER_TICK = 64
 
 local SURFACE_NAME = "yeters"
 
@@ -47,30 +50,71 @@ local INVENTORY_INDICES = {
     defines.inventory.logistic_container_trash
 }
 
-local function pause_inventory(inventory)
+-- Advance every spoilable stack in an inventory by `push` ticks, matching the
+-- real time elapsed since this entity was last touched so its freshness stays
+-- frozen. A push of 0 (first cycle, before an interval has been measured) is a
+-- harmless no-op.
+local function pause_inventory(inventory, push)
     if not inventory or not inventory.valid then
         return
     end
     for i = 1, #inventory do
         local stack = inventory[i]
         if stack.valid_for_read and stack.spoil_tick ~= 0 then
-            stack.spoil_tick = stack.spoil_tick + INTERVAL
+            stack.spoil_tick = stack.spoil_tick + push
         end
     end
 end
 
-script.on_nth_tick(INTERVAL, function()
+-- Cached entity list for the current scan cycle. Kept as a file-local (not in
+-- storage) so it is rebuilt deterministically on load without bloating saves;
+-- only the cursor/timing lives in storage. find_entities_filtered is
+-- deterministic, so every peer rebuilds an identical list in multiplayer.
+local entityCache = nil
+
+script.on_event(defines.events.on_tick, function(event)
     local surface = game.surfaces[SURFACE_NAME]
     if not surface or not surface.valid then
         return
     end
 
-    local entities = surface.find_entities_filtered({ type = TARGET_TYPES })
-    for _, entity in pairs(entities) do
-        if entity.valid then
+    local state = storage.yeters
+    if not state then
+        state = { cursor = 1, push = 0 }
+        storage.yeters = state
+    end
+
+    -- Start a new cycle when the previous one is exhausted or the cache was
+    -- dropped (e.g. after load). The push applied across this cycle equals the
+    -- duration of the previous full cycle, so each stack is advanced by exactly
+    -- the time since it was last touched regardless of how many entities live
+    -- on the surface.
+    if not entityCache or state.cursor > #entityCache then
+        state.push = state.cycle_start and (event.tick - state.cycle_start) or 0
+        state.cycle_start = event.tick
+        entityCache = surface.find_entities_filtered({ type = TARGET_TYPES })
+        state.cursor = 1
+    end
+
+    local total = #entityCache
+    if total == 0 then
+        return
+    end
+
+    local push = state.push
+    local cursor = state.cursor
+    local processed = 0
+
+    while cursor <= total and processed < ENTITIES_PER_TICK do
+        local entity = entityCache[cursor]
+        if entity and entity.valid then
             for _, index in pairs(INVENTORY_INDICES) do
-                pause_inventory(entity.get_inventory(index))
+                pause_inventory(entity.get_inventory(index), push)
             end
         end
+        cursor = cursor + 1
+        processed = processed + 1
     end
+
+    state.cursor = cursor
 end)

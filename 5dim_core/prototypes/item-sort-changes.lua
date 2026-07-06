@@ -338,13 +338,14 @@ data.raw.item["battery"].subgroup = "intermediate-misc"
 data.raw.item["battery"].order = "e"
 data.raw.item["flying-robot-frame"].subgroup = "intermediate-misc"
 data.raw.item["flying-robot-frame"].order = "d"
-data.raw.tool["automation-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["logistic-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["chemical-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["military-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["production-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["utility-science-pack"].subgroup = "intermediate-lab"
-data.raw.tool["space-science-pack"].subgroup = "intermediate-lab"
+-- Science packs are type "item" in Factorio 2.x (the "tool" type no longer exists)
+data.raw.item["automation-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["logistic-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["chemical-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["military-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["production-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["utility-science-pack"].subgroup = "intermediate-lab"
+data.raw.item["space-science-pack"].subgroup = "intermediate-lab"
 data.raw.item["electronic-circuit"].subgroup = "intermediate-chip"
 data.raw.item["electronic-circuit"].order = "a"
 data.raw.item["advanced-circuit"].subgroup = "intermediate-chip"
@@ -361,9 +362,18 @@ data.raw.item["rocket-fuel"].subgroup = "intermediate-silo"
 data.raw.item["rocket-fuel"].order = "x"
 data.raw.item["rocket-part"].subgroup = "intermediate-silo"
 data.raw.item["rocket-part"].order = "z"
-data.raw.item["rocket-silo"].subgroup = "intermediate-silo"
-data.raw.item["rocket-silo"].order = "a"
-if not mods["space-age"] then
+-- Space Age: the rocket silo family moves to the orbit group, in its own
+-- "orbit-silo" subgroup (above the cargo bay). Without Space Age it stays in
+-- intermediate-silo next to the rocket components.
+if mods["space-age"] then
+    data.raw.item["rocket-silo"].subgroup = "orbit-silo"
+    data.raw.item["rocket-silo"].order = "a"
+else
+    data.raw.item["rocket-silo"].subgroup = "intermediate-silo"
+    data.raw.item["rocket-silo"].order = "a"
+end
+-- Space Age removes the satellite item, so only sort it when it exists.
+if data.raw.item["satellite"] then
     data.raw.item["satellite"].subgroup = "intermediate-silo"
     data.raw.item["satellite"].order = "y"
 end
@@ -374,11 +384,11 @@ if mods["space-age"] then
 end
 
 if mods["space-age"] then
-    data.raw.tool["metallurgic-science-pack"].subgroup = "intermediate-lab-space"
-    data.raw.tool["electromagnetic-science-pack"].subgroup = "intermediate-lab-space"
-    data.raw.tool["agricultural-science-pack"].subgroup = "intermediate-lab-space"
-    data.raw.tool["cryogenic-science-pack"].subgroup = "intermediate-lab-space"
-    data.raw.tool["promethium-science-pack"].subgroup = "intermediate-lab-space"
+    data.raw.item["metallurgic-science-pack"].subgroup = "intermediate-lab-space"
+    data.raw.item["electromagnetic-science-pack"].subgroup = "intermediate-lab-space"
+    data.raw.item["agricultural-science-pack"].subgroup = "intermediate-lab-space"
+    data.raw.item["cryogenic-science-pack"].subgroup = "intermediate-lab-space"
+    data.raw.item["promethium-science-pack"].subgroup = "intermediate-lab-space"
     data.raw.recipe["agricultural-science-pack"].subgroup = "intermediate-lab-space"
 end
 
@@ -714,6 +724,10 @@ if mods["space-age"] then
     data.raw["space-platform-starter-pack"]["space-platform-starter-pack"].order = "b"
     data.raw.item["cargo-bay"].subgroup = "orbit-cargo-bay"
     data.raw.item["cargo-bay"].order = "a"
+    data.raw.item["landing-pad-unloading-bay"].subgroup = "orbit-unloading-bay"
+    data.raw.item["landing-pad-unloading-bay"].order = "a"
+    data.raw.recipe["landing-pad-unloading-bay"].subgroup = "orbit-unloading-bay"
+    data.raw.recipe["landing-pad-unloading-bay"].order = "a"
     data.raw.item["asteroid-collector"].subgroup = "orbit-asteroid-collector"
     data.raw.item["asteroid-collector"].order = "a"
     data.raw.item["crusher"].subgroup = "orbit-crusher"
@@ -763,8 +777,8 @@ if mods["space-age"] then
     data.raw.item["big-mining-drill"].order = "a"
     data.raw.recipe["molten-iron-from-lava"].subgroup = "vulcanus-metallurgy"
     data.raw.recipe["molten-copper-from-lava"].subgroup = "vulcanus-metallurgy"
-    data.raw.recipe["molten-iron"].subgroup = "vulcanus-metallurgy"
-    data.raw.recipe["molten-copper"].subgroup = "vulcanus-metallurgy"
+    data.raw.recipe["iron-ore-melting"].subgroup = "vulcanus-metallurgy"
+    data.raw.recipe["copper-ore-melting"].subgroup = "vulcanus-metallurgy"
     data.raw.recipe["casting-iron"].subgroup = "vulcanus-metallurgy-plates"
     data.raw.recipe["casting-copper"].subgroup = "vulcanus-metallurgy-plates"
     data.raw.recipe["casting-steel"].subgroup = "vulcanus-metallurgy-plates"
@@ -844,7 +858,7 @@ if mods["space-age"] then
     data.raw.item["pentapod-egg"].subgroup = "gleba-items2"
     data.raw.recipe["biolubricant"].subgroup = "gleba-liquids"
     data.raw.item["tree-seed"].subgroup = "gleba-nauvis-wood"
-    data.raw.recipe["wood-processing"].subgroup = "gleba-nauvis-wood"
+    data.raw.recipe["tree-seed"].subgroup = "gleba-nauvis-wood"
     data.raw.recipe["fish-breeding"].subgroup = "gleba-nauvis-wood"
     data.raw.recipe["nutrients-from-fish"].subgroup = "gleba-nauvis-wood"
     data.raw.recipe["nutrients-from-biter-egg"].subgroup = "gleba-nauvis-wood"

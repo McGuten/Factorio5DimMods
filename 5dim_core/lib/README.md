@@ -105,9 +105,10 @@ User-tunable settings + Space Age integration toggle + scaling curves.
 | `CostConfig.hasSpaceAge`                 | `mods["space-age"] ~= nil` (computed once) |
 | `CostConfig.spaceAgeMaterials_enabled`   | Setting `5d-space-age-materials` |
 | `CostConfig.spaceAgeSciencePacks_enabled`| Setting `5d-space-age-materials` |
-| `CostConfig.techMultiplier`              | Setting `5d-tech-cost-multiplier` |
-| `CostConfig.recipeMultiplier`            | Setting `5d-recipe-cost-multiplier` |
+| `CostConfig.techMultiplier`              | Neutral `1.0` (no `5d-tech-cost-multiplier` setting exists; tech cost is driven by `5d-machine-tech-factor`) |
+| `CostConfig.recipeMultiplier`            | Setting `5d-recipe-cost-multiplier` — global recipe ingredient cost. Applies to legacy ingredient scaling and Space Age material amounts; machine families using `calculateMachineRecipeAmount` are governed by `5d-machine-recipe-factor` instead |
 | `CostConfig.craftingTimeMultiplier`      | Setting `5d-crafting-time-multiplier` |
+| `CostConfig.machineWorkFactor` / `machineEnergyFactor` / `machineRecipeFactor` / `machineTechFactor` | Settings `5d-machine-work-factor` / `5d-machine-energy-factor` / `5d-machine-recipe-factor` / `5d-machine-tech-factor` — per-tier machine progression curves |
 | `CostConfig.spaceAgeMaterials[tier]`     | `{ material, amount }` per tier 5-10 (Vulcanus → Aquilo) |
 | `CostConfig.spaceAgeMaterialsBulk[tier]` | Same as above with smaller amounts (robots/ammo) |
 | `CostConfig.spaceAgeSciencePacks[tier]`  | `{ {pack, 1} }` per tier 5-10 (metallurgic / electromagnetic / cryogenic) |

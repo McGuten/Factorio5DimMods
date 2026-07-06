@@ -13,7 +13,7 @@ data:extend({
         type = "recipe",
         name = "5d-stone-dust",
         enabled = false,
-        category = "mashering",
+        categories = { "mashering" },
         subgroup = "decoration-floor",
         order = "a-a[stone-brick]-a[5d-stone-dust]",
         energy_required = 3.2,
@@ -33,7 +33,7 @@ data:extend({
         icon_size = 64,
         subgroup = "decoration-floor",
         order = "a-a[stone-brick]-b[5d-stone-brick]",
-        category = "smelting",
+        categories = { "smelting" },
         energy_required = 3.2,
         allow_productivity = true,
         ingredients = {

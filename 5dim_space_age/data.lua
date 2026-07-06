@@ -26,6 +26,7 @@ require("prototypes.gen-heating-tower")     -- Heating Tower (10 tiers)
 -- Orbit machines
 require("prototypes.gen-cargo-bay")         -- Cargo Bay (10 tiers)
 require("prototypes.gen-cargo-landing-pad") -- Cargo Landing Pad (10 tiers)
+require("prototypes.gen-landing-pad-unloading-bay") -- Landing Pad Unloading Bay (10 tiers)
 require("prototypes.gen-asteroid-collector") -- Asteroid Collector (10 tiers)
 require("prototypes.gen-crusher")           -- Crusher (10 tiers)
 require("prototypes.gen-thruster")          -- Thruster (10 tiers)

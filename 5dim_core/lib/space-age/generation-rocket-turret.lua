@@ -23,7 +23,7 @@ function genRocketTurret(inputs)
     recipe.icon = item.icon
     recipe.icon_size = 64
     if inputs.new and inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
+        if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
     end
     if inputs.new then
         recipe.enabled = false

@@ -243,7 +243,7 @@ for tier, config in pairs(tierConfig) do
             ingredients = getCombatSupportIngredients(tier, "grenade", "5d-grenade-", grenadeRecipeOverrides),
             results = { { type = "item", name = name, amount = 1 } }
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         setTieredIcons(recipe, "__base__/graphics/icons/grenade.png", tier)
         
         -- Create technology
@@ -313,7 +313,7 @@ for tier, config in pairs(tierConfig) do
             ingredients = getCombatSupportIngredients(tier, "cluster-grenade", "5d-cluster-grenade-"),
             results = { { type = "item", name = name, amount = 1 } }
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         setTieredIcons(recipe, "__base__/graphics/icons/cluster-grenade.png", tier)
         
         -- Create technology
@@ -397,7 +397,7 @@ for tier, config in pairs(tierConfig) do
             ingredients = getCombatSupportIngredients(tier, "poison-capsule", "5d-poison-capsule-"),
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         setTieredIcons(recipe, "__base__/graphics/icons/poison-capsule.png", tier)
         
         -- Create technology
@@ -479,7 +479,7 @@ for tier, config in pairs(tierConfig) do
             ingredients = getCombatSupportIngredients(tier, "slowdown-capsule", "5d-slowdown-capsule-"),
             results = { { type = "item", name = capsuleName, amount = 1 } }
         }
-        recipe.category = getCombatSupportRecipeCategory(tier)
+        if getCombatSupportRecipeCategory(tier) then recipe.categories = { getCombatSupportRecipeCategory(tier) } end
         setTieredIcons(recipe, "__base__/graphics/icons/slowdown-capsule.png", tier)
         
         -- Create technology

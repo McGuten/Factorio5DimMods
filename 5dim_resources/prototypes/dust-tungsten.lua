@@ -20,7 +20,7 @@ data:extend({
         subgroup = "vulcanus-metallurgy-tungsten",
         order = "c[tungsten]-b[5d-tungsten-dust]",
         icons = DustCommon.make_dust_icons("__space-age__/graphics/icons/tungsten-ore.png", DustCommon.tints.tungsten),
-        category = "mashering",
+        categories = { "mashering" },
         energy_required = 3.2,
         allow_productivity = true,
         ingredients = {
@@ -38,7 +38,7 @@ data:extend({
         subgroup = "vulcanus-metallurgy-tungsten",
         order = "c[tungsten]-d[5d-tungsten-plate]",
         enabled = false,
-        category = "metallurgy",
+        categories = { "metallurgy" },
         energy_required = 10,
         allow_productivity = true,
         ingredients = {

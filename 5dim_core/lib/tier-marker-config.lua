@@ -54,9 +54,27 @@ local runtimeFamilies = {
             "^5d%-mortar%-turret%-(%d+)$",
             "^5d%-robot%-deployer%-(%d+)$",
             "^5d%-flare%-turret%-(%d+)$",
+            "^5d%-tesla%-turret%-(%d+)$",
+            "^5d%-slow%-turret%-(%d+)$",
             "^5d%-land%-mine%-(%d+)$",
             "^5d%-poison%-mine%-(%d+)$",
             "^5d%-acid%-mine%-(%d+)$"
+        }
+    },
+    {
+        id = "trains",
+        draw_runtime_tier = true,
+        required_mods = { "5dim_trains" },
+        type_filters = { "locomotive", "cargo-wagon", "fluid-wagon" },
+        base_names = {
+            ["locomotive"] = 1,
+            ["cargo-wagon"] = 1,
+            ["fluid-wagon"] = 1
+        },
+        patterns = {
+            "^5d%-locomotive%-(%d+)$",
+            "^5d%-cargo%-wagon%-(%d+)$",
+            "^5d%-fluid%-wagon%-(%d+)$"
         }
     },
     {
@@ -89,20 +107,63 @@ local runtimeFamilies = {
         id = "space-age",
         draw_runtime_tier = true,
         required_mods = { "5dim_space_age" },
-        type_filters = { "cargo-landing-pad", "assembling-machine", "lightning-attractor", "reactor" },
+        type_filters = {
+            "cargo-landing-pad", "assembling-machine", "lightning-attractor", "reactor",
+            "lab", "furnace", "mining-drill", "agricultural-tower", "asteroid-collector",
+            "cargo-bay", "fusion-generator", "fusion-reactor", "rocket-silo", "thruster",
+            "ammo-turret", "electric-turret"
+        },
         base_names = {
             ["cargo-landing-pad"] = 1,
             ["captive-biter-spawner"] = 1,
             ["cryogenic-plant"] = 1,
             ["heating-tower"] = 1,
-            ["lightning-rod"] = 1
+            ["lightning-rod"] = 1,
+            ["foundry"] = 1,
+            ["biochamber"] = 1,
+            ["crusher"] = 1,
+            ["electromagnetic-plant"] = 1,
+            ["biolab"] = 1,
+            ["recycler"] = 1,
+            ["big-mining-drill"] = 1,
+            ["agricultural-tower"] = 1,
+            ["asteroid-collector"] = 1,
+            ["cargo-bay"] = 1,
+            ["landing-pad-unloading-bay"] = 1,
+            ["fusion-generator"] = 1,
+            ["fusion-reactor"] = 1,
+            ["rocket-silo"] = 1,
+            ["thruster"] = 1,
+            ["lightning-collector"] = 1,
+            ["railgun-turret"] = 1,
+            ["rocket-turret"] = 1,
+            ["tesla-turret"] = 1
         },
         patterns = {
             "^5d%-cargo%-landing%-pad%-(%d+)$",
             "^5d%-captive%-biter%-spawner%-(%d+)$",
             "^5d%-cryogenic%-plant%-(%d+)$",
             "^5d%-heating%-tower%-(%d+)$",
-            "^5d%-lightning%-rod%-(%d+)$"
+            "^5d%-lightning%-rod%-(%d+)$",
+            "^5d%-foundry%-(%d+)$",
+            "^5d%-biochamber%-(%d+)$",
+            "^5d%-crusher%-(%d+)$",
+            "^5d%-electromagnetic%-plant%-(%d+)$",
+            "^5d%-biolab%-(%d+)$",
+            "^5d%-recycler%-(%d+)$",
+            "^5d%-big%-mining%-drill%-(%d+)$",
+            "^5d%-agricultural%-tower%-(%d+)$",
+            "^5d%-asteroid%-collector%-(%d+)$",
+            "^5d%-cargo%-bay%-(%d+)$",
+            "^5d%-landing%-pad%-unloading%-bay%-(%d+)$",
+            "^5d%-fusion%-generator%-(%d+)$",
+            "^5d%-fusion%-reactor%-building%-(%d+)$",
+            "^5d%-rocket%-silo%-(%d+)$",
+            "^5d%-thruster%-(%d+)$",
+            "^5d%-lightning%-collector%-(%d+)$",
+            "^5d%-railgun%-turret%-(%d+)$",
+            "^5d%-rocket%-turret%-(%d+)$",
+            "^5d%-tesla%-turret%-sa%-(%d+)$"
         }
     }
 }

@@ -1,11 +1,11 @@
 {
     "name": "5dim_transport",
-    "version": "2.0.22",
-    "factorio_version": "2.0",
+    "version": "2.1.0",
+    "factorio_version": "2.1",
     "title": "5Dim's mod - Transport",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
-    "description": "Push more items and fluids through your factory.\n\rAdds faster belts, inserters, loaders, pumps and long-range pipe options for high-throughput builds.\n\rRequires Bob's Inserters and 5dim_core.",
-    "dependencies": ["5dim_core >= 2.0.42", "bobinserters >= 1.3.2", "? space-age >= 2.0.0"]
+    "description": "Push more items and fluids through your factory.\n\rAdds faster belts, inserters, loaders, pumps and long-range pipe options for high-throughput builds.\n\rRequires 5dim_core. Bob's Inserters is supported but optional.",
+    "dependencies": ["5dim_core >= 2.0.42", "? bobinserters >= 1.3.2", "? space-age >= 2.0.0"]
 }

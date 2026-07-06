@@ -23,9 +23,7 @@ function genSolarPanels(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     -- Equipment
     equipment.name = item.name
@@ -33,6 +31,12 @@ function genSolarPanels(inputs)
     equipment.power = inputs.power .. "kW"
     equipment.sprite.filename =
         "__5dim_equipment__/graphics/equipment/solar-panel/solar-panel-equipment-" .. inputs.number .. ".png"
+    -- The 5Dim sprites are 32x32; the vanilla copy declares 64x64 @ scale 0.5,
+    -- so match the real image size (and keep the same on-screen size at scale 1).
+    equipment.sprite.width = 32
+    equipment.sprite.height = 32
+    equipment.sprite.size = nil
+    equipment.sprite.scale = 1
     -- log("equipment.take_result: " .. equipment.take_result)
 
     data:extend({equipment, recipe, item})

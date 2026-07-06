@@ -24,9 +24,7 @@ function genSteamEngines(inputs)
         recipe.results = { { type = "item", name = item.name, amount = 1 } }
         recipe.ingredients = inputs.ingredients
     end
-    if inputs.recipeCategory then
-        recipe.category = inputs.recipeCategory
-    end
+    if inputs.recipeCategory then recipe.categories = { inputs.recipeCategory } end
 
     --Entity
     entity.name = item.name
@@ -37,12 +35,22 @@ function genSteamEngines(inputs)
     entity.fluid_usage_per_tick = inputs.energyUsage
     entity.energy_source.emissions_per_minute = inputs.pollution
 
-    -- Horizontal
-    entity.horizontal_animation.layers[1].filename =
+    local horizontal_filename =
         "__5dim_energy__/graphics/entities/steam-engine/steam-engine-H/steam-engine-H-" .. inputs.number .. ".png"
-    -- Vertical
-    entity.vertical_animation.layers[1].filename =
+    local vertical_filename =
         "__5dim_energy__/graphics/entities/steam-engine/steam-engine-V/steam-engine-V-" .. inputs.number .. ".png"
+
+    if entity.horizontal_animation and entity.horizontal_animation.layers and entity.horizontal_animation.layers[1] then
+        entity.horizontal_animation.layers[1].filename = horizontal_filename
+    elseif entity.pictures and entity.pictures.east and entity.pictures.east.animation and entity.pictures.east.animation.layers and entity.pictures.east.animation.layers[1] then
+        entity.pictures.east.animation.layers[1].filename = horizontal_filename
+    end
+
+    if entity.vertical_animation and entity.vertical_animation.layers and entity.vertical_animation.layers[1] then
+        entity.vertical_animation.layers[1].filename = vertical_filename
+    elseif entity.pictures and entity.pictures.north and entity.pictures.north.animation and entity.pictures.north.animation.layers and entity.pictures.north.animation.layers[1] then
+        entity.pictures.north.animation.layers[1].filename = vertical_filename
+    end
 
     data:extend({ entity, recipe, item })
 

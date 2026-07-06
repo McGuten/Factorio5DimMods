@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.0
+Date: 2026-07-06
+  Major Features:
+    - New release for Factorio 2.1.
+    - Huge overhaul of the whole 5Dim's mod family compared to the previous version.
+  Changes:
+    - We strongly recommend starting a new game with this release.
+---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2026-05-27
   Features:

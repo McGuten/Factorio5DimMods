@@ -1,10 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.1.0
-Date: 2024-12-30
+Date: 2026-07-06
+  Major Features:
+    - New release for Factorio 2.1.
+    - Huge overhaul of the whole 5Dim's mod family compared to the previous version.
   Features:
     - Added 10 tiers of steel chests with progressively larger inventory sizes
     - Added 10 tiers for all logistic chests (passive-provider, active-provider, storage, buffer, requester) when 5dim_logistic is installed
   Changes:
+    - We strongly recommend starting a new game with this release.
     - Updated mod description to reflect new content
     - Added optional dependency on 5dim_logistic for logistic chest tiers
 ---------------------------------------------------------------------------------------------------
@@ -33,10 +37,6 @@ Version: 2.0.0
 Date: 2024-11-03
   Changes:
     - Factorio 2.0 compatibility
----------------------------------------------------------------------------------------------------
-Version: 1.1.1
-Date: 2023-01-29
-  Changes:
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2020-12-07

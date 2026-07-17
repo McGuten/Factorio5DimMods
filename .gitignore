@@ -12,5 +12,6 @@
 to-do.txt
 .git
 /scripts/
+.portal-key
 *.md
 !5dim_*/README.md

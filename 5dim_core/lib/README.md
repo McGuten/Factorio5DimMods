@@ -31,6 +31,9 @@ lib/
                                     space-age, storage, trains, transport, vehicles,
                                     enemies)
     generation-<entity>.lua       ← Defines a global gen<Entity>(inputs) function
+    energy/supply-area.lua        ← SupplyArea.align(entity, distance): rounds a pole's
+                                    supply_area_distance up to the next tile-aligned
+                                    value (x.5 for 1x1 poles, whole for 2x2)
 ```
 
 Each `lib/<domain>/generation-*.lua` file follows the same convention: it declares

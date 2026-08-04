@@ -1,3 +1,5 @@
+local SupplyArea = require("__5dim_core__.lib.energy.supply-area")
+
 function genBigPoles(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["big-electric-pole"])
@@ -33,7 +35,7 @@ function genBigPoles(inputs)
     entity.icon = item.icon
     entity.minable.result = item.name
     entity.maximum_wire_distance = inputs.craftingSpeed
-    entity.supply_area_distance = inputs.energyUsage
+    entity.supply_area_distance = SupplyArea.align(entity, inputs.energyUsage)
     entity.max_health = inputs.maxHealth or entity.max_health
 
     -- Base

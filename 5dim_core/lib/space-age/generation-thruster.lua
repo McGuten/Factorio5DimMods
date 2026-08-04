@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genThruster(inputs)
     -- Copy thruster
     local item = table.deepcopy(data.raw.item["thruster"])
@@ -40,6 +42,10 @@ function genThruster(inputs)
     entity.minable.result = item.name
     entity.max_performance.effectivity = inputs.effectivity
     entity.fast_replaceable_group = "thruster"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "thruster", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

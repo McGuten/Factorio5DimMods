@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genBiochamber(inputs)
     -- Copy biochamber
     local item = table.deepcopy(data.raw.item["biochamber"])
@@ -37,6 +39,10 @@ function genBiochamber(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "biochamber"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "biochamber", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

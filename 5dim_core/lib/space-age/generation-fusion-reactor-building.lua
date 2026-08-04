@@ -3,6 +3,7 @@
 -- Creates tiered fusion reactor building prototypes for Space Age
 -------------------------------------------------------------------------------
 
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 
 function genFusionReactorBuilding(inputs)
@@ -50,6 +51,10 @@ function genFusionReactorBuilding(inputs)
     entity.max_fluid_usage = (inputs.power * 4 / 500) / 60 -- convert to per tick
     entity.power_input = (inputs.power / 50) .. "MW"
     entity.fast_replaceable_group = "fusion-reactor"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "fusion-reactor", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

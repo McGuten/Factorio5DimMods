@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genLightningCollector(inputs)
     -- Copy lightning-collector (type is lightning-attractor)
     local item = table.deepcopy(data.raw.item["lightning-collector"])
@@ -43,6 +45,10 @@ function genLightningCollector(inputs)
         -- Note: Lightning collector uses complex graphics that may need special handling
         -- For now, we maintain vanilla graphics with tinted icon
     end
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "lightning-collector", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

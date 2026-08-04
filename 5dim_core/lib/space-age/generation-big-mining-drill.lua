@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genBigMiningDrill(inputs)
     -- Copy big-mining-drill
     local item = table.deepcopy(data.raw.item["big-mining-drill"])
@@ -37,6 +39,10 @@ function genBigMiningDrill(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "big-mining-drill"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "big-mining-drill", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

@@ -15,3 +15,7 @@ to-do.txt
 .portal-key
 *.md
 !5dim_*/README.md
+# La documentacion de diseno es fuente de verdad del repo (ver CLAUDE.md), asi
+# que se versiona pese a la regla *.md de arriba.
+!docs/*.md
+!docs/**/*.md

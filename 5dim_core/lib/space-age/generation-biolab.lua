@@ -3,6 +3,7 @@
 -- Creates tiered biolab prototypes for Space Age
 -------------------------------------------------------------------------------
 
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
 local TierBadgeIcons = require("__5dim_core__.lib.icon-tier-badge")
 
 function genBiolab(inputs)
@@ -53,6 +54,10 @@ function genBiolab(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "biolab"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "biolab", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

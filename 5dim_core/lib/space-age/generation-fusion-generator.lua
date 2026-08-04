@@ -3,6 +3,8 @@
 -- Creates tiered fusion generator prototypes for Space Age
 -------------------------------------------------------------------------------
 
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genFusionGenerator(inputs)
     -- Copy fusion generator
     local item = table.deepcopy(data.raw.item["fusion-generator"])
@@ -36,6 +38,10 @@ function genFusionGenerator(inputs)
     -- Fusion generator uses output_flow_limit in energy_source for power output
     entity.energy_source.output_flow_limit = inputs.power .. "MW"
     entity.fast_replaceable_group = "fusion-generator"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "fusion-generator", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

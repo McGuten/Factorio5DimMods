@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genCrusher(inputs)
     -- Copy crusher (type is assembling-machine)
     local item = table.deepcopy(data.raw.item["crusher"])
@@ -40,6 +42,10 @@ function genCrusher(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "crusher"
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "crusher", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

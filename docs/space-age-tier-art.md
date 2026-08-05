@@ -1,10 +1,10 @@
 # Arte Por Tier De Space Age: Capa Base Vanilla + Overlay
 
 Como se cablea el arte por tier de `5dim_space_age` sin pasarse del limite del
-Mod Portal. Documenta la decision, la investigacion que la respalda y lo que
-queda pendiente, para no repetir callejones sin salida ya explorados.
+Mod Portal. Documenta la decision y la investigacion que la respalda, para no
+repetir callejones sin salida ya explorados.
 
-Fecha del trabajo: 2026-08-04.
+Fechas del trabajo: grupo A el 2026-08-04, grupo B el 2026-08-05.
 
 ## El problema
 
@@ -110,31 +110,51 @@ fusion-reactor, lightning-collector, big-mining-drill, thruster.
 **575 MB de originales -> 63 MB de overlays** (24 sheets). Los 230 PNG originales
 se borraron del arbol de trabajo.
 
-### Grupo B: parado (2026-08-04)
+### Grupo B: convertido (2026-08-05)
 
-Plan de ejecucion detallado en
-[plans/space-age-tier-art-group-b.md](plans/space-age-tier-art-group-b.md).
+| entidad | originales | overlays | como quedo |
+| --- | ---: | ---: | --- |
+| recycler | 304.7 MB | 22.7 MB | 8 sheets, rejillas 8x8 de 64 fotogramas. Igual que foundry pero con las cuatro direcciones mas sus cuatro `flipped-*` |
+| rocket-silo | 9.8 MB | 0.9 MB | 2 sprites de un solo fotograma, `base_day_sprite` y `base_front_sprite` |
 
-| entidad | peso | situacion |
-| --- | --- | --- |
-| recycler | 291 MB | **caso facil**: conserva la estructura igual que foundry, el metodo ya validado sirve tal cual. Son 8 sheets en vez de 2 |
-| agricultural-tower | 40 MB | **cambio estructural**: sus 64 fotogramas animados pasaron a un base estatico (`repeat_count = 64`) mas una capa `anim` aparte de 192x168. No hay donde mapearlos |
-| asteroid-collector | 34 MB | mismo cambio estructural: rejilla 4x4 animada frente a un base vanilla estatico, con la animacion movida a `*-anim.png` |
-| rocket-silo | 9.4 MB | el arte de 5Dim coincide con la variante `-frozen` (608x596); el sheet real crecio a 628x612 |
+Dos cosas del recycler que no se ven en el prototipo: su arte vanilla vive en el
+mod `__recycler__`, no en `__space-age__`, y los sheets `flipped-*` cuelgan de
+`graphics_set_flipped`. El recorrido generico los cubre sin tocar nada.
 
-Para agricultural-tower y asteroid-collector la salida realista es
-`applyTierTint`, que cuesta 0 MB y 0 VRAM.
+**El rocket-silo no estaba hecho sobre la variante `-frozen`**, como parecia por
+coincidir en dimensiones (608x596). El `-frozen` es una capa de escarcha dispersa:
+solo comparte el 21.8% de silueta con el arte de 5Dim. El sheet bueno es el de
+`base`, mismo render rehecho un poco mas grande — la caja del cuerpo paso de
+592x597 a 603x606. Es grupo B corriente.
+
+### Sin overlay: caen al tinte de reserva
+
+`agricultural-tower` (40 MB) y `asteroid-collector` (34 MB) tuvieron un **cambio
+estructural**: sus fotogramas animados (8x8 y 4x4) pasaron a un base vanilla
+estatico mas una capa `*-anim.png` aparte. No hay donde mapear la region, y se
+comprobo que los fotogramas de 5Dim no son identicos entre si (1/64 y 1/16
+coinciden con el fotograma 0), asi que tampoco se pueden colapsar a uno.
+
+La salida es `applyTierTint`: 0 MB y 0 VRAM. No hace falta nada especial, basta
+con **no** anadirlas al manifiesto — `tier-art.lua` cae solo al tinte cuando no
+encuentra la clave. Su arte se borro.
+
+Si algun dia se quiere arte propio, la unica via realista es rehacer la seleccion
+a mano sobre el sprite nuevo. Deducir la region por color se descarto con dos
+metodos distintos (IoU 2-34% y 1-55%).
 
 ### Fuera del sistema
 
-- `platform-hub` (4.1 MB): arte huerfano, ningun generador construye un
-  `space-platform-hub` por tiers.
+Todo esto era arte huerfano y se borro, salvo la ultima entrada:
+
+- `platform-hub` (4.1 MB): ningun generador construye un `space-platform-hub` por
+  tiers. Sus overlays ya generados tambien se fueron.
 - `mech-armor` (160 KB): no es arte de entidad, es un **icono de 120x64 con
   cadena de mipmaps** (64+32+16+8) colocado en `graphics/entity/` por error.
 - `big-mining-drill-{N,E,S,W}-top.png`: sin sufijo de tier, no forman familia.
-- `fusion-reactor-equipment` (632 KB): ya cableado como arte completo desde
+- `fusion-reactor-equipment` (632 KB): **se queda**. Ya esta cableado como arte
+  completo desde
   [../5dim_core/lib/equipment/generation-fusion-reactor-equipment.lua](../5dim_core/lib/equipment/generation-fusion-reactor-equipment.lua).
-  Se deja como esta.
 
 ## Detalles de implementacion que costaron encontrarse
 
@@ -183,26 +203,31 @@ sheet vanilla.
 Los overlays se generan **a partir de los PNG originales**, que ya **no estan en
 el arbol de trabajo** pero si en git. Hay que restaurarlos primero:
 
-```powershell
+```bash
 # 1. recuperar los originales de la entidad que toque
 git checkout -- 5dim_space_age/graphics/entity/<entidad>
 
 # 2. regenerar (el script se autoverifica: compone vanilla+overlay y lo compara)
-wsl -e /mnt/d/factorioDev/venv/bin/python -P mods/scripts/extract-tier-overlays.py --verify
+./scripts/extract-tier-overlays.py --verify
 
 # opciones utiles
-#   --only <entidad>   restringe a una entidad (repetible)
-#   --clean            limpia el directorio de salida antes
-#   --contact <dir>    saca una tira con los 10 tiers para revision visual
+#   --only <entidad>      restringe a una entidad (repetible)
+#   --clean               limpia el directorio de salida antes
+#   --contact <dir>       saca una tira con los 10 tiers para revision visual
+#   --factorio-dir <dir>  instalacion de la que leer el arte vanilla
 ```
 
-El script corre en el venv de WSL (`venv/`), que tiene numpy, Pillow y scipy.
+Necesita numpy, Pillow y scipy. En WSL estan en el Python del sistema, no hace
+falta venv.
+
+El arte vanilla se localiza solo: `$FACTORIO_DIR`, el workspace de Windows si el
+repo cuelga de `<workspace>/mods`, o `~/factorio`. Si pasas `--factorio-dir` o
+`FACTORIO_DIR` y la ruta no vale, el script falla en vez de usar otra instalacion.
 
 ## Como validar
 
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\mods\scripts\validate-factorio-profiles.ps1 -TestSet Smoke
+```bash
+./scripts/validate-factorio-profiles.py --test-set smoke
 ```
 
 El perfil aislado `module-5dim_space_age` falla por `5d-electric-mining-drill-02`,
@@ -210,14 +235,26 @@ que es de `5dim_mining`: es un problema de dependencias del perfil, ajeno a esto
 
 Que las suites pasen **no prueba que los overlays se esten cargando**: si el
 `require` del manifiesto fallara, `tier-art.lua` caeria al tinte de reserva y
-tambien pasarian. Para prueba positiva, volcar los prototipos y contar las capas:
+tambien pasarian. Para prueba positiva, volcar los prototipos y contar las capas.
+Como el perfil aislado no arranca, el volcado sale de la suite completa:
 
-```powershell
-& "d:\factorioDev\bin\x64\factorio.exe" --config <config> --mod-directory "d:\factorioDev\mods" --dump-data
+```bash
+./scripts/validate-factorio-profiles.py --profiles suite-full --keep-artifacts
 ```
 
-y comprobar en `script-output/data-raw-dump.json` que cada tier lleva exactamente
-sus overlays y ninguno ajeno.
+y comprobar en el `script-output/data-raw-dump.json` que queda bajo el
+`write-data` del perfil que cada tier lleva exactamente sus overlays y ninguno
+ajeno. Lo que debe salir, contando rutas bajo
+`__5dim_space_age__/graphics/tier-overlay/`: 12 familias, 10 prototipos cada una,
+mismo numero de capas en los 10 y **un solo** numero de tier por prototipo. Que
+se cuelen dos numeros de tier en el mismo prototipo significa que
+`stripInheritedOverlays` no esta limpiando.
+
+Ojo con el tier 1 cuando el generador no lo construye. El silo es el caso: su
+bucle empieza en el tier 2 y el MK1 es el prototipo vanilla parcheado en sitio,
+asi que su `applyTierArt` va aparte, en
+[../5dim_space_age/prototypes/gen-rocket-silo.lua](../5dim_space_age/prototypes/gen-rocket-silo.lua).
+Sin eso el tier 1 se queda sin overlay y la carga pasa igual.
 
 La revision final es visual, en el juego: colocar los 10 tiers en fila **y dejarlos
 funcionando**, no solo parados, porque el parpadeo solo se ve con la animacion en
@@ -225,5 +262,29 @@ marcha.
 
 ## Estado
 
-Tras el grupo A, el mod esta en **448 MB**: sigue por encima de los 262 MB. **La
-publicacion depende de terminar el grupo B**, que es el grueso que queda.
+Terminado. El mod paso de **448 MB a 89 MB**, y el zip que veria el portal pesa
+**87.6 MB** contra un limite de 262 MB.
+
+| paso | mod queda en |
+| --- | ---: |
+| antes del grupo A | 953 MB |
+| tras el grupo A | 448 MB |
+| + recycler y rocket-silo a overlay | ~92 MB |
+| + arte huerfano y el de las dos entidades con tinte | **89 MB** |
+
+Lo unico que falta antes de publicar es la **revision visual en juego** descrita
+arriba, que no la cubre ninguna suite.
+
+### Regenerar los overlays mas adelante
+
+`extract-tier-overlays.py` lee los PNG originales de `graphics/entity/`, que ya
+no estan en el arbol. Hay que recuperarlos antes:
+
+```bash
+git archive '<commit-con-el-arte>' 5dim_space_age/graphics/entity | tar -x -C .
+```
+
+Y hay que regenerar **sin `--only`**: el manifiesto se reescribe solo con lo
+seleccionado, asi que una pasada filtrada borra del manifiesto todo lo demas.
+Los originales del grupo A hacen falta aunque solo se toque el grupo B, porque de
+ellos se aprende el mapa de color (`LUT_SOURCES`).

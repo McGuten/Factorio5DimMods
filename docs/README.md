@@ -15,9 +15,11 @@ Punto de entrada corto para la documentacion activa de 5Dim.
 - [design-upgrades.md](design-upgrades.md): familias que se construyen como upgrade de otra base.
 - [space-age-tier-art.md](space-age-tier-art.md): arte por tier de Space Age como capa base vanilla + overlay; decision, investigacion y alternativas descartadas.
 
-## Validacion
+## Comandos Y Validacion
 
-- [validation-smoke-tests.md](validation-smoke-tests.md): perfiles, artefactos y uso del runner local.
+- [comandos.md](comandos.md): indice de todos los comandos del repo, uno por linea.
+- [validation-smoke-tests.md](validation-smoke-tests.md): perfiles, artefactos y uso del runner local de validacion (Python, WSL y Windows).
+- [entorno-wsl-factorio.md](entorno-wsl-factorio.md): instalacion de Factorio en WSL para abrir el juego con los mods del repo.
 
 ## Planes
 

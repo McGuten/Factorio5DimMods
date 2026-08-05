@@ -213,15 +213,14 @@ Mantener todos los packs en `orbit-platform`:
 - Cargar perfil con Space Age y Quality, porque `5dim_space_age` depende de ambos.
 - Ejecutar validacion local del workspace si se implementa codigo:
 
-```powershell
-Set-Location "d:\factorioDev\mods"
-.\validate-factorio-profiles.ps1 -TestSet Module -Profiles module-5dim_space_age -KeepArtifacts
+```bash
+./scripts/validate-factorio-profiles.py --profiles module-5dim_space_age --keep-artifacts
 ```
 
 - Validar que cada tecnologia desbloquea exactamente una receta nueva.
 - Validar que cada pack crea el area esperada y deja la cantidad esperada de `space-platform-foundation` en el hub/plataforma.
 - Validar que todos los packs pueden lanzarse con el limite vanilla de cohete.
-- Ejecutar `validate-locales.ps1` tras tocar locales.
+- Ejecutar `./scripts/validate-locales.py` tras tocar locales.
 
 ## Preguntas abiertas
 

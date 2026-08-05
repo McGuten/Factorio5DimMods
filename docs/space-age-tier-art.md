@@ -112,6 +112,9 @@ se borraron del arbol de trabajo.
 
 ### Grupo B: parado (2026-08-04)
 
+Plan de ejecucion detallado en
+[plans/space-age-tier-art-group-b.md](plans/space-age-tier-art-group-b.md).
+
 | entidad | peso | situacion |
 | --- | --- | --- |
 | recycler | 291 MB | **caso facil**: conserva la estructura igual que foundry, el metodo ya validado sirve tal cual. Son 8 sheets en vez de 2 |

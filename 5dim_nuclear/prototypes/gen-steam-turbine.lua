@@ -211,8 +211,10 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + (tier - 1) * 0.15
-    -- Non-linear energy scaling (vanilla pattern) - preserve decimals for fluid_usage_per_tick
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier, true)
+    -- Mismo factor que el reactor y el intercambiador para conservar la proporcion
+    -- de vanilla; con decimales porque esto es fluid_usage_per_tick.
+    local energyFactor = 1.35
+    local energy = math.floor(baseEnergy * (energyFactor ^ (tier - 1)) * 100) / 100
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
     
     -- Module slots: base + 1 every 2 tiers

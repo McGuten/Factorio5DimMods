@@ -207,8 +207,11 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local craftingSpeed = baseCraftingSpeed + (tier - 1) * 1
-    -- Non-linear energy scaling (vanilla pattern)
-    local energy = CostCalculator.scaleEnergy(baseEnergy, tier)
+    -- Toda la cadena nuclear (reactor, intercambiador y turbina) escala con este
+    -- mismo factor: es lo que mantiene los 4 intercambiadores por reactor y las
+    -- ~1.72 turbinas por intercambiador de vanilla en los diez tiers.
+    local energyFactor = 1.35
+    local energy = math.floor(baseEnergy * (energyFactor ^ (tier - 1)) + 0.5)
     -- Temperature scales UP with tier (better heat exchanger = higher temp capacity)
     local maxTemperature = baseMaxTemperature + (tier - 1) * 100
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed)

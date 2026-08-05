@@ -13,11 +13,6 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseModules = 2
-local baseEnergy = 480
-local baseAreaEffect = 3
-local baseEfficiency = 1.5
-
 local beaconTechCounts = {
     [2] = 400,
     [3] = 900,
@@ -94,26 +89,35 @@ local function addBeaconDeltaPrerequisites(prerequisites, tier)
     end
 end
 
-local function clampBeaconDistance(value)
-    return math.min(value, 64)
-end
-
 -------------------------------------------------------------------------------
 -- TIER DEFINITIONS
--- Each tier defines: module slots bonus, area bonus, efficiency bonus, order, vanilla flag
+-- Each tier defines its stats directly: module slots, distribution effectivity,
+-- supply area distance, energy usage in kW, order, vanilla flag.
+--
+-- The beacon does NOT use the exponential machine work multiplier. Slots and
+-- effectivity multiply each other, so an exponential curve on both turns
+-- quadratic: it reached 82 slots and a 64 tile supply area on MK10. The family
+-- follows the same restrained linear shape as the modules it broadcasts
+-- (gen-modules.lua: speed goes +15% to +150% across the same ten tiers), which
+-- keeps the beacon readable as electronic infrastructure and not as a giant
+-- module. See docs/design-modules.md.
+--
+-- Growth per tier: +1 slot every two tiers, +0.15 effectivity (+0.30 on the MK10
+-- capstone), area up on most tiers. MK10 lands on 6 x 3.0 = 18 module
+-- equivalents, 6x the vanilla beacon's 2 x 1.5 = 3.0.
 -------------------------------------------------------------------------------
 
 local tierConfig = {
-    [1]  = { moduleBonus = 0, areaBonus = 0, efficiencyBonus = 0,    order = "a", isVanilla = true },
-    [2]  = { moduleBonus = 1, areaBonus = 0, efficiencyBonus = 0.02, order = "b" },
-    [3]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.04, order = "c" },
-    [4]  = { moduleBonus = 2, areaBonus = 0, efficiencyBonus = 0.06, order = "d" },
-    [5]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.08, order = "e" },
-    [6]  = { moduleBonus = 3, areaBonus = 1, efficiencyBonus = 0.10, order = "f" },
-    [7]  = { moduleBonus = 4, areaBonus = 1, efficiencyBonus = 0.12, order = "g" },
-    [8]  = { moduleBonus = 4, areaBonus = 2, efficiencyBonus = 0.14, order = "h" },
-    [9]  = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.16, order = "i" },
-    [10] = { moduleBonus = 5, areaBonus = 2, efficiencyBonus = 0.18, order = "j" }
+    [1]  = { moduleSlots = 2, efficiency = 1.50, area = 3,  energy = 480,   order = "a", isVanilla = true },
+    [2]  = { moduleSlots = 2, efficiency = 1.65, area = 4,  energy = 680,   order = "b" },
+    [3]  = { moduleSlots = 3, efficiency = 1.80, area = 5,  energy = 960,   order = "c" },
+    [4]  = { moduleSlots = 3, efficiency = 1.95, area = 5,  energy = 1400,  order = "d" },
+    [5]  = { moduleSlots = 4, efficiency = 2.10, area = 6,  energy = 1950,  order = "e" },
+    [6]  = { moduleSlots = 4, efficiency = 2.25, area = 7,  energy = 2750,  order = "f" },
+    [7]  = { moduleSlots = 5, efficiency = 2.40, area = 7,  energy = 3900,  order = "g" },
+    [8]  = { moduleSlots = 5, efficiency = 2.55, area = 8,  energy = 5500,  order = "h" },
+    [9]  = { moduleSlots = 6, efficiency = 2.70, area = 9,  energy = 7800,  order = "i" },
+    [10] = { moduleSlots = 6, efficiency = 3.00, area = 10, energy = 11000, order = "j" }
 }
 
 -------------------------------------------------------------------------------
@@ -218,11 +222,12 @@ for tier = 1, 10 do
     local config = tierConfig[tier]
     local tierNum = string.format("%02d", tier)
     
-    -- Calculate stats for this tier from the shared balance policy.
-    local modules = CostCalculator.calculateMachineWorkValue(baseModules, tier, 10, 0)
-    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier)
-    local areaEffect = clampBeaconDistance(CostCalculator.calculateMachineWorkValue(baseAreaEffect, tier, 10, 0))
-    local efficiency = baseEfficiency + config.efficiencyBonus
+    -- Prototype stats come straight from the tier table above; only recipe and
+    -- technology costs go through the shared cost system.
+    local modules = config.moduleSlots
+    local energy = config.energy
+    local areaEffect = config.area
+    local efficiency = config.efficiency
     
     -- Get ingredients from template
     local ingredients = CostCalculator.processIngredients(RecipeTemplates.beacon[tier], tier, {

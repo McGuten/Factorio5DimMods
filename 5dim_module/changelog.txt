@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-08-05
+  Bugfixes:
+    - Beacons had a wildly excessive number of module slots on the higher tiers. The MK10 came with
+      82 of them and reached across most of a factory on its own.
+  Changes:
+    - Beacon tiers now grow at a steady pace. Every tier spreads module effects a little better,
+      most tiers reach one tile further, and every second tier adds a module slot.
+    - The MK10 beacon holds 6 modules, spreads their effect twice as well as the original beacon and
+      reaches ten tiles out.
+    - Higher tier beacons draw more power, in line with what they now give back.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-06
   Major Features:

@@ -1,0 +1,14 @@
+# Finales de linea: se normalizan a LF tanto en el repositorio como en el arbol
+# de trabajo, sin importar desde donde se edite (Windows, WSL o Linux). Evita
+# que una copia entre sistemas reescriba todo el repo como CRLF y genere
+# diffs falsos en miles de archivos. A Factorio le da igual el formato.
+* text=auto eol=lf
+
+# Binarios: git no debe intentar convertir nada dentro de ellos.
+*.png binary
+*.jpg binary
+*.ogg binary
+*.wav binary
+*.zip binary
+*.dat binary
+*.ico binary

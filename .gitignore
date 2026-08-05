@@ -8,14 +8,31 @@
 5dim_ztemplate
 *.DS_Store
 .vscode
+# Ajustes locales de herramientas: contienen rutas absolutas de la maquina y no
+# deben publicarse en este repo publico.
+.claude/
 *.zip
 to-do.txt
 .git
-/scripts/
+# Se ignora el contenido de scripts/ (no la carpeta: si se excluyera el
+# directorio, ningun "!" de dentro podria reincluir nada), salvo las
+# herramientas de validacion y empaquetado, que si son fuente del repo.
+/scripts/*
+!/scripts/*.ps1
+!/scripts/*.py
+!/scripts/*.sh
 .portal-key
 *.md
 !5dim_*/README.md
 # La documentacion de diseno es fuente de verdad del repo (ver CLAUDE.md), asi
 # que se versiona pese a la regla *.md de arriba.
+!CLAUDE.md
 !docs/*.md
 !docs/**/*.md
+# Artefactos de WSL/Windows: alternate data streams de archivos descargados.
+*:Zone.Identifier
+
+# Descargas del propio juego para pruebas locales.
+factorio-*.tar.xz
+factorio-*.tar.gz
+/factorio/

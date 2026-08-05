@@ -12,12 +12,10 @@ local piercingSniperMagazineItemIcon = "__5dim_battlefield__/graphics/icon/snipe
 local piercingSniperMagazineTechIcon = "__5dim_battlefield__/graphics/icon/sniper/piercing-sniper-magazine-tech.png"
 local uraniumSniperMagazineItemIcon = "__5dim_battlefield__/graphics/icon/sniper/uranium-sniper-magazine.png"
 local uraniumSniperMagazineTechIcon = "__5dim_battlefield__/graphics/icon/sniper/uranium-sniper-magazine-tech.png"
-local tungstenSniperMagazineItemIcon = "__5dim_battlefield__/tungsteno sniper.png"
-local tungstenSniperMagazineTechIcon = "__5dim_battlefield__/tungsteno sniper.png"
-local uraniumTungstenSniperMagazineItemIcon = "__5dim_battlefield__/tungsteno uranio sniper.png"
-local uraniumTungstenSniperMagazineTechIcon = "__5dim_battlefield__/tungsteno uranio sniper.png"
-local tungstenSniperMagazineIconSize = 600
-local uraniumTungstenSniperMagazineIconSize = 600
+local tungstenSniperMagazineItemIcon = "__5dim_battlefield__/graphics/icon/sniper/tungsten-sniper-magazine.png"
+local tungstenSniperMagazineTechIcon = "__5dim_battlefield__/graphics/icon/sniper/tungsten-sniper-magazine-tech.png"
+local uraniumTungstenSniperMagazineItemIcon = "__5dim_battlefield__/graphics/icon/sniper/uranium-tungsten-sniper-magazine.png"
+local uraniumTungstenSniperMagazineTechIcon = "__5dim_battlefield__/graphics/icon/sniper/uranium-tungsten-sniper-magazine-tech.png"
 
 local sniperMagazineDamage = 10
 local piercingSniperMagazineDamage = 16
@@ -207,7 +205,7 @@ if CostConfig.shouldUseSpaceAgeMaterials() then
             type = "ammo",
             name = "5d-tungsten-sniper-magazine",
             icon = tungstenSniperMagazineItemIcon,
-            icon_size = tungstenSniperMagazineIconSize,
+            icon_size = 64,
             ammo_category = "5d-sniper-rounds",
             ammo_type = ammo_effects(tungstenSniperMagazineDamage),
             magazine_size = 5,
@@ -219,7 +217,7 @@ if CostConfig.shouldUseSpaceAgeMaterials() then
             type = "ammo",
             name = "5d-uranium-tungsten-sniper-magazine",
             icon = uraniumTungstenSniperMagazineItemIcon,
-            icon_size = uraniumTungstenSniperMagazineIconSize,
+            icon_size = 64,
             ammo_category = "5d-sniper-rounds",
             ammo_type = ammo_effects(uraniumTungstenSniperMagazineDamage),
             magazine_size = 5,
@@ -240,7 +238,7 @@ if CostConfig.shouldUseSpaceAgeMaterials() then
             },
             results = { { type = "item", name = "5d-tungsten-sniper-magazine", amount = 1 } },
             icon = tungstenSniperMagazineItemIcon,
-            icon_size = tungstenSniperMagazineIconSize
+            icon_size = 64
         },
         {
             type = "recipe",
@@ -255,13 +253,13 @@ if CostConfig.shouldUseSpaceAgeMaterials() then
             },
             results = { { type = "item", name = "5d-uranium-tungsten-sniper-magazine", amount = 1 } },
             icon = uraniumTungstenSniperMagazineItemIcon,
-            icon_size = uraniumTungstenSniperMagazineIconSize
+            icon_size = 64
         },
         {
             type = "technology",
             name = "5d-tungsten-sniper-rounds",
             icon = tungstenSniperMagazineTechIcon,
-            icon_size = tungstenSniperMagazineIconSize,
+            icon_size = 256,
             effects = {
                 {
                     type = "unlock-recipe",
@@ -288,7 +286,7 @@ if CostConfig.shouldUseSpaceAgeMaterials() then
             type = "technology",
             name = "5d-uranium-tungsten-sniper-rounds",
             icon = uraniumTungstenSniperMagazineTechIcon,
-            icon_size = uraniumTungstenSniperMagazineIconSize,
+            icon_size = 256,
             effects = {
                 {
                     type = "unlock-recipe",

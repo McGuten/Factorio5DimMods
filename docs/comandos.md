@@ -102,6 +102,8 @@ nunca se versiona) y solo se abre si pasas `--publish`. Se genera en
 | --- | --- |
 | `./scripts/extract-tier-overlays.py` | Regenera los overlays de recoloreado por tier de `5dim_space_age`. |
 | `./scripts/extract-tier-overlays.py --verify` | Comprueba que los overlays existentes reproducen el arte esperado. |
+| `./scripts/make-region-overlays.py` | Genera los overlays por tier de `5dim_automation` recoloreando una region del sprite vanilla. |
+| `./scripts/make-region-overlays.py --contact DIR` | Deja una tira por sprite (vanilla, region y tiers) para revisar el resultado. |
 | `./scripts/generate-quality-icons.py` | Genera los iconos de calidad 5Dim con la paleta de tiers de `5dim_core`. |
 | `./scripts/generate-specialized-roboport-art.py` | Genera el arte de las familias de roboports especializados de `5dim_logistic`. |
 | `./scripts/install-custom-charging-roboport-art.py <origen.png>` | Instala un PNG propio como arte de una familia de roboports. |
@@ -109,7 +111,7 @@ nunca se versiona) y solo se abre si pasas `--publish`. Se genera en
 Los scripts de validacion tambien son Python: estan en su
 [propia seccion](#validacion-python-wsl-y-windows).
 
-Antes de tocar el arte por tier de Space Age, leer
+Antes de tocar el arte por tier, de Space Age o de automation, leer
 [space-age-tier-art.md](space-age-tier-art.md).
 
 ## Repo publico

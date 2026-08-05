@@ -143,6 +143,50 @@ Si algun dia se quiere arte propio, la unica via realista es rehacer la seleccio
 a mano sobre el sprite nuevo. Deducir la region por color se descarto con dos
 metodos distintos (IoU 2-34% y 1-55%).
 
+## Region dibujada a mano, sin arte 5Dim del que sacarla (2026-08-05)
+
+El tinte de reserva **no vale como acabado**. Sobre una maquina de oxido y laton
+tapa el edificio entero y se lee como un bloque de color, no como una maquina:
+lo reporto un jugador con la refineria en amarillo.
+
+`5dim_automation` tenia el mismo problema y ninguna fuente de la que levantar la
+region: su arte 5Dim es de 1.1 y dibuja **otro edificio** distinto al actual (la
+chemical plant es la excepcion, ver abajo). La salida es dibujar la region a
+mano sobre el sprite vanilla, con
+[../scripts/make-region-overlays.py](../scripts/make-region-overlays.py):
+
+```
+region = poligono dibujado a mano  ∩  pixeles del color de esa pieza
+```
+
+El poligono dice **que pieza**; el test de color hace que el borde siga la pieza
+en vez de cortar un rectangulo por encima de las tuberias que pasan por delante.
+Esto **no contradice** el callejon sin salida de arriba: alli se intentaba
+*deducir* la seleccion solo por color, sin poligono, y por eso fallaba.
+
+El recoloreado se midio sobre los overlays que ya existian (`--measure`): tono y
+saturacion se sustituyen por los del tier y se conserva el sombreado vanilla con
+la ganancia del arte original (r = 0.91-0.99 contra el valor vanilla).
+
+| entidad | pieza que lleva el color | sprites | overlays |
+| --- | --- | ---: | ---: |
+| assembling machine | la carcasa: paredes y faldon frontal | 3 | 0.6 MB |
+| oil refinery | la columna central, reconocible en las 4 direcciones | 4 | 7.8 MB |
+
+Los tiers 1-3 de la assembling machine **son** las maquinas vanilla (cada una con
+su arte) y del 4 al 10 copian la 3, asi que cada sprite genera solo los tiers que
+sirve: generar los diez dejaria ficheros que nadie carga.
+
+`tier-art.lua` ya no lee un solo manifiesto: recorre `manifestModules` y funde los
+que encuentre, asi que cada modulo lleva el suyo dentro (`5dim_space_age` y
+`5dim_automation`).
+
+**La chemical plant no entra aqui**: Wube conservo su arte en 2.0, asi que la hoja
+de 5Dim si es un recoloreado del edificio actual y se cablea entera como
+animacion 4-way, con la sombra vanilla. Lo que estaba roto era que solo se
+cambiaba el `filename` de la capa base, con lo que el juego leia una esquina de la
+hoja y dibujaba encima las capas animadas vanilla.
+
 ### Fuera del sistema
 
 Todo esto era arte huerfano y se borro, salvo la ultima entrada:

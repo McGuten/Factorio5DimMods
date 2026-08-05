@@ -31,8 +31,11 @@ function genBoilers(inputs)
     entity.next_upgrade = inputs.nextUpdate or nil
     entity.icon = item.icon
     entity.minable.result = item.name
+    -- energy_consumption es la produccion de vapor: 1 unidad de vapor a 165 grados
+    -- cuesta 30kJ, asi que 1.8MW dan los 60 vapor/s de vanilla. La effectivity del
+    -- burner se deja en el 1 de vanilla: escalarla haria que un boiler de tier alto
+    -- produjese mas vapor del que justifica su combustible.
     entity.energy_consumption = inputs.craftingSpeed .. "MW"
-    entity.energy_source.effectivity = inputs.energyUsage
     entity.energy_source.emissions_per_minute = inputs.pollution
     entity.fast_replaceable_group = "boiler"
 

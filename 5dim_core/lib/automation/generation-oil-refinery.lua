@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genOilRefinery(inputs)
     -- Copy electric furnace
     local item = table.deepcopy(data.raw.item["oil-refinery"])
@@ -37,21 +39,11 @@ function genOilRefinery(inputs)
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.energy_source.emissions_per_minute = inputs.pollution
 
-    -- East
-    -- entity.animation.east.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
-
-    -- -- North
-    -- entity.animation.north.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
-
-    -- -- South
-    -- entity.animation.south.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
-
-    -- -- West
-    -- entity.animation.west.layers[1].filename =
-    --     "__5dim_automation__/graphics/entities/oil-refinery/oil-refinery-" .. inputs.number .. ".png"
+    -- Tier art: overlay de recolor sobre la columna central, como las maquinas
+    -- de Space Age. La refineria no tiene hoja propia por tier que encaje con el
+    -- arte de 2.0, asi que la region la genera mods/scripts/make-region-overlays.py
+    -- a partir del sprite vanilla.
+    applyTierArt(entity, "oil-refinery", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genAssemblingMachines(inputs)
     -- Copy electric furnace
     local copyName = "assembling-machine-3"
@@ -50,11 +52,12 @@ function genAssemblingMachines(inputs)
             "crafting-with-fluid-or-metallurgy" }
     end
 
-    -- Base
-    entity.graphics_set.animation.layers[1].filename =
-        "__5dim_automation__/graphics/entities/assembling-machine/assembling-machine-" .. inputs.number .. ".png"
-    entity.graphics_set.animation.layers[1].width = 214
-    entity.graphics_set.animation.layers[1].height = 226
+    -- Tier art: overlay de recolor sobre la carcasa (paredes y faldon), como las
+    -- maquinas de Space Age; el mecanismo central se queda vanilla. La hoja
+    -- legacy de 5dim_automation era arte de 1.1 y dibujaba otro edificio, asi que
+    -- la region la genera mods/scripts/make-region-overlays.py desde el sprite
+    -- vanilla, una por cada maquina copiada (assembling machine 1, 2 y 3).
+    applyTierArt(entity, "assembling-machine", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

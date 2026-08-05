@@ -1,6 +1,9 @@
 -------------------------------------------------------------------------------
--- 5Dim's Core - Space Age Tier Art
+-- 5Dim's Core - Tier Art
 -- Anade el overlay de recolor de un tier sobre el arte vanilla de la entidad.
+--
+-- Nacio para 5dim_space_age y vive aqui por eso, pero lo usa cualquier modulo
+-- que traiga su propio manifiesto de overlays (ver manifestModules).
 --
 -- El arte por tier de 5dim_space_age es el arte vanilla con una region concreta
 -- recoloreada. En vez de enviar diez copias completas de cada spritesheet
@@ -22,8 +25,14 @@
 local applyTierTint = require("__5dim_core__.lib.tier-tint")
 local graphicsTree = require("__5dim_core__.lib.graphics-tree")
 
--- El manifiesto vive en 5dim_space_age, que depende de core y no al reves. Se
--- carga de forma perezosa y tolerante: si no esta, se usa el tinte de reserva.
+-- Los manifiestos viven en los modulos, que dependen de core y no al reves. Se
+-- cargan de forma perezosa y tolerante: el que no este se salta y esa entidad
+-- cae al tinte de reserva.
+local manifestModules = {
+    "__5dim_space_age__.graphics.tier-overlay.manifest",
+    "__5dim_automation__.graphics.tier-overlay.manifest",
+}
+
 local manifestCache = nil
 
 local function getManifest()
@@ -31,8 +40,19 @@ local function getManifest()
         return manifestCache or nil
     end
 
-    local ok, result = pcall(require, "__5dim_space_age__.graphics.tier-overlay.manifest")
-    manifestCache = ok and type(result) == "table" and result or false
+    local merged = nil
+
+    for _, module in ipairs(manifestModules) do
+        local ok, result = pcall(require, module)
+        if ok and type(result) == "table" then
+            merged = merged or {}
+            for key, entries in pairs(result) do
+                merged[key] = entries
+            end
+        end
+    end
+
+    manifestCache = merged or false
 
     return manifestCache or nil
 end

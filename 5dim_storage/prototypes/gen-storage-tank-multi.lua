@@ -250,7 +250,7 @@ for tier = 1, 10 do
     -- Generate the storage tank multi
     genStorageTankMultis {
         number = tierNum,
-        subgroup = "liquid-store",
+        subgroup = "liquid-store-multi",
         capacity = capacity,
         new = true,
         order = config.order,

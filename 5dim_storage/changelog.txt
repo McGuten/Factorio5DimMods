@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-08-05
+  Bugfixes:
+    - Multi-connection tanks now have their own row in the crafting menu, instead of being mixed in
+      with the regular fluid tanks.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-06
   Major Features:

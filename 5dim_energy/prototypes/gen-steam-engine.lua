@@ -15,7 +15,7 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 
 local baseCraftingSpeed = 1        -- Power output multiplier
 local baseModuleSlots = 2
-local baseEnergy = 0.5             -- MW
+local baseFluidUsage = 0.5         -- vapor por tick (30 vapor/s en vanilla)
 local baseEmissions = 30
 local baseTechCount = 350
 
@@ -201,7 +201,10 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
-    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier, 2)
+    -- El vapor que consume es una stat de rendimiento, no de consumo electrico: tiene
+    -- que escalar con el mismo factor que la produccion del boiler para que se mantenga
+    -- el 1 boiler por cada 2 motores de vanilla en todos los tiers.
+    local fluidUsage = CostCalculator.calculateMachineWorkValue(baseFluidUsage, tier, 10, 2)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
     local previousModuleSlots = nil
 
@@ -245,7 +248,7 @@ for tier = 1, 10 do
         subgroup = "energy-engine-1",
         craftingSpeed = craftingSpeed,
         moduleSlots = moduleSlots,
-        energyUsage = energy,
+        energyUsage = fluidUsage,
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

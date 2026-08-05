@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-08-05
+  Bugfixes:
+    - One boiler feeds two steam engines again on every tier. From tier 2 on the
+      engines were drinking steam faster than the boiler could make it, and from
+      tier 5 a boiler could not even keep a single engine of its own tier running.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-06
   Major Features:

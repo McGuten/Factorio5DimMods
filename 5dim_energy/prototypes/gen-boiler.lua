@@ -13,9 +13,8 @@ local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
 -- BASE CONFIGURATION
 -------------------------------------------------------------------------------
 
-local baseCraftingSpeed = 1.8
+local baseCraftingSpeed = 1.8     -- MW de vapor producido (60 vapor/s en vanilla)
 local baseModuleSlots = 2
-local baseEnergy = 1              -- MW
 local baseEmissions = 30
 local baseTechCount = 350
 
@@ -201,7 +200,6 @@ for tier = 1, 10 do
     local tierNum = string.format("%02d", tier)
     
     local craftingSpeed = CostCalculator.calculateMachineWorkValue(baseCraftingSpeed, tier, 10, 2)
-    local energy = CostCalculator.scaleMachineEnergy(baseEnergy, tier, 2)
     local emissions = CostCalculator.scalePollution(baseEmissions, baseCraftingSpeed, craftingSpeed, 0.8)
     local previousModuleSlots = nil
 
@@ -245,7 +243,6 @@ for tier = 1, 10 do
         subgroup = "energy-boiler",
         craftingSpeed = craftingSpeed,
         moduleSlots = moduleSlots,
-        energyUsage = energy,
         new = not config.isVanilla,
         order = config.order,
         ingredients = ingredients,

@@ -1,11 +1,11 @@
 {
     "name": "5dim_automation",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "factorio_version": "2.1",
     "title": "5Dim's mod - Automation",
     "author": "5Dim",
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Scale production without outgrowing your machines.\n\rAdds 10 tiers of assemblers, chemical plants, refineries and labs for larger factories and heavier science demand.\n\rRequires 5dim_core.",
-    "dependencies": ["5dim_core >= 2.0.42"]
+    "dependencies": ["5dim_core >= 2.1.2"]
 }

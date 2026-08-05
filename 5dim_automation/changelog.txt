@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-08-05
+  Features:
+    - Assembling machines and oil refineries now have a colour for every tier:
+      the casing on the assembler and the tall central column on the refinery.
+      The first tiers are the vanilla machines, so those get a colour too.
+  Bugfixes:
+    - Chemical plants looked like two machines drawn on top of each other, and
+      only showed patches of their tier colour. The whole plant is coloured
+      again.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-06
   Major Features:

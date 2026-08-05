@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genAgriculturalTower(inputs)
     -- Copy agricultural-tower
     local item = table.deepcopy(data.raw.item["agricultural-tower"])
@@ -39,6 +41,11 @@ function genAgriculturalTower(inputs)
     entity.crane_energy_usage = inputs.energyUsage .. "kW"
     entity.energy_usage = inputs.energyUsage .. "kW"
     entity.fast_replaceable_group = "agricultural-tower"
+
+    -- Sin overlay propio: Wube movio la animacion a un sheet aparte y dejo el
+    -- cuerpo estatico, asi que no hay donde mapear la region recoloreada. La
+    -- entidad no esta en el manifiesto y esto cae al tinte de reserva.
+    applyTierArt(entity, "agricultural-tower", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

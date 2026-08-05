@@ -1,4 +1,18 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-08-05
+  Features:
+    - Every tier of the Space Age machines now has its own colour, so you can
+      tell them apart at a glance: biochambers, biolabs, crushers,
+      electromagnetic plants, foundries, fusion generators and reactors,
+      lightning collectors, big mining drills, thrusters, recyclers, rocket
+      silos, agricultural towers and asteroid collectors.
+  Changes:
+    - Electric pole coverage now lines up with the tile grid, so poles no longer
+      leave half covered tiles or gaps between them.
+  Bugfixes:
+    - The first tier of a machine showed the vanilla colour instead of yellow.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-06
   Major Features:

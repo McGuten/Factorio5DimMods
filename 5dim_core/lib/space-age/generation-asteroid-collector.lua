@@ -1,3 +1,5 @@
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genAsteroidCollector(inputs)
     -- Copy asteroid-collector
     local item = table.deepcopy(data.raw.item["asteroid-collector"])
@@ -41,6 +43,11 @@ function genAsteroidCollector(inputs)
     entity.arm_speed_base = inputs.armSpeed
     entity.inventory_size = inputs.inventorySize
     entity.fast_replaceable_group = "asteroid-collector"
+
+    -- Sin overlay propio: mismo cambio estructural que agricultural-tower, el
+    -- cuerpo vanilla es estatico y la animacion vive en un sheet aparte. La
+    -- entidad no esta en el manifiesto y esto cae al tinte de reserva.
+    applyTierArt(entity, "asteroid-collector", tonumber(inputs.number))
 
     data:extend({ entity, recipe, item })
 

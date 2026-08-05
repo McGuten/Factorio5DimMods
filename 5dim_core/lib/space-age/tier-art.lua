@@ -128,11 +128,11 @@ local function applyTierArt(entity, entityKey, tier)
     local entries = manifest and manifest[entityKey]
 
     if not entries then
-        -- Sin overlay disponible: tinte interino. El tier 1 es la entidad
-        -- vanilla, asi que se deja intacta igual que hasta ahora.
-        if tier > 1 then
-            applyTierTint(entity, tier)
-        end
+        -- Sin overlay disponible: tinte interino. El tier 1 tambien se tinta (de
+        -- amarillo), igual que lleva su overlay amarillo en la rama de arriba.
+        -- Que el tier 1 conserve el nombre del prototipo vanilla no lo exime:
+        -- sigue siendo el primer tier de la familia y tiene que leerse como tal.
+        applyTierTint(entity, tier)
         return 0
     end
 

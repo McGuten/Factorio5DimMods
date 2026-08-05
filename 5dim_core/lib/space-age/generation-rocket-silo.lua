@@ -9,6 +9,8 @@
 -- Cloning the silo here means every tier inherits the Space Age behaviour.
 -------------------------------------------------------------------------------
 
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
+
 function genRocketSilo(inputs)
     -- Copy the (already Space Age-shaped) rocket silo
     local item = table.deepcopy(data.raw.item["rocket-silo"])
@@ -66,6 +68,10 @@ function genRocketSilo(inputs)
     if inputs.liftWeight then entity.lift_weight = inputs.liftWeight end
     if inputs.logisticTrashInventory then entity.logistic_trash_inventory_size = inputs.logisticTrashInventory end
     if inputs.canLaunchWithoutLandingPads then entity.can_launch_without_landing_pads = true end
+
+    -- Overlay de recolor del tier sobre el arte vanilla. El tier 1 tambien lo
+    -- lleva (amarillo), asi que va fuera del `if inputs.new`.
+    applyTierArt(entity, "rocket-silo", tonumber(inputs.number))
 
     -- Optional per-tier rocket clone (phase 2): faster ascent and bigger cargo.
     -- The shared shadow_slave_entity / cargo_pod_entity references are kept as-is.

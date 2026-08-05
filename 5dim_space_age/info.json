@@ -7,5 +7,5 @@
     "contact": "https://github.com/McGuten/Factorio5DimMods/issues",
     "homepage": "https://mods.factorio.com/user/McGuten",
     "description": "Upgrade the full Space Age production chain.\n\rAdds more tiers of planetary and orbital machinery across Vulcanus, Gleba, Fulgora, Aquilo and space platforms.\n\rRequires Space Age, Quality and 5dim_core.",
-    "dependencies": ["5dim_core >= 2.0.42", "space-age >= 2.0.0", "quality >= 2.0.0"]
+    "dependencies": ["5dim_core >= 2.1.1", "space-age >= 2.0.0", "quality >= 2.0.0"]
 }

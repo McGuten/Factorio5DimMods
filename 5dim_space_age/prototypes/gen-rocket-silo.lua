@@ -16,6 +16,7 @@ require("__5dim_core__.lib.space-age.generation-rocket-silo")
 
 local CostCalculator = require("__5dim_core__.lib.costs.calculator")
 local RecipeTemplates = require("__5dim_core__.lib.recipe-templates")
+local applyTierArt = require("__5dim_core__.lib.space-age.tier-art")
 
 -------------------------------------------------------------------------------
 -- READ LIVE BASE STATS FROM THE (SPACE AGE) SILO
@@ -126,6 +127,11 @@ end
 
 silo.fast_replaceable_group = "rocket-silo"
 silo.next_upgrade = "5d-rocket-silo-02"
+
+-- MK1 no pasa por genRocketSilo (el bucle empieza en el tier 2), asi que su
+-- overlay amarillo se aplica aqui. Los tiers 2..10 copian de aqui y
+-- `stripInheritedOverlays` les quita esta capa antes de poner la suya.
+applyTierArt(silo, "rocket-silo", 1)
 
 -------------------------------------------------------------------------------
 -- GENERATION LOOP (MK2..MK10)

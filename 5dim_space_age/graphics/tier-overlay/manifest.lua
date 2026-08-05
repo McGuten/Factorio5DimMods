@@ -139,11 +139,67 @@ return {
             },
         },
     },
-    ["platform-hub"] = {
+    ["recycler"] = {
         {
-            match = "__space-age__/graphics/entity/cargo-hubs/hubs/platform-hub-3.png",
+            match = "__recycler__/graphics/entity/recycler/recycler-E.png",
             overlays = {
-                "__5dim_space_age__/graphics/tier-overlay/platform-hub/platform-hub-3-",
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-E-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-N.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-N-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-S.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-S-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-W.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-W-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-flipped-E.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-flipped-E-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-flipped-N.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-flipped-N-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-flipped-S.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-flipped-S-",
+            },
+        },
+        {
+            match = "__recycler__/graphics/entity/recycler/recycler-flipped-W.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/recycler/recycler-flipped-W-",
+            },
+        },
+    },
+    ["rocket-silo"] = {
+        {
+            match = "__base__/graphics/entity/rocket-silo/06-rocket-silo.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/rocket-silo/06-rocket-silo-",
+            },
+        },
+        {
+            match = "__base__/graphics/entity/rocket-silo/14-rocket-silo-front.png",
+            overlays = {
+                "__5dim_space_age__/graphics/tier-overlay/rocket-silo/14-rocket-silo-front-",
             },
         },
     },

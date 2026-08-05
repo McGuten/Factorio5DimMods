@@ -7,6 +7,8 @@ Date: 2026-07-06
   Features:
     - Added 10 tiers of cargo landing pads (Orbit)
     - Moved cargo landing pad to orbit menu subgroup
+    - Every tier of the Space Age machines now has its own colour, so you can
+      tell them apart at a glance.
   Changes:
     - We strongly recommend starting a new game with this release.
 ---------------------------------------------------------------------------------------------------

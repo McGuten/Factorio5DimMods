@@ -654,9 +654,9 @@ for tier = 1, 10 do
         energy_required = 8 + tier * 2,
         ingredients = ingredients,
         results = { { type = "item", name = entityName, amount = 1 } },
-        icons = table.deepcopy(itemIcons),
-        categories = { recipeCategory }
+        icons = table.deepcopy(itemIcons)
     }
+    if recipeCategory then recipe.categories = { recipeCategory } end
     
     -- Technology
     local tech = nil

@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.2
+Date: 2026-08-06
+  Bugfixes:
+    - Turning on the optional special turrets setting stopped the game from
+      loading. Poison, acid, mortar, robot deployer and flare turrets can be
+      enabled again.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2026-08-05
   Changes:

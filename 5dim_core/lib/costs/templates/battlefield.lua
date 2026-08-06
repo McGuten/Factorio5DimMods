@@ -244,40 +244,49 @@ Templates.gunTurret = {
 local function buildDerivedGunTurretTemplates(previousTierNameFn, extraIngredientFn)
     local templates = {}
 
+    -- The gun turret delta of a tier and the extra ingredient of the derived
+    -- turret can be the same item (mortar adds steel-plate, tier 2 already has
+    -- it). Factorio rejects a recipe with the same ingredient twice, so they are
+    -- merged into a single entry instead of appended blindly.
+    local function addIngredient(ingredients, index, ing)
+        local existing = index[ing.type .. "/" .. ing.name]
+
+        if existing then
+            existing.amount = existing.amount + ing.amount
+            return
+        end
+
+        local copy = {
+            type = ing.type,
+            name = ing.name,
+            amount = ing.amount
+        }
+
+        index[ing.type .. "/" .. ing.name] = copy
+        table.insert(ingredients, copy)
+    end
+
     for tier = 1, 10 do
         local ingredients = {}
+        local index = {}
 
         if tier == 1 then
             for _, ing in ipairs(Templates.gunTurret[1]) do
-                table.insert(ingredients, {
-                    type = ing.type,
-                    name = ing.name,
-                    amount = ing.amount
-                })
+                addIngredient(ingredients, index, ing)
             end
         else
-            table.insert(ingredients, {
+            addIngredient(ingredients, index, {
                 type = "item",
                 name = previousTierNameFn(tier),
                 amount = 1
             })
 
-            for index = 2, #Templates.gunTurret[tier] do
-                local ing = Templates.gunTurret[tier][index]
-                table.insert(ingredients, {
-                    type = ing.type,
-                    name = ing.name,
-                    amount = ing.amount
-                })
+            for i = 2, #Templates.gunTurret[tier] do
+                addIngredient(ingredients, index, Templates.gunTurret[tier][i])
             end
         end
 
-        local extraIngredient = extraIngredientFn(tier)
-        table.insert(ingredients, {
-            type = extraIngredient.type,
-            name = extraIngredient.name,
-            amount = extraIngredient.amount
-        })
+        addIngredient(ingredients, index, extraIngredientFn(tier))
 
         templates[tier] = ingredients
     end

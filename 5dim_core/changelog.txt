@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.3
+Date: 2026-08-06
+  Bugfixes:
+    - The mortar turret asked for steel plates twice in the same recipe, which
+      stopped the game from loading with the special turrets setting on.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.2
 Date: 2026-08-05
   Features:

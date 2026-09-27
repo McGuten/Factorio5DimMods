@@ -1,5 +1,28 @@
 local DustCommon = require("prototypes.dust-common")
 
+local refinedCoal = {
+    type = "item",
+    name = "5d-refined-coal",
+    icons = DustCommon.make_dust_icons(
+        "__base__/graphics/icons/coal.png",
+        DustCommon.tints.refined_coal,
+        { overlay_scale = 0.72, overlay_shift = { 0, 0 } }
+    ),
+    subgroup = "plates-fuel",
+    order = "b-a",
+    fuel_value = "8MJ",
+    stack_size = 50
+}
+
+local coal = data.raw.item["coal"]
+if coal.fuel_categories then
+    refinedCoal.fuel_categories = table.deepcopy(coal.fuel_categories)
+elseif coal.fuel_category then
+    refinedCoal.fuel_category = coal.fuel_category
+else
+    error("5dim_resources: vanilla coal has no fuel category")
+end
+
 data:extend({
     {
         type = "item",
@@ -9,20 +32,7 @@ data:extend({
         order = "d",
         stack_size = 200
     },
-    {
-        type = "item",
-        name = "5d-refined-coal",
-        icons = DustCommon.make_dust_icons(
-            "__base__/graphics/icons/coal.png",
-            DustCommon.tints.refined_coal,
-            { overlay_scale = 0.72, overlay_shift = { 0, 0 } }
-        ),
-        subgroup = "plates-fuel",
-        order = "b-a",
-        fuel_category = "chemical",
-        fuel_value = "8MJ",
-        stack_size = 50
-    },
+    refinedCoal,
     {
         type = "recipe",
         name = "5d-coal-dust",

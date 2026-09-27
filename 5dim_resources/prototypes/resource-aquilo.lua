@@ -17,7 +17,6 @@ data:extend({
         energy_required = 1,
         allow_productivity = true,
         always_show_made_in = true,
-        always_show_products = true,
         allow_decomposition = false,
         ingredients = {
             { type = "fluid", name = "ammoniacal-solution", amount = 50 }

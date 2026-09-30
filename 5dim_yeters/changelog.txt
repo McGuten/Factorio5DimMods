@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.2
+Date: 2026-09-09
+  Bugfixes:
+    - Foundation and ice platform can now be placed on Yeters' lava, deep oil ocean, ammoniacal ocean, deep lake and wetland tiles.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2026-08-05
   Changes:

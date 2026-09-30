@@ -142,7 +142,7 @@ do
                 local max = type(p.stack_size) ~= "nil" and tonumber(p.stack_size) or 50
                 if max > 1 then
                     local percent
-                    if p.fuel_category then
+                    if p.fuel_categories and next(p.fuel_categories) then
                         percent = playerSettings[self.player_index].fuel
                     else
                         percent = playerSettings[self.player_index].ammo

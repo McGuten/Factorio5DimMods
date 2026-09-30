@@ -19,7 +19,7 @@ data:extend({
         ),
         subgroup = "plates-fuel",
         order = "b-a",
-        fuel_category = "chemical",
+        fuel_categories = { "chemical" },
         fuel_value = "8MJ",
         stack_size = 50
     },

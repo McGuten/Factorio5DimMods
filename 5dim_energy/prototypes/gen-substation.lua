@@ -94,6 +94,13 @@ local function applyTier11Bonus(value, decimals)
     return math.floor((boostedValue * factor) + 0.5) / factor
 end
 
+-- The 2x2 substation only aligns its supply area on whole distances, so an odd
+-- wire distance would round the supply up past the wire reach. Keeping the wire
+-- even makes poles placed edge to edge on their supply area always connect.
+local function getEvenWireDistance(wireDistance)
+    return math.min(64, 2 * math.ceil(wireDistance / 2))
+end
+
 local function getSubstationSupplyArea(wireDistance)
     return wireDistance / 2
 end
@@ -212,13 +219,14 @@ for tier = 1, 10 do
     
     -- Calculate stats for this tier
     local wireDistance = CostCalculator.calculateCappedMachineWorkValue(baseWireDistance, tier, 10, maxWireDistance, 0)
-    local supplyArea = getSubstationSupplyArea(wireDistance)
     local health = CostCalculator.calculateMachineWorkValue(baseHealth, tier, 10, 0)
 
     if tier == 10 then
         wireDistance = applyTier11Bonus(wireDistance, 0)
-        supplyArea = getSubstationSupplyArea(wireDistance)
     end
+
+    wireDistance = getEvenWireDistance(wireDistance)
+    local supplyArea = getSubstationSupplyArea(wireDistance)
     
     -- Get ingredients from template and process them
     local baseIngredients = RecipeTemplates.substation[tier]

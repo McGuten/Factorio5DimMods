@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.2
+Date: 2026-10-19
+  Bugfixes:
+    - Substations of every tier now reach each other by wire when placed with their
+      supply areas edge to edge. Before, their coverage was one tile wider than their wire reach.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2026-08-05
   Bugfixes:

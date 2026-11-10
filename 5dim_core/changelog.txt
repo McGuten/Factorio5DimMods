@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.4
+Date: 2026-11-10
+  Bugfixes:
+    - Players other than the host could not join a multiplayer game: they were
+      kicked with an error blaming 5Dim's Core.
+---------------------------------------------------------------------------------------------------
 Version: 2.1.3
 Date: 2026-08-06
   Bugfixes:

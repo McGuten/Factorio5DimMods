@@ -379,10 +379,11 @@ script.on_configuration_changed(function()
     storage.tier_overlay_schema_version = TIER_OVERLAY_SCHEMA_VERSION
 end)
 
-script.on_event(defines.events.on_tick, function()
-    ensureTierOverlaySchemaVersion()
-    script.on_event(defines.events.on_tick, nil)
-end)
+-- Schema upgrades ride on a mod version bump, so on_configuration_changed
+-- covers them. Never register handlers conditionally at runtime (e.g. an
+-- on_tick that unregisters itself): a joining client re-runs control.lua and
+-- ends up with a different handler set than the server, which Factorio
+-- rejects in multiplayer.
 
 script.on_event(defines.events.on_object_destroyed, onTierOverlayEntityDestroyed)
 

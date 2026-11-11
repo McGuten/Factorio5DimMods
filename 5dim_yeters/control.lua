@@ -66,11 +66,11 @@ local function pause_inventory(inventory, push)
     end
 end
 
--- Cached entity list for the current scan cycle. Kept as a file-local (not in
--- storage) so it is rebuilt deterministically on load without bloating saves;
--- only the cursor/timing lives in storage. find_entities_filtered is
--- deterministic, so every peer rebuilds an identical list in multiplayer.
-local entityCache = nil
+-- The entity list of the current scan cycle lives in storage, next to the
+-- cursor and timing. It must NOT be a file-local cache: a client joining a
+-- multiplayer game starts with an empty local, would restart the cycle while
+-- the server is mid-way through it, and the two would push different stacks
+-- (desync).
 
 script.on_event(defines.events.on_tick, function(event)
     local surface = game.surfaces[SURFACE_NAME]
@@ -84,19 +84,20 @@ script.on_event(defines.events.on_tick, function(event)
         storage.yeters = state
     end
 
-    -- Start a new cycle when the previous one is exhausted or the cache was
-    -- dropped (e.g. after load). The push applied across this cycle equals the
+    -- Start a new cycle when the previous one is exhausted (or on the first run
+    -- of a save made before the list was stored). The push applied across this cycle equals the
     -- duration of the previous full cycle, so each stack is advanced by exactly
     -- the time since it was last touched regardless of how many entities live
     -- on the surface.
-    if not entityCache or state.cursor > #entityCache then
+    if not state.entities or state.cursor > #state.entities then
         state.push = state.cycle_start and (event.tick - state.cycle_start) or 0
         state.cycle_start = event.tick
-        entityCache = surface.find_entities_filtered({ type = TARGET_TYPES })
+        state.entities = surface.find_entities_filtered({ type = TARGET_TYPES })
         state.cursor = 1
     end
 
-    local total = #entityCache
+    local entities = state.entities
+    local total = #entities
     if total == 0 then
         return
     end
@@ -106,7 +107,7 @@ script.on_event(defines.events.on_tick, function(event)
     local processed = 0
 
     while cursor <= total and processed < ENTITIES_PER_TICK do
-        local entity = entityCache[cursor]
+        local entity = entities[cursor]
         if entity and entity.valid then
             for _, index in pairs(INVENTORY_INDICES) do
                 pause_inventory(entity.get_inventory(index), push)
